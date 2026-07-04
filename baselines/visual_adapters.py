@@ -3,6 +3,7 @@ from __future__ import annotations
 import subprocess
 import sys
 from dataclasses import dataclass
+import json
 from pathlib import Path
 from typing import Dict, Iterable, Optional
 
@@ -58,7 +59,7 @@ class RAEAdapter:
     @torch.no_grad()
     def decode(self, z: torch.Tensor) -> torch.Tensor:
         self.model.eval()
-        z = z.to(device=self.device, dtype=self.dtype)
+        z = z.to(device=self.device, dtype=self.dtype).contiguous()
         x = self.model.decode(z).clamp(0.0, 1.0)
         return x * 2.0 - 1.0
 
@@ -132,6 +133,24 @@ def get_rae_status(repo_path: str | Path) -> Dict[str, dict]:
     return status
 
 
+def _prepare_decoder_config_path(repo_path: Path, decoder_config_path: Path, decoder_patch_size: int) -> str:
+    config_path = decoder_config_path / "config.json"
+    if not config_path.exists():
+        return str(decoder_config_path)
+
+    with config_path.open("r", encoding="utf-8") as f:
+        config = json.load(f)
+    if isinstance(config.get("patch_size"), int):
+        return str(decoder_config_path)
+
+    cache_dir = repo_path / ".adapter_cache" / decoder_config_path.name
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    config["patch_size"] = int(decoder_patch_size)
+    with (cache_dir / "config.json").open("w", encoding="utf-8") as f:
+        json.dump(config, f, indent=2)
+    return str(cache_dir)
+
+
 def _load_stage1_config(repo_path: Path, config_relpath: str) -> dict:
     import yaml
 
@@ -148,6 +167,12 @@ def _load_stage1_config(repo_path: Path, config_relpath: str) -> dict:
         if value is not None:
             path = Path(value)
             params[name] = str(path if path.is_absolute() else repo_path / path)
+    decoder_config_path = Path(params["decoder_config_path"])
+    params["decoder_config_path"] = _prepare_decoder_config_path(
+        repo_path,
+        decoder_config_path,
+        int(params.get("decoder_patch_size", 16)),
+    )
     return params
 
 
