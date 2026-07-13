@@ -1,0 +1,89 @@
+stage_1:
+  target: experiments.decoder_adapted_rae.DecoderAdaptedRAE
+  params:
+    adapter_checkpoint_path: /home/zhoushunyu/eqvae/artifacts/latent_adapter/dinov2_adapter_imagenet_full_e3_light_r1_strict_id5_lr3e6_from_e2/adapter.pt
+    decoder_adapter_checkpoint_path: /home/zhoushunyu/eqvae/artifacts/decoder_inverse_adapter/dinov2_e3_decoder_inverse_latentonly_imagenet8k_e1_b64/decoder_adapter.pt
+    base_rae_params:
+      encoder_cls: Dinov2withNorm
+      encoder_config_path: facebook/dinov2-with-registers-base
+      encoder_input_size: 224
+      encoder_params:
+        dinov2_path: facebook/dinov2-with-registers-base
+        normalize: true
+      decoder_config_path: configs/decoder/ViTXL
+      pretrained_decoder_path: models/decoders/dinov2/wReg_base/ViTXL_n08/model.pt
+      noise_tau: 0.0
+      reshape_to_2d: true
+      normalization_stat_path: models/stats/dinov2/wReg_base/imagenet1k/stat.pt
+
+stage_2:
+  target: stage2.models.DDT.DiTwDDTHead
+  params:
+    input_size: 16
+    patch_size: 1
+    in_channels: 768
+    hidden_size: [384, 2048]
+    depth: [12, 2]
+    num_heads: [6, 16]
+    mlp_ratio: 4.0
+    class_dropout_prob: 0.1
+    num_classes: 1000
+    use_qknorm: false
+    use_swiglu: true
+    use_rope: true
+    use_rmsnorm: true
+    wo_shift: false
+    use_pos_embed: true
+  ckpt: models/DiTs/Dinov2/wReg_base/ImageNet256/DiTDH-S_ep14/stage2_model.pt
+
+transport:
+  params:
+    path_type: Linear
+    prediction: velocity
+    loss_weight: null
+    time_dist_type: logit-normal_0_1
+
+sampler:
+  mode: ODE
+  params:
+    sampling_method: euler
+    num_steps: 50
+    atol: 1.0e-6
+    rtol: 1.0e-3
+    reverse: false
+
+guidance:
+  method: cfg
+  scale: 1.0
+  t_min: 0.0
+  t_max: 1.0
+
+misc:
+  latent_size: [768, 16, 16]
+  num_classes: 1000
+  time_dist_shift_dim: 196608
+  time_dist_shift_base: 4096
+
+training:
+  epochs: 1400
+  global_batch_size: 1024
+  grad_accum_steps: 64
+  ema_decay: 0.9995
+  num_workers: 4
+  log_interval: 10
+  checkpoint_interval: 10
+  checkpoint_steps: 625
+  sample_every: 0
+  clip_grad: 1.0
+  global_seed: 42
+  optimizer:
+    lr: 2.0e-5
+    betas: [0.9, 0.95]
+    weight_decay: 0.0
+  scheduler:
+    type: linear
+    warmup_steps: 0
+    decay_end_steps: 5000
+    base_lr: 2.0e-5
+    final_lr: 2.0e-5
+    warmup_from_zero: false

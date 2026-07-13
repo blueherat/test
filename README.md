@@ -37,6 +37,15 @@ src="https://img.shields.io/badge/-Paper-blue.svg?colorA=333&logo=arxiv" height=
 
 <b>简述</b>：我们提出了 **EQ-VAE**，这是一个直接的正则化目标，用于促进预训练自编码器的潜空间在缩放和旋转变换下具有等变性。它会得到结构更清晰的潜变量分布，从而加速生成模型训练并提升性能。
 
+### 本地 RAE 研究扩展
+
+本仓库还包含面向 RAE-DINOv2、RAE-MAE 与 RAE-SigLIP2 的 token / layerwise
+几何诊断、可逆 latent adapter 与阶段二生成对照实验。入口、存储约定和脚本
+说明见 [experiments/README.md](experiments/README.md)，当前结论与未解决问题见
+[docs/RESEARCH_STATUS.md](docs/RESEARCH_STATUS.md)。数据集从 `/data/shared` 读取；
+本机生成的模型、checkpoint、结果统一存放在 `$HOME/data/eqvae`，仓库中的
+`artifacts/`、`pretrained_models/` 和 `external/RAE/models/` 是兼容软链接。
+
 ### 0. 使用 Hugging Face 快速开始
 
 如果你只想使用 EQ-VAE 来加速扩散模型训练，可以直接使用我们的 Hugging Face 检查点。

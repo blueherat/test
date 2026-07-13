@@ -15,9 +15,17 @@ outputs/
 samples/
 pca_vis/
 features/
+
+# Local experiment storage is outside the repository. The in-tree entries are
+# compatibility symlinks into $HOME/data/eqvae.
+artifacts/
+artifacts
 pretrained_models/
+pretrained_models
 external/
 *.ckpt
 *.pt
 *.pth
+*.npy
 *.npz
+*.safetensors
