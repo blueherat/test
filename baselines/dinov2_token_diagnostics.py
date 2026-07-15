@@ -60,6 +60,12 @@ class HFVAEAdapter:
         z = latent_dist.mode() if self.posterior == "mode" else latent_dist.sample()
         return z * self.scaling_factor
 
+    @torch.no_grad()
+    def decode(self, z: torch.Tensor) -> torch.Tensor:
+        self.model.eval()
+        z = z.to(device=self.device, dtype=self.dtype)
+        return self.model.decode(z / self.scaling_factor).sample.clamp(-1.0, 1.0)
+
 
 def configure_fp32() -> None:
     torch.backends.cuda.matmul.allow_tf32 = False

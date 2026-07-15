@@ -151,6 +151,18 @@ def _prepare_decoder_config_path(repo_path: Path, decoder_config_path: Path, dec
     return str(cache_dir)
 
 
+def _resolve_cached_hf_model(model_id: str) -> str:
+    path = Path(model_id).expanduser()
+    if path.exists() or "/" not in model_id:
+        return str(path.resolve()) if path.exists() else model_id
+    try:
+        from huggingface_hub import snapshot_download
+
+        return snapshot_download(repo_id=model_id, local_files_only=True)
+    except Exception:
+        return model_id
+
+
 def _load_stage1_config(repo_path: Path, config_relpath: str) -> dict:
     import yaml
 
@@ -162,6 +174,15 @@ def _load_stage1_config(repo_path: Path, config_relpath: str) -> dict:
     if "stage_1" not in config:
         raise ValueError(f"RAE 配置缺少 stage_1: {config_path}")
     params = dict(config["stage_1"]["params"])
+    encoder_config_path = params.get("encoder_config_path")
+    if isinstance(encoder_config_path, str):
+        params["encoder_config_path"] = _resolve_cached_hf_model(encoder_config_path)
+    encoder_params = dict(params.get("encoder_params", {}))
+    for name in ("dinov2_path", "model_name"):
+        value = encoder_params.get(name)
+        if isinstance(value, str):
+            encoder_params[name] = _resolve_cached_hf_model(value)
+    params["encoder_params"] = encoder_params
     for name in ("decoder_config_path", "pretrained_decoder_path", "normalization_stat_path"):
         value = params.get(name)
         if value is not None:
