@@ -72,6 +72,37 @@ they use different sample counts and serve different controlled comparisons.
 - `experiments/rae_layerwise_imagenet_study.py`: reproducible larger-scale
   layerwise study.
 
+## Spectral flow-matching direction
+
+The geometry-adapter line above has not produced a generation gain. A separate
+mechanism audit found a stronger real-RAE asymmetry in stage-2 flow matching:
+
+- radial DCT residual energy spans about `23.5x` in the executed audit and is
+  much more anisotropic than a random orthogonal basis;
+- low-frequency bands have higher teacher predictability;
+- the frozen decoder is relatively more sensitive to higher-frequency,
+  lower-residual bands;
+- direction-only `gamma=0.5` flattens output-head gradient-variance slopes, but
+  does not improve per-band GSNR and reduces total projected GSNR.
+
+This supports an objective/capacity-allocation hypothesis, not a pure numerical
+preconditioning or training-acceleration claim. The mini-DiT toy result is also
+slightly negative, so only one strict real-RAE tiny screen is authorized:
+`DiTDH-S step-5000 -> step-10000`, three paired seeds, `gamma=0` versus `0.5`,
+fixed fp32 numerics, fixed train-only weights, and fixed-noise 5k KID/FID proxy.
+The pass rule is preregistered in
+`$HOME/data/eqvae/experiments/rae_spectral_tiny/protocol.json`.
+
+The screen is now complete and failed its preregistered practical threshold.
+Across three paired seeds, fixed held-out velocity diagnostics at 5k branch
+updates improved raw MSE by `1.09%`, the decoder-sensitivity proxy by `1.60%`,
+high-frequency MSE by `3.81%`, and the highest-frequency band by `4.17%`, while
+the lowest-frequency band worsened by `1.26%`. This confirms that the fixed
+weighting changes direction allocation on unseen images. However, exact 5k
+generation improved KID by only `0.65%` to `1.89%` (`0/3` seeds reached the
+preregistered `5%` threshold), and the 5k FID proxy worsened on `2/3` seeds.
+The method line is therefore stopped without tuning gamma or adding seeds.
+
 ## Recommended next experiment
 
 Do not continue decoder inverse-adapter reconstruction training as the primary
@@ -81,3 +112,10 @@ relations on test images, and compare functional errors with independently
 fitted maps. If this fails, the method direction should be a light,
 position-aware adapter or an intermediate-layer tokenizer, rather than forcing
 global group action in the final RAE latent.
+
+For the spectral line, do not add more toy variants, tune `gamma`, add seeds, or
+run 50k FID. The useful retained result is the measured predictability versus
+decoder-observability mismatch; fixed inverse-standard-deviation DCT weighting
+is not a sufficiently effective solution. A future method would need to target
+the decoder/perceptual geometry directly and demonstrate benefit beyond nearby
+frequency-aware and latent-perceptual objectives before another large run.

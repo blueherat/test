@@ -57,3 +57,42 @@ its logs and results below `$EQVAE_DATA_ROOT`.
 
 The current evidence, interpretation boundaries, and recommended next
 experiments are tracked in [`docs/RESEARCH_STATUS.md`](../docs/RESEARCH_STATUS.md).
+
+## Spectral tiny screen
+
+The frequency-weighting line is intentionally gated by one paired microtraining
+experiment rather than another large run. Its fixed protocol is implemented by:
+
+- `rae_spectral_direction_loss.py`: eight-band DCT direction loss with fixed
+  train-only statistics, bounded weights, and coefficient-weighted mean-one
+  normalization at every time.
+- `train_rae_spectral_tiny.py`: fp32 deterministic branch trainer that restores
+  model, EMA, optimizer, and scheduler from the local step-5000 checkpoint.
+- `run_rae_spectral_tiny.py`: preregisters and launches three paired seeds for
+  `gamma=0` versus `gamma=0.5`.
+- `evaluate_rae_spectral_tiny.py`: fixed held-out latent/noise diagnostics at
+  branch updates 500, 1k, 2k, and 5k.
+- `evaluate_rae_spectral_generation.py`: fixed-noise, equal-label 5k sampling,
+  KID, and FID proxy evaluation. Metrics read the exact 5k-sample NPZ rather
+  than the sampler's batch-padded PNG directory; the TensorFlow ADM evaluator
+  is optional via `--with-adm`.
+- [`rae_spectral_tiny_screen.ipynb`](../notebooks/rae_spectral_tiny_screen.ipynb):
+  reader-facing plots and the preregistered pass/fail rule.
+
+Data and checkpoints stay outside the repository:
+
+```bash
+python experiments/run_rae_spectral_tiny.py --mode preflight
+python experiments/run_rae_spectral_tiny.py --mode smoke --device 3
+python experiments/run_rae_spectral_tiny.py --mode screen --device 3
+python experiments/evaluate_rae_spectral_tiny.py --device cuda:3
+python experiments/evaluate_rae_spectral_generation.py --mode all --devices 0,1,2,3 --processes 4
+```
+
+The completed screen failed its preregistered 5% KID threshold, so it should not
+be extended by tuning gamma or adding seeds. It remains evidence about
+objective/capacity allocation, not a claim of pure
+preconditioning or parameter-space acceleration. The source checkpoint lacks
+the old RNG and dataloader cursor, so each pair uses a new deterministic stream
+from the same full-state checkpoint rather than pretending to continue the old
+stream exactly.
