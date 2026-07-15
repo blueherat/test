@@ -78,6 +78,23 @@ experiment rather than another large run. Its fixed protocol is implemented by:
   is optional via `--with-adm`.
 - [`rae_spectral_tiny_screen.ipynb`](../notebooks/rae_spectral_tiny_screen.ipynb):
   reader-facing plots and the preregistered pass/fail rule.
+- `rae_teacher_rollout_gap.py`: separates paired teacher-forced clean estimates
+  from distribution-only ODE rollout diagnostics, including decoder hidden
+  states, Inception features, per-band calibration, marginal energy drift,
+  vector-field secants, and stepwise curvature.
+- `run_rae_teacher_rollout_gap.py`: runs the six endpoint EMA branches across
+  four GPUs and aggregates tables under `$HOME/data/eqvae`.
+- `rae_step_schedule_probe.py`: compares reduced Euler time grids with the
+  paired official 50-step numerical endpoint.  It screens speed candidates but
+  does not replace 5k FID.
+- `rae_vector_field_switch_probe.py`: hard-switches the paired baseline and
+  spectral EMA vector fields across high-, middle-, and low-noise intervals to
+  localize where teacher improvements turn into rollout contraction.
+- `run_rae_vector_field_switch_probe.py`: runs the switch probe for all three
+  paired seeds and aggregates the local tables outside Git.
+- [`rae_teacher_rollout_gap.ipynb`](../notebooks/rae_teacher_rollout_gap.ipynb):
+  Chinese reader-facing analysis of the teacher-forcing/transport gap and the
+  sampling schedule probe.
 
 Data and checkpoints stay outside the repository:
 
@@ -87,6 +104,15 @@ python experiments/run_rae_spectral_tiny.py --mode smoke --device 3
 python experiments/run_rae_spectral_tiny.py --mode screen --device 3
 python experiments/evaluate_rae_spectral_tiny.py --device cuda:3
 python experiments/evaluate_rae_spectral_generation.py --mode all --devices 0,1,2,3 --processes 4
+python experiments/run_rae_teacher_rollout_gap.py --mode all --devices 0,1,2,3 --count 64 --overwrite
+python experiments/rae_step_schedule_probe.py \
+  --branch "$HOME/data/eqvae/experiments/rae_spectral_tiny/seed3407_baseline_from_s5000" \
+  --device cuda:0 --count 64
+python experiments/run_rae_vector_field_switch_probe.py \
+  --mode all --devices 0,1,2 --count 64
+python experiments/evaluate_rae_spectral_generation.py \
+  --mode all --branch-name seed3407_baseline_from_s5000 --steps 25 \
+  --sample-count 5000 --devices 0,1 --processes 2 --per-process-batch 8
 ```
 
 The completed screen failed its preregistered 5% KID threshold, so it should not

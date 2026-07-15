@@ -37,12 +37,20 @@ class NumpyRGBDataset(Dataset):
         return torch.from_numpy(np.asarray(self.images[int(index)])).permute(2, 0, 1)
 
 
-def branches(results: Path) -> list[Path]:
-    return sorted(
+def branches(results: Path, branch_name: str = "") -> list[Path]:
+    selected = sorted(
         path
         for path in results.glob("seed*_*_from_s5000")
         if (path / "manifest.json").exists()
     )
+    if branch_name:
+        selected = [path for path in selected if path.name == branch_name]
+    return selected
+
+
+def sample_folder_name(sample_count: int, endpoint: int, steps: int) -> str:
+    base = f"fixed_seed{SAMPLING_SEED}_{int(sample_count)}_step{int(endpoint)}"
+    return base if int(steps) == 50 else f"{base}_{int(steps)}steps"
 
 
 def endpoint_checkpoint(branch: Path, endpoint: int) -> Path:
@@ -86,7 +94,7 @@ def sample_branch(
     checkpoint = endpoint_checkpoint(branch, endpoint)
     config, _ = prepare_sampling_config(branch, checkpoint, steps)
     sample_root = branch / "generation"
-    folder_name = f"fixed_seed{SAMPLING_SEED}_{sample_count}_step{endpoint}"
+    folder_name = sample_folder_name(sample_count, endpoint, steps)
     sample_folder = sample_root / folder_name
     command = [
         "torchrun",
@@ -168,6 +176,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["sample", "metrics", "all"], default="all")
     parser.add_argument("--results", type=Path, default=DEFAULT_RESULTS)
+    parser.add_argument("--branch-name", default="")
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--endpoint", type=int, default=10000)
     parser.add_argument("--sample-count", type=int, default=5000)
@@ -185,7 +194,7 @@ def main() -> None:
 
     if args.sample_count % 1000 != 0:
         raise ValueError("equal ImageNet label sampling requires a multiple of 1000 samples")
-    selected = branches(args.results)
+    selected = branches(args.results, args.branch_name)
     if not selected:
         raise RuntimeError("no tiny branches found")
 
@@ -202,7 +211,7 @@ def main() -> None:
                 per_process_batch=args.per_process_batch,
             )
     else:
-        name = f"fixed_seed{SAMPLING_SEED}_{args.sample_count}_step{args.endpoint}"
+        name = sample_folder_name(args.sample_count, args.endpoint, args.steps)
         sample_folders = {branch.name: branch / "generation" / name for branch in selected}
 
     if args.mode == "sample":
@@ -243,6 +252,13 @@ def main() -> None:
             "endpoint": int(args.endpoint),
             "sample_count": int(args.sample_count),
             "sampling_seed": SAMPLING_SEED,
+            "sampling_steps": int(args.steps),
+            "sampling_processes": int(args.processes),
+            "per_process_batch": int(args.per_process_batch),
+            "global_sampling_batch": int(args.processes) * int(args.per_process_batch),
+            "precision": "fp32",
+            "tf32": False,
+            "label_sampling": "equal",
             "sample_folder": str(sample_folder),
             **fidelity,
         }
@@ -254,12 +270,21 @@ def main() -> None:
                     "adm_inception_score": float(adm["inception_score"]),
                 }
             )
-        output = branch / "generation" / "generation_metrics.json"
+        branch_metric_name = (
+            "generation_metrics.json"
+            if int(args.steps) == 50
+            else f"generation_metrics_{int(args.steps)}steps.json"
+        )
+        output = branch / "generation" / branch_metric_name
         output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         rows.append(result)
 
     table = pd.DataFrame(rows).sort_values(["seed", "treatment"])
-    output = args.results / "generation_metrics.csv"
+    if int(args.steps) == 50 and not args.branch_name:
+        output = args.results / "generation_metrics.csv"
+    else:
+        suffix = f"_{args.branch_name}" if args.branch_name else ""
+        output = args.results / f"generation_metrics_{int(args.steps)}steps{suffix}.csv"
     table.to_csv(output, index=False)
     print(table.to_string(index=False))
     print(output)
