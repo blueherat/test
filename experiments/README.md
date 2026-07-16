@@ -92,9 +92,20 @@ experiment rather than another large run. Its fixed protocol is implemented by:
   localize where teacher improvements turn into rollout contraction.
 - `run_rae_vector_field_switch_probe.py`: runs the switch probe for all three
   paired seeds and aggregates the local tables outside Git.
+- `mnist_transport_mechanism.py`: low-cost step-convergence, radial-energy
+  calibration, divergence, and time/frequency vector-field interventions for
+  the paired MNIST velocity fields.
+- `rae_frequency_time_switch_probe.py`: splices paired RAE EMA vector fields by
+  both time window and radial DCT output band, without training or decoding.
+- `rae_band_transport_probe.py`: evaluates both paired RAE vector fields on
+  shared teacher, baseline-rollout, and partial-rollout states using the exact
+  band second-moment drift `2 E[<z_b,v_b>]`.
 - [`rae_teacher_rollout_gap.ipynb`](../notebooks/rae_teacher_rollout_gap.ipynb):
   Chinese reader-facing analysis of the teacher-forcing/transport gap and the
   sampling schedule probe.
+- [`TEACHER_ROLLOUT_MECHANISM_ZH.md`](../docs/TEACHER_ROLLOUT_MECHANISM_ZH.md):
+  final Chinese evidence report separating on-path marginal-drift mismatch
+  from middle-stage off-path generalization failure.
 
 Data and checkpoints stay outside the repository:
 
@@ -110,6 +121,16 @@ python experiments/rae_step_schedule_probe.py \
   --device cuda:0 --count 64
 python experiments/run_rae_vector_field_switch_probe.py \
   --mode all --devices 0,1,2 --count 64
+python experiments/rae_frequency_time_switch_probe.py \
+  --baseline "$HOME/data/eqvae/experiments/rae_spectral_tiny/seed3407_baseline_from_s5000" \
+  --partial "$HOME/data/eqvae/experiments/rae_spectral_tiny/seed3407_partial_from_s5000" \
+  --output "$HOME/data/eqvae/experiments/rae_spectral_tiny/frequency_time_switch/seed3407" \
+  --device cuda:0 --count 64 --batch-size 8
+python experiments/rae_band_transport_probe.py \
+  --baseline "$HOME/data/eqvae/experiments/rae_spectral_tiny/seed3407_baseline_from_s5000" \
+  --partial "$HOME/data/eqvae/experiments/rae_spectral_tiny/seed3407_partial_from_s5000" \
+  --output "$HOME/data/eqvae/experiments/rae_spectral_tiny/band_transport/seed3407" \
+  --device cuda:0 --count 64 --batch-size 8
 python experiments/evaluate_rae_spectral_generation.py \
   --mode all --branch-name seed3407_baseline_from_s5000 --steps 25 \
   --sample-count 5000 --devices 0,1 --processes 2 --per-process-batch 8

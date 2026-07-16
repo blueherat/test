@@ -204,6 +204,32 @@ not a reason to tune `gamma` further.  Its practical use is to screen rollout-
 aware losses, time windows, and Jacobian/covariance diagnostics before any new
 RAE run.
 
+### Mechanism resolution
+
+The follow-up causal probes now resolve the teacher/rollout gap more sharply;
+the full Chinese evidence report is in
+[`TEACHER_ROLLOUT_MECHANISM_ZH.md`](TEACHER_ROLLOUT_MECHANISM_ZH.md).
+
+The final supported mechanism has two phases.  At high noise, partial's
+pointwise teacher MSE improvements do not preserve the band marginal drift
+`2 E[<z_b,v_b>]`: its teacher-state drift RMSE is `2.77x` baseline at
+`t ~= 0.95` and `3.24x` at `t ~= 0.85`.  In the middle interval, partial drift
+is better on teacher states (`0.434x` at `t ~= 0.54`, `0.752x` at
+`t ~= 0.315`) but worse when both fields are evaluated on the same baseline
+rollout states (`1.121x` and `1.197x`).  This is direct evidence for an
+on-path objective/transport mismatch followed by off-path generalization
+failure.
+
+Time-and-band splicing is causal evidence rather than a correlation.  On RAE,
+the nonzero bands explain about `66%` of the high-window summary-SWD damage and
+`81%` of the middle-window damage; band 0 explains only about `34%` and `16%`.
+Thus the MNIST coarse-band mechanism is real but not a complete RAE account.
+Euler discretization, radial-band energy alone, monotone global divergence, and
+a single coarse band are all rejected as sufficient explanations.  No more
+fixed-gamma tuning is justified.  A future candidate must constrain marginal
+drift on one- or two-step self-generated states while preserving high-noise
+coarse-direction MSE.
+
 The bounded follow-ups are now:
 
 1. directly match train-only per-band covariance or log energy after one or
