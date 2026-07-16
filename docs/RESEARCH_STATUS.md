@@ -69,6 +69,9 @@ they use different sample counts and serve different controlled comparisons.
   orbit alignment, Procrustes, and group-consistency diagnostics.
 - `notebooks/rae_layerwise_playground.ipynb`: simple per-image and batched
   layerwise visualizations for DINOv2, MAE, and SigLIP2.
+- `notebooks/mnist_spectral_rollout_toy.ipynb`: low-cost paired MNIST
+  teacher-path/rollout diagnostic with the simple `T(...)` and `V(result)`
+  interface.
 - `experiments/rae_layerwise_imagenet_study.py`: reproducible larger-scale
   layerwise study.
 
@@ -168,6 +171,38 @@ population minimizer, `E[u | z_t,t]`.  The observed changes therefore come
 from finite capacity, shared parameters, and optimization-path reallocation;
 the weighted loss is not a pure preconditioner that preserves the finite-model
 solution.
+
+### Low-cost MNIST mechanism gate
+
+A bounded MNIST experiment now reproduces the qualitative teacher/rollout gap
+without a large tokenizer or decoder.  It uses normalized pixels as an exactly
+invertible latent, the same radial DCT mean-one weighting, paired small
+convolutional velocity fields, 8,192 official training images, 1,024 disjoint
+official test images, 1,000 updates, and three seeds.  All weighting statistics
+and the independent MNIST feature classifier use training data only.  Decoded
+feature and pixel metrics clamp generated pixels to the valid `[0, 1]` range;
+the raw latent metric remains unclipped.
+
+For the width-24 model, `gamma=0.5` improves the combined held-out teacher MSE
+at `t in {0.1, 0.3, 0.5}` by `3.62%` on average, but worsens it at
+`t in {0.7, 0.9}` by `1.50%`; averaged over all five measured times the net
+change is only `-0.25%`.  Despite that small aggregate teacher improvement,
+all three seeds worsen every rollout distribution metric.  Mean
+weighted/baseline ratios are `1.093` for raw latent SWD, `1.109` for decoded
+pixel SWD, `1.054` for feature SWD, and `1.163` for the MNIST feature FID.
+
+A preliminary width check adds an important limit to the finite-capacity
+story.  Increasing width makes the teacher-path reallocation much smaller,
+but does not monotonically remove the raw-latent rollout penalty and can expose
+seed-dependent rollout instability.  Finite capacity therefore helps explain
+why the weighted objective changes teacher errors, but capacity alone is not a
+sufficient explanation of the accumulated transport error.  Off-path Jacobian
+and multi-step marginal dynamics remain necessary suspects.
+
+This is a cheap mechanism reproduction, not a replacement for ImageNet FID and
+not a reason to tune `gamma` further.  Its practical use is to screen rollout-
+aware losses, time windows, and Jacobian/covariance diagnostics before any new
+RAE run.
 
 The bounded follow-ups are now:
 
