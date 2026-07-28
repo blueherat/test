@@ -4,9 +4,11 @@ import pandas as pd
 import torch
 
 from experiments.rae_lpl_detach_audit import (
+    controlled_lpl_per_sample,
     decoder_feature_objective_per_sample,
     gradient_decomposition_metrics,
     lpl_loss_variants_per_sample,
+    scale_gradient,
 )
 from experiments.run_rae_lpl_detach_audit import summarize
 from experiments.rae_strict_lpl import decoder_outlier_mask, strict_lpl_per_sample
@@ -137,6 +139,73 @@ def test_full_minus_detach_is_exact_denominator_gradient() -> None:
         full_gradient - detach_gradient,
         denominator_gradient,
     )
+
+
+def test_controlled_lpl_has_one_forward_value_and_exact_gradient_split() -> None:
+    torch.manual_seed(7)
+    target = torch.randn(2, 3, 8, 8)
+    prediction = (target + 0.4 * torch.randn_like(target)).requires_grad_(True)
+    gradients = {}
+    losses = {}
+    for name, scales in {
+        "error": (1.0, 0.0),
+        "variance": (0.0, 1.0),
+        "full": (1.0, 1.0),
+        "half": (0.25, 0.75),
+    }.items():
+        loss, _ = controlled_lpl_per_sample(
+            [target],
+            [prediction],
+            error_gradient_scale=scales[0],
+            variance_gradient_scale=scales[1],
+        )
+        losses[name] = loss.detach()
+        gradients[name] = torch.autograd.grad(
+            loss.sum(), prediction, retain_graph=True
+        )[0]
+
+    torch.testing.assert_close(losses["error"], losses["full"])
+    torch.testing.assert_close(losses["variance"], losses["full"])
+    torch.testing.assert_close(losses["half"], losses["full"])
+    torch.testing.assert_close(
+        gradients["full"],
+        gradients["error"] + gradients["variance"],
+        atol=2e-6,
+        rtol=2e-5,
+    )
+    torch.testing.assert_close(
+        gradients["half"],
+        0.25 * gradients["error"] + 0.75 * gradients["variance"],
+        atol=2e-6,
+        rtol=2e-5,
+    )
+
+
+def test_explicit_variance_only_matches_full_minus_detach() -> None:
+    target = torch.randn(2, 4, 8, 8)
+    prediction = (target + 0.3 * torch.randn_like(target)).requires_grad_(True)
+    losses, _ = lpl_loss_variants_per_sample([target], [prediction])
+    gradients = {
+        name: torch.autograd.grad(
+            losses[name].sum(), prediction, retain_graph=True
+        )[0]
+        for name in ("prediction_detach", "prediction_full", "variance_only")
+    }
+
+    torch.testing.assert_close(
+        gradients["variance_only"],
+        gradients["prediction_full"] - gradients["prediction_detach"],
+        atol=2e-6,
+        rtol=2e-5,
+    )
+
+
+def test_scale_gradient_changes_only_backward() -> None:
+    value = torch.tensor([1.0, 2.0], requires_grad=True)
+    scaled = scale_gradient(value, 0.3)
+    torch.testing.assert_close(scaled, value)
+    gradient = torch.autograd.grad(scaled.sum(), value)[0]
+    torch.testing.assert_close(gradient, torch.full_like(value, 0.3))
 
 
 def test_gradient_decomposition_reports_variance_increasing_stats_step() -> None:

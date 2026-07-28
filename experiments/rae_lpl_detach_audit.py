@@ -12,6 +12,13 @@ from experiments.rae_strict_lpl import (
 )
 
 
+def scale_gradient(value: torch.Tensor, scale: float) -> torch.Tensor:
+    """Keep ``value`` unchanged while multiplying its gradient by ``scale``."""
+
+    scale = float(scale)
+    return value.detach() + scale * (value - value.detach())
+
+
 def tensor_rms(value: torch.Tensor, eps: float = 0.0) -> torch.Tensor:
     """Return one RMS value for each batch element."""
 
@@ -74,6 +81,9 @@ def lpl_loss_variants_per_sample(
     raw_layers = []
     detach_layers = []
     full_layers = []
+    variance_only_layers = []
+    target_normalized_layers = []
+    symmetric_layers = []
     prediction_variances = []
     target_variances = []
     variance_ratios = []
@@ -112,10 +122,30 @@ def lpl_loss_variants_per_sample(
             residual_squared / denominator.detach()
         ).sum(dim=(-2, -1))
         full_channel = (residual_squared / denominator).sum(dim=(-2, -1))
+        variance_only_channel = (
+            residual_squared.detach() / denominator
+        ).sum(dim=(-2, -1))
+        target_normalized_channel = (
+            residual_squared / (target_variance.detach() + float(eps))
+        ).sum(dim=(-2, -1))
+        symmetric_denominator = torch.sqrt(
+            (prediction_variance + float(eps))
+            * (target_variance.detach() + float(eps))
+        )
+        symmetric_channel = (
+            residual_squared / symmetric_denominator
+        ).sum(dim=(-2, -1))
         weight = float(layer_weight)
         raw_layers.append(raw_channel.mean(dim=1) * weight)
         detach_layers.append(detach_channel.mean(dim=1) * weight)
         full_layers.append(full_channel.mean(dim=1) * weight)
+        variance_only_layers.append(
+            variance_only_channel.mean(dim=1) * weight
+        )
+        target_normalized_layers.append(
+            target_normalized_channel.mean(dim=1) * weight
+        )
+        symmetric_layers.append(symmetric_channel.mean(dim=1) * weight)
 
         prediction_centered = (prediction - prediction_mean) * weights
         target_centered = (target - target_mean) * weights
@@ -154,15 +184,26 @@ def lpl_loss_variants_per_sample(
     raw_layer_tensor = torch.stack(raw_layers, dim=1)
     detach_layer_tensor = torch.stack(detach_layers, dim=1)
     full_layer_tensor = torch.stack(full_layers, dim=1)
+    variance_only_layer_tensor = torch.stack(variance_only_layers, dim=1)
+    target_normalized_layer_tensor = torch.stack(
+        target_normalized_layers, dim=1
+    )
+    symmetric_layer_tensor = torch.stack(symmetric_layers, dim=1)
     losses = {
         "raw": raw_layer_tensor.sum(dim=1),
         "prediction_detach": detach_layer_tensor.sum(dim=1),
         "prediction_full": full_layer_tensor.sum(dim=1),
+        "variance_only": variance_only_layer_tensor.sum(dim=1),
+        "target_normalized": target_normalized_layer_tensor.sum(dim=1),
+        "symmetric": symmetric_layer_tensor.sum(dim=1),
     }
     details = {
         "raw_layers": raw_layer_tensor,
         "prediction_detach_layers": detach_layer_tensor,
         "prediction_full_layers": full_layer_tensor,
+        "variance_only_layers": variance_only_layer_tensor,
+        "target_normalized_layers": target_normalized_layer_tensor,
+        "symmetric_layers": symmetric_layer_tensor,
         "prediction_variance_layers": torch.stack(prediction_variances, dim=1),
         "target_variance_layers": torch.stack(target_variances, dim=1),
         "prediction_over_target_variance_layers": torch.stack(
@@ -187,6 +228,82 @@ def lpl_loss_variants_per_sample(
     return losses, details
 
 
+def controlled_lpl_per_sample(
+    target_features: Sequence[torch.Tensor],
+    predicted_features: Sequence[torch.Tensor],
+    *,
+    error_gradient_scale: float = 1.0,
+    variance_gradient_scale: float = 1.0,
+    layer_weights: Sequence[float] | None = None,
+    outlier_quantile: float = 0.02,
+    outlier_opening: int = 5,
+    outlier_closing: int = 3,
+    eps: float = 1e-6,
+) -> tuple[torch.Tensor, Mapping[str, torch.Tensor]]:
+    """Split strict LPL into independently scaled numerator/denominator gradients.
+
+    Every pair of gradient scales has the exact same forward value as strict
+    LPL. ``(1, 0)`` is detach, ``(1, 1)`` is full LPL, and ``(0, 1)`` isolates
+    the prediction-variance denominator gradient.
+    """
+
+    if not target_features or len(target_features) != len(predicted_features):
+        raise ValueError("feature pyramids must be non-empty and aligned")
+    if layer_weights is None:
+        layer_weights = [1.0] * len(target_features)
+    if len(layer_weights) != len(target_features):
+        raise ValueError("layer_weights must match the feature pyramid")
+
+    layer_losses = []
+    keep_fractions = []
+    for target, prediction, layer_weight in zip(
+        target_features,
+        predicted_features,
+        layer_weights,
+        strict=True,
+    ):
+        if target.shape != prediction.shape or target.ndim != 4:
+            raise ValueError("feature pairs must have identical BCHW shapes")
+        mask = decoder_outlier_mask(
+            prediction,
+            quantile=float(outlier_quantile),
+            opening=int(outlier_opening),
+            closing=int(outlier_closing),
+        )
+        weights = mask.to(dtype=prediction.dtype)
+        _, prediction_variance = _masked_channel_moments(prediction, mask)
+        numerator = (prediction - target).square() * weights
+        controlled_numerator = scale_gradient(
+            numerator, float(error_gradient_scale)
+        )
+        controlled_variance = scale_gradient(
+            prediction_variance, float(variance_gradient_scale)
+        )
+        channel_loss = (
+            controlled_numerator / (controlled_variance + float(eps))
+        ).sum(dim=(-2, -1))
+        layer_losses.append(
+            channel_loss.mean(dim=1) * float(layer_weight)
+        )
+        keep_fractions.append(weights.mean(dim=(1, 2, 3)))
+
+    stacked = torch.stack(layer_losses, dim=1)
+    return stacked.sum(dim=1), {
+        "layer_losses": stacked,
+        "mask_keep_fraction": torch.stack(keep_fractions, dim=1),
+        "error_gradient_scale": torch.tensor(
+            float(error_gradient_scale),
+            device=stacked.device,
+            dtype=stacked.dtype,
+        ),
+        "variance_gradient_scale": torch.tensor(
+            float(variance_gradient_scale),
+            device=stacked.device,
+            dtype=stacked.dtype,
+        ),
+    }
+
+
 def decoder_feature_objective_per_sample(
     mode: str,
     target_features: Sequence[torch.Tensor],
@@ -207,6 +324,9 @@ def decoder_feature_objective_per_sample(
         "full": "prediction_full",
         "lpl": "prediction_full",
         "prediction_full": "prediction_full",
+        "variance_only": "variance_only",
+        "target_normalized": "target_normalized",
+        "symmetric": "symmetric",
     }.get(str(mode))
     if canonical_mode is None:
         raise ValueError(f"unknown decoder feature objective: {mode!r}")
@@ -297,8 +417,10 @@ def gradient_decomposition_metrics(
 
 __all__ = [
     "cosine_per_sample",
+    "controlled_lpl_per_sample",
     "decoder_feature_objective_per_sample",
     "gradient_decomposition_metrics",
     "lpl_loss_variants_per_sample",
+    "scale_gradient",
     "tensor_rms",
 ]
