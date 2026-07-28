@@ -7,7 +7,7 @@ It uses a staged continuation gate: first evaluate a 2,000-step Flow-only
 control, then run the preregistered 5,000-step Flow/LPL comparison only if the
 control remains healthy. Checkpoints are saved every 1,000 steps and all
 comparisons reuse labels and initial sampling noise. The protocol is recorded
-in `docs/RAEV2_LPL_5K_PILOT_ZH.md`.
+in `docs/RAEV2_LPL_STRICT_CONTINUATION_ZH.md`.
 
 The remainder of this document records earlier RAE geometry, transport,
 spectral, prior-decoder, and LPL evidence. These experiments remain useful

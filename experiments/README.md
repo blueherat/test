@@ -14,13 +14,15 @@ state and compares three strictly paired branches:
 3. an LPL continuation with the same data, optimizer, scheduler, noise, and
    initialization stream as Flow.
 
-The pilot first stops at 2,000 Flow steps. It proceeds to the registered
-5,000-step, three-way comparison only when Flow continuation itself remains
-healthy. Checkpoints are retained every 1,000 steps so a non-monotonic curve
-cannot be hidden by endpoint selection. The implementation and audit protocol
-are in `train_raev2_strict_lpl.py`, `sample_raev2_threeway.py`,
+The pilot preserves the official ImageNet global batch of 1,024 through
+gradient accumulation and first stops at 50 Flow steps. This processes 51,200
+images, so step count is not compared to earlier reduced-batch trials.
+Checkpoints are retained every 10 steps so a non-monotonic curve cannot be
+hidden by endpoint selection. The LPL branch starts only when Flow continuation
+itself remains healthy. The implementation and audit protocol are in
+`train_raev2_strict_lpl.py`, `sample_raev2_threeway.py`,
 `raev2_training_core.py`, and
-[`RAEV2_LPL_5K_PILOT_ZH.md`](../docs/RAEV2_LPL_5K_PILOT_ZH.md).
+[`RAEV2_LPL_STRICT_CONTINUATION_ZH.md`](../docs/RAEV2_LPL_STRICT_CONTINUATION_ZH.md).
 
 All sections below are a research archive. They preserve successful and failed
 attempts, preregistered gates, and mechanism diagnostics; the presence of code

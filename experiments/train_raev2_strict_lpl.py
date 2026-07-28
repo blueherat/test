@@ -324,6 +324,11 @@ def main() -> None:
     config = load_config(args.config)
     global_batch_size = int(config.training.global_batch_size)
     grad_accum_steps = int(config.training.grad_accum_steps)
+    if global_batch_size != 1024:
+        raise ValueError(
+            "strict RAEv2 ImageNet continuation requires the official global "
+            f"batch size 1024; got {global_batch_size}"
+        )
     if global_batch_size % (world_size * grad_accum_steps):
         raise ValueError("global batch must be divisible by world_size * grad_accum_steps")
     micro_batch_size = global_batch_size // (world_size * grad_accum_steps)
@@ -378,8 +383,8 @@ def main() -> None:
             branch_update_value,
         )
         logger.info(
-            "Pilot batch: global=%d micro=%d accumulation=%d world=%d "
-            "(official source global batch was 1024)",
+            "Continuation batch: global=%d micro=%d accumulation=%d world=%d "
+            "(official global batch preserved)",
             global_batch_size,
             micro_batch_size,
             grad_accum_steps,

@@ -1,4 +1,4 @@
-# RAEv2 LPL 5K 小规模验证协议
+# RAEv2 LPL 官方 Batch 严格续训协议
 
 ## 目标
 
@@ -8,8 +8,9 @@
 2. 只用官方 Flow loss 继续训练的 EMA；
 3. 在相同 Flow loss 上加入 decoder-feature LPL 的 EMA。
 
-先执行 Flow-only 2000 step 门控。只有训练连续性和采样链路都确认正常，才继续
-Flow 5000 step 与 LPL 5000 step。
+先执行 Flow-only 50 step 门控。只有训练连续性和采样链路都确认正常，才继续
+同预算的 LPL 分支。这里减少 continuation step，而不改变官方每个 optimizer
+step 的有效 batch。
 
 ## 已核对的官方语义
 
@@ -39,22 +40,24 @@ Flow 5000 step 与 LPL 5000 step。
 - 两个分支使用同一 ImageNet train parquet、同一 DistributedSampler 序列。
 - 裁剪固定为 ADM center crop；水平翻转由 `seed + source row index` 决定，
   因而独立启动的两个分支得到逐样本相同的输入。
-- pilot 使用 4 卡、global batch `16`、每卡 micro batch `1`、累积 `4` 次。
-  这不是官方 global batch `1024` 的等价延长，只是恢复优化器和最终学习率
-  后的低成本连续性验证。
+- pilot 使用 4 卡、官方 global batch `1024`、每卡 micro batch `1`、累积
+  `256` 次。它保留官方每个 optimizer step 的样本数；与官方 8 卡运行相比，
+  DDP world size 和浮点累加顺序仍不同，而且原始 dataloader 游标不可恢复。
+- `50` 个严格 step 共处理 `51,200` 张图，已经多于 reduced-batch
+  `2000 x 16 = 32,000` 张图，因此不能只按 step 数判断实验规模。
 - 共享 GPU 上保留 GPU EMA 会使 GMuon 首次建状态时超出显存。pilot 将 fp32
   EMA 放在 CPU，仅由 rank 0 在每个 optimizer step 后按官方
   `ema = decay * ema + (1-decay) * model` 更新。训练模型、梯度和完整
   GMuon/AdamW state 仍在 GPU；采样仍读取 checkpoint 的 EMA。
 
-## Flow 2000-step 门控
+## Flow 50-step 门控
 
 保存：
 
-- branch update 1000；
-- branch update 2000。
+- branch update 10、20、30、40、50。
 
-实际 checkpoint 全局 step 分别是 `101080` 和 `102080`。
+实际 checkpoint 全局 step 分别是 `100090`、`100100`、`100110`、
+`100120` 和 `100130`。
 
 训练侧必须满足：
 
@@ -64,23 +67,23 @@ Flow 5000 step 与 LPL 5000 step。
   为 `2e-5`；
 - loss、梯度和参数均为有限值；
 - 每张卡在反向峰值后至少保留 `2.5 GiB`，避免占满共享 GPU；
-- 1000/2000 checkpoint 能够重新加载并继续训练。
+- 10/20/30/40/50 checkpoint 能够重新加载并继续训练。
 
-采样侧对原始 EMA 与 Flow-2000 EMA使用：
+采样侧对原始 EMA 与 Flow-50 EMA 使用：
 
 - 相同的 5000 个均衡 ImageNet 标签；
 - 相同的每 rank 初始噪声与 RNG seed；
 - 相同的 bf16、100-step ODE 和 IG 配置；
 - 相同的 deterministic RAE decoder。
 
-如果 Flow-2000 没有改善，先检查以下项目，不立即启动 LPL：
+如果 Flow-50 没有改善，先检查以下项目，不立即启动 LPL：
 
 1. 采样是否使用 EMA，而不是 model；
 2. scheduler 是否保持 `2e-5`；
 3. checkpoint 中 GMuon/AdamW state 是否完整恢复；
 4. 数据预处理与标签是否正确；
 5. 原始和续训采样的噪声、标签、步数、IG 是否逐项相同；
-6. reduced-batch continuation 是否因 batch 差异导致质量回退。
+6. 4 卡梯度累积与官方 8 卡 DDP 的浮点累加差异是否造成可见偏移。
 
 ## LPL 定义
 
