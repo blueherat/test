@@ -557,69 +557,85 @@ def main() -> None:
         model_kwargs = {"context": labels, "attn_mask": None}
         null_kwargs = {"context": null_context, "attn_mask": None}
 
-        with autocast_context(args.precision):
-            dropped_kwargs, cfg_mask = apply_cfg_dropout(
-                model_kwargs,
-                null_kwargs,
-                float(config.conditioning.cfg_dropout_prob),
-            )
-            time, noise, clean_latent = transport.sample(clean_latent)
-            scale = time.reshape((time.shape[0],) + (1,) * (clean_latent.ndim - 1))
-            noisy_latent = (1.0 - scale) * clean_latent + scale * noise
-            target_velocity = (noisy_latent - clean_latent) / scale.clamp_min(
-                float(config.transport.t_eps)
-            )
-            model_output = ddp_model(noisy_latent, time, **dropped_kwargs)
-            flow_map, flow_details = official_flow_loss_map(
-                transport,
-                model_output,
-                target_velocity=target_velocity,
-                noisy_latent=noisy_latent,
-                time=time,
-                base_model_coeff=float(config.internal_guidance.base_model_coeff),
-            )
-            flow_loss = flow_map.mean()
-            total_loss = flow_loss
-            lpl_loss = torch.zeros((), device=device)
-            gate_count = 0
+        if args.calibration_batches:
+            is_boundary = False
+            sync_context = nullcontext()
+        else:
+            micro_since_boundary += 1
+            is_boundary = micro_since_boundary == grad_accum_steps
+            sync_context = nullcontext() if is_boundary else ddp_model.no_sync()
 
-            if args.objective == "lpl":
-                primary_output = (
-                    model_output[0] if isinstance(model_output, tuple) else model_output
+        # DDP requires no_sync() to cover both forward and backward.  Wrapping
+        # backward alone still synchronizes every accumulation microbatch.
+        with sync_context:
+            with autocast_context(args.precision):
+                dropped_kwargs, cfg_mask = apply_cfg_dropout(
+                    model_kwargs,
+                    null_kwargs,
+                    float(config.conditioning.cfg_dropout_prob),
                 )
-                clean_prediction = predicted_clean_latent(
-                    primary_output,
-                    prediction=config.transport.prediction,
+                time, noise, clean_latent = transport.sample(clean_latent)
+                scale = time.reshape(
+                    (time.shape[0],) + (1,) * (clean_latent.ndim - 1)
+                )
+                noisy_latent = (1.0 - scale) * clean_latent + scale * noise
+                target_velocity = (noisy_latent - clean_latent) / scale.clamp_min(
+                    float(config.transport.t_eps)
+                )
+                model_output = ddp_model(noisy_latent, time, **dropped_kwargs)
+                flow_map, _ = official_flow_loss_map(
+                    transport,
+                    model_output,
+                    target_velocity=target_velocity,
                     noisy_latent=noisy_latent,
                     time=time,
+                    base_model_coeff=float(config.internal_guidance.base_model_coeff),
                 )
-                gate = lpl_time_gate(time, float(args.lpl_noise_threshold))
-                selected = torch.nonzero(gate, as_tuple=False).flatten()
-                selected = selected[: int(args.lpl_max_samples_per_rank)]
-                gate_count = int(selected.numel())
-                if gate_count:
-                    with torch.no_grad():
-                        target_features = tuple(
+                flow_loss = flow_map.mean()
+                total_loss = flow_loss
+                lpl_loss = torch.zeros((), device=device)
+                gate_count = 0
+
+                if args.objective == "lpl":
+                    primary_output = (
+                        model_output[0] if isinstance(model_output, tuple) else model_output
+                    )
+                    clean_prediction = predicted_clean_latent(
+                        primary_output,
+                        prediction=config.transport.prediction,
+                        noisy_latent=noisy_latent,
+                        time=time,
+                    )
+                    gate = lpl_time_gate(time, float(args.lpl_noise_threshold))
+                    selected = torch.nonzero(gate, as_tuple=False).flatten()
+                    selected = selected[: int(args.lpl_max_samples_per_rank)]
+                    gate_count = int(selected.numel())
+                    if gate_count:
+                        with torch.no_grad():
+                            target_features = tuple(
+                                feature.float()
+                                for feature in decoder_feature_pyramid(
+                                    rae,
+                                    clean_latent.index_select(0, selected),
+                                    layer_indices=layer_indices,
+                                )
+                            )
+                        predicted_features = tuple(
                             feature.float()
                             for feature in decoder_feature_pyramid(
                                 rae,
-                                clean_latent.index_select(0, selected),
+                                clean_prediction.index_select(0, selected),
                                 layer_indices=layer_indices,
                             )
                         )
-                    predicted_features = tuple(
-                        feature.float()
-                        for feature in decoder_feature_pyramid(
-                            rae,
-                            clean_prediction.index_select(0, selected),
-                            layer_indices=layer_indices,
+                        lpl_per_sample, _ = strict_lpl_per_sample(
+                            target_features, predicted_features
                         )
-                    )
-                    lpl_per_sample, _ = strict_lpl_per_sample(
-                        target_features, predicted_features
-                    )
-                    lpl_loss = lpl_per_sample.mean()
-                    total_loss = total_loss + float(args.lpl_weight) * lpl_loss
+                        lpl_loss = lpl_per_sample.mean()
+                        total_loss = total_loss + float(args.lpl_weight) * lpl_loss
+
+            if not args.calibration_batches:
+                (total_loss / grad_accum_steps).backward()
 
         if not first_batch_written:
             row = {
@@ -650,13 +666,6 @@ def main() -> None:
             if int(calibration_flow_count.item()) >= args.calibration_batches:
                 break
             continue
-
-        loss = total_loss / grad_accum_steps
-        micro_since_boundary += 1
-        is_boundary = micro_since_boundary == grad_accum_steps
-        sync_context = nullcontext() if is_boundary else ddp_model.no_sync()
-        with sync_context:
-            loss.backward()
 
         if not is_boundary:
             continue
