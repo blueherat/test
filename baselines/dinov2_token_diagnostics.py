@@ -762,6 +762,7 @@ def extract_vit_stage_latents(
     adapter,
     x: torch.Tensor,
     hidden_indices: Sequence[int] = (0, 1, 3, 6, 9, 12),
+    include_rae_normalized: bool = True,
 ) -> Dict[str, torch.Tensor]:
     key = _adapter_key(adapter)
     if key == "rae_dinov2":
@@ -776,8 +777,9 @@ def extract_vit_stage_latents(
             "post_pos": _tokens_to_grid(post_pos),
             "patch_plus_pos": _tokens_to_grid(post_pos),
             "final_raw": _tokens_to_grid(out.last_hidden_state[:, 5:].float()),
-            "rae_normalized": E(adapter, x),
         }
+        if include_rae_normalized:
+            stages["rae_normalized"] = E(adapter, x)
         for index in hidden_indices:
             if index < len(hidden_states):
                 stages[f"hidden_{index}"] = _tokens_to_grid(hidden_states[index][:, 5:].float())
@@ -795,8 +797,9 @@ def extract_vit_stage_latents(
             "post_pos": _tokens_to_grid(post_pos),
             "patch_plus_pos": _tokens_to_grid(post_pos),
             "final_raw": _tokens_to_grid(out.last_hidden_state[:, 1:].float()),
-            "rae_normalized": E(adapter, x),
         }
+        if include_rae_normalized:
+            stages["rae_normalized"] = E(adapter, x)
         for index in hidden_indices:
             if index < len(hidden_states):
                 stages[f"hidden_{index}"] = _tokens_to_grid(hidden_states[index][:, 1:].float())
@@ -813,8 +816,9 @@ def extract_vit_stage_latents(
             "post_pos": _tokens_to_grid(post_pos),
             "patch_plus_pos": _tokens_to_grid(post_pos),
             "final_raw": _tokens_to_grid(out.last_hidden_state.float()),
-            "rae_normalized": E(adapter, x),
         }
+        if include_rae_normalized:
+            stages["rae_normalized"] = E(adapter, x)
         for index in hidden_indices:
             if index < len(hidden_states):
                 stages[f"hidden_{index}"] = _tokens_to_grid(hidden_states[index].float())

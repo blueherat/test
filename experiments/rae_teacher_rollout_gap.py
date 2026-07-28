@@ -104,6 +104,19 @@ class FrozenRAEDecoder(torch.nn.Module):
         else:
             self.register_buffer("latent_var", latent_var.float())
 
+    def forward(self, latent: torch.Tensor) -> torch.Tensor:
+        z = latent
+        if self.do_normalization:
+            latent_mean = self.latent_mean.to(z) if self.latent_mean is not None else 0
+            latent_var = self.latent_var.to(z) if self.latent_var is not None else 1
+            z = z * torch.sqrt(latent_var + self.eps) + latent_mean
+        if self.reshape_to_2d:
+            batch, channels, height, width = z.shape
+            z = z.reshape(batch, channels, height * width).transpose(1, 2)
+        output = self.decoder(z, drop_cls_token=False)
+        image = self.decoder.unpatchify(output.logits)
+        return image * self.encoder_std.to(image) + self.encoder_mean.to(image)
+
 
 def configure_fp32(seed: int) -> None:
     torch.manual_seed(int(seed))
@@ -269,6 +282,19 @@ def _absolute_local_path(value: str, base: Path) -> str:
     return str((base / path).resolve())
 
 
+def _infer_decoder_input_channels(stage_1: OmegaConf, stats: Mapping[str, torch.Tensor]) -> int:
+    configured = OmegaConf.select(stage_1, "params.encoder_params.hidden_size")
+    if configured is not None:
+        return int(configured)
+    latent_mean = stats.get("mean")
+    if latent_mean is None or latent_mean.ndim < 1:
+        raise ValueError(
+            "cannot infer decoder input channels: configure "
+            "stage_1.params.encoder_params.hidden_size or provide latent mean statistics"
+        )
+    return int(latent_mean.shape[0])
+
+
 def load_frozen_decoder(stage_1: OmegaConf) -> FrozenRAEDecoder:
     from stage1.decoders import GeneralDecoder
     from transformers import ViTMAEConfig
@@ -278,7 +304,8 @@ def load_frozen_decoder(stage_1: OmegaConf) -> FrozenRAEDecoder:
     weights_path = Path(_absolute_local_path(params.pretrained_decoder_path, RAE_ROOT))
     stats_path = Path(_absolute_local_path(params.normalization_stat_path, RAE_ROOT))
     patch_size = int(params.get("decoder_patch_size", 16))
-    latent_dim = int(OmegaConf.select(stage_1, "params.encoder_params.hidden_size", default=768))
+    stats = torch.load(stats_path, map_location="cpu", weights_only=True)
+    latent_dim = _infer_decoder_input_channels(stage_1, stats)
     num_patches = 16 * 16
 
     decoder_payload = json.loads((decoder_path / "config.json").read_text(encoding="utf-8"))
@@ -291,7 +318,6 @@ def load_frozen_decoder(stage_1: OmegaConf) -> FrozenRAEDecoder:
     decoder_state = torch.load(weights_path, map_location="cpu", weights_only=True)
     decoder.load_state_dict(decoder_state, strict=True)
 
-    stats = torch.load(stats_path, map_location="cpu", weights_only=True)
     return FrozenRAEDecoder(
         decoder,
         encoder_mean=(0.485, 0.456, 0.406),

@@ -22,6 +22,7 @@ class ConstantVelocity(torch.nn.Module):
 def test_frequency_schedule_windows_and_bands():
     assert schedule_spec("baseline", 0.9, 8) == (False, ())
     assert schedule_spec("partial_high_band0", 0.9, 8) == (True, (0,))
+    assert schedule_spec("partial_high_band7", 0.9, 8) == (True, (7,))
     assert schedule_spec("partial_high_band0", 0.8, 8) == (False, (0,))
     assert schedule_spec("partial_mid_nonzero", 0.5, 4) == (True, (1, 2, 3))
     assert len(FREQUENCY_SCHEDULES) == 7

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -21,6 +22,100 @@ RAE_ROOT = ROOT / "external" / "RAE"
 DEFAULT_RESULTS = Path.home() / "data/eqvae/experiments/rae_spectral_tiny"
 DEFAULT_REFERENCE = Path("/data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz")
 SAMPLING_SEED = 20260715
+LABEL_SAMPLER_VERSION = "interleaved-v3-provenance"
+SAMPLING_PROVENANCE_FILENAME = "sampling_run_provenance.json"
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while chunk := handle.read(8 * 1024 * 1024):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _sampling_provenance_contract(
+    *,
+    checkpoint: Path,
+    sampling_checkpoint: Path,
+    config: Path,
+    sample_count: int,
+    steps: int,
+    sampling_seed: int,
+    state_key: str,
+    processes: int,
+    per_process_batch: int,
+) -> dict[str, object]:
+    sampling_script = RAE_ROOT / "src/sample_ddp.py"
+    return {
+        "protocol": "strict-sampling-provenance-v1",
+        "endpoint_checkpoint": str(checkpoint.resolve()),
+        "endpoint_checkpoint_sha256": file_sha256(checkpoint),
+        "sampling_checkpoint": str(sampling_checkpoint.resolve()),
+        "sampling_checkpoint_sha256": file_sha256(sampling_checkpoint),
+        "sampling_config": str(config.resolve()),
+        "sampling_config_sha256": file_sha256(config),
+        "sampling_script": str(sampling_script.resolve()),
+        "sampling_script_sha256": file_sha256(sampling_script),
+        "sample_count": int(sample_count),
+        "steps": int(steps),
+        "sampling_seed": int(sampling_seed),
+        "state_key": state_key,
+        "processes": int(processes),
+        "per_process_batch": int(per_process_batch),
+        "label_sampler_version": LABEL_SAMPLER_VERSION,
+    }
+
+
+def _validate_complete_sampling_provenance(
+    sample_folder: Path,
+    expected: dict[str, object],
+) -> None:
+    archive = sample_folder.with_suffix(".npz")
+    provenance_path = sample_folder / SAMPLING_PROVENANCE_FILENAME
+    if not provenance_path.exists():
+        raise RuntimeError(
+            f"{sample_folder} has a complete archive but no sampling provenance; "
+            "refusing to reuse samples whose checkpoint origin cannot be proved"
+        )
+    try:
+        actual = json.loads(provenance_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as error:
+        raise RuntimeError(f"invalid sampling provenance: {provenance_path}") from error
+    mismatches = {
+        key: {"expected": value, "actual": actual.get(key)}
+        for key, value in expected.items()
+        if actual.get(key) != value
+    }
+    archive_sha256 = file_sha256(archive)
+    if actual.get("sample_npz_sha256") != archive_sha256:
+        mismatches["sample_npz_sha256"] = {
+            "expected": archive_sha256,
+            "actual": actual.get("sample_npz_sha256"),
+        }
+    if mismatches:
+        raise RuntimeError(
+            f"sampling provenance mismatch for {sample_folder}: "
+            f"{json.dumps(mismatches, sort_keys=True)}"
+        )
+
+
+def _write_sampling_provenance(
+    sample_folder: Path,
+    contract: dict[str, object],
+) -> None:
+    archive = sample_folder.with_suffix(".npz")
+    provenance = {
+        **contract,
+        "sample_npz_sha256": file_sha256(archive),
+    }
+    path = sample_folder / SAMPLING_PROVENANCE_FILENAME
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(
+        json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    temporary.replace(path)
 
 
 class NumpyRGBDataset(Dataset):
@@ -48,27 +143,98 @@ def branches(results: Path, branch_name: str = "") -> list[Path]:
     return selected
 
 
-def sample_folder_name(sample_count: int, endpoint: int, steps: int) -> str:
-    base = f"fixed_seed{SAMPLING_SEED}_{int(sample_count)}_step{int(endpoint)}"
+def sample_folder_name(
+    sample_count: int,
+    endpoint: int,
+    steps: int,
+    *,
+    sampling_seed: int = SAMPLING_SEED,
+    state_key: str = "ema",
+) -> str:
+    if state_key not in {"ema", "model"}:
+        raise ValueError(f"unsupported sampling state key: {state_key}")
+    base = (
+        f"fixed_seed{int(sampling_seed)}_{int(sample_count)}_step{int(endpoint)}"
+        f"_labels-{LABEL_SAMPLER_VERSION}"
+    )
+    if state_key != "ema":
+        base = f"{base}_state-{state_key}"
     return base if int(steps) == 50 else f"{base}_{int(steps)}steps"
 
 
 def endpoint_checkpoint(branch: Path, endpoint: int) -> Path:
     path = branch / "checkpoints" / f"step-{int(endpoint):07d}.pt"
-    if not path.exists():
-        raise FileNotFoundError(path)
-    return path
+    if path.exists():
+        return path
+    if int(endpoint) == 0:
+        manifest_path = branch / "manifest.json"
+        if manifest_path.exists():
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            source = manifest.get("source_checkpoint")
+            if source is not None and Path(source).expanduser().exists():
+                return Path(source).expanduser().resolve()
+    raise FileNotFoundError(path)
 
 
-def prepare_sampling_config(branch: Path, checkpoint: Path, steps: int) -> tuple[Path, Path]:
+def prepare_sampling_config(
+    branch: Path,
+    checkpoint: Path,
+    steps: int,
+    *,
+    state_key: str = "ema",
+) -> tuple[Path, Path]:
+    if state_key not in {"ema", "model"}:
+        raise ValueError(f"unsupported sampling state key: {state_key}")
     evaluation = branch / "generation"
     evaluation.mkdir(parents=True, exist_ok=True)
-    materialized = evaluation / f"ema_{checkpoint.stem}.pt"
-    if not materialized.exists():
-        state = torch.load(checkpoint, map_location="cpu", weights_only=False)
-        torch.save(state["ema"], materialized)
+    materialized = evaluation / f"{state_key}_{checkpoint.stem}.pt"
+    provenance_path = materialized.with_suffix(".source.json")
+    source_provenance = {
+        "source_checkpoint": str(checkpoint.resolve()),
+        "source_checkpoint_sha256": file_sha256(checkpoint),
+        "state_key": state_key,
+    }
+    state = torch.load(checkpoint, map_location="cpu", weights_only=False)
+    selected_state = state.get(state_key) if isinstance(state, dict) else None
+    if isinstance(selected_state, dict):
+        existing_provenance = None
+        if provenance_path.exists():
+            try:
+                existing_provenance = json.loads(
+                    provenance_path.read_text(encoding="utf-8")
+                )
+            except (json.JSONDecodeError, OSError):
+                existing_provenance = None
+        reusable = (
+            materialized.exists()
+            and isinstance(existing_provenance, dict)
+            and all(
+                existing_provenance.get(key) == value
+                for key, value in source_provenance.items()
+            )
+            and existing_provenance.get("materialized_checkpoint_sha256")
+            == file_sha256(materialized)
+        )
+        if not reusable:
+            temporary = materialized.with_suffix(".tmp")
+            torch.save(selected_state, temporary)
+            temporary.replace(materialized)
+            materialized_provenance = {
+                **source_provenance,
+                "materialized_checkpoint_sha256": file_sha256(materialized),
+            }
+            provenance_temporary = provenance_path.with_suffix(".tmp")
+            provenance_temporary.write_text(
+                json.dumps(materialized_provenance, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            provenance_temporary.replace(provenance_path)
+        sampling_checkpoint = materialized
+    else:
+        sampling_checkpoint = checkpoint
+    del state
     config = OmegaConf.load(branch / "config.yaml")
-    config.stage_2.ckpt = str(materialized)
+    config.stage_2.ckpt = str(sampling_checkpoint)
     config.sampler.params.num_steps = int(steps)
     config.guidance.method = "cfg"
     config.guidance.scale = 1.0
@@ -76,9 +242,12 @@ def prepare_sampling_config(branch: Path, checkpoint: Path, steps: int) -> tuple
         del config["training"]
     if "eval" in config:
         del config["eval"]
-    output = evaluation / f"sampling_{checkpoint.stem}_{steps}steps.yaml"
+    output = (
+        evaluation
+        / f"sampling_{state_key}_{checkpoint.stem}_{steps}steps.yaml"
+    )
     OmegaConf.save(config, output)
-    return output, materialized
+    return output, sampling_checkpoint
 
 
 def sample_branch(
@@ -90,12 +259,42 @@ def sample_branch(
     devices: str,
     processes: int,
     per_process_batch: int,
+    sampling_seed: int = SAMPLING_SEED,
+    state_key: str = "ema",
 ) -> Path:
     checkpoint = endpoint_checkpoint(branch, endpoint)
-    config, _ = prepare_sampling_config(branch, checkpoint, steps)
+    config, sampling_checkpoint = prepare_sampling_config(
+        branch,
+        checkpoint,
+        steps,
+        state_key=state_key,
+    )
     sample_root = branch / "generation"
-    folder_name = sample_folder_name(sample_count, endpoint, steps)
+    folder_name = sample_folder_name(
+        sample_count,
+        endpoint,
+        steps,
+        sampling_seed=sampling_seed,
+        state_key=state_key,
+    )
     sample_folder = sample_root / folder_name
+    provenance_contract = _sampling_provenance_contract(
+        checkpoint=checkpoint,
+        sampling_checkpoint=sampling_checkpoint,
+        config=config,
+        sample_count=sample_count,
+        steps=steps,
+        sampling_seed=sampling_seed,
+        state_key=state_key,
+        processes=processes,
+        per_process_batch=per_process_batch,
+    )
+    if sample_folder.exists() and sample_folder.with_suffix(".npz").exists():
+        _validate_complete_sampling_provenance(
+            sample_folder,
+            provenance_contract,
+        )
+        return sample_folder
     command = [
         "torchrun",
         "--standalone",
@@ -110,7 +309,7 @@ def sample_branch(
         "--num-fid-samples",
         str(int(sample_count)),
         "--global-seed",
-        str(SAMPLING_SEED),
+        str(int(sampling_seed)),
         "--precision",
         "fp32",
         "--no-tf32",
@@ -125,6 +324,7 @@ def sample_branch(
     subprocess.run(command, cwd=RAE_ROOT, env=environment, check=True)
     if not sample_folder.exists() or not sample_folder.with_suffix(".npz").exists():
         raise RuntimeError(f"sampling did not create {sample_folder} and its npz")
+    _write_sampling_provenance(sample_folder, provenance_contract)
     return sample_folder
 
 
@@ -134,6 +334,7 @@ def torch_fidelity_metrics(
     *,
     batch_size: int,
     cache_name: str,
+    rng_seed: int = SAMPLING_SEED,
 ) -> dict[str, float]:
     from torch_fidelity import calculate_metrics
 
@@ -147,7 +348,7 @@ def torch_fidelity_metrics(
         kid=True,
         kid_subsets=100,
         kid_subset_size=1000,
-        rng_seed=SAMPLING_SEED,
+        rng_seed=int(rng_seed),
         input2_cache_name=cache_name,
         cache=True,
         verbose=True,

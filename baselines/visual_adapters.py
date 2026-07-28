@@ -4,6 +4,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 import json
+import os
 from pathlib import Path
 from typing import Dict, Iterable, Optional
 
@@ -146,8 +147,11 @@ def _prepare_decoder_config_path(repo_path: Path, decoder_config_path: Path, dec
     cache_dir = repo_path / ".adapter_cache" / decoder_config_path.name
     cache_dir.mkdir(parents=True, exist_ok=True)
     config["patch_size"] = int(decoder_patch_size)
-    with (cache_dir / "config.json").open("w", encoding="utf-8") as f:
+    target = cache_dir / "config.json"
+    temporary = cache_dir / f".config.{os.getpid()}.tmp"
+    with temporary.open("w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
+    os.replace(temporary, target)
     return str(cache_dir)
 
 

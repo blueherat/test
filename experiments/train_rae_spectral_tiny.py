@@ -146,12 +146,18 @@ def load_checkpoint(
     for key in ("model", "ema", "optimizer", "scheduler", "step"):
         if key not in state:
             raise KeyError(f"checkpoint {path} lacks {key!r}")
+    if restore_rng:
+        for key in ("rng_cpu", "rng_cuda", "branch_start_step", "epoch"):
+            if key not in state:
+                raise KeyError(
+                    f"checkpoint {path} lacks exact-resume state {key!r}"
+                )
     model.module.load_state_dict(state["model"], strict=True)
     ema.load_state_dict(state["ema"], strict=True)
     optimizer.load_state_dict(state["optimizer"])
     if scheduler is not None and state["scheduler"] is not None:
         scheduler.load_state_dict(state["scheduler"])
-    if restore_rng and "rng_cpu" in state and "rng_cuda" in state:
+    if restore_rng:
         torch.set_rng_state(state["rng_cpu"])
         torch.cuda.set_rng_state_all(state["rng_cuda"])
     step = int(state["step"])

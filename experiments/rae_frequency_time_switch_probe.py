@@ -73,8 +73,11 @@ def schedule_spec(
         raise ValueError(f"unknown frequency schedule: {schedule}")
     if suffix == "all":
         bands = tuple(range(int(band_count)))
-    elif suffix == "band0":
-        bands = (0,)
+    elif suffix.startswith("band") and suffix.removeprefix("band").isdigit():
+        band = int(suffix.removeprefix("band"))
+        if not 0 <= band < int(band_count):
+            raise ValueError(f"invalid frequency schedule band: {band}")
+        bands = (band,)
     elif suffix == "nonzero":
         bands = tuple(range(1, int(band_count)))
     else:
@@ -146,6 +149,7 @@ def run_probe(
     count: int,
     batch_size: int,
     evaluation_seed: int,
+    schedules: Sequence[str] = FREQUENCY_SCHEDULES,
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
     if int(count) < 2:
         raise ValueError("count must be at least two")
@@ -191,9 +195,12 @@ def run_probe(
     )
     directions = fixed_gaussian_matrix(32 + analyzer.band_count, 64, evaluation_seed + 29)
 
-    endpoint_chunks: dict[str, list[torch.Tensor]] = {
-        name: [] for name in FREQUENCY_SCHEDULES
-    }
+    schedules = tuple(schedules)
+    if len(set(schedules)) != len(schedules) or "baseline" not in schedules:
+        raise ValueError("schedules must be unique and include baseline")
+    for schedule in schedules:
+        schedule_spec(schedule, 0.9, analyzer.band_count)
+    endpoint_chunks: dict[str, list[torch.Tensor]] = {name: [] for name in schedules}
     clean_summary_chunks = []
     clean_band_chunks = []
     for start in range(0, count, batch_size):
@@ -203,7 +210,7 @@ def run_probe(
         labels = labels_all[start:end].to(torch_device)
         clean_summary_chunks.append(latent_summary(clean, analyzer, projection).cpu())
         clean_band_chunks.append(latent_band_energy(clean, analyzer).cpu())
-        for schedule in FREQUENCY_SCHEDULES:
+        for schedule in schedules:
             endpoint = frequency_switched_endpoint(
                 baseline, partial, noise, labels, times, analyzer, schedule
             )
@@ -266,7 +273,7 @@ def run_probe(
         "precision": "fp32",
         "tf32": False,
         "times": [float(value) for value in times.cpu()],
-        "schedules": list(FREQUENCY_SCHEDULES),
+        "schedules": list(schedules),
         "scope": "same-noise time-and-output-band vector-field switch; latent proxy, not FID",
     }
     return pd.DataFrame(rows), pd.DataFrame(band_rows), metadata

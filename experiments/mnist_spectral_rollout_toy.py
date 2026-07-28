@@ -318,8 +318,15 @@ def train_paired_velocity_fields(
     clean: torch.Tensor,
     config: MNISTToyConfig,
     analyzer: DCTDirectionLoss,
+    *,
+    init_seed: int | None = None,
+    stream_seed: int | None = None,
 ) -> tuple[dict[str, TinyVelocityUNet], pd.DataFrame]:
     device = clean.device
+    if init_seed is not None:
+        torch.manual_seed(int(init_seed))
+        if device.type == "cuda":
+            torch.cuda.manual_seed(int(init_seed))
     baseline = TinyVelocityUNet(config.width, config.depth).to(device)
     weighted = copy.deepcopy(baseline)
     models = {"baseline": baseline, "weighted": weighted}
@@ -327,7 +334,10 @@ def train_paired_velocity_fields(
         name: torch.optim.AdamW(model.parameters(), lr=config.learning_rate, weight_decay=1e-4)
         for name, model in models.items()
     }
-    generator = torch.Generator(device=device).manual_seed(int(config.seed) + 101)
+    effective_stream_seed = config.seed if stream_seed is None else stream_seed
+    generator = torch.Generator(device=device).manual_seed(
+        int(effective_stream_seed) + 101
+    )
     rows: list[dict[str, float | int | str]] = []
     log_every = max(1, int(config.steps) // 40)
     for step in range(1, int(config.steps) + 1):

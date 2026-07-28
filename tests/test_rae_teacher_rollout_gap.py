@@ -1,9 +1,12 @@
 import math
 
+import pytest
 import torch
+from omegaconf import OmegaConf
 
 from experiments.rae_spectral_direction_loss import DCTDirectionLoss
 from experiments.rae_teacher_rollout_gap import (
+    _infer_decoder_input_channels,
     band_prediction_calibration,
     clean_from_velocity,
     euler_rollout,
@@ -95,3 +98,21 @@ def test_band_calibration_is_exact_for_perfect_prediction():
     torch.testing.assert_close(
         metrics["velocity_error_mse"], torch.zeros((3, 4)), atol=1e-7, rtol=0
     )
+
+
+def test_decoder_channels_follow_latent_statistics_when_not_configured() -> None:
+    stage_1 = OmegaConf.create({"params": {"encoder_params": {}}})
+    stats = {"mean": torch.zeros(1024, 16, 16)}
+    assert _infer_decoder_input_channels(stage_1, stats) == 1024
+
+
+def test_explicit_decoder_channels_take_precedence() -> None:
+    stage_1 = OmegaConf.create({"params": {"encoder_params": {"hidden_size": 768}}})
+    stats = {"mean": torch.zeros(1024, 16, 16)}
+    assert _infer_decoder_input_channels(stage_1, stats) == 768
+
+
+def test_decoder_channels_require_a_reliable_source() -> None:
+    stage_1 = OmegaConf.create({"params": {"encoder_params": {}}})
+    with pytest.raises(ValueError, match="cannot infer decoder input channels"):
+        _infer_decoder_input_channels(stage_1, {})
