@@ -57,6 +57,9 @@ step 的有效 batch。
   EMA 放在 CPU，仅由 rank 0 在每个 optimizer step 后按官方
   `ema = decay * ema + (1-decay) * model` 更新。训练模型、梯度和完整
   GMuon/AdamW state 仍在 GPU；采样仍读取 checkpoint 的 EMA。
+- DDP 使用 `gradient_as_bucket_view=True`，让梯度直接复用通信 bucket，
+  避免为同一梯度保留两份 GPU storage。它只改变显存布局，不改变 global
+  batch、loss、梯度值、optimizer 或 scheduler。
 
 ## Flow 10-step 门控
 

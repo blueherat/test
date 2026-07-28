@@ -450,7 +450,11 @@ def main() -> None:
         ema_model.requires_grad_(False)
         ema_model.eval()
     ddp_model = DDP(
-        model, device_ids=[device.index], broadcast_buffers=False, find_unused_parameters=False
+        model,
+        device_ids=[device.index],
+        broadcast_buffers=False,
+        find_unused_parameters=False,
+        gradient_as_bucket_view=True,
     )
     model = ddp_model.module
 
