@@ -8,6 +8,7 @@ from experiments.raev2_training_core import (
     official_flow_loss_map,
     predicted_clean_latent,
     split_internal_guidance_output,
+    synchronize_loaded_gmuon_param_groups,
     validate_full_stage2_checkpoint,
 )
 
@@ -102,3 +103,81 @@ def test_full_checkpoint_validation_rejects_model_only_payload() -> None:
         assert "optimizer" in str(error)
     else:
         raise AssertionError("model-only checkpoint was accepted")
+
+
+def test_loaded_gmuon_param_group_aliases_are_repaired_before_resave() -> None:
+    class FakeMuon:
+        def __init__(self) -> None:
+            self._muon_param_groups = [{"lr": 2e-4, "params": ["weight"]}]
+            self._combined_param_groups = [{"lr": 2e-4, "params": ["weight"]}]
+            self.scalar_optimizer = None
+            self.state = {"weight": {"momentum_buffer": torch.ones(1)}}
+
+        @property
+        def param_groups(self):
+            return self._combined_param_groups
+
+        def state_dict(self):
+            return {
+                "state": {},
+                "param_groups": [
+                    {key: value for key, value in group.items()}
+                    for group in self.param_groups
+                ],
+            }
+
+    class FakeAdamW:
+        def __init__(self) -> None:
+            self.param_groups = [{"lr": 2e-5, "params": ["bias"]}]
+            self.state = {"bias": {"step": torch.tensor(1.0)}}
+
+        def state_dict(self):
+            return {
+                "state": {},
+                "param_groups": [
+                    {key: value for key, value in group.items()}
+                    for group in self.param_groups
+                ],
+            }
+
+    class FakeComposite:
+        def __init__(self) -> None:
+            self._muon = FakeMuon()
+            self._adamw = FakeAdamW()
+            self.param_groups = (
+                self._muon.param_groups + self._adamw.param_groups
+            )
+
+        def state_dict(self):
+            return {
+                "muon": self._muon.state_dict(),
+                "adamw": self._adamw.state_dict(),
+            }
+
+    optimizer = FakeComposite()
+    loaded_state = {
+        "muon": {
+            "state": {0: {"momentum_buffer": torch.ones(1)}},
+            "param_groups": [{"lr": 2e-5, "params": [0]}],
+        },
+        "adamw": {
+            "state": {0: {"step": torch.tensor(1.0)}},
+            "param_groups": [{"lr": 2e-5, "params": [0]}],
+        },
+    }
+    assert [group["lr"] for group in optimizer.param_groups] == [2e-4, 2e-5]
+
+    audit = synchronize_loaded_gmuon_param_groups(optimizer, loaded_state)
+
+    assert audit == {
+        "composite_gmuon": True,
+        "aliases_repaired": True,
+        "learning_rates": [2e-5, 2e-5],
+        "resaved_learning_rates": [2e-5, 2e-5],
+        "muon_state_entries": 1,
+        "adamw_state_entries": 1,
+    }
+    assert [group["lr"] for group in optimizer.param_groups] == [2e-5, 2e-5]
+    saved = optimizer.state_dict()
+    assert saved["muon"]["param_groups"][0]["lr"] == 2e-5
+    assert saved["adamw"]["param_groups"][0]["lr"] == 2e-5

@@ -21,6 +21,12 @@ Flow 5000 step 与 LPL 5000 step。
 - `DiTwDDTHeadIG` 返回 `(full_output, base_output)`。官方 Flow loss 是主头
   loss 加 `base_model_coeff * base loss`。
 - 优化器是 GMuon + AdamW 的复合优化器，续训必须恢复完整 optimizer state。
+- 当前 GMuon 版本的 `param_groups` 是内部属性包装。PyTorch 通用
+  `load_state_dict()` 会恢复动量 state，但不会自动更新 GMuon 真正执行更新的
+  内部 group；若不修复，Muon 会从 checkpoint 的 `2e-5` 错误跳回构造值
+  `2e-4`，并把错误 LR 写入下一 checkpoint。续训入口现在显式重建内部
+  group，并同时核对公开 LR、内部 LR、重新序列化 LR 和 optimizer state
+  数量。
 - 采样使用 EMA、100 个 Euler ODE step、IG scale `1.78`，生效区间
   `[0.10, 1.0]`。
 
@@ -54,6 +60,8 @@ Flow 5000 step 与 LPL 5000 step。
 
 - 模型、EMA、optimizer、scheduler 均严格载入；
 - 首个学习率保持在官方最终值 `2e-5`，不得跳回 `2e-4`；
+- GMuon 和 AdamW 两组 LR 在加载、实际内部 group、重新序列化三个位置都必须
+  为 `2e-5`；
 - loss、梯度和参数均为有限值；
 - 每张卡在反向峰值后至少保留 `2.5 GiB`，避免占满共享 GPU；
 - 1000/2000 checkpoint 能够重新加载并继续训练。

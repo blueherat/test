@@ -92,6 +92,102 @@ def validate_full_stage2_checkpoint(checkpoint: dict[str, Any]) -> None:
         raise ValueError("checkpoint step and epoch must be non-negative")
 
 
+def synchronize_loaded_gmuon_param_groups(
+    optimizer: Any,
+    loaded_state: dict[str, Any],
+) -> dict[str, Any]:
+    """Repair and audit GMuon's public parameter-group aliases after loading.
+
+    The GMuon version pinned by RAEv2 exposes ``param_groups`` through an
+    internal ``_combined_param_groups`` list. PyTorch's generic
+    ``Optimizer.load_state_dict`` replaces ``_muon_param_groups`` but does not
+    refresh that alias. Without this repair, optimization uses the restored
+    learning rate while logging, scheduling, and the next checkpoint can use
+    the constructor learning rate instead.
+    """
+
+    muon = getattr(optimizer, "_muon", None)
+    adamw = getattr(optimizer, "_adamw", None)
+    if muon is None or adamw is None or set(loaded_state) != {"muon", "adamw"}:
+        return {
+            "composite_gmuon": False,
+            "aliases_repaired": False,
+            "learning_rates": [float(group["lr"]) for group in optimizer.param_groups],
+        }
+
+    current_muon_groups = getattr(muon, "_muon_param_groups", None)
+    if current_muon_groups is None:
+        raise RuntimeError("loaded GMuon has no _muon_param_groups")
+    saved_muon_groups = loaded_state["muon"]["param_groups"]
+    if len(current_muon_groups) != len(saved_muon_groups):
+        raise RuntimeError(
+            "loaded GMuon parameter-group count mismatch: "
+            f"current={len(current_muon_groups)}, checkpoint={len(saved_muon_groups)}"
+        )
+
+    # Optimizer.load_state_dict writes ``param_groups`` through __dict__ during
+    # __setstate__. GMuon's property masks that field, so its real internal
+    # groups retain constructor hyperparameters. Rebuild those groups with the
+    # current Parameter objects and the checkpoint's saved hyperparameters.
+    restored_muon_groups = []
+    for current, saved in zip(current_muon_groups, saved_muon_groups):
+        restored = dict(saved)
+        restored["params"] = current["params"]
+        restored_muon_groups.append(restored)
+    muon._muon_param_groups = restored_muon_groups
+    muon.__dict__.pop("param_groups", None)
+
+    combined_groups = list(restored_muon_groups)
+    scalar_optimizer = getattr(muon, "scalar_optimizer", None)
+    if scalar_optimizer is not None:
+        combined_groups.extend(scalar_optimizer.param_groups)
+    muon._combined_param_groups = combined_groups
+    optimizer.param_groups = list(muon.param_groups) + list(adamw.param_groups)
+
+    expected_lrs = [
+        float(group["lr"])
+        for name in ("muon", "adamw")
+        for group in loaded_state[name]["param_groups"]
+    ]
+    public_lrs = [float(group["lr"]) for group in optimizer.param_groups]
+    internal_lrs = [
+        float(group["lr"])
+        for group in list(restored_muon_groups) + list(adamw.param_groups)
+    ]
+    resaved_state = optimizer.state_dict()
+    resaved_lrs = [
+        float(group["lr"])
+        for name in ("muon", "adamw")
+        for group in resaved_state[name]["param_groups"]
+    ]
+    expected_state_entries = [
+        len(loaded_state["muon"]["state"]),
+        len(loaded_state["adamw"]["state"]),
+    ]
+    actual_state_entries = [len(muon.state), len(adamw.state)]
+    if (
+        public_lrs != expected_lrs
+        or internal_lrs != expected_lrs
+        or resaved_lrs != expected_lrs
+        or actual_state_entries != expected_state_entries
+    ):
+        raise RuntimeError(
+            "optimizer restore mismatch after GMuon group repair: "
+            f"checkpoint={expected_lrs}, public={public_lrs}, "
+            f"internal={internal_lrs}, resaved={resaved_lrs}, "
+            f"checkpoint_state_entries={expected_state_entries}, "
+            f"actual_state_entries={actual_state_entries}"
+        )
+    return {
+        "composite_gmuon": True,
+        "aliases_repaired": True,
+        "learning_rates": public_lrs,
+        "resaved_learning_rates": resaved_lrs,
+        "muon_state_entries": len(muon.state),
+        "adamw_state_entries": len(adamw.state),
+    }
+
+
 def infer_source_steps_per_epoch(source_step: int, source_epoch: int) -> int:
     """Infer the scheduler's original epoch length from an epoch-boundary checkpoint."""
 

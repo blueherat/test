@@ -53,6 +53,7 @@ from experiments.raev2_training_core import (  # noqa: E402
     infer_source_steps_per_epoch,
     official_flow_loss_map,
     predicted_clean_latent,
+    synchronize_loaded_gmuon_param_groups,
     tensor_fingerprint,
     validate_full_stage2_checkpoint,
 )
@@ -456,7 +457,11 @@ def main() -> None:
     model.load_state_dict(checkpoint["model"], strict=True)
     if ema_model is not None:
         ema_model.load_state_dict(checkpoint["ema"], strict=True)
-    optimizer.load_state_dict(checkpoint["optimizer"])
+    loaded_optimizer_state = checkpoint["optimizer"]
+    optimizer.load_state_dict(loaded_optimizer_state)
+    optimizer_restore_audit = synchronize_loaded_gmuon_param_groups(
+        optimizer, loaded_optimizer_state
+    )
     if checkpoint.get("scheduler") is not None:
         scheduler.load_state_dict(checkpoint["scheduler"])
     optimizer_audit = optimizer_device_audit(optimizer, model)
@@ -518,6 +523,7 @@ def main() -> None:
             "scheduler_last_epoch": scheduler.last_epoch,
             "learning_rates": [group["lr"] for group in optimizer.param_groups],
             "optimizer_audit": optimizer_audit,
+            "optimizer_restore_audit": optimizer_restore_audit,
             "lpl_weight": args.lpl_weight if args.objective == "lpl" else 0.0,
             "lpl_noise_threshold": args.lpl_noise_threshold,
             "lpl_layer_indices": layer_indices,
