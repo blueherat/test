@@ -249,6 +249,9 @@ def main() -> None:
             (output_dir / "sampling_summary.json").write_text(
                 json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8"
             )
+            for shard_rank in range(world_size):
+                (output_dir / f"images-rank{shard_rank:02d}.npy").unlink()
+                (output_dir / f"ids-rank{shard_rank:02d}.npy").unlink()
             print(json.dumps(summary, ensure_ascii=False))
         dist.barrier()
 
