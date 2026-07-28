@@ -8,7 +8,7 @@
 2. 只用官方 Flow loss 继续训练的 EMA；
 3. 在相同 Flow loss 上加入 decoder-feature LPL 的 EMA。
 
-先执行 Flow-only 50 step 门控。只有训练连续性和采样链路都确认正常，才继续
+先执行 Flow-only 10 step 门控。只有训练连续性和采样链路都确认正常，才继续
 同预算的 LPL 分支。这里减少 continuation step，而不改变官方每个 optimizer
 step 的有效 batch。
 
@@ -50,21 +50,22 @@ step 的有效 batch。
 - pilot 使用 4 卡、官方 global batch `1024`、每卡 micro batch `1`、累积
   `256` 次。它保留官方每个 optimizer step 的样本数；与官方 8 卡运行相比，
   DDP world size 和浮点累加顺序仍不同，而且原始 dataloader 游标不可恢复。
-- `50` 个严格 step 共处理 `51,200` 张图，已经多于 reduced-batch
-  `2000 x 16 = 32,000` 张图，因此不能只按 step 数判断实验规模。
+- `10` 个严格 step 共处理 `10,240` 张图。这个 pilot 的目标是先确认官方续训
+  链路、Flow 趋势和 LPL 接入是否正常，不把它解释为充分收敛实验。若门控通过，
+  再按相同 batch 逐段增加训练预算。
 - 共享 GPU 上保留 GPU EMA 会使 GMuon 首次建状态时超出显存。pilot 将 fp32
   EMA 放在 CPU，仅由 rank 0 在每个 optimizer step 后按官方
   `ema = decay * ema + (1-decay) * model` 更新。训练模型、梯度和完整
   GMuon/AdamW state 仍在 GPU；采样仍读取 checkpoint 的 EMA。
 
-## Flow 50-step 门控
+## Flow 10-step 门控
 
 保存：
 
-- branch update 10、20、30、40、50。
+- branch update 2、4、6、8、10。
 
-实际 checkpoint 全局 step 分别是 `100090`、`100100`、`100110`、
-`100120` 和 `100130`。
+实际 checkpoint 全局 step 分别是 `100082`、`100084`、`100086`、
+`100088` 和 `100090`。
 
 训练侧必须满足：
 
@@ -74,16 +75,16 @@ step 的有效 batch。
   为 `2e-5`；
 - loss、梯度和参数均为有限值；
 - 每张卡在反向峰值后至少保留 `2.5 GiB`，避免占满共享 GPU；
-- 10/20/30/40/50 checkpoint 能够重新加载并继续训练。
+- 2/4/6/8/10 checkpoint 能够重新加载并继续训练。
 
-采样侧对原始 EMA 与 Flow-50 EMA 使用：
+采样侧对原始 EMA 与 Flow-10 EMA 使用：
 
 - 相同的 5000 个均衡 ImageNet 标签；
 - 相同的每 rank 初始噪声与 RNG seed；
 - 相同的 bf16、100-step ODE 和 IG 配置；
 - 相同的 deterministic RAE decoder。
 
-如果 Flow-50 没有改善，先检查以下项目，不立即启动 LPL：
+如果 Flow-10 没有改善，先检查以下项目，不立即启动 LPL：
 
 1. 采样是否使用 EMA，而不是 model；
 2. scheduler 是否保持 `2e-5`；
