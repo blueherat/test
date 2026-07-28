@@ -37,9 +37,16 @@ step 的有效 batch。
   恢复了第 80 epoch 结束后的原始下一批图像。
 - Flow 与 LPL 从同一 checkpoint 开始，并在模型构造后用相同 per-rank seed
   重置 RNG。
-- 两个分支使用同一 ImageNet train parquet、同一 DistributedSampler 序列。
-- 裁剪固定为 ADM center crop；水平翻转由 `seed + source row index` 决定，
-  因而独立启动的两个分支得到逐样本相同的输入。
+- 两个分支使用同一 ImageNet train parquet、同一词典序索引映射和同一
+  DistributedSampler 序列。
+- 官方 RAEv2 Arrow 数据在训练时只做 `Resize(256)+ToTensor`，不做在线水平
+  翻转。本地 raw parquet 因此使用 ADM center crop 并关闭翻转。
+- 下载官方第一个 500 MB Arrow shard 进行像素审计：跨类别边界抽查的官方图像
+  都能在本地 raw ImageNet 中找到逐像素完全相同的 center-crop 结果。官方
+  Arrow 与本地文件名词典序存在少量位置偏移，因此不能声称恢复原始样本游标；
+  该映射只固定 Flow/LPL 的新配对序列。
+- 本地索引映射覆盖全部 `1,281,167` 张训练图且为无重复全排列；映射文件哈希
+  写入每个实验 manifest。
 - pilot 使用 4 卡、官方 global batch `1024`、每卡 micro batch `1`、累积
   `256` 次。它保留官方每个 optimizer step 的样本数；与官方 8 卡运行相比，
   DDP world size 和浮点累加顺序仍不同，而且原始 dataloader 游标不可恢复。

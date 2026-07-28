@@ -69,6 +69,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--data-path", type=Path, required=True)
+    parser.add_argument("--index-map", type=Path, required=True)
     parser.add_argument("--results-dir", type=Path, required=True)
     parser.add_argument("--experiment-name", required=True)
     parser.add_argument("--source-checkpoint", type=Path, required=True)
@@ -396,7 +397,8 @@ def main() -> None:
         split="train",
         image_size=int(config.training.image_size),
         augmentation_seed=int(args.global_seed),
-        horizontal_flip=True,
+        horizontal_flip=False,
+        index_map_path=args.index_map,
     )
     distributed_sampler = DistributedSampler(
         dataset,
@@ -517,10 +519,12 @@ def main() -> None:
             "micro_batch_size": micro_batch_size,
             "grad_accum_steps": grad_accum_steps,
             "dataset": str(args.data_path.expanduser().resolve()),
+            "dataset_index_map": str(args.index_map.expanduser().resolve()),
+            "dataset_index_map_sha256": file_sha256(args.index_map),
             "dataset_split": dataset.split,
             "dataset_shards": len(dataset.files),
             "dataset_samples": len(dataset),
-            "deterministic_index_flip": True,
+            "deterministic_index_flip": False,
             "original_dataloader_cursor_restored": False,
             "paired_branch_stream_is_exact": True,
             "optimizer": optimizer_message,

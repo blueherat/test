@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import torch
+import numpy as np
 
 from experiments.raev2_training_core import (
     branch_epoch,
     infer_source_steps_per_epoch,
+    load_permutation_index,
     official_flow_loss_map,
     predicted_clean_latent,
     split_internal_guidance_output,
@@ -181,3 +183,19 @@ def test_loaded_gmuon_param_group_aliases_are_repaired_before_resave() -> None:
     saved = optimizer.state_dict()
     assert saved["muon"]["param_groups"][0]["lr"] == 2e-5
     assert saved["adamw"]["param_groups"][0]["lr"] == 2e-5
+
+
+def test_permutation_index_rejects_incomplete_or_duplicate_maps(tmp_path) -> None:
+    valid_path = tmp_path / "valid.npy"
+    np.save(valid_path, np.array([2, 0, 1], dtype=np.int64))
+    actual = load_permutation_index(valid_path, expected_length=3)
+    np.testing.assert_array_equal(actual, [2, 0, 1])
+
+    duplicate_path = tmp_path / "duplicate.npy"
+    np.save(duplicate_path, np.array([0, 0, 2], dtype=np.int64))
+    try:
+        load_permutation_index(duplicate_path, expected_length=3)
+    except ValueError as error:
+        assert "duplicate" in str(error)
+    else:
+        raise AssertionError("duplicate index map was accepted")

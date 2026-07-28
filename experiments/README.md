@@ -20,7 +20,8 @@ images, so step count is not compared to earlier reduced-batch trials.
 Checkpoints are retained every 10 steps so a non-monotonic curve cannot be
 hidden by endpoint selection. The LPL branch starts only when Flow continuation
 itself remains healthy. The implementation and audit protocol are in
-`train_raev2_strict_lpl.py`, `sample_raev2_threeway.py`,
+`prepare_raev2_imagenet_index.py`, `train_raev2_strict_lpl.py`,
+`sample_raev2_threeway.py`,
 `raev2_training_core.py`, and
 [`RAEV2_LPL_STRICT_CONTINUATION_ZH.md`](../docs/RAEV2_LPL_STRICT_CONTINUATION_ZH.md).
 

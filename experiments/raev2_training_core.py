@@ -232,6 +232,24 @@ def append_jsonl(path: Path, row: dict[str, Any]) -> None:
         handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
+def load_permutation_index(path: Path, *, expected_length: int) -> np.ndarray:
+    """Load and validate a complete source-index permutation."""
+
+    values = np.load(Path(path).expanduser(), allow_pickle=False)
+    if values.ndim != 1 or len(values) != int(expected_length):
+        raise ValueError(
+            f"index map must have shape ({expected_length},), got {values.shape}"
+        )
+    if values.dtype.kind not in "iu":
+        raise TypeError(f"index map must use an integer dtype, got {values.dtype}")
+    values = np.asarray(values, dtype=np.int64)
+    if values.size and (int(values.min()) != 0 or int(values.max()) != values.size - 1):
+        raise ValueError("index map values do not span the complete dataset")
+    if np.unique(values).size != values.size:
+        raise ValueError("index map contains duplicate source indices")
+    return values
+
+
 def center_crop_arr(image: Image.Image, image_size: int) -> Image.Image:
     """ADM center crop used by the official RAE/DiT ImageNet pipeline."""
 
@@ -266,6 +284,7 @@ class DeterministicImageNetParquet(Dataset):
         image_size: int = 256,
         augmentation_seed: int = 0,
         horizontal_flip: bool = True,
+        index_map_path: Path | None = None,
         row_group_cache_size: int = 4,
     ) -> None:
         self.root = Path(root).expanduser()
@@ -275,6 +294,11 @@ class DeterministicImageNetParquet(Dataset):
         self.image_size = int(image_size)
         self.augmentation_seed = int(augmentation_seed)
         self.horizontal_flip = bool(horizontal_flip)
+        self.index_map_path = (
+            Path(index_map_path).expanduser().resolve()
+            if index_map_path is not None
+            else None
+        )
         self.files = sorted(self.data_dir.glob(f"{self.split}-*.parquet"))
         if not self.files:
             raise FileNotFoundError(
@@ -289,6 +313,14 @@ class DeterministicImageNetParquet(Dataset):
             self._offsets.append(
                 self._offsets[-1] + int(pq.ParquetFile(path).metadata.num_rows)
             )
+        self._source_indices = (
+            load_permutation_index(
+                self.index_map_path,
+                expected_length=self._offsets[-1],
+            )
+            if self.index_map_path is not None
+            else None
+        )
         self._pf_cache: dict[Path, Any] = {}
         self._row_group_offsets: dict[int, list[int]] = {}
         self._row_group_cache: OrderedDict[tuple[int, int], Any] = OrderedDict()
@@ -354,8 +386,13 @@ class DeterministicImageNetParquet(Dataset):
         if index < 0 or index >= len(self):
             raise IndexError(index)
 
-        file_index = bisect.bisect_right(self._offsets, index) - 1
-        local_index = index - self._offsets[file_index]
+        source_index = (
+            int(self._source_indices[index])
+            if self._source_indices is not None
+            else index
+        )
+        file_index = bisect.bisect_right(self._offsets, source_index) - 1
+        local_index = source_index - self._offsets[file_index]
         row_group, row_in_group = self._row_group_for(file_index, local_index)
         row = (
             self._row_group_table(file_index, row_group)
