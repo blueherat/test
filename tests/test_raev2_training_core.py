@@ -10,6 +10,7 @@ from experiments.raev2_training_core import (
     official_flow_loss_map,
     predicted_clean_latent,
     split_internal_guidance_output,
+    summarize_lpl_calibration,
     synchronize_loaded_gmuon_param_groups,
     validate_full_stage2_checkpoint,
 )
@@ -105,6 +106,22 @@ def test_full_checkpoint_validation_rejects_model_only_payload() -> None:
         assert "optimizer" in str(error)
     else:
         raise AssertionError("model-only checkpoint was accepted")
+
+
+def test_lpl_calibration_includes_zero_contribution_outside_gate() -> None:
+    summary = summarize_lpl_calibration(
+        flow_sum=8.0,
+        flow_count=8,
+        active_lpl_sum=200.0,
+        active_lpl_count=2,
+        target_lpl_over_flow=0.2,
+    )
+
+    assert summary["flow_mean"] == 1.0
+    assert summary["conditional_lpl_mean"] == 100.0
+    assert summary["global_gated_lpl_mean"] == 25.0
+    assert summary["gate_rate"] == 0.25
+    assert summary["recommended_lpl_weight"] == 0.008
 
 
 def test_loaded_gmuon_param_group_aliases_are_repaired_before_resave() -> None:

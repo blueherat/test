@@ -53,6 +53,7 @@ from experiments.raev2_training_core import (  # noqa: E402
     infer_source_steps_per_epoch,
     official_flow_loss_map,
     predicted_clean_latent,
+    summarize_lpl_calibration,
     synchronize_loaded_gmuon_param_groups,
     tensor_fingerprint,
     validate_full_stage2_checkpoint,
@@ -802,21 +803,13 @@ def main() -> None:
         )
         dist.all_reduce(totals, op=dist.ReduceOp.SUM)
         if rank == 0:
-            flow_mean = float(totals[0] / totals[1].clamp_min(1))
-            lpl_mean = float(totals[2] / totals[3].clamp_min(1))
-            recommended = (
-                float(args.calibration_target_ratio) * flow_mean / lpl_mean
-                if lpl_mean > 0
-                else float("nan")
+            result = summarize_lpl_calibration(
+                flow_sum=float(totals[0]),
+                flow_count=int(totals[1]),
+                active_lpl_sum=float(totals[2]),
+                active_lpl_count=int(totals[3]),
+                target_lpl_over_flow=float(args.calibration_target_ratio),
             )
-            result = {
-                "flow_mean": flow_mean,
-                "lpl_mean_on_gated_batches": lpl_mean,
-                "flow_batches": int(totals[1]),
-                "gated_batches": int(totals[3]),
-                "target_lpl_over_flow": float(args.calibration_target_ratio),
-                "recommended_lpl_weight": recommended,
-            }
             (experiment_dir / "lpl_calibration.json").write_text(
                 json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8"
             )

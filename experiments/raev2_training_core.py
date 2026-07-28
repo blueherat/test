@@ -92,6 +92,50 @@ def validate_full_stage2_checkpoint(checkpoint: dict[str, Any]) -> None:
         raise ValueError("checkpoint step and epoch must be non-negative")
 
 
+def summarize_lpl_calibration(
+    *,
+    flow_sum: float,
+    flow_count: int,
+    active_lpl_sum: float,
+    active_lpl_count: int,
+    target_lpl_over_flow: float,
+) -> dict[str, float | int]:
+    """Calibrate LPL against its zero-outside-the-gate batch contribution."""
+
+    if flow_count <= 0:
+        raise ValueError("flow_count must be positive")
+    if active_lpl_count < 0 or active_lpl_count > flow_count:
+        raise ValueError("active_lpl_count must be in [0, flow_count]")
+    if target_lpl_over_flow <= 0:
+        raise ValueError("target_lpl_over_flow must be positive")
+
+    flow_mean = float(flow_sum) / int(flow_count)
+    gate_rate = int(active_lpl_count) / int(flow_count)
+    conditional_lpl_mean = (
+        float(active_lpl_sum) / int(active_lpl_count)
+        if active_lpl_count
+        else 0.0
+    )
+    # Match the original strict LPL calibration: inactive batches contribute
+    # zero instead of being omitted from the denominator.
+    global_gated_lpl_mean = float(active_lpl_sum) / int(flow_count)
+    recommended = (
+        float(target_lpl_over_flow) * flow_mean / global_gated_lpl_mean
+        if global_gated_lpl_mean > 0
+        else float("nan")
+    )
+    return {
+        "flow_mean": flow_mean,
+        "conditional_lpl_mean": conditional_lpl_mean,
+        "global_gated_lpl_mean": global_gated_lpl_mean,
+        "gate_rate": gate_rate,
+        "flow_batches": int(flow_count),
+        "gated_batches": int(active_lpl_count),
+        "target_lpl_over_flow": float(target_lpl_over_flow),
+        "recommended_lpl_weight": recommended,
+    }
+
+
 def synchronize_loaded_gmuon_param_groups(
     optimizer: Any,
     loaded_state: dict[str, Any],

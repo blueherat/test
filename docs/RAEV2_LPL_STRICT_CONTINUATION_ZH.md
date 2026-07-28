@@ -109,7 +109,9 @@ decoder 参数冻结。
 - 空间平方和、通道平均。
 
 在正式 LPL 分支前先运行 calibration，以源 checkpoint 上的统计把加权 LPL
-平均贡献设为 Flow loss 的约 `20%`，不直接复用旧 RAE 的权重。
+全局平均贡献设为 Flow loss 的约 `20%`，不直接复用旧 RAE 的权重。未通过
+高 SNR gate 的 microbatch 按 LPL 贡献为零计入分母；同时单独记录 gate rate
+和 gate 内的 conditional LPL 均值。这个口径与旧严格 LPL 实验一致。
 
 ## 结果位置
 
