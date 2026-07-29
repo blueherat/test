@@ -46,6 +46,7 @@ from experiments.rae_strict_lpl import (  # noqa: E402
     strict_lpl_per_sample,
 )
 from experiments.raev2_training_core import (  # noqa: E402
+    DeterministicImageNetPacked,
     DeterministicImageNetParquet,
     append_jsonl,
     branch_epoch,
@@ -70,6 +71,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--data-path", type=Path, required=True)
+    parser.add_argument("--packed-data-path", type=Path)
     parser.add_argument("--index-map", type=Path, required=True)
     parser.add_argument("--results-dir", type=Path, required=True)
     parser.add_argument("--experiment-name", required=True)
@@ -393,14 +395,27 @@ def main() -> None:
             world_size,
         )
 
-    dataset = DeterministicImageNetParquet(
-        args.data_path,
-        split="train",
-        image_size=int(config.training.image_size),
-        augmentation_seed=int(args.global_seed),
-        horizontal_flip=False,
-        index_map_path=args.index_map,
-    )
+    dataset_parameters = {
+        "split": "train",
+        "image_size": int(config.training.image_size),
+        "augmentation_seed": int(args.global_seed),
+        "horizontal_flip": False,
+        "index_map_path": args.index_map,
+    }
+    if args.packed_data_path is not None:
+        dataset = DeterministicImageNetPacked(
+            args.packed_data_path,
+            **dataset_parameters,
+        )
+        dataset_backend = "packed_random_access"
+        active_data_path = args.packed_data_path
+    else:
+        dataset = DeterministicImageNetParquet(
+            args.data_path,
+            **dataset_parameters,
+        )
+        dataset_backend = "parquet_row_group"
+        active_data_path = args.data_path
     distributed_sampler = DistributedSampler(
         dataset,
         num_replicas=world_size,
@@ -524,7 +539,9 @@ def main() -> None:
             "micro_batch_size": micro_batch_size,
             "grad_accum_steps": grad_accum_steps,
             "logged_loss_scope": "global_accumulation_mean",
-            "dataset": str(args.data_path.expanduser().resolve()),
+            "dataset": str(active_data_path.expanduser().resolve()),
+            "dataset_backend": dataset_backend,
+            "source_parquet_dataset": str(args.data_path.expanduser().resolve()),
             "dataset_index_map": str(args.index_map.expanduser().resolve()),
             "dataset_index_map_sha256": file_sha256(args.index_map),
             "dataset_split": dataset.split,

@@ -74,6 +74,7 @@ def test_lpl_cycle_launcher_uses_fifty_step_evaluation_boundaries() -> None:
         / "run_raev2_lpl_checkpoint_cycle.py"
     ).read_text(encoding="utf-8")
     assert '"--num-workers",\n        "4",' in cycle
+    assert '"--packed-data-path"' in cycle
 
 
 def test_flow_evaluation_waiter_orders_sampling_evaluation_and_resume() -> None:

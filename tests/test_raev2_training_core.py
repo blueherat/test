@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+import io
+import json
+
 import torch
 import numpy as np
+from PIL import Image
 
 from experiments.raev2_training_core import (
+    DeterministicImageNetPacked,
+    PACKED_IMAGENET_FORMAT,
     branch_epoch,
     infer_source_steps_per_epoch,
     load_permutation_index,
@@ -216,3 +222,58 @@ def test_permutation_index_rejects_incomplete_or_duplicate_maps(tmp_path) -> Non
         assert "duplicate" in str(error)
     else:
         raise AssertionError("duplicate index map was accepted")
+
+
+def test_packed_imagenet_preserves_bytes_labels_and_index_map(tmp_path) -> None:
+    shard_dir = tmp_path / "train"
+    shard_dir.mkdir()
+    encoded_images = []
+    for color in ((255, 0, 0), (0, 255, 0)):
+        image = Image.new("RGB", (8, 8), color=color)
+        buffer = io.BytesIO()
+        image.save(buffer, format="PNG")
+        encoded_images.append(buffer.getvalue())
+
+    data_path = shard_dir / "train-00000.bin"
+    data_path.write_bytes(b"".join(encoded_images))
+    offsets = np.array(
+        [0, len(encoded_images[0]), sum(map(len, encoded_images))],
+        dtype=np.int64,
+    )
+    labels = np.array([3, 7], dtype=np.int32)
+    np.save(shard_dir / "train-00000.offsets.npy", offsets)
+    np.save(shard_dir / "train-00000.labels.npy", labels)
+    manifest = {
+        "format": PACKED_IMAGENET_FORMAT,
+        "version": 1,
+        "split": "train",
+        "total_rows": 2,
+        "shards": [
+            {
+                "rows": 2,
+                "data_file": "train/train-00000.bin",
+                "offsets_file": "train/train-00000.offsets.npy",
+                "labels_file": "train/train-00000.labels.npy",
+            }
+        ],
+    }
+    (tmp_path / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    index_map = tmp_path / "index.npy"
+    np.save(index_map, np.array([1, 0], dtype=np.int64))
+
+    dataset = DeterministicImageNetPacked(
+        tmp_path,
+        split="train",
+        image_size=8,
+        horizontal_flip=False,
+        index_map_path=index_map,
+        max_open_shards=1,
+    )
+    first_image, first_label, first_index = dataset[0]
+    second_image, second_label, second_index = dataset[1]
+
+    assert (first_label, first_index) == (7, 0)
+    assert (second_label, second_index) == (3, 1)
+    torch.testing.assert_close(first_image[:, 0, 0], torch.tensor([0.0, 1.0, 0.0]))
+    torch.testing.assert_close(second_image[:, 0, 0], torch.tensor([1.0, 0.0, 0.0]))
+    dataset.close()

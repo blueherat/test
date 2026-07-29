@@ -40,6 +40,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--per-rank-batch", type=int, default=16)
     parser.add_argument("--min-free-gib", type=float, default=0.5)
     parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
+    parser.add_argument(
+        "--packed-data-path",
+        type=Path,
+        default=Path("/data/shared/imagenet-1k/random_access_v1"),
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -57,6 +62,7 @@ def training_command(
     python: Path,
     config: Path,
     data_path: Path,
+    packed_data_path: Path,
     index_map: Path,
     results_root: Path,
     experiment_name: str,
@@ -74,6 +80,8 @@ def training_command(
         str(config),
         "--data-path",
         str(data_path),
+        "--packed-data-path",
+        str(packed_data_path),
         "--index-map",
         str(index_map),
         "--results-dir",
@@ -150,6 +158,7 @@ def main() -> None:
     index_map = data_root / "datasets" / "raev2_imagenet_train_lexicographic_indices.npy"
     dino_repo = data_root / "models" / "RAEv2" / "dinov3_repo"
     data_path = Path("/data/shared/imagenet-1k/data")
+    packed_data_path = args.packed_data_path.expanduser().resolve()
     official_root = results_root / "long_flow_lpl_s150"
     official_sample_dir = (
         official_root / f"samples_n{args.sample_count}_seed0" / "official"
@@ -163,6 +172,7 @@ def main() -> None:
         index_map,
         dino_repo,
         data_path,
+        packed_data_path / "manifest.json",
         official_sample_dir / "sampling_summary.json",
         official_metrics,
     )
@@ -202,6 +212,8 @@ def main() -> None:
         "training_micro_batch_per_rank": 1,
         "training_grad_accum_steps": 256,
         "training_data_workers_per_rank": 4,
+        "training_data_backend": "packed_random_access",
+        "packed_data_path": str(packed_data_path),
         "min_free_gib": args.min_free_gib,
         "initial_checkpoint": str(initial_checkpoint),
         "experiment_dir": str(experiment_dir),
@@ -254,6 +266,7 @@ def main() -> None:
                     python=python,
                     config=config,
                     data_path=data_path,
+                    packed_data_path=packed_data_path,
                     index_map=index_map,
                     results_root=results_root,
                     experiment_name=experiment_name,

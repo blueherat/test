@@ -11,6 +11,7 @@ import bisect
 import hashlib
 import io
 import json
+import os
 import random
 from collections import OrderedDict
 from pathlib import Path
@@ -25,6 +26,7 @@ from torch.utils.data import Dataset
 REQUIRED_STAGE2_KEYS = frozenset(
     {"step", "epoch", "model", "ema", "optimizer", "scheduler"}
 )
+PACKED_IMAGENET_FORMAT = "eqvae_imagenet_packed_v1"
 
 
 def predicted_clean_latent(
@@ -459,3 +461,175 @@ class DeterministicImageNetParquet(Dataset):
         array = np.asarray(image, dtype=np.float32)
         tensor = torch.from_numpy(array.copy()).permute(2, 0, 1).div_(255.0)
         return tensor, int(row["label"][0]), index
+
+
+class DeterministicImageNetPacked(Dataset):
+    """Random-access ImageNet reader for losslessly unpacked parquet bytes.
+
+    Hugging Face's ImageNet parquet files store hundreds of images in each row
+    group. Reading one random row therefore decompresses the entire row group.
+    The packed format keeps the original encoded image bytes unchanged in one
+    binary file per parquet shard and records exact byte offsets separately.
+    """
+
+    def __init__(
+        self,
+        root: Path,
+        *,
+        split: str = "train",
+        image_size: int = 256,
+        augmentation_seed: int = 0,
+        horizontal_flip: bool = True,
+        index_map_path: Path | None = None,
+        max_open_shards: int = 32,
+    ) -> None:
+        self.root = Path(root).expanduser().resolve()
+        self.image_size = int(image_size)
+        self.augmentation_seed = int(augmentation_seed)
+        self.horizontal_flip = bool(horizontal_flip)
+        self.max_open_shards = int(max_open_shards)
+        if self.max_open_shards <= 0:
+            raise ValueError("max_open_shards must be positive")
+
+        split_alias = {"val": "validation", "valid": "validation"}
+        self.split = split_alias.get(str(split).lower(), str(split).lower())
+        manifest_path = self.root / "manifest.json"
+        if not manifest_path.is_file():
+            raise FileNotFoundError(f"packed ImageNet manifest not found: {manifest_path}")
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("format") != PACKED_IMAGENET_FORMAT:
+            raise ValueError(
+                "unsupported packed ImageNet format: "
+                f"{manifest.get('format')!r}"
+            )
+        if manifest.get("split") != self.split:
+            raise ValueError(
+                f"packed split is {manifest.get('split')!r}, requested {self.split!r}"
+            )
+
+        records = manifest.get("shards")
+        if not isinstance(records, list) or not records:
+            raise ValueError("packed ImageNet manifest has no shards")
+        self._data_paths: list[Path] = []
+        self._byte_offsets: list[np.ndarray] = []
+        self._labels: list[np.ndarray] = []
+        self._row_offsets = [0]
+        for record in records:
+            rows = int(record["rows"])
+            data_path = self.root / record["data_file"]
+            offsets_path = self.root / record["offsets_file"]
+            labels_path = self.root / record["labels_file"]
+            if not data_path.is_file():
+                raise FileNotFoundError(f"packed data shard not found: {data_path}")
+            byte_offsets = np.load(offsets_path, allow_pickle=False)
+            labels = np.load(labels_path, allow_pickle=False)
+            if byte_offsets.shape != (rows + 1,) or byte_offsets.dtype.kind not in "iu":
+                raise ValueError(
+                    f"invalid byte offsets in {offsets_path}: {byte_offsets.shape}"
+                )
+            if labels.shape != (rows,) or labels.dtype.kind not in "iu":
+                raise ValueError(f"invalid labels in {labels_path}: {labels.shape}")
+            byte_offsets = np.asarray(byte_offsets, dtype=np.int64)
+            labels = np.asarray(labels, dtype=np.int64)
+            if int(byte_offsets[0]) != 0:
+                raise ValueError(f"byte offsets must start at zero: {offsets_path}")
+            if np.any(byte_offsets[1:] < byte_offsets[:-1]):
+                raise ValueError(f"byte offsets are not monotonic: {offsets_path}")
+            if int(byte_offsets[-1]) != data_path.stat().st_size:
+                raise ValueError(
+                    f"packed shard size disagrees with offsets: {data_path}"
+                )
+            self._data_paths.append(data_path)
+            self._byte_offsets.append(byte_offsets)
+            self._labels.append(labels)
+            self._row_offsets.append(self._row_offsets[-1] + rows)
+
+        expected_rows = int(manifest.get("total_rows", -1))
+        if self._row_offsets[-1] != expected_rows:
+            raise ValueError(
+                "packed manifest total_rows mismatch: "
+                f"shards={self._row_offsets[-1]}, manifest={expected_rows}"
+            )
+        self.index_map_path = (
+            Path(index_map_path).expanduser().resolve()
+            if index_map_path is not None
+            else None
+        )
+        self._source_indices = (
+            load_permutation_index(
+                self.index_map_path,
+                expected_length=self._row_offsets[-1],
+            )
+            if self.index_map_path is not None
+            else None
+        )
+        self.files = self._data_paths
+        self._fd_cache: OrderedDict[int, int] = OrderedDict()
+
+    def __len__(self) -> int:
+        return self._row_offsets[-1]
+
+    def __getstate__(self) -> dict[str, Any]:
+        state = self.__dict__.copy()
+        state["_fd_cache"] = OrderedDict()
+        return state
+
+    def _open_shard(self, file_index: int) -> int:
+        if file_index not in self._fd_cache:
+            self._fd_cache[file_index] = os.open(
+                self._data_paths[file_index],
+                os.O_RDONLY,
+            )
+            while len(self._fd_cache) > self.max_open_shards:
+                _, descriptor = self._fd_cache.popitem(last=False)
+                os.close(descriptor)
+        self._fd_cache.move_to_end(file_index)
+        return self._fd_cache[file_index]
+
+    def close(self) -> None:
+        while self._fd_cache:
+            _, descriptor = self._fd_cache.popitem(last=False)
+            os.close(descriptor)
+
+    def __del__(self) -> None:
+        try:
+            self.close()
+        except Exception:
+            pass
+
+    def _should_flip(self, index: int) -> bool:
+        if not self.horizontal_flip:
+            return False
+        rng = random.Random((self.augmentation_seed << 32) ^ int(index))
+        return rng.random() < 0.5
+
+    def __getitem__(self, index: int) -> tuple[torch.Tensor, int, int]:
+        index = int(index)
+        if index < 0:
+            index += len(self)
+        if index < 0 or index >= len(self):
+            raise IndexError(index)
+
+        source_index = (
+            int(self._source_indices[index])
+            if self._source_indices is not None
+            else index
+        )
+        file_index = bisect.bisect_right(self._row_offsets, source_index) - 1
+        local_index = source_index - self._row_offsets[file_index]
+        offsets = self._byte_offsets[file_index]
+        start = int(offsets[local_index])
+        end = int(offsets[local_index + 1])
+        image_bytes = os.pread(self._open_shard(file_index), end - start, start)
+        if len(image_bytes) != end - start:
+            raise OSError(
+                f"short read from {self._data_paths[file_index]} at row {local_index}"
+            )
+
+        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        image = center_crop_arr(image, self.image_size)
+        if self._should_flip(index):
+            image = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        array = np.asarray(image, dtype=np.float32)
+        tensor = torch.from_numpy(array.copy()).permute(2, 0, 1).div_(255.0)
+        return tensor, int(self._labels[file_index][local_index]), index
