@@ -68,6 +68,13 @@ def test_lpl_cycle_launcher_uses_fifty_step_evaluation_boundaries() -> None:
     assert "--min-free-gib 0.5" in launcher
     assert "/data/users/zhoushunyu" in launcher
 
+    cycle = (
+        Path(__file__).resolve().parents[1]
+        / "experiments"
+        / "run_raev2_lpl_checkpoint_cycle.py"
+    ).read_text(encoding="utf-8")
+    assert '"--num-workers",\n        "2",' in cycle
+
 
 def test_flow_evaluation_waiter_orders_sampling_evaluation_and_resume() -> None:
     waiter = (
