@@ -96,6 +96,40 @@ step 的有效 batch。
 5. 原始和续训采样的噪声、标签、步数、IG 是否逐项相同；
 6. 4 卡梯度累积与官方 8 卡 DDP 的浮点累加差异是否造成可见偏移。
 
+## Flow 150-step loss 审计
+
+第一轮 Flow 续训已经从 branch step 0 运行到 150。模型、EMA、GMuon、
+AdamW 和 scheduler 在 0、10、30 三个启动/恢复边界都完整载入；两组内部
+optimizer state 数量保持为 `222/346`，学习率始终为 `2e-5`，梯度范数没有
+出现跳变或爆炸。
+
+历史 `train_metrics.jsonl` 有一个只影响观察、不影响训练的统计问题：每个
+optimizer step 实际累积 1024 张图，但日志曾只记录四个 rank 的最后一个
+microbatch，等效为 4 张图的 noisy estimate。梯度仍由全部 1024 张图正确
+累积，checkpoint 不受影响。入口现已改为在每个 optimizer step 内累计
+Flow/LPL/total loss，再按 `world_size * grad_accum_steps` 求真实全局平均；
+新 manifest 使用 `logged_loss_scope=global_accumulation_mean` 标记口径。
+
+旧日志仅作健康检查时，前 30 step 的均值为 `0.9095`，后 30 step 为
+`0.9190`；差异不显著（Welch `p=0.755`），150 step 线性趋势也不显著
+（`p=0.489`）。更严格的固定输入审计使用相同 64 张图、latent、噪声、时间和
+CFG mask，得到：
+
+| checkpoint | state | Flow loss | 相对 official |
+|---|---|---:|---:|
+| official | model | 0.951255 | 0 |
+| Flow-10 | model | 0.951625 | +0.039% |
+| Flow-110 | model | 0.952423 | +0.123% |
+| Flow-150 | model | 0.951215 | -0.004% |
+| official | EMA | 0.950239 | 0 |
+| Flow-110 | EMA | 0.950006 | -0.024% |
+| Flow-150 | EMA | 0.950096 | -0.015% |
+
+因此没有“恢复后初始 loss 很大”或“续训 150 step 后 loss 漂移”的证据。
+相反，Flow-only 分支处在训练平台区。EMA decay 为 `0.9995`，150 step 后新
+更新在 EMA 中的累计权重仅为 `1-0.9995^150=7.23%`，所以短续训样本接近官方
+EMA 是预期现象，不能把它解释为 Flow 已明显改善。
+
 ## LPL 定义
 
 LPL 作用于主头直接预测的干净 latent。真实 latent 的 decoder features 在

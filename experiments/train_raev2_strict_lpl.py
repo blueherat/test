@@ -523,6 +523,7 @@ def main() -> None:
             "global_batch_size": global_batch_size,
             "micro_batch_size": micro_batch_size,
             "grad_accum_steps": grad_accum_steps,
+            "logged_loss_scope": "global_accumulation_mean",
             "dataset": str(args.data_path.expanduser().resolve()),
             "dataset_index_map": str(args.index_map.expanduser().resolve()),
             "dataset_index_map_sha256": file_sha256(args.index_map),
@@ -558,6 +559,10 @@ def main() -> None:
     calibration_lpl_sum = torch.zeros((), device=device)
     calibration_lpl_count = torch.zeros((), device=device)
     calibration_flow_count = torch.zeros((), device=device)
+    update_flow_sum = torch.zeros((), device=device)
+    update_lpl_sum = torch.zeros((), device=device)
+    update_total_sum = torch.zeros((), device=device)
+    update_gate_count = torch.zeros((), device=device)
     micro_since_boundary = 0
     last_time = perf_counter()
 
@@ -687,6 +692,10 @@ def main() -> None:
                 break
             continue
 
+        update_flow_sum += flow_loss.detach()
+        update_lpl_sum += lpl_loss.detach()
+        update_total_sum += total_loss.detach()
+        update_gate_count += gate_count
         if not is_boundary:
             continue
 
@@ -718,18 +727,19 @@ def main() -> None:
         branch_update_value += 1
 
         if branch_update_value % int(config.training.log_interval) == 0:
-            reduced = torch.tensor(
-                [
-                    float(flow_loss.detach()),
-                    float(lpl_loss.detach()),
-                    float(total_loss.detach()),
-                    float(grad_norm.detach()),
-                    float(gate_count),
-                ],
-                device=device,
+            reduced = torch.stack(
+                (
+                    update_flow_sum,
+                    update_lpl_sum,
+                    update_total_sum,
+                    grad_norm.detach(),
+                    update_gate_count,
+                )
             )
             dist.all_reduce(reduced, op=dist.ReduceOp.SUM)
-            reduced /= world_size
+            reduced[:3] /= world_size * grad_accum_steps
+            reduced[3] /= world_size
+            reduced[4] /= world_size * grad_accum_steps
             if rank == 0:
                 now = perf_counter()
                 row = {
@@ -758,6 +768,10 @@ def main() -> None:
                     row["free_gpu_gib_rank0"],
                 )
                 last_time = now
+        update_flow_sum.zero_()
+        update_lpl_sum.zero_()
+        update_total_sum.zero_()
+        update_gate_count.zero_()
 
         should_save = (
             branch_update_value % args.save_every == 0
