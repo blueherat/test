@@ -24,7 +24,8 @@ while true; do
   sleep 60
 done
 
-while pgrep -f '[s]ample_raev2_threeway.py.*long_flow_lpl_s150' >/dev/null; do
+sampler_pattern="^${python} .*sample_raev2_threeway.py.*${pipeline_root}"
+while pgrep -f "$sampler_pattern" >/dev/null; do
   sleep 5
 done
 tmux kill-session -t raev2_flow_sampling_then_resume 2>/dev/null || true

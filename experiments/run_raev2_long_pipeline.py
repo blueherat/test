@@ -477,9 +477,19 @@ def write_curve(
         axis.grid(alpha=0.25)
     axes[0].set_ylabel("Metric value")
     handles, labels = axes[0].get_legend_handles_labels()
-    figure.legend(handles, labels, loc="upper center", ncol=3, frameon=False)
-    figure.suptitle("RAEv2 DINOv3-L-K7: Flow vs decoder-feature LPL, 5k samples")
-    figure.tight_layout(rect=(0, 0, 1, 0.90))
+    figure.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.945),
+        ncol=3,
+        frameon=False,
+    )
+    figure.suptitle(
+        "RAEv2 DINOv3-L-K7: Flow vs decoder-feature LPL, 5k samples",
+        y=0.995,
+    )
+    figure.tight_layout(rect=(0, 0, 1, 0.86))
     figure.savefig(output_png, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
@@ -551,9 +561,19 @@ def write_flow_curve(
         axis.grid(alpha=0.25)
     axes[0].set_ylabel("Metric value")
     handles, labels = axes[0].get_legend_handles_labels()
-    figure.legend(handles, labels, loc="upper center", ncol=2, frameon=False)
-    figure.suptitle("RAEv2 DINOv3-L-K7: Flow continuation, 5k samples")
-    figure.tight_layout(rect=(0, 0, 1, 0.90))
+    figure.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.945),
+        ncol=2,
+        frameon=False,
+    )
+    figure.suptitle(
+        "RAEv2 DINOv3-L-K7: Flow continuation, 5k samples",
+        y=0.995,
+    )
+    figure.tight_layout(rect=(0, 0, 1, 0.86))
     figure.savefig(output_png, dpi=180, bbox_inches="tight")
     plt.close(figure)
 
