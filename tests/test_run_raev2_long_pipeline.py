@@ -55,6 +55,18 @@ def test_launcher_requests_two_gib_memory_reserve() -> None:
     assert "Flow evaluation must finish before LPL resumes" in launcher
 
 
+def test_flow_evaluation_waiter_orders_sampling_evaluation_and_resume() -> None:
+    waiter = (
+        Path(__file__).resolve().parents[1]
+        / "experiments"
+        / "wait_evaluate_raev2_flow_then_resume.sh"
+    ).read_text(encoding="utf-8")
+    sampling = waiter.index("expected_summaries")
+    evaluation = waiter.index("evaluate_raev2_flow_curve.py")
+    resume = waiter.index("launch_raev2_long_pipeline.sh")
+    assert sampling < evaluation < resume
+
+
 def test_curve_writer_adds_objective_and_step(tmp_path: Path) -> None:
     source = tmp_path / "metrics.csv"
     pd.DataFrame(
