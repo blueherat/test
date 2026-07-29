@@ -210,6 +210,7 @@ def train_branch(
     results_root: Path,
     dino_repo: Path,
     lpl_weight: float,
+    min_free_gib: float,
     logs: Path,
     event_log: Path,
     env: dict[str, str],
@@ -259,7 +260,7 @@ def train_branch(
         "--num-workers",
         "4",
         "--min-free-gib",
-        "3.0",
+        str(float(min_free_gib)),
         "--dino-repo-dir",
         str(dino_repo),
     ]
@@ -574,6 +575,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sample-count", type=int, default=5000)
     parser.add_argument("--per-rank-batch", type=int, default=32)
     parser.add_argument("--lpl-weight", type=float, default=0.0007801168201348963)
+    parser.add_argument("--min-free-gib", type=float, default=2.0)
     parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
@@ -581,6 +583,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    if args.min_free_gib <= 0:
+        raise ValueError("--min-free-gib must be positive")
     steps = checkpoint_steps(args.target_step, args.checkpoint_every)
     data_root = args.data_root.expanduser().resolve()
     experiment_root = data_root / "experiments" / "raev2_lpl_pilot"
@@ -630,6 +634,7 @@ def main() -> None:
         "sample_count": args.sample_count,
         "per_rank_batch": args.per_rank_batch,
         "lpl_weight": args.lpl_weight,
+        "min_free_gib": args.min_free_gib,
         "pipeline_root": str(pipeline_root),
         "estimated_checkpoint_count": 2 * len(steps),
     }
@@ -660,6 +665,7 @@ def main() -> None:
             results_root=experiment_root,
             dino_repo=dino_repo,
             lpl_weight=args.lpl_weight,
+            min_free_gib=args.min_free_gib,
             logs=logs,
             event_log=event_log,
             env=env,
@@ -676,6 +682,7 @@ def main() -> None:
             results_root=experiment_root,
             dino_repo=dino_repo,
             lpl_weight=args.lpl_weight,
+            min_free_gib=args.min_free_gib,
             logs=logs,
             event_log=event_log,
             env=env,

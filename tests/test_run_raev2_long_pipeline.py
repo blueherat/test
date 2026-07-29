@@ -43,6 +43,15 @@ def test_script_entrypoint_imports_repo_without_pythonpath(tmp_path: Path) -> No
     assert completed.returncode == 0, completed.stderr
 
 
+def test_launcher_requests_two_gib_memory_reserve() -> None:
+    launcher = (
+        Path(__file__).resolve().parents[1]
+        / "experiments"
+        / "launch_raev2_long_pipeline.sh"
+    ).read_text(encoding="utf-8")
+    assert "--min-free-gib 2.0" in launcher
+
+
 def test_curve_writer_adds_objective_and_step(tmp_path: Path) -> None:
     source = tmp_path / "metrics.csv"
     pd.DataFrame(
