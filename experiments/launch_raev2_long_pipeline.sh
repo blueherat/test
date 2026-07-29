@@ -23,7 +23,7 @@ fi
 
 mkdir -p "$pipeline_root"
 tmux new-session -d -s "$session" \
-  "bash -lc 'set -o pipefail; cd $repo; $python experiments/run_raev2_long_pipeline.py --target-step 150 --checkpoint-every 10 --sample-count 5000 --per-rank-batch 32 --min-free-gib 2.0 2>&1 | tee -a $launcher_log'"
+  "bash -lc 'set -o pipefail; cd $repo; $python experiments/run_raev2_long_pipeline.py --target-step 150 --checkpoint-every 10 --sample-count 5000 --per-rank-batch 16 --min-free-gib 2.0 2>&1 | tee -a $launcher_log'"
 
 echo "started: $session"
 echo "status:  $pipeline_root/status.json"
