@@ -14,6 +14,7 @@ from experiments.run_raev2_long_pipeline import (
     merge_evaluations,
     verify_same_noise_protocol,
     write_curve,
+    write_flow_curve,
 )
 
 
@@ -88,6 +89,40 @@ def test_curve_writer_adds_objective_and_step(tmp_path: Path) -> None:
         ["lpl", 10],
         ["official", 0],
     ]
+    assert output_png.stat().st_size > 0
+
+
+def test_flow_curve_writer_orders_steps_and_draws_plot(tmp_path: Path) -> None:
+    source = tmp_path / "metrics.csv"
+    pd.DataFrame(
+        [
+            {
+                "branch": "flow_s0020",
+                "frechet_inception_distance": 9.8,
+                "kernel_inception_distance_mean": 0.008,
+                "inception_score_mean": 102.0,
+            },
+            {
+                "branch": "official",
+                "frechet_inception_distance": 10.0,
+                "kernel_inception_distance_mean": 0.01,
+                "inception_score_mean": 100.0,
+            },
+            {
+                "branch": "flow_s0010",
+                "frechet_inception_distance": 9.9,
+                "kernel_inception_distance_mean": 0.009,
+                "inception_score_mean": 101.0,
+            },
+        ]
+    ).to_csv(source, index=False)
+
+    output_csv = tmp_path / "flow_curve.csv"
+    output_png = tmp_path / "flow_curve.png"
+    write_flow_curve(source, output_csv=output_csv, output_png=output_png)
+
+    curve = pd.read_csv(output_csv)
+    assert curve["branch_update"].tolist() == [0, 10, 20]
     assert output_png.stat().st_size > 0
 
 

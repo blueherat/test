@@ -484,6 +484,80 @@ def write_curve(
     plt.close(figure)
 
 
+def write_flow_curve(
+    metrics_csv: Path,
+    *,
+    output_csv: Path,
+    output_png: Path,
+) -> None:
+    """Write a Flow-only continuation curve against the official EMA."""
+
+    frame = pd.read_csv(metrics_csv)
+    rows = []
+    for row in frame.to_dict(orient="records"):
+        name = str(row["branch"])
+        if name == "official":
+            branch_update = 0
+        else:
+            match = re.fullmatch(r"flow_s(\d+)", name)
+            if match is None:
+                raise ValueError(f"unexpected Flow-only branch name: {name}")
+            branch_update = int(match.group(1))
+        rows.append({**row, "branch_update": branch_update})
+    result = pd.DataFrame(rows).sort_values("branch_update")
+    if result["branch_update"].duplicated().any():
+        raise ValueError("Flow-only metrics contain duplicate continuation steps")
+    official_rows = result[result["branch"] == "official"]
+    if len(official_rows) != 1:
+        raise ValueError("Flow-only metrics require exactly one official row")
+    flow = result[result["branch"] != "official"]
+    if flow.empty:
+        raise ValueError("Flow-only metrics contain no continuation checkpoints")
+
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
+    result.to_csv(output_csv, index=False, quoting=csv.QUOTE_MINIMAL)
+
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    metrics = (
+        ("frechet_inception_distance", "FID", "lower"),
+        ("kernel_inception_distance_mean", "KID", "lower"),
+        ("inception_score_mean", "Inception Score", "higher"),
+    )
+    figure, axes = plt.subplots(1, 3, figsize=(18, 5.5))
+    official = official_rows.iloc[0]
+    for axis, (column, title, direction) in zip(axes, metrics, strict=True):
+        axis.plot(
+            flow["branch_update"],
+            flow[column],
+            marker="o",
+            linewidth=2,
+            markersize=5,
+            label="Flow continuation",
+            color="#2563eb",
+        )
+        axis.axhline(
+            float(official[column]),
+            color="#111827",
+            linestyle="--",
+            linewidth=1.5,
+            label="Official EMA",
+        )
+        axis.set_title(f"{title} ({direction} is better)")
+        axis.set_xlabel("Continuation optimizer steps")
+        axis.grid(alpha=0.25)
+    axes[0].set_ylabel("Metric value")
+    handles, labels = axes[0].get_legend_handles_labels()
+    figure.legend(handles, labels, loc="upper center", ncol=2, frameon=False)
+    figure.suptitle("RAEv2 DINOv3-L-K7: Flow continuation, 5k samples")
+    figure.tight_layout(rect=(0, 0, 1, 0.90))
+    figure.savefig(output_png, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+
 def evaluation_complete(
     metrics_csv: Path,
     *,
