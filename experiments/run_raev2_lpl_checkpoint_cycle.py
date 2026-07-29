@@ -36,10 +36,19 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--target-step", type=int, default=800)
     parser.add_argument("--checkpoint-every", type=int, default=50)
+    parser.add_argument(
+        "--sample-every",
+        type=int,
+        help="Sample and evaluate at this step interval; defaults to every checkpoint.",
+    )
     parser.add_argument("--sample-count", type=int, default=5000)
     parser.add_argument("--per-rank-batch", type=int, default=16)
     parser.add_argument("--min-free-gib", type=float, default=0.5)
     parser.add_argument("--compile-stage2", action="store_true")
+    parser.add_argument(
+        "--experiment-name",
+        help="Reuse an existing experiment directory when extending the target step.",
+    )
     parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
     parser.add_argument(
         "--packed-data-path",
@@ -130,6 +139,11 @@ def main() -> None:
         raise ValueError("--checkpoint-every must be positive")
     if args.target_step % args.checkpoint_every:
         raise ValueError("--target-step must be divisible by --checkpoint-every")
+    sample_every = args.sample_every or args.checkpoint_every
+    if sample_every <= 0:
+        raise ValueError("--sample-every must be positive")
+    if sample_every % args.checkpoint_every:
+        raise ValueError("--sample-every must be divisible by --checkpoint-every")
     if args.sample_count <= 0 or args.sample_count % 1000:
         raise ValueError("--sample-count must be a positive multiple of 1000")
     if args.min_free_gib <= 0:
@@ -137,7 +151,11 @@ def main() -> None:
 
     data_root = args.data_root.expanduser().resolve()
     results_root = data_root / "experiments" / "raev2_lpl_pilot"
-    experiment_name = f"lpl_official_{args.target_step}_strict_from10"
+    experiment_name = (
+        args.experiment_name
+        if args.experiment_name is not None
+        else f"lpl_official_{args.target_step}_strict_from10"
+    )
     experiment_dir = results_root / experiment_name
     logs = experiment_dir / "cycle_logs"
     event_log = experiment_dir / "cycle_events.jsonl"
@@ -209,6 +227,7 @@ def main() -> None:
         "state": "planned",
         "target_step": args.target_step,
         "checkpoint_every": args.checkpoint_every,
+        "sample_every": sample_every,
         "targets": targets,
         "sample_count": args.sample_count,
         "sampling_seed": 0,
@@ -308,6 +327,24 @@ def main() -> None:
 
             current_checkpoint = target_checkpoint
             current_step = target
+            if target % sample_every:
+                atomic_json(
+                    status_path,
+                    {
+                        **plan,
+                        "state": "checkpointed",
+                        "started_at": started_at,
+                        "current_target": target,
+                        "checkpoint": str(target_checkpoint),
+                    },
+                )
+                append_event(
+                    event_log,
+                    "checkpoint_only_complete",
+                    branch=name,
+                    checkpoint=str(target_checkpoint),
+                )
+                continue
             atomic_json(
                 status_path,
                 {

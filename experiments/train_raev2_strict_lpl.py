@@ -33,6 +33,7 @@ from torch.utils.data.distributed import DistributedSampler
 
 
 ROOT = Path(__file__).resolve().parents[1]
+LPL_LAYER_FRACTIONS = (0.2, 0.4, 0.6, 0.8, 1.0)
 RAEV2_ROOT = ROOT / "external" / "RAEv2"
 RAEV2_SRC = RAEV2_ROOT / "src"
 for path in (RAEV2_SRC, ROOT):
@@ -521,8 +522,13 @@ def main() -> None:
         device=device,
     )
     layer_indices = None
+    layer_weights = None
     if args.objective == "lpl":
-        layer_indices = decoder_hidden_indices(len(rae.decoder.decoder_layers))
+        layer_indices = decoder_hidden_indices(
+            len(rae.decoder.decoder_layers),
+            fractions=LPL_LAYER_FRACTIONS,
+        )
+        layer_weights = (1.0,) * len(layer_indices)
 
     require_memory_reserve(device, args.min_free_gib, "model and optimizer load")
     if rank == 0:
@@ -566,7 +572,11 @@ def main() -> None:
             "optimizer_restore_audit": optimizer_restore_audit,
             "lpl_weight": args.lpl_weight if args.objective == "lpl" else 0.0,
             "lpl_noise_threshold": args.lpl_noise_threshold,
+            "lpl_layer_fractions": (
+                LPL_LAYER_FRACTIONS if args.objective == "lpl" else None
+            ),
             "lpl_layer_indices": layer_indices,
+            "lpl_layer_weights": layer_weights,
         }
         (experiment_dir / "manifest.json").write_text(
             json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8"
@@ -574,6 +584,13 @@ def main() -> None:
         logger.info("Optimizer: %s", optimizer_message)
         logger.info("Scheduler: %s; restored last_epoch=%d", scheduler_message, scheduler.last_epoch)
         logger.info("Initial learning rates: %s", [group["lr"] for group in optimizer.param_groups])
+        if args.objective == "lpl":
+            logger.info(
+                "LPL decoder fractions=%s indices=%s weights=%s",
+                LPL_LAYER_FRACTIONS,
+                layer_indices,
+                layer_weights,
+            )
 
     ddp_model.train()
     optimizer.zero_grad(set_to_none=True)
@@ -679,7 +696,9 @@ def main() -> None:
                             )
                         )
                         lpl_per_sample, _ = strict_lpl_per_sample(
-                            target_features, predicted_features
+                            target_features,
+                            predicted_features,
+                            layer_weights=layer_weights,
                         )
                         lpl_loss = lpl_per_sample.mean()
                         total_loss = total_loss + float(args.lpl_weight) * lpl_loss
