@@ -96,6 +96,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--calibration-target-ratio", type=float, default=0.20)
     parser.add_argument("--skip-checkpoint-save", action="store_true")
     parser.add_argument("--num-workers", type=int)
+    parser.add_argument(
+        "--compile-stage2",
+        action="store_true",
+        help="Compile the Stage-2 module while keeping DDP and checkpoint keys unchanged.",
+    )
     parser.add_argument("--min-free-gib", type=float, default=2.5)
     parser.add_argument(
         "--dino-ckpt-dir",
@@ -492,6 +497,8 @@ def main() -> None:
     if checkpoint.get("scheduler") is not None:
         scheduler.load_state_dict(checkpoint["scheduler"])
     optimizer_audit = optimizer_device_audit(optimizer, model)
+    if args.compile_stage2:
+        model.compile()
 
     if args.resume is not None:
         restore_rank_rng(checkpoint, rank)
@@ -538,6 +545,7 @@ def main() -> None:
             "global_batch_size": global_batch_size,
             "micro_batch_size": micro_batch_size,
             "grad_accum_steps": grad_accum_steps,
+            "compile_stage2": args.compile_stage2,
             "logged_loss_scope": "global_accumulation_mean",
             "dataset": str(active_data_path.expanduser().resolve()),
             "dataset_backend": dataset_backend,

@@ -28,7 +28,7 @@ fi
 
 mkdir -p "$experiment_dir"
 tmux new-session -d -s "$session" \
-  "bash -lc 'set -o pipefail; cd $repo; CUDA_VISIBLE_DEVICES=0,1,2,3 $python experiments/run_raev2_lpl_checkpoint_cycle.py --target-step 800 --checkpoint-every 50 --sample-count 5000 --per-rank-batch 16 --min-free-gib 0.5 2>&1 | tee -a $launcher_log'"
+  "bash -lc 'set -o pipefail; cd $repo; CUDA_VISIBLE_DEVICES=0,1,2,3 $python experiments/run_raev2_lpl_checkpoint_cycle.py --target-step 800 --checkpoint-every 50 --sample-count 5000 --per-rank-batch 16 --min-free-gib 0.5 --compile-stage2 2>&1 | tee -a $launcher_log'"
 tmux set-option -t "$session" remain-on-exit on
 
 echo "started: $session"

@@ -39,6 +39,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sample-count", type=int, default=5000)
     parser.add_argument("--per-rank-batch", type=int, default=16)
     parser.add_argument("--min-free-gib", type=float, default=0.5)
+    parser.add_argument("--compile-stage2", action="store_true")
     parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
     parser.add_argument(
         "--packed-data-path",
@@ -72,8 +73,9 @@ def training_command(
     checkpoint_every: int,
     min_free_gib: float,
     dino_repo: Path,
+    compile_stage2: bool,
 ) -> list[str]:
-    return [
+    command = [
         *torchrun_prefix(python),
         "experiments/train_raev2_strict_lpl.py",
         "--config",
@@ -115,6 +117,9 @@ def training_command(
         "--lpl-max-samples-per-rank",
         "1",
     ]
+    if compile_stage2:
+        command.append("--compile-stage2")
+    return command
 
 
 def main() -> None:
@@ -213,6 +218,7 @@ def main() -> None:
         "training_grad_accum_steps": 256,
         "training_data_workers_per_rank": 4,
         "training_data_backend": "packed_random_access",
+        "compile_stage2": args.compile_stage2,
         "packed_data_path": str(packed_data_path),
         "min_free_gib": args.min_free_gib,
         "initial_checkpoint": str(initial_checkpoint),
@@ -276,6 +282,7 @@ def main() -> None:
                     checkpoint_every=args.checkpoint_every,
                     min_free_gib=args.min_free_gib,
                     dino_repo=dino_repo,
+                    compile_stage2=args.compile_stage2,
                 )
                 run_logged(
                     command,
