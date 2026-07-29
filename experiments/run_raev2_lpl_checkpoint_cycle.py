@@ -19,6 +19,7 @@ from experiments.run_raev2_long_pipeline import (  # noqa: E402
     append_event,
     atomic_json,
     evaluate_branch,
+    evaluation_complete,
     merge_evaluations,
     run_logged,
     sample_branch,
@@ -253,6 +254,16 @@ def main() -> None:
     environment = dict(os.environ)
     environment["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
     evaluation_files: dict[str, Path] = {"official": official_metrics}
+    metrics_dir = experiment_dir / "metrics"
+    for metric_path in sorted(metrics_dir.glob("lpl_s*.csv")):
+        branch_name = metric_path.stem
+        sample_directory = sample_root / branch_name
+        if evaluation_complete(
+            metric_path,
+            branch=branch_name,
+            sample_directory=sample_directory,
+        ):
+            evaluation_files[branch_name] = metric_path
     current_checkpoint = initial_checkpoint
     current_step = start_step
     started_at = datetime.now().astimezone().isoformat()
