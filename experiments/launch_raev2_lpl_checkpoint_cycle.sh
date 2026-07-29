@@ -20,7 +20,8 @@ if tmux has-session -t "$session" 2>/dev/null; then
   echo "tmux session already exists: $session"
   exit 0
 fi
-if pgrep -f "^${python} .*train_raev2_strict_lpl.py" >/dev/null; then
+python_pattern="^(/home/zhoushunyu/data|/data/users/zhoushunyu)/eqvae/envs/raev2/bin/python .*train_raev2_strict_lpl.py"
+if pgrep -f "$python_pattern" >/dev/null; then
   echo "an RAEv2 continuation process is already active" >&2
   exit 1
 fi

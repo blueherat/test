@@ -56,6 +56,19 @@ def test_launcher_requests_two_gib_memory_reserve() -> None:
     assert "Flow evaluation must finish before LPL resumes" in launcher
 
 
+def test_lpl_cycle_launcher_uses_fifty_step_evaluation_boundaries() -> None:
+    launcher = (
+        Path(__file__).resolve().parents[1]
+        / "experiments"
+        / "launch_raev2_lpl_checkpoint_cycle.sh"
+    ).read_text(encoding="utf-8")
+    assert "--target-step 800" in launcher
+    assert "--checkpoint-every 50" in launcher
+    assert "--sample-count 5000" in launcher
+    assert "--min-free-gib 2.0" in launcher
+    assert "/data/users/zhoushunyu" in launcher
+
+
 def test_flow_evaluation_waiter_orders_sampling_evaluation_and_resume() -> None:
     waiter = (
         Path(__file__).resolve().parents[1]
