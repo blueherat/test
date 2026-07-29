@@ -52,6 +52,7 @@ def test_launcher_requests_two_gib_memory_reserve() -> None:
     ).read_text(encoding="utf-8")
     assert "--min-free-gib 2.0" in launcher
     assert "--per-rank-batch 16" in launcher
+    assert "Flow evaluation must finish before LPL resumes" in launcher
 
 
 def test_curve_writer_adds_objective_and_step(tmp_path: Path) -> None:
