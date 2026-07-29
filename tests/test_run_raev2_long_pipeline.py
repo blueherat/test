@@ -65,7 +65,7 @@ def test_lpl_cycle_launcher_uses_fifty_step_evaluation_boundaries() -> None:
     assert "--target-step 800" in launcher
     assert "--checkpoint-every 50" in launcher
     assert "--sample-count 5000" in launcher
-    assert "--min-free-gib 2.0" in launcher
+    assert "--min-free-gib 0.5" in launcher
     assert "/data/users/zhoushunyu" in launcher
 
 

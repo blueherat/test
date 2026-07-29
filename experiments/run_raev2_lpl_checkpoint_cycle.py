@@ -38,7 +38,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--checkpoint-every", type=int, default=50)
     parser.add_argument("--sample-count", type=int, default=5000)
     parser.add_argument("--per-rank-batch", type=int, default=16)
-    parser.add_argument("--min-free-gib", type=float, default=2.0)
+    parser.add_argument("--min-free-gib", type=float, default=0.5)
     parser.add_argument("--data-root", type=Path, default=DEFAULT_DATA_ROOT)
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
