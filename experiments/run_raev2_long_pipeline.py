@@ -19,7 +19,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Iterable, Mapping
+from typing import Collection, Iterable, Mapping
 
 import pandas as pd
 
@@ -314,9 +314,13 @@ def verify_same_noise_protocol(
     sample_directories: Mapping[str, Path],
     *,
     world_size: int = 4,
+    accepted_protocols: Collection[str] = ("raev2_same_noise_v1",),
 ) -> dict[str, dict[str, str]]:
     """Verify that every branch used identical RNG states, noise, and labels."""
 
+    accepted_protocols = frozenset(str(value) for value in accepted_protocols)
+    if not accepted_protocols:
+        raise ValueError("accepted_protocols must not be empty")
     invariant_keys = (
         "protocol",
         "world_size",
@@ -340,7 +344,7 @@ def verify_same_noise_protocol(
         for rank in range(int(world_size)):
             path = directory / f"sampling_audit_rank{rank}.json"
             audit = json.loads(path.read_text(encoding="utf-8"))
-            if audit.get("protocol") != "raev2_same_noise_v1":
+            if audit.get("protocol") not in accepted_protocols:
                 raise ValueError(f"{path} has an unsupported sampling protocol")
             comparable = {key: audit.get(key) for key in invariant_keys}
             if rank not in reference:

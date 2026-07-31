@@ -44,7 +44,9 @@ from experiments.rae_strict_lpl import (  # noqa: E402
     decoder_feature_pyramid,
     decoder_hidden_indices,
     lpl_time_gate,
-    strict_lpl_per_sample,
+)
+from experiments.rae_lpl_detach_audit import (  # noqa: E402
+    decoder_feature_objective_per_sample,
 )
 from experiments.raev2_training_core import (  # noqa: E402
     DeterministicImageNetPacked,
@@ -59,6 +61,17 @@ from experiments.raev2_training_core import (  # noqa: E402
     synchronize_loaded_gmuon_param_groups,
     tensor_fingerprint,
     validate_full_stage2_checkpoint,
+)
+from experiments.raev2_stage1_compat import (  # noqa: E402
+    install_raev2_decoder_config_compat,
+)
+from experiments.raev2_lpl_targets import (  # noqa: E402
+    LPL_GRADIENT_MODES,
+    LPL_TARGETS,
+    lpl_prediction_targets,
+    parse_guidance_scales,
+    positive_parallel_projection,
+    substitute_prediction_gradient,
 )
 from configs.stage2 import Stage2Config  # noqa: E402
 from stage2.transport import create_transport  # noqa: E402
@@ -91,10 +104,57 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source-steps-per-epoch", type=int)
     parser.add_argument("--global-seed", type=int, default=42)
     parser.add_argument("--lpl-weight", type=float, default=1.0)
+    parser.add_argument("--lpl-target", choices=LPL_TARGETS, default="full")
+    parser.add_argument(
+        "--lpl-gradient-mode",
+        choices=LPL_GRADIENT_MODES,
+        default="direct",
+        help=(
+            "direct uses the decoder-feature gradient; flow_parallel keeps only "
+            "its positive projection onto the clean-latent Flow gradient."
+        ),
+    )
+    parser.add_argument(
+        "--lpl-variant",
+        choices=(
+            "prediction_full",
+            "prediction_detach",
+            "target_normalized",
+            "symmetric",
+            "raw",
+        ),
+        default="prediction_full",
+        help="Decoder-feature normalization and gradient variant.",
+    )
+    parser.add_argument("--lpl-guidance-scale", type=float, default=1.78)
+    parser.add_argument(
+        "--lpl-multiscale-scales",
+        default="1.0,1.39,1.78",
+        help="Comma-separated deterministic guidance scales.",
+    )
     parser.add_argument("--lpl-noise-threshold", type=float, default=3.0)
     parser.add_argument("--lpl-max-samples-per-rank", type=int, default=1)
     parser.add_argument("--calibration-batches", type=int, default=0)
     parser.add_argument("--calibration-target-ratio", type=float, default=0.20)
+    parser.add_argument(
+        "--gradient-audit-component",
+        choices=("flow", "lpl"),
+        help="Accumulate one paired gradient probe without taking an optimizer step.",
+    )
+    parser.add_argument(
+        "--gradient-audit-microbatches",
+        type=int,
+        default=64,
+        help="Per-rank microbatches in a gradient-only probe.",
+    )
+    parser.add_argument(
+        "--gradient-audit-skip-optimizer-state",
+        action="store_true",
+        help=(
+            "Do not materialize checkpoint optimizer buffers during a gradient-only "
+            "probe. Optimizer state cannot affect gradients and can consume several GiB."
+        ),
+    )
     parser.add_argument("--skip-checkpoint-save", action="store_true")
     parser.add_argument("--num-workers", type=int)
     parser.add_argument(
@@ -275,6 +335,9 @@ def save_checkpoint(
     source_steps_per_epoch: int,
     branch_update_value: int,
     objective: str,
+    lpl_target: str,
+    lpl_variant: str,
+    lpl_gradient_mode: str,
     config_sha256: str,
     data_indices_sha256: str,
     rank_rng_states: list[dict[str, Any]],
@@ -296,6 +359,9 @@ def save_checkpoint(
             "source_steps_per_epoch": int(source_steps_per_epoch),
             "branch_update": int(branch_update_value),
             "objective": objective,
+            "lpl_target": lpl_target,
+            "lpl_variant": lpl_variant,
+            "lpl_gradient_mode": lpl_gradient_mode,
             "config_sha256": config_sha256,
             "data_indices_sha256": data_indices_sha256,
             "rank_rng_states": rank_rng_states,
@@ -308,6 +374,7 @@ def save_checkpoint(
 
 
 def main() -> None:
+    install_raev2_decoder_config_compat()
     args = parse_args()
     if args.max_updates <= 0:
         raise ValueError("--max-updates must be positive")
@@ -315,8 +382,23 @@ def main() -> None:
         raise ValueError("--save-every must be positive")
     if args.calibration_batches < 0:
         raise ValueError("--calibration-batches must be non-negative")
+    if args.gradient_audit_microbatches <= 0:
+        raise ValueError("--gradient-audit-microbatches must be positive")
+    if args.lpl_guidance_scale < 0:
+        raise ValueError("--lpl-guidance-scale must be non-negative")
+    multiscale_scales = parse_guidance_scales(args.lpl_multiscale_scales)
     if args.objective == "flow" and args.calibration_batches:
         raise ValueError("LPL calibration requires --objective lpl")
+    if args.gradient_audit_component == "lpl" and args.objective != "lpl":
+        raise ValueError("an LPL gradient audit requires --objective lpl")
+    if args.gradient_audit_component == "flow" and args.objective != "flow":
+        raise ValueError("a Flow gradient audit requires --objective flow")
+    if args.gradient_audit_component and args.calibration_batches:
+        raise ValueError("gradient audit and scalar calibration are mutually exclusive")
+    if args.gradient_audit_skip_optimizer_state and not args.gradient_audit_component:
+        raise ValueError(
+            "--gradient-audit-skip-optimizer-state requires a gradient audit"
+        )
 
     os.environ["DINOV3_CKPT_DIR"] = str(args.dino_ckpt_dir.expanduser().resolve())
     if args.dino_repo_dir is not None:
@@ -368,6 +450,20 @@ def main() -> None:
             raise ValueError("resume checkpoint and source checkpoint hashes disagree")
         if metadata["objective"] != args.objective:
             raise ValueError("cannot resume a branch with a different objective")
+        stored_lpl_target = metadata.get("lpl_target", "full")
+        if args.objective == "lpl" and stored_lpl_target != args.lpl_target:
+            raise ValueError("cannot resume a branch with a different LPL target")
+        stored_lpl_variant = metadata.get("lpl_variant", "prediction_full")
+        if args.objective == "lpl" and stored_lpl_variant != args.lpl_variant:
+            raise ValueError("cannot resume a branch with a different LPL variant")
+        stored_lpl_gradient_mode = metadata.get("lpl_gradient_mode", "direct")
+        if (
+            args.objective == "lpl"
+            and stored_lpl_gradient_mode != args.lpl_gradient_mode
+        ):
+            raise ValueError(
+                "cannot resume a branch with a different LPL gradient mode"
+            )
         branch_update_value = int(metadata["branch_update"])
         source_step = int(metadata["source_step"])
         source_epoch = int(metadata["source_epoch"])
@@ -491,10 +587,17 @@ def main() -> None:
     if ema_model is not None:
         ema_model.load_state_dict(checkpoint["ema"], strict=True)
     loaded_optimizer_state = checkpoint["optimizer"]
-    optimizer.load_state_dict(loaded_optimizer_state)
-    optimizer_restore_audit = synchronize_loaded_gmuon_param_groups(
-        optimizer, loaded_optimizer_state
-    )
+    if args.gradient_audit_skip_optimizer_state:
+        optimizer_restore_audit = {
+            "skipped_for_gradient_only_audit": True,
+            "reason": "optimizer state cannot affect model parameter gradients",
+            "checkpoint_optimizer_state_present": loaded_optimizer_state is not None,
+        }
+    else:
+        optimizer.load_state_dict(loaded_optimizer_state)
+        optimizer_restore_audit = synchronize_loaded_gmuon_param_groups(
+            optimizer, loaded_optimizer_state
+        )
     if checkpoint.get("scheduler") is not None:
         scheduler.load_state_dict(checkpoint["scheduler"])
     optimizer_audit = optimizer_device_audit(optimizer, model)
@@ -570,13 +673,32 @@ def main() -> None:
             "learning_rates": [group["lr"] for group in optimizer.param_groups],
             "optimizer_audit": optimizer_audit,
             "optimizer_restore_audit": optimizer_restore_audit,
+            "gradient_audit_skip_optimizer_state": (
+                args.gradient_audit_skip_optimizer_state
+            ),
             "lpl_weight": args.lpl_weight if args.objective == "lpl" else 0.0,
+            "lpl_target": args.lpl_target if args.objective == "lpl" else None,
+            "lpl_variant": args.lpl_variant if args.objective == "lpl" else None,
+            "lpl_gradient_mode": (
+                args.lpl_gradient_mode if args.objective == "lpl" else None
+            ),
+            "lpl_guidance_scale": (
+                args.lpl_guidance_scale if args.objective == "lpl" else None
+            ),
+            "lpl_multiscale_scales": (
+                multiscale_scales if args.objective == "lpl" else None
+            ),
             "lpl_noise_threshold": args.lpl_noise_threshold,
             "lpl_layer_fractions": (
                 LPL_LAYER_FRACTIONS if args.objective == "lpl" else None
             ),
             "lpl_layer_indices": layer_indices,
             "lpl_layer_weights": layer_weights,
+            "decoder_gradient_bridge": (
+                args.lpl_gradient_mode == "flow_parallel"
+                if args.objective == "lpl"
+                else False
+            ),
         }
         (experiment_dir / "manifest.json").write_text(
             json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8"
@@ -605,7 +727,17 @@ def main() -> None:
     update_lpl_sum = torch.zeros((), device=device)
     update_total_sum = torch.zeros((), device=device)
     update_gate_count = torch.zeros((), device=device)
+    update_guidance_scale_sum = torch.zeros((), device=device)
+    update_guidance_scale_count = torch.zeros((), device=device)
+    update_projection_fraction_sum = torch.zeros((), device=device)
+    update_projection_count = torch.zeros((), device=device)
+    update_projection_conflict_sum = torch.zeros((), device=device)
     micro_since_boundary = 0
+    accumulation_boundary = (
+        int(args.gradient_audit_microbatches)
+        if args.gradient_audit_component
+        else grad_accum_steps
+    )
     last_time = perf_counter()
 
     for images, labels, indices in loader:
@@ -629,7 +761,7 @@ def main() -> None:
             sync_context = nullcontext()
         else:
             micro_since_boundary += 1
-            is_boundary = micro_since_boundary == grad_accum_steps
+            is_boundary = micro_since_boundary == accumulation_boundary
             sync_context = nullcontext() if is_boundary else ddp_model.no_sync()
 
         # DDP requires no_sync() to cover both forward and backward.  Wrapping
@@ -649,30 +781,17 @@ def main() -> None:
                 target_velocity = (noisy_latent - clean_latent) / scale.clamp_min(
                     float(config.transport.t_eps)
                 )
-                model_output = ddp_model(noisy_latent, time, **dropped_kwargs)
-                flow_map, _ = official_flow_loss_map(
-                    transport,
-                    model_output,
-                    target_velocity=target_velocity,
-                    noisy_latent=noisy_latent,
-                    time=time,
-                    base_model_coeff=float(config.internal_guidance.base_model_coeff),
-                )
-                flow_loss = flow_map.mean()
-                total_loss = flow_loss
                 lpl_loss = torch.zeros((), device=device)
                 gate_count = 0
+                active_guidance_scales = None
+                projection_details = None
+                selected = torch.empty(0, device=device, dtype=torch.long)
+                target_features = None
 
+                # Decode the frozen clean target before materializing the much
+                # larger Stage-2 activation graph. This is mathematically
+                # identical and reduces peak memory without changing RNG.
                 if args.objective == "lpl":
-                    primary_output = (
-                        model_output[0] if isinstance(model_output, tuple) else model_output
-                    )
-                    clean_prediction = predicted_clean_latent(
-                        primary_output,
-                        prediction=config.transport.prediction,
-                        noisy_latent=noisy_latent,
-                        time=time,
-                    )
                     gate = lpl_time_gate(time, float(args.lpl_noise_threshold))
                     selected = torch.nonzero(gate, as_tuple=False).flatten()
                     selected = selected[: int(args.lpl_max_samples_per_rank)]
@@ -687,24 +806,198 @@ def main() -> None:
                                     layer_indices=layer_indices,
                                 )
                             )
+
+                bridge_cache = None
+                if (
+                    args.objective == "lpl"
+                    and gate_count
+                    and args.lpl_gradient_mode == "flow_parallel"
+                ):
+                    # The frozen decoder is too large to coexist with the
+                    # Stage-2 activation graph when optimizer state is loaded.
+                    # Evaluate its exact output gradient on a no-grad Stage-2
+                    # prediction, then replay that gradient through an
+                    # RNG-identical Stage-2 forward below.
+                    cpu_rng_before = torch.get_rng_state()
+                    cuda_rng_before = torch.cuda.get_rng_state(device)
+                    with torch.no_grad():
+                        probe_output = model(
+                            noisy_latent,
+                            time,
+                            **dropped_kwargs,
+                        )
+                    torch.set_rng_state(cpu_rng_before)
+                    torch.cuda.set_rng_state(cuda_rng_before, device)
+                    probe_selected_output = (
+                        tuple(
+                            output.index_select(0, selected)
+                            for output in probe_output
+                        )
+                        if isinstance(probe_output, tuple)
+                        else probe_output.index_select(0, selected)
+                    )
+                    probe_predictions, _ = lpl_prediction_targets(
+                        probe_selected_output,
+                        target=args.lpl_target,
+                        guidance_scale=float(args.lpl_guidance_scale),
+                        multiscale_scales=multiscale_scales,
+                        sample_indices=indices.index_select(0, selected),
+                    )
+                    bridge_cache = []
+                    for probe_prediction in probe_predictions:
+                        probe_clean_prediction = predicted_clean_latent(
+                            probe_prediction,
+                            prediction=config.transport.prediction,
+                            noisy_latent=noisy_latent.index_select(0, selected),
+                            time=time.index_select(0, selected),
+                        ).detach().requires_grad_(True)
                         predicted_features = tuple(
                             feature.float()
                             for feature in decoder_feature_pyramid(
                                 rae,
-                                clean_prediction.index_select(0, selected),
+                                probe_clean_prediction,
                                 layer_indices=layer_indices,
                             )
                         )
-                        lpl_per_sample, _ = strict_lpl_per_sample(
+                        lpl_per_sample, _ = decoder_feature_objective_per_sample(
+                            args.lpl_variant,
                             target_features,
                             predicted_features,
                             layer_weights=layer_weights,
                         )
-                        lpl_loss = lpl_per_sample.mean()
+                        probe_prediction_loss = lpl_per_sample.mean()
+                        decoder_gradient = torch.autograd.grad(
+                            probe_prediction_loss,
+                            probe_clean_prediction,
+                            retain_graph=False,
+                            create_graph=False,
+                        )[0]
+                        reference_loss = transport.compute_loss(
+                            probe_clean_prediction,
+                            target_velocity.index_select(0, selected),
+                            noisy_latent.index_select(0, selected),
+                            time.index_select(0, selected),
+                        ).mean()
+                        reference_gradient = torch.autograd.grad(
+                            reference_loss,
+                            probe_clean_prediction,
+                            retain_graph=False,
+                            create_graph=False,
+                        )[0]
+                        projected_gradient, projection_details = (
+                            positive_parallel_projection(
+                                decoder_gradient,
+                                reference_gradient,
+                            )
+                        )
+                        bridge_cache.append(
+                            (
+                                probe_prediction_loss.detach(),
+                                projected_gradient.detach(),
+                                probe_clean_prediction.detach(),
+                            )
+                        )
+                    del probe_output, probe_selected_output, probe_predictions
+                    del predicted_features, lpl_per_sample
+
+                model_output = ddp_model(noisy_latent, time, **dropped_kwargs)
+                flow_map, _ = official_flow_loss_map(
+                    transport,
+                    model_output,
+                    target_velocity=target_velocity,
+                    noisy_latent=noisy_latent,
+                    time=time,
+                    base_model_coeff=float(config.internal_guidance.base_model_coeff),
+                )
+                flow_loss = flow_map.mean()
+                total_loss = flow_loss
+
+                if args.objective == "lpl":
+                    if gate_count:
+                        if target_features is None:
+                            raise RuntimeError("active LPL gate has no target features")
+                        selected_output = (
+                            tuple(
+                                output.index_select(0, selected)
+                                for output in model_output
+                            )
+                            if isinstance(model_output, tuple)
+                            else model_output.index_select(0, selected)
+                        )
+                        predictions, active_guidance_scales = lpl_prediction_targets(
+                            selected_output,
+                            target=args.lpl_target,
+                            guidance_scale=float(args.lpl_guidance_scale),
+                            multiscale_scales=multiscale_scales,
+                            sample_indices=indices.index_select(0, selected),
+                        )
+                        prediction_losses = []
+                        for prediction_index, clean_prediction in enumerate(predictions):
+                            clean_prediction = predicted_clean_latent(
+                                clean_prediction,
+                                prediction=config.transport.prediction,
+                                noisy_latent=noisy_latent.index_select(
+                                    0, selected
+                                ),
+                                time=time.index_select(0, selected),
+                            )
+                            if args.lpl_gradient_mode == "flow_parallel":
+                                if bridge_cache is None:
+                                    raise RuntimeError(
+                                        "flow-parallel LPL has no decoder-gradient cache"
+                                    )
+                                (
+                                    prediction_loss,
+                                    projected_gradient,
+                                    probe_clean_prediction,
+                                ) = bridge_cache[prediction_index]
+                                if not torch.equal(
+                                    clean_prediction.detach(),
+                                    probe_clean_prediction,
+                                ):
+                                    max_abs = (
+                                        clean_prediction.detach()
+                                        - probe_clean_prediction
+                                    ).abs().max()
+                                    raise RuntimeError(
+                                        "decoder-gradient bridge replay mismatch: "
+                                        f"max_abs={float(max_abs):.8g}"
+                                    )
+                                prediction_loss = substitute_prediction_gradient(
+                                    prediction_loss,
+                                    clean_prediction,
+                                    projected_gradient,
+                                )
+                            else:
+                                predicted_features = tuple(
+                                    feature.float()
+                                    for feature in decoder_feature_pyramid(
+                                        rae,
+                                        clean_prediction,
+                                        layer_indices=layer_indices,
+                                    )
+                                )
+                                lpl_per_sample, _ = (
+                                    decoder_feature_objective_per_sample(
+                                        args.lpl_variant,
+                                        target_features,
+                                        predicted_features,
+                                        layer_weights=layer_weights,
+                                    )
+                                )
+                                prediction_loss = lpl_per_sample.mean()
+                            prediction_losses.append(prediction_loss)
+                        lpl_loss = torch.stack(prediction_losses).mean()
                         total_loss = total_loss + float(args.lpl_weight) * lpl_loss
 
             if not args.calibration_batches:
-                (total_loss / grad_accum_steps).backward()
+                if args.gradient_audit_component == "flow":
+                    backward_loss = flow_loss
+                elif args.gradient_audit_component == "lpl":
+                    backward_loss = flow_loss * 0.0 + float(args.lpl_weight) * lpl_loss
+                else:
+                    backward_loss = total_loss
+                (backward_loss / accumulation_boundary).backward()
 
         if not first_batch_written:
             row = {
@@ -740,10 +1033,100 @@ def main() -> None:
         update_lpl_sum += lpl_loss.detach()
         update_total_sum += total_loss.detach()
         update_gate_count += gate_count
+        if active_guidance_scales is not None:
+            update_guidance_scale_sum += active_guidance_scales.detach().float().sum()
+            update_guidance_scale_count += active_guidance_scales.numel()
+        if projection_details is not None:
+            update_projection_fraction_sum += projection_details[
+                "projected_gradient_fraction"
+            ].detach().float().sum()
+            update_projection_conflict_sum += projection_details[
+                "conflict_fraction"
+            ].detach().float().sum()
+            update_projection_count += projection_details[
+                "projected_gradient_fraction"
+            ].numel()
         if not is_boundary:
             continue
 
         micro_since_boundary = 0
+        if args.gradient_audit_component:
+            grad_norm = torch.nn.utils.clip_grad_norm_(
+                ddp_model.parameters(), float("inf")
+            )
+            reduced = torch.stack(
+                (
+                    update_flow_sum,
+                    update_lpl_sum,
+                    update_gate_count,
+                    update_guidance_scale_sum,
+                    update_guidance_scale_count,
+                    update_projection_fraction_sum,
+                    update_projection_count,
+                    update_projection_conflict_sum,
+                    grad_norm.detach(),
+                )
+            )
+            dist.all_reduce(reduced, op=dist.ReduceOp.SUM)
+            reduced[:2] /= world_size * accumulation_boundary
+            reduced[2] /= world_size * accumulation_boundary
+            reduced[3:8] /= world_size
+            reduced[8] /= world_size
+            if rank == 0:
+                scale_mean = (
+                    float(reduced[3] / reduced[4])
+                    if float(reduced[4]) > 0
+                    else None
+                )
+                projection_fraction_mean = (
+                    float(reduced[5] / reduced[6])
+                    if float(reduced[6]) > 0
+                    else None
+                )
+                projection_conflict_rate = (
+                    float(reduced[7] / reduced[6])
+                    if float(reduced[6]) > 0
+                    else None
+                )
+                result = {
+                    "format_version": 1,
+                    "component": args.gradient_audit_component,
+                    "objective": args.objective,
+                    "lpl_target": (
+                        args.lpl_target if args.objective == "lpl" else None
+                    ),
+                    "lpl_variant": (
+                        args.lpl_variant if args.objective == "lpl" else None
+                    ),
+                    "lpl_gradient_mode": (
+                        args.lpl_gradient_mode
+                        if args.objective == "lpl"
+                        else None
+                    ),
+                    "lpl_weight": (
+                        args.lpl_weight if args.objective == "lpl" else 0.0
+                    ),
+                    "per_rank_microbatches": accumulation_boundary,
+                    "global_samples": world_size
+                    * accumulation_boundary
+                    * micro_batch_size,
+                    "flow_loss": float(reduced[0]),
+                    "lpl_loss": float(reduced[1]),
+                    "mean_lpl_gate_count": float(reduced[2]),
+                    "mean_active_guidance_scale": scale_mean,
+                    "mean_projected_gradient_fraction": projection_fraction_mean,
+                    "projection_conflict_rate": projection_conflict_rate,
+                    "parameter_gradient_norm": float(reduced[8]),
+                    "data_indices_sha256": data_index_digest.hexdigest(),
+                }
+                (experiment_dir / "gradient_audit.json").write_text(
+                    json.dumps(result, indent=2, ensure_ascii=False),
+                    encoding="utf-8",
+                )
+                logger.info("Gradient audit: %s", result)
+            optimizer.zero_grad(set_to_none=True)
+            break
+
         if config.training.clip_grad is not None:
             grad_norm = torch.nn.utils.clip_grad_norm_(
                 ddp_model.parameters(), float(config.training.clip_grad)
@@ -767,6 +1150,9 @@ def main() -> None:
                 update_ema(
                     ema_model, model, decay=float(config.training.ema_decay)
                 )
+        # The strict guard should measure reclaimable headroom, not inactive
+        # allocator cache accumulated by the decoder feature forwards.
+        torch.cuda.empty_cache()
         require_memory_reserve(device, args.min_free_gib, "optimizer and EMA update")
         branch_update_value += 1
 
@@ -778,14 +1164,35 @@ def main() -> None:
                     update_total_sum,
                     grad_norm.detach(),
                     update_gate_count,
+                    update_guidance_scale_sum,
+                    update_guidance_scale_count,
+                    update_projection_fraction_sum,
+                    update_projection_count,
+                    update_projection_conflict_sum,
                 )
             )
             dist.all_reduce(reduced, op=dist.ReduceOp.SUM)
             reduced[:3] /= world_size * grad_accum_steps
             reduced[3] /= world_size
             reduced[4] /= world_size * grad_accum_steps
+            reduced[5:] /= world_size
             if rank == 0:
                 now = perf_counter()
+                mean_guidance_scale = (
+                    float(reduced[5] / reduced[6])
+                    if float(reduced[6]) > 0
+                    else None
+                )
+                mean_projected_gradient_fraction = (
+                    float(reduced[7] / reduced[8])
+                    if float(reduced[8]) > 0
+                    else None
+                )
+                projection_conflict_rate = (
+                    float(reduced[9] / reduced[8])
+                    if float(reduced[8]) > 0
+                    else None
+                )
                 row = {
                     "branch_update": branch_update_value,
                     "global_step": source_step + branch_update_value,
@@ -794,6 +1201,11 @@ def main() -> None:
                     "total_loss": float(reduced[2]),
                     "grad_norm": float(reduced[3]),
                     "mean_lpl_gate_count": float(reduced[4]),
+                    "mean_active_guidance_scale": mean_guidance_scale,
+                    "mean_projected_gradient_fraction": (
+                        mean_projected_gradient_fraction
+                    ),
+                    "projection_conflict_rate": projection_conflict_rate,
                     "lr": float(optimizer.param_groups[0]["lr"]),
                     "seconds_per_log_interval": now - last_time,
                     "free_gpu_gib_rank0": free_memory_gib(device),
@@ -816,6 +1228,11 @@ def main() -> None:
         update_lpl_sum.zero_()
         update_total_sum.zero_()
         update_gate_count.zero_()
+        update_guidance_scale_sum.zero_()
+        update_guidance_scale_count.zero_()
+        update_projection_fraction_sum.zero_()
+        update_projection_count.zero_()
+        update_projection_conflict_sum.zero_()
 
         should_save = (
             branch_update_value % args.save_every == 0
@@ -843,6 +1260,9 @@ def main() -> None:
                     source_steps_per_epoch=source_steps_per_epoch,
                     branch_update_value=branch_update_value,
                     objective=args.objective,
+                    lpl_target=args.lpl_target,
+                    lpl_variant=args.lpl_variant,
+                    lpl_gradient_mode=args.lpl_gradient_mode,
                     config_sha256=config_sha256,
                     data_indices_sha256=data_index_digest.hexdigest(),
                     rank_rng_states=rank_rng_states,

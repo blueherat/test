@@ -64,6 +64,48 @@ def test_feature_objective_selector_detach_changes_only_gradient() -> None:
     assert details["mask_keep_fraction"].shape == (2, 1)
 
 
+def test_raw_objective_is_masked_feature_mse_without_variance_normalization() -> None:
+    target = torch.tensor(
+        [
+            [
+                [[-1.0, 0.0], [1.0, 2.0]],
+                [[0.5, -0.5], [1.5, -1.5]],
+            ]
+        ]
+    )
+    prediction = (target + 0.25).requires_grad_(True)
+    quantile = 0.25
+    raw, _ = decoder_feature_objective_per_sample(
+        "raw",
+        [target],
+        [prediction],
+        outlier_quantile=quantile,
+        outlier_opening=1,
+        outlier_closing=1,
+    )
+
+    mask = decoder_outlier_mask(
+        prediction,
+        quantile=quantile,
+        opening=1,
+        closing=1,
+    ).to(dtype=prediction.dtype)
+    expected = (
+        ((prediction - target).square() * mask)
+        .sum(dim=(-2, -1))
+        .mean(dim=1)
+    )
+    expected_gradient = torch.autograd.grad(
+        expected.sum(),
+        prediction,
+        retain_graph=True,
+    )[0]
+    raw_gradient = torch.autograd.grad(raw.sum(), prediction)[0]
+
+    torch.testing.assert_close(raw, expected)
+    torch.testing.assert_close(raw_gradient, expected_gradient)
+
+
 def test_detach_removes_only_prediction_variance_gradient() -> None:
     target = torch.tensor([[[[-1.0, 1.0], [-1.0, 1.0]]]])
     prediction = (0.5 * target).requires_grad_(True)

@@ -203,6 +203,7 @@ def _write_sampling_artifacts(
     *,
     branch: str,
     noise_suffix: str = "",
+    protocol: str = "raev2_same_noise_v1",
 ) -> None:
     directory.mkdir(parents=True)
     archive = directory / "samples.npz"
@@ -222,7 +223,7 @@ def _write_sampling_artifacts(
         (directory / f"sampling_audit_rank{rank}.json").write_text(
             json.dumps(
                 {
-                    "protocol": "raev2_same_noise_v1",
+                    "protocol": protocol,
                     "world_size": 4,
                     "sampling_seed": 0,
                     "sample_count": 5000,
@@ -259,6 +260,21 @@ def test_same_noise_audit_detects_branch_mismatch(tmp_path: Path) -> None:
         assert "first_noise_sha256" in str(error)
     else:
         raise AssertionError("same-noise mismatch was not detected")
+
+
+def test_same_noise_audit_accepts_explicit_head_swap_protocol(
+    tmp_path: Path,
+) -> None:
+    flow = tmp_path / "flow"
+    mixed = tmp_path / "mixed"
+    protocol = "raev2_head_swap_same_noise_v1"
+    _write_sampling_artifacts(flow, branch="flow", protocol=protocol)
+    _write_sampling_artifacts(mixed, branch="mixed", protocol=protocol)
+
+    verify_same_noise_protocol(
+        {"flow": flow, "mixed": mixed},
+        accepted_protocols=(protocol,),
+    )
 
 
 def test_per_branch_evaluation_can_be_validated_and_merged(
