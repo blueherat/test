@@ -136,6 +136,7 @@ def _load_adapter(
         "branch_update": int(metadata.get("branch_update", 0)),
         "objective": metadata.get("objective"),
         "lpl_variant": metadata.get("lpl_variant"),
+        "lpl_prediction_target": metadata.get("lpl_prediction_target"),
         "state_key": adapter_state_key,
     }
     del checkpoint

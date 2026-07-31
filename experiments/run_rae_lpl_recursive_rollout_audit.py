@@ -29,24 +29,22 @@ from torchvision import transforms
 ROOT = Path(__file__).resolve().parents[1]
 RAE_ROOT = ROOT / "external" / "RAE"
 RAE_SRC = RAE_ROOT / "src"
-for path in (ROOT, RAE_SRC):
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from experiments.rae_lpl_detach_audit import (  # noqa: E402
     decoder_feature_objective_per_sample,
     tensor_rms,
 )
+from experiments.endpoint_feature_distribution_atlas import (  # noqa: E402
+    FixedSpatialFeatureProjector,
+    make_feature_chunks,
+    summarize_feature_chunks,
+)
 from experiments.rae_strict_lpl import (  # noqa: E402
     decoder_feature_pyramid,
     decoder_hidden_indices,
     flow_clean_estimate,
-)
-from stage1 import RAE  # noqa: E402
-from utils.model_utils import instantiate_from_config  # noqa: E402
-from utils.train_utils import (  # noqa: E402
-    ParquetImageNetDataset,
-    center_crop_arr,
 )
 
 
@@ -333,13 +331,24 @@ def parse_args() -> argparse.Namespace:
         dest="noise_ratios",
     )
     parser.add_argument("--seed", type=int, default=20260731)
+    parser.add_argument("--atlas-projection-dim", type=int, default=32)
+    parser.add_argument("--atlas-projection-seed", type=int, default=72_913)
     return parser.parse_args()
 
 
 def main() -> None:
+    if str(RAE_SRC) not in sys.path:
+        sys.path.insert(0, str(RAE_SRC))
+
+    from stage1 import RAE
+    from utils.model_utils import instantiate_from_config
+    from utils.train_utils import ParquetImageNetDataset, center_crop_arr
+
     args = parse_args()
     if args.samples <= 0 or args.batch_size <= 0:
         raise ValueError("--samples and --batch-size must be positive")
+    if args.atlas_projection_dim <= 0:
+        raise ValueError("--atlas-projection-dim must be positive")
     noise_ratios = tuple(args.noise_ratios or (1.0, 3.0))
     if any(ratio <= 0 for ratio in noise_ratios):
         raise ValueError("noise ratios must be positive")
@@ -389,11 +398,18 @@ def main() -> None:
         dtype=torch.float32,
     )
     model.requires_grad_(False).eval()
+    layer_fractions = tuple(
+        float(value) for value in lpl_config["layer_fractions"]
+    )
     layer_indices = decoder_hidden_indices(
         len(rae.decoder.decoder_layers),
-        tuple(float(value) for value in lpl_config["layer_fractions"]),
+        layer_fractions,
     )
     layer_weights = (1.0,) * len(layer_indices)
+    projector = FixedSpatialFeatureProjector(
+        output_dim=int(args.atlas_projection_dim),
+        seed=int(args.atlas_projection_seed),
+    )
     time_shift = math.sqrt(
         float(config.misc.time_dist_shift_dim)
         / float(config.misc.time_dist_shift_base)
@@ -427,6 +443,7 @@ def main() -> None:
 
     checkpoint_metadata = []
     local_rows = []
+    local_atlas_chunks = []
     for checkpoint_name, raw_checkpoint_path in args.checkpoint:
         checkpoint_path = raw_checkpoint_path.expanduser().resolve()
         state = torch.load(
@@ -514,6 +531,22 @@ def main() -> None:
                         "prediction_over_target_variance_layers"
                     ].clamp_min(1e-30).log().mean(1).exp()
                     centered_cosine = details["centered_cosine_layers"].mean(1)
+                    local_atlas_chunks.extend(
+                        make_feature_chunks(
+                            context={
+                                "system": "rae",
+                                "checkpoint": checkpoint_name,
+                                "noise_to_signal_ratio": float(ratio),
+                                "start_time": float(start_time),
+                                "num_steps": int(num_steps),
+                            },
+                            reference_features=target_features,
+                            candidate_features=final_features,
+                            layer_indices=layer_indices,
+                            layer_fractions=layer_fractions,
+                            projector=projector,
+                        )
+                    )
                     latent_error = tensor_rms(final_state - clean)
                     state_path = path["state_path_error_rms"]
                     endpoint_path = path["endpoint_error_rms"]
@@ -555,9 +588,16 @@ def main() -> None:
                         )
 
     gathered_rows = [None] * world_size if rank == 0 else None
+    gathered_atlas = [None] * world_size if rank == 0 else None
     dist.gather_object(local_rows, gathered_rows, dst=0)
+    dist.gather_object(local_atlas_chunks, gathered_atlas, dst=0)
     if rank == 0:
         rows = [row for rank_rows in gathered_rows for row in rank_rows]
+        atlas_chunks = [
+            chunk
+            for rank_chunks in gathered_atlas
+            for chunk in rank_chunks
+        ]
         raw = pd.DataFrame(rows).sort_values(
             [
                 "checkpoint",
@@ -587,6 +627,23 @@ def main() -> None:
         raw.to_csv(output_dir / "rollout_raw.csv", index=False)
         summary.to_csv(output_dir / "rollout_summary.csv", index=False)
         comparisons.to_csv(output_dir / "paired_comparisons.csv", index=False)
+        atlas = pd.DataFrame(
+            summarize_feature_chunks(
+                atlas_chunks,
+                seed=int(args.atlas_projection_seed),
+            )
+        ).sort_values(
+            [
+                "checkpoint",
+                "noise_to_signal_ratio",
+                "num_steps",
+                "layer_position",
+            ]
+        )
+        atlas.to_csv(
+            output_dir / "endpoint_feature_distribution_atlas.csv",
+            index=False,
+        )
 
         figure, axes = plt.subplots(
             1,

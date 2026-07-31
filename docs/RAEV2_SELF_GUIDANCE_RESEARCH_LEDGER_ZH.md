@@ -373,12 +373,148 @@ predictor can become a worse guide”的可复现实证和约束方法。
 
 ### 下一条最小研究问题
 
-不再继续盲目增加普通 paired LPL step。下一项只问：
+此前根据 RAEv2 单模型结果，下一项曾暂定为训练短递归
+rollout-closure loss。下面两个判别性对照推翻了它作为第一优先级的依据：
+旧 RAE 的 LPL 即使没有更准确的递归 latent 轨迹，仍然可以明显改善正式
+生成指标。因此不应直接把 rollout error 当成 LPL 成功的必要条件。
 
-> 若直接在短递归产生的 self-induced states 上约束后续 endpoint，能否让
-> decoder-feature 优势在 `1 -> 4 -> 16` 次查询中保持，而不是快速衰减？
+## 13. 判别性对照：旧 RAE 递归轨迹与 RAEv2 full-head LPL
 
-这是一个由现有反常现象直接推出的 rollout-closure 实验，不是再叠加一个
-无关 loss。只有它先改善 64 图 retention，并在至少两个 5k seed 上优于同
-预算 Flow rollout control，才值得做更大规模；否则应停止 LPL 方法线，转而
-研究 decoder feature metric 本身与生成感知质量的错位。
+### 13.1 对照 A：旧 RAE 的 LPL 是否真的改善递归轨迹
+
+使用已经完成正式生成验证的 DINOv2-B seed 3、update 2000 Flow/LPL EMA
+checkpoint，在 64 张固定 ImageNet validation 图上运行与 RAEv2 完全一致的
+受控递归探针：
+
+- noise ratio：`1` 和 `3`；
+- endpoint query：`1/4/16` 次；
+- 每个分支使用相同图像、label、clean latent 和 noise；
+- decoder feature 层和原 LPL 保持一致；
+- 不训练参数，不使用 validation 结果选择 checkpoint。
+
+结果与“LPL 通过更准确的 latent 轨迹改善生成”的解释相反：
+
+| noise ratio | queries | LPL 相对 Flow latent error | feature variance ratio：Flow -> LPL |
+|---:|---:|---:|---:|
+| 1 | 1 | `+0.54%` | `0.869 -> 0.951` |
+| 1 | 4 | `+1.15%` | `0.905 -> 0.967` |
+| 1 | 16 | `+1.22%` | `0.918 -> 0.976` |
+| 3 | 1 | `+0.27%` | `0.779 -> 0.878` |
+| 3 | 4 | `+1.36%` | `0.844 -> 0.950` |
+| 3 | 16 | `+1.57%` | `0.875 -> 0.972` |
+
+六个 latent error 差值的 95% CI 都严格大于零，且 64/64 样本均不是 LPL
+更低。raw decoder-feature squared error 在不同噪声和 query 数上有正有负，
+所有 95% CI 均跨零，不能解释已知的强 FID 改善。
+
+真正稳定的变化是：
+
+- decoder feature variance ratio 在六个条件下全部显著向 `1` 靠近；
+- centered feature cosine 在六个条件下全部提高约 `0.8%--1.5%`；
+- 这些变化在递归 16 次后仍然保留。
+
+因此，旧 RAE 的 LPL 收益更符合“修复 prior endpoint 在 decoder feature
+空间中的收缩和方向校准”，而不是“让每条 latent 轨迹更接近 clean latent”。
+这与此前 full LPL 的 denominator-gradient 会主动增大 feature variance 的
+审计结果相互吻合。
+
+完整结果：
+
+```text
+~/data/eqvae/experiments/rae_lpl_recursive_rollout/seed3_u2000_n64/
+```
+
+### 13.2 对照 B：RAEv2 只对 full head 做 LPL
+
+为排除“训练目标监督 guided 输出，而官方模型的 full head 才是正确对象”
+这一解释，训练了保持 `full-base` 完全不变的共同残差 adapter：
+
+```text
+full' = full + a
+base' = base + a
+```
+
+Flow loss 仍同时作用在两个官方输出上，但 decoder LPL 只监督
+`full + a`，不监督 guided 组合。审计与训练配置为：
+
+- 官方 DINOv3-L/K7 online `model`，source step `100080`；
+- source Stage-2、RAE encoder 和 decoder 全部冻结；
+- adapter 参数 `268,480`；
+- global batch `1024`，4 卡，AdamW `2e-5`；
+- 10 updates，共见到 10,240 张训练图；
+- raw full-head LPL 初始梯度范数 `28799.5957`；
+- 权重 `2.8176437923896238e-8`，使其初始梯度为 Flow 的 `20%`。
+
+显式重跑的 1024 样本审计与旧 full-head 审计完全一致：
+
+- Flow loss：`0.8966483474`；
+- data-index SHA256：
+  `7f877f7b3e7e0f7c298ebdf6c4482cf8eacc78ea09ad73f5059cd2fd6bc3a755`；
+- LPL gradient-unit SHA256：
+  `258d7341a34e1fbbdd7962bd62b68224e0db2f8a2c21da9ed27d954261757d7e`；
+- contrast error：`0`。
+
+full-LPL 与 Flow 的首批 image/label/latent/noise/time/CFG mask 逐哈希一致，
+10 updates 累计 data-index SHA 也一致。训练中 `full-base` 数值误差始终不
+超过 `9.54e-7`，没有 validation/reference 泄露。
+
+固定 64 图配对中，full-LPL 确实降低了采样实际使用的 guided decoder-feature
+loss：
+
+| noise ratio | one-query 相对 Flow | 95% CI 是否跨零 |
+|---:|---:|---|
+| 1 | `-0.24%` | 否 |
+| 3 | `-0.53%` | 否 |
+
+但进入递归后，收益快速缩小：
+
+| noise ratio | 1 query | 4 queries | 16 queries |
+|---:|---:|---:|---:|
+| 1 | `-0.24%` | `-0.10%` | `-0.07%` |
+| 3 | `-0.53%` | `-0.31%` | `-0.20%` |
+
+除一次查询以及 noise ratio 3 的四次查询外，其余 CI 均跨零。latent、
+state-path 和 endpoint error 均没有稳定改善。把监督对象从 guided 换成 full
+没有恢复旧 RAE 的机制。
+
+最后按已有完全相同的 seed 0、100-step、IG `1.78`、4 卡同噪声协议生成
+1000 张平衡 ImageNet 样本：
+
+| branch | FID | KID mean | IS |
+|---|---:|---:|---:|
+| Flow | `41.463665` | `0.00007150` | `56.6316` |
+| guided-LPL | `41.474534` | `0.00007245` | `56.5745` |
+| full-LPL | `41.462439` | `0.00008148` | `56.6430` |
+
+full-LPL 与 Flow 的 FID 只差 `-0.00123`，远小于已观测到的 1k sampling
+波动；KID 反而更差。因此没有达到扩大到 5k 或多 seed 的预注册门槛。
+
+完整结果：
+
+```text
+~/data/eqvae/experiments/raev2_common_adapter_full_target_control/
+```
+
+### 13.3 两个对照后的机制判断
+
+现有证据已经排除两条直觉解释：
+
+1. 旧 RAE 的 LPL 不是因为 latent rollout 更准确才成功。
+2. RAEv2 的 LPL 也不是因为错误监督 guided 而非 full 才失败。
+
+当前最有解释力、但仍需直接验证的假设是：
+
+> 旧 RAE prior 的 endpoint 在 decoder feature 空间中存在明显收缩，full LPL
+> 的 denominator-gradient 恰好修复了这种分布校准；RAEv2 的成熟 prior 和
+> internal guidance 已经大幅处理了同类校准，剩余的逐样本 feature 对齐既小，
+> 也无法提供额外生成收益。
+
+这仍是“最佳支持假设”，不是已经证明的因果机制。下一项最小实验应直接测量：
+
+> 旧 RAE 与 RAEv2 的真实采样 endpoint，相对 clean latent 在各 decoder 层的
+> feature mean、variance、covariance coverage 和方向分布究竟差多少？
+
+必须先用无需训练的 endpoint distribution atlas 验证“旧 RAE 有收缩、
+RAEv2 已接近校准”。只有该跨模型差异明确存在，并且 LPL 的变化方向确实
+指向 clean 分布，才值得设计新的 calibration 方法；否则应停止这条机制线，
+承认旧 RAE 的收益尚不能由当前指标解释。

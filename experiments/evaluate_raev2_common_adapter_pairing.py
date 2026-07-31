@@ -169,6 +169,9 @@ def load_adapters(
                     "branch_update": int(metadata["branch_update"]),
                     "training_objective": str(metadata["objective"]),
                     "lpl_variant": metadata.get("lpl_variant"),
+                    "lpl_prediction_target": metadata.get(
+                        "lpl_prediction_target"
+                    ),
                 },
             )
         )

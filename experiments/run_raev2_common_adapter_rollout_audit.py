@@ -361,6 +361,7 @@ def main() -> None:
         "branch_update",
         "training_objective",
         "lpl_variant",
+        "lpl_prediction_target",
         "noise_to_signal_ratio",
         "start_time",
         "num_steps",

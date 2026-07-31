@@ -998,3 +998,43 @@ IG=1.78、标签和首尾 RNG fingerprint；唯一关键差异是历史曲线采
 占用训练状态。采样器已增加显式仓库根目录 bootstrap，守护命令改为模块启动；
 重新通过 5 个单测、`py_compile` 和 shell 语法检查后，任务已在 tmux 中启动。
 双 Stage-2 模型加 decoder 每卡约占 10.5 GiB，仍有约 13.5 GiB 余量。
+
+## 11. 两个判别性对照后的结论修正
+
+为了区分 RAE 与 RAEv2 的真正差异，新增了两个严格对照。
+
+第一，对已经在正式 50k FID 上确认有效的旧 RAE DINOv2-B LPL checkpoint，
+运行与 RAEv2 相同的 64 图、`1/4/16` 次递归 endpoint 探针。结果显示 LPL
+的 latent error 反而稳定比 Flow 高 `0.27%--1.57%`，raw feature squared
+error 也没有跨条件稳定改善；但 decoder feature variance ratio 从
+`0.779--0.918` 系统地修复到 `0.878--0.976`，centered cosine 也全部提高。
+因此，旧 RAE 的强 FID 收益不能由“更准确的 latent 轨迹”解释，更像是
+decoder feature 分布收缩被校准。
+
+第二，在 RAEv2 上保持共同残差参数化不变，只把 LPL 监督从 guided 输出改为
+full head。1024 样本梯度审计、10-step 训练、64 图固定配对与递归探针均通过
+数据哈希和冻结边界检查。full-LPL 的 one-query feature loss 虽降低
+`0.24%/0.53%`，到 16 queries 只剩 `0.07%/0.20%` 且不显著；同噪声 1k
+FID 为 Flow `41.4637`、guided-LPL `41.4745`、full-LPL `41.4624`，没有
+实用差异。因而 RAEv2 失败也不能归因于“监督错了 head”。
+
+这两个结果共同否定了把 rollout closure 作为 LPL 成功必要条件的旧计划。
+当前最佳解释变为：
+
+```text
+旧 RAE：
+prior endpoint 的 decoder feature 明显收缩
+-> normalized LPL 的方差梯度提供有效校准
+-> 即使 latent 误差稍大，生成分布仍改善
+
+RAEv2：
+成熟 prior + internal guidance 可能已经完成大部分同类校准
+-> 普通 paired LPL 只剩很小的局部改进
+-> guided/full 目标都不能形成额外生成收益
+```
+
+其中“RAEv2 已被 internal guidance 校准”目前仍是待验证假设。下一步不训练
+新 loss，先对旧 RAE 与 RAEv2 的真实采样 endpoint 做统一 decoder-feature
+distribution atlas，直接比较各层 mean、variance、covariance coverage 和
+方向分布。若旧 RAE 的收缩与 RAEv2 的近校准状态不能被直接复现，就停止该
+解释，不再围绕它追加训练。
