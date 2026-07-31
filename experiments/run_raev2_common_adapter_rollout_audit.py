@@ -26,6 +26,11 @@ from experiments.evaluate_raev2_common_adapter_pairing import (  # noqa: E402
     load_config,
     parse_named_path,
 )
+from experiments.endpoint_feature_distribution_atlas import (  # noqa: E402
+    FixedSpatialFeatureProjector,
+    make_feature_chunks,
+    summarize_feature_chunks,
+)
 from experiments.rae_lpl_detach_audit import (  # noqa: E402
     decoder_feature_objective_per_sample,
     tensor_rms,
@@ -35,6 +40,7 @@ from experiments.rae_strict_lpl import (  # noqa: E402
     decoder_hidden_indices,
 )
 from experiments.raev2_common_adapter import (  # noqa: E402
+    CommonResidualAdapter,
     internal_guidance_prediction,
 )
 from experiments.raev2_stage1_compat import (  # noqa: E402
@@ -96,6 +102,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260731)
     parser.add_argument("--precision", choices=("fp32", "bf16"), default="bf16")
     parser.add_argument("--guidance-scale", type=float)
+    parser.add_argument("--include-source", action="store_true")
+    parser.add_argument("--atlas-projection-dim", type=int, default=32)
+    parser.add_argument("--atlas-projection-seed", type=int, default=72_913)
     parser.add_argument(
         "--dino-ckpt-dir",
         type=Path,
@@ -113,6 +122,8 @@ def main() -> None:
     args = parse_args()
     if args.samples <= 0 or args.batch_size <= 0:
         raise ValueError("--samples and --batch-size must be positive")
+    if args.atlas_projection_dim <= 0:
+        raise ValueError("--atlas-projection-dim must be positive")
     noise_ratios = tuple(args.noise_ratios or (1.0, 3.0))
     if any(ratio <= 0 for ratio in noise_ratios):
         raise ValueError("noise ratios must be positive")
@@ -162,6 +173,30 @@ def main() -> None:
         state_key=args.adapter_state_key,
         device=device,
     )
+    if args.include_source:
+        if any(name == "source" for name, _, _ in adapters):
+            raise ValueError("--include-source reserves the branch name 'source'")
+        source_adapter = CommonResidualAdapter(
+            int(source_model.in_channels),
+            hidden_channels=64,
+        ).to(device)
+        source_adapter.eval()
+        source_adapter.requires_grad_(False)
+        adapters.insert(
+            0,
+            (
+                "source",
+                source_adapter,
+                {
+                    "checkpoint_path": str(source_path),
+                    "checkpoint_sha256": source_sha256,
+                    "branch_update": 0,
+                    "training_objective": "source",
+                    "lpl_variant": None,
+                    "lpl_prediction_target": None,
+                },
+            ),
+        )
     dataset = DeterministicImageNetParquet(
         args.data_path,
         split="validation",
@@ -196,11 +231,16 @@ def main() -> None:
     del cached_clean
     del rae.encoder
     torch.cuda.empty_cache()
+    layer_fractions = LPL_LAYER_FRACTIONS
     layer_indices = decoder_hidden_indices(
         len(rae.decoder.decoder_layers),
-        fractions=LPL_LAYER_FRACTIONS,
+        fractions=layer_fractions,
     )
     layer_weights = (1.0,) * len(layer_indices)
+    projector = FixedSpatialFeatureProjector(
+        output_dim=int(args.atlas_projection_dim),
+        seed=int(args.atlas_projection_seed),
+    )
     latent_size = tuple(config.misc.latent_size)
     time_shift = math.sqrt(
         (config.misc.time_dist_shift_dim or math.prod(latent_size))
@@ -208,6 +248,7 @@ def main() -> None:
     )
     transport = create_transport(config=config.transport, time_dist_shift=time_shift)
     rows = []
+    atlas_chunks = []
     for batch_start in range(0, args.samples, args.batch_size):
         batch_stop = min(batch_start + args.batch_size, args.samples)
         clean = clean_cache[batch_start:batch_stop].to(device)
@@ -313,6 +354,31 @@ def main() -> None:
                         final_features,
                         layer_weights=layer_weights,
                     )
+                    atlas_chunks.extend(
+                        make_feature_chunks(
+                            context={
+                                "system": "raev2",
+                                "branch": name,
+                                "branch_update": int(metadata["branch_update"]),
+                                "training_objective": metadata[
+                                    "training_objective"
+                                ],
+                                "lpl_variant": metadata["lpl_variant"],
+                                "lpl_prediction_target": metadata[
+                                    "lpl_prediction_target"
+                                ],
+                                "guidance_scale": float(guidance_scale),
+                                "noise_to_signal_ratio": float(ratio),
+                                "start_time": float(start_time),
+                                "num_steps": int(num_steps),
+                            },
+                            reference_features=target_features,
+                            candidate_features=final_features,
+                            layer_indices=layer_indices,
+                            layer_fractions=layer_fractions,
+                            projector=projector,
+                        )
+                    )
                     final_latent_error = tensor_rms(state.float() - clean)
                     state_path = torch.stack(state_path_errors)
                     endpoint_path = torch.stack(endpoint_errors)
@@ -375,6 +441,24 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     raw.to_csv(output_dir / "rollout_raw.csv", index=False)
     summary.to_csv(output_dir / "rollout_summary.csv", index=False)
+    atlas = pd.DataFrame(
+        summarize_feature_chunks(
+            atlas_chunks,
+            seed=int(args.atlas_projection_seed),
+        )
+    ).sort_values(
+        [
+            "branch_update",
+            "branch",
+            "noise_to_signal_ratio",
+            "num_steps",
+            "layer_position",
+        ]
+    )
+    atlas.to_csv(
+        output_dir / "endpoint_feature_distribution_atlas.csv",
+        index=False,
+    )
 
     figure, axes = plt.subplots(1, 2, figsize=(14, 5), constrained_layout=True)
     for (branch, ratio), frame in summary.groupby(
@@ -429,6 +513,14 @@ def main() -> None:
         "guidance_interval": list(guidance_interval),
         "seed": int(args.seed),
         "precision": args.precision,
+        "include_source": bool(args.include_source),
+        "endpoint_feature_distribution_atlas": {
+            "projection_dim": int(args.atlas_projection_dim),
+            "projection_seed": int(args.atlas_projection_seed),
+            "spatial_pool": [4, 4],
+            "feature_layers": list(layer_indices),
+            "layer_fractions": list(layer_fractions),
+        },
         "validation_used_for_training": False,
         "interpretation_limit": (
             "The rollout begins from a known data/noise interpolation state so "

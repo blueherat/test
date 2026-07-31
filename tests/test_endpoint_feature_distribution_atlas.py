@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import torch
+import pandas as pd
 
 from experiments.endpoint_feature_distribution_atlas import (
     FixedSpatialFeatureProjector,
@@ -8,6 +9,10 @@ from experiments.endpoint_feature_distribution_atlas import (
     paired_feature_metrics,
     projected_distribution_metrics,
     summarize_feature_chunks,
+)
+from experiments.summarize_endpoint_feature_distribution_atlas import (
+    aggregate_atlas,
+    branch_label,
 )
 
 
@@ -105,3 +110,56 @@ def test_projector_and_chunk_summary_are_deterministic():
     assert first_rows == second_rows
     assert first_rows[0]["sample_count"] == 16
     assert first_rows[0]["projection_dim"] == 9
+
+
+def test_summary_keeps_branch_update_and_guidance_distinct():
+    rows = []
+    for update in (10, 50):
+        for layer_fraction in (0.2, 1.0):
+            rows.append(
+                {
+                    "atlas_name": "raev2",
+                    "branch": "full_lpl",
+                    "branch_update": update,
+                    "guidance_scale": 1.78,
+                    "noise_to_signal_ratio": 1.0,
+                    "num_steps": 4,
+                    "layer_fraction": layer_fraction,
+                    "spatial_variance_ratio_gmean": 0.9,
+                    "projected_covariance_trace_ratio": 0.8,
+                    "projected_covariance_relative_error": 0.2,
+                    "projected_normalized_frechet": 0.1,
+                }
+            )
+    frame = pd.DataFrame(rows)
+    frame["display_branch"] = branch_label(frame)
+    condition, layer = aggregate_atlas(frame)
+
+    assert condition["display_branch"].nunique() == 2
+    assert layer["display_branch"].nunique() == 2
+
+
+def test_branch_label_falls_back_to_old_rae_checkpoint_per_row():
+    frame = pd.DataFrame(
+        [
+            {
+                "atlas_name": "old_rae",
+                "branch": pd.NA,
+                "checkpoint": "lpl",
+                "branch_update": pd.NA,
+                "guidance_scale": pd.NA,
+            },
+            {
+                "atlas_name": "raev2",
+                "branch": "guided",
+                "checkpoint": pd.NA,
+                "branch_update": 50,
+                "guidance_scale": 1.78,
+            },
+        ]
+    )
+
+    assert branch_label(frame).tolist() == [
+        "old_rae:lpl",
+        "raev2:guided@50,ig=1.78",
+    ]

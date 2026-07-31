@@ -702,6 +702,13 @@ def main() -> None:
             "seed": int(args.seed),
             "precision": "fp32",
             "tf32": False,
+            "endpoint_feature_distribution_atlas": {
+                "projection_dim": int(args.atlas_projection_dim),
+                "projection_seed": int(args.atlas_projection_seed),
+                "spatial_pool": [4, 4],
+                "feature_layers": list(layer_indices),
+                "layer_fractions": list(layer_fractions),
+            },
             "validation_used_for_training": False,
             "interpretation_limit": (
                 "Each rollout starts from a paired validation latent/noise "

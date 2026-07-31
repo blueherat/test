@@ -1038,3 +1038,52 @@ RAEv2：
 distribution atlas，直接比较各层 mean、variance、covariance coverage 和
 方向分布。若旧 RAE 的收缩与 RAEv2 的近校准状态不能被直接复现，就停止该
 解释，不再围绕它追加训练。
+
+## 12. Endpoint atlas 对机制假设的终验
+
+统一的 64 图、五层、`1/4/16` endpoint-query atlas 已完成。结果支持“旧 RAE
+有广泛 feature distribution 收缩、RAEv2 internal guidance 已做过大部分
+校准”，但同时揭示一个此前没有分开的断层：
+
+```text
+单张图内部的空间 feature 方差
+!=
+跨图像 population covariance
+```
+
+旧 RAE 的 LPL 同时改善两侧：spatial variance log error `-49.5%`，
+projected mean error `-28.0%`，covariance error `-4.9%`，normalized
+Fréchet `-19.6%`。它虽然让 latent RMS 变差，却把 decoder 所见 endpoint
+从多个统计方向拉回 clean feature distribution。
+
+RAEv2 的官方 source 从 IG `1.0` 改成 `1.78`，无需训练就使 spatial variance
+error 降低 `38.3%`、mean error 降低 `35.3%`、covariance trace error 降低
+`24.4%`、Fréchet 降低 `20.1%`；paired raw MSE 和 cosine 反而变差。这是目前
+最直接的证据：internal guidance 本身就在做一种 distribution calibration，
+而不是提高 paired endpoint regression 精度。
+
+将 RAEv2 full/guided LPL 从 10 严格续训到 50 step 后，LPL 的直接目标继续
+明显变化，但形成分叉。相对 source，full-LPL50 的 spatial variance error
+降低 `8.25%`、mean error 降低 `22.24%`、Fréchet 降低 `4.83%`，同时
+covariance error 恶化 `7.53%`；guided-LPL50 的对应数字为 `-5.47%`、
+`-25.78%`、`-6.25%` 和 `+6.54%`。已有 3 seed x 5k 采样中，Flow50/LPL50
+平均 FID 为 `10.8822/10.8716`，差 `0.0106`，没有实用显著性。
+
+所以 RAE 与 RAEv2 的分水岭不只是“RAEv2 更接近最优点”，而是：
+
+```text
+旧 RAE：
+局部方差、总体均值和总体协方差共同失配
+-> normalized LPL 的校准方向大体正确
+
+RAEv2：
+internal guidance 已修复大部分共同失配
+-> 额外 LPL 主要继续推单图方差和均值
+-> population covariance 开始受损
+-> loss 在工作，但 FID 不再跟随
+```
+
+这解释了为什么多训练并不能救回 RAEv2-LPL。下一步不应继续延长普通 LPL，
+也不能把“variance ratio 更接近 1”当作充分成功指标。若继续研究，应直接
+面对 batch-level endpoint distribution，并把 covariance coverage 作为硬性
+验收项；否则这条方法线到此停止。

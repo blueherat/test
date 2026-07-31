@@ -35,12 +35,6 @@ from experiments.raev2_training_core import (  # noqa: E402
     file_sha256,
     tensor_fingerprint,
 )
-from experiments.sample_raev2_threeway import (  # noqa: E402
-    generator_fingerprint,
-    load_config,
-)
-from stage2.transport import create_sampler, create_transport  # noqa: E402
-from utils.model_utils import instantiate_from_config  # noqa: E402
 
 
 def parse_branch(value: str) -> tuple[str, Path | None]:
@@ -144,6 +138,13 @@ def _load_adapter(
 
 
 def main() -> None:
+    from experiments.sample_raev2_threeway import (
+        generator_fingerprint,
+        load_config,
+    )
+    from stage2.transport import create_sampler, create_transport
+    from utils.model_utils import instantiate_from_config
+
     install_raev2_decoder_config_compat()
     args = parse_args()
     if args.sample_count <= 0:

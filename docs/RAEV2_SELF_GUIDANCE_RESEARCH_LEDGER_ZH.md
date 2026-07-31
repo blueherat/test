@@ -518,3 +518,121 @@ full-LPL 与 Flow 的 FID 只差 `-0.00123`，远小于已观测到的 1k sampli
 RAEv2 已接近校准”。只有该跨模型差异明确存在，并且 LPL 的变化方向确实
 指向 clean 分布，才值得设计新的 calibration 方法；否则应停止这条机制线，
 承认旧 RAE 的收益尚不能由当前指标解释。
+
+## 14. Endpoint feature distribution atlas 终验
+
+### 14.1 协议与实现审计
+
+统一 atlas 已在旧 RAE DINOv2-B seed 3 和 RAEv2 DINOv3-L/K7 上完成。每个
+条件固定使用 64 张 ImageNet validation 图、相同 seed、noise ratio `1/3`、
+`1/4/16` 次 endpoint query，并观测 decoder 的 `0.2/0.4/0.6/0.8/1.0`
+五个相对深度。
+
+atlas 同时测量两类不能混为一谈的量：
+
+- 单张图内部的空间 feature variance、centered cosine 和 raw MSE；
+- 跨 64 张图的 feature mean、covariance、normalized Fréchet 和 sliced
+  Wasserstein。各层 feature 先固定池化到 `4x4`，再用同一个固定随机投影
+  降到 32 维。
+
+实现通过恒等输入、已知 `0.5x` 收缩、确定性投影、分布式聚合和 metadata
+保真测试；RAEv2 的 Flow、guided-LPL、full-LPL step 50 checkpoint 还满足：
+
+- source SHA、source state 和累计 data-index SHA 完全相同；
+- 从 step 10 接续后的首批 image/label/latent/noise/time/CFG mask 哈希逐项
+  相同；
+- source Stage-2、encoder 和 decoder 均冻结；
+- `full-base` contrast 数值误差不超过 `9.54e-7`。
+
+### 14.2 旧 RAE：LPL 确实修复了广泛的 endpoint 分布收缩
+
+跨五层和三种 query 数平均：
+
+| metric（越低越好，cosine 除外） | Flow | LPL | 相对变化 |
+|---|---:|---:|---:|
+| spatial variance log error | `0.051665` | `0.026104` | `-49.5%` |
+| projected mean relative error | `0.037525` | `0.027003` | `-28.0%` |
+| covariance relative error | `0.077358` | `0.073592` | `-4.9%` |
+| normalized Fréchet | `0.005233` | `0.004206` | `-19.6%` |
+| normalized SWD | `0.080160` | `0.074634` | `-6.9%` |
+| centered cosine | `0.961819` | `0.963182` | 提高 `0.001363` |
+
+逐层看，LPL 把单图空间方差比从 `0.940--0.958` 提高到
+`0.964--1.000`，population covariance trace 也整体更接近 `1`。结合上一节
+latent RMS 反而稳定变差的结果，可以更有把握地说：旧 RAE 的 LPL 主要改变
+的是 decoder 所见 endpoint 的 feature distribution，而不是把 latent 数值
+预测变得更准确。
+
+### 14.3 RAEv2：internal guidance 已承担了大部分同类校准
+
+只改变官方 source 模型的采样组合，把 IG 从 `1.0` 改为 `1.78`，不训练任何
+参数，得到：
+
+| metric | IG=1.0 | IG=1.78 | 相对变化 |
+|---|---:|---:|---:|
+| spatial variance log error | `0.060620` | `0.037394` | `-38.3%` |
+| projected mean relative error | `0.055508` | `0.035917` | `-35.3%` |
+| covariance trace log error | `0.057455` | `0.043417` | `-24.4%` |
+| covariance relative error | `0.087856` | `0.085606` | `-2.6%` |
+| normalized Fréchet | `0.008477` | `0.006770` | `-20.1%` |
+| normalized SWD | `0.095259` | `0.088170` | `-7.4%` |
+
+与此同时，raw MSE 从 `25.12` 上升到 `27.37`，centered cosine 从
+`0.94054` 降到 `0.93406`。这说明 internal guidance 不是在做更准确的 paired
+regression，而是在调整生成 endpoint 的总体统计；这与旧 RAE 的成功机制
+方向一致。
+
+### 14.4 多训到 50 step 后，RAEv2-LPL 暴露出局部与总体校准的分叉
+
+full-LPL 已从 step 10 严格续训到 step 50，并每 10 step 保存 checkpoint。
+相对同一 source、IG `1.78`，step 50 的结果为：
+
+| metric | full-LPL 相对 source | guided-LPL 相对 source |
+|---|---:|---:|
+| spatial variance log error | `-8.25%` | `-5.47%` |
+| projected mean relative error | `-22.24%` | `-25.78%` |
+| normalized Fréchet | `-4.83%` | `-6.25%` |
+| normalized SWD | `-2.48%` | `-2.98%` |
+| covariance relative error | `+7.53%` | `+6.54%` |
+
+从 step 10 到 50，full-LPL 的 spatial variance error 又下降 `5.54%`，
+mean error 下降 `7.59%`，但 covariance error 上升 `4.88%`，Fréchet 只再
+下降 `0.31%`。因此 10 step 不是“训练太少所以看不出作用”：继续训练确实
+放大了 LPL 想优化的单图方差和均值效应，同时也放大了 population covariance
+形状的错配。
+
+现有 3 seed、每 seed 5k 图的正式 step 50 指标也与此一致：
+
+| branch | FID mean | seed std |
+|---|---:|---:|
+| Flow50 | `10.8822` | `0.1191` |
+| guided-LPL50 | `10.8716` | `0.1275` |
+
+平均差仅 `-0.0106`，step 10 的平均差也只有 `-0.0096`，都远小于 seed
+波动。不能宣称有实用生成改善。
+
+### 14.5 当前机制结论与停止条件
+
+现有证据支持一个比“方差越接近 1 越好”更精确的机制：
+
+1. 旧 RAE 存在跨单图空间统计、总体 mean 和 covariance 的广泛 endpoint
+   收缩；LPL 恰好沿多个分布指标同时校正，因此可以改善生成。
+2. RAEv2 的 internal guidance 已经在不提高 paired 准确度的情况下完成了
+   大部分同类校准。
+3. RAEv2 上继续施加 normalized LPL，会进一步优化它直接看到的单图方差和
+   mean，却不能保持 population covariance；代理目标继续下降，但生成质量
+   不再受益。
+
+这仍不能证明 population covariance 是 FID 的唯一因果变量，且两套 decoder
+不同，不能直接比较绝对数值。但 IG `1.0 -> 1.78` 是同一模型内的干净对照，
+足以排除“RAEv2 根本没有同类 endpoint calibration”这一解释。
+
+因此停止继续延长普通 LPL 训练。若以后重启这条路线，新的方法必须直接约束
+batch-level endpoint distribution，并预注册“不能以牺牲 covariance coverage
+换取单图方差接近 1”；否则只是重复当前已被终验否定的代理目标。
+
+完整结果：
+
+```text
+~/data/eqvae/experiments/endpoint_feature_distribution_atlas/
+```
