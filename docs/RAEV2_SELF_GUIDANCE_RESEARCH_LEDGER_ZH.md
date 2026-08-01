@@ -1,5 +1,9 @@
 # RAEv2 Self-Guidance 研究账本
 
+> **路线状态（2026-07-31）：普通 LPL 方法线已停止。** 本文保留完整实验账本，
+> 最终决策、文献边界和下一阶段预注册计划见
+> [LPL 路线结题审计与下一阶段研究议程](LPL_LINE_CLOSURE_AND_SOLID_RESEARCH_AGENDA_ZH.md)。
+
 ## 1. 研究目的
 
 当前研究不再把目标写成“让 LPL 在 RAEv2 上也有效”，而是研究一个更一般的
