@@ -8,10 +8,12 @@ from experiments.run_raev2_distribution_auc import (
     MomentAccumulator,
     SamplerStateRecorder,
     bootstrap_auc_delta,
+    build_audit_time_rows,
     build_requested_labels,
     class_group_split,
     fit_diagonal_lda,
     match_requested_times,
+    moment_distance_metrics,
     paired_auc,
     screening_conclusion,
     shifted_solver_grid,
@@ -28,6 +30,19 @@ def test_shifted_grid_and_time_matching_use_actual_solver_steps() -> None:
     assert matched[-1]["solver_index"] == 0
     assert matched[-1]["actual_time"] == 1.0
     assert len({row["solver_index"] for row in matched}) == len(matched)
+
+
+def test_endpoint_time_is_not_treated_as_a_model_evaluation() -> None:
+    grid = shifted_solver_grid(num_steps=100, shift=8.0)
+    matched = build_audit_time_rows((0.0, 0.2, 1.0), grid, num_steps=100)
+    endpoint = matched[0]
+    assert endpoint == {
+        "requested_time": 0.0,
+        "solver_index": 100,
+        "actual_time": 0.0,
+        "absolute_time_error": 0.0,
+    }
+    assert [row["requested_time"] for row in matched[1:]] == [0.2, 1.0]
 
 
 def test_class_split_has_no_class_leakage() -> None:
@@ -62,6 +77,17 @@ def test_diagonal_lda_is_heldout_linear_discriminator() -> None:
     assert paired_auc(negative_scores, positive_scores) > 0.99
     assert ridge > 0
     assert torch.allclose(weight.norm(), torch.tensor(1.0), atol=1e-6)
+
+
+def test_moment_distance_separates_mean_and_variance_changes() -> None:
+    reference = MomentAccumulator()
+    shifted = MomentAccumulator()
+    reference.update(torch.tensor([[-1.0, -2.0], [1.0, 2.0]]))
+    shifted.update(torch.tensor([[-1.0, -4.0], [3.0, 4.0]]))
+    metrics = moment_distance_metrics(reference, shifted)
+    assert metrics["mean_shift_rms"] > 0
+    assert metrics["diagonal_variance_relative_l2"] > 0
+    assert metrics["mean_variance_ratio"] > 1
 
 
 def test_sampler_recorder_captures_model_inputs_not_outputs() -> None:

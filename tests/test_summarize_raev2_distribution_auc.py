@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
-from experiments.summarize_raev2_distribution_auc import conclusion, summarize
+from experiments.summarize_raev2_distribution_auc import (
+    class_cluster_bootstrap_delta,
+    conclusion,
+    summarize,
+)
 
 
 def test_cross_seed_summary_requires_same_direction_in_every_seed() -> None:
@@ -32,3 +37,19 @@ def test_cross_seed_summary_requires_same_direction_in_every_seed() -> None:
     assert bool(late["all_seeds_farther"])
     assert not bool(early["all_seeds_closer"])
     assert conclusion(summary).startswith("no global distribution correction")
+
+
+def test_class_cluster_bootstrap_preserves_a_clear_paired_direction() -> None:
+    classes = np.repeat(np.arange(20), 5)
+    baseline = np.tile(np.linspace(-0.2, 0.2, 5), 20)
+    low, high = class_cluster_bootstrap_delta(
+        classes,
+        baseline,
+        baseline + 0.1,
+        baseline,
+        baseline + 1.0,
+        repeats=200,
+        seed=7,
+    )
+    assert low > 0
+    assert high >= low

@@ -153,6 +153,31 @@ def match_requested_times(
     return sorted(matched, key=lambda row: float(row["requested_time"]))
 
 
+def build_audit_time_rows(
+    requested: tuple[float, ...], grid: torch.Tensor, num_steps: int
+) -> list[dict[str, float | int]]:
+    """Match positive solver inputs and represent the generated endpoint at t=0."""
+
+    values = tuple(sorted(set(float(value) for value in requested)))
+    if any(value < 0.0 or value > 1.0 for value in values):
+        raise ValueError("requested times must lie in [0, 1]")
+    positive = tuple(value for value in values if value > 0.0)
+    if not positive:
+        raise ValueError("at least one positive solver time is required")
+    matched = match_requested_times(positive, grid)
+    if 0.0 in values:
+        matched = [
+            {
+                "requested_time": 0.0,
+                "solver_index": int(num_steps),
+                "actual_time": 0.0,
+                "absolute_time_error": 0.0,
+            },
+            *matched,
+        ]
+    return matched
+
+
 def build_requested_labels(sample_count: int, num_classes: int) -> np.ndarray:
     if sample_count <= 0:
         raise ValueError("sample_count must be positive")
@@ -348,6 +373,31 @@ def fit_diagonal_lda(
         weight.double(), (mean_pos + mean_neg)
     ).item()
     return weight, float(intercept), ridge
+
+
+def moment_distance_metrics(
+    reference: MomentAccumulator, candidate: MomentAccumulator
+) -> dict[str, float]:
+    """Summarize mean and diagonal-covariance differences without raw latents."""
+
+    reference_mean, reference_variance = reference.mean_variance()
+    candidate_mean, candidate_variance = candidate.mean_variance()
+    mean_shift_rms = float((candidate_mean - reference_mean).square().mean().sqrt().item())
+    reference_std_rms = float(reference_variance.mean().sqrt().item())
+    variance_denominator = float(reference_variance.square().sum().sqrt().item())
+    variance_shift = float(
+        (candidate_variance - reference_variance).square().sum().sqrt().item()
+    )
+    reference_total_variance = float(reference_variance.mean().item())
+    candidate_total_variance = float(candidate_variance.mean().item())
+    return {
+        "mean_shift_rms": mean_shift_rms,
+        "mean_shift_over_reference_std": mean_shift_rms / max(reference_std_rms, 1e-30),
+        "diagonal_variance_relative_l2": variance_shift
+        / max(variance_denominator, 1e-30),
+        "mean_variance_ratio": candidate_total_variance
+        / max(reference_total_variance, 1e-30),
+    }
 
 
 def score_states(
@@ -564,14 +614,17 @@ def _branch_states(
                         state.detach().float().cpu().contiguous().numpy().tobytes()
                     )
 
+            positive_times = [
+                item for item in matched_times if float(item["requested_time"]) > 0.0
+            ]
             recorder = SamplerStateRecorder(
                 model_fn,
-                matched_times,
+                positive_times,
                 real_batch_size=noise.shape[0],
                 callback=capture,
             )
             with autocast_context(precision):
-                sample_fn(
+                trajectory = sample_fn(
                     doubled_noise,
                     recorder,
                     context=context,
@@ -580,6 +633,13 @@ def _branch_states(
                     ig_interval=ig_interval,
                 )
             recorder.validate(int(config.sampler.num_steps))
+            if any(float(item["requested_time"]) == 0.0 for item in matched_times):
+                endpoint = trajectory[-1]
+                if endpoint.shape[0] == 2 * noise.shape[0]:
+                    endpoint = endpoint.chunk(2, dim=0)[0]
+                if endpoint.shape[0] != noise.shape[0]:
+                    raise RuntimeError("unexpected endpoint batch size")
+                capture(0.0, endpoint)
             if (
                 dist.get_rank() == 0
                 and (
@@ -633,6 +693,7 @@ def _branch_states(
             "test": int(p_ids.size),
             "ridge": ridge,
             "weight_norm": float(weight.norm().item()),
+            **moment_distance_metrics(p_global, q_global),
         }
     return payload, diagnostics, q_test
 
@@ -751,14 +812,16 @@ def main() -> None:
     dist.barrier()
 
     config = load_config(config_path)
-    requested_times = tuple(args.times or DEFAULT_TIMES)
+    requested_times = tuple(sorted(set(args.times or DEFAULT_TIMES)))
     latent_size = tuple(int(value) for value in config.misc.latent_size)
     shift = math.sqrt(
         (config.misc.time_dist_shift_dim or math.prod(latent_size))
         / config.misc.time_dist_shift_base
     )
     grid = shifted_solver_grid(int(config.sampler.num_steps), shift)
-    matched_times = match_requested_times(requested_times, grid)
+    matched_times = build_audit_time_rows(
+        requested_times, grid, int(config.sampler.num_steps)
+    )
     if not any(float(item["requested_time"]) == 1.0 for item in matched_times):
         raise ValueError("t=1.0 is required as a hard null control")
 
@@ -991,6 +1054,32 @@ def main() -> None:
 
         results.to_csv(output_dir / "auc_results.csv", index=False)
         deltas.to_csv(output_dir / "auc_delta_ig_minus_full.csv", index=False)
+        moment_rows = []
+        for branch_name, branch_scale in branches:
+            rank_zero_times = branch_diagnostics[branch_name][0]["times"]
+            for item in matched_times:
+                time_key = float(item["requested_time"])
+                moment_rows.append(
+                    {
+                        "branch": branch_name,
+                        "ig_scale": branch_scale,
+                        **item,
+                        **{
+                            key: value
+                            for key, value in rank_zero_times[time_key].items()
+                            if key
+                            in {
+                                "mean_shift_rms",
+                                "mean_shift_over_reference_std",
+                                "diagonal_variance_relative_l2",
+                                "mean_variance_ratio",
+                            }
+                        },
+                    }
+                )
+        pd.DataFrame(moment_rows).sort_values(["actual_time", "branch"]).to_csv(
+            output_dir / "latent_moment_distances.csv", index=False
+        )
         np.savez_compressed(
             output_dir / "sample_protocol.npz",
             sample_ids=np.arange(args.samples, dtype=np.int64),
@@ -1010,7 +1099,7 @@ def main() -> None:
         np.savez_compressed(output_dir / "heldout_probe_scores.npz", **score_archive)
         _plot_results(results, output_dir / "auc_vs_time.png")
         manifest = {
-            "protocol": "raev2_distribution_auc_v1",
+            "protocol": "raev2_distribution_auc_v2",
             "config": str(config_path),
             "checkpoint": str(checkpoint_path),
             "checkpoint_size": checkpoint_path.stat().st_size,

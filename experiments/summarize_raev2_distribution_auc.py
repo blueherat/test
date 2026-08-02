@@ -7,7 +7,9 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+from sklearn.metrics import roc_auc_score
 
 
 def parse_named_run(value: str) -> tuple[str, Path]:
@@ -23,10 +25,88 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run", action="append", type=parse_named_run, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--cluster-bootstrap-repeats", type=int, default=2000)
     return parser.parse_args()
 
 
-def load_runs(named_runs: list[tuple[str, Path]]) -> pd.DataFrame:
+def paired_auc(negative: np.ndarray, positive: np.ndarray) -> float:
+    labels = np.concatenate(
+        (np.zeros(negative.size, dtype=np.int8), np.ones(positive.size, dtype=np.int8))
+    )
+    return float(roc_auc_score(labels, np.concatenate((negative, positive))))
+
+
+def class_cluster_bootstrap_delta(
+    class_labels: np.ndarray,
+    p_full: np.ndarray,
+    q_full: np.ndarray,
+    p_ig: np.ndarray,
+    q_ig: np.ndarray,
+    *,
+    repeats: int,
+    seed: int,
+) -> tuple[float, float]:
+    """Bootstrap paired AUC deltas using ImageNet class as the sampling unit."""
+
+    arrays = (class_labels, p_full, q_full, p_ig, q_ig)
+    if any(array.ndim != 1 for array in arrays):
+        raise ValueError("cluster bootstrap inputs must be one-dimensional")
+    if len({array.size for array in arrays}) != 1:
+        raise ValueError("cluster bootstrap inputs must have equal lengths")
+    if repeats <= 0:
+        raise ValueError("cluster bootstrap repeats must be positive")
+    unique_classes = np.unique(class_labels)
+    if unique_classes.size < 2:
+        raise ValueError("cluster bootstrap requires at least two held-out classes")
+    indices_by_class = [np.flatnonzero(class_labels == label) for label in unique_classes]
+    rng = np.random.default_rng(seed)
+    values = np.empty(repeats, dtype=np.float64)
+    for repeat in range(repeats):
+        selected = rng.integers(0, unique_classes.size, size=unique_classes.size)
+        indices = np.concatenate([indices_by_class[index] for index in selected])
+        values[repeat] = paired_auc(p_ig[indices], q_ig[indices]) - paired_auc(
+            p_full[indices], q_full[indices]
+        )
+    return tuple(np.quantile(values, (0.025, 0.975)).tolist())
+
+
+def _cluster_intervals(
+    root: Path, frame: pd.DataFrame, *, repeats: int, seed: int
+) -> pd.DataFrame:
+    protocol_path = root / "sample_protocol.npz"
+    scores_path = root / "heldout_probe_scores.npz"
+    if not protocol_path.is_file() or not scores_path.is_file():
+        raise FileNotFoundError("cluster bootstrap requires saved sample protocol and scores")
+    with np.load(protocol_path) as protocol, np.load(scores_path) as scores:
+        labels = protocol["labels"]
+        rows = []
+        for time_index, row in enumerate(frame.itertuples(index=False)):
+            suffix = str(float(row.requested_time)).replace(".", "p")
+            ids = scores[f"ids_t{suffix}"].astype(np.int64, copy=False)
+            heldout_labels = labels[ids]
+            low, high = class_cluster_bootstrap_delta(
+                heldout_labels,
+                scores[f"p_full_t{suffix}"],
+                scores[f"q_full_t{suffix}"],
+                scores[f"p_ig_t{suffix}"],
+                scores[f"q_ig_t{suffix}"],
+                repeats=repeats,
+                seed=seed + 1009 * time_index,
+            )
+            rows.append(
+                {
+                    "requested_time": float(row.requested_time),
+                    "delta_ci_low_cluster": low,
+                    "delta_ci_high_cluster": high,
+                    "heldout_classes": int(np.unique(heldout_labels).size),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def load_runs(
+    named_runs: list[tuple[str, Path]], *, cluster_bootstrap_repeats: int = 2000
+) -> pd.DataFrame:
     frames = []
     expected_times = None
     for name, root in named_runs:
@@ -40,6 +120,21 @@ def load_runs(named_runs: list[tuple[str, Path]]) -> pd.DataFrame:
             expected_times = times
         elif times != expected_times:
             raise ValueError("runs use different requested times")
+        cluster = _cluster_intervals(
+            root,
+            frame,
+            repeats=cluster_bootstrap_repeats,
+            seed=int(manifest["seed"]) + 400_009,
+        )
+        frame = frame.merge(cluster, on="requested_time", validate="one_to_one")
+        frame = frame.rename(
+            columns={
+                "delta_ci_low": "delta_ci_low_image_bootstrap",
+                "delta_ci_high": "delta_ci_high_image_bootstrap",
+                "delta_ci_low_cluster": "delta_ci_low",
+                "delta_ci_high_cluster": "delta_ci_high",
+            }
+        )
         frame.insert(0, "run", name)
         frame["seed"] = int(manifest["seed"])
         frame["heldout_pairs"] = int(manifest["heldout_pairs"])
@@ -115,7 +210,9 @@ def plot(per_run: pd.DataFrame, summary: pd.DataFrame, output: Path) -> None:
         label="seed mean",
     )
     axis.axhline(0.0, color="#333333", linestyle="--", linewidth=1.3)
-    axis.set_xlim(1.03, 0.17)
+    times = per_run["actual_time"].to_numpy(dtype=float)
+    span = max(float(times.max() - times.min()), 0.1)
+    axis.set_xlim(float(times.max() + 0.03 * span), float(times.min() - 0.03 * span))
     axis.set_xlabel("Actual shifted solver time t")
     axis.set_ylabel("AUC(IG) - AUC(full); positive means IG is farther")
     axis.set_title(
@@ -133,15 +230,19 @@ def main() -> None:
     args = parse_args()
     output_dir = args.output_dir.expanduser().resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    per_run = load_runs(args.run)
+    per_run = load_runs(
+        args.run, cluster_bootstrap_repeats=args.cluster_bootstrap_repeats
+    )
     summary = summarize(per_run)
     decision = conclusion(summary)
     per_run.to_csv(output_dir / "per_seed_auc_delta.csv", index=False)
     summary.to_csv(output_dir / "cross_seed_summary.csv", index=False)
     plot(per_run, summary, output_dir / "cross_seed_auc_delta.png")
     report = {
-        "protocol": "raev2_distribution_auc_cross_seed_v1",
+        "protocol": "raev2_distribution_auc_cross_seed_v2",
         "runs": {name: str(path.resolve()) for name, path in args.run},
+        "bootstrap_unit": "held-out ImageNet class",
+        "cluster_bootstrap_repeats": args.cluster_bootstrap_repeats,
         "conclusion": decision,
         "robustly_closer_times": summary.loc[
             summary["all_seeds_closer"], "actual_time"

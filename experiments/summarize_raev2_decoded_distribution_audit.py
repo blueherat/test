@@ -7,7 +7,12 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+
+
+def time_suffix(value: float) -> str:
+    return f"t{float(value):.6f}".replace(".", "p")
 
 
 def parse_named_run(value: str) -> tuple[str, Path]:
@@ -73,6 +78,79 @@ def summarize(per_run: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def load_clipping(named_runs: list[tuple[str, Path]]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    rows = []
+    for name, root in named_runs:
+        root = root.resolve()
+        manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+        world_size = int(manifest["world_size"])
+        diagnostics = [
+            json.loads(
+                (root / f"decode_diagnostics_rank{rank:02d}.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            for rank in range(world_size)
+        ]
+        rank_counts = []
+        for rank in range(world_size):
+            with np.load(root / f"decoded_features_rank{rank:02d}.npz") as shard:
+                rank_counts.append(int(shard["ids"].size))
+        for requested_time in manifest["requested_times"]:
+            suffix = time_suffix(float(requested_time))
+            for condition in ("p", "full", "ig"):
+                key = f"{condition}_{suffix}"
+                values = [item[key] for item in diagnostics]
+                total = sum(rank_counts)
+                rows.append(
+                    {
+                        "run": name,
+                        "seed": int(manifest["seed"]),
+                        "requested_time": float(requested_time),
+                        "condition": condition,
+                        "raw_min": min(item["raw_min"] for item in values),
+                        "raw_max": max(item["raw_max"] for item in values),
+                        "clipped_low_fraction": sum(
+                            item["clipped_low_fraction"] * count
+                            for item, count in zip(values, rank_counts)
+                        ) / total,
+                        "clipped_high_fraction": sum(
+                            item["clipped_high_fraction"] * count
+                            for item, count in zip(values, rank_counts)
+                        ) / total,
+                    }
+                )
+    per_run = pd.DataFrame(rows)
+    per_run["clipped_total_fraction"] = (
+        per_run["clipped_low_fraction"] + per_run["clipped_high_fraction"]
+    )
+    deltas = []
+    for (run, seed, requested_time), frame in per_run.groupby(
+        ["run", "seed", "requested_time"]
+    ):
+        indexed = frame.set_index("condition")
+        deltas.append(
+            {
+                "run": run,
+                "seed": seed,
+                "requested_time": requested_time,
+                "clipped_low_delta_ig_minus_full": (
+                    indexed.loc["ig", "clipped_low_fraction"]
+                    - indexed.loc["full", "clipped_low_fraction"]
+                ),
+                "clipped_high_delta_ig_minus_full": (
+                    indexed.loc["ig", "clipped_high_fraction"]
+                    - indexed.loc["full", "clipped_high_fraction"]
+                ),
+                "clipped_total_delta_ig_minus_full": (
+                    indexed.loc["ig", "clipped_total_fraction"]
+                    - indexed.loc["full", "clipped_total_fraction"]
+                ),
+            }
+        )
+    return per_run, pd.DataFrame(deltas)
+
+
 def plot(per_run: pd.DataFrame, summary: pd.DataFrame, output: Path) -> None:
     specs = (
         ("auc_delta_ig_minus_full", "Decoded AUC delta"),
@@ -115,8 +193,11 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     per_run = load_runs(args.run)
     summary = summarize(per_run)
+    clipping, clipping_deltas = load_clipping(args.run)
     per_run.to_csv(output_dir / "per_seed_decoded_metrics.csv", index=False)
     summary.to_csv(output_dir / "cross_seed_decoded_summary.csv", index=False)
+    clipping.to_csv(output_dir / "per_seed_decode_clipping.csv", index=False)
+    clipping_deltas.to_csv(output_dir / "per_seed_decode_clipping_deltas.csv", index=False)
     plot(per_run, summary, output_dir / "cross_seed_decoder_reversal.png")
     non_null = summary[summary["requested_time"] < 1.0]
     report = {
