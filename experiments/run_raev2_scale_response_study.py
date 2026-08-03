@@ -108,6 +108,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--samples", type=int, default=1000)
     parser.add_argument("--scale", action="append", type=float, dest="scales")
+    parser.add_argument(
+        "--ig-interval",
+        type=float,
+        nargs=2,
+        metavar=("T_MIN", "T_MAX"),
+        help="Override the official IG interval for a time-window intervention.",
+    )
     parser.add_argument("--per-rank-batch", type=int, default=2)
     parser.add_argument("--decode-batch", type=int, default=4)
     parser.add_argument("--encode-batch", type=int, default=4)
@@ -158,6 +165,24 @@ def normalized_scales(
     if require_unguided and 1.0 not in scales:
         raise ValueError("scale sweep must include s=1.0 as the unguided full-head control")
     return scales
+
+
+def endpoint_storage_dtype(precision: str) -> torch.dtype:
+    if precision == "fp32":
+        return torch.float32
+    if precision == "bf16":
+        return torch.float16
+    raise ValueError(f"unsupported precision: {precision}")
+
+
+def resolved_ig_interval(args: argparse.Namespace, config: Any) -> tuple[float, float]:
+    values = args.ig_interval
+    if values is None:
+        values = (float(config.guidance.ig.t_min), float(config.guidance.ig.t_max))
+    low, high = (float(value) for value in values)
+    if not 0.0 <= low < high <= 1.0:
+        raise ValueError("IG interval must satisfy 0 <= T_MIN < T_MAX <= 1")
+    return low, high
 
 
 def atomic_save_npy(path: Path, value: np.ndarray) -> None:
@@ -225,6 +250,7 @@ def write_initial_manifest(
     test_mask: np.ndarray,
     world_size: int,
 ) -> None:
+    interval = resolved_ig_interval(args, config)
     manifest_path = output_dir / "manifest.json"
     expected = {
         "protocol": PROTOCOL,
@@ -237,10 +263,7 @@ def write_initial_manifest(
         "world_size": int(world_size),
         "latent_size": [int(value) for value in config.misc.latent_size],
         "sampler_steps": int(config.sampler.num_steps),
-        "ig_interval": [
-            float(config.guidance.ig.t_min),
-            float(config.guidance.ig.t_max),
-        ],
+        "ig_interval": list(interval),
         "precision": args.precision,
         "state_key": args.state_key,
         "checkpoint": str(checkpoint_path),
@@ -399,7 +422,7 @@ def sample_scale_endpoints(
     sampler = create_sampler(transport, guidance_config=config.guidance)
     sample_fn = sampler.sample_ode(**dataclasses.asdict(config.sampler))
     model_fn = partial(forward_with_internalguidance, model)
-    interval = (float(config.guidance.ig.t_min), float(config.guidance.ig.t_max))
+    interval = resolved_ig_interval(args, config)
     generator = torch.Generator(device="cpu").manual_seed(
         int(args.seed) + 1_000_003 * rank
     )
@@ -446,7 +469,9 @@ def sample_scale_endpoints(
                     )
                 if not torch.isfinite(endpoint).all():
                     raise FloatingPointError(f"non-finite endpoint for scale {scale}")
-                endpoint_parts.append(endpoint.float().cpu().to(torch.float16).numpy())
+                endpoint_parts.append(
+                    endpoint.float().cpu().to(endpoint_storage_dtype(args.precision)).numpy()
+                )
                 if rank == 0 and (
                     (batch_index + 1) % args.log_every_batches == 0
                     or batch_index + 1 == total_batches

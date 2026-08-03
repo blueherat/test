@@ -29,6 +29,11 @@ import numpy as np
 import pandas as pd
 import torch
 
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from experiments.internal_guidance_direction import (
     direction_metrics,
     euler_ig_scale_sweep_rollout,
@@ -38,7 +43,6 @@ from experiments.internal_guidance_direction import (
 from experiments.raev2_training_core import DeterministicImageNetParquet
 
 
-ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_IG_REPO = ROOT / "research_repos" / "internal_guidance_study" / "Internal-Guidance" / "SiT"
 DEFAULT_OUTPUT = Path.home() / "data" / "eqvae" / "internal_guidance_sit_audit"
 
@@ -388,9 +392,14 @@ def summarize_results(
     sweep: pd.DataFrame,
     rollout: pd.DataFrame,
 ) -> dict[str, object]:
-    local_summary = (
-        local.groupby("time", as_index=False)
+    local_with_energy = local.assign(
+        direction_mean_square=np.square(local["direction_rms"])
+    )
+    local_summary_frame = (
+        local_with_energy.groupby("time", as_index=False)
         .agg(
+            alignment_mean=("alignment", "mean"),
+            direction_mean_square=("direction_mean_square", "mean"),
             alignment_cosine_mean=("alignment_cosine", "mean"),
             alignment_cosine_median=("alignment_cosine", "median"),
             positive_alignment_fraction=("positive_alignment", "mean"),
@@ -399,8 +408,13 @@ def summarize_results(
             full_mse_mean=("full_mse", "mean"),
             base_mse_mean=("base_mse", "mean"),
         )
-        .to_dict(orient="records")
     )
+    local_summary_frame["gamma_population"] = (
+        local_summary_frame["alignment_mean"]
+        / local_summary_frame["direction_mean_square"].clip(lower=1e-30)
+    )
+    local_summary_frame["scale_population"] = 1.0 + local_summary_frame["gamma_population"]
+    local_summary = local_summary_frame.to_dict(orient="records")
     sweep_summary = (
         sweep.groupby(["time", "scale"], as_index=False)
         .agg(gain_mean=("gain_over_full", "mean"), gain_median=("gain_over_full", "median"))

@@ -3,6 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 import torch
+import pytest
 
 from experiments.run_internal_guidance_sit_audit import (
     checkpoint_state_dict,
@@ -117,6 +118,8 @@ def test_summary_skips_undefined_spearman_correlations() -> None:
     local = pd.DataFrame(
         {
             "time": [0.5] * 3,
+            "alignment": [0.25] * 3,
+            "direction_rms": [0.5] * 3,
             "alignment_cosine": [1.0] * 3,
             "positive_alignment": [True] * 3,
             "scale_star": [2.0] * 3,
@@ -146,3 +149,25 @@ def test_summary_skips_undefined_spearman_correlations() -> None:
     summary = summarize_results(local, sweep, rollout)
     assert summary["local_endpoint_correlations"] == []
     json.dumps(summary, allow_nan=False)
+
+
+def test_summary_reports_population_optimal_scale() -> None:
+    local = pd.DataFrame(
+        {
+            "time": [0.5, 0.5],
+            "alignment": [-1.0, -3.0],
+            "direction_rms": [1.0, 2.0],
+            "alignment_cosine": [-0.1, -0.2],
+            "positive_alignment": [False, False],
+            "scale_star": [0.0, 0.25],
+            "oracle_relative_gain": [0.1, 0.2],
+            "full_mse": [2.0, 2.0],
+            "base_mse": [3.0, 3.0],
+        }
+    )
+    sweep = pd.DataFrame(
+        {"time": [0.5], "scale": [1.0], "gain_over_full": [0.0]}
+    )
+    row = summarize_results(local, sweep, pd.DataFrame())["local_summary"][0]
+    assert row["gamma_population"] == pytest.approx(-4.0 / 5.0)
+    assert row["scale_population"] == pytest.approx(0.2)

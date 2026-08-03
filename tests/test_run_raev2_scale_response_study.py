@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import numpy as np
+import torch
+from argparse import Namespace
 
 from experiments.run_raev2_scale_response_study import (
     diagonal_lda_metrics,
+    endpoint_storage_dtype,
     normalized_scales,
     rbf_mmd_squared,
+    resolved_ig_interval,
     scale_key,
     sketch_distance_metrics,
 )
@@ -15,6 +19,17 @@ def test_scale_key_and_normalization_are_stable() -> None:
     assert scale_key(1.78) == "scale_s1p780000"
     assert normalized_scales([1.78, 1.0, 1.78]) == (1.0, 1.78)
     assert normalized_scales([1.78], require_unguided=False) == (1.78,)
+
+
+def test_explicit_ig_interval_overrides_config() -> None:
+    args = Namespace(ig_interval=(0.2, 0.4))
+    config = Namespace(guidance=Namespace(ig=Namespace(t_min=0.1, t_max=1.0)))
+    assert resolved_ig_interval(args, config) == (0.2, 0.4)
+
+
+def test_fp32_endpoint_storage_preserves_small_responses() -> None:
+    assert endpoint_storage_dtype("fp32") is torch.float32
+    assert endpoint_storage_dtype("bf16") is torch.float16
 
 
 def test_latent_metrics_are_null_for_identical_arrays() -> None:
