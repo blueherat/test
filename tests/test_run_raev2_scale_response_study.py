@@ -14,6 +14,7 @@ from experiments.run_raev2_scale_response_study import (
 def test_scale_key_and_normalization_are_stable() -> None:
     assert scale_key(1.78) == "scale_s1p780000"
     assert normalized_scales([1.78, 1.0, 1.78]) == (1.0, 1.78)
+    assert normalized_scales([1.78], require_unguided=False) == (1.78,)
 
 
 def test_latent_metrics_are_null_for_identical_arrays() -> None:

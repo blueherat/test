@@ -122,6 +122,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260801)
     parser.add_argument("--skip-fid", action="store_true")
     parser.add_argument(
+        "--endpoints-only",
+        action="store_true",
+        help="Sample and cache endpoint latents without decoder/round-trip metrics.",
+    )
+    parser.add_argument(
         "--dino-ckpt-dir",
         type=Path,
         default=Path("/home/zhoushunyu/data/eqvae/models/RAEv2/encoders/dinov3"),
@@ -140,13 +145,17 @@ def scale_key(scale: float) -> str:
     return f"scale_s{float(scale):.6f}".replace(".", "p")
 
 
-def normalized_scales(values: Iterable[float] | None) -> tuple[float, ...]:
+def normalized_scales(
+    values: Iterable[float] | None,
+    *,
+    require_unguided: bool = True,
+) -> tuple[float, ...]:
     scales = tuple(sorted(set(float(value) for value in (values or DEFAULT_SCALES))))
     if not scales:
         raise ValueError("at least one guidance scale is required")
     for scale in scales:
         scale_key(scale)
-    if 1.0 not in scales:
+    if require_unguided and 1.0 not in scales:
         raise ValueError("scale sweep must include s=1.0 as the unguided full-head control")
     return scales
 
@@ -245,6 +254,7 @@ def write_initial_manifest(
         "class_disjoint_split": True,
         "same_noise_and_labels_across_scales": True,
         "skip_fid": bool(args.skip_fid),
+        "endpoints_only": bool(args.endpoints_only),
     }
     if manifest_path.is_file():
         current = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -260,6 +270,7 @@ def write_initial_manifest(
             "precision",
             "state_key",
             "checkpoint",
+            "endpoints_only",
         )
         mismatched = [
             key for key in immutable_keys if current.get(key) != expected.get(key)
@@ -1159,7 +1170,10 @@ def compute_all_metrics(
 def main() -> None:
     install_raev2_decoder_config_compat()
     args = parse_args()
-    scales = normalized_scales(args.scales)
+    scales = normalized_scales(
+        args.scales,
+        require_unguided=not args.endpoints_only,
+    )
     positive_ints = (
         args.samples,
         args.per_rank_batch,
@@ -1217,17 +1231,18 @@ def main() -> None:
     dist.barrier()
 
     local_ids = local_ids_for_rank(args.samples, rank, world_size)
-    collect_real_latents(
-        args=args,
-        config=config,
-        output_dir=output_dir,
-        local_ids=local_ids,
-        labels=labels,
-        source_rows=source_rows,
-        rank=rank,
-        world_size=world_size,
-        device=device,
-    )
+    if not args.endpoints_only:
+        collect_real_latents(
+            args=args,
+            config=config,
+            output_dir=output_dir,
+            local_ids=local_ids,
+            labels=labels,
+            source_rows=source_rows,
+            rank=rank,
+            world_size=world_size,
+            device=device,
+        )
     sample_scale_endpoints(
         args=args,
         config=config,
@@ -1239,6 +1254,15 @@ def main() -> None:
         world_size=world_size,
         device=device,
     )
+    if args.endpoints_only:
+        if rank == 0:
+            manifest_path = output_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["status"] = "endpoints_complete"
+            atomic_write_json(manifest_path, manifest)
+        dist.barrier()
+        dist.destroy_process_group()
+        return
     decode_all_conditions(
         args=args,
         config=config,
