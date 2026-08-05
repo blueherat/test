@@ -1,0 +1,63 @@
+{
+  "protocol": "official_raev2_fixed_scale_metric_suite_v1",
+  "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "state_key": "model",
+  "scales": [
+    0.85,
+    0.92,
+    1.0,
+    1.2,
+    1.4,
+    1.5,
+    1.6,
+    1.78,
+    1.85
+  ],
+  "pair_samples": 256,
+  "distribution_samples_per_scale": 5000,
+  "sampling_seed": 20260806,
+  "reference_seed": 20260805,
+  "metric_seed": 20260805,
+  "minima": {
+    "paired_nrmse_delta_t": {
+      "best_scale": 0.92,
+      "best_value": 0.4127549837909299
+    },
+    "projected_latent_swd_mean": {
+      "best_scale": 1.2,
+      "best_value": 0.05510461000782346
+    },
+    "projected_latent_fid_mean": {
+      "best_scale": 1.2,
+      "best_value": 6.549953946076627
+    },
+    "gfid_to_real": {
+      "best_scale": 1.5,
+      "best_value": 7.444495022855904
+    },
+    "fid_to_clean_reconstruction": {
+      "best_scale": 1.78,
+      "best_value": 13.26563339221758
+    },
+    "decoder_projected_fid_mean_layers": {
+      "best_scale": 1.85,
+      "best_value": 33.76144342296489
+    }
+  },
+  "reference_baselines": {
+    "clean_reconstruction_fid_to_real": 6.8088328806896925,
+    "clean_reconstruction_kid_to_real_mean": 4.869222640991211e-05,
+    "clean_reconstruction_kid_to_real_std": 4.887452062764197e-05,
+    "clean_reconstruction_precision_to_real": 0.7956,
+    "clean_reconstruction_recall_to_real": 0.806,
+    "real_feature_samples_for_kid_pr": 5000,
+    "real_feature_cache": "/home/zhoushunyu/.cache/torch/fidelity_cache/raev2_imagenet256_virtual_reference-inception-v3-compat-features-2048.pt"
+  },
+  "interpretation": {
+    "paired_error": "Teacher-forced per-sample clean-latent regression.",
+    "latent_distribution": "Free endpoint latent marginal vs clean encoder marginal. FID/SWD are explicitly projected diagnostics.",
+    "decoded_distribution": "gFID uses full ADM real statistics; reconstruction-relative FID uses the matched 5k clean decoded reference.",
+    "decoder_variance": "Within-image spatial variance and between-image pooled-feature variance are reported separately."
+  }
+}

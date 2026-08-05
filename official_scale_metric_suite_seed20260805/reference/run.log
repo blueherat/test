@@ -1,0 +1,33 @@
+
+[2026-08-05 22:58:07] $ /home/zhoushunyu/miniconda3/envs/myenv/bin/python3.10 -m torch.distributed.run --standalone --nproc_per_node=4 /home/zhoushunyu/eqvae/experiments/run_official_scale_metric_suite.py --mode reference-worker --repo /home/zhoushunyu/eqvae --data-root /data/users/zhoushunyu/eqvae --python /home/zhoushunyu/miniconda3/envs/myenv/bin/python3.10 --config /home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml --checkpoint /data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt --index-map /data/users/zhoushunyu/eqvae/datasets/raev2_imagenet_train_lexicographic_indices.npy --packed-data-path /data/shared/imagenet-1k/random_access_v1 --parquet-data-path /data/shared/imagenet-1k --fid-reference /data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz --real-feature-cache /home/zhoushunyu/.cache/torch/fidelity_cache/raev2_imagenet256_virtual_reference-inception-v3-compat-features-2048.pt --dino-ckpt-dir /data/users/zhoushunyu/eqvae/models/RAEv2/encoders/dinov3 --dino-repo-dir /data/users/zhoushunyu/eqvae/models/RAEv2/dinov3_repo --output-root /data/users/zhoushunyu/eqvae/experiments/official_scale_metric_suite_seed20260805 --devices 0,1,2,3 --state-key model --precision bf16 --pair-samples 256 --pair-batch-size 1 --pair-time-chunk 4 --pair-seed 20260805 --distribution-samples 5000 --distribution-batch-size 4 --sampling-seed 20260806 --reference-seed 20260805 --metric-seed 20260805 --latent-projection-dim 256 --latent-projection-repeats 4 --latent-projection-seed 8309 --decoder-layer-fractions 0.2,0.4,0.6,0.8,1.0 --example-count 16 --num-workers 2 --log-every-batches 25 --scales 0.85,0.92,1.0,1.2,1.4,1.5,1.6,1.78,1.85
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+/home/zhoushunyu/miniconda3/envs/myenv/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+Loading pretrained decoder from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt
+Loaded normalization stats from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt
+RAE: encoder=dinov3mls-vit-l16[layers=11.13.15.17.19.21.23], resolution=256, patch_size=16, hidden_size=1024
+Loading pretrained decoder from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt
+Loading pretrained decoder from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt
+Loading pretrained decoder from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt
+Loaded normalization stats from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt
+RAE: encoder=dinov3mls-vit-l16[layers=11.13.15.17.19.21.23], resolution=256, patch_size=16, hidden_size=1024
+Loaded normalization stats from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt
+RAE: encoder=dinov3mls-vit-l16[layers=11.13.15.17.19.21.23], resolution=256, patch_size=16, hidden_size=1024
+Loaded normalization stats from /home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt
+RAE: encoder=dinov3mls-vit-l16[layers=11.13.15.17.19.21.23], resolution=256, patch_size=16, hidden_size=1024
+[reference] rank0 batch 25
+[reference] rank0 batch 50
+[reference] rank0 batch 75
+[reference] rank0 batch 100
+[reference] rank0 batch 125
+[reference] rank0 batch 150
+[reference] rank0 batch 175
+[reference] rank0 batch 200
+[reference] rank0 batch 225
+[reference] rank0 batch 250
+[reference] rank0 batch 275
+[reference] rank0 batch 300
+[reference] rank0 batch 313

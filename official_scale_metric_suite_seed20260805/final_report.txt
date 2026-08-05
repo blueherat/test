@@ -1,0 +1,21 @@
+Official RAEv2 fixed-scale metric suite
+=======================================
+
+Scales: [0.85, 0.92, 1.0, 1.2, 1.4, 1.5, 1.6, 1.78, 1.85]
+Pair samples: 256
+Free/reference samples per scale: 5000
+
+Observed minima:
+  paired_nrmse_delta_t: scale=0.92, value=0.41275498
+  projected_latent_swd_mean: scale=1.2, value=0.05510461
+  projected_latent_fid_mean: scale=1.2, value=6.5499539
+  gfid_to_real: scale=1.5, value=7.444495
+  fid_to_clean_reconstruction: scale=1.78, value=13.265633
+  decoder_projected_fid_mean_layers: scale=1.85, value=33.761443
+
+Clean reconstruction baseline:
+  FID to real: 6.8088329
+  KID to real: 4.8692226e-05 ± 4.8874521e-05
+  Precision/Recall to real: 0.7956 / 0.806
+
+See scale_summary.csv and decoder_feature_distribution.csv for the complete table.
