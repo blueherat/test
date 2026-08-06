@@ -1,0 +1,104 @@
+{
+  "protocol": "raev2_frequency_axis_extrapolation_screen_v1",
+  "script_version": "v1",
+  "definition": {
+    "counterfactual_state": "x_tau = x + (1-t)*(H_tau(y0)-y0)",
+    "frequency_direction": "q_tau = y0 - F(x_tau,t)",
+    "extrapolated_prediction": "y_ext = y0 + alpha*q_tau",
+    "axis_coordinate": "tau = sigma_pixels^2"
+  },
+  "configuration": {
+    "teacher_samples": 32,
+    "teacher_steps": [
+      30,
+      50,
+      70,
+      85,
+      95,
+      98
+    ],
+    "blur_sigmas": [
+      0.35,
+      0.7,
+      1.0
+    ],
+    "alpha_sweep": [
+      -0.5,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "sample_count": 4,
+    "sample_alphas": [
+      -0.5,
+      0.5,
+      1.0
+    ],
+    "sample_blur_sigma": 0.7,
+    "frequency_interval": [
+      0.1,
+      0.95
+    ],
+    "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+    "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+  },
+  "teacher_screen": {
+    "mean_alpha_star": 0.04644582879975398,
+    "positive_alpha_star_fraction": 0.3125,
+    "mean_target_direction_cosine": -0.0024512146957940007,
+    "mean_model_gap_cosine": 0.29387475804527496,
+    "mean_pred_oracle_direction_cosine": 0.8829374708735026,
+    "maximum_noise_preservation_rms_error": 3.248153412537381e-07,
+    "alpha_-0.5_mean_relative_mse_change": 0.41089223820046944,
+    "alpha_-0.5_improved_fraction": 0.059027777777777776,
+    "alpha_0.25_mean_relative_mse_change": 0.10792835029065741,
+    "alpha_0.25_improved_fraction": 0.11284722222222222,
+    "alpha_0.5_mean_relative_mse_change": 0.4247730135085764,
+    "alpha_0.5_improved_fraction": 0.08333333333333333,
+    "alpha_1.0_mean_relative_mse_change": 1.6852112787261988,
+    "alpha_1.0_improved_fraction": 0.0625
+  },
+  "axis_smoothness": {
+    "mean_slope_direction_cosine": 0.925298671694442,
+    "mean_slope_rms_ratio": 0.7150976710858096
+  },
+  "tiny_rollout": [
+    {
+      "condition": "no_ig",
+      "endpoint_rms_from_no_ig_mean": 0.0,
+      "endpoint_rms_from_no_ig_std": 0.0,
+      "endpoint_rms": 0.9879635156312203
+    },
+    {
+      "condition": "scalar_ig",
+      "endpoint_rms_from_no_ig_mean": 0.4861441873736199,
+      "endpoint_rms_from_no_ig_std": 0.11677749981923621,
+      "endpoint_rms": 1.0003670265234377
+    },
+    {
+      "condition": "freq_alpha_m0p5",
+      "endpoint_rms_from_no_ig_mean": 0.4652549673763575,
+      "endpoint_rms_from_no_ig_std": 0.05404892793136538,
+      "endpoint_rms": 1.000125888750745
+    },
+    {
+      "condition": "freq_alpha_0p5",
+      "endpoint_rms_from_no_ig_mean": 0.522744045255311,
+      "endpoint_rms_from_no_ig_std": 0.0769352667378872,
+      "endpoint_rms": 0.9913609437638804
+    },
+    {
+      "condition": "freq_alpha_1",
+      "endpoint_rms_from_no_ig_mean": 0.8533855329050848,
+      "endpoint_rms_from_no_ig_std": 0.0663941985588313,
+      "endpoint_rms": 1.0064964299014656
+    }
+  ],
+  "heuristic_screening": {
+    "axis_is_locally_coherent": true,
+    "self_constructed_axis_matches_oracle": true,
+    "positive_extrapolation_often_points_to_target": false,
+    "frequency_direction_is_not_nearly_identical_to_model_gap": true,
+    "note": "Thresholds are engineering screening heuristics, not statistical tests."
+  }
+}

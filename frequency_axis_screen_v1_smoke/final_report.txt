@@ -1,0 +1,29 @@
+RAEv2 Input-Frequency-Axis Extrapolation Screen v1
+===================================================
+
+This is a fast screening experiment. It does not compute FID/KID and
+does not establish generation-quality improvement.
+
+Core definition:
+  x_tau = x + (1-t) * (H_tau(y0) - y0)
+  q_tau = y0 - Full(x_tau, t)
+  y_ext = y0 + alpha * q_tau
+
+Teacher-forced aggregate:
+  mean alpha*: 0.046446
+  positive alpha* fraction: 0.3125
+  target-direction cosine: -0.0025
+  predicted/oracle direction cosine: 0.8829
+  frequency/model-gap cosine: 0.2939
+
+Axis smoothness:
+  mean cosine between adjacent finite-difference slopes: 0.9253
+
+Heuristic screening flags:
+  axis_is_locally_coherent: True
+  self_constructed_axis_matches_oracle: True
+  positive_extrapolation_often_points_to_target: False
+  frequency_direction_is_not_nearly_identical_to_model_gap: True
+
+Interpretation must use teacher_summary.csv, axis_smoothness_summary.csv,
+same_noise_comparison.png, and endpoint_pairwise_summary.csv together.

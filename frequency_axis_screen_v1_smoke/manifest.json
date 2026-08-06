@@ -1,0 +1,63 @@
+{
+  "protocol": "raev2_frequency_axis_extrapolation_screen_v1",
+  "script_version": "v1",
+  "stages": [
+    "teacher",
+    "sample",
+    "decode",
+    "report"
+  ],
+  "args": {
+    "output_root": "/data/users/zhoushunyu/eqvae/experiments/frequency_axis_screen_v1_smoke",
+    "stages": [
+      "teacher",
+      "sample",
+      "decode",
+      "report"
+    ],
+    "resume": false,
+    "overwrite": false,
+    "config": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+    "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+    "state_key": "ema",
+    "packed_data_path": "/data/shared/imagenet-1k/random_access_v1",
+    "parquet_data_path": "/data/shared/imagenet-1k",
+    "dino_ckpt_dir": "/data/users/zhoushunyu/eqvae/models/RAEv2/encoders/dinov3",
+    "dino_repo_dir": "/data/users/zhoushunyu/eqvae/models/RAEv2/dinov3_repo",
+    "precision": "fp32",
+    "per_rank_batch": 1,
+    "seed": 20260807,
+    "teacher_samples": 32,
+    "teacher_steps": [
+      30,
+      50,
+      70,
+      85,
+      95,
+      98
+    ],
+    "blur_sigmas": [
+      0.35,
+      0.7,
+      1.0
+    ],
+    "alpha_sweep": [
+      -0.5,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "teacher_noise_seed": 20264807,
+    "sample_count": 4,
+    "sample_alphas": [
+      -0.5,
+      0.5,
+      1.0
+    ],
+    "sample_blur_sigma": 0.7,
+    "freq_t_min": 0.1,
+    "freq_t_max": 0.95,
+    "sample_noise_seed": 20265807,
+    "preview_count": 8
+  }
+}
