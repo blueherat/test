@@ -1,0 +1,25 @@
+RAEv2 Spectral IG Mechanism Suite v3
+====================================
+
+The controller was fitted only to teacher-forced versus rollout spectral mismatch.
+Image metrics are independent validation and did not enter the fit.
+
+Controller gains (gamma = scale - 1):
+[[0.476  0.1953 0.1711]
+ [0.4638 0.0657 0.1199]
+ [0.4795 0.0902 0.1474]
+ [0.5104 0.144  0.1879]
+ [0.5399 0.1885 0.232 ]
+ [0.5673 0.2242 0.2737]
+ [0.5909 0.2612 0.3147]
+ [0.608  0.3145 0.3783]]
+
+Independent image metrics:
+       condition  samples                                                                                                         sample_path                                                    sample_sha256  inception_score_mean  inception_score_std  frechet_inception_distance  kernel_inception_distance_mean  kernel_inception_distance_std
+           no_ig     1000            /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/no_ig/samples.npz ba9f32dd6b7a6575d2cc01bbde91f8c5e9f52ae8c4d3873986e36e831cb236b2             53.787164             4.800115                   41.748282                        0.000272                       0.000079
+       scalar_ig     1000        /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/scalar_ig/samples.npz c332ab5741902a60e78697099da67347a9d499ab579b82274e75d25aee2ddd0b             59.430975             3.063949                   40.987320                       -0.000015                       0.000057
+spectral_learned     1000 /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/spectral_learned/samples.npz c9f3260ea969be3e24214791104580a1c8283a0a3743a51c81fbe39119d5a0db             56.617209             3.356563                   41.160403                       -0.000006                       0.000045
+ spectral_static     1000  /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/spectral_static/samples.npz f6380d6bee5d5ff292f494ea9e02e20cc38395fb5c0bfdb93802f70eaab8982b             57.299178             3.578312                   40.987719                       -0.000009                       0.000046
+        low_only     1000         /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/low_only/samples.npz 7e7b19e40b18d5d07955504ce4b1933c07b830e2aeda0bd9d1507a1e57ecd191             55.416869             4.196142                   41.585345                        0.000078                       0.000055
+        mid_only     1000         /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/mid_only/samples.npz fe0dc4807222824499d4c2f5d19de4040856911843813aad05116d8ede37ffee             54.041818             4.098021                   41.764150                        0.000220                       0.000073
+       high_only     1000        /data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/high_only/samples.npz 1e7fa67d2903f3419b4c325d921344872cd185e0a3c83313ff08b5d5df7f91f6             53.750578             3.952195                   41.540231                        0.000215                       0.000071

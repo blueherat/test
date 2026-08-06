@@ -1,0 +1,79 @@
+[
+  {
+    "condition": "no_ig",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/no_ig/samples.npz",
+    "sample_sha256": "ba9f32dd6b7a6575d2cc01bbde91f8c5e9f52ae8c4d3873986e36e831cb236b2",
+    "inception_score_mean": 53.78716444887844,
+    "inception_score_std": 4.80011492209935,
+    "frechet_inception_distance": 41.74828186474889,
+    "kernel_inception_distance_mean": 0.0002716183662414551,
+    "kernel_inception_distance_std": 7.864340373385891e-05
+  },
+  {
+    "condition": "scalar_ig",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/scalar_ig/samples.npz",
+    "sample_sha256": "c332ab5741902a60e78697099da67347a9d499ab579b82274e75d25aee2ddd0b",
+    "inception_score_mean": 59.43097528379652,
+    "inception_score_std": 3.0639487729589012,
+    "frechet_inception_distance": 40.98732013842675,
+    "kernel_inception_distance_mean": -1.5223026275634766e-05,
+    "kernel_inception_distance_std": 5.686438931223561e-05
+  },
+  {
+    "condition": "spectral_learned",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/spectral_learned/samples.npz",
+    "sample_sha256": "c9f3260ea969be3e24214791104580a1c8283a0a3743a51c81fbe39119d5a0db",
+    "inception_score_mean": 56.61720898968407,
+    "inception_score_std": 3.356563409198397,
+    "frechet_inception_distance": 41.160403277067985,
+    "kernel_inception_distance_mean": -5.6314468383789065e-06,
+    "kernel_inception_distance_std": 4.50970589590865e-05
+  },
+  {
+    "condition": "spectral_static",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/spectral_static/samples.npz",
+    "sample_sha256": "f6380d6bee5d5ff292f494ea9e02e20cc38395fb5c0bfdb93802f70eaab8982b",
+    "inception_score_mean": 57.29917832197268,
+    "inception_score_std": 3.578311580205131,
+    "frechet_inception_distance": 40.98771948054747,
+    "kernel_inception_distance_mean": -8.854866027832031e-06,
+    "kernel_inception_distance_std": 4.596971147301121e-05
+  },
+  {
+    "condition": "low_only",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/low_only/samples.npz",
+    "sample_sha256": "7e7b19e40b18d5d07955504ce4b1933c07b830e2aeda0bd9d1507a1e57ecd191",
+    "inception_score_mean": 55.416869046542274,
+    "inception_score_std": 4.19614228327137,
+    "frechet_inception_distance": 41.58534526561499,
+    "kernel_inception_distance_mean": 7.787466049194336e-05,
+    "kernel_inception_distance_std": 5.507425472160421e-05
+  },
+  {
+    "condition": "mid_only",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/mid_only/samples.npz",
+    "sample_sha256": "fe0dc4807222824499d4c2f5d19de4040856911843813aad05116d8ede37ffee",
+    "inception_score_mean": 54.041817706074156,
+    "inception_score_std": 4.098021268245412,
+    "frechet_inception_distance": 41.76415039075232,
+    "kernel_inception_distance_mean": 0.00021973609924316406,
+    "kernel_inception_distance_std": 7.268072597061669e-05
+  },
+  {
+    "condition": "high_only",
+    "samples": 1000,
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/05_samples/high_only/samples.npz",
+    "sample_sha256": "1e7fa67d2903f3419b4c325d921344872cd185e0a3c83313ff08b5d5df7f91f6",
+    "inception_score_mean": 53.75057764032611,
+    "inception_score_std": 3.9521954550453464,
+    "frechet_inception_distance": 41.54023143919272,
+    "kernel_inception_distance_mean": 0.00021483182907104493,
+    "kernel_inception_distance_std": 7.134545419848059e-05
+  }
+]
