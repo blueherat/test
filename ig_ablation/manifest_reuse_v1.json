@@ -1,0 +1,212 @@
+{
+  "protocol": "raev2_ig_stage_ablation_reuse_v1",
+  "script_version": "reuse_v1",
+  "script_name": "run_raev2_ig_stage_ablation_reuse_v1.py",
+  "rollout_core": "experiments.run_raev2_ig_impulse_response.simulate_group",
+  "training": false,
+  "config": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+  "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "checkpoint_step": 100080,
+  "checkpoint_epoch": 80,
+  "state_key": "ema",
+  "precision": "fp32",
+  "samples": 8,
+  "world_size": 4,
+  "seed": 20260806,
+  "label_mode": "sequential",
+  "label_seed": 20260806,
+  "ig_scale": 1.78,
+  "ig_gamma": 0.78,
+  "official_ig_interval": [
+    0.1,
+    1.0
+  ],
+  "phases": [
+    {
+      "name": "early",
+      "index": 0,
+      "start_step": 0,
+      "end_step": 33,
+      "start_time": 1.0,
+      "end_time": 0.9420035481452942,
+      "active_steps": 33
+    },
+    {
+      "name": "middle",
+      "index": 1,
+      "start_step": 33,
+      "end_step": 66,
+      "start_time": 0.9420035481452942,
+      "end_time": 0.8047336935997009,
+      "active_steps": 33
+    },
+    {
+      "name": "late",
+      "index": 2,
+      "start_step": 66,
+      "end_step": 99,
+      "start_time": 0.8047336935997009,
+      "end_time": 0.07476635277271271,
+      "active_steps": 33
+    }
+  ],
+  "interventions": [
+    {
+      "name": "no_ig",
+      "family": "baseline",
+      "segments": [],
+      "gamma": 0.0,
+      "phase_mask": 0,
+      "pair_name": null
+    },
+    {
+      "name": "early",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          0,
+          33
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 1,
+      "pair_name": null
+    },
+    {
+      "name": "middle",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          33,
+          66
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 2,
+      "pair_name": null
+    },
+    {
+      "name": "late",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          66,
+          99
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 4,
+      "pair_name": null
+    },
+    {
+      "name": "early_middle",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          0,
+          33
+        ],
+        [
+          33,
+          66
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 3,
+      "pair_name": null
+    },
+    {
+      "name": "early_late",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          0,
+          33
+        ],
+        [
+          66,
+          99
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 5,
+      "pair_name": null
+    },
+    {
+      "name": "middle_late",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          33,
+          66
+        ],
+        [
+          66,
+          99
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 6,
+      "pair_name": null
+    },
+    {
+      "name": "full_ig",
+      "family": "stage_schedule",
+      "segments": [
+        [
+          0,
+          33
+        ],
+        [
+          33,
+          66
+        ],
+        [
+          66,
+          99
+        ]
+      ],
+      "gamma": 0.78,
+      "phase_mask": 7,
+      "pair_name": null
+    }
+  ],
+  "same_noise_and_labels_across_conditions": true,
+  "stat_fields": [
+    "unit_injected_energy",
+    "actual_injected_energy",
+    "unit_coherent_rms",
+    "actual_coherent_rms"
+  ],
+  "official_baseline_check": true,
+  "summary": {
+    "full_ig_effect_rms": {
+      "mean": 0.46799263879329767,
+      "median": 0.46817350601728336,
+      "p10": 0.393983740991926,
+      "p90": 0.5429402488402687
+    },
+    "shapley_reconstruction_rms": {
+      "mean": 2.9649256253832982e-08,
+      "median": 2.9181942444274e-08,
+      "p10": 2.475276384013718e-08,
+      "p90": 3.46680073717625e-08
+    },
+    "stage_projection_ranking": [
+      {
+        "phase": "early",
+        "shapley_projection_fraction_mean": 0.4734478234343328
+      },
+      {
+        "phase": "middle",
+        "shapley_projection_fraction_mean": 0.26896065697049637
+      },
+      {
+        "phase": "late",
+        "shapley_projection_fraction_mean": 0.25759155348746055
+      }
+    ],
+    "largest_interaction": "early:middle"
+  }
+}
