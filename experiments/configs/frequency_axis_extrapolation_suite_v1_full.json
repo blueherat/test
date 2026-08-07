@@ -1,0 +1,163 @@
+{
+  "protocol_name": "raev2_frequency_axis_extrapolation_suite_v1_full",
+  "axis": {
+    "construction": "adaptive_state_rms",
+    "fixed_sigma": 0.20,
+    "target_relative_state_rms": 0.010,
+    "sigma_min": 0.02,
+    "sigma_max": 0.50,
+    "bisection_steps": 14,
+    "tau_floor": 0.0001
+  },
+  "projection": {
+    "channel_dim": 64,
+    "spatial_dim": 16,
+    "pca_dim": 128,
+    "seed": 20266807
+  },
+  "distribution_metrics": {
+    "swd_directions": 256,
+    "pairwise_max_samples": 512,
+    "c2st_folds": 5,
+    "c2st_max_samples_per_class": 768,
+    "compute_fields": ["state", "prediction", "gap"]
+  },
+  "audit_checkpoint_steps": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 99],
+  "frequency_bands": {
+    "edges": [0.0, 1.5, 3.0, 4.5, 6.0, 8.0, 100.0],
+    "names": ["dc_low", "low_mid", "mid", "mid_high", "high", "corner"]
+  },
+  "windows": {
+    "early": [0.90, 0.97],
+    "middle": [0.55, 0.90],
+    "late": [0.10, 0.55],
+    "all": [0.10, 0.97]
+  },
+  "conditions": [
+    {
+      "name": "no_ig",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.0,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "scalar_ig",
+      "model_gamma": 0.78,
+      "frequency_eta": 0.0,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_m0p05_all",
+      "model_gamma": 0.0,
+      "frequency_eta": -0.05,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_m0p02_all",
+      "model_gamma": 0.0,
+      "frequency_eta": -0.02,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_p0p02_all",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.02,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_p0p05_all",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.05,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_p0p08_early",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.08,
+      "frequency_window": "early",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_p0p05_middle",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.05,
+      "frequency_window": "middle",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "freq_eta_p0p05_late",
+      "model_gamma": 0.0,
+      "frequency_eta": 0.05,
+      "frequency_window": "late",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "joint_eta_m0p02_all",
+      "model_gamma": 0.78,
+      "frequency_eta": -0.02,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "joint_eta_p0p02_all",
+      "model_gamma": 0.78,
+      "frequency_eta": 0.02,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "joint_eta_p0p05_all",
+      "model_gamma": 0.78,
+      "frequency_eta": 0.05,
+      "frequency_window": "all",
+      "interaction": false,
+      "audit": true,
+      "sample": true
+    },
+    {
+      "name": "joint_bilinear_eta_p0p02_all",
+      "model_gamma": 0.78,
+      "frequency_eta": 0.02,
+      "frequency_window": "all",
+      "interaction": true,
+      "audit": true,
+      "sample": true
+    }
+  ],
+  "pulse": {
+    "baselines": ["no_ig", "scalar_ig"],
+    "windows": ["early", "middle", "late"],
+    "modes": ["recursive", "replay"],
+    "etas": [0.02, 0.05],
+    "measure_window_end": true,
+    "measure_final": true
+  }
+}

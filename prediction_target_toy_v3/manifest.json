@@ -1,0 +1,54 @@
+{
+  "script": "run_prediction_target_extrapolation_toy_v3.py",
+  "definition": "x_t=(1-t)x+t*eps; v=eps-x",
+  "args": {
+    "output_root": "/data/users/zhoushunyu/eqvae/experiments/prediction_target_toy_v3",
+    "dims": [
+      2,
+      8,
+      16,
+      512
+    ],
+    "hidden_dim": 256,
+    "depth": 5,
+    "time_dim": 32,
+    "train_steps": 30000,
+    "batch_size": 1024,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "grad_clip": 10.0,
+    "loss_space": "v",
+    "t_min": 0.02,
+    "t_max": 0.98,
+    "conversion_clip": 0.02,
+    "data_jitter": 0.015,
+    "log_every": 500,
+    "eval_times": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "eval_samples": 8192,
+    "eval_batch_size": 2048,
+    "sample_count": 10000,
+    "sample_steps": 200,
+    "sample_t_max": 0.98,
+    "sample_t_min": 0.02,
+    "gammas": [
+      0.1,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "swd_projections": 256,
+    "mmd_max_points": 4096,
+    "plot_points": 4000,
+    "richardson_rho_min": 0.0,
+    "richardson_rho_max": 0.9,
+    "seed": 20260807,
+    "device": "cuda",
+    "save_checkpoints": false
+  }
+}
