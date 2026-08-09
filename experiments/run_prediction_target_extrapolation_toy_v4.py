@@ -241,6 +241,30 @@ class CurvedEmbedding:
         self, vec: torch.Tensor, u: torch.Tensor
     ) -> tuple[torch.Tensor, torch.Tensor]:
         q = self.tangent_basis(u)
+        return self.split_with_tangent_basis(vec, q)
+
+    def split_tangent_normal_gram(
+        self, vec: torch.Tensor, u: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """Project through the equivalent 2x2 Gram system instead of QR."""
+        jacobian = self.jacobian(u).double()
+        value = vec.double()
+        j0, j1 = jacobian[:, :, 0], jacobian[:, :, 1]
+        a = row_inner(j0, j0)
+        b = row_inner(j0, j1)
+        c = row_inner(j1, j1)
+        r0 = row_inner(j0, value)
+        r1 = row_inner(j1, value)
+        determinant = (a * c - b.square()).clamp_min(torch.finfo(torch.float64).tiny)
+        coeff0 = (c * r0 - b * r1) / determinant
+        coeff1 = (a * r1 - b * r0) / determinant
+        tangent = (coeff0[:, None] * j0 + coeff1[:, None] * j1).to(vec.dtype)
+        return tangent, vec - tangent
+
+    @staticmethod
+    def split_with_tangent_basis(
+        vec: torch.Tensor, q: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
         tangent = torch.einsum("bdi,bi->bd", q, torch.einsum("bdi,bd->bi", q, vec))
         return tangent, vec - tangent
 
@@ -562,9 +586,10 @@ def evaluate_teacher(
             r_oracle = x_oracle - clean["x"]
             r_true = x - clean["x"]
 
-            txv, nxv = embedding.split_tangent_normal(g_xv, u)
-            txe, nxe = embedding.split_tangent_normal(g_xeps, u)
-            tr, nr = embedding.split_tangent_normal(r_oracle, u)
+            tangent_basis = embedding.tangent_basis(u)
+            txv, nxv = embedding.split_with_tangent_basis(g_xv, tangent_basis)
+            txe, nxe = embedding.split_with_tangent_basis(g_xeps, tangent_basis)
+            tr, nr = embedding.split_with_tangent_basis(r_oracle, tangent_basis)
 
             gamma_star_xv = row_inner(r_oracle, g_xv) / row_inner(g_xv, g_xv).clamp_min(EPS)
             gamma_star_xeps = row_inner(r_oracle, g_xeps) / row_inner(g_xeps, g_xeps).clamp_min(EPS)
@@ -614,6 +639,7 @@ def evaluate_teacher(
             n_total += n
 
         row = {
+            "seed": seed,
             "D": embedding.D,
             "curvature": embedding.curvature,
             "scale_mode": embedding.scale_mode,
@@ -710,7 +736,7 @@ def sample_condition(
         grid = torch.linspace(t_max, t_min, sample_steps + 1, device=device)
         for i in range(sample_steps):
             t_now, t_next = grid[i], grid[i + 1]
-            t = torch.full((n,), float(t_now), device=device)
+            t = t_now.expand(n)
             if kind == "oracle":
                 xhat = oracle(state, t)
             else:
@@ -726,7 +752,7 @@ def sample_condition(
             vel = (state - xhat) / t[:, None].clamp_min(clip)
             state = state + (t_next - t_now) * vel
 
-        t = torch.full((n,), float(grid[-1]), device=device)
+        t = grid[-1].expand(n)
         if kind == "oracle":
             final = oracle(state, t)
         else:
@@ -790,9 +816,7 @@ def sample_mixture_conditions(
         for i in range(sample_steps):
             t_now, t_next = grid[i], grid[i + 1]
             flat_state = states.reshape(-1, embedding.D)
-            flat_t = torch.full(
-                (len(strengths) * n,), float(t_now), device=device
-            )
+            flat_t = t_now.expand(len(strengths) * n)
             clean = clean_predictions(
                 models, flat_state, flat_t, clip, ("x", target)
             )
@@ -801,17 +825,172 @@ def sample_mixture_conditions(
                 len(strengths), n, embedding.D
             )
             guided = x_clean + strengths_tensor * (x_clean - other_clean)
-            velocity = (states - guided) / flat_t[0].clamp_min(clip)
+            velocity = (states - guided) / t_now.clamp_min(clip)
             states = states + (t_next - t_now) * velocity
 
         flat_state = states.reshape(-1, embedding.D)
-        flat_t = torch.full(
-            (len(strengths) * n,), float(grid[-1]), device=device
-        )
+        flat_t = grid[-1].expand(len(strengths) * n)
         clean = clean_predictions(models, flat_state, flat_t, clip, ("x", target))
         x_clean = clean["x"].reshape(len(strengths), n, embedding.D)
         other_clean = clean[target].reshape(len(strengths), n, embedding.D)
         final = x_clean + strengths_tensor * (x_clean - other_clean)
+        for index, value in enumerate(final):
+            collected[index].append(value.cpu().numpy())
+
+    return [np.concatenate(parts, axis=0) for parts in collected]
+
+
+def required_prediction_targets(kind: str) -> tuple[str, ...]:
+    if kind in {"x", "v", "eps"}:
+        return (kind,)
+    if kind in {"xv", "xv_norm", "xv_tangent", "xv_normal"}:
+        return ("x", "v")
+    if kind == "xeps":
+        return ("x", "eps")
+    raise ValueError(f"unsupported batched condition kind: {kind}")
+
+
+@torch.inference_mode()
+def batched_guided_clean(
+    *,
+    models: dict[str, DenoiseMLP],
+    embedding: CurvedEmbedding,
+    states: torch.Tensor,
+    t: torch.Tensor,
+    kinds: Sequence[str],
+    strengths: Sequence[float],
+    clip: float,
+) -> torch.Tensor:
+    """Evaluate independent guidance trajectories in shared head batches.
+
+    ``states[k]`` remains the state of condition ``k``. Batching only combines
+    model evaluations; no state or prediction is shared across conditions.
+    """
+    if states.ndim != 3:
+        raise ValueError("states must be [conditions,batch,D]")
+    if len(states) != len(kinds) or len(kinds) != len(strengths):
+        raise ValueError("states, kinds, and strengths must have equal length")
+    if t.ndim != 1 or t.shape[0] != states.shape[1]:
+        raise ValueError("t must be [batch]")
+
+    condition_indices = {
+        target: [
+            index
+            for index, kind in enumerate(kinds)
+            if target in required_prediction_targets(kind)
+        ]
+        for target in ("x", "v", "eps")
+    }
+    clean_by_head: dict[str, torch.Tensor] = {}
+    positions: dict[str, dict[int, int]] = {}
+    batch = states.shape[1]
+    for target, indices in condition_indices.items():
+        if not indices:
+            continue
+        head_states = states[indices].reshape(-1, embedding.D)
+        head_t = t.repeat(len(indices))
+        output = models[target](head_states, head_t)
+        clean = clean_from_output(output, head_states, head_t, target, clip)
+        clean_by_head[target] = clean.reshape(len(indices), batch, embedding.D)
+        positions[target] = {condition_index: pos for pos, condition_index in enumerate(indices)}
+
+    def clean_for(target: str, condition_index: int) -> torch.Tensor:
+        return clean_by_head[target][positions[target][condition_index]]
+
+    guided: list[torch.Tensor | None] = [None] * len(kinds)
+    geometric: list[tuple[int, torch.Tensor, torch.Tensor, str, float]] = []
+    for index, (kind, strength) in enumerate(zip(kinds, strengths)):
+        if kind in {"x", "v", "eps"}:
+            guided[index] = clean_for(kind, index)
+            continue
+
+        x_clean = clean_for("x", index)
+        other_target = "v" if kind.startswith("xv") else "eps"
+        gap = x_clean - clean_for(other_target, index)
+        if kind in {"xv", "xeps"}:
+            guided[index] = x_clean + float(strength) * gap
+        elif kind == "xv_norm":
+            guided[index] = x_clean + float(strength) * normalize_gap_rms(gap)
+        elif kind in {"xv_tangent", "xv_normal"}:
+            geometric.append((index, x_clean, gap, kind, float(strength)))
+        else:
+            raise ValueError(kind)
+
+    if geometric:
+        x_clean = torch.stack([item[1] for item in geometric])
+        gaps = torch.stack([item[2] for item in geometric])
+        flat_x = x_clean.reshape(-1, embedding.D)
+        flat_gap = gaps.reshape(-1, embedding.D)
+        u_hat = embedding.decode_intrinsic(flat_x)
+        tangent, normal = embedding.split_tangent_normal_gram(flat_gap, u_hat)
+        tangent = tangent.reshape_as(gaps)
+        normal = normal.reshape_as(gaps)
+        for position, (index, x_value, _gap, kind, strength) in enumerate(geometric):
+            component = tangent[position] if kind == "xv_tangent" else normal[position]
+            guided[index] = x_value + strength * component
+
+    if any(value is None for value in guided):
+        raise RuntimeError("a batched guidance condition was not evaluated")
+    return torch.stack([value for value in guided if value is not None])
+
+
+@torch.inference_mode()
+def sample_conditions_batched(
+    *,
+    models: dict[str, DenoiseMLP],
+    embedding: CurvedEmbedding,
+    conditions: Sequence[tuple[str, float]],
+    sample_count: int,
+    sample_batch_size: int,
+    sample_steps: int,
+    t_max: float,
+    t_min: float,
+    clip: float,
+    seed: int,
+    device: torch.device,
+) -> list[np.ndarray]:
+    """Sample multiple non-oracle conditions without changing trajectories."""
+    if not conditions:
+        return []
+    kinds = [kind for kind, _strength in conditions]
+    strengths = [float(strength) for _kind, strength in conditions]
+    for kind in kinds:
+        required_prediction_targets(kind)
+
+    collected: list[list[np.ndarray]] = [[] for _ in conditions]
+    grid = torch.linspace(t_max, t_min, sample_steps + 1, device=device)
+    for start in range(0, sample_count, sample_batch_size):
+        n = min(sample_batch_size, sample_count - start)
+        generator = torch.Generator(device=device.type)
+        generator.manual_seed(seed + start)
+        initial = float(t_max) * torch.randn(
+            (n, embedding.D), device=device, generator=generator
+        )
+        states = initial[None].expand(len(conditions), -1, -1).clone()
+
+        for i in range(sample_steps):
+            t_now, t_next = grid[i], grid[i + 1]
+            guided = batched_guided_clean(
+                models=models,
+                embedding=embedding,
+                states=states,
+                t=t_now.expand(n),
+                kinds=kinds,
+                strengths=strengths,
+                clip=clip,
+            )
+            velocity = (states - guided) / t_now.clamp_min(clip)
+            states = states + (t_next - t_now) * velocity
+
+        final = batched_guided_clean(
+            models=models,
+            embedding=embedding,
+            states=states,
+            t=grid[-1].expand(n),
+            kinds=kinds,
+            strengths=strengths,
+            clip=clip,
+        )
         for index, value in enumerate(final):
             collected[index].append(value.cpu().numpy())
 
@@ -1030,6 +1209,21 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--eval-batch-size", type=int, default=1024)
     p.add_argument("--sample-count", type=int, default=10000)
     p.add_argument("--sample-batch-size", type=int, default=1000)
+    p.add_argument(
+        "--sample-condition-batch-size",
+        type=int,
+        default=16,
+        help=(
+            "number of independent non-oracle trajectories evaluated together; "
+            "this changes batching only, not the trajectory equations"
+        ),
+    )
+    p.add_argument(
+        "--sampling-execution",
+        choices=("legacy", "batched"),
+        default="batched",
+        help="execution strategy only; both modes implement the same trajectories",
+    )
     p.add_argument("--sample-steps", type=int, default=200)
     p.add_argument("--sample-t-max", type=float, default=0.98)
     p.add_argument("--sample-t-min", type=float, default=0.02)
@@ -1066,7 +1260,107 @@ def parse_args() -> argparse.Namespace:
         help="reuse saved oracle/model checkpoints and completed condition files",
     )
     p.add_argument("--save-checkpoints", action="store_true")
+    p.add_argument(
+        "--skip-root-summary",
+        action="store_true",
+        help="leave root-level aggregate files untouched for concurrent seed workers",
+    )
     return p.parse_args()
+
+
+def generation_condition_specs(args: argparse.Namespace) -> list[tuple[str, str, float]]:
+    conditions: list[tuple[str, str, float]] = [
+        ("x", "x", 0.0),
+        ("v", "v", 0.0),
+        ("eps", "eps", 0.0),
+        ("oracle", "oracle", 0.0),
+    ]
+    for gamma in args.gammas:
+        conditions.extend(
+            [
+                (f"xv_g{tag_float(gamma)}", "xv", gamma),
+                (f"xeps_g{tag_float(gamma)}", "xeps", gamma),
+            ]
+        )
+        if args.generation_profile == "full":
+            conditions.extend(
+                [
+                    (f"xv_tan_g{tag_float(gamma)}", "xv_tangent", gamma),
+                    (f"xv_normcomp_g{tag_float(gamma)}", "xv_normal", gamma),
+                ]
+            )
+    if args.generation_profile == "full":
+        for eta in args.normalized_etas:
+            conditions.append((f"xv_rms_eta{tag_float(eta)}", "xv_norm", eta))
+    return conditions
+
+
+def validate_resume_manifest(existing: dict, args: argparse.Namespace) -> None:
+    """Reject scientific protocol changes when reusing an output directory."""
+    old = existing.get("args", {})
+    current = {
+        key: str(value) if isinstance(value, Path) else value
+        for key, value in vars(args).items()
+    }
+    ignored = {
+        "output_root",
+        "device",
+        "resume",
+        "save_checkpoints",
+        "sample_condition_batch_size",
+        "sampling_execution",
+        "skip_root_summary",
+    }
+    subset_keys = {"dims", "curvatures", "hidden_dims", "loss_spaces", "seeds"}
+    mismatches = []
+    for key, value in current.items():
+        if key in ignored:
+            continue
+        old_value = old.get(key)
+        if key == "generation_profile" and old_value is None:
+            old_value = "full"
+        if old_value is None:
+            continue
+        if key in subset_keys:
+            if not set(value).issubset(set(old_value)):
+                mismatches.append((key, old_value, value))
+        elif old_value != value:
+            mismatches.append((key, old_value, value))
+    if mismatches:
+        detail = "; ".join(
+            f"{key}: existing={old_value!r}, requested={value!r}"
+            for key, old_value, value in mismatches
+        )
+        raise ValueError(f"resume protocol mismatch: {detail}")
+
+
+def setting_is_complete(
+    setting_dir: Path, args: argparse.Namespace
+) -> bool:
+    required = (
+        setting_dir / "setting_summary.json",
+        setting_dir / "teacher_metrics.csv",
+        setting_dir / "generation_metrics.csv",
+    )
+    if not all(path.is_file() for path in required):
+        return False
+    expected_conditions = {
+        name for name, _kind, _strength in generation_condition_specs(args)
+    }
+    generation = load_csv(setting_dir / "generation_metrics.csv")
+    if {str(row.get("condition")) for row in generation} != expected_conditions:
+        return False
+    if len(generation) != len(expected_conditions):
+        return False
+    if not all(
+        (setting_dir / f"samples_{condition}.npz").is_file()
+        for condition in expected_conditions
+    ):
+        return False
+    teacher = load_csv(setting_dir / "teacher_metrics.csv")
+    actual_times = sorted(float(row["time"]) for row in teacher)
+    expected_times = sorted(float(value) for value in args.eval_times)
+    return actual_times == expected_times
 
 
 def run_setting(
@@ -1099,29 +1393,7 @@ def run_setting(
     )
     save_csv(out / "teacher_metrics.csv", teacher)
 
-    conditions: list[tuple[str, str, float]] = [
-        ("x", "x", 0.0),
-        ("v", "v", 0.0),
-        ("eps", "eps", 0.0),
-        ("oracle", "oracle", 0.0),
-    ]
-    for gamma in args.gammas:
-        conditions.extend(
-            [
-                (f"xv_g{tag_float(gamma)}", "xv", gamma),
-                (f"xeps_g{tag_float(gamma)}", "xeps", gamma),
-            ]
-        )
-        if args.generation_profile == "full":
-            conditions.extend(
-                [
-                    (f"xv_tan_g{tag_float(gamma)}", "xv_tangent", gamma),
-                    (f"xv_normcomp_g{tag_float(gamma)}", "xv_normal", gamma),
-                ]
-            )
-    if args.generation_profile == "full":
-        for eta in args.normalized_etas:
-            conditions.append((f"xv_rms_eta{tag_float(eta)}", "xv_norm", eta))
+    conditions = generation_condition_specs(args)
 
     # Identical projections/subsets for all conditions.
     n_metric = min(args.sample_count, len(reference_u), args.metric_max_points)
@@ -1135,13 +1407,40 @@ def run_setting(
 
     partial_path = out / "generation_metrics.partial.csv"
     completed_rows = load_csv(partial_path) if args.resume else []
+    for row in completed_rows:
+        row.setdefault("seed", seed)
     completed_by_name = {str(row["condition"]): row for row in completed_rows}
-    grouped_ambient: dict[str, np.ndarray] = {}
+    batched_ambient: dict[str, np.ndarray] = {}
     gen_rows: list[dict] = []
     panels: list[tuple[str, np.ndarray]] = []
     x_intrinsic: np.ndarray | None = None
     mmd_sigma2: float | None = None
     sample_seed = stable_seed(seed, embedding.D, hidden, int(1000 * embedding.curvature), 77)
+
+    pending_non_oracle = [
+        (name, kind, strength)
+        for name, kind, strength in conditions
+        if kind != "oracle"
+        and not (
+            name in completed_by_name
+            and (out / f"samples_{name}.npz").is_file()
+        )
+    ]
+    condition_batch_size = (
+        max(len(pending_non_oracle), 1)
+        if args.sample_condition_batch_size <= 0
+        else args.sample_condition_batch_size
+    )
+    pending_batches = [
+        pending_non_oracle[start : start + condition_batch_size]
+        for start in range(0, len(pending_non_oracle), condition_batch_size)
+    ]
+    batch_for_name = {
+        name: batch_index
+        for batch_index, batch in enumerate(pending_batches)
+        for name, _kind, _strength in batch
+    }
+    generated_batches: set[int] = set()
 
     for name, kind, strength in conditions:
         sample_path = out / f"samples_{name}.npz"
@@ -1164,26 +1463,21 @@ def run_setting(
             print(f"[sample] {name}: complete; reusing", flush=True)
         else:
             print(f"[sample] {name}: generating {args.sample_count}", flush=True)
-            if kind in {"xv", "xeps"}:
-                if name not in grouped_ambient:
-                    pending = [
-                        (item_name, item_strength)
-                        for item_name, item_kind, item_strength in conditions
-                        if item_kind == kind
-                        and not (
-                            item_name in completed_by_name
-                            and (out / f"samples_{item_name}.npz").is_file()
-                        )
-                    ]
+            if kind != "oracle" and args.sampling_execution == "batched":
+                batch_index = batch_for_name[name]
+                if batch_index not in generated_batches:
+                    pending = pending_batches[batch_index]
                     print(
-                        f"[sample] batching {len(pending)} {kind} trajectories",
+                        f"[sample] batching {len(pending)} independent trajectories",
                         flush=True,
                     )
-                    values = sample_mixture_conditions(
+                    values = sample_conditions_batched(
                         models=models,
                         embedding=embedding,
-                        kind=kind,
-                        strengths=[item[1] for item in pending],
+                        conditions=[
+                            (item_kind, item_strength)
+                            for _item_name, item_kind, item_strength in pending
+                        ],
                         sample_count=args.sample_count,
                         sample_batch_size=args.sample_batch_size,
                         sample_steps=args.sample_steps,
@@ -1193,10 +1487,14 @@ def run_setting(
                         seed=sample_seed,
                         device=device,
                     )
-                    grouped_ambient.update(
-                        {item[0]: value for item, value in zip(pending, values)}
+                    batched_ambient.update(
+                        {
+                            item[0]: value
+                            for item, value in zip(pending, values)
+                        }
                     )
-                ambient = grouped_ambient.pop(name)
+                    generated_batches.add(batch_index)
+                ambient = batched_ambient.pop(name)
             else:
                 ambient = sample_condition(
                     models=models,
@@ -1253,6 +1551,7 @@ def run_setting(
                     max_points=min(args.bootstrap_max_points, args.sample_count),
                 )
             row = {
+                "seed": seed,
                 "D": embedding.D,
                 "curvature": embedding.curvature,
                 "scale_mode": embedding.scale_mode,
@@ -1346,20 +1645,26 @@ def main() -> None:
     device = torch.device(args.device)
     root = args.output_root.expanduser().resolve()
     root.mkdir(parents=True, exist_ok=True)
-    (root / "manifest.json").write_text(
-        json.dumps(
-            {
-                "script": "run_prediction_target_extrapolation_toy_v4.py",
-                "definition": "x_t=(1-t)x+t eps; curved known manifold; x-oracle capacity reference",
-                "args": {
-                    k: str(v) if isinstance(v, Path) else v
-                    for k, v in vars(args).items()
-                },
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
+    invocation_manifest = {
+        "script": "run_prediction_target_extrapolation_toy_v4.py",
+        "definition": "x_t=(1-t)x+t eps; curved known manifold; x-oracle capacity reference",
+        "args": {
+            k: str(v) if isinstance(v, Path) else v
+            for k, v in vars(args).items()
+        },
+    }
+    manifest_path = root / "manifest.json"
+    if args.resume and manifest_path.is_file():
+        existing_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        validate_resume_manifest(existing_manifest, args)
+        seed_tag = "_".join(str(seed) for seed in args.seeds)
+        (root / f"resume_manifest_seed{seed_tag}.json").write_text(
+            json.dumps(invocation_manifest, indent=2), encoding="utf-8"
+        )
+    else:
+        manifest_path.write_text(
+            json.dumps(invocation_manifest, indent=2), encoding="utf-8"
+        )
 
     all_teacher, all_generation, all_summary = [], [], []
 
@@ -1399,17 +1704,21 @@ def main() -> None:
                         completed_hiddens = {
                             hidden
                             for hidden in args.hidden_dims
-                            if (base_dir / f"H{hidden}" / "setting_summary.json").is_file()
-                            and (base_dir / f"H{hidden}" / "teacher_metrics.csv").is_file()
-                            and (base_dir / f"H{hidden}" / "generation_metrics.csv").is_file()
+                            if setting_is_complete(base_dir / f"H{hidden}", args)
                         }
                     else:
                         completed_hiddens = set()
 
                     for hidden in sorted(completed_hiddens):
                         setting_dir = base_dir / f"H{hidden}"
-                        all_teacher.extend(load_csv(setting_dir / "teacher_metrics.csv"))
-                        all_generation.extend(load_csv(setting_dir / "generation_metrics.csv"))
+                        teacher_rows = load_csv(setting_dir / "teacher_metrics.csv")
+                        generation_rows = load_csv(setting_dir / "generation_metrics.csv")
+                        for row in teacher_rows:
+                            row.setdefault("seed", seed)
+                        for row in generation_rows:
+                            row.setdefault("seed", seed)
+                        all_teacher.extend(teacher_rows)
+                        all_generation.extend(generation_rows)
                         all_summary.append(
                             json.loads(
                                 (setting_dir / "setting_summary.json").read_text(
@@ -1541,13 +1850,16 @@ def main() -> None:
                     if device.type == "cuda":
                         torch.cuda.empty_cache()
 
-    save_csv(root / "teacher_metrics_all.csv", all_teacher)
-    save_csv(root / "generation_metrics_all.csv", all_generation)
-    save_csv(root / "summary_all.csv", all_summary)
-    (root / "summary_all.json").write_text(
-        json.dumps(all_summary, indent=2), encoding="utf-8"
-    )
-    plot_phase(root / "extrapolation_phase_diagram.png", all_summary)
+    if not args.skip_root_summary:
+        save_csv(root / "teacher_metrics_all.csv", all_teacher)
+        save_csv(root / "generation_metrics_all.csv", all_generation)
+        save_csv(root / "summary_all.csv", all_summary)
+        (root / "summary_all.json").write_text(
+            json.dumps(all_summary, indent=2), encoding="utf-8"
+        )
+        plot_phase(root / "extrapolation_phase_diagram.png", all_summary)
+    else:
+        print("Root-level summary skipped for concurrent worker", flush=True)
     print(f"\nDone. Results written to {root}", flush=True)
 
 

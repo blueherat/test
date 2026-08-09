@@ -1,0 +1,22 @@
+Prediction-target extrapolation toy v4: multi-seed summary
+============================================================
+
+Complete settings: 4
+Seeds: [20260817, 20260818, 20260819, 20260820]
+
+Sign convention:
+  gamma > 0: extrapolate from x away from v/epsilon
+  gamma < 0: interpolate from x toward v/epsilon
+  delta SWD < 0: better intrinsic distribution match than x baseline
+  delta manifold RMS > 0: farther from the known clean manifold
+
+Primary |gamma|=0.03 rows:
+  D  curvature  hidden loss_space   condition kind  strength     operation  seeds  mean_delta_swd_vs_x  std_delta_swd_vs_x  swd_improved_seed_fraction  worst_delta_swd_vs_x  mean_relative_swd_vs_x  mean_delta_manifold_rms_vs_x  manifold_not_worse_seed_fraction
+512        0.5     256          v  xeps_g0p03 xeps      0.03 extrapolation      4             0.001152            0.000863                        0.00              0.002296                0.042142                     -0.000242                               1.0
+512        0.5     256          v xeps_gm0p03 xeps     -0.03 interpolation      4             0.000173            0.000748                        0.50              0.001069                0.007988                      0.000427                               0.0
+512        0.5     256          v    xv_g0p03   xv      0.03 extrapolation      4             0.000265            0.000125                        0.00              0.000381                0.008259                      0.000129                               0.0
+512        0.5     256          v   xv_gm0p03   xv     -0.03 interpolation      4            -0.000260            0.000225                        0.75              0.000053               -0.007377                     -0.000061                               1.0
+
+This screen is evidence for estimator mixing only. It does not show that
+different prediction targets have different population optima; under exact
+MSE Bayes prediction their clean estimates coincide algebraically.

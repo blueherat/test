@@ -1,0 +1,88 @@
+{
+  "script": "run_prediction_target_extrapolation_toy_v4.py",
+  "definition": "x_t=(1-t)x+t eps; curved known manifold; x-oracle capacity reference",
+  "args": {
+    "output_root": "/home/zhoushunyu/data/eqvae/experiments/prediction_target_toy_v4_main",
+    "dims": [
+      512
+    ],
+    "curvatures": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "hidden_dims": [
+      64,
+      128,
+      256,
+      512,
+      1024
+    ],
+    "loss_spaces": [
+      "v"
+    ],
+    "scale_mode": "unit_rms",
+    "frequency_scale": 6.0,
+    "depth": 5,
+    "time_dim": 32,
+    "train_steps": 30000,
+    "oracle_hidden_dim": 2048,
+    "oracle_depth": 6,
+    "oracle_train_steps": 60000,
+    "batch_size": 1024,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "grad_clip": 10.0,
+    "t_min": 0.02,
+    "t_max": 0.98,
+    "conversion_clip": 0.02,
+    "data_jitter": 0.015,
+    "log_every": 1000,
+    "eval_times": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "eval_samples": 8192,
+    "eval_batch_size": 1024,
+    "sample_count": 10000,
+    "sample_batch_size": 1000,
+    "sample_condition_batch_size": 16,
+    "sampling_execution": "batched",
+    "sample_steps": 200,
+    "sample_t_max": 0.98,
+    "sample_t_min": 0.02,
+    "gammas": [
+      -0.1,
+      -0.03,
+      -0.01,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3
+    ],
+    "normalized_etas": [
+      -0.03,
+      -0.01,
+      0.01,
+      0.03
+    ],
+    "swd_projections": 256,
+    "metric_max_points": 4096,
+    "bootstrap_reps": 100,
+    "bootstrap_max_points": 1024,
+    "bootstrap_projections": 64,
+    "plot_points": 4000,
+    "seeds": [
+      20260807
+    ],
+    "device": "cuda",
+    "generation_profile": "full",
+    "resume": true,
+    "save_checkpoints": true
+  }
+}
