@@ -1,0 +1,1341 @@
+{
+  "version": "v10_final",
+  "every_timestep_recursive_guidance": true,
+  "D": 512,
+  "curvature": 1.0,
+  "hidden": 1024,
+  "seed": 20260807,
+  "training_source": "reused_v4_checkpoint",
+  "sampling_execution": {
+    "batch_conditions": true,
+    "condition_batch_size": 16,
+    "semantic_reference": "sample_condition_recursive_v10"
+  },
+  "embedding": {
+    "clean_rms": 1.3894511461257935,
+    "jtj_lambda_min_mean": 3442.519557806622,
+    "jtj_lambda_max_mean": 3862.4495522036523,
+    "jtj_trace_mean": 7304.969110010274,
+    "jtj_condition_median": 1.1183818005782635,
+    "embedding_extra_scale": 1.0
+  },
+  "metric_protocol": {
+    "fixed_matched_subsets": true,
+    "mmd_bandwidth_fixed_from_x": true,
+    "fullD_swd_decoder_free": true,
+    "fullD_swd_cached_reference_on_device": true,
+    "curveD_uses_decode": false,
+    "surface_audit_is_local_gauss_newton": true
+  },
+  "conditions": [
+    {
+      "name": "x",
+      "kind": "x",
+      "strength": 0.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "v",
+      "kind": "v",
+      "strength": 0.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "eps",
+      "kind": "eps",
+      "strength": 0.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p1",
+      "kind": "xeps",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p075",
+      "kind": "xeps",
+      "strength": -0.075,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p05",
+      "kind": "xeps",
+      "strength": -0.05,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p03",
+      "kind": "xeps",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p02",
+      "kind": "xeps",
+      "strength": -0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p01",
+      "kind": "xeps",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gm0p005",
+      "kind": "xeps",
+      "strength": -0.005,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0",
+      "kind": "xeps",
+      "strength": 0.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p005",
+      "kind": "xeps",
+      "strength": 0.005,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p01",
+      "kind": "xeps",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p02",
+      "kind": "xeps",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p03",
+      "kind": "xeps",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p05",
+      "kind": "xeps",
+      "strength": 0.05,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p075",
+      "kind": "xeps",
+      "strength": 0.075,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p1",
+      "kind": "xeps",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p15",
+      "kind": "xeps",
+      "strength": 0.15,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p2",
+      "kind": "xeps",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p3",
+      "kind": "xeps",
+      "strength": 0.3,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_g0p4",
+      "kind": "xeps",
+      "strength": 0.4,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p5",
+      "kind": "xv",
+      "strength": -0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p3",
+      "kind": "xv",
+      "strength": -0.3,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p2",
+      "kind": "xv",
+      "strength": -0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p1",
+      "kind": "xv",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p05",
+      "kind": "xv",
+      "strength": -0.05,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p03",
+      "kind": "xv",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gm0p01",
+      "kind": "xv",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0",
+      "kind": "xv",
+      "strength": 0.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p01",
+      "kind": "xv",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p03",
+      "kind": "xv",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p05",
+      "kind": "xv",
+      "strength": 0.05,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p1",
+      "kind": "xv",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p2",
+      "kind": "xv",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p3",
+      "kind": "xv",
+      "strength": 0.3,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p5",
+      "kind": "xv",
+      "strength": 0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g0p75",
+      "kind": "xv",
+      "strength": 0.75,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_g1",
+      "kind": "xv",
+      "strength": 1.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a0p25",
+      "kind": "xeps",
+      "strength": -0.75,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a0p25",
+      "kind": "xv",
+      "strength": -0.75,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a0p5",
+      "kind": "xeps",
+      "strength": -0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a0p5",
+      "kind": "xv",
+      "strength": -0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a0p75",
+      "kind": "xeps",
+      "strength": -0.25,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a0p75",
+      "kind": "xv",
+      "strength": -0.25,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a1p05",
+      "kind": "xeps",
+      "strength": 0.050000000000000044,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a1p05",
+      "kind": "xv",
+      "strength": 0.050000000000000044,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a1p1",
+      "kind": "xeps",
+      "strength": 0.10000000000000009,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a1p1",
+      "kind": "xv",
+      "strength": 0.10000000000000009,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a1p25",
+      "kind": "xeps",
+      "strength": 0.25,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a1p25",
+      "kind": "xv",
+      "strength": 0.25,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a1p5",
+      "kind": "xeps",
+      "strength": 0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a1p5",
+      "kind": "xv",
+      "strength": 0.5,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_path_a2",
+      "kind": "xeps",
+      "strength": 1.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_path_a2",
+      "kind": "xv",
+      "strength": 1.0,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_absnorm_etam0p03",
+      "kind": "xeps_absnorm",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_absnorm_etam0p03",
+      "kind": "xv_absnorm",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_absnorm_etam0p01",
+      "kind": "xeps_absnorm",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_absnorm_etam0p01",
+      "kind": "xv_absnorm",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_absnorm_eta0p01",
+      "kind": "xeps_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_absnorm_eta0p01",
+      "kind": "xv_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_absnorm_eta0p03",
+      "kind": "xeps_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_absnorm_eta0p03",
+      "kind": "xv_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_relm0p08",
+      "kind": "xeps_rel",
+      "strength": -0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_relm0p08",
+      "kind": "xv_rel",
+      "strength": -0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_relm0p04",
+      "kind": "xeps_rel",
+      "strength": -0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_relm0p04",
+      "kind": "xv_rel",
+      "strength": -0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_relm0p02",
+      "kind": "xeps_rel",
+      "strength": -0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_relm0p02",
+      "kind": "xv_rel",
+      "strength": -0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_relm0p01",
+      "kind": "xeps_rel",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_relm0p01",
+      "kind": "xv_rel",
+      "strength": -0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_rel0p01",
+      "kind": "xeps_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_rel0p01",
+      "kind": "xv_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_rel0p02",
+      "kind": "xeps_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_rel0p02",
+      "kind": "xv_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_rel0p04",
+      "kind": "xeps_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_rel0p04",
+      "kind": "xv_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_rel0p08",
+      "kind": "xeps_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_rel0p08",
+      "kind": "xv_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_shuffle_g0p03",
+      "kind": "xeps_shuffle",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gausscov_g0p03",
+      "kind": "xeps_gausscov",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_random_g0p03",
+      "kind": "xeps_random",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_shuffle_g0p03",
+      "kind": "xv_shuffle",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gausscov_g0p03",
+      "kind": "xv_gausscov",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_random_g0p03",
+      "kind": "xv_random",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_shuffle_g0p1",
+      "kind": "xeps_shuffle",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gausscov_g0p1",
+      "kind": "xeps_gausscov",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_random_g0p1",
+      "kind": "xeps_random",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_shuffle_g0p1",
+      "kind": "xv_shuffle",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gausscov_g0p1",
+      "kind": "xv_gausscov",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_random_g0p1",
+      "kind": "xv_random",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_shuffle_g0p2",
+      "kind": "xeps_shuffle",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_gausscov_g0p2",
+      "kind": "xeps_gausscov",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_random_g0p2",
+      "kind": "xeps_random",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_shuffle_g0p2",
+      "kind": "xv_shuffle",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_gausscov_g0p2",
+      "kind": "xv_gausscov",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_random_g0p2",
+      "kind": "xv_random",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_gm0p1",
+      "kind": "xeps_curve",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_gm0p1",
+      "kind": "xeps_ridge",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_gm0p1",
+      "kind": "xeps_ambient",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_gm0p1",
+      "kind": "xv_curve",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_gm0p1",
+      "kind": "xv_ridge",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_gm0p1",
+      "kind": "xv_ambient",
+      "strength": -0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_gm0p03",
+      "kind": "xeps_curve",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_gm0p03",
+      "kind": "xeps_ridge",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_gm0p03",
+      "kind": "xeps_ambient",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_gm0p03",
+      "kind": "xv_curve",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_gm0p03",
+      "kind": "xv_ridge",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_gm0p03",
+      "kind": "xv_ambient",
+      "strength": -0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_g0p03",
+      "kind": "xeps_curve",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_g0p03",
+      "kind": "xeps_ridge",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_g0p03",
+      "kind": "xeps_ambient",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_g0p03",
+      "kind": "xv_curve",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_g0p03",
+      "kind": "xv_ridge",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_g0p03",
+      "kind": "xv_ambient",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_g0p1",
+      "kind": "xeps_curve",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_g0p1",
+      "kind": "xeps_ridge",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_g0p1",
+      "kind": "xeps_ambient",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_g0p1",
+      "kind": "xv_curve",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_g0p1",
+      "kind": "xv_ridge",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_g0p1",
+      "kind": "xv_ambient",
+      "strength": 0.1,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_g0p2",
+      "kind": "xeps_curve",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_g0p2",
+      "kind": "xeps_ridge",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_g0p2",
+      "kind": "xeps_ambient",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_g0p2",
+      "kind": "xv_curve",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_g0p2",
+      "kind": "xv_ridge",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_g0p2",
+      "kind": "xv_ambient",
+      "strength": 0.2,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_rel0p01",
+      "kind": "xeps_curve_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_rel0p01",
+      "kind": "xeps_ridge_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_rel0p01",
+      "kind": "xeps_ambient_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_rel0p01",
+      "kind": "xv_curve_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_rel0p01",
+      "kind": "xv_ridge_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_rel0p01",
+      "kind": "xv_ambient_rel",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_rel0p02",
+      "kind": "xeps_curve_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_rel0p02",
+      "kind": "xeps_ridge_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_rel0p02",
+      "kind": "xeps_ambient_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_rel0p02",
+      "kind": "xv_curve_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_rel0p02",
+      "kind": "xv_ridge_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_rel0p02",
+      "kind": "xv_ambient_rel",
+      "strength": 0.02,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_rel0p04",
+      "kind": "xeps_curve_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_rel0p04",
+      "kind": "xeps_ridge_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_rel0p04",
+      "kind": "xeps_ambient_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_rel0p04",
+      "kind": "xv_curve_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_rel0p04",
+      "kind": "xv_ridge_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_rel0p04",
+      "kind": "xv_ambient_rel",
+      "strength": 0.04,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_rel0p08",
+      "kind": "xeps_curve_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_rel0p08",
+      "kind": "xeps_ridge_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_rel0p08",
+      "kind": "xeps_ambient_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_rel0p08",
+      "kind": "xv_curve_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_rel0p08",
+      "kind": "xv_ridge_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_rel0p08",
+      "kind": "xv_ambient_rel",
+      "strength": 0.08,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_absnorm_eta0p01",
+      "kind": "xeps_curve_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_absnorm_eta0p01",
+      "kind": "xeps_ridge_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_absnorm_eta0p01",
+      "kind": "xeps_ambient_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_absnorm_eta0p01",
+      "kind": "xv_curve_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_absnorm_eta0p01",
+      "kind": "xv_ridge_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_absnorm_eta0p01",
+      "kind": "xv_ambient_absnorm",
+      "strength": 0.01,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_curve_absnorm_eta0p03",
+      "kind": "xeps_curve_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ridge_absnorm_eta0p03",
+      "kind": "xeps_ridge_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_ambient_absnorm_eta0p03",
+      "kind": "xeps_ambient_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_curve_absnorm_eta0p03",
+      "kind": "xv_curve_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ridge_absnorm_eta0p03",
+      "kind": "xv_ridge_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xv_ambient_absnorm_eta0p03",
+      "kind": "xv_ambient_absnorm",
+      "strength": 0.03,
+      "t_low": 0.0,
+      "t_high": 1.0
+    },
+    {
+      "name": "xeps_early_g0p03",
+      "kind": "xeps",
+      "strength": 0.03,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xv_early_g0p03",
+      "kind": "xv",
+      "strength": 0.03,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xeps_mid_hi_g0p03",
+      "kind": "xeps",
+      "strength": 0.03,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xv_mid_hi_g0p03",
+      "kind": "xv",
+      "strength": 0.03,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xeps_mid_lo_g0p03",
+      "kind": "xeps",
+      "strength": 0.03,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xv_mid_lo_g0p03",
+      "kind": "xv",
+      "strength": 0.03,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xeps_late_g0p03",
+      "kind": "xeps",
+      "strength": 0.03,
+      "t_low": 0.02,
+      "t_high": 0.4
+    },
+    {
+      "name": "xv_late_g0p03",
+      "kind": "xv",
+      "strength": 0.03,
+      "t_low": 0.02,
+      "t_high": 0.4
+    },
+    {
+      "name": "xeps_early_g0p1",
+      "kind": "xeps",
+      "strength": 0.1,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xv_early_g0p1",
+      "kind": "xv",
+      "strength": 0.1,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xeps_mid_hi_g0p1",
+      "kind": "xeps",
+      "strength": 0.1,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xv_mid_hi_g0p1",
+      "kind": "xv",
+      "strength": 0.1,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xeps_mid_lo_g0p1",
+      "kind": "xeps",
+      "strength": 0.1,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xv_mid_lo_g0p1",
+      "kind": "xv",
+      "strength": 0.1,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xeps_late_g0p1",
+      "kind": "xeps",
+      "strength": 0.1,
+      "t_low": 0.02,
+      "t_high": 0.4
+    },
+    {
+      "name": "xv_late_g0p1",
+      "kind": "xv",
+      "strength": 0.1,
+      "t_low": 0.02,
+      "t_high": 0.4
+    },
+    {
+      "name": "xeps_early_g0p2",
+      "kind": "xeps",
+      "strength": 0.2,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xv_early_g0p2",
+      "kind": "xv",
+      "strength": 0.2,
+      "t_low": 0.8,
+      "t_high": 0.98
+    },
+    {
+      "name": "xeps_mid_hi_g0p2",
+      "kind": "xeps",
+      "strength": 0.2,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xv_mid_hi_g0p2",
+      "kind": "xv",
+      "strength": 0.2,
+      "t_low": 0.6,
+      "t_high": 0.8
+    },
+    {
+      "name": "xeps_mid_lo_g0p2",
+      "kind": "xeps",
+      "strength": 0.2,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xv_mid_lo_g0p2",
+      "kind": "xv",
+      "strength": 0.2,
+      "t_low": 0.4,
+      "t_high": 0.6
+    },
+    {
+      "name": "xeps_late_g0p2",
+      "kind": "xeps",
+      "strength": 0.2,
+      "t_low": 0.02,
+      "t_high": 0.4
+    },
+    {
+      "name": "xv_late_g0p2",
+      "kind": "xv",
+      "strength": 0.2,
+      "t_low": 0.02,
+      "t_high": 0.4
+    }
+  ]
+}
