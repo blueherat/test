@@ -49,7 +49,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Compute ADM/guided-diffusion FID.")
     parser.add_argument("--reference", required=True, help="ADM reference .npz")
     parser.add_argument("--samples", required=True, help="Generated samples .npz")
-    parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument(
+        "--gpu-memory-fraction",
+        type=float,
+        default=0.30,
+        help="Hard TensorFlow fraction of the single visible GPU.",
+    )
     parser.add_argument(
         "--inception-path",
         default="/data/shared/adm_refs/classify_image_graph_def.pb",
@@ -62,12 +68,15 @@ def main() -> None:
         help="Also compute ADM precision/recall. This is expensive for 50k samples.",
     )
     args = parser.parse_args()
+    if not 0.0 < args.gpu_memory_fraction < 1.0:
+        raise ValueError("--gpu-memory-fraction must be between 0 and 1")
 
     adm_evaluator.INCEPTION_V3_PATH = args.inception_path
     os.makedirs(os.path.dirname(os.path.abspath(args.inception_path)), exist_ok=True)
 
     config = tf.ConfigProto(allow_soft_placement=True)
     config.gpu_options.allow_growth = True
+    config.gpu_options.per_process_gpu_memory_fraction = args.gpu_memory_fraction
     evalr = adm_evaluator.Evaluator(tf.Session(config=config), batch_size=args.batch_size)
 
     print("Warmup...")
@@ -85,6 +94,7 @@ def main() -> None:
         "reference": args.reference,
         "samples": args.samples,
         "batch_size": args.batch_size,
+        "gpu_memory_fraction": args.gpu_memory_fraction,
         "fid": float(sample_stats.frechet_distance(ref_stats)),
         "sfid": float(sample_stats_spatial.frechet_distance(ref_stats_spatial)),
         "inception_score": float(evalr.compute_inception_score(sample_acts[0])),
