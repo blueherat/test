@@ -193,6 +193,12 @@ fid5k_dual-output_step450000_seed0 \
 | `sample_imagenet100_sit_dual_output.py` | 少量同 seed 可视化比较 |
 | `sample_imagenet100_sit_dual_fid.py` | 四卡正式 NPZ 采样 |
 | `run_imagenet100_sit_dual_fid5k.py` | 三路径采样、显存审计、ADM-FID 与汇总 |
+| `audit_imagenet100_sit_dual_endpoint.py` | 冻结 checkpoint 的端点、gate 与 velocity-error atlas |
+| `audit_imagenet100_sit_nfe.py` | 四路径共享噪声/标签的逐 batch NFE 审计 |
+| `summarize_imagenet100_sit_dual_mechanism.py` | 提炼 NFE、FID 与 validation 小表 |
+
+双输出的后续机制证据见
+[`SIT_DUAL_OUTPUT_ENDPOINT_MECHANISM_AUDIT_ZH.md`](SIT_DUAL_OUTPUT_ENDPOINT_MECHANISM_AUDIT_ZH.md)。
 
 Git 仓库只保存代码、配置、测试和报告。ImageNet、latent cache、官方 SiT checkout、
 checkpoint、生成样本和 TensorFlow ADM 资产继续保存在 `/data/shared` 或用户数据目录，

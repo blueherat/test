@@ -1,0 +1,236 @@
+{
+  "fid_summary": [
+    {
+      "checkpoint_sha256": "fa9a5d1c67783021035aa4ccc1d5eb09e5e928e170ee87c9d40f30c3e50320d5",
+      "checkpoint_step": 400000,
+      "fid": 68.65372304130932,
+      "guidance": false,
+      "inception_score": 26.307764053344727,
+      "mode": "velocity",
+      "model_family": "single_velocity",
+      "sample_count": 5000,
+      "sfid": 68.85797097696934
+    },
+    {
+      "checkpoint_sha256": "0d388933af0c2fa8a9c844d76dbf247579e6e3589a5e241fb5c29f51cf00729e",
+      "checkpoint_step": 400000,
+      "fid": 73.82738267476873,
+      "guidance": false,
+      "inception_score": 24.29184341430664,
+      "mode": "dynamic",
+      "model_family": "dual_output",
+      "sample_count": 5000,
+      "sfid": 69.02095399593065
+    },
+    {
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "fid": 72.81595729037309,
+      "guidance": false,
+      "inception_score": 24.860654830932617,
+      "mode": "x",
+      "model_family": "dual_output",
+      "sample_count": 5000,
+      "sfid": 69.67844734104119
+    },
+    {
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "fid": 70.73031386290074,
+      "guidance": false,
+      "inception_score": 24.344165802001953,
+      "mode": "epsilon",
+      "model_family": "dual_output",
+      "sample_count": 5000,
+      "sfid": 68.45413402206532
+    },
+    {
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "fid": 71.79415789535136,
+      "guidance": false,
+      "inception_score": 24.75885009765625,
+      "mode": "dynamic",
+      "model_family": "dual_output",
+      "sample_count": 5000,
+      "sfid": 68.96455628019828
+    }
+  ],
+  "nfe_summary": [
+    {
+      "batch_size_per_rank": 64,
+      "checkpoint_sha256": "fa9a5d1c67783021035aa4ccc1d5eb09e5e928e170ee87c9d40f30c3e50320d5",
+      "checkpoint_step": 400000,
+      "distribution_limitation": "rank JSON stores cumulative NFE; full per-batch distribution is not recoverable",
+      "max_rank_mean_nfe": 54.2,
+      "mean_elapsed_seconds_across_ranks": 46.44102202169597,
+      "mean_nfe_per_batch": 53.0,
+      "min_rank_mean_nfe": 52.4,
+      "mode": "velocity",
+      "model_family": "single_velocity",
+      "nfe_grain": "one adaptive ODE trajectory for one complete batch",
+      "padded_sample_count": 5120,
+      "requested_sample_count": 5000,
+      "total_batches_across_ranks": 80,
+      "world_size": 4
+    },
+    {
+      "batch_size_per_rank": 64,
+      "checkpoint_sha256": "0d388933af0c2fa8a9c844d76dbf247579e6e3589a5e241fb5c29f51cf00729e",
+      "checkpoint_step": 400000,
+      "distribution_limitation": "rank JSON stores cumulative NFE; full per-batch distribution is not recoverable",
+      "max_rank_mean_nfe": 62.6,
+      "mean_elapsed_seconds_across_ranks": 50.001041298382916,
+      "mean_nfe_per_batch": 60.2,
+      "min_rank_mean_nfe": 58.4,
+      "mode": "dynamic",
+      "model_family": "dual_output",
+      "nfe_grain": "one adaptive ODE trajectory for one complete batch",
+      "padded_sample_count": 5120,
+      "requested_sample_count": 5000,
+      "total_batches_across_ranks": 80,
+      "world_size": 4
+    },
+    {
+      "batch_size_per_rank": 64,
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "distribution_limitation": "rank JSON stores cumulative NFE; full per-batch distribution is not recoverable",
+      "max_rank_mean_nfe": 109.7,
+      "mean_elapsed_seconds_across_ranks": 74.12218769383617,
+      "mean_nfe_per_batch": 108.65,
+      "min_rank_mean_nfe": 107.9,
+      "mode": "x",
+      "model_family": "dual_output",
+      "nfe_grain": "one adaptive ODE trajectory for one complete batch",
+      "padded_sample_count": 5120,
+      "requested_sample_count": 5000,
+      "total_batches_across_ranks": 80,
+      "world_size": 4
+    },
+    {
+      "batch_size_per_rank": 64,
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "distribution_limitation": "rank JSON stores cumulative NFE; full per-batch distribution is not recoverable",
+      "max_rank_mean_nfe": 83.9,
+      "mean_elapsed_seconds_across_ranks": 61.19909348140936,
+      "mean_nfe_per_batch": 83.375,
+      "min_rank_mean_nfe": 83.0,
+      "mode": "epsilon",
+      "model_family": "dual_output",
+      "nfe_grain": "one adaptive ODE trajectory for one complete batch",
+      "padded_sample_count": 5120,
+      "requested_sample_count": 5000,
+      "total_batches_across_ranks": 80,
+      "world_size": 4
+    },
+    {
+      "batch_size_per_rank": 64,
+      "checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+      "checkpoint_step": 450000,
+      "distribution_limitation": "rank JSON stores cumulative NFE; full per-batch distribution is not recoverable",
+      "max_rank_mean_nfe": 62.0,
+      "mean_elapsed_seconds_across_ranks": 50.568958846037276,
+      "mean_nfe_per_batch": 61.4,
+      "min_rank_mean_nfe": 60.2,
+      "mode": "dynamic",
+      "model_family": "dual_output",
+      "nfe_grain": "one adaptive ODE trajectory for one complete batch",
+      "padded_sample_count": 5120,
+      "requested_sample_count": 5000,
+      "total_batches_across_ranks": 80,
+      "world_size": 4
+    }
+  ],
+  "protocol": "imagenet100_sit_dual_mechanism_summary_v1",
+  "quality_checks": {
+    "fid_reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/fid5k/sit-s-2_step100000_seed0/reference_imagenet100_validation_n5000.npz",
+    "label_sha256": "57afc9a63beab19ce12d438775db11414d9779179b2663832a79a75697f31b57",
+    "same_fid_reference": true,
+    "same_label_array": true,
+    "same_sampler_protocol": true,
+    "sampler": {
+      "allow_tf32": true,
+      "atol": 1e-06,
+      "interval": [
+        0.0,
+        1.0
+      ],
+      "method": "dopri5",
+      "num_output_points": 250,
+      "precision": "fp32",
+      "rtol": 0.001
+    }
+  },
+  "quality_notes": [
+    "All FID rows use 5000 requested samples and no guidance.",
+    "NFE is one model-vector-field evaluation for a complete batch trajectory.",
+    "NFE totals include 5120 padded samples (1280 per rank), not only the retained 5000.",
+    "Original rank artifacts contain cumulative NFE only; no per-batch distribution is claimed.",
+    "Validation rows are the unique records embedded in the original training JSONL."
+  ],
+  "source_scope": {
+    "baseline_400": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/fid5k/sit-s-2_step400000_seed0",
+    "dual_400": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/fid5k_dual-output_step400000_seed0",
+    "dual_450": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/fid5k_dual-output_step450000_seed0",
+    "train_metrics": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_dual-output_seed0/train_metrics.jsonl"
+  },
+  "tables": {
+    "fid_summary": "fid_summary.csv",
+    "nfe_by_rank": "nfe_by_rank.csv",
+    "nfe_summary": "nfe_summary.csv",
+    "validation_summary": "validation_summary.csv",
+    "validation_time_bins": "validation_time_bins.csv"
+  },
+  "validation_summary": [
+    {
+      "checkpoint_step": 400000,
+      "clean_mse": 0.23212787598153284,
+      "epsilon_mse": 0.303122824338768,
+      "gate_loss": 0.027388630360762528,
+      "gate_mean": 0.43348845078071463,
+      "gate_std": 0.3584598009547574,
+      "velocity_dynamic_mse": 0.8065652437217068,
+      "velocity_epsilon_mse": 1.1132515376302763,
+      "velocity_x_mse": 1.3978187333341339,
+      "weights": "raw"
+    },
+    {
+      "checkpoint_step": 400000,
+      "clean_mse": 0.2314525876567437,
+      "epsilon_mse": 0.3022403142840453,
+      "gate_loss": 0.02729589474892294,
+      "gate_mean": 0.48051923767707194,
+      "gate_std": 0.353186071780341,
+      "velocity_dynamic_mse": 0.8040168319421355,
+      "velocity_epsilon_mse": 1.0125363837360055,
+      "velocity_x_mse": 1.1126583594596013,
+      "weights": "ema"
+    },
+    {
+      "checkpoint_step": 450000,
+      "clean_mse": 0.23188153684368729,
+      "epsilon_mse": 0.3027759454857488,
+      "gate_loss": 0.027351247580548688,
+      "gate_mean": 0.4441902937142004,
+      "gate_std": 0.3473659492565232,
+      "velocity_dynamic_mse": 0.8058871357206954,
+      "velocity_epsilon_mse": 1.1129519073438132,
+      "velocity_x_mse": 1.4730554619673057,
+      "weights": "raw"
+    },
+    {
+      "checkpoint_step": 450000,
+      "clean_mse": 0.23136408570581324,
+      "epsilon_mse": 0.30195101001285707,
+      "gate_loss": 0.027268259673955714,
+      "gate_mean": 0.47918725535055273,
+      "gate_std": 0.3521154184366095,
+      "velocity_dynamic_mse": 0.80342389728321,
+      "velocity_epsilon_mse": 1.0023821800132282,
+      "velocity_x_mse": 1.105532569818024,
+      "weights": "ema"
+    }
+  ]
+}

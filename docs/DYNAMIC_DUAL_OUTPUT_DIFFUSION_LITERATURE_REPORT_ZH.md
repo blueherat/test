@@ -994,6 +994,15 @@ mixing 改成了 velocity mixing。这一变化在代数上合理，却没有被
 如果前两项仍显示 dynamic 不优于最强单分支，应停止把 DDO 直接迁移到 linear flow 的
 路线，转而比较 SC-Flow 的一致性约束和解析切换，而不是继续用训练步数掩盖机制问题。
 
+### 14.7 后续端点与 NFE 审计
+
+现有 450K checkpoint 的逐 batch NFE、细时间网格 gate、端点放大系数、velocity
+error 和分支误差 cosine 已补齐。结果表明 dynamic 比 x/epsilon 两条派生速度场更容易
+积分；端点泄漏存在但较窄，而中段两个分支误差高度同向、缺少可供 gate 利用的互补性。
+
+完整数据、方法边界与结论见
+[`SIT_DUAL_OUTPUT_ENDPOINT_MECHANISM_AUDIT_ZH.md`](SIT_DUAL_OUTPUT_ENDPOINT_MECHANISM_AUDIT_ZH.md)。
+
 ## 15. 一手来源
 
 - [Dynamic Dual-Output Diffusion Models，CVPR 2022](https://openaccess.thecvf.com/content/CVPR2022/html/Benny_Dynamic_Dual-Output_Diffusion_Models_CVPR_2022_paper.html)

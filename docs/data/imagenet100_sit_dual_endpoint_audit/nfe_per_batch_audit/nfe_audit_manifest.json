@@ -1,0 +1,74 @@
+{
+  "baseline_checkpoint_name": "step_00400000.pt",
+  "baseline_checkpoint_sha256": "fa9a5d1c67783021035aa4ccc1d5eb09e5e928e170ee87c9d40f30c3e50320d5",
+  "baseline_checkpoint_step": 400000,
+  "dual_checkpoint_name": "step_00450000.pt",
+  "dual_checkpoint_sha256": "2701dd7de00414c1bf1b0417c307aba825450879900038e349a3952646453b69",
+  "dual_checkpoint_step": 450000,
+  "global_seed": 0,
+  "official_sit": {
+    "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+    "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+  },
+  "padded_samples": 5120,
+  "per_rank_batch_size": 64,
+  "protocol": "imagenet100_sit_nfe_per_batch_audit_v1",
+  "requested_samples": 5000,
+  "same_noise_and_labels_across_modes": true,
+  "sampler": {
+    "allow_tf32": true,
+    "atol": 1e-06,
+    "method": "dopri5",
+    "num_output_points": 250,
+    "precision": "fp32",
+    "rtol": 0.001
+  },
+  "summary": [
+    {
+      "batch_count": 80,
+      "max_nfe": 62,
+      "mean_nfe": 53.0,
+      "min_nfe": 44,
+      "mode": "velocity",
+      "q05_nfe": 44.0,
+      "q50_nfe": 56.0,
+      "q95_nfe": 56.0,
+      "std_nfe": 4.024922359499621
+    },
+    {
+      "batch_count": 80,
+      "max_nfe": 140,
+      "mean_nfe": 108.65,
+      "min_nfe": 74,
+      "mode": "x",
+      "q05_nfe": 86.0,
+      "q50_nfe": 110.0,
+      "q95_nfe": 134.0,
+      "std_nfe": 13.615340612705948
+    },
+    {
+      "batch_count": 80,
+      "max_nfe": 92,
+      "mean_nfe": 83.375,
+      "min_nfe": 80,
+      "mode": "epsilon",
+      "q05_nfe": 80.0,
+      "q50_nfe": 86.0,
+      "q95_nfe": 86.29999999999998,
+      "std_nfe": 3.5297839877250277
+    },
+    {
+      "batch_count": 80,
+      "max_nfe": 74,
+      "mean_nfe": 61.4,
+      "min_nfe": 56,
+      "mode": "dynamic",
+      "q05_nfe": 56.0,
+      "q50_nfe": 62.0,
+      "q95_nfe": 68.29999999999998,
+      "std_nfe": 4.892851929090027
+    }
+  ],
+  "weights": "ema",
+  "world_size": 4
+}
