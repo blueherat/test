@@ -12,7 +12,15 @@ GLOBAL_BATCH_SIZE="${GLOBAL_BATCH_SIZE:-256}"
 MAX_STEPS="${MAX_STEPS:-100000}"
 SAVE_EVERY="${SAVE_EVERY:-10000}"
 SEED="${SEED:-0}"
-OUTPUT_DIR="${OUTPUT_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/${MODEL_TAG}_seed${SEED}}"
+PREDICTION_TARGET="${PREDICTION_TARGET:-velocity}"
+LOSS_SPACE="${LOSS_SPACE:-velocity}"
+DENOMINATOR_FLOOR="${DENOMINATOR_FLOOR:-0.001}"
+if [[ "${PREDICTION_TARGET}" == "velocity" && "${LOSS_SPACE}" == "velocity" ]]; then
+  DEFAULT_RUN_TAG="${MODEL_TAG}_seed${SEED}"
+else
+  DEFAULT_RUN_TAG="${MODEL_TAG}_${PREDICTION_TARGET}-${LOSS_SPACE}-loss_seed${SEED}"
+fi
+OUTPUT_DIR="${OUTPUT_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/${DEFAULT_RUN_TAG}}"
 
 export CUDA_VISIBLE_DEVICES="${GPU_LIST}"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-1}"
@@ -28,6 +36,9 @@ exec torchrun \
   --nproc_per_node="${NPROC}" \
   experiments/train_imagenet100_sit_flow.py train \
   --model "${SIT_MODEL}" \
+  --prediction-target "${PREDICTION_TARGET}" \
+  --loss-space "${LOSS_SPACE}" \
+  --denominator-floor "${DENOMINATOR_FLOOR}" \
   --output-dir "${OUTPUT_DIR}" \
   --global-batch-size "${GLOBAL_BATCH_SIZE}" \
   --max-steps "${MAX_STEPS}" \

@@ -20,7 +20,10 @@ import torch.distributed as dist
 from torchvision.utils import save_image
 
 try:
-    from experiments.imagenet100_sit_dual_output import dual_output_velocities
+    from experiments.imagenet100_sit_dual_output import (
+        dual_output_velocities,
+        static_dual_velocity,
+    )
     from experiments.sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
         decode_latents_in_chunks,
@@ -44,7 +47,7 @@ try:
         sha256_file,
     )
 except ModuleNotFoundError:
-    from imagenet100_sit_dual_output import dual_output_velocities
+    from imagenet100_sit_dual_output import dual_output_velocities, static_dual_velocity
     from sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
         decode_latents_in_chunks,
@@ -83,6 +86,8 @@ def conditional_dual_velocity(
     gate_activation: str,
     denominator_floor: float,
     autocast_dtype: torch.dtype | None,
+    static_scale: float | None = None,
+    static_endpoint_mode: str = "raw",
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0}
 
@@ -101,6 +106,17 @@ def conditional_dual_velocity(
             gate_activation=gate_activation,
             denominator_floor=denominator_floor,
         )
+        if mode == "static":
+            if static_scale is None:
+                raise ValueError("static mode requires a static scale")
+            return static_dual_velocity(
+                paths["x"],
+                paths["epsilon"],
+                time_value=times,
+                scale=static_scale,
+                denominator_floor=denominator_floor,
+                endpoint_mode=static_endpoint_mode,
+            ).float()
         return paths[mode].float()
 
     return velocity, counter
@@ -108,6 +124,10 @@ def conditional_dual_velocity(
 
 @torch.inference_mode()
 def main(args: argparse.Namespace) -> None:
+    if args.mode == "static" and args.static_scale is None:
+        raise ValueError("--static-scale is required when --mode=static")
+    if args.mode != "static" and args.static_scale is not None:
+        raise ValueError("--static-scale is only valid when --mode=static")
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
     local_rank = int(os.environ["LOCAL_RANK"])
@@ -184,6 +204,8 @@ def main(args: argparse.Namespace) -> None:
             gate_activation=config["gate_activation"],
             denominator_floor=float(config["denominator_floor"]),
             autocast_dtype=autocast_dtype,
+            static_scale=args.static_scale,
+            static_endpoint_mode=args.static_endpoint_mode,
         )
         latents = integrate_velocity(
             noise,
@@ -246,6 +268,10 @@ def main(args: argparse.Namespace) -> None:
             "rank": rank,
             "rank_seed": rank_seed,
             "sampling_mode": args.mode,
+            "static_scale": args.static_scale,
+            "static_endpoint_mode": (
+                args.static_endpoint_mode if args.mode == "static" else None
+            ),
             "sample_count": samples_per_rank,
             "rank_npz": str(rank_path),
             "total_nfe_across_batches": total_nfe,
@@ -293,6 +319,10 @@ def main(args: argparse.Namespace) -> None:
             "model_name": config["model_name"],
             "official_sit": source_metadata,
             "sampling_mode": args.mode,
+            "static_scale": args.static_scale,
+            "static_endpoint_mode": (
+                args.static_endpoint_mode if args.mode == "static" else None
+            ),
             "requested_samples": int(args.num_samples),
             "generated_for_ddp_divisibility": int(total_samples),
             "discarded_samples": int(total_samples - args.num_samples),
@@ -313,6 +343,10 @@ def main(args: argparse.Namespace) -> None:
             "sampler": {
                 "path": "linear",
                 "prediction": args.mode,
+                "static_scale": args.static_scale,
+                "static_endpoint_mode": (
+                    args.static_endpoint_mode if args.mode == "static" else None
+                ),
                 "method": "dopri5",
                 "interval": [0.0, 1.0],
                 "num_output_points": int(args.num_output_points),
@@ -352,7 +386,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")
-    parser.add_argument("--mode", choices=("x", "epsilon", "dynamic"), default="dynamic")
+    parser.add_argument(
+        "--mode", choices=("x", "epsilon", "dynamic", "static"), default="dynamic"
+    )
+    parser.add_argument("--static-scale", type=float)
+    parser.add_argument(
+        "--static-endpoint-mode", choices=("raw", "override"), default="raw"
+    )
     parser.add_argument("--num-samples", type=int, default=5_000)
     parser.add_argument("--per-rank-batch-size", type=int, default=64)
     parser.add_argument("--vae-decode-batch-size", type=int, default=4)

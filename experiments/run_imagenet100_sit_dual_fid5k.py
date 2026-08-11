@@ -55,6 +55,15 @@ DEFAULT_OUTPUT_ROOT = Path(
 MODES = ("x", "epsilon", "dynamic")
 
 
+def format_static_scale(scale: float) -> str:
+    value = format(float(scale), ".8g")
+    return value.replace("-", "m").replace(".", "p").replace("+", "")
+
+
+def static_condition_name(scale: float, endpoint_mode: str) -> str:
+    return f"static_s{format_static_scale(scale)}_{endpoint_mode}"
+
+
 def checkpoint_metadata(path: Path) -> dict[str, object]:
     if not path.is_file():
         raise FileNotFoundError(f"missing checkpoint: {path}")
@@ -78,6 +87,7 @@ def valid_sampling_artifact(
     checkpoint: dict[str, object],
     mode: str,
     args: argparse.Namespace,
+    static_scale: float | None = None,
 ) -> bool:
     manifest_path = output_dir / "sampling_manifest.json"
     sample_path = output_dir / f"samples_unguided_n{args.num_samples}.npz"
@@ -106,6 +116,13 @@ def valid_sampling_artifact(
         "guidance": False,
         "same_noise_and_labels_across_modes": True,
     }
+    if mode == "static":
+        expected.update(
+            {
+                "static_scale": static_scale,
+                "static_endpoint_mode": args.static_endpoint_mode,
+            }
+        )
     mismatches = {
         key: (manifest.get(key), value)
         for key, value in expected.items()
@@ -127,8 +144,14 @@ def evaluate_mode(
     checkpoint: dict[str, object],
     args: argparse.Namespace,
     sampling_env: dict[str, str],
+    static_scale: float | None = None,
 ) -> dict[str, object]:
-    output_dir = args.output_root / mode
+    condition = (
+        static_condition_name(static_scale, args.static_endpoint_mode)
+        if mode == "static" and static_scale is not None
+        else mode
+    )
+    output_dir = args.output_root / condition
     output_dir.mkdir(parents=True, exist_ok=True)
     sample_path = output_dir / f"samples_unguided_n{args.num_samples}.npz"
     if not valid_sampling_artifact(
@@ -136,9 +159,9 @@ def evaluate_mode(
         checkpoint=checkpoint,
         mode=mode,
         args=args,
+        static_scale=static_scale,
     ):
-        sampling_audit = run_logged(
-            (
+        command = [
                 args.torchrun,
                 "--standalone",
                 f"--nproc_per_node={len(args.sampling_gpu_indices)}",
@@ -164,7 +187,20 @@ def evaluate_mode(
                 "--precision",
                 "fp32",
                 "--allow-tf32",
-            ),
+        ]
+        if mode == "static":
+            if static_scale is None:
+                raise ValueError("static mode requires a scale")
+            command.extend(
+                (
+                    "--static-scale",
+                    repr(float(static_scale)),
+                    "--static-endpoint-mode",
+                    args.static_endpoint_mode,
+                )
+            )
+        sampling_audit = run_logged(
+            tuple(command),
             output_dir / "sampling.log",
             env=sampling_env,
             monitored_gpu_indices=args.sampling_gpu_indices,
@@ -177,6 +213,7 @@ def evaluate_mode(
             checkpoint=checkpoint,
             mode=mode,
             args=args,
+            static_scale=static_scale,
         ):
             raise RuntimeError(f"{mode} sampler completed without valid artifacts")
     else:
@@ -233,7 +270,12 @@ def evaluate_mode(
 
     result = load_json(output_dir / "fid5k_adm_results.json")
     return {
+        "condition": condition,
         "mode": mode,
+        "static_scale": static_scale,
+        "static_endpoint_mode": (
+            args.static_endpoint_mode if mode == "static" else None
+        ),
         **checkpoint,
         "weights": "ema",
         "num_samples": args.num_samples,
@@ -259,7 +301,7 @@ def save_summary(rows: list[dict[str, object]], output_root: Path) -> dict[str, 
         writer.writeheader()
         writer.writerows(rows)
     summary = {
-        "protocol": "imagenet100_sit_dual_output_unguided_fid5k_v1",
+        "protocol": "imagenet100_sit_dual_output_unguided_fid5k_v2",
         "comparison_is_paired": True,
         "pairing": "same checkpoint, EMA, global seed, per-rank RNG, labels, ODE, VAE, reference",
         "rows": rows,
@@ -277,6 +319,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
     parser.add_argument("--torchrun", default=shutil.which("torchrun") or "torchrun")
     parser.add_argument("--modes", nargs="+", choices=MODES, default=list(MODES))
+    parser.add_argument("--static-scales", nargs="*", type=float, default=[])
+    parser.add_argument(
+        "--static-endpoint-mode", choices=("raw", "override"), default="raw"
+    )
     parser.add_argument("--num-samples", type=int, default=5_000)
     parser.add_argument("--per-rank-batch-size", type=int, default=64)
     parser.add_argument("--vae-decode-batch-size", type=int, default=4)
@@ -303,6 +349,16 @@ def main() -> None:
         raise ValueError("ADM FID must use exactly one visible GPU")
     if len(set(args.modes)) != len(args.modes):
         raise ValueError("modes must not contain duplicates")
+    if len(set(args.static_scales)) != len(args.static_scales):
+        raise ValueError("static scales must not contain duplicates")
+    if any(not math.isfinite(scale) for scale in args.static_scales):
+        raise ValueError("static scales must be finite")
+    static_names = [
+        static_condition_name(scale, args.static_endpoint_mode)
+        for scale in args.static_scales
+    ]
+    if len(set(static_names)) != len(static_names):
+        raise ValueError("static scale names collide after formatting")
     if not args.reference.is_file():
         raise FileNotFoundError(f"missing reference: {args.reference}")
     if not args.adm_python.is_file():
@@ -336,6 +392,16 @@ def main() -> None:
         )
         for mode in args.modes
     ]
+    rows.extend(
+        evaluate_mode(
+            mode="static",
+            static_scale=scale,
+            checkpoint=checkpoint,
+            args=args,
+            sampling_env=sampling_env,
+        )
+        for scale in args.static_scales
+    )
     summary = save_summary(rows, args.output_root)
     print(json.dumps(summary, indent=2), flush=True)
     for row in rows:

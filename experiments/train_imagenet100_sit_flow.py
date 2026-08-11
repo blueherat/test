@@ -36,6 +36,23 @@ import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader, Dataset, DistributedSampler
 
+try:
+    from experiments.imagenet100_sit_prediction_targets import (
+        LOSS_SPACES,
+        PREDICTION_TARGETS,
+        native_prediction_target,
+        prediction_losses,
+        prediction_to_velocity,
+    )
+except ModuleNotFoundError:
+    from imagenet100_sit_prediction_targets import (
+        LOSS_SPACES,
+        PREDICTION_TARGETS,
+        native_prediction_target,
+        prediction_losses,
+        prediction_to_velocity,
+    )
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CACHE_DIR = Path(
@@ -53,6 +70,8 @@ SD_VAE_SCALING_FACTOR = 0.18215
 LATENT_SHAPE = (4, 32, 32)
 MOMENT_SHAPE = (8, 32, 32)
 NUM_CLASSES = 100
+LEGACY_PROTOCOL = "imagenet100_sit_linear_flow_v1"
+TARGET_PROTOCOL = "imagenet100_sit_single_target_linear_flow_v2"
 
 
 def sha256_file(path: Path, chunk_size: int = 16 * 1024 * 1024) -> str:
@@ -363,6 +382,9 @@ class TrainConfig:
     output_dir: str
     official_sit_repo: str
     model_name: str
+    prediction_target: str
+    loss_space: str
+    denominator_floor: float
     global_batch_size: int
     max_steps: int
     learning_rate: float
@@ -405,6 +427,9 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "cache_dir",
         "official_sit_repo",
         "model_name",
+        "prediction_target",
+        "loss_space",
+        "denominator_floor",
         "global_batch_size",
         "learning_rate",
         "weight_decay",
@@ -419,10 +444,16 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "seed",
     )
     current_values = asdict(current)
+    legacy_defaults = {
+        "prediction_target": "velocity",
+        "loss_space": "velocity",
+        "denominator_floor": 1e-3,
+    }
     mismatches = [
-        f"{key}: checkpoint={stored.get(key)!r}, current={current_values[key]!r}"
+        f"{key}: checkpoint={stored.get(key, legacy_defaults.get(key))!r}, "
+        f"current={current_values[key]!r}"
         for key in immutable
-        if stored.get(key) != current_values[key]
+        if stored.get(key, legacy_defaults.get(key)) != current_values[key]
     ]
     stored_world_size = int(stored.get("world_size", world_size))
     if stored_world_size != world_size:
@@ -454,9 +485,12 @@ def validation_loss(
     precision: str,
     batches: int,
     seed: int,
-) -> float:
+    prediction_target: str,
+    loss_space: str,
+    denominator_floor: float,
+) -> dict[str, float]:
     generator = torch.Generator(device=context.device).manual_seed(int(seed))
-    total = torch.zeros(2, device=context.device, dtype=torch.float64)
+    total = torch.zeros(4, device=context.device, dtype=torch.float64)
     model.eval()
     for batch_index, (moments, labels) in enumerate(loader):
         if batch_index >= batches:
@@ -475,16 +509,51 @@ def validation_loss(
         time_value = torch.rand(
             (len(data),), generator=generator, device=context.device
         )
-        state, target = linear_flow_state_target(data, source_noise, time_value)
+        state, _ = linear_flow_state_target(data, source_noise, time_value)
         with autocast_context(precision):
             prediction = model(state, time_value, labels)
-        sample_losses = (prediction.float() - target).square().flatten(1).mean(1)
-        total[0] += sample_losses.double().sum()
-        total[1] += len(sample_losses)
+        native_target = native_prediction_target(
+            data=data,
+            noise=source_noise,
+            prediction_target=prediction_target,
+        )
+        velocity_prediction = prediction_to_velocity(
+            prediction,
+            state=state,
+            time_value=time_value,
+            prediction_target=prediction_target,
+            denominator_floor=denominator_floor,
+        )
+        native_losses = (
+            (prediction.float() - native_target.float()).square().flatten(1).mean(1)
+        )
+        velocity_losses = (
+            (velocity_prediction - (data.float() - source_noise.float()))
+            .square()
+            .flatten(1)
+            .mean(1)
+        )
+        optimized_losses = (
+            velocity_losses if loss_space == "velocity" else native_losses
+        )
+        total[0] += optimized_losses.double().sum()
+        total[1] += native_losses.double().sum()
+        total[2] += velocity_losses.double().sum()
+        total[3] += len(optimized_losses)
     reduce_sum(total, context)
-    if total[1].item() == 0:
+    if total[3].item() == 0:
         raise RuntimeError("validation loader produced no samples")
-    return float((total[0] / total[1]).item())
+    return {
+        "optimized": float((total[0] / total[3]).item()),
+        "native": float((total[1] / total[3]).item()),
+        "velocity": float((total[2] / total[3]).item()),
+    }
+
+
+def protocol_for_config(config: TrainConfig) -> str:
+    if config.prediction_target == "velocity" and config.loss_space == "velocity":
+        return LEGACY_PROTOCOL
+    return TARGET_PROTOCOL
 
 
 def build_run_metadata(
@@ -498,7 +567,7 @@ def build_run_metadata(
     import timm
 
     return {
-        "protocol": "imagenet100_sit_linear_flow_v1",
+        "protocol": protocol_for_config(config),
         "config": asdict(config),
         "world_size": context.world_size,
         "parameter_count": sum(parameter.numel() for parameter in model.parameters()),
@@ -508,7 +577,10 @@ def build_run_metadata(
         "official_sit": source_metadata,
         "objective": {
             "path": "x_t=(1-t)*noise+t*data",
-            "target": "data-noise",
+            "prediction_target": config.prediction_target,
+            "loss_space": config.loss_space,
+            "denominator_floor": config.denominator_floor,
+            "velocity_target": "data-noise",
             "time_distribution": "Uniform[0,1)",
         },
         "latent": {
@@ -538,6 +610,9 @@ def train(args: argparse.Namespace) -> None:
             output_dir=str(args.output_dir.expanduser().resolve()),
             official_sit_repo=str(args.official_sit_repo.expanduser().resolve()),
             model_name=args.model,
+            prediction_target=args.prediction_target,
+            loss_space=args.loss_space,
+            denominator_floor=float(args.denominator_floor),
             global_batch_size=int(args.global_batch_size),
             max_steps=int(args.max_steps),
             learning_rate=float(args.learning_rate),
@@ -567,6 +642,8 @@ def train(args: argparse.Namespace) -> None:
             raise ValueError("batch size, max steps, log interval and save interval must be positive")
         if not 0 <= config.cfg_dropout < 1:
             raise ValueError("--cfg-dropout must be in [0,1)")
+        if config.denominator_floor <= 0 or config.denominator_floor >= 0.5:
+            raise ValueError("--denominator-floor must be in (0,0.5)")
         configure_runtime(config.seed, context.rank, config.allow_tf32)
 
         cache_dir = Path(config.cache_dir)
@@ -689,6 +766,8 @@ def train(args: argparse.Namespace) -> None:
                         "event": "start",
                         "step": start_step,
                         "model": config.model_name,
+                        "prediction_target": config.prediction_target,
+                        "loss_space": config.loss_space,
                         "parameters": metadata["parameter_count"],
                         "world_size": context.world_size,
                         "global_batch": config.global_batch_size,
@@ -703,7 +782,7 @@ def train(args: argparse.Namespace) -> None:
         barrier(context)
 
         metrics_path = output_dir / "train_metrics.jsonl"
-        running_loss = torch.zeros((), device=context.device, dtype=torch.float64)
+        running_losses = torch.zeros(3, device=context.device, dtype=torch.float64)
         running_steps = 0
         interval_started = time.perf_counter()
         optimizer.zero_grad(set_to_none=True)
@@ -718,25 +797,41 @@ def train(args: argparse.Namespace) -> None:
             data = sample_sdvae_posterior(moments, posterior_noise)
             source_noise = torch.randn_like(data)
             time_value = torch.rand((len(data),), device=context.device)
-            state, target = linear_flow_state_target(data, source_noise, time_value)
+            state, _ = linear_flow_state_target(data, source_noise, time_value)
 
             with autocast_context(config.precision):
                 prediction = train_model(state, time_value, labels)
-            loss = F.mse_loss(prediction.float(), target, reduction="mean")
+            losses = prediction_losses(
+                prediction,
+                state=state,
+                data=data,
+                noise=source_noise,
+                time_value=time_value,
+                prediction_target=config.prediction_target,
+                loss_space=config.loss_space,
+                denominator_floor=config.denominator_floor,
+            )
+            loss = losses["optimized"]
             if not torch.isfinite(loss):
                 raise FloatingPointError(f"non-finite training loss at step {step}")
             loss.backward()
             optimizer.step()
             optimizer.zero_grad(set_to_none=True)
             ema.update(config.ema_decay)
-            running_loss += loss.detach().double()
+            running_losses += torch.stack(
+                (
+                    losses["optimized"].detach(),
+                    losses["native"].detach(),
+                    losses["velocity"].detach(),
+                )
+            ).double()
             running_steps += 1
 
             if step % config.log_every == 0 or step == config.max_steps:
                 torch.cuda.synchronize(context.device)
                 elapsed = time.perf_counter() - interval_started
                 values = torch.tensor(
-                    [running_loss.item(), running_steps],
+                    [*running_losses.tolist(), running_steps],
                     device=context.device,
                     dtype=torch.float64,
                 )
@@ -750,7 +845,9 @@ def train(args: argparse.Namespace) -> None:
                 reduce_max(memory_tensor, context)
                 row = {
                     "step": step,
-                    "train_loss": float(values[0].item() / values[1].item()),
+                    "train_loss": float(values[0].item() / values[3].item()),
+                    "train_native_loss": float(values[1].item() / values[3].item()),
+                    "train_velocity_loss": float(values[2].item() / values[3].item()),
                     "steps_per_second": float(running_steps / elapsed_tensor.item()),
                     "images_per_second": float(
                         running_steps * config.global_batch_size / elapsed_tensor.item()
@@ -762,7 +859,7 @@ def train(args: argparse.Namespace) -> None:
                     with metrics_path.open("a", encoding="utf-8") as handle:
                         handle.write(json.dumps(row, sort_keys=True) + "\n")
                     print(json.dumps(row, sort_keys=True), flush=True)
-                running_loss.zero_()
+                running_losses.zero_()
                 running_steps = 0
                 interval_started = time.perf_counter()
                 torch.cuda.reset_peak_memory_stats(context.device)
@@ -779,6 +876,9 @@ def train(args: argparse.Namespace) -> None:
                     precision=config.precision,
                     batches=config.validation_batches,
                     seed=config.seed + 700_000,
+                    prediction_target=config.prediction_target,
+                    loss_space=config.loss_space,
+                    denominator_floor=config.denominator_floor,
                 )
                 ema_value = validation_loss(
                     model=ema.module,
@@ -787,13 +887,20 @@ def train(args: argparse.Namespace) -> None:
                     precision=config.precision,
                     batches=config.validation_batches,
                     seed=config.seed + 700_000,
+                    prediction_target=config.prediction_target,
+                    loss_space=config.loss_space,
+                    denominator_floor=config.denominator_floor,
                 )
                 raw_model.train()
                 if context.is_main:
                     row = {
                         "step": step,
-                        "raw_validation_loss": raw_value,
-                        "ema_validation_loss": ema_value,
+                        "raw_validation_loss": raw_value["optimized"],
+                        "ema_validation_loss": ema_value["optimized"],
+                        "raw_validation_native_loss": raw_value["native"],
+                        "ema_validation_native_loss": ema_value["native"],
+                        "raw_validation_velocity_loss": raw_value["velocity"],
+                        "ema_validation_velocity_loss": ema_value["velocity"],
                     }
                     with metrics_path.open("a", encoding="utf-8") as handle:
                         handle.write(json.dumps(row, sort_keys=True) + "\n")
@@ -808,7 +915,7 @@ def train(args: argparse.Namespace) -> None:
                     checkpoint_path = output_dir / "checkpoints" / f"step_{step:08d}.pt"
                     atomic_torch_save(
                         {
-                            "protocol": "imagenet100_sit_linear_flow_v1",
+                            "protocol": protocol_for_config(config),
                             "step": step,
                             "model": raw_model.state_dict(),
                             "ema": ema.state_dict(),
@@ -880,11 +987,21 @@ def benchmark(args: argparse.Namespace) -> None:
             )
             source_noise = torch.randn_like(data)
             time_value = torch.rand((batch_size,), device=context.device)
-            state, target = linear_flow_state_target(data, source_noise, time_value)
+            state, _ = linear_flow_state_target(data, source_noise, time_value)
             optimizer.zero_grad(set_to_none=True)
             with autocast_context(args.precision):
                 prediction = model(state, time_value, labels)
-            F.mse_loss(prediction.float(), target).backward()
+            losses = prediction_losses(
+                prediction,
+                state=state,
+                data=data,
+                noise=source_noise,
+                time_value=time_value,
+                prediction_target=args.prediction_target,
+                loss_space=args.loss_space,
+                denominator_floor=args.denominator_floor,
+            )
+            losses["optimized"].backward()
             optimizer.step()
             ema.update(args.ema_decay)
             if index + 1 == args.benchmark_warmup:
@@ -906,6 +1023,8 @@ def benchmark(args: argparse.Namespace) -> None:
                 json.dumps(
                     {
                         "model": args.model,
+                        "prediction_target": args.prediction_target,
+                        "loss_space": args.loss_space,
                         "official_sit": source_metadata,
                         "world_size": context.world_size,
                         "local_batch_size": batch_size,
@@ -933,6 +1052,11 @@ def benchmark(args: argparse.Namespace) -> None:
 def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--model", default="SiT-S/2")
+    parser.add_argument(
+        "--prediction-target", choices=PREDICTION_TARGETS, default="velocity"
+    )
+    parser.add_argument("--loss-space", choices=LOSS_SPACES, default="velocity")
+    parser.add_argument("--denominator-floor", type=float, default=1e-3)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--cfg-dropout", type=float, default=0.1)
     parser.add_argument("--ema-decay", type=float, default=0.9999)

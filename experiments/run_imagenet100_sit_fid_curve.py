@@ -117,13 +117,19 @@ def checkpoint_metadata(path: Path, expected_step: int) -> dict[str, object]:
     protocol = checkpoint.get("protocol")
     if step != expected_step:
         raise ValueError(f"checkpoint step mismatch: path={path}, payload={step}")
-    if protocol != "imagenet100_sit_linear_flow_v1":
+    if protocol not in {
+        "imagenet100_sit_linear_flow_v1",
+        "imagenet100_sit_single_target_linear_flow_v2",
+    }:
         raise ValueError(f"unexpected checkpoint protocol in {path}: {protocol!r}")
     config = checkpoint.get("config", {})
     metadata = {
         "step": step,
         "protocol": protocol,
         "model_name": config.get("model_name"),
+        "prediction_target": config.get("prediction_target", "velocity"),
+        "loss_space": config.get("loss_space", "velocity"),
+        "denominator_floor": float(config.get("denominator_floor", 1e-3)),
         "checkpoint": str(path.resolve()),
         "checkpoint_sha256": sha256_file(path),
     }
@@ -188,6 +194,14 @@ def valid_sampling_artifact(
         "cfg_scale": 1.0,
         "guidance": False,
     }
+    if checkpoint.get("protocol") == "imagenet100_sit_single_target_linear_flow_v2":
+        expected.update(
+            {
+                "prediction_target": checkpoint["prediction_target"],
+                "loss_space": checkpoint["loss_space"],
+                "denominator_floor": checkpoint["denominator_floor"],
+            }
+        )
     mismatches = {
         key: (manifest.get(key), value)
         for key, value in expected.items()

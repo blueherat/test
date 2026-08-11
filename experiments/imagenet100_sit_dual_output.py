@@ -8,6 +8,7 @@ equivalent endpoint-derived velocities instead.
 
 from __future__ import annotations
 
+import math
 from typing import Literal
 
 import torch
@@ -16,6 +17,7 @@ import torch.nn.functional as F
 
 
 GateActivation = Literal["sigmoid", "identity", "clamp"]
+StaticEndpointMode = Literal["raw", "override"]
 
 
 def retrofit_dual_output_head(
@@ -183,3 +185,51 @@ def dual_output_velocities(
         "clean": clean.float(),
         "epsilon_prediction": epsilon.float(),
     }
+
+
+def static_dual_velocity(
+    velocity_x: torch.Tensor,
+    velocity_epsilon: torch.Tensor,
+    *,
+    time_value: torch.Tensor,
+    scale: float,
+    denominator_floor: float = 1e-3,
+    endpoint_mode: StaticEndpointMode = "raw",
+) -> torch.Tensor:
+    """Mix the two endpoint-derived fields with one fixed scalar.
+
+    ``scale=0`` selects epsilon and ``scale=1`` selects x.  Values outside
+    that interval extrapolate along the same prediction-target direction.
+    ``raw`` preserves those endpoint paths exactly.  ``override`` uses the
+    well-defined x branch near noise and epsilon branch near data, matching
+    the numerical endpoint convention of the learned dynamic path.
+    """
+
+    if velocity_x.shape != velocity_epsilon.shape:
+        raise ValueError("x and epsilon velocities must have identical shapes")
+    if not math.isfinite(scale):
+        raise ValueError("static scale must be finite")
+    if denominator_floor <= 0 or denominator_floor >= 0.5:
+        raise ValueError("denominator_floor must be in (0, 0.5)")
+    if endpoint_mode not in ("raw", "override"):
+        raise ValueError(f"unsupported static endpoint mode: {endpoint_mode}")
+
+    # Keep the two boundary scales bitwise identical to their native paths.
+    if scale == 0.0:
+        mixed = velocity_epsilon
+    elif scale == 1.0:
+        mixed = velocity_x
+    else:
+        mixed = velocity_epsilon + float(scale) * (velocity_x - velocity_epsilon)
+
+    if endpoint_mode == "raw":
+        return mixed
+
+    time_image = _time_image(time_value, velocity_x).to(dtype=velocity_x.dtype)
+    mixed = torch.where(time_image <= denominator_floor, velocity_x, mixed)
+    mixed = torch.where(
+        time_image >= 1.0 - denominator_floor,
+        velocity_epsilon,
+        mixed,
+    )
+    return mixed

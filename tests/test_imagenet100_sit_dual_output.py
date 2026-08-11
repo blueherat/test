@@ -6,6 +6,7 @@ from experiments.imagenet100_sit_dual_output import (
     dual_output_flow_losses,
     dual_output_velocities,
     retrofit_dual_output_head,
+    static_dual_velocity,
 )
 from experiments.sample_imagenet100_sit_dual_fid import conditional_dual_velocity
 from experiments.train_imagenet100_sit_flow import (
@@ -164,3 +165,63 @@ def test_fid_sampling_modes_recover_the_same_exact_velocity() -> None:
         result = velocity(torch.tensor(0.4), state)
         assert torch.allclose(result, torch.ones_like(result))
         assert counter == {"nfe": 1}
+
+
+def test_static_raw_boundary_scales_are_exact_native_paths() -> None:
+    velocity_x = torch.randn(3, 4, 2, 2)
+    velocity_epsilon = torch.randn_like(velocity_x)
+    times = torch.tensor([0.0, 0.5, 1.0])
+
+    at_epsilon = static_dual_velocity(
+        velocity_x,
+        velocity_epsilon,
+        time_value=times,
+        scale=0.0,
+        endpoint_mode="raw",
+    )
+    at_x = static_dual_velocity(
+        velocity_x,
+        velocity_epsilon,
+        time_value=times,
+        scale=1.0,
+        endpoint_mode="raw",
+    )
+
+    assert torch.equal(at_epsilon, velocity_epsilon)
+    assert torch.equal(at_x, velocity_x)
+
+
+def test_static_override_uses_well_defined_endpoint_paths() -> None:
+    velocity_x = torch.full((3, 4, 2, 2), 2.0)
+    velocity_epsilon = torch.full_like(velocity_x, -2.0)
+    times = torch.tensor([0.0, 0.5, 1.0])
+    result = static_dual_velocity(
+        velocity_x,
+        velocity_epsilon,
+        time_value=times,
+        scale=0.25,
+        endpoint_mode="override",
+    )
+
+    assert torch.equal(result[0], velocity_x[0])
+    assert torch.equal(result[1], torch.full_like(result[1], -1.0))
+    assert torch.equal(result[2], velocity_epsilon[2])
+
+
+def test_fid_static_mode_uses_requested_fixed_scale() -> None:
+    state = torch.full((2, 4, 3, 3), 0.4)
+    labels = torch.tensor([1, 2])
+    velocity, counter = conditional_dual_velocity(
+        ExactEndpointModel(),
+        labels,
+        mode="static",
+        gate_activation="sigmoid",
+        denominator_floor=1e-3,
+        autocast_dtype=None,
+        static_scale=0.25,
+        static_endpoint_mode="raw",
+    )
+
+    result = velocity(torch.tensor(0.4), state)
+    assert torch.allclose(result, torch.ones_like(result))
+    assert counter == {"nfe": 1}

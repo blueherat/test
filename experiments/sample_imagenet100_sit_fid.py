@@ -28,6 +28,7 @@ import torch.distributed as dist
 from torchvision.utils import save_image
 
 try:
+    from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
     from experiments.sample_imagenet100_sit_flow import (
         DEFAULT_CHECKPOINT,
         integrate_velocity,
@@ -42,6 +43,7 @@ try:
         sha256_file,
     )
 except ModuleNotFoundError:
+    from imagenet100_sit_prediction_targets import prediction_to_velocity
     from sample_imagenet100_sit_flow import DEFAULT_CHECKPOINT, integrate_velocity
     from train_imagenet100_sit_flow import (
         DEFAULT_OFFICIAL_SIT_REPO,
@@ -152,6 +154,8 @@ def conditional_velocity(
     labels: torch.Tensor,
     *,
     autocast_dtype: torch.dtype | None,
+    prediction_target: str = "velocity",
+    denominator_floor: float = 1e-3,
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0}
 
@@ -163,7 +167,13 @@ def conditional_velocity(
         else:
             with torch.autocast("cuda", dtype=autocast_dtype):
                 prediction = model(state, times, labels)
-        return prediction.float()
+        return prediction_to_velocity(
+            prediction,
+            state=state,
+            time_value=times,
+            prediction_target=prediction_target,
+            denominator_floor=denominator_floor,
+        )
 
     return velocity, counter
 
@@ -196,6 +206,8 @@ def main(args: argparse.Namespace) -> None:
     checkpoint_path = Path(args.checkpoint).expanduser().resolve()
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     config = checkpoint["config"]
+    prediction_target = str(config.get("prediction_target", "velocity"))
+    denominator_floor = float(config.get("denominator_floor", 1e-3))
     sit_module, source_metadata = load_official_sit_module(
         Path(args.official_sit_repo), verify_source=args.verify_sit_source
     )
@@ -241,7 +253,11 @@ def main(args: argparse.Namespace) -> None:
         noise = torch.randn(batch_size, *LATENT_SHAPE, device=device)
         labels = torch.randint(0, NUM_CLASSES, (batch_size,), device=device)
         velocity, counter = conditional_velocity(
-            model, labels, autocast_dtype=autocast_dtype
+            model,
+            labels,
+            autocast_dtype=autocast_dtype,
+            prediction_target=prediction_target,
+            denominator_floor=denominator_floor,
         )
         latents = integrate_velocity(
             noise,
@@ -340,7 +356,11 @@ def main(args: argparse.Namespace) -> None:
         np.save(label_path, merged_labels, allow_pickle=False)
         histogram = np.bincount(merged_labels.astype(np.int64), minlength=NUM_CLASSES)
         manifest = {
-            "format": "eqvae_imagenet100_sit_official_style_samples_v1",
+            "format": (
+                "eqvae_imagenet100_sit_official_style_samples_v1"
+                if prediction_target == "velocity"
+                else "eqvae_imagenet100_sit_single_target_samples_v2"
+            ),
             "scope": "FID-5K screening; official SiT uses 50K ImageNet-1K samples",
             "adapted_from": str(Path(args.official_sit_repo).resolve() / "sample_ddp.py"),
             "checkpoint": str(checkpoint_path),
@@ -348,6 +368,9 @@ def main(args: argparse.Namespace) -> None:
             "checkpoint_step": int(checkpoint["step"]),
             "weights": args.weights,
             "model_name": model_name,
+            "prediction_target": prediction_target,
+            "loss_space": str(config.get("loss_space", "velocity")),
+            "denominator_floor": denominator_floor,
             "official_sit": source_metadata,
             "num_classes": NUM_CLASSES,
             "requested_samples": int(args.num_samples),
@@ -369,7 +392,8 @@ def main(args: argparse.Namespace) -> None:
             "guidance": False,
             "sampler": {
                 "path": "linear",
-                "prediction": "velocity",
+                "prediction": prediction_target,
+                "velocity_conversion_floor": denominator_floor,
                 "method": "dopri5",
                 "interval": [0.0, 1.0],
                 "num_output_points": int(args.num_output_points),
