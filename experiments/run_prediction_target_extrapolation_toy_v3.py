@@ -179,6 +179,26 @@ def direct_training_target(x: torch.Tensor, eps: torch.Tensor, target: str) -> t
     raise ValueError(target)
 
 
+def sample_training_times(
+    n: int,
+    *,
+    args: argparse.Namespace,
+    device: torch.device,
+    generator: torch.Generator,
+) -> torch.Tensor:
+    if args.time_sampler == "uniform":
+        return torch.empty(n, device=device).uniform_(
+            args.t_min, args.t_max, generator=generator
+        )
+    if args.time_sampler == "logit_normal":
+        if args.time_logit_std <= 0.0:
+            raise ValueError("time_logit_std must be positive")
+        logits = torch.randn(n, device=device, generator=generator)
+        logits.mul_(args.time_logit_std).add_(args.time_logit_mean)
+        return logits.sigmoid().clamp_(min=args.t_min, max=args.t_max)
+    raise ValueError(f"unsupported time_sampler: {args.time_sampler}")
+
+
 class TimeEmbedding(nn.Module):
     def __init__(self, dim: int = 32, max_freq: float = 32.0):
         super().__init__()
@@ -259,8 +279,11 @@ def train_models(
         )
         x = embed(x2, P)
         eps = torch.randn(x.shape, device=device, generator=generator)
-        t = torch.empty(args.batch_size, device=device).uniform_(
-            args.t_min, args.t_max, generator=generator
+        t = sample_training_times(
+            args.batch_size,
+            args=args,
+            device=device,
+            generator=generator,
         )
         x_t = (1.0 - t[:, None]) * x + t[:, None] * eps
         true_v = eps - x
@@ -449,7 +472,23 @@ def sample_condition(
             gamma=gamma,
             args=args,
         )
-        state = state + (t_next - t_now) * vel
+        step_size = t_next - t_now
+        if args.sampler == "heun_state" and i < args.sample_steps - 1:
+            predicted_state = state + step_size * vel
+            next_t = torch.full((n,), float(t_next), device=device)
+            next_vel = velocity_for_condition(
+                models=models,
+                state=predicted_state,
+                t=next_t,
+                condition=condition,
+                gamma=gamma,
+                args=args,
+            )
+            state = state + 0.5 * step_size * (vel + next_vel)
+        else:
+            state = state + step_size * vel
+    if args.sampler == "heun_state":
+        return state
     # Final clean readout: x-model for extrapolated cases, target model otherwise.
     t = torch.full((n,), float(grid[-1]), device=device)
     if condition in ("x", "v", "eps"):
@@ -605,6 +644,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--loss-space", choices=("v", "direct"), default="v")
     p.add_argument("--t-min", type=float, default=0.02)
     p.add_argument("--t-max", type=float, default=0.98)
+    p.add_argument(
+        "--time-sampler",
+        choices=("uniform", "logit_normal"),
+        default="uniform",
+    )
+    p.add_argument("--time-logit-mean", type=float, default=0.8)
+    p.add_argument("--time-logit-std", type=float, default=0.8)
     p.add_argument("--conversion-clip", type=float, default=0.02)
     p.add_argument("--data-jitter", type=float, default=0.015)
     p.add_argument("--log-every", type=int, default=500)
@@ -615,6 +661,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--sample-steps", type=int, default=200)
     p.add_argument("--sample-t-max", type=float, default=0.98)
     p.add_argument("--sample-t-min", type=float, default=0.02)
+    p.add_argument(
+        "--sampler",
+        choices=("legacy_euler_clean", "heun_state"),
+        default="legacy_euler_clean",
+    )
     p.add_argument("--gammas", type=parse_float_list, default=parse_float_list("0.1,0.25,0.5,1.0"))
     p.add_argument("--swd-projections", type=int, default=256)
     p.add_argument("--mmd-max-points", type=int, default=4096)
@@ -633,8 +684,11 @@ def main() -> None:
         raise ValueError("all D must be >= 2")
     if not (0 < args.t_min < args.t_max < 1):
         raise ValueError("training t range must be inside (0,1)")
-    if not (0 < args.sample_t_min < args.sample_t_max < 1):
-        raise ValueError("sampling t range must be inside (0,1)")
+    if args.sampler == "legacy_euler_clean":
+        if not (0 < args.sample_t_min < args.sample_t_max < 1):
+            raise ValueError("legacy sampling t range must be inside (0,1)")
+    elif not (0 <= args.sample_t_min < args.sample_t_max <= 1):
+        raise ValueError("state sampling requires 0 <= t_min < t_max <= 1")
     if args.richardson_rho_max >= 1:
         raise ValueError("Richardson rho max must be < 1")
 
@@ -711,13 +765,13 @@ def main() -> None:
                 intrinsic,
                 reference_2d,
                 projections=args.swd_projections,
-                seed=args.seed + D + index,
+                seed=args.seed + D,
             )
             mmd = rbf_mmd_2d(
                 intrinsic,
                 reference_2d,
                 max_points=args.mmd_max_points,
-                seed=args.seed + 3 * D + index,
+                seed=args.seed + 3 * D,
             )
             row = {
                 "D": float(D),
