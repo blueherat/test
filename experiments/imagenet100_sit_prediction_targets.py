@@ -86,7 +86,6 @@ def prediction_losses(
         noise=noise,
         prediction_target=prediction_target,
     )
-    velocity_target = data.float() - noise.float()
     native_loss = F.mse_loss(
         prediction.float(), native_target.float(), reduction="mean"
     )
@@ -94,12 +93,23 @@ def prediction_losses(
     # Preserve the original SiT velocity objective as a literal direct MSE.
     if prediction_target == "velocity":
         velocity_prediction = prediction.float()
+        velocity_target = data.float() - noise.float()
         velocity_loss = F.mse_loss(
             velocity_prediction, velocity_target, reduction="mean"
         )
     else:
         velocity_prediction = prediction_to_velocity(
             prediction,
+            state=state,
+            time_value=time_value,
+            prediction_target=prediction_target,
+            denominator_floor=denominator_floor,
+        )
+        # JiT converts both the prediction and its exact native target with
+        # the same clamped denominator. This keeps an exact x/epsilon
+        # predictor at zero loss even inside the endpoint clamp region.
+        velocity_target = prediction_to_velocity(
+            native_target,
             state=state,
             time_value=time_value,
             prediction_target=prediction_target,

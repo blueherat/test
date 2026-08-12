@@ -524,11 +524,18 @@ def validation_loss(
             prediction_target=prediction_target,
             denominator_floor=denominator_floor,
         )
+        velocity_target = prediction_to_velocity(
+            native_target,
+            state=state,
+            time_value=time_value,
+            prediction_target=prediction_target,
+            denominator_floor=denominator_floor,
+        )
         native_losses = (
             (prediction.float() - native_target.float()).square().flatten(1).mean(1)
         )
         velocity_losses = (
-            (velocity_prediction - (data.float() - source_noise.float()))
+            (velocity_prediction - velocity_target)
             .square()
             .flatten(1)
             .mean(1)

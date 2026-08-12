@@ -172,3 +172,50 @@ def test_endpoint_floor_keeps_x_and_epsilon_fields_finite() -> None:
             denominator_floor=1e-3,
         )
         assert torch.isfinite(result).all()
+
+
+def test_exact_endpoint_predictions_have_zero_common_velocity_loss() -> None:
+    data = torch.randn(4, 4, 3, 3)
+    noise = torch.randn_like(data)
+    times = torch.tensor([0.0, 0.01, 0.99, 1.0])
+    time_image = times[:, None, None, None]
+    state = (1.0 - time_image) * noise + time_image * data
+    for target, prediction in (("x", data), ("epsilon", noise)):
+        losses = prediction_losses(
+            prediction,
+            state=state,
+            data=data,
+            noise=noise,
+            time_value=times,
+            prediction_target=target,
+            loss_space="velocity",
+            denominator_floor=0.05,
+        )
+        assert losses["optimized"].item() < 1e-10
+
+
+def test_common_velocity_loss_matches_clamped_weighted_native_error() -> None:
+    data = torch.randn(4, 4, 3, 3)
+    noise = torch.randn_like(data)
+    prediction = torch.randn_like(data)
+    times = torch.tensor([0.0, 0.01, 0.99, 1.0])
+    time_image = times[:, None, None, None]
+    state = (1.0 - time_image) * noise + time_image * data
+    floor = 0.05
+    cases = {
+        "x": (data, (1.0 - time_image).clamp_min(floor)),
+        "epsilon": (noise, time_image.clamp_min(floor)),
+    }
+    for target, (native_target, denominator) in cases.items():
+        actual = prediction_losses(
+            prediction,
+            state=state,
+            data=data,
+            noise=noise,
+            time_value=times,
+            prediction_target=target,
+            loss_space="velocity",
+            denominator_floor=floor,
+        )["optimized"]
+        expected = ((prediction - native_target).float() / denominator).square().mean()
+        torch.testing.assert_close(actual, expected, rtol=2e-6, atol=2e-6)
