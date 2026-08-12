@@ -45,6 +45,25 @@ def _stats_or_activations(evalr: adm_evaluator.Evaluator, path: str):
     return stats, stats_spatial, acts
 
 
+def _save_statistics(
+    path: Path,
+    stats: adm_evaluator.FIDStatistics,
+    stats_spatial: adm_evaluator.FIDStatistics,
+) -> None:
+    """Save the exact four-array ADM reference format understood above."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp.npz")
+    np.savez(
+        temporary,
+        mu=stats.mu,
+        sigma=stats.sigma,
+        mu_s=stats_spatial.mu,
+        sigma_s=stats_spatial.sigma,
+    )
+    temporary.replace(path)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Compute ADM/guided-diffusion FID.")
     parser.add_argument("--reference", required=True, help="ADM reference .npz")
@@ -62,6 +81,15 @@ def main() -> None:
         help="Where to cache ADM's classify_image_graph_def.pb.",
     )
     parser.add_argument("--output", default=None, help="Optional JSON output path.")
+    parser.add_argument(
+        "--reference-stats-output",
+        default=None,
+        help=(
+            "Optionally cache the reference mu/sigma arrays as an NPZ. Future "
+            "evaluations can pass that NPZ as --reference without recomputing "
+            "reference Inception activations."
+        ),
+    )
     parser.add_argument(
         "--precision-recall",
         action="store_true",
@@ -84,6 +112,12 @@ def main() -> None:
 
     print("Reference statistics...")
     ref_stats, ref_stats_spatial, ref_acts = _stats_or_activations(evalr, args.reference)
+    if args.reference_stats_output:
+        stats_path = Path(args.reference_stats_output).expanduser().resolve()
+        if stats_path == Path(args.reference).expanduser().resolve():
+            raise ValueError("reference statistics output must differ from --reference")
+        _save_statistics(stats_path, ref_stats, ref_stats_spatial)
+        print(f"Cached reference statistics: {stats_path}")
 
     print("Sample activations/statistics...")
     sample_stats, sample_stats_spatial, sample_acts = _stats_or_activations(evalr, args.samples)
