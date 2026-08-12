@@ -1,6 +1,6 @@
 # 实验归档索引
 
-更新时间：2026-08-11
+更新时间：2026-08-12
 
 ## 归档目的
 
@@ -116,6 +116,15 @@
 - `docs/archive/RAEV2_OPEN_QUESTIONS_ZH.md`
 
 该文件只是当时的研究备忘，不是实验结论。后续若问题已被实验回答，应在新报告中引用证据，而不是直接修改历史记录的含义。
+
+## F. ImageNet-100 SiT FID 总表
+
+- `docs/IMAGENET100_SIT_FID_INVENTORY_ZH.md`
+
+该文档统一登记原生 velocity 单头、单 prediction-target、JiT-style x/velocity、动态
+双头及静态双头混合的全部正式 FID-5K 结果。它同时标记 700K baseline 异常点、800K
+重复复评和单 seed/FID-5K 的使用边界。引用 SiT 数字时应先查该总表，再回到对应的本地
+JSON、manifest 和 checkpoint SHA256 复核。
 
 ## 验证状态
 
