@@ -1,6 +1,6 @@
 # 实验归档索引
 
-更新时间：2026-08-12
+更新时间：2026-08-13
 
 ## 归档目的
 
@@ -125,6 +125,16 @@
 双头及静态双头混合的全部正式 FID-5K 结果。它同时标记 700K baseline 异常点、800K
 重复复评和单 seed/FID-5K 的使用边界。引用 SiT 数字时应先查该总表，再回到对应的本地
 JSON、manifest 和 checkpoint SHA256 复核。
+
+### 独立 SiT-v / JiT-x 静态速度场扫描
+
+- `docs/IMAGENET100_SIT_V_JIT_X_STATIC_SWEEP_ZH.md`
+- `docs/data/imagenet100_sit_v_jit_x_static_sweep_400k.csv`
+
+该报告登记两个独立 400K 单头 checkpoint 的 15 点配对内插/外推实验。当前最明确的
+现象是：从 SiT-v 朝 JiT-x 内插会持续恶化，而沿反方向越过 SiT-v 会持续改善至已测
+边界 `scale=-1`。报告同时保留单 seed、FID-5K、最佳点在边界和缺少 precision/recall
+等限制，不能与同一双头 checkpoint 内部的静态 head mixing 混为一谈。
 
 ## 验证状态
 
