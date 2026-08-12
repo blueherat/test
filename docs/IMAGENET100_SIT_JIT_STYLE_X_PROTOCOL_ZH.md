@@ -35,7 +35,7 @@ prediction 与 target 必须使用同一个 clamped denominator。否则在 `1-t
 
 - SiT-S/2，32,617,760 参数；
 - ImageNet-100 SD-VAE latent cache；
-- global batch 256、seed 0、200K optimizer steps；
+- global batch 256、seed 0、400K optimizer steps；
 - AdamW `lr=1e-4`、EMA `0.9999`；
 - BF16、TF32、`torch.compile`；
 - 相同 class dropout、数据路径、无 guidance FID-5K 协议。
@@ -50,7 +50,7 @@ prediction 与 target 必须使用同一个 clamped denominator。否则在 `1-t
 - common velocity loss 从前 25 步的 `21.35` 降至 step 300 的 `1.44`；
 - 无 NaN/Inf，单卡训练峰值约 `6.28 GiB`。
 
-预计 200K 纯训练约 3 小时 39 分；包含 100K/200K 两次 EMA FID-5K，预计总计约 3 小时 50 分。
+预计 400K 纯训练约 7 小时 19 分；包含每 100K 一次 EMA FID-5K，预计总计约 7 小时 40 分。
 
 ## 运行
 
@@ -62,5 +62,8 @@ bash experiments/run_imagenet100_sit_jit_x_2gpu.sh
 流程：
 
 ```text
-x/velocity 100K -> EMA FID-5K -> 200K -> EMA FID-5K
+x/velocity 100K -> FID-5K
+           200K -> FID-5K
+           300K -> FID-5K
+           400K -> FID-5K
 ```

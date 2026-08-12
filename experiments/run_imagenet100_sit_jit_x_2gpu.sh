@@ -14,13 +14,14 @@ if [[ "${GPU_LIST}" != "2,3" ]]; then
 fi
 
 SEED="${SEED:-0}"
-MAX_STEP="${MAX_STEP:-200000}"
+MAX_STEP="${MAX_STEP:-400000}"
 DENOMINATOR_FLOOR="${DENOMINATOR_FLOOR:-0.05}"
 BASE_DIR="${BASE_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow}"
 RUN_DIR="${BASE_DIR}/runs/sit-s-2_x-velocity-loss-floor0p05_seed${SEED}"
 FID_ROOT="${BASE_DIR}/fid5k_single-target_x-velocity-floor0p05_seed${SEED}"
 PIPELINE_LOG="${RUN_DIR}/pipeline_to_${MAX_STEP}.log"
-MILESTONES=(100000 200000)
+MILESTONES=(100000 200000 300000 400000)
+COMPLETED_STEPS=()
 
 export CUDA_VISIBLE_DEVICES="2,3"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-1}"
@@ -66,17 +67,19 @@ for TARGET_STEP in "${MILESTONES[@]}"; do
     --gpu-memory-ceiling-mib 9216 \
     --memory-poll-interval 0.25 \
     2>&1 | tee -a "${PIPELINE_LOG}"
+  COMPLETED_STEPS+=("${TARGET_STEP}")
 done
 
-if (( MAX_STEP == 200000 )); then
+if (( ${#COMPLETED_STEPS[@]} > 0 )); then
+  STEP_LIST="$(IFS=,; echo "${COMPLETED_STEPS[*]}")"
   python experiments/run_imagenet100_sit_fid_curve.py \
-    --steps 100000,200000 \
+    --steps "${STEP_LIST}" \
     --run-dir "${RUN_DIR}" \
     --output-root "${FID_ROOT}" \
     --sampling-cuda-visible-devices 2,3 \
     --fid-cuda-visible-devices 2 \
     2>&1 | tee -a "${PIPELINE_LOG}"
-  touch "${RUN_DIR}/COMPLETE_200K_WITH_FID"
+  touch "${RUN_DIR}/COMPLETE_${MAX_STEP}_WITH_FID"
 fi
 
 echo "[$(date --iso-8601=seconds)] complete through ${MAX_STEP}" \
