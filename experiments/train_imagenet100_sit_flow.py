@@ -44,6 +44,12 @@ try:
         prediction_losses,
         prediction_to_velocity,
     )
+    from experiments.imagenet100_sit_time_sampling import (
+        TIME_SAMPLERS,
+        sample_time_values,
+        time_distribution_metadata,
+        validate_time_sampling,
+    )
 except ModuleNotFoundError:
     from imagenet100_sit_prediction_targets import (
         LOSS_SPACES,
@@ -51,6 +57,12 @@ except ModuleNotFoundError:
         native_prediction_target,
         prediction_losses,
         prediction_to_velocity,
+    )
+    from imagenet100_sit_time_sampling import (
+        TIME_SAMPLERS,
+        sample_time_values,
+        time_distribution_metadata,
+        validate_time_sampling,
     )
 
 
@@ -151,6 +163,8 @@ def initialize_distributed(device_argument: str) -> DistributedContext:
     device = torch.device(device_argument)
     if device.type != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("SiT training and benchmarking require CUDA")
+    if device.index is None:
+        device = torch.device("cuda", 0)
     torch.cuda.set_device(device)
     return DistributedContext(0, int(device.index or 0), 1, device)
 
@@ -385,6 +399,9 @@ class TrainConfig:
     prediction_target: str
     loss_space: str
     denominator_floor: float
+    time_sampler: str
+    time_logit_mean: float
+    time_logit_std: float
     global_batch_size: int
     max_steps: int
     learning_rate: float
@@ -430,6 +447,9 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "prediction_target",
         "loss_space",
         "denominator_floor",
+        "time_sampler",
+        "time_logit_mean",
+        "time_logit_std",
         "global_batch_size",
         "learning_rate",
         "weight_decay",
@@ -448,6 +468,9 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "prediction_target": "velocity",
         "loss_space": "velocity",
         "denominator_floor": 1e-3,
+        "time_sampler": "uniform",
+        "time_logit_mean": -0.8,
+        "time_logit_std": 0.8,
     }
     mismatches = [
         f"{key}: checkpoint={stored.get(key, legacy_defaults.get(key))!r}, "
@@ -558,7 +581,11 @@ def validation_loss(
 
 
 def protocol_for_config(config: TrainConfig) -> str:
-    if config.prediction_target == "velocity" and config.loss_space == "velocity":
+    if (
+        config.prediction_target == "velocity"
+        and config.loss_space == "velocity"
+        and config.time_sampler == "uniform"
+    ):
         return LEGACY_PROTOCOL
     return TARGET_PROTOCOL
 
@@ -588,7 +615,16 @@ def build_run_metadata(
             "loss_space": config.loss_space,
             "denominator_floor": config.denominator_floor,
             "velocity_target": "data-noise",
-            "time_distribution": "Uniform[0,1)",
+            "training_time_distribution": time_distribution_metadata(
+                config.time_sampler,
+                config.time_logit_mean,
+                config.time_logit_std,
+            ),
+            "validation_time_distribution": {
+                "name": "uniform",
+                "interval": "[0,1)",
+                "purpose": "common held-out diagnostic across all factorial cells",
+            },
         },
         "latent": {
             "posterior": "mean+std*N(0,I)",
@@ -620,6 +656,9 @@ def train(args: argparse.Namespace) -> None:
             prediction_target=args.prediction_target,
             loss_space=args.loss_space,
             denominator_floor=float(args.denominator_floor),
+            time_sampler=args.time_sampler,
+            time_logit_mean=float(args.time_logit_mean),
+            time_logit_std=float(args.time_logit_std),
             global_batch_size=int(args.global_batch_size),
             max_steps=int(args.max_steps),
             learning_rate=float(args.learning_rate),
@@ -651,6 +690,11 @@ def train(args: argparse.Namespace) -> None:
             raise ValueError("--cfg-dropout must be in [0,1)")
         if config.denominator_floor <= 0 or config.denominator_floor >= 0.5:
             raise ValueError("--denominator-floor must be in (0,0.5)")
+        validate_time_sampling(
+            config.time_sampler,
+            config.time_logit_mean,
+            config.time_logit_std,
+        )
         configure_runtime(config.seed, context.rank, config.allow_tf32)
 
         cache_dir = Path(config.cache_dir)
@@ -775,6 +819,9 @@ def train(args: argparse.Namespace) -> None:
                         "model": config.model_name,
                         "prediction_target": config.prediction_target,
                         "loss_space": config.loss_space,
+                        "time_sampler": config.time_sampler,
+                        "time_logit_mean": config.time_logit_mean,
+                        "time_logit_std": config.time_logit_std,
                         "parameters": metadata["parameter_count"],
                         "world_size": context.world_size,
                         "global_batch": config.global_batch_size,
@@ -803,7 +850,13 @@ def train(args: argparse.Namespace) -> None:
             )
             data = sample_sdvae_posterior(moments, posterior_noise)
             source_noise = torch.randn_like(data)
-            time_value = torch.rand((len(data),), device=context.device)
+            time_value = sample_time_values(
+                len(data),
+                device=context.device,
+                time_sampler=config.time_sampler,
+                logit_mean=config.time_logit_mean,
+                logit_std=config.time_logit_std,
+            )
             state, _ = linear_flow_state_target(data, source_noise, time_value)
 
             with autocast_context(config.precision):
@@ -993,7 +1046,13 @@ def benchmark(args: argparse.Namespace) -> None:
                 moments, torch.randn((batch_size, *LATENT_SHAPE), device=context.device)
             )
             source_noise = torch.randn_like(data)
-            time_value = torch.rand((batch_size,), device=context.device)
+            time_value = sample_time_values(
+                batch_size,
+                device=context.device,
+                time_sampler=args.time_sampler,
+                logit_mean=args.time_logit_mean,
+                logit_std=args.time_logit_std,
+            )
             state, _ = linear_flow_state_target(data, source_noise, time_value)
             optimizer.zero_grad(set_to_none=True)
             with autocast_context(args.precision):
@@ -1064,6 +1123,9 @@ def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument("--loss-space", choices=LOSS_SPACES, default="velocity")
     parser.add_argument("--denominator-floor", type=float, default=1e-3)
+    parser.add_argument("--time-sampler", choices=TIME_SAMPLERS, default="uniform")
+    parser.add_argument("--time-logit-mean", type=float, default=-0.8)
+    parser.add_argument("--time-logit-std", type=float, default=0.8)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--cfg-dropout", type=float, default=0.1)
     parser.add_argument("--ema-decay", type=float, default=0.9999)

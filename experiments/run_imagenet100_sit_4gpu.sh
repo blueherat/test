@@ -15,10 +15,13 @@ SEED="${SEED:-0}"
 PREDICTION_TARGET="${PREDICTION_TARGET:-velocity}"
 LOSS_SPACE="${LOSS_SPACE:-velocity}"
 DENOMINATOR_FLOOR="${DENOMINATOR_FLOOR:-0.001}"
-if [[ "${PREDICTION_TARGET}" == "velocity" && "${LOSS_SPACE}" == "velocity" ]]; then
+TIME_SAMPLER="${TIME_SAMPLER:-uniform}"
+TIME_LOGIT_MEAN="${TIME_LOGIT_MEAN:--0.8}"
+TIME_LOGIT_STD="${TIME_LOGIT_STD:-0.8}"
+if [[ "${PREDICTION_TARGET}" == "velocity" && "${LOSS_SPACE}" == "velocity" && "${TIME_SAMPLER}" == "uniform" ]]; then
   DEFAULT_RUN_TAG="${MODEL_TAG}_seed${SEED}"
 else
-  DEFAULT_RUN_TAG="${MODEL_TAG}_${PREDICTION_TARGET}-${LOSS_SPACE}-loss_seed${SEED}"
+  DEFAULT_RUN_TAG="${MODEL_TAG}_${PREDICTION_TARGET}-${LOSS_SPACE}-loss_t-${TIME_SAMPLER}_seed${SEED}"
 fi
 OUTPUT_DIR="${OUTPUT_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/${DEFAULT_RUN_TAG}}"
 
@@ -39,6 +42,9 @@ exec torchrun \
   --prediction-target "${PREDICTION_TARGET}" \
   --loss-space "${LOSS_SPACE}" \
   --denominator-floor "${DENOMINATOR_FLOOR}" \
+  --time-sampler "${TIME_SAMPLER}" \
+  --time-logit-mean "${TIME_LOGIT_MEAN}" \
+  --time-logit-std "${TIME_LOGIT_STD}" \
   --output-dir "${OUTPUT_DIR}" \
   --global-batch-size "${GLOBAL_BATCH_SIZE}" \
   --max-steps "${MAX_STEPS}" \

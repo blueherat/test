@@ -147,6 +147,83 @@ def test_summary_detects_improving_tail(tmp_path: Path) -> None:
     assert summary["tail_linear_slope_fid_per_step"] < 0.0
 
 
+def test_logit_normal_sampling_manifest_requires_training_distribution(tmp_path: Path) -> None:
+    sample = tmp_path / "samples_unguided_n8.npz"
+    sample.write_bytes(b"sample")
+    write_json(
+        tmp_path / "sampling_resource_audit.json",
+        {
+            "monitored_gpu_indices": [0],
+            "memory_ceiling_mib": 9_216,
+            "peak_memory_mib": {"0": 7_000},
+            "return_code": 0,
+            "violation": None,
+        },
+    )
+    base_manifest = {
+        "checkpoint_sha256": "logit-checkpoint",
+        "checkpoint_step": 100_000,
+        "weights": "ema",
+        "requested_samples": 8,
+        "global_seed": 0,
+        "world_size": 1,
+        "per_rank_batch_size": 8,
+        "vae_decode_batch_size": 4,
+        "cuda_allocator_limit_gib": 7.5,
+        "cfg_scale": 1.0,
+        "guidance": False,
+        "prediction_target": "x",
+        "loss_space": "velocity",
+        "denominator_floor": 0.05,
+        "samples": str(sample),
+    }
+    write_json(tmp_path / "sampling_manifest.json", base_manifest)
+    checkpoint = {
+        "protocol": "imagenet100_sit_single_target_linear_flow_v2",
+        "step": 100_000,
+        "checkpoint_sha256": "logit-checkpoint",
+        "prediction_target": "x",
+        "loss_space": "velocity",
+        "denominator_floor": 0.05,
+        "time_sampler": "logit_normal",
+        "time_logit_mean": -0.8,
+        "time_logit_std": 0.8,
+    }
+    with pytest.raises(ValueError, match="training_time_sampler"):
+        valid_sampling_artifact(
+            tmp_path,
+            checkpoint=checkpoint,
+            num_samples=8,
+            global_seed=0,
+            world_size=1,
+            per_rank_batch_size=8,
+            vae_decode_batch_size=4,
+            cuda_allocator_limit_gib=7.5,
+            gpu_indices=[0],
+            memory_ceiling_mib=9_216,
+        )
+    base_manifest.update(
+        {
+            "training_time_sampler": "logit_normal",
+            "training_time_logit_mean": -0.8,
+            "training_time_logit_std": 0.8,
+        }
+    )
+    write_json(tmp_path / "sampling_manifest.json", base_manifest)
+    assert valid_sampling_artifact(
+        tmp_path,
+        checkpoint=checkpoint,
+        num_samples=8,
+        global_seed=0,
+        world_size=1,
+        per_rank_batch_size=8,
+        vae_decode_batch_size=4,
+        cuda_allocator_limit_gib=7.5,
+        gpu_indices=[0],
+        memory_ceiling_mib=9_216,
+    )
+
+
 def test_step_parser_sorts_and_rejects_duplicates() -> None:
     assert parse_steps("300000,60000,120000") == [60_000, 120_000, 300_000]
     try:

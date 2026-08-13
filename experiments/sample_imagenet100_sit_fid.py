@@ -206,8 +206,12 @@ def main(args: argparse.Namespace) -> None:
     checkpoint_path = Path(args.checkpoint).expanduser().resolve()
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     config = checkpoint["config"]
+    checkpoint_protocol = str(checkpoint.get("protocol", ""))
     prediction_target = str(config.get("prediction_target", "velocity"))
     denominator_floor = float(config.get("denominator_floor", 1e-3))
+    time_sampler = str(config.get("time_sampler", "uniform"))
+    time_logit_mean = float(config.get("time_logit_mean", -0.8))
+    time_logit_std = float(config.get("time_logit_std", 0.8))
     sit_module, source_metadata = load_official_sit_module(
         Path(args.official_sit_repo), verify_source=args.verify_sit_source
     )
@@ -358,7 +362,7 @@ def main(args: argparse.Namespace) -> None:
         manifest = {
             "format": (
                 "eqvae_imagenet100_sit_official_style_samples_v1"
-                if prediction_target == "velocity"
+                if checkpoint_protocol == "imagenet100_sit_linear_flow_v1"
                 else "eqvae_imagenet100_sit_single_target_samples_v2"
             ),
             "scope": "FID-5K screening; official SiT uses 50K ImageNet-1K samples",
@@ -371,6 +375,9 @@ def main(args: argparse.Namespace) -> None:
             "prediction_target": prediction_target,
             "loss_space": str(config.get("loss_space", "velocity")),
             "denominator_floor": denominator_floor,
+            "training_time_sampler": time_sampler,
+            "training_time_logit_mean": time_logit_mean,
+            "training_time_logit_std": time_logit_std,
             "official_sit": source_metadata,
             "num_classes": NUM_CLASSES,
             "requested_samples": int(args.num_samples),

@@ -130,6 +130,9 @@ def checkpoint_metadata(path: Path, expected_step: int) -> dict[str, object]:
         "prediction_target": config.get("prediction_target", "velocity"),
         "loss_space": config.get("loss_space", "velocity"),
         "denominator_floor": float(config.get("denominator_floor", 1e-3)),
+        "time_sampler": config.get("time_sampler", "uniform"),
+        "time_logit_mean": float(config.get("time_logit_mean", -0.8)),
+        "time_logit_std": float(config.get("time_logit_std", 0.8)),
         "checkpoint": str(path.resolve()),
         "checkpoint_sha256": sha256_file(path),
     }
@@ -202,6 +205,14 @@ def valid_sampling_artifact(
                 "denominator_floor": checkpoint["denominator_floor"],
             }
         )
+        if checkpoint.get("time_sampler") != "uniform":
+            expected.update(
+                {
+                    "training_time_sampler": checkpoint["time_sampler"],
+                    "training_time_logit_mean": checkpoint["time_logit_mean"],
+                    "training_time_logit_std": checkpoint["time_logit_std"],
+                }
+            )
     mismatches = {
         key: (manifest.get(key), value)
         for key, value in expected.items()
