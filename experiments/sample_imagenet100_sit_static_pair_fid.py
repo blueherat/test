@@ -1,9 +1,9 @@
-"""Sample a fixed linear mixture of two 400K SiT velocity fields.
+"""Sample paired SiT field mixtures and reciprocal common/unique controls.
 
-The two checkpoints are evaluated on the same ODE state and class label. Their
-outputs are first converted to the common linear-flow velocity space and then
-mixed as ``anchor + scale * (other - anchor)``. Separate invocations with the
-same sampling protocol receive identical initial noise and labels.
+All checkpoints are evaluated on the same ODE state and class label. Outputs
+are converted to the common linear-flow velocity space before any mixture or
+projection. Separate invocations with the same protocol receive identical
+initial noise and labels.
 """
 
 from __future__ import annotations
@@ -22,10 +22,12 @@ from torchvision.utils import save_image
 
 try:
     from experiments.imagenet100_sit_static_pair import (
+        COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
         DUAL_OUTPUT_PROTOCOL,
         FieldSemantics,
         X_FLOOR_CONTROL_MODES,
+        common_unique_guided_velocity,
         controlled_pair_velocity,
         output_to_field_velocity,
         resolve_field_semantics,
@@ -52,10 +54,12 @@ try:
     )
 except ModuleNotFoundError:
     from imagenet100_sit_static_pair import (
+        COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
         DUAL_OUTPUT_PROTOCOL,
         FieldSemantics,
         X_FLOOR_CONTROL_MODES,
+        common_unique_guided_velocity,
         controlled_pair_velocity,
         output_to_field_velocity,
         resolve_field_semantics,
@@ -89,6 +93,10 @@ DEFAULT_ANCHOR_CHECKPOINT = Path(
 DEFAULT_OTHER_CHECKPOINT = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
     "sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00400000.pt"
+)
+DEFAULT_REFERENCE_CHECKPOINT = Path(
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+    "sit-s-2_seed0/checkpoints/step_00270000.pt"
 )
 DEFAULT_OUTPUT_DIR = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
@@ -253,12 +261,79 @@ def conditional_static_pair_velocity(
     return velocity, counter
 
 
+def conditional_common_unique_velocity(
+    anchor_model: torch.nn.Module,
+    x_model: torch.nn.Module,
+    v_model: torch.nn.Module,
+    labels: torch.Tensor,
+    *,
+    anchor_semantics: FieldSemantics,
+    x_semantics: FieldSemantics,
+    v_semantics: FieldSemantics,
+    scale: float,
+    component: str,
+    autocast_dtype: torch.dtype | None,
+) -> tuple[object, dict[str, int]]:
+    """Build a paired three-field common/unique guidance function."""
+
+    if component not in COMMON_UNIQUE_COMPONENTS:
+        raise ValueError(f"unsupported common/unique component: {component}")
+    counter = {
+        "nfe": 0,
+        "anchor_forwards": 0,
+        "other_forwards": 0,
+        "reference_forwards": 0,
+    }
+
+    def evaluate(
+        model: torch.nn.Module,
+        semantics: FieldSemantics,
+        state: torch.Tensor,
+        times: torch.Tensor,
+    ) -> torch.Tensor:
+        if autocast_dtype is None:
+            output = model(state, times, labels)
+        else:
+            with torch.autocast("cuda", dtype=autocast_dtype):
+                output = model(state, times, labels)
+        return output_to_field_velocity(
+            output,
+            state=state,
+            time_value=times,
+            semantics=semantics,
+        )
+
+    def velocity(time_value: torch.Tensor, state: torch.Tensor) -> torch.Tensor:
+        counter["nfe"] += 1
+        times = time_value.expand(len(state))
+        counter["anchor_forwards"] += 1
+        anchor_velocity = evaluate(anchor_model, anchor_semantics, state, times)
+        if scale == 0.0:
+            return anchor_velocity
+        counter["other_forwards"] += 1
+        x_velocity = evaluate(x_model, x_semantics, state, times)
+        counter["reference_forwards"] += 1
+        v_velocity = evaluate(v_model, v_semantics, state, times)
+        return common_unique_guided_velocity(
+            anchor_velocity,
+            x_velocity,
+            v_velocity,
+            scale=scale,
+            component=component,
+        )
+
+    return velocity, counter
+
+
 @torch.inference_mode()
 def main(args: argparse.Namespace) -> None:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
+    common_unique = args.common_unique_component is not None
     if args.anchor_checkpoint.resolve() == args.other_checkpoint.resolve():
         raise ValueError("use the dual-output sampler for two paths from one checkpoint")
+    if common_unique and args.reference_checkpoint is None:
+        raise ValueError("common/unique guidance requires --reference-checkpoint")
     local_rank = int(os.environ["LOCAL_RANK"])
     device = torch.device("cuda", local_rank)
     torch.cuda.set_device(device)
@@ -279,6 +354,11 @@ def main(args: argparse.Namespace) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     anchor_path = args.anchor_checkpoint.expanduser().resolve()
     other_path = args.other_checkpoint.expanduser().resolve()
+    reference_path = (
+        args.reference_checkpoint.expanduser().resolve()
+        if args.reference_checkpoint is not None
+        else None
+    )
     sit_module, source_metadata = load_official_sit_module(
         args.official_sit_repo.expanduser().resolve(),
         verify_source=args.verify_sit_source,
@@ -317,7 +397,38 @@ def main(args: argparse.Namespace) -> None:
         and other_semantics.prediction_target != "x"
     ):
         raise ValueError(f"{args.control_mode} requires an x-prediction other checkpoint")
-    del anchor_checkpoint, other_checkpoint
+    reference_model = None
+    reference_semantics = None
+    reference_metadata = None
+    reference_checkpoint = None
+    if common_unique:
+        if args.control_mode != "full_pair":
+            raise ValueError("common/unique guidance cannot be combined with pair controls")
+        if other_semantics.prediction_target != "x":
+            raise ValueError("common/unique guidance requires x400 as the other field")
+        assert reference_path is not None
+        reference_model, reference_semantics, reference_metadata, reference_checkpoint = (
+            _load_field_model(
+                checkpoint_path=reference_path,
+                requested_field=args.reference_field,
+                weights=args.weights,
+                sit_module=sit_module,
+                source_metadata=source_metadata,
+                device=device,
+            )
+        )
+        if reference_model is None:  # pragma: no cover - always instantiated
+            raise AssertionError("reference model was not instantiated")
+        if reference_semantics.prediction_target != "velocity":
+            raise ValueError("common/unique guidance requires a velocity reference field")
+        validate_pair_compatibility(
+            anchor_checkpoint,
+            reference_checkpoint,
+            anchor_metadata,
+            reference_metadata,
+            allow_step_mismatch=args.allow_reference_step_mismatch,
+        )
+    del anchor_checkpoint, other_checkpoint, reference_checkpoint
 
     from diffusers.models import AutoencoderKL
 
@@ -338,6 +449,8 @@ def main(args: argparse.Namespace) -> None:
     rank_indices = np.empty(samples_per_rank, dtype=np.int64)
     autocast_dtype = None if args.precision == "fp32" else torch.bfloat16
     totals = {"nfe": 0, "anchor_forwards": 0, "other_forwards": 0}
+    if common_unique:
+        totals["reference_forwards"] = 0
     noise_digest = hashlib.sha256()
     label_digest = hashlib.sha256()
     cursor = 0
@@ -349,17 +462,34 @@ def main(args: argparse.Namespace) -> None:
         batch_size = args.per_rank_batch_size
         noise = torch.randn(batch_size, *LATENT_SHAPE, device=device)
         labels = torch.randint(0, NUM_CLASSES, (batch_size,), device=device)
-        velocity, counter = conditional_static_pair_velocity(
-            anchor_model,
-            other_model,
-            labels,
-            anchor_semantics=anchor_semantics,
-            other_semantics=other_semantics,
-            scale=args.static_scale,
-            control_mode=args.control_mode,
-            window_transition_width=args.window_transition_width,
-            autocast_dtype=autocast_dtype,
-        )
+        if common_unique:
+            assert other_model is not None
+            assert reference_model is not None
+            assert reference_semantics is not None
+            velocity, counter = conditional_common_unique_velocity(
+                anchor_model,
+                other_model,
+                reference_model,
+                labels,
+                anchor_semantics=anchor_semantics,
+                x_semantics=other_semantics,
+                v_semantics=reference_semantics,
+                scale=args.static_scale,
+                component=args.common_unique_component,
+                autocast_dtype=autocast_dtype,
+            )
+        else:
+            velocity, counter = conditional_static_pair_velocity(
+                anchor_model,
+                other_model,
+                labels,
+                anchor_semantics=anchor_semantics,
+                other_semantics=other_semantics,
+                scale=args.static_scale,
+                control_mode=args.control_mode,
+                window_transition_width=args.window_transition_width,
+                autocast_dtype=autocast_dtype,
+            )
         latents = integrate_velocity(
             noise,
             velocity,
@@ -427,6 +557,7 @@ def main(args: argparse.Namespace) -> None:
             "rank_seed": rank_seed,
             "static_scale": float(args.static_scale),
             "control_mode": args.control_mode,
+            "common_unique_component": args.common_unique_component,
             "window_transition_width": float(args.window_transition_width),
             "allow_step_mismatch": bool(args.allow_step_mismatch),
             "sample_count": samples_per_rank,
@@ -477,15 +608,13 @@ def main(args: argparse.Namespace) -> None:
         np.savez(sample_path, arr_0=merged_images)
         np.save(label_path, merged_labels, allow_pickle=False)
         histogram = np.bincount(merged_labels.astype(np.int64), minlength=NUM_CLASSES)
-        manifest = {
-            "format": "eqvae_imagenet100_sit_static_pair_samples_v1",
-            "scope": "paired FID screening on ImageNet-100",
-            "anchor": anchor_metadata,
-            "other": other_metadata,
-            "weights": args.weights,
-            "static_scale": float(args.static_scale),
-            "control_mode": args.control_mode,
-            "formula": {
+        if common_unique:
+            formula = (
+                "anchor + scale * "
+                f"{args.common_unique_component}(anchor, x400, v270)"
+            )
+        else:
+            formula = {
                 "full_pair": "anchor + scale * (other - anchor)",
                 "floor_only": "anchor + scale * ((c(t) - 1) * anchor)",
                 "floor_residual": "anchor + scale * (other - c(t) * anchor)",
@@ -493,13 +622,31 @@ def main(args: argparse.Namespace) -> None:
                 "post_floor_pair": "anchor + scale * w_post(t) * (other - anchor)",
                 "parallel_pair": "anchor + scale * proj_anchor(other - anchor)",
                 "orthogonal_pair": "anchor + scale * orth_anchor(other - anchor)",
-            }[args.control_mode],
+            }[args.control_mode]
+        manifest = {
+            "format": (
+                "eqvae_imagenet100_sit_common_unique_samples_v1"
+                if common_unique
+                else "eqvae_imagenet100_sit_static_pair_samples_v1"
+            ),
+            "scope": "paired FID screening on ImageNet-100",
+            "anchor": anchor_metadata,
+            "other": other_metadata,
+            "reference": reference_metadata,
+            "weights": args.weights,
+            "static_scale": float(args.static_scale),
+            "control_mode": args.control_mode,
+            "common_unique_component": args.common_unique_component,
+            "formula": formula,
             "x_floor_coefficient": "c(t) = (1 - t) / max(1 - t, other.denominator_floor)",
             "projection_scope": (
                 "one scalar per sample and ODE evaluation over all latent C,H,W values"
             ),
             "window_transition_width": float(args.window_transition_width),
             "allow_step_mismatch": bool(args.allow_step_mismatch),
+            "allow_reference_step_mismatch": bool(
+                args.allow_reference_step_mismatch
+            ),
             "official_sit": source_metadata,
             "requested_samples": int(args.num_samples),
             "generated_for_ddp_divisibility": int(total_samples),
@@ -544,12 +691,17 @@ def main(args: argparse.Namespace) -> None:
                     "nfe": int(payload["nfe"]),
                     "anchor_forwards": int(payload["anchor_forwards"]),
                     "other_forwards": int(payload["other_forwards"]),
+                    "reference_forwards": int(
+                        payload.get("reference_forwards", 0)
+                    ),
                 }
                 for payload in rank_payloads
             ],
             "total_nfe": sum(int(payload["nfe"]) for payload in rank_payloads),
             "total_model_forwards": sum(
-                int(payload["anchor_forwards"]) + int(payload["other_forwards"])
+                int(payload["anchor_forwards"])
+                + int(payload["other_forwards"])
+                + int(payload.get("reference_forwards", 0))
                 for payload in rank_payloads
             ),
             "samples": str(sample_path),
@@ -581,10 +733,25 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--other-checkpoint", type=Path, default=DEFAULT_OTHER_CHECKPOINT)
     parser.add_argument("--other-field", choices=("auto", "x", "epsilon", "dynamic"), default="auto")
     parser.add_argument("--other-inference-denominator-floor", type=float)
+    parser.add_argument(
+        "--reference-checkpoint",
+        type=Path,
+        default=DEFAULT_REFERENCE_CHECKPOINT,
+    )
+    parser.add_argument(
+        "--reference-field",
+        choices=("auto", "x", "epsilon", "dynamic"),
+        default="auto",
+    )
+    parser.add_argument(
+        "--common-unique-component",
+        choices=COMMON_UNIQUE_COMPONENTS,
+    )
     parser.add_argument("--static-scale", type=float, required=True)
     parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
     parser.add_argument("--window-transition-width", type=float, default=0.01)
     parser.add_argument("--allow-step-mismatch", action="store_true")
+    parser.add_argument("--allow-reference-step-mismatch", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")

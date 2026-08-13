@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run a resumable ADM FID-5K sweep between SiT-v and JiT-style x fields."""
+"""Run resumable ADM FID-5K sweeps for paired SiT field controls."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ import torch
 
 try:
     from experiments.imagenet100_sit_static_pair import (
+        COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
         WINDOW_CONTROL_MODES,
         X_FLOOR_CONTROL_MODES,
@@ -33,6 +34,7 @@ try:
     from experiments.train_imagenet100_sit_flow import atomic_json_dump, sha256_file
 except ModuleNotFoundError:
     from imagenet100_sit_static_pair import (
+        COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
         WINDOW_CONTROL_MODES,
         X_FLOOR_CONTROL_MODES,
@@ -59,6 +61,10 @@ DEFAULT_ANCHOR_CHECKPOINT = Path(
 DEFAULT_OTHER_CHECKPOINT = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
     "sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00400000.pt"
+)
+DEFAULT_REFERENCE_CHECKPOINT = Path(
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+    "sit-s-2_seed0/checkpoints/step_00270000.pt"
 )
 DEFAULT_REFERENCE_STATS = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/"
@@ -151,6 +157,7 @@ def valid_sampling_artifact(
     *,
     anchor: dict[str, object],
     other: dict[str, object],
+    reference: dict[str, object] | None,
     scale: float,
     args: argparse.Namespace,
 ) -> bool:
@@ -167,7 +174,11 @@ def valid_sampling_artifact(
     manifest = load_json(manifest_path)
     recorded_control_mode = manifest.get("control_mode", "full_pair")
     expected = {
-        "format": "eqvae_imagenet100_sit_static_pair_samples_v1",
+        "format": (
+            "eqvae_imagenet100_sit_common_unique_samples_v1"
+            if args.common_unique_component is not None
+            else "eqvae_imagenet100_sit_static_pair_samples_v1"
+        ),
         "weights": "ema",
         "static_scale": float(scale),
         "requested_samples": args.num_samples,
@@ -188,10 +199,22 @@ def valid_sampling_artifact(
     }
     if recorded_control_mode != args.control_mode:
         mismatches["control_mode"] = (recorded_control_mode, args.control_mode)
+    if manifest.get("common_unique_component") != args.common_unique_component:
+        mismatches["common_unique_component"] = (
+            manifest.get("common_unique_component"),
+            args.common_unique_component,
+        )
     if bool(manifest.get("allow_step_mismatch", False)) != args.allow_step_mismatch:
         mismatches["allow_step_mismatch"] = (
             bool(manifest.get("allow_step_mismatch", False)),
             args.allow_step_mismatch,
+        )
+    if bool(manifest.get("allow_reference_step_mismatch", False)) != (
+        args.allow_reference_step_mismatch
+    ):
+        mismatches["allow_reference_step_mismatch"] = (
+            bool(manifest.get("allow_reference_step_mismatch", False)),
+            args.allow_reference_step_mismatch,
         )
     if args.control_mode != "full_pair" and manifest.get(
         "window_transition_width"
@@ -215,6 +238,23 @@ def valid_sampling_artifact(
                     recorded.get(key),
                     metadata.get(key),
                 )
+    if reference is not None:
+        recorded = manifest.get("reference", {})
+        for key in (
+            "checkpoint_sha256",
+            "checkpoint_step",
+            "protocol",
+            "field_path",
+            "prediction_target",
+            "denominator_floor",
+        ):
+            if recorded.get(key) != reference.get(key):
+                mismatches[f"reference.{key}"] = (
+                    recorded.get(key),
+                    reference.get(key),
+                )
+    elif manifest.get("reference") is not None:
+        mismatches["reference"] = (manifest.get("reference"), None)
     recorded_other_floor = manifest.get("other", {}).get(
         "inference_denominator_floor",
         manifest.get("other", {}).get("denominator_floor"),
@@ -243,10 +283,17 @@ def evaluate_scale(
     scale: float,
     anchor: dict[str, object],
     other: dict[str, object],
+    reference: dict[str, object] | None,
     args: argparse.Namespace,
     sampling_env: dict[str, str],
 ) -> dict[str, object]:
-    prefix = "static" if args.control_mode == "full_pair" else args.control_mode
+    prefix = (
+        args.common_unique_component
+        if args.common_unique_component is not None
+        else "static"
+        if args.control_mode == "full_pair"
+        else args.control_mode
+    )
     if args.other_inference_denominator_floor is not None:
         prefix += f"_ifloor{format_scale(args.other_inference_denominator_floor)}"
     condition = f"{prefix}_s{format_scale(scale)}"
@@ -258,6 +305,7 @@ def evaluate_scale(
         output_dir,
         anchor=anchor,
         other=other,
+        reference=reference,
         scale=scale,
         args=args,
     ):
@@ -308,6 +356,19 @@ def evaluate_scale(
             )
         if args.allow_step_mismatch:
             command = (*command, "--allow-step-mismatch")
+        if args.common_unique_component is not None:
+            assert args.reference_checkpoint is not None
+            command = (
+                *command,
+                "--reference-checkpoint",
+                str(args.reference_checkpoint),
+                "--reference-field",
+                args.reference_field,
+                "--common-unique-component",
+                args.common_unique_component,
+            )
+            if args.allow_reference_step_mismatch:
+                command = (*command, "--allow-reference-step-mismatch")
         sampling_audit = run_logged(
             command,
             output_dir / "sampling.log",
@@ -321,6 +382,7 @@ def evaluate_scale(
             output_dir,
             anchor=anchor,
             other=other,
+            reference=reference,
             scale=scale,
             args=args,
         ):
@@ -383,9 +445,12 @@ def evaluate_scale(
     return {
         "condition": condition,
         "control_mode": args.control_mode,
+        "common_unique_component": args.common_unique_component,
         "scale": float(scale),
         "region": (
-            "beyond_velocity"
+            "common_unique_guidance"
+            if args.common_unique_component is not None
+            else "beyond_velocity"
             if scale < 0
             else "interpolation"
             if scale <= 1
@@ -401,6 +466,9 @@ def evaluate_scale(
         ),
         "checkpoint_step": anchor["checkpoint_step"],
         "other_checkpoint_step": other["checkpoint_step"],
+        "reference_checkpoint_step": (
+            reference["checkpoint_step"] if reference is not None else None
+        ),
         "num_samples": args.num_samples,
         "noise_fingerprint": ":".join(manifest["rank_noise_sha256"]),
         "label_fingerprint": ":".join(manifest["rank_label_sha256"]),
@@ -428,6 +496,7 @@ def save_summary(
     *,
     anchor: dict[str, object],
     other: dict[str, object],
+    reference: dict[str, object] | None,
     output_root: Path,
 ) -> dict[str, object]:
     noise_fingerprints = {str(row["noise_fingerprint"]) for row in rows}
@@ -443,11 +512,13 @@ def save_summary(
     summary = {
         "protocol": "imagenet100_sit_field_control_fid5k_v2",
         "control_mode": rows[0]["control_mode"],
+        "common_unique_component": rows[0]["common_unique_component"],
         "definition": "see sampling_manifest formula for each condition",
         "comparison_is_paired": True,
         "pairing_verified_by_noise_and_label_sha256": True,
         "anchor": anchor,
         "other": other,
+        "reference": reference,
         "best": best,
         "rows": rows,
         "csv": str(csv_path),
@@ -467,6 +538,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--other-checkpoint", type=Path, default=DEFAULT_OTHER_CHECKPOINT)
     parser.add_argument("--other-field", default="auto", choices=("auto", "x", "epsilon", "dynamic"))
     parser.add_argument("--other-inference-denominator-floor", type=float)
+    parser.add_argument(
+        "--reference-checkpoint",
+        type=Path,
+        default=DEFAULT_REFERENCE_CHECKPOINT,
+    )
+    parser.add_argument(
+        "--reference-field",
+        default="auto",
+        choices=("auto", "x", "epsilon", "dynamic"),
+    )
+    parser.add_argument(
+        "--common-unique-component",
+        choices=COMMON_UNIQUE_COMPONENTS,
+    )
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE_STATS)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
@@ -475,6 +560,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
     parser.add_argument("--window-transition-width", type=float, default=0.01)
     parser.add_argument("--allow-step-mismatch", action="store_true")
+    parser.add_argument("--allow-reference-step-mismatch", action="store_true")
     parser.add_argument("--num-samples", type=int, default=5_000)
     parser.add_argument("--per-rank-batch-size", type=int, default=8)
     parser.add_argument("--vae-decode-batch-size", type=int, default=2)
@@ -494,6 +580,7 @@ def main() -> None:
     args = build_parser().parse_args()
     args.anchor_checkpoint = args.anchor_checkpoint.expanduser().resolve()
     args.other_checkpoint = args.other_checkpoint.expanduser().resolve()
+    args.reference_checkpoint = args.reference_checkpoint.expanduser().resolve()
     args.output_root = args.output_root.expanduser().resolve()
     args.reference = args.reference.expanduser().resolve()
     args.adm_python = absolute_without_resolving_symlinks(args.adm_python)
@@ -538,6 +625,27 @@ def main() -> None:
         and other["prediction_target"] != "x"
     ):
         raise ValueError(f"{args.control_mode} requires an x-prediction other checkpoint")
+    reference = None
+    if args.common_unique_component is not None:
+        if args.control_mode != "full_pair":
+            raise ValueError("common/unique guidance cannot be combined with pair controls")
+        if other["prediction_target"] != "x":
+            raise ValueError("common/unique guidance requires x400 as the other field")
+        reference = checkpoint_metadata(
+            args.reference_checkpoint,
+            args.reference_field,
+        )
+        if reference["prediction_target"] != "velocity":
+            raise ValueError("common/unique guidance requires a velocity reference field")
+        validate_metadata_pair(
+            anchor,
+            reference,
+            allow_step_mismatch=args.allow_reference_step_mismatch,
+        )
+    elif args.allow_reference_step_mismatch:
+        raise ValueError(
+            "--allow-reference-step-mismatch requires --common-unique-component"
+        )
     if args.other_inference_denominator_floor is not None:
         if other["prediction_target"] != "x":
             raise ValueError("inference denominator override requires an x-prediction other checkpoint")
@@ -559,6 +667,7 @@ def main() -> None:
             scale=scale,
             anchor=anchor,
             other=other,
+            reference=reference,
             args=args,
             sampling_env=sampling_env,
         )
@@ -568,6 +677,7 @@ def main() -> None:
         rows,
         anchor=anchor,
         other=other,
+        reference=reference,
         output_root=args.output_root,
     )
     print(json.dumps(summary, indent=2), flush=True)

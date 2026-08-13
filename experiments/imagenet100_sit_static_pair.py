@@ -31,6 +31,12 @@ ControlMode = Literal[
     "parallel_pair",
     "orthogonal_pair",
 ]
+CommonUniqueComponent = Literal[
+    "x_common_on_v",
+    "x_unique_to_v",
+    "v_common_on_x",
+    "v_unique_to_x",
+]
 CONTROL_MODES = (
     "full_pair",
     "floor_only",
@@ -44,6 +50,12 @@ X_FLOOR_CONTROL_MODES = frozenset(
     ("floor_only", "floor_residual", "pre_floor_pair", "post_floor_pair")
 )
 WINDOW_CONTROL_MODES = frozenset(("pre_floor_pair", "post_floor_pair"))
+COMMON_UNIQUE_COMPONENTS = (
+    "x_common_on_v",
+    "x_unique_to_v",
+    "v_common_on_x",
+    "v_unique_to_x",
+)
 
 
 @dataclass(frozen=True)
@@ -191,6 +203,84 @@ def decompose_relative_to_anchor(
     ) / denominator
     parallel = coefficient * anchor_velocity
     return parallel, direction - parallel
+
+
+def project_onto_direction(
+    value: torch.Tensor,
+    direction: torch.Tensor,
+) -> torch.Tensor:
+    """Project each sample in ``value`` onto its paired ``direction`` vector."""
+
+    if value.shape != direction.shape:
+        raise ValueError("value and direction must have identical shapes")
+    reduce_dims = tuple(range(1, value.ndim))
+    denominator = direction.square().sum(
+        dim=reduce_dims, keepdim=True
+    ).clamp_min(torch.finfo(direction.dtype).tiny)
+    coefficient = (value * direction).sum(
+        dim=reduce_dims, keepdim=True
+    ) / denominator
+    return coefficient * direction
+
+
+def common_unique_orthogonal_directions(
+    anchor_velocity: torch.Tensor,
+    x_velocity: torch.Tensor,
+    v_velocity: torch.Tensor,
+) -> dict[str, torch.Tensor]:
+    """Split x400/v270 guidance into reciprocal common and unique components.
+
+    The two full guidance directions use the empirically beneficial orientation
+    ``anchor - other``. Each is first made orthogonal to the anchor field. The
+    projection is intentionally reciprocal rather than pretending that two
+    non-collinear vectors have one canonical shared component.
+    """
+
+    if (
+        anchor_velocity.shape != x_velocity.shape
+        or anchor_velocity.shape != v_velocity.shape
+    ):
+        raise ValueError("anchor, x, and v velocities must have identical shapes")
+    _, x_orthogonal = decompose_relative_to_anchor(
+        anchor_velocity,
+        anchor_velocity - x_velocity,
+    )
+    _, v_orthogonal = decompose_relative_to_anchor(
+        anchor_velocity,
+        anchor_velocity - v_velocity,
+    )
+    x_common = project_onto_direction(x_orthogonal, v_orthogonal)
+    v_common = project_onto_direction(v_orthogonal, x_orthogonal)
+    return {
+        "x_orthogonal": x_orthogonal,
+        "v_orthogonal": v_orthogonal,
+        "x_common_on_v": x_common,
+        "x_unique_to_v": x_orthogonal - x_common,
+        "v_common_on_x": v_common,
+        "v_unique_to_x": v_orthogonal - v_common,
+    }
+
+
+def common_unique_guided_velocity(
+    anchor_velocity: torch.Tensor,
+    x_velocity: torch.Tensor,
+    v_velocity: torch.Tensor,
+    *,
+    scale: float,
+    component: CommonUniqueComponent,
+) -> torch.Tensor:
+    """Add one reciprocal common/unique guidance component to the anchor."""
+
+    if component not in COMMON_UNIQUE_COMPONENTS:
+        raise ValueError(f"unsupported common/unique component: {component}")
+    if scale == 0.0:
+        return anchor_velocity
+    directions = common_unique_orthogonal_directions(
+        anchor_velocity,
+        x_velocity,
+        v_velocity,
+    )
+    return anchor_velocity + float(scale) * directions[component]
 
 
 def controlled_pair_velocity(

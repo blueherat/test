@@ -7,16 +7,20 @@ from experiments.imagenet100_sit_static_pair import (
     DUAL_OUTPUT_PROTOCOL,
     LEGACY_PROTOCOL,
     SINGLE_TARGET_PROTOCOL,
+    common_unique_guided_velocity,
+    common_unique_orthogonal_directions,
     controlled_pair_velocity,
     decompose_relative_to_anchor,
     output_to_field_velocity,
     post_floor_window,
+    project_onto_direction,
     resolve_field_semantics,
     static_pair_velocity,
     with_inference_denominator_floor,
     x_floor_coefficient,
 )
 from experiments.sample_imagenet100_sit_static_pair_fid import (
+    conditional_common_unique_velocity,
     conditional_static_pair_velocity,
     validate_pair_compatibility,
 )
@@ -168,6 +172,69 @@ def test_relative_decomposition_reconstructs_direction_per_sample() -> None:
     torch.testing.assert_close(parallel + orthogonal, direction)
     dot = (anchor * orthogonal).flatten(1).sum(1)
     torch.testing.assert_close(dot, torch.zeros_like(dot), atol=1e-12, rtol=0)
+
+
+def test_projection_onto_direction_is_paired_per_sample() -> None:
+    value = torch.tensor([[[[2.0, 3.0]]], [[[5.0, 7.0]]]])
+    direction = torch.tensor([[[[1.0, 0.0]]], [[[0.0, 2.0]]]])
+
+    projected = project_onto_direction(value, direction)
+
+    torch.testing.assert_close(
+        projected,
+        torch.tensor([[[[2.0, 0.0]]], [[[0.0, 7.0]]]]),
+    )
+
+
+def test_reciprocal_common_unique_components_reconstruct_both_directions() -> None:
+    anchor = torch.randn(5, 4, 3, 2, dtype=torch.float64)
+    x_velocity = torch.randn_like(anchor)
+    v_velocity = torch.randn_like(anchor)
+
+    parts = common_unique_orthogonal_directions(anchor, x_velocity, v_velocity)
+
+    torch.testing.assert_close(
+        parts["x_common_on_v"] + parts["x_unique_to_v"],
+        parts["x_orthogonal"],
+    )
+    torch.testing.assert_close(
+        parts["v_common_on_x"] + parts["v_unique_to_x"],
+        parts["v_orthogonal"],
+    )
+    x_unique_dot_v = (
+        parts["x_unique_to_v"] * parts["v_orthogonal"]
+    ).flatten(1).sum(1)
+    v_unique_dot_x = (
+        parts["v_unique_to_x"] * parts["x_orthogonal"]
+    ).flatten(1).sum(1)
+    torch.testing.assert_close(
+        x_unique_dot_v,
+        torch.zeros_like(x_unique_dot_v),
+        atol=1e-12,
+        rtol=0,
+    )
+    torch.testing.assert_close(
+        v_unique_dot_x,
+        torch.zeros_like(v_unique_dot_x),
+        atol=1e-12,
+        rtol=0,
+    )
+
+
+def test_common_unique_guidance_uses_positive_empirical_orientation() -> None:
+    anchor = torch.tensor([[[[1.0, 0.0, 0.0]]]])
+    x_velocity = torch.tensor([[[[1.0, -2.0, -3.0]]]])
+    v_velocity = torch.tensor([[[[1.0, -4.0, 0.0]]]])
+
+    actual = common_unique_guided_velocity(
+        anchor,
+        x_velocity,
+        v_velocity,
+        scale=1.0,
+        component="x_common_on_v",
+    )
+
+    torch.testing.assert_close(actual, torch.tensor([[[[1.0, 2.0, 0.0]]]]))
 
 
 def test_single_output_semantics_use_checkpoint_prediction_target() -> None:
@@ -343,6 +410,40 @@ def test_floor_only_control_does_not_evaluate_x_model() -> None:
     assert anchor.calls == 1
     assert other.calls == 0
     assert counter == {"nfe": 1, "anchor_forwards": 1, "other_forwards": 0}
+
+
+def test_conditional_common_unique_velocity_evaluates_three_paired_fields() -> None:
+    semantics = resolve_field_semantics(
+        protocol=SINGLE_TARGET_PROTOCOL,
+        config={"prediction_target": "velocity", "denominator_floor": 1e-3},
+        requested_path="auto",
+    )
+    anchor = ConstantField(0.0)
+    x_model = ConstantField(-2.0)
+    v_model = ConstantField(-4.0)
+    velocity, counter = conditional_common_unique_velocity(
+        anchor,
+        x_model,
+        v_model,
+        torch.tensor([1, 2]),
+        anchor_semantics=semantics,
+        x_semantics=semantics,
+        v_semantics=semantics,
+        scale=1.0,
+        component="x_common_on_v",
+        autocast_dtype=None,
+    )
+
+    state = torch.zeros(2, 4, 3, 3)
+    actual = velocity(torch.tensor(0.5), state)
+
+    torch.testing.assert_close(actual, torch.full_like(state, 2.0))
+    assert counter == {
+        "nfe": 1,
+        "anchor_forwards": 1,
+        "other_forwards": 1,
+        "reference_forwards": 1,
+    }
 
 
 def test_pair_compatibility_allows_only_training_world_size_to_differ() -> None:
