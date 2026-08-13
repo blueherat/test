@@ -2,6 +2,9 @@
 
 更新时间：2026-08-13
 
+后续机制审计已经完成，结果见
+[`ImageNet-100 SiT 400K Guidance 对照实验记录`](IMAGENET100_SIT_400K_GUIDANCE_MECHANISM_AUDIT_ZH.md)。
+
 ## 1. 结论摘要
 
 本实验比较两个独立训练到 400K step 的 `SiT-S/2` 单头模型：原生 velocity

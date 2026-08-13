@@ -22,11 +22,14 @@ from torchvision.utils import save_image
 
 try:
     from experiments.imagenet100_sit_static_pair import (
+        CONTROL_MODES,
         DUAL_OUTPUT_PROTOCOL,
         FieldSemantics,
+        X_FLOOR_CONTROL_MODES,
+        controlled_pair_velocity,
         output_to_field_velocity,
         resolve_field_semantics,
-        static_pair_velocity,
+        with_inference_denominator_floor,
     )
     from experiments.sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
@@ -49,11 +52,14 @@ try:
     )
 except ModuleNotFoundError:
     from imagenet100_sit_static_pair import (
+        CONTROL_MODES,
         DUAL_OUTPUT_PROTOCOL,
         FieldSemantics,
+        X_FLOOR_CONTROL_MODES,
+        controlled_pair_velocity,
         output_to_field_velocity,
         resolve_field_semantics,
-        static_pair_velocity,
+        with_inference_denominator_floor,
     )
     from sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
@@ -98,33 +104,42 @@ def _load_field_model(
     sit_module,
     source_metadata: dict,
     device: torch.device,
-) -> tuple[torch.nn.Module, FieldSemantics, dict[str, object], dict]:
+    inference_denominator_floor: float | None = None,
+    instantiate_model: bool = True,
+) -> tuple[torch.nn.Module | None, FieldSemantics, dict[str, object], dict]:
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     protocol = str(checkpoint.get("protocol"))
     config = checkpoint["config"]
     if checkpoint.get("official_sit") != source_metadata:
         raise ValueError(f"{checkpoint_path} uses a different official SiT revision")
-    semantics = resolve_field_semantics(
+    training_semantics = resolve_field_semantics(
         protocol=protocol,
         config=config,
         requested_path=requested_field,
     )
+    semantics = with_inference_denominator_floor(
+        training_semantics,
+        inference_denominator_floor,
+    )
     model_name = str(config["model_name"])
-    if protocol == DUAL_OUTPUT_PROTOCOL:
-        model = create_dual_output_sit(
-            sit_module,
-            model_name=model_name,
-            cfg_dropout=float(config["cfg_dropout"]),
-        )
+    if not instantiate_model:
+        model = None
     else:
-        model = sit_module.SiT_models[model_name](
-            input_size=LATENT_SHAPE[-1],
-            num_classes=NUM_CLASSES,
-            class_dropout_prob=float(config["cfg_dropout"]),
-        )
-    state_key = "ema" if weights == "ema" else "model"
-    model.load_state_dict(checkpoint[state_key], strict=True)
-    model.to(device).eval().requires_grad_(False)
+        if protocol == DUAL_OUTPUT_PROTOCOL:
+            model = create_dual_output_sit(
+                sit_module,
+                model_name=model_name,
+                cfg_dropout=float(config["cfg_dropout"]),
+            )
+        else:
+            model = sit_module.SiT_models[model_name](
+                input_size=LATENT_SHAPE[-1],
+                num_classes=NUM_CLASSES,
+                class_dropout_prob=float(config["cfg_dropout"]),
+            )
+        state_key = "ema" if weights == "ema" else "model"
+        model.load_state_dict(checkpoint[state_key], strict=True)
+        model.to(device).eval().requires_grad_(False)
     metadata: dict[str, object] = {
         "checkpoint": str(checkpoint_path),
         "checkpoint_sha256": sha256_file(checkpoint_path),
@@ -133,8 +148,11 @@ def _load_field_model(
         "model_name": model_name,
         "field_path": semantics.field_path,
         "prediction_target": semantics.prediction_target,
-        "denominator_floor": semantics.denominator_floor,
+        "denominator_floor": training_semantics.denominator_floor,
+        "training_denominator_floor": training_semantics.denominator_floor,
+        "inference_denominator_floor": semantics.denominator_floor,
         "training_world_size": int(config.get("world_size", 1)),
+        "model_instantiated": bool(instantiate_model),
     }
     return model, semantics, metadata, checkpoint
 
@@ -144,9 +162,14 @@ def validate_pair_compatibility(
     other_checkpoint: dict,
     anchor_metadata: dict[str, object],
     other_metadata: dict[str, object],
+    *,
+    allow_step_mismatch: bool = False,
 ) -> None:
     mismatches: list[str] = []
-    for key in ("checkpoint_step", "model_name"):
+    metadata_keys = ["model_name"]
+    if not allow_step_mismatch:
+        metadata_keys.append("checkpoint_step")
+    for key in metadata_keys:
         if anchor_metadata[key] != other_metadata[key]:
             mismatches.append(
                 f"{key}: anchor={anchor_metadata[key]!r}, other={other_metadata[key]!r}"
@@ -167,12 +190,14 @@ def validate_pair_compatibility(
 
 def conditional_static_pair_velocity(
     anchor_model: torch.nn.Module,
-    other_model: torch.nn.Module,
+    other_model: torch.nn.Module | None,
     labels: torch.Tensor,
     *,
     anchor_semantics: FieldSemantics,
     other_semantics: FieldSemantics,
     scale: float,
+    control_mode: str = "full_pair",
+    window_transition_width: float = 0.01,
     autocast_dtype: torch.dtype | None,
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0, "anchor_forwards": 0, "other_forwards": 0}
@@ -201,17 +226,28 @@ def conditional_static_pair_velocity(
         if scale == 0.0:
             counter["anchor_forwards"] += 1
             return evaluate(anchor_model, anchor_semantics, state, times)
-        if scale == 1.0:
+        if control_mode == "full_pair" and scale == 1.0:
+            if other_model is None:
+                raise ValueError("the selected control requires an instantiated other model")
             counter["other_forwards"] += 1
             return evaluate(other_model, other_semantics, state, times)
         counter["anchor_forwards"] += 1
         anchor_velocity = evaluate(anchor_model, anchor_semantics, state, times)
-        counter["other_forwards"] += 1
-        other_velocity = evaluate(other_model, other_semantics, state, times)
-        return static_pair_velocity(
+        other_velocity = None
+        if control_mode != "floor_only":
+            if other_model is None:
+                raise ValueError("the selected control requires an instantiated other model")
+            counter["other_forwards"] += 1
+            other_velocity = evaluate(other_model, other_semantics, state, times)
+        return controlled_pair_velocity(
             anchor_velocity,
             other_velocity,
+            time_value=times,
             scale=scale,
+            mode=control_mode,
+            other_prediction_target=other_semantics.prediction_target,
+            other_denominator_floor=other_semantics.denominator_floor,
+            window_transition_width=window_transition_width,
         )
 
     return velocity, counter
@@ -257,6 +293,8 @@ def main(args: argparse.Namespace) -> None:
             device=device,
         )
     )
+    if anchor_model is None:  # pragma: no cover - anchor is always instantiated
+        raise AssertionError("anchor model was not instantiated")
     other_model, other_semantics, other_metadata, other_checkpoint = _load_field_model(
         checkpoint_path=other_path,
         requested_field=args.other_field,
@@ -264,13 +302,21 @@ def main(args: argparse.Namespace) -> None:
         sit_module=sit_module,
         source_metadata=source_metadata,
         device=device,
+        inference_denominator_floor=args.other_inference_denominator_floor,
+        instantiate_model=args.control_mode != "floor_only",
     )
     validate_pair_compatibility(
         anchor_checkpoint,
         other_checkpoint,
         anchor_metadata,
         other_metadata,
+        allow_step_mismatch=args.allow_step_mismatch,
     )
+    if (
+        args.control_mode in X_FLOOR_CONTROL_MODES
+        and other_semantics.prediction_target != "x"
+    ):
+        raise ValueError(f"{args.control_mode} requires an x-prediction other checkpoint")
     del anchor_checkpoint, other_checkpoint
 
     from diffusers.models import AutoencoderKL
@@ -310,6 +356,8 @@ def main(args: argparse.Namespace) -> None:
             anchor_semantics=anchor_semantics,
             other_semantics=other_semantics,
             scale=args.static_scale,
+            control_mode=args.control_mode,
+            window_transition_width=args.window_transition_width,
             autocast_dtype=autocast_dtype,
         )
         latents = integrate_velocity(
@@ -378,6 +426,9 @@ def main(args: argparse.Namespace) -> None:
             "rank": rank,
             "rank_seed": rank_seed,
             "static_scale": float(args.static_scale),
+            "control_mode": args.control_mode,
+            "window_transition_width": float(args.window_transition_width),
+            "allow_step_mismatch": bool(args.allow_step_mismatch),
             "sample_count": samples_per_rank,
             "noise_sha256": noise_digest.hexdigest(),
             "label_sha256": label_digest.hexdigest(),
@@ -433,7 +484,22 @@ def main(args: argparse.Namespace) -> None:
             "other": other_metadata,
             "weights": args.weights,
             "static_scale": float(args.static_scale),
-            "formula": "anchor + scale * (other - anchor)",
+            "control_mode": args.control_mode,
+            "formula": {
+                "full_pair": "anchor + scale * (other - anchor)",
+                "floor_only": "anchor + scale * ((c(t) - 1) * anchor)",
+                "floor_residual": "anchor + scale * (other - c(t) * anchor)",
+                "pre_floor_pair": "anchor + scale * w_pre(t) * (other - anchor)",
+                "post_floor_pair": "anchor + scale * w_post(t) * (other - anchor)",
+                "parallel_pair": "anchor + scale * proj_anchor(other - anchor)",
+                "orthogonal_pair": "anchor + scale * orth_anchor(other - anchor)",
+            }[args.control_mode],
+            "x_floor_coefficient": "c(t) = (1 - t) / max(1 - t, other.denominator_floor)",
+            "projection_scope": (
+                "one scalar per sample and ODE evaluation over all latent C,H,W values"
+            ),
+            "window_transition_width": float(args.window_transition_width),
+            "allow_step_mismatch": bool(args.allow_step_mismatch),
             "official_sit": source_metadata,
             "requested_samples": int(args.num_samples),
             "generated_for_ddp_divisibility": int(total_samples),
@@ -471,6 +537,21 @@ def main(args: argparse.Namespace) -> None:
             },
             "pixel_quantization": "clamp(127.5*x + 128, 0, 255), NHWC uint8",
             "rank_resource_usage": rank_resource_usage,
+            "rank_sampling_stats": [
+                {
+                    "rank": int(payload["rank"]),
+                    "elapsed_seconds": float(payload["elapsed_seconds"]),
+                    "nfe": int(payload["nfe"]),
+                    "anchor_forwards": int(payload["anchor_forwards"]),
+                    "other_forwards": int(payload["other_forwards"]),
+                }
+                for payload in rank_payloads
+            ],
+            "total_nfe": sum(int(payload["nfe"]) for payload in rank_payloads),
+            "total_model_forwards": sum(
+                int(payload["anchor_forwards"]) + int(payload["other_forwards"])
+                for payload in rank_payloads
+            ),
             "samples": str(sample_path),
             "labels": str(label_path),
         }
@@ -499,7 +580,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--anchor-field", choices=("auto", "x", "epsilon", "dynamic"), default="auto")
     parser.add_argument("--other-checkpoint", type=Path, default=DEFAULT_OTHER_CHECKPOINT)
     parser.add_argument("--other-field", choices=("auto", "x", "epsilon", "dynamic"), default="auto")
+    parser.add_argument("--other-inference-denominator-floor", type=float)
     parser.add_argument("--static-scale", type=float, required=True)
+    parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
+    parser.add_argument("--window-transition-width", type=float, default=0.01)
+    parser.add_argument("--allow-step-mismatch", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")

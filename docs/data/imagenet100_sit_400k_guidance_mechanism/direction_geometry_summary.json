@@ -1,0 +1,90 @@
+{
+  "checkpoints": [
+    {
+      "checkpoint_sha256": "fa9a5d1c67783021035aa4ccc1d5eb09e5e928e170ee87c9d40f30c3e50320d5",
+      "checkpoint_step": 400000,
+      "denominator_floor": 0.001,
+      "field_path": "auto",
+      "inference_denominator_floor": 0.001,
+      "model_instantiated": true,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "training_denominator_floor": 0.001,
+      "training_world_size": 4
+    },
+    {
+      "checkpoint_sha256": "24ece36139dcb14710a547085195450b93ab6bf473ef02f3a7651243b26a4f9f",
+      "checkpoint_step": 400000,
+      "denominator_floor": 0.05,
+      "field_path": "auto",
+      "inference_denominator_floor": 0.05,
+      "model_instantiated": true,
+      "model_name": "SiT-S/2",
+      "prediction_target": "x",
+      "protocol": "imagenet100_sit_single_target_linear_flow_v2",
+      "training_denominator_floor": 0.05,
+      "training_world_size": 2
+    },
+    {
+      "checkpoint_sha256": "450bf3e406aa58f92d34ed2cb419d27c18a8d3f81ad905e1075ad91a93c9cfe4",
+      "checkpoint_step": 270000,
+      "denominator_floor": 0.001,
+      "field_path": "auto",
+      "inference_denominator_floor": 0.001,
+      "model_instantiated": true,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "training_denominator_floor": 0.001,
+      "training_world_size": 4
+    }
+  ],
+  "definition": {
+    "anchor": "v400",
+    "comparison_states": [
+      "teacher linear bridge",
+      "unguided v400 rollout"
+    ],
+    "decomposition": "one scalar projection onto v400 per sample/state/time over C,H,W",
+    "same_target_guidance": "v400 - v270",
+    "x_guidance": "v400 - x400"
+  },
+  "overall": [
+    {
+      "context": "teacher",
+      "full_cosine_mean": 0.25696316886244375,
+      "orthogonal_cosine_mean": 0.2830027755124451,
+      "orthogonal_cosine_median": 0.2734284351544878,
+      "orthogonal_overlap_cos2_mean": 0.09603244322644268,
+      "v270_orthogonal_energy_fraction_mean": 0.9918238276729828,
+      "v270_over_x_orthogonal_rms_mean": 0.6642946722291329,
+      "x_orthogonal_energy_fraction_mean": 0.8088011067496375
+    },
+    {
+      "context": "v400_rollout",
+      "full_cosine_mean": 0.2469495813393819,
+      "orthogonal_cosine_mean": 0.27295884974361967,
+      "orthogonal_cosine_median": 0.2632340562971709,
+      "orthogonal_overlap_cos2_mean": 0.09065897310717072,
+      "v270_orthogonal_energy_fraction_mean": 0.9930891681680252,
+      "v270_over_x_orthogonal_rms_mean": 0.6537151500394207,
+      "x_orthogonal_energy_fraction_mean": 0.8100373890648181
+    }
+  ],
+  "protocol": "imagenet100_sit_direction_geometry_x400_v270_v1",
+  "seed": 20260813,
+  "times": [
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ]
+}

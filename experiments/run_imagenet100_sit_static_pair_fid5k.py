@@ -14,7 +14,12 @@ from pathlib import Path
 import torch
 
 try:
-    from experiments.imagenet100_sit_static_pair import resolve_field_semantics
+    from experiments.imagenet100_sit_static_pair import (
+        CONTROL_MODES,
+        WINDOW_CONTROL_MODES,
+        X_FLOOR_CONTROL_MODES,
+        resolve_field_semantics,
+    )
     from experiments.run_imagenet100_sit_fid_curve import (
         DEFAULT_ADM_PYTHON,
         absolute_without_resolving_symlinks,
@@ -27,7 +32,12 @@ try:
     )
     from experiments.train_imagenet100_sit_flow import atomic_json_dump, sha256_file
 except ModuleNotFoundError:
-    from imagenet100_sit_static_pair import resolve_field_semantics
+    from imagenet100_sit_static_pair import (
+        CONTROL_MODES,
+        WINDOW_CONTROL_MODES,
+        X_FLOOR_CONTROL_MODES,
+        resolve_field_semantics,
+    )
     from run_imagenet100_sit_fid_curve import (
         DEFAULT_ADM_PYTHON,
         absolute_without_resolving_symlinks,
@@ -112,15 +122,21 @@ def checkpoint_metadata(path: Path, requested_field: str) -> dict[str, object]:
     return metadata
 
 
-def validate_metadata_pair(anchor: dict[str, object], other: dict[str, object]) -> None:
-    keys = (
-        "checkpoint_step",
+def validate_metadata_pair(
+    anchor: dict[str, object],
+    other: dict[str, object],
+    *,
+    allow_step_mismatch: bool = False,
+) -> None:
+    keys = [
         "model_name",
         "global_batch_size",
         "seed",
         "data_manifest_sha256",
         "official_sit",
-    )
+    ]
+    if not allow_step_mismatch:
+        keys.append("checkpoint_step")
     mismatches = {
         key: (anchor[key], other[key])
         for key in keys
@@ -149,11 +165,11 @@ def valid_sampling_artifact(
     ):
         return False
     manifest = load_json(manifest_path)
+    recorded_control_mode = manifest.get("control_mode", "full_pair")
     expected = {
         "format": "eqvae_imagenet100_sit_static_pair_samples_v1",
         "weights": "ema",
         "static_scale": float(scale),
-        "formula": "anchor + scale * (other - anchor)",
         "requested_samples": args.num_samples,
         "world_size": len(args.sampling_gpu_indices),
         "per_rank_batch_size": args.per_rank_batch_size,
@@ -170,6 +186,20 @@ def valid_sampling_artifact(
         for key, value in expected.items()
         if manifest.get(key) != value
     }
+    if recorded_control_mode != args.control_mode:
+        mismatches["control_mode"] = (recorded_control_mode, args.control_mode)
+    if bool(manifest.get("allow_step_mismatch", False)) != args.allow_step_mismatch:
+        mismatches["allow_step_mismatch"] = (
+            bool(manifest.get("allow_step_mismatch", False)),
+            args.allow_step_mismatch,
+        )
+    if args.control_mode != "full_pair" and manifest.get(
+        "window_transition_width"
+    ) != args.window_transition_width:
+        mismatches["window_transition_width"] = (
+            manifest.get("window_transition_width"),
+            args.window_transition_width,
+        )
     for side, metadata in (("anchor", anchor), ("other", other)):
         recorded = manifest.get(side, {})
         for key in (
@@ -185,6 +215,20 @@ def valid_sampling_artifact(
                     recorded.get(key),
                     metadata.get(key),
                 )
+    recorded_other_floor = manifest.get("other", {}).get(
+        "inference_denominator_floor",
+        manifest.get("other", {}).get("denominator_floor"),
+    )
+    expected_other_floor = (
+        float(args.other_inference_denominator_floor)
+        if args.other_inference_denominator_floor is not None
+        else float(other["denominator_floor"])
+    )
+    if recorded_other_floor != expected_other_floor:
+        mismatches["other.inference_denominator_floor"] = (
+            recorded_other_floor,
+            expected_other_floor,
+        )
     if mismatches:
         raise ValueError(f"incompatible static-pair artifact: {mismatches}")
     if Path(manifest["samples"]).resolve() != sample_path.resolve():
@@ -202,7 +246,10 @@ def evaluate_scale(
     args: argparse.Namespace,
     sampling_env: dict[str, str],
 ) -> dict[str, object]:
-    condition = f"static_s{format_scale(scale)}"
+    prefix = "static" if args.control_mode == "full_pair" else args.control_mode
+    if args.other_inference_denominator_floor is not None:
+        prefix += f"_ifloor{format_scale(args.other_inference_denominator_floor)}"
+    condition = f"{prefix}_s{format_scale(scale)}"
     output_dir = args.output_root / condition
     output_dir.mkdir(parents=True, exist_ok=True)
     sample_path = output_dir / f"samples_unguided_n{args.num_samples}.npz"
@@ -229,6 +276,10 @@ def evaluate_scale(
             args.other_field,
             "--static-scale",
             repr(float(scale)),
+            "--control-mode",
+            args.control_mode,
+            "--window-transition-width",
+            repr(float(args.window_transition_width)),
             "--output-dir",
             str(output_dir),
             "--weights",
@@ -249,6 +300,14 @@ def evaluate_scale(
             "fp32",
             "--allow-tf32",
         )
+        if args.other_inference_denominator_floor is not None:
+            command = (
+                *command,
+                "--other-inference-denominator-floor",
+                repr(float(args.other_inference_denominator_floor)),
+            )
+        if args.allow_step_mismatch:
+            command = (*command, "--allow-step-mismatch")
         sampling_audit = run_logged(
             command,
             output_dir / "sampling.log",
@@ -320,8 +379,10 @@ def evaluate_scale(
 
     manifest = load_json(output_dir / "sampling_manifest.json")
     result = load_json(output_dir / "fid5k_adm_results.json")
+    rank_sampling_stats = manifest.get("rank_sampling_stats", [])
     return {
         "condition": condition,
+        "control_mode": args.control_mode,
         "scale": float(scale),
         "region": (
             "beyond_velocity"
@@ -332,7 +393,14 @@ def evaluate_scale(
         ),
         "anchor_prediction_target": anchor["prediction_target"],
         "other_prediction_target": other["prediction_target"],
+        "other_training_denominator_floor": float(other["denominator_floor"]),
+        "other_inference_denominator_floor": (
+            float(args.other_inference_denominator_floor)
+            if args.other_inference_denominator_floor is not None
+            else float(other["denominator_floor"])
+        ),
         "checkpoint_step": anchor["checkpoint_step"],
+        "other_checkpoint_step": other["checkpoint_step"],
         "num_samples": args.num_samples,
         "noise_fingerprint": ":".join(manifest["rank_noise_sha256"]),
         "label_fingerprint": ":".join(manifest["rank_label_sha256"]),
@@ -341,6 +409,12 @@ def evaluate_scale(
         ),
         "fid_peak_memory_mib": max(
             int(value) for value in fid_audit["peak_memory_mib"].values()
+        ),
+        "total_nfe": int(manifest.get("total_nfe", 0)),
+        "total_model_forwards": int(manifest.get("total_model_forwards", 0)),
+        "sampling_elapsed_seconds_max_rank": max(
+            (float(row["elapsed_seconds"]) for row in rank_sampling_stats),
+            default=0.0,
         ),
         "fid": float(result["fid"]),
         "sfid": float(result["sfid"]),
@@ -367,8 +441,9 @@ def save_summary(
         writer.writerows(rows)
     best = min(rows, key=lambda row: float(row["fid"]))
     summary = {
-        "protocol": "imagenet100_sit_static_pair_fid5k_v1",
-        "definition": "v_scale = v_SiT + scale * (v_JiT_x - v_SiT)",
+        "protocol": "imagenet100_sit_field_control_fid5k_v2",
+        "control_mode": rows[0]["control_mode"],
+        "definition": "see sampling_manifest formula for each condition",
         "comparison_is_paired": True,
         "pairing_verified_by_noise_and_label_sha256": True,
         "anchor": anchor,
@@ -378,6 +453,10 @@ def save_summary(
         "csv": str(csv_path),
     }
     atomic_json_dump(summary, output_root / "static_pair_v_to_jit_x_fid5k.json")
+    generic_csv = output_root / "field_control_fid5k.csv"
+    if generic_csv != csv_path:
+        generic_csv.write_text(csv_path.read_text(encoding="utf-8"), encoding="utf-8")
+    atomic_json_dump(summary, output_root / "field_control_fid5k.json")
     return summary
 
 
@@ -387,11 +466,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--anchor-field", default="auto", choices=("auto", "x", "epsilon", "dynamic"))
     parser.add_argument("--other-checkpoint", type=Path, default=DEFAULT_OTHER_CHECKPOINT)
     parser.add_argument("--other-field", default="auto", choices=("auto", "x", "epsilon", "dynamic"))
+    parser.add_argument("--other-inference-denominator-floor", type=float)
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE_STATS)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
     parser.add_argument("--torchrun", default=shutil.which("torchrun") or "torchrun")
     parser.add_argument("--scales", nargs="+", type=float, default=list(DEFAULT_SCALES))
+    parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
+    parser.add_argument("--window-transition-width", type=float, default=0.01)
+    parser.add_argument("--allow-step-mismatch", action="store_true")
     parser.add_argument("--num-samples", type=int, default=5_000)
     parser.add_argument("--per-rank-batch-size", type=int, default=8)
     parser.add_argument("--vae-decode-batch-size", type=int, default=2)
@@ -445,7 +528,27 @@ def main() -> None:
 
     anchor = checkpoint_metadata(args.anchor_checkpoint, args.anchor_field)
     other = checkpoint_metadata(args.other_checkpoint, args.other_field)
-    validate_metadata_pair(anchor, other)
+    validate_metadata_pair(
+        anchor,
+        other,
+        allow_step_mismatch=args.allow_step_mismatch,
+    )
+    if (
+        args.control_mode in X_FLOOR_CONTROL_MODES
+        and other["prediction_target"] != "x"
+    ):
+        raise ValueError(f"{args.control_mode} requires an x-prediction other checkpoint")
+    if args.other_inference_denominator_floor is not None:
+        if other["prediction_target"] != "x":
+            raise ValueError("inference denominator override requires an x-prediction other checkpoint")
+        if not 0 < args.other_inference_denominator_floor < 0.5:
+            raise ValueError("inference denominator floor must lie in (0, 0.5)")
+    if args.control_mode in WINDOW_CONTROL_MODES and not (
+        0 < args.window_transition_width < float(other["denominator_floor"])
+    ):
+        raise ValueError(
+            "window transition width must lie in (0, other denominator floor)"
+        )
     args.output_root.mkdir(parents=True, exist_ok=True)
     sampling_env = os.environ.copy()
     sampling_env["CUDA_VISIBLE_DEVICES"] = args.sampling_cuda_visible_devices

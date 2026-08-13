@@ -1,0 +1,131 @@
+{
+  "baseline_fid": 67.47350547403562,
+  "caveat": "FID gains from full, parallel, and orthogonal closed-loop rollouts are not additive; each intervention induces its own state trajectory.",
+  "comparison_is_paired": true,
+  "direction_geometry_overall": [
+    {
+      "context": "teacher",
+      "full_cosine_mean": 0.25696316886244375,
+      "orthogonal_cosine_mean": 0.2830027755124451,
+      "orthogonal_cosine_median": 0.2734284351544878,
+      "orthogonal_overlap_cos2_mean": 0.09603244322644268,
+      "v270_orthogonal_energy_fraction_mean": 0.9918238276729828,
+      "v270_over_x_orthogonal_rms_mean": 0.6642946722291329,
+      "x_orthogonal_energy_fraction_mean": 0.8088011067496375
+    },
+    {
+      "context": "v400_rollout",
+      "full_cosine_mean": 0.2469495813393819,
+      "orthogonal_cosine_mean": 0.27295884974361967,
+      "orthogonal_cosine_median": 0.2632340562971709,
+      "orthogonal_overlap_cos2_mean": 0.09065897310717072,
+      "v270_orthogonal_energy_fraction_mean": 0.9930891681680252,
+      "v270_over_x_orthogonal_rms_mean": 0.6537151500394207,
+      "x_orthogonal_energy_fraction_mean": 0.8100373890648181
+    }
+  ],
+  "fid_rows": [
+    {
+      "component": "baseline",
+      "family": "baseline",
+      "fid": 67.47350547403562,
+      "fid_gain_vs_v400": 0.0,
+      "inception_score": 26.670499801635742,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 68.87111998497335,
+      "total_nfe": NaN
+    },
+    {
+      "component": "full",
+      "family": "x400",
+      "fid": 59.076602729976855,
+      "fid_gain_vs_v400": 8.396902744058764,
+      "inception_score": 27.343564987182617,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 67.6015793185976,
+      "total_nfe": NaN
+    },
+    {
+      "component": "parallel",
+      "family": "x400",
+      "fid": 64.36881055792338,
+      "fid_gain_vs_v400": 3.104694916112237,
+      "inception_score": 26.733449935913086,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 67.72495864741745,
+      "total_nfe": 38696.0
+    },
+    {
+      "component": "orthogonal",
+      "family": "x400",
+      "fid": 61.81033541044951,
+      "fid_gain_vs_v400": 5.663170063586108,
+      "inception_score": 27.369190216064453,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 68.53595130540862,
+      "total_nfe": 40598.0
+    },
+    {
+      "component": "full",
+      "family": "v270",
+      "fid": 58.606222316533206,
+      "fid_gain_vs_v400": 8.867283157502413,
+      "inception_score": 29.86517333984375,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 68.01288403291926,
+      "total_nfe": 35402.0
+    },
+    {
+      "component": "parallel",
+      "family": "v270",
+      "fid": 66.7991252875492,
+      "fid_gain_vs_v400": 0.6743801864864167,
+      "inception_score": 26.881271362304688,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 68.36883716290038,
+      "total_nfe": 33764.0
+    },
+    {
+      "component": "orthogonal",
+      "family": "v270",
+      "fid": 59.3665983776512,
+      "fid_gain_vs_v400": 8.106907096384418,
+      "inception_score": 29.590795516967773,
+      "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+      "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+      "num_samples": 5000,
+      "sfid": 68.59589844202037,
+      "total_nfe": 34970.0
+    }
+  ],
+  "pairing_verified_by_noise_and_label_sha256": true,
+  "parallel_component_comparison": [
+    {
+      "coefficient_correlation": -0.15074321589133582,
+      "context": "teacher",
+      "same_sign_fraction": 0.779296875,
+      "v270_parallel_rms_mean": 0.003683404739350163,
+      "x_parallel_rms_mean": 0.1045939677248786
+    },
+    {
+      "coefficient_correlation": -0.160540289866245,
+      "context": "v400_rollout",
+      "same_sign_fraction": 0.7665127840909091,
+      "v270_parallel_rms_mean": 0.0027622917746109683,
+      "x_parallel_rms_mean": 0.1031355181053074
+    }
+  ],
+  "protocol": "imagenet100_sit_direction_comparison_x400_v270_v1"
+}
