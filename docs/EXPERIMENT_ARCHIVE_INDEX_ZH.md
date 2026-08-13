@@ -136,6 +136,15 @@ JSON、manifest 和 checkpoint SHA256 复核。
 边界 `scale=-1`。报告同时保留单 seed、FID-5K、最佳点在边界和缺少 precision/recall
 等限制，不能与同一双头 checkpoint 内部的静态 head mixing 混为一谈。
 
+### 400K 训练方向与共同/独有分量记录
+
+- `docs/IMAGENET100_SIT_400K_FUTURE_COMMON_UNIQUE_RESULTS_ZH.md`
+- `docs/data/imagenet100_sit_400k_future_common_unique/`
+
+该记录包含 `v800-v400` 与两条 400K guidance 的逐时刻对齐统计，以及 `x400`、
+`v270` 正交 guidance 的双向 common/unique 投影 FID-5K。仓库保存汇总 CSV/JSON 和
+两张结果图，不保存逐样本表、生成样本或 checkpoint。
+
 ## 验证状态
 
 归档提交前完成：
