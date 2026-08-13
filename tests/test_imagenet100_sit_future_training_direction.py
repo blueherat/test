@@ -35,3 +35,33 @@ def test_future_alignment_distinguishes_maturity_and_unrelated_directions() -> N
         metrics["v270_orthogonal_cosine"],
         torch.zeros(1, dtype=torch.float64),
     )
+
+
+def test_arrival_direction_reverses_reference_minus_anchor() -> None:
+    anchor = torch.tensor([[[[1.0, 1.0]]]], dtype=torch.float64)
+    earlier = torch.tensor([[[[1.0, 0.0]]]], dtype=torch.float64)
+    x_other = torch.tensor([[[[1.0, 0.0]]]], dtype=torch.float64)
+    v_other = torch.tensor([[[[0.0, 1.0]]]], dtype=torch.float64)
+
+    arrival = future_alignment_metrics(
+        anchor,
+        earlier,
+        x_other,
+        v_other,
+        update_direction="anchor_minus_reference",
+        x_prefix="x",
+        v_prefix="v",
+    )
+    reverse = future_alignment_metrics(
+        anchor,
+        earlier,
+        x_other,
+        v_other,
+        update_direction="reference_minus_anchor",
+        x_prefix="x",
+        v_prefix="v",
+    )
+
+    expected = torch.ones(1, dtype=torch.float64)
+    torch.testing.assert_close(arrival["x_full_cosine"], expected)
+    torch.testing.assert_close(reverse["x_full_cosine"], -expected)

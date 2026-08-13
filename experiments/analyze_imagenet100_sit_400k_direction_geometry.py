@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare x400 and v270 guidance directions relative to the same v400 field."""
+"""Compare x-target and same-target guidance around a shared SiT anchor."""
 
 from __future__ import annotations
 
@@ -153,9 +153,16 @@ def summarize(raw: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values(["context", "time"]).reset_index(drop=True)
 
 
-def plot_summary(summary: pd.DataFrame, output: Path) -> None:
+def plot_summary(
+    summary: pd.DataFrame,
+    output: Path,
+    *,
+    anchor_label: str = "v400",
+    x_label: str = "x400",
+    v_label: str = "v270",
+) -> None:
     figure, axes = plt.subplots(2, 2, figsize=(14, 9), sharex=True)
-    colors = {"teacher": "#2864a5", "v400_rollout": "#c44e38"}
+    colors = {"teacher": "#2864a5", "anchor_rollout": "#c44e38"}
     for context, frame in summary.groupby("context", sort=False):
         color = colors.get(str(context), None)
         axes[0, 0].plot(
@@ -184,28 +191,28 @@ def plot_summary(summary: pd.DataFrame, output: Path) -> None:
             frame.x_orthogonal_rms_mean,
             "o-",
             color=color,
-            label=f"x400 ({context})",
+            label=f"{x_label} ({context})",
         )
         axes[1, 0].plot(
             frame.time,
             frame.v270_orthogonal_rms_mean,
             "s--",
             color=color,
-            label=f"v270 ({context})",
+            label=f"{v_label} ({context})",
         )
         axes[1, 1].plot(
             frame.time,
             frame.x_orthogonal_energy_fraction_mean,
             "o-",
             color=color,
-            label=f"x400 ({context})",
+            label=f"{x_label} ({context})",
         )
         axes[1, 1].plot(
             frame.time,
             frame.v270_orthogonal_energy_fraction_mean,
             "s--",
             color=color,
-            label=f"v270 ({context})",
+            label=f"{v_label} ({context})",
         )
     axes[0, 0].set(title="Orthogonal-direction alignment", ylabel="cosine")
     axes[0, 1].set(title="Full guidance-direction alignment", ylabel="cosine")
@@ -215,7 +222,10 @@ def plot_summary(summary: pd.DataFrame, output: Path) -> None:
         axis.grid(alpha=0.2)
         axis.set_xlabel("flow time t")
         axis.legend(fontsize=8)
-    figure.suptitle("v400-x400 versus v400-v270 direction geometry", fontsize=14)
+    figure.suptitle(
+        f"{anchor_label}-{x_label} versus {anchor_label}-{v_label} direction geometry",
+        fontsize=14,
+    )
     figure.tight_layout()
     figure.savefig(output, dpi=180)
     plt.close(figure)
@@ -223,9 +233,12 @@ def plot_summary(summary: pd.DataFrame, output: Path) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--v400", type=Path, default=DEFAULT_V400)
-    parser.add_argument("--x400", type=Path, default=DEFAULT_X400)
-    parser.add_argument("--v270", type=Path, default=DEFAULT_V270)
+    parser.add_argument("--anchor", "--v400", dest="anchor", type=Path, default=DEFAULT_V400)
+    parser.add_argument("--x-other", "--x400", dest="x_other", type=Path, default=DEFAULT_X400)
+    parser.add_argument("--v-other", "--v270", dest="v_other", type=Path, default=DEFAULT_V270)
+    parser.add_argument("--anchor-label", default="v400")
+    parser.add_argument("--x-label", default="x400")
+    parser.add_argument("--v-label", default="v270")
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
@@ -263,7 +276,7 @@ def main(args: argparse.Namespace) -> None:
     semantics = []
     metadata = []
     checkpoints = []
-    for path in (args.v400, args.x400, args.v270):
+    for path in (args.anchor, args.x_other, args.v_other):
         model, field_semantics, field_metadata, checkpoint = _load_field_model(
             checkpoint_path=path.expanduser().resolve(),
             requested_field="auto",
@@ -336,7 +349,7 @@ def main(args: argparse.Namespace) -> None:
             teacher = (1.0 - time_value) * noise + time_value * clean
             for context, state in (
                 ("teacher", teacher),
-                ("v400_rollout", rollout[time_index]),
+                ("anchor_rollout", rollout[time_index]),
             ):
                 anchor = evaluate(0, state, time_value, labels)
                 x_other = evaluate(1, state, time_value, labels)
@@ -359,7 +372,13 @@ def main(args: argparse.Namespace) -> None:
     summary = summarize(raw)
     raw.to_csv(output_dir / "direction_geometry_per_sample.csv", index=False)
     summary.to_csv(output_dir / "direction_geometry_by_time.csv", index=False)
-    plot_summary(summary, output_dir / "direction_geometry.png")
+    plot_summary(
+        summary,
+        output_dir / "direction_geometry.png",
+        anchor_label=args.anchor_label,
+        x_label=args.x_label,
+        v_label=args.v_label,
+    )
     overall = (
         raw.groupby("context")
         .agg(
@@ -384,11 +403,17 @@ def main(args: argparse.Namespace) -> None:
     payload = {
         "protocol": "imagenet100_sit_direction_geometry_x400_v270_v1",
         "definition": {
-            "anchor": "v400",
-            "x_guidance": "v400 - x400",
-            "same_target_guidance": "v400 - v270",
-            "decomposition": "one scalar projection onto v400 per sample/state/time over C,H,W",
-            "comparison_states": ["teacher linear bridge", "unguided v400 rollout"],
+            "anchor": args.anchor_label,
+            "x_guidance": f"{args.anchor_label} - {args.x_label}",
+            "same_target_guidance": f"{args.anchor_label} - {args.v_label}",
+            "decomposition": (
+                f"one scalar projection onto {args.anchor_label} per "
+                "sample/state/time over C,H,W"
+            ),
+            "comparison_states": [
+                "teacher linear bridge",
+                f"unguided {args.anchor_label} rollout",
+            ],
         },
         "samples": args.samples,
         "seed": args.seed,

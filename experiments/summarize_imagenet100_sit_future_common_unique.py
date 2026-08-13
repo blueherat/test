@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Summarize paired v400/x400/v270 common-unique mechanism artifacts."""
+"""Summarize paired common/unique SiT guidance artifacts."""
 
 from __future__ import annotations
 
@@ -20,42 +20,51 @@ BASE = Path("/home/zhoushunyu/data/eqvae/imagenet_sit_flow")
 DEFAULT_ROOT = BASE / "fid5k_step400k_floor_audit_seed0/common_unique_x400_v270"
 
 
-def default_conditions(root: Path) -> dict[str, tuple[str, str, Path]]:
-    audit = BASE / "fid5k_step400k_floor_audit_seed0"
+def default_conditions(
+    root: Path,
+    *,
+    audit: Path | None = None,
+    pair: Path | None = None,
+    anchor_label: str = "v400",
+    x_label: str = "x400",
+    v_label: str = "v270",
+) -> dict[str, tuple[str, str, Path]]:
+    audit = audit or BASE / "fid5k_step400k_floor_audit_seed0"
+    pair = pair or BASE / "fid5k_static_pair_v_to_jit_x_step400000_seed0"
     return {
-        "v400": (
+        anchor_label: (
             "baseline",
-            "v400",
-            BASE / "fid5k_static_pair_v_to_jit_x_step400000_seed0/static_s0",
+            anchor_label,
+            pair / "static_s0",
         ),
         "x_orthogonal": (
-            "x400",
+            x_label,
             "orthogonal",
             audit / "orthogonal_pair/orthogonal_pair_sm1",
         ),
         "x_common_on_v": (
-            "x400",
+            x_label,
             "common",
             root / "x_common_on_v/x_common_on_v_s1",
         ),
         "x_unique_to_v": (
-            "x400",
+            x_label,
             "unique",
             root / "x_unique_to_v/x_unique_to_v_s1",
         ),
         "v_orthogonal": (
-            "v270",
+            v_label,
             "orthogonal",
             audit
-            / "v270_direction_decomposition/orthogonal_pair/orthogonal_pair_sm1",
+            / f"{v_label}_direction_decomposition/orthogonal_pair/orthogonal_pair_sm1",
         ),
         "v_common_on_x": (
-            "v270",
+            v_label,
             "common",
             root / "v_common_on_x/v_common_on_x_s1",
         ),
         "v_unique_to_x": (
-            "v270",
+            v_label,
             "unique",
             root / "v_unique_to_x/v_unique_to_x_s1",
         ),
@@ -94,11 +103,27 @@ def load_condition(
     return row, noise, labels
 
 
-def summarize(root: Path) -> pd.DataFrame:
+def summarize(
+    root: Path,
+    *,
+    audit: Path | None = None,
+    pair: Path | None = None,
+    anchor_label: str = "v400",
+    x_label: str = "x400",
+    v_label: str = "v270",
+) -> pd.DataFrame:
     rows = []
     noise_fingerprints = set()
     label_fingerprints = set()
-    for name, (family, component, directory) in default_conditions(root).items():
+    conditions = default_conditions(
+        root,
+        audit=audit,
+        pair=pair,
+        anchor_label=anchor_label,
+        x_label=x_label,
+        v_label=v_label,
+    )
+    for name, (family, component, directory) in conditions.items():
         row, noise, labels = load_condition(name, family, component, directory)
         rows.append(row)
         noise_fingerprints.add(noise)
@@ -106,12 +131,21 @@ def summarize(root: Path) -> pd.DataFrame:
     if len(noise_fingerprints) != 1 or len(label_fingerprints) != 1:
         raise RuntimeError("conditions did not use identical initial noise and labels")
     table = pd.DataFrame(rows)
-    baseline = float(table.loc[table.condition == "v400", "fid"].iloc[0])
-    table["fid_gain_vs_v400"] = baseline - table.fid
+    baseline = float(table.loc[table.condition == anchor_label, "fid"].iloc[0])
+    table["fid_gain_vs_anchor"] = baseline - table.fid
+    if anchor_label == "v400":
+        table["fid_gain_vs_v400"] = table["fid_gain_vs_anchor"]
     return table
 
 
-def plot(table: pd.DataFrame, output: Path) -> None:
+def plot(
+    table: pd.DataFrame,
+    output: Path,
+    *,
+    anchor_label: str = "v400",
+    x_label: str = "x400",
+    v_label: str = "v270",
+) -> None:
     figure, axes = plt.subplots(1, 2, figsize=(13, 5), sharey=True)
     labels = ["baseline", "orthogonal", "common", "unique"]
     colors = {
@@ -120,11 +154,11 @@ def plot(table: pd.DataFrame, output: Path) -> None:
         "common": "#2f6fa3",
         "unique": "#c44e38",
     }
-    baseline = table.loc[table.condition == "v400"].iloc[0]
+    baseline = table.loc[table.condition == anchor_label].iloc[0]
     for axis, family, title in zip(
         axes,
-        ("x400", "v270"),
-        ("x400-derived direction", "v270-derived direction"),
+        (x_label, v_label),
+        (f"{x_label}-derived direction", f"{v_label}-derived direction"),
     ):
         family_rows = table.loc[table.family == family].set_index("component")
         values = [float(baseline.fid)] + [
@@ -150,6 +184,11 @@ def plot(table: pd.DataFrame, output: Path) -> None:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=DEFAULT_ROOT)
+    parser.add_argument("--audit-root", type=Path)
+    parser.add_argument("--pair-root", type=Path)
+    parser.add_argument("--anchor-label", default="v400")
+    parser.add_argument("--x-label", default="x400")
+    parser.add_argument("--v-label", default="v270")
     return parser
 
 
@@ -157,15 +196,33 @@ def main() -> None:
     args = build_parser().parse_args()
     root = args.root.expanduser().resolve()
     root.mkdir(parents=True, exist_ok=True)
-    table = summarize(root)
+    audit_root = args.audit_root.expanduser().resolve() if args.audit_root else None
+    pair_root = args.pair_root.expanduser().resolve() if args.pair_root else None
+    table = summarize(
+        root,
+        audit=audit_root,
+        pair=pair_root,
+        anchor_label=args.anchor_label,
+        x_label=args.x_label,
+        v_label=args.v_label,
+    )
     csv_path = root / "common_unique_fid5k.csv"
     figure_path = root / "common_unique_fid5k.png"
     table.to_csv(csv_path, index=False)
-    plot(table, figure_path)
+    plot(
+        table,
+        figure_path,
+        anchor_label=args.anchor_label,
+        x_label=args.x_label,
+        v_label=args.v_label,
+    )
     payload = {
         "protocol": "imagenet100_sit_common_unique_summary_v1",
         "comparison_is_paired": True,
         "pairing_verified_by_noise_and_label_sha256": True,
+        "anchor_label": args.anchor_label,
+        "x_label": args.x_label,
+        "v_label": args.v_label,
         "rows": table.to_dict(orient="records"),
         "csv": str(csv_path),
         "figure": str(figure_path),

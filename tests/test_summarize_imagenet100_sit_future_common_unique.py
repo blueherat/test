@@ -64,3 +64,33 @@ def test_summary_requires_and_preserves_exact_pairing(
     mismatched.write_text(json.dumps(payload), encoding="utf-8")
     with pytest.raises(RuntimeError, match="identical initial noise"):
         summary_module.summarize(root)
+
+
+def test_summary_accepts_explicit_800k_labels_and_roots(tmp_path: Path) -> None:
+    root = tmp_path / "common_unique_x800_v400"
+    audit = tmp_path / "audit800"
+    pair = tmp_path / "pair800"
+    directories = (
+        pair / "static_s0",
+        audit / "orthogonal_pair/orthogonal_pair_sm1",
+        root / "x_common_on_v/x_common_on_v_s1",
+        root / "x_unique_to_v/x_unique_to_v_s1",
+        audit / "v400_direction_decomposition/orthogonal_pair/orthogonal_pair_sm1",
+        root / "v_common_on_x/v_common_on_x_s1",
+        root / "v_unique_to_x/v_unique_to_x_s1",
+    )
+    for index, directory in enumerate(directories):
+        _write_condition(directory, fid=20.0 - index)
+
+    table = summary_module.summarize(
+        root,
+        audit=audit,
+        pair=pair,
+        anchor_label="v800",
+        x_label="x800",
+        v_label="v400",
+    )
+
+    assert set(table.family) == {"baseline", "x800", "v400"}
+    assert "fid_gain_vs_anchor" in table
+    assert "fid_gain_vs_v400" not in table

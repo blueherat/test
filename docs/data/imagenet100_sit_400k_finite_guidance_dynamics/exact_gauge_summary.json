@@ -1,0 +1,138 @@
+{
+  "format": "eqvae_finite_guidance_exact_gauge_toy_v1",
+  "statement": "gauge control R(score) obeys div(pu)=0 exactly; active control score has identical pointwise norm but changes density",
+  "samples": 10000,
+  "steps": 500,
+  "gammas": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "seed": 20260814,
+  "dtype": "float32",
+  "modes": 8,
+  "radius": 3.0,
+  "data_std": 0.18,
+  "finite_sample_calibration": {
+    "reference_replication_swd": 0.1350020468235016,
+    "reference_target_nll": 1.4604469537734985,
+    "replication_target_nll": 1.4990750551223755
+  },
+  "distribution_metrics": [
+    {
+      "condition": "baseline",
+      "kind": "baseline",
+      "gamma": 0.0,
+      "swd_to_reference": 0.11663088202476501,
+      "target_nll": 1.5029242038726807,
+      "mode_total_variation": 0.011900000000000015,
+      "normalized_mode_entropy": 0.9998251965502,
+      "paired_rms_from_baseline": 0.0,
+      "mean_radius": 3.0062782764434814
+    },
+    {
+      "condition": "gauge_g0.5",
+      "kind": "gauge",
+      "gamma": 0.5,
+      "swd_to_reference": 0.11986159533262253,
+      "target_nll": 1.4911521673202515,
+      "mode_total_variation": 0.014600000000000002,
+      "normalized_mode_entropy": 0.9997207699107152,
+      "paired_rms_from_baseline": 0.9598008394241333,
+      "mean_radius": 3.0043582916259766
+    },
+    {
+      "condition": "gauge_g1",
+      "kind": "gauge",
+      "gamma": 1.0,
+      "swd_to_reference": 0.11897637695074081,
+      "target_nll": 1.4960064888000488,
+      "mode_total_variation": 0.010999999999999996,
+      "normalized_mode_entropy": 0.9998317967196381,
+      "paired_rms_from_baseline": 1.3858330249786377,
+      "mean_radius": 3.003206729888916
+    },
+    {
+      "condition": "gauge_g2",
+      "kind": "gauge",
+      "gamma": 2.0,
+      "swd_to_reference": 0.11423057317733765,
+      "target_nll": 1.5002044439315796,
+      "mode_total_variation": 0.009799999999999982,
+      "normalized_mode_entropy": 0.9998748541750981,
+      "paired_rms_from_baseline": 2.3559741973876953,
+      "mean_radius": 3.0030910968780518
+    },
+    {
+      "condition": "active_g0.5",
+      "kind": "active",
+      "gamma": 0.5,
+      "swd_to_reference": 0.2138068825006485,
+      "target_nll": 0.48820918798446655,
+      "mode_total_variation": 0.011900000000000015,
+      "normalized_mode_entropy": 0.9998251965502,
+      "paired_rms_from_baseline": 0.17769809067249298,
+      "mean_radius": 2.9983747005462646
+    },
+    {
+      "condition": "active_g1",
+      "kind": "active",
+      "gamma": 1.0,
+      "swd_to_reference": 0.2167130708694458,
+      "target_nll": 0.4877220690250397,
+      "mode_total_variation": 0.011900000000000015,
+      "normalized_mode_entropy": 0.9998251965502,
+      "paired_rms_from_baseline": 0.1812829077243805,
+      "mean_radius": 2.9999420642852783
+    },
+    {
+      "condition": "active_g2",
+      "kind": "active",
+      "gamma": 2.0,
+      "swd_to_reference": 0.21678180992603302,
+      "target_nll": 0.48772192001342773,
+      "mode_total_variation": 0.011900000000000015,
+      "normalized_mode_entropy": 0.9998251965502,
+      "paired_rms_from_baseline": 0.18136276304721832,
+      "mean_radius": 3.0
+    }
+  ],
+  "density_action": [
+    {
+      "time": 0.1,
+      "kind": "gauge",
+      "action_rms": 6.18217796954923e-08,
+      "action_abs_max": 5.364418029785156e-07
+    },
+    {
+      "time": 0.1,
+      "kind": "active",
+      "action_rms": 2.3989875316619873,
+      "action_abs_max": 11.37008285522461
+    },
+    {
+      "time": 0.5,
+      "kind": "gauge",
+      "action_rms": 1.935394067231755e-07,
+      "action_abs_max": 9.5367431640625e-07
+    },
+    {
+      "time": 0.5,
+      "kind": "active",
+      "action_rms": 4.850715160369873,
+      "action_abs_max": 21.692651748657227
+    },
+    {
+      "time": 0.9,
+      "kind": "gauge",
+      "action_rms": 9.956886704021173e-11,
+      "action_abs_max": 1.593094989260635e-09
+    },
+    {
+      "time": 0.9,
+      "kind": "active",
+      "action_rms": 55.399169921875,
+      "action_abs_max": 264.5660400390625
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare 400K guidance directions with the later v800-v400 field update."""
+"""Compare SiT guidance directions with a continued-training field update."""
 
 from __future__ import annotations
 
@@ -94,17 +94,26 @@ def _projection_coefficient(
 
 def future_alignment_metrics(
     anchor: torch.Tensor,
-    future: torch.Tensor,
+    training_reference: torch.Tensor,
     x_other: torch.Tensor,
     v_other: torch.Tensor,
+    *,
+    update_direction: str = "reference_minus_anchor",
+    x_prefix: str = "x400",
+    v_prefix: str = "v270",
 ) -> dict[str, torch.Tensor]:
-    """Measure local alignment with ``v800-v400`` on identical states."""
+    """Measure local alignment with a training update on identical states."""
 
     if not (
-        anchor.shape == future.shape == x_other.shape == v_other.shape
+        anchor.shape == training_reference.shape == x_other.shape == v_other.shape
     ):
         raise ValueError("all compared fields must have identical shapes")
-    future_direction = future - anchor
+    if update_direction == "reference_minus_anchor":
+        future_direction = training_reference - anchor
+    elif update_direction == "anchor_minus_reference":
+        future_direction = anchor - training_reference
+    else:
+        raise ValueError(f"unsupported update_direction: {update_direction}")
     x_guidance = anchor - x_other
     v_guidance = anchor - v_other
     _, future_orthogonal = decompose_relative_to_anchor(anchor, future_direction)
@@ -120,8 +129,8 @@ def future_alignment_metrics(
         / future_rms.square().clamp_min(tiny),
     }
     for name, guidance, orthogonal in (
-        ("x400", x_guidance, x_orthogonal),
-        ("v270", v_guidance, v_orthogonal),
+        (x_prefix, x_guidance, x_orthogonal),
+        (v_prefix, v_guidance, v_orthogonal),
     ):
         full_cosine = _sample_cosine(guidance, future_direction)
         orthogonal_cosine = _sample_cosine(orthogonal, future_orthogonal)
@@ -193,13 +202,23 @@ def summarize(raw: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values(["context", "time"]).reset_index(drop=True)
 
 
-def plot_summary(summary: pd.DataFrame, output: Path) -> None:
+def plot_summary(
+    summary: pd.DataFrame,
+    output: Path,
+    *,
+    x_prefix: str,
+    v_prefix: str,
+    x_label: str,
+    v_label: str,
+    direction_label: str,
+) -> None:
     figure, axes = plt.subplots(2, 2, figsize=(15, 9), sharex=True)
-    colors = {"x400": "#2864a5", "v270": "#c44e38"}
-    styles = {"teacher": "-", "v400_rollout": "--"}
+    colors = {x_prefix: "#2864a5", v_prefix: "#c44e38"}
+    display = {x_prefix: x_label, v_prefix: v_label}
+    styles = {"teacher": "-", "anchor_rollout": "--"}
     for context, frame in summary.groupby("context", sort=False):
-        for candidate in ("x400", "v270"):
-            label = f"{candidate}, {context}"
+        for candidate in (x_prefix, v_prefix):
+            label = f"{display[candidate]}, {context}"
             axes[0, 0].plot(
                 frame.time,
                 frame[f"{candidate}_full_cosine_mean"],
@@ -232,7 +251,7 @@ def plot_summary(summary: pd.DataFrame, output: Path) -> None:
                 color=colors[candidate],
                 label=label,
             )
-    axes[0, 0].set(title="Full alignment with v800-v400", ylabel="mean cosine")
+    axes[0, 0].set(title=f"Full alignment with {direction_label}", ylabel="mean cosine")
     axes[0, 1].set(title="Anchor-orthogonal alignment", ylabel="mean cosine")
     axes[1, 0].set(title="Projection onto future direction", ylabel="median coefficient")
     axes[1, 1].set(title="Guidance/future magnitude", ylabel="mean RMS ratio")
@@ -249,10 +268,25 @@ def plot_summary(summary: pd.DataFrame, output: Path) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--v400", type=Path, default=DEFAULT_V400)
-    parser.add_argument("--v800", type=Path, default=DEFAULT_V800)
-    parser.add_argument("--x400", type=Path, default=DEFAULT_X400)
-    parser.add_argument("--v270", type=Path, default=DEFAULT_V270)
+    parser.add_argument("--anchor", "--v400", dest="anchor", type=Path, default=DEFAULT_V400)
+    parser.add_argument(
+        "--training-reference",
+        "--v800",
+        dest="training_reference",
+        type=Path,
+        default=DEFAULT_V800,
+    )
+    parser.add_argument("--x-other", "--x400", dest="x_other", type=Path, default=DEFAULT_X400)
+    parser.add_argument("--v-other", "--v270", dest="v_other", type=Path, default=DEFAULT_V270)
+    parser.add_argument(
+        "--update-direction",
+        choices=("reference_minus_anchor", "anchor_minus_reference"),
+        default="reference_minus_anchor",
+    )
+    parser.add_argument("--anchor-label", default="v400")
+    parser.add_argument("--training-reference-label", default="v800")
+    parser.add_argument("--x-label", default="x400")
+    parser.add_argument("--v-label", default="v270")
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
@@ -289,7 +323,7 @@ def main(args: argparse.Namespace) -> None:
     semantics = []
     metadata = []
     checkpoints = []
-    for path in (args.v400, args.v800, args.x400, args.v270):
+    for path in (args.anchor, args.training_reference, args.x_other, args.v_other):
         model, field_semantics, field_metadata, checkpoint = _load_field_model(
             checkpoint_path=path.expanduser().resolve(),
             requested_field="auto",
@@ -368,13 +402,18 @@ def main(args: argparse.Namespace) -> None:
             teacher = (1.0 - time_value) * noise + time_value * clean
             for context, state in (
                 ("teacher", teacher),
-                ("v400_rollout", rollout[time_index]),
+                ("anchor_rollout", rollout[time_index]),
             ):
                 fields = [
                     evaluate(model_index, state, time_value, labels)
                     for model_index in range(4)
                 ]
-                metrics = future_alignment_metrics(*fields)
+                metrics = future_alignment_metrics(
+                    *fields,
+                    update_direction=args.update_direction,
+                    x_prefix="x",
+                    v_prefix="v",
+                )
                 cpu_metrics = {
                     key: value.cpu().numpy() for key, value in metrics.items()
                 }
@@ -400,14 +439,26 @@ def main(args: argparse.Namespace) -> None:
     figure_path = output_dir / "future_alignment.png"
     raw.to_csv(raw_path, index=False)
     summary.to_csv(summary_path, index=False)
-    plot_summary(summary, figure_path)
+    if args.update_direction == "reference_minus_anchor":
+        direction_label = f"{args.training_reference_label}-{args.anchor_label}"
+    else:
+        direction_label = f"{args.anchor_label}-{args.training_reference_label}"
+    plot_summary(
+        summary,
+        figure_path,
+        x_prefix="x",
+        v_prefix="v",
+        x_label=args.x_label,
+        v_label=args.v_label,
+        direction_label=direction_label,
+    )
     overall_rows: list[dict[str, float | int | str]] = []
     for context, frame in raw.groupby("context", sort=True):
         row: dict[str, float | int | str] = {
             "context": str(context),
             "observations": int(len(frame)),
         }
-        for candidate in ("x400", "v270"):
+        for candidate in ("x", "v"):
             for metric in (
                 "full_cosine",
                 "full_overlap_cos2",
@@ -423,12 +474,12 @@ def main(args: argparse.Namespace) -> None:
                 row[f"{candidate}_{metric}_median"] = float(np.median(values))
         overall_rows.append(row)
     payload = {
-        "protocol": "imagenet100_sit_future_training_direction_v1",
+        "protocol": "imagenet100_sit_training_update_alignment_v2",
         "definition": {
-            "future_training_direction": "v800 - v400",
-            "x_guidance": "v400 - x400",
-            "same_target_guidance": "v400 - v270",
-            "comparison_states": ["teacher linear bridge", "unguided v400 rollout"],
+            "training_update_direction": direction_label,
+            "x_guidance": f"{args.anchor_label} - {args.x_label}",
+            "same_target_guidance": f"{args.anchor_label} - {args.v_label}",
+            "comparison_states": ["teacher linear bridge", f"unguided {args.anchor_label} rollout"],
             "projection_scope": "one scalar per sample/state/time over C,H,W",
         },
         "samples": args.samples,

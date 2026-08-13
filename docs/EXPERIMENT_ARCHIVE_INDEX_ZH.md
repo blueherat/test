@@ -145,6 +145,16 @@ JSON、manifest 和 checkpoint SHA256 复核。
 `v270` 正交 guidance 的双向 common/unique 投影 FID-5K。仓库保存汇总 CSV/JSON 和
 两张结果图，不保存逐样本表、生成样本或 checkpoint。
 
+### 400K 有限强度 Guidance 动力学审计
+
+- `docs/IMAGENET100_SIT_400K_FINITE_GUIDANCE_DYNAMICS_ZH.md`
+- `docs/data/imagenet100_sit_400k_finite_guidance_dynamics/`
+
+该记录包含 finite-gamma 线性度、frozen-gap 与 closed-loop 的配对 FID-5K、
+conservativity、局部 density-action、跨方向终点响应和 finite-strength exact gauge
+toy。正式结论是：基线轨迹上的有限幅度 guidance action 保留了大部分 FID 收益，
+闭环反馈有次要增益；field norm、cosine、local action 和 curl 均不能单独预测终点质量。
+
 ## 验证状态
 
 归档提交前完成：
