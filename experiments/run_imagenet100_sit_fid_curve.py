@@ -145,6 +145,7 @@ def valid_resource_audit(
     *,
     gpu_indices: Sequence[int],
     memory_ceiling_mib: int,
+    allow_gpu_index_mismatch: bool = False,
 ) -> bool:
     if not path.is_file():
         return False
@@ -154,10 +155,20 @@ def valid_resource_audit(
     if int(audit.get("memory_ceiling_mib", -1)) != memory_ceiling_mib:
         return False
     monitored = [int(index) for index in audit.get("monitored_gpu_indices", [])]
-    if monitored != list(gpu_indices):
+    requested = list(gpu_indices)
+    if allow_gpu_index_mismatch:
+        if len(monitored) != len(requested):
+            return False
+        checked_indices = monitored
+    elif monitored != requested:
         return False
+    else:
+        checked_indices = requested
     peaks = {int(index): int(value) for index, value in audit.get("peak_memory_mib", {}).items()}
-    return all(peaks.get(index, memory_ceiling_mib) < memory_ceiling_mib for index in gpu_indices)
+    return all(
+        peaks.get(index, memory_ceiling_mib) < memory_ceiling_mib
+        for index in checked_indices
+    )
 
 
 def valid_sampling_artifact(

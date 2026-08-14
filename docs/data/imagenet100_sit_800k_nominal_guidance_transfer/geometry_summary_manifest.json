@@ -1,0 +1,412 @@
+{
+  "families": [
+    "x800",
+    "v500"
+  ],
+  "outputs": {
+    "by_time": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/nominal_transfer_all_runs_by_time.csv",
+    "compact": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/nominal_transfer_compact.csv",
+    "endpoints": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/endpoint_latent_geometry.csv",
+    "frozen_plot": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/frozen_transfer_geometry.png",
+    "relation_plot": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/trajectory_relation_geometry.png",
+    "segment_plot": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/segment_transfer_geometry.png",
+    "segments": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/summary/segment_transfer_all_runs_by_time.csv"
+  },
+  "pairing_verified_with_noise_and_label_sha256": true,
+  "protocol": "imagenet100_sit_nominal_transfer_summary_v1",
+  "question": "why nominal-path frozen guidance retains closed-guidance benefit",
+  "runs": [
+    {
+      "allow_tf32": true,
+      "anchor_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "anchor_examples": 138112,
+      "anchor_forwards": 5520,
+      "atol": 1e-06,
+      "batch_size": 8,
+      "directory": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/geometry/x800_seed0",
+      "elapsed_seconds": 111.11376721999841,
+      "family": "x800",
+      "format": "eqvae_imagenet100_sit_nominal_transfer_geometry_v1",
+      "formula": {
+        "baseline": "z'=S(z,t)",
+        "closed": "z'=S(z,t)+gamma*g(z,t)",
+        "frozen": "z'=S(z,t)+gamma*g(z_baseline,t)",
+        "gap": "g=S-W",
+        "replay": "z'=S(z_baseline,t)+gamma*g(z_baseline,t)"
+      },
+      "gamma": 1.0,
+      "label_sha256": "06a87609534f95d4ffb02411556c2721257f52dfe5c4e62aec4d6e8f7761aa66",
+      "metadata": {
+        "anchor": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "anchor_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "other": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "22cd7a392b61465c0b1cd2b569eb8678cab169ab4fe492ab2973990dd2b5c79d",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.05,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.05,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "x",
+          "protocol": "imagenet100_sit_single_target_linear_flow_v2",
+          "training_denominator_floor": 0.05,
+          "training_world_size": 2
+        },
+        "other_semantics": {
+          "denominator_floor": 0.05,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "x",
+          "protocol": "imagenet100_sit_single_target_linear_flow_v2"
+        },
+        "source": {
+          "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+          "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+        }
+      },
+      "noise_sha256": "868085798050102eb815e1700c8e9edb4cb9e740a314407ee1e471a99419160f",
+      "num_samples": 512,
+      "other_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+      "other_examples": 105216,
+      "other_forwards": 5520,
+      "rtol": 0.001,
+      "seed": 0,
+      "segment_alphas": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "times": [
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        0.9,
+        0.95,
+        0.97,
+        0.99
+      ],
+      "weights": "ema"
+    },
+    {
+      "allow_tf32": true,
+      "anchor_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "anchor_examples": 141136,
+      "anchor_forwards": 5646,
+      "atol": 1e-06,
+      "batch_size": 8,
+      "directory": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/geometry/x800_seed1",
+      "elapsed_seconds": 110.76489433900133,
+      "family": "x800",
+      "format": "eqvae_imagenet100_sit_nominal_transfer_geometry_v1",
+      "formula": {
+        "baseline": "z'=S(z,t)",
+        "closed": "z'=S(z,t)+gamma*g(z,t)",
+        "frozen": "z'=S(z,t)+gamma*g(z_baseline,t)",
+        "gap": "g=S-W",
+        "replay": "z'=S(z_baseline,t)+gamma*g(z_baseline,t)"
+      },
+      "gamma": 1.0,
+      "label_sha256": "43749f222c70310eed206874b64d4cadcd70f625a1a78e7db51ab969741ffc3b",
+      "metadata": {
+        "anchor": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "anchor_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "other": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "22cd7a392b61465c0b1cd2b569eb8678cab169ab4fe492ab2973990dd2b5c79d",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.05,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.05,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "x",
+          "protocol": "imagenet100_sit_single_target_linear_flow_v2",
+          "training_denominator_floor": 0.05,
+          "training_world_size": 2
+        },
+        "other_semantics": {
+          "denominator_floor": 0.05,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "x",
+          "protocol": "imagenet100_sit_single_target_linear_flow_v2"
+        },
+        "source": {
+          "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+          "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+        }
+      },
+      "noise_sha256": "ed1a04a8e1b3e40e6e3188bb7759a1d7a8f560e5c84b2cd9bdf3522262a0f12c",
+      "num_samples": 512,
+      "other_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+      "other_examples": 107232,
+      "other_forwards": 5646,
+      "rtol": 0.001,
+      "seed": 1,
+      "segment_alphas": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "times": [
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        0.9,
+        0.95,
+        0.97,
+        0.99
+      ],
+      "weights": "ema"
+    },
+    {
+      "allow_tf32": true,
+      "anchor_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "anchor_examples": 130048,
+      "anchor_forwards": 5184,
+      "atol": 1e-06,
+      "batch_size": 8,
+      "directory": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/geometry/v500_seed0",
+      "elapsed_seconds": 102.21507127299992,
+      "family": "v500",
+      "format": "eqvae_imagenet100_sit_nominal_transfer_geometry_v1",
+      "formula": {
+        "baseline": "z'=S(z,t)",
+        "closed": "z'=S(z,t)+gamma*g(z,t)",
+        "frozen": "z'=S(z,t)+gamma*g(z_baseline,t)",
+        "gap": "g=S-W",
+        "replay": "z'=S(z_baseline,t)+gamma*g(z_baseline,t)"
+      },
+      "gamma": 1.0,
+      "label_sha256": "06a87609534f95d4ffb02411556c2721257f52dfe5c4e62aec4d6e8f7761aa66",
+      "metadata": {
+        "anchor": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "anchor_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "other": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+          "checkpoint_sha256": "c19c2614226d2f667d76b98106fa7d05748048e4a2aad8cf788cbdea11d8cb76",
+          "checkpoint_step": 500000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "other_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "source": {
+          "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+          "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+        }
+      },
+      "noise_sha256": "868085798050102eb815e1700c8e9edb4cb9e740a314407ee1e471a99419160f",
+      "num_samples": 512,
+      "other_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+      "other_examples": 99840,
+      "other_forwards": 5184,
+      "rtol": 0.001,
+      "seed": 0,
+      "segment_alphas": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "times": [
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        0.9,
+        0.95,
+        0.97,
+        0.99
+      ],
+      "weights": "ema"
+    },
+    {
+      "allow_tf32": true,
+      "anchor_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "anchor_examples": 129760,
+      "anchor_forwards": 5172,
+      "atol": 1e-06,
+      "batch_size": 8,
+      "directory": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/nominal_guidance_transfer_800k_v1/geometry/v500_seed1",
+      "elapsed_seconds": 102.10143334300665,
+      "family": "v500",
+      "format": "eqvae_imagenet100_sit_nominal_transfer_geometry_v1",
+      "formula": {
+        "baseline": "z'=S(z,t)",
+        "closed": "z'=S(z,t)+gamma*g(z,t)",
+        "frozen": "z'=S(z,t)+gamma*g(z_baseline,t)",
+        "gap": "g=S-W",
+        "replay": "z'=S(z_baseline,t)+gamma*g(z_baseline,t)"
+      },
+      "gamma": 1.0,
+      "label_sha256": "43749f222c70310eed206874b64d4cadcd70f625a1a78e7db51ab969741ffc3b",
+      "metadata": {
+        "anchor": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+          "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+          "checkpoint_step": 800000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "anchor_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "other": {
+          "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+          "checkpoint_sha256": "c19c2614226d2f667d76b98106fa7d05748048e4a2aad8cf788cbdea11d8cb76",
+          "checkpoint_step": 500000,
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "inference_denominator_floor": 0.001,
+          "model_instantiated": true,
+          "model_name": "SiT-S/2",
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1",
+          "training_denominator_floor": 0.001,
+          "training_world_size": 4
+        },
+        "other_semantics": {
+          "denominator_floor": 0.001,
+          "field_path": "auto",
+          "gate_activation": null,
+          "prediction_target": "velocity",
+          "protocol": "imagenet100_sit_linear_flow_v1"
+        },
+        "source": {
+          "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+          "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+        }
+      },
+      "noise_sha256": "ed1a04a8e1b3e40e6e3188bb7759a1d7a8f560e5c84b2cd9bdf3522262a0f12c",
+      "num_samples": 512,
+      "other_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+      "other_examples": 99648,
+      "other_forwards": 5172,
+      "rtol": 0.001,
+      "seed": 1,
+      "segment_alphas": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "times": [
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        0.9,
+        0.95,
+        0.97,
+        0.99
+      ],
+      "weights": "ema"
+    }
+  ],
+  "seeds": [
+    0,
+    1
+  ]
+}

@@ -6,7 +6,7 @@
 
 1. `strong + (strong - weak)` 在更强的 `v800` anchor 上仍能明显改善 FID。
 2. prediction-target 弱模型不是必要条件。`x800` 和质量近似匹配的 same-target `v500` 都能产生接近的闭环收益。
-3. 把 weak-strong gap 冻结在配对 baseline trajectory 上以后，仍能保留大部分闭环收益。因此主要校正信息已经存在于 baseline trajectory；状态反馈会继续增益，但不是收益存在的必要条件。
+3. 把 weak-strong gap 冻结在配对 baseline trajectory 上以后，仍能保留大部分闭环收益。因此主要校正信息已经存在于 baseline trajectory。这里冻结的只是 gap 的在线重算；strong field 仍在当前 guided state 上求值，不能把该条件解释为“没有状态反馈”。
 4. same-target `v800-v500` 的 frozen-gap 保留率始终高于 `v800-x800`，说明 same-target gap 对状态变化更稳定，而 prediction-target gap 更依赖闭环重计算。
 
 800K 的绝对 FID 改善约为 `5.0-5.7`，小于 400K 的 `8.4-8.9`。这符合更强 anchor 可改进空间变小的解释，不构成机制反转。
@@ -28,6 +28,8 @@ z' = v800(z,t) + [v800(z,t) - weak(z,t)]
 ```
 
 frozen-gap 条件中，强模型仍在当前 guided state 上求值，但方括号内的差值固定在配对 baseline trajectory 上求值。
+
+后续 replay 对照进一步确认：若连 strong field 也固定在 baseline trajectory 上，大部分 FID 收益会消失。因此 frozen-gap 结果只证明“在线重算 gap 不是主要收益的必要条件”，并不证明“当前状态上的 strong-field 反馈不必要”。
 
 ## 端点质量匹配
 
@@ -81,7 +83,7 @@ frozen-gap 对闭环收益的保留率：
 | 800K seed 1 | prediction-target `x800` | 5.7370 | 4.3428 | 75.7% |
 | 800K seed 1 | same-target `v500` | 5.7088 | 5.2842 | 92.6% |
 
-两种训练尺度共同支持的是同一条高层机制：prediction target 不是有效 guidance 的必要来源；weak-strong gap 的大部分作用已经写在 baseline trajectory 上；closed-loop feedback 提供稳定但次要的额外改善。
+两种训练尺度共同支持的是同一条高层机制：prediction target 不是有效 guidance 的必要来源；weak-strong gap 的大部分校正方向已经写在 baseline trajectory 上。这里不能把 frozen-gap 与 open-loop 混为一谈，因为 frozen-gap 始终保留当前状态上的 strong-field 响应。
 
 本轮 800K 复验没有重做 400K 的 gamma 线性审计、curl/conservativity、density-action、common/unique decomposition 和 exact gauge toy。因此它验证的是上述高层结论的训练尺度与采样稳定性，不代表 400K 的每一个局部机制指标都已在 800K 独立复现。
 
