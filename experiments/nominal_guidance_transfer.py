@@ -18,6 +18,7 @@ InterventionMode = Literal[
     "replay",
     "gain_only",
     "direction_only",
+    "factorized",
     "closed",
 ]
 INTERVENTION_MODES = (
@@ -25,6 +26,7 @@ INTERVENTION_MODES = (
     "replay",
     "gain_only",
     "direction_only",
+    "factorized",
     "closed",
 )
 DonorMode = Literal[
@@ -189,6 +191,8 @@ def intervention_guidance(
     current_gap: Tensor | None,
     *,
     mode: InterventionMode,
+    nominal_scale: float = 1.0,
+    orthogonal_scale: float = 1.0,
 ) -> Tensor:
     """Return the guidance increment used by one intervention branch."""
 
@@ -203,6 +207,11 @@ def intervention_guidance(
         return nominal_gap + projection.delta_parallel
     if mode == "direction_only":
         return nominal_gap + projection.delta_orthogonal
+    if mode == "factorized":
+        return (
+            float(nominal_scale) * nominal_gap
+            + float(orthogonal_scale) * projection.current_orthogonal
+        )
     return current_gap
 
 

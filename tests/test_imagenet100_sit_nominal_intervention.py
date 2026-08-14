@@ -44,7 +44,13 @@ SEMANTICS = FieldSemantics(
 )
 
 
-def _derivative(mode: str) -> torch.Tensor:
+def _derivative(
+    mode: str,
+    *,
+    nominal_scale: float = 1.0,
+    orthogonal_scale: float = 1.0,
+    response_scale: float = 1.0,
+) -> torch.Tensor:
     labels = torch.tensor([3])
     field, _ = conditional_nominal_intervention_velocity(
         _ScaleModel(2.0),
@@ -55,6 +61,9 @@ def _derivative(mode: str) -> torch.Tensor:
         mode=mode,
         gamma=1.0,
         autocast_dtype=None,
+        nominal_scale=nominal_scale,
+        orthogonal_scale=orthogonal_scale,
+        response_scale=response_scale,
     )
     baseline = torch.tensor([[1.0, 0.0]])
     current = torch.tensor([[2.0, 3.0]])
@@ -67,12 +76,62 @@ def test_nominal_intervention_modes_have_expected_coupled_derivatives() -> None:
         "replay": torch.tensor([[3.0, 0.0]]),
         "gain_only": torch.tensor([[6.0, 6.0]]),
         "direction_only": torch.tensor([[5.0, 9.0]]),
+        "factorized": torch.tensor([[5.0, 9.0]]),
         "closed": torch.tensor([[6.0, 9.0]]),
     }
     for mode, expected in expected_current.items():
         derivative = _derivative(mode)
         torch.testing.assert_close(derivative[:1], torch.tensor([[2.0, 0.0]]))
         torch.testing.assert_close(derivative[1:], expected)
+
+
+def test_factorized_intervention_separates_nominal_and_orthogonal_scales() -> None:
+    derivative = _derivative(
+        "factorized",
+        nominal_scale=0.5,
+        orthogonal_scale=2.0,
+    )
+    torch.testing.assert_close(derivative[:1], torch.tensor([[2.0, 0.0]]))
+    torch.testing.assert_close(derivative[1:], torch.tensor([[4.5, 12.0]]))
+
+
+def test_factorized_special_cases_match_existing_interventions() -> None:
+    torch.testing.assert_close(
+        _derivative("factorized", nominal_scale=1.0, orthogonal_scale=0.0),
+        _derivative("frozen"),
+    )
+    torch.testing.assert_close(
+        _derivative("factorized", nominal_scale=1.0, orthogonal_scale=1.0),
+        _derivative("direction_only"),
+    )
+
+
+def test_factorized_response_scale_interpolates_replay_and_frozen() -> None:
+    torch.testing.assert_close(
+        _derivative(
+            "factorized",
+            nominal_scale=1.0,
+            orthogonal_scale=0.0,
+            response_scale=0.0,
+        ),
+        _derivative("replay"),
+    )
+    torch.testing.assert_close(
+        _derivative(
+            "factorized",
+            nominal_scale=1.0,
+            orthogonal_scale=0.0,
+            response_scale=1.0,
+        ),
+        _derivative("frozen"),
+    )
+    derivative = _derivative(
+        "factorized",
+        nominal_scale=1.0,
+        orthogonal_scale=0.0,
+        response_scale=1.5,
+    )
+    torch.testing.assert_close(derivative[1:], torch.tensor([[6.0, 9.0]]))
 
 
 def test_donor_guidance_uses_donor_gap_and_target_current_anchor() -> None:

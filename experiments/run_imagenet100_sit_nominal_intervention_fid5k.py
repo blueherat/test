@@ -105,6 +105,15 @@ def _valid_sampling_artifact(
     }.items():
         if not _same_float(manifest.get(key), float(value)):
             mismatches[key] = (manifest.get(key), value)
+    if args.mode == "factorized":
+        for key, value in {
+            "nominal_scale": args.nominal_scale,
+            "orthogonal_scale": args.orthogonal_scale,
+            "response_scale": args.response_scale,
+        }.items():
+            recorded = manifest.get(key, 1.0 if key == "response_scale" else None)
+            if not _same_float(recorded, float(value)):
+                mismatches[key] = (recorded, value)
     for side, metadata in (("anchor", anchor), ("other", other)):
         recorded = manifest.get(side, {})
         for key in (
@@ -180,6 +189,9 @@ def main() -> None:
     parser.add_argument("--allow-step-mismatch", action="store_true")
     parser.add_argument("--mode", choices=INTERVENTION_MODES, required=True)
     parser.add_argument("--gamma", type=float, default=1.0)
+    parser.add_argument("--nominal-scale", type=float, default=1.0)
+    parser.add_argument("--orthogonal-scale", type=float, default=1.0)
+    parser.add_argument("--response-scale", type=float, default=1.0)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
@@ -208,8 +220,16 @@ def main() -> None:
         raise ValueError("each intervention job must reserve exactly one GPU")
     if not args.reference.is_file() or not args.adm_python.is_file():
         raise FileNotFoundError("ADM reference statistics or evaluator is missing")
-    if not math.isfinite(args.gamma):
-        raise ValueError("gamma must be finite")
+    if not all(
+        math.isfinite(value)
+        for value in (
+            args.gamma,
+            args.nominal_scale,
+            args.orthogonal_scale,
+            args.response_scale,
+        )
+    ):
+        raise ValueError("guidance coefficients must be finite")
     if args.cuda_allocator_limit_gib * 1024 >= args.gpu_memory_ceiling_mib:
         raise ValueError("allocator limit must leave headroom below memory ceiling")
     if not 0 < args.fid_gpu_memory_fraction < 1:
@@ -243,6 +263,12 @@ def main() -> None:
                 args.mode,
                 "--gamma",
                 repr(float(args.gamma)),
+                "--nominal-scale",
+                repr(float(args.nominal_scale)),
+                "--orthogonal-scale",
+                repr(float(args.orthogonal_scale)),
+                "--response-scale",
+                repr(float(args.response_scale)),
                 "--output-dir",
                 str(args.output_dir),
                 "--num-samples",
@@ -323,6 +349,9 @@ def main() -> None:
         "anchor": anchor,
         "other": other,
         "gamma": float(args.gamma),
+        "nominal_scale": float(args.nominal_scale),
+        "orthogonal_scale": float(args.orthogonal_scale),
+        "response_scale": float(args.response_scale),
         "global_seed": int(args.global_seed),
         "num_samples": int(args.num_samples),
         "noise_fingerprint": manifest["noise_sha256"],

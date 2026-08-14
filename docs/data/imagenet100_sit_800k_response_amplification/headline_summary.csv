@@ -1,0 +1,9 @@
+scope,sample_seed,condition,fid,sfid,inception_score,total_nfe,comparison_note
+formal,0,unguided_v800,60.52851606676393,69.41572942073049,30.012340545654297,,paired historical baseline with identical noise and labels
+formal,0,tuned_closed_gamma1p125,55.022857444176395,68.37072051148073,29.829599380493164,41630,formal comparator
+formal,0,response_rho1p3,52.34250354628978,67.85796735422298,29.907669067382812,40922,proposed response control
+formal,1,unguided_v800,60.442330471656874,69.50300216428309,29.96828842163086,,paired historical baseline with identical noise and labels
+formal,1,tuned_closed_gamma1p125,54.44640943537388,68.92533653091687,30.158628463745117,41420,formal comparator
+formal,1,response_rho1p3,51.56583160146488,68.4786849183863,30.947956085205078,40628,proposed response control
+formal,mean,tuned_closed_gamma1p125,54.73463343977514,68.6480285211988,29.99411392211914,41525,mean over two paired sampling seeds
+formal,mean,response_rho1p3,51.95416757387733,68.16832613630464,30.427812576293945,40775,mean over two paired sampling seeds

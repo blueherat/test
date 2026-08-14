@@ -84,6 +84,9 @@ def conditional_nominal_intervention_velocity(
     mode: str,
     gamma: float,
     autocast_dtype: torch.dtype | None,
+    nominal_scale: float = 1.0,
+    orthogonal_scale: float = 1.0,
+    response_scale: float = 1.0,
 ):
     """Return a coupled baseline/intervention field and accounting counters."""
 
@@ -154,7 +157,10 @@ def conditional_nominal_intervention_velocity(
             labels.repeat(2),
         )
         anchor_baseline, anchor_current = anchor_pair.split(base_batch)
-        if mode == "frozen":
+        factorized_without_online_gap = (
+            mode == "factorized" and float(orthogonal_scale) == 0.0
+        )
+        if mode == "frozen" or factorized_without_online_gap:
             counter["other_forwards"] += 1
             counter["other_examples"] += base_batch
             other_baseline = evaluate(
@@ -165,7 +171,13 @@ def conditional_nominal_intervention_velocity(
                 labels,
             )
             nominal_gap = anchor_baseline - other_baseline
-            guidance = intervention_guidance(nominal_gap, None, mode=mode)
+            guidance = intervention_guidance(
+                nominal_gap,
+                nominal_gap if mode == "factorized" else None,
+                mode=mode,
+                nominal_scale=nominal_scale,
+                orthogonal_scale=orthogonal_scale,
+            )
         else:
             counter["other_forwards"] += 1
             counter["other_examples"] += 2 * base_batch
@@ -183,11 +195,18 @@ def conditional_nominal_intervention_velocity(
                 nominal_gap,
                 current_gap,
                 mode=mode,
+                nominal_scale=nominal_scale,
+                orthogonal_scale=orthogonal_scale,
+            )
+        current_anchor = anchor_current
+        if mode == "factorized":
+            current_anchor = anchor_baseline + float(response_scale) * (
+                anchor_current - anchor_baseline
             )
         return torch.cat(
             (
                 anchor_baseline,
-                anchor_current + float(gamma) * guidance,
+                current_anchor + float(gamma) * guidance,
             )
         )
 
@@ -201,6 +220,16 @@ def main(args: argparse.Namespace) -> None:
         raise ValueError(f"unsupported intervention mode: {args.mode}")
     if args.batch_size <= 0 or args.num_samples <= 0:
         raise ValueError("batch-size and num-samples must be positive")
+    if not all(
+        np.isfinite(value)
+        for value in (
+            args.gamma,
+            args.nominal_scale,
+            args.orthogonal_scale,
+            args.response_scale,
+        )
+    ):
+        raise ValueError("guidance coefficients must be finite")
     device = torch.device(args.device)
     torch.cuda.set_device(device)
     allocator = configure_cuda_allocator(
@@ -283,6 +312,9 @@ def main(args: argparse.Namespace) -> None:
             mode=args.mode,
             gamma=args.gamma,
             autocast_dtype=autocast_dtype,
+            nominal_scale=args.nominal_scale,
+            orthogonal_scale=args.orthogonal_scale,
+            response_scale=args.response_scale,
         )
         combined = integrate_velocity(
             torch.cat((noise, noise)),
@@ -334,6 +366,11 @@ def main(args: argparse.Namespace) -> None:
                 "z'=S(z,t)+gamma*[g(z_baseline,t)+"
                 "Orth_gbase(g(z,t)-g(z_baseline,t))]"
             ),
+            "factorized": (
+                "z'=S(z_baseline,t)+response_scale*[S(z,t)-S(z_baseline,t)]+"
+                "gamma*[nominal_scale*g(z_baseline,t)+"
+                "orthogonal_scale*Orth_gbase(g(z,t))]"
+            ),
             "closed": "z'=S(z,t)+gamma*g(z,t)",
             "gap": "g=S-W",
         },
@@ -341,6 +378,9 @@ def main(args: argparse.Namespace) -> None:
         "other": other_metadata,
         "weights": args.weights,
         "gamma": float(args.gamma),
+        "nominal_scale": float(args.nominal_scale),
+        "orthogonal_scale": float(args.orthogonal_scale),
+        "response_scale": float(args.response_scale),
         "requested_samples": int(args.num_samples),
         "generated_for_batch_divisibility": int(total_samples),
         "batch_size": int(args.batch_size),
@@ -378,6 +418,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")
     parser.add_argument("--mode", choices=INTERVENTION_MODES, required=True)
     parser.add_argument("--gamma", type=float, default=1.0)
+    parser.add_argument("--nominal-scale", type=float, default=1.0)
+    parser.add_argument("--orthogonal-scale", type=float, default=1.0)
+    parser.add_argument("--response-scale", type=float, default=1.0)
     parser.add_argument("--num-samples", type=int, default=5000)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--vae-decode-batch-size", type=int, default=2)
