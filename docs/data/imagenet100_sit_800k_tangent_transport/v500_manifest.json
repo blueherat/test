@@ -1,0 +1,80 @@
+{
+  "adaptive_atol": 1e-07,
+  "adaptive_rtol": 1e-06,
+  "allow_tf32": false,
+  "anchor": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "denominator_floor": 0.001,
+    "field_path": "auto",
+    "inference_denominator_floor": 0.001,
+    "model_instantiated": true,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "training_denominator_floor": 0.001,
+    "training_world_size": 4
+  },
+  "batch_size": 4,
+  "central_delta": 0.01,
+  "central_difference_thresholds": {
+    "cosine": 0.99,
+    "relative_residual": 0.05
+  },
+  "direction": "v500",
+  "direction_formula": "u(z,t) = anchor(z,t) - weak(z,t)",
+  "feedback_retention_threshold": 0.7,
+  "format": "eqvae_sit_finite_guidance_mechanism_v2",
+  "gammas": [
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "heun_steps": 100,
+  "integration_interval": [
+    0.0,
+    1.0
+  ],
+  "labels_sha256": "59aca19cc026e4cea3d5ca7d22354901293c37c2a2328e323620d10a9989e5fe",
+  "linearity_thresholds": {
+    "cosine": 0.95,
+    "relative_residual": 0.2
+  },
+  "math_attention": true,
+  "noise_sha256": "2f13fbec0be09adcdb8d353392bc31f50d56816636b56c4beb20a955ce964a3e",
+  "num_samples": 128,
+  "official_sit": {
+    "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+    "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+  },
+  "other": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+    "checkpoint_sha256": "c19c2614226d2f667d76b98106fa7d05748048e4a2aad8cf788cbdea11d8cb76",
+    "checkpoint_step": 500000,
+    "denominator_floor": 0.001,
+    "field_path": "auto",
+    "inference_denominator_floor": 0.001,
+    "model_instantiated": true,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "training_denominator_floor": 0.001,
+    "training_world_size": 4
+  },
+  "precision": "fp32",
+  "score_gap_formula": "Delta score = t / (1 - t) * Delta velocity",
+  "seed": 20260814,
+  "solver_step_counts": [
+    25,
+    50,
+    100,
+    200
+  ],
+  "study": "tangent_frozen",
+  "weights": "ema"
+}

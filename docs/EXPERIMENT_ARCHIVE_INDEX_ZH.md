@@ -155,6 +155,26 @@ conservativity、局部 density-action、跨方向终点响应和 finite-strengt
 toy。正式结论是：基线轨迹上的有限幅度 guidance action 保留了大部分 FID 收益，
 闭环反馈有次要增益；field norm、cosine、local action 和 curl 均不能单独预测终点质量。
 
+### 800K nominal-path frozen guidance
+
+- `docs/IMAGENET100_SIT_NOMINAL_GUIDANCE_TRANSFER_800K_RESULTS_ZH.md`
+- `docs/data/imagenet100_sit_800k_nominal_guidance_transfer/`
+
+该记录使用 `v800` strong model 和 `x800`、`v500` 两类 weak model，比较 baseline、
+frozen、replay 与 closed AutoGuidance。结果表明 nominal gap 必须经过当前状态上的 strong
+field 响应才能产生主要收益；closed 在线重算的额外作用主要来自相对 nominal gap 的方向
+变化，而非单纯强度重标定。
+
+### 800K tangent transport 首轮审计
+
+- `docs/IMAGENET100_SIT_800K_TANGENT_TRANSPORT_RESULTS_ZH.md`
+- `docs/data/imagenet100_sit_800k_tangent_transport/`
+
+该记录用中心差分验证 strong-flow JVP，并比较 gamma-zero variational tangent、exact
+frozen 与 closed endpoint response。tangent 在 `gamma<=0.1` 时可以定量预测 frozen；
+实际使用的 `gamma=1` 仍保留约 `0.846` 的方向 cosine，但非线性残差达到 `0.62-0.74`，
+因此不能单独解释有限强度 frozen response。
+
 ## 验证状态
 
 归档提交前完成：

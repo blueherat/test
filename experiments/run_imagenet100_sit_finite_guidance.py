@@ -75,6 +75,14 @@ DEFAULT_V270 = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
     "sit-s-2_seed0/checkpoints/step_00270000.pt"
 )
+DEFAULT_X800 = Path(
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+    "sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt"
+)
+DEFAULT_V500 = Path(
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+    "sit-s-2_seed0/checkpoints/step_00500000.pt"
+)
 DEFAULT_OUTPUT_ROOT = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
     "finite_guidance_400k_mechanism"
@@ -222,7 +230,13 @@ def _load_pair(args: argparse.Namespace, labels: torch.Tensor, device: torch.dev
         source_metadata=source_metadata,
         device=device,
     )
-    other_checkpoint_path = args.x400_checkpoint if args.direction == "x400" else args.v270_checkpoint
+    checkpoint_by_direction = {
+        "x400": args.x400_checkpoint,
+        "v270": args.v270_checkpoint,
+        "x800": args.x800_checkpoint,
+        "v500": args.v500_checkpoint,
+    }
+    other_checkpoint_path = checkpoint_by_direction[args.direction]
     other_model, other_semantics, other_meta, other_checkpoint = _load_field_model(
         checkpoint_path=other_checkpoint_path.expanduser().resolve(),
         requested_field="auto",
@@ -237,11 +251,11 @@ def _load_pair(args: argparse.Namespace, labels: torch.Tensor, device: torch.dev
         other_checkpoint,
         anchor_meta,
         other_meta,
-        allow_step_mismatch=args.direction == "v270",
+        allow_step_mismatch=args.direction in {"v270", "v500"},
     )
     if anchor_semantics.prediction_target != "velocity":
         raise ValueError("the anchor checkpoint must provide a native velocity field")
-    expected_other = "x" if args.direction == "x400" else "velocity"
+    expected_other = "x" if args.direction.startswith("x") else "velocity"
     if other_semantics.prediction_target != expected_other:
         raise ValueError(
             f"{args.direction} must provide {expected_other!r}, got "
@@ -260,7 +274,7 @@ def _load_pair(args: argparse.Namespace, labels: torch.Tensor, device: torch.dev
         "anchor": anchor_meta,
         "other": other_meta,
         "direction": args.direction,
-        "direction_formula": "u(z,t) = v400(z,t) - weak(z,t)",
+        "direction_formula": "u(z,t) = anchor(z,t) - weak(z,t)",
         "score_gap_formula": "Delta score = t / (1 - t) * Delta velocity",
     }
     return fields, metadata
@@ -268,7 +282,11 @@ def _load_pair(args: argparse.Namespace, labels: torch.Tensor, device: torch.dev
 
 def _manifest(args: argparse.Namespace, metadata: dict, noise: torch.Tensor, labels: torch.Tensor) -> dict:
     return {
-        "format": "eqvae_sit400_finite_guidance_mechanism_v1",
+        "format": (
+            "eqvae_sit_finite_guidance_mechanism_v2"
+            if args.study == "tangent_frozen" or args.direction in {"x800", "v500"}
+            else "eqvae_sit400_finite_guidance_mechanism_v1"
+        ),
         "study": args.study,
         "direction": args.direction,
         "num_samples": int(args.num_samples),
@@ -348,6 +366,41 @@ def _run_feedback_batch(
     return {
         "gammas": torch.tensor(all_gammas),
         "baseline": baseline.detach().cpu(),
+        "frozen": frozen.detach().cpu(),
+        "closed": closed.detach().cpu(),
+    }
+
+
+def _run_tangent_frozen_batch(
+    fields: PairedFields,
+    noise: torch.Tensor,
+    time_grid: torch.Tensor,
+    gammas: list[float],
+    central_delta: float,
+) -> dict[str, object]:
+    """Pair the gamma-zero tangent with exact frozen and closed endpoints."""
+
+    all_gammas = sorted(set([-central_delta, 0.0, central_delta, *gammas]))
+    gamma_tensor = torch.tensor(all_gammas, device=noise.device, dtype=torch.float32)
+    baseline, tangent = integrate_baseline_tangent(
+        fields.anchor,
+        fields.direction,
+        noise,
+        time_grid,
+    )
+    with torch.no_grad():
+        feedback_baseline, frozen, closed = integrate_frozen_closed_sweep(
+            fields.anchor,
+            fields.direction,
+            noise,
+            time_grid,
+            gamma_tensor,
+        )
+    return {
+        "gammas": torch.tensor(all_gammas),
+        "baseline": baseline.detach().cpu(),
+        "feedback_baseline": feedback_baseline.detach().cpu(),
+        "tangent": tangent.detach().cpu(),
         "frozen": frozen.detach().cpu(),
         "closed": closed.detach().cpu(),
     }
@@ -528,6 +581,99 @@ def _aggregate_feedback(shards: list[dict[str, object]]) -> tuple[list[dict], di
     return rows, summary
 
 
+def _aggregate_tangent_frozen(
+    shards: list[dict[str, object]],
+    delta: float,
+) -> tuple[list[dict], dict]:
+    """Summarize tangent accuracy for exact frozen and closed responses."""
+
+    gammas = shards[0]["gammas"]
+    assert isinstance(gammas, torch.Tensor)
+    baseline = torch.cat([item["baseline"] for item in shards])
+    feedback_baseline = torch.cat([item["feedback_baseline"] for item in shards])
+    tangent = torch.cat([item["tangent"] for item in shards])
+    frozen = torch.cat([item["frozen"] for item in shards], dim=1)
+    closed = torch.cat([item["closed"] for item in shards], dim=1)
+    gamma_values = [float(value) for value in gammas.tolist()]
+    zero_index = _gamma_index(gamma_values, 0.0)
+    minus_index = _gamma_index(gamma_values, -float(delta))
+    plus_index = _gamma_index(gamma_values, float(delta))
+
+    central = central_difference_metrics(
+        frozen[minus_index],
+        frozen[plus_index],
+        tangent,
+        delta=delta,
+    )
+    rows: list[dict[str, object]] = []
+    for gamma, frozen_endpoint, closed_endpoint in zip(
+        gamma_values,
+        frozen,
+        closed,
+        strict=True,
+    ):
+        if gamma == 0.0:
+            continue
+        for response_name, endpoint in (
+            ("frozen", frozen_endpoint),
+            ("closed", closed_endpoint),
+        ):
+            metrics = linearity_metrics(baseline, endpoint, tangent, gamma=gamma)
+            row: dict[str, object] = {
+                "gamma": gamma,
+                "response": response_name,
+            }
+            for name, values in metrics.items():
+                for statistic, value in _summary(values).items():
+                    row[f"{name}_{statistic}"] = value
+            rows.append(row)
+
+    central_summary = {name: _summary(values) for name, values in central.items()}
+    positive_frozen = [
+        row
+        for row in rows
+        if row["response"] == "frozen" and float(row["gamma"]) > 0
+    ]
+    linear_gammas = [
+        float(row["gamma"])
+        for row in positive_frozen
+        if float(row["cosine_mean"]) >= 0.95
+        and float(row["relative_residual_mean"]) <= 0.20
+    ]
+
+    def gamma_one(response: str) -> dict[str, object] | None:
+        return next(
+            (
+                row
+                for row in rows
+                if row["response"] == response
+                and abs(float(row["gamma"]) - 1.0) <= 1e-6
+            ),
+            None,
+        )
+
+    summary = {
+        "baseline_pair_difference": _summary(
+            sample_rms(feedback_baseline - baseline)
+        ),
+        "zero_gamma_frozen_difference": _summary(
+            sample_rms(frozen[zero_index] - baseline)
+        ),
+        "zero_gamma_closed_difference": _summary(
+            sample_rms(closed[zero_index] - baseline)
+        ),
+        "central_difference": central_summary,
+        "central_difference_pass": bool(
+            central_summary["cosine"]["mean"] >= 0.99
+            and central_summary["relative_residual"]["mean"] <= 0.05
+        ),
+        "largest_passing_positive_frozen_gamma": max(linear_gammas, default=None),
+        "frozen_at_gamma_one": gamma_one("frozen"),
+        "closed_at_gamma_one": gamma_one("closed"),
+    }
+    return rows, summary
+
+
 def _aggregate_solver(shards: list[dict[str, object]]) -> tuple[list[dict], dict]:
     rows: list[dict[str, object]] = []
     gammas = shards[0]["gammas"]
@@ -625,6 +771,14 @@ def main(args: argparse.Namespace) -> None:
                 time_grid,
                 args.gammas,
             )
+        elif args.study == "tangent_frozen":
+            payload = _run_tangent_frozen_batch(
+                fields,
+                noise,
+                time_grid,
+                args.gammas,
+                args.central_delta,
+            )
         elif args.study == "solver":
             payload = _run_solver_batch(
                 fields,
@@ -675,6 +829,8 @@ def main(args: argparse.Namespace) -> None:
         rows, summary = _aggregate_linearity(shards, args.central_delta)
     elif args.study == "feedback":
         rows, summary = _aggregate_feedback(shards)
+    elif args.study == "tangent_frozen":
+        rows, summary = _aggregate_tangent_frozen(shards, args.central_delta)
     else:
         rows, summary = _aggregate_solver(shards)
     _write_csv(rows, output_dir / "metrics.csv")
@@ -693,11 +849,21 @@ def main(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--study", choices=("solver", "linearity", "feedback"), required=True)
-    parser.add_argument("--direction", choices=("x400", "v270"), required=True)
+    parser.add_argument(
+        "--study",
+        choices=("solver", "linearity", "feedback", "tangent_frozen"),
+        required=True,
+    )
+    parser.add_argument(
+        "--direction",
+        choices=("x400", "v270", "x800", "v500"),
+        required=True,
+    )
     parser.add_argument("--anchor-checkpoint", type=Path, default=DEFAULT_ANCHOR)
     parser.add_argument("--x400-checkpoint", type=Path, default=DEFAULT_X400)
     parser.add_argument("--v270-checkpoint", type=Path, default=DEFAULT_V270)
+    parser.add_argument("--x800-checkpoint", type=Path, default=DEFAULT_X800)
+    parser.add_argument("--v500-checkpoint", type=Path, default=DEFAULT_V500)
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")
@@ -734,5 +900,5 @@ def build_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     parsed = build_parser().parse_args()
     if parsed.math_attention is None:
-        parsed.math_attention = parsed.study == "linearity"
+        parsed.math_attention = parsed.study in {"linearity", "tangent_frozen"}
     main(parsed)
