@@ -5,7 +5,9 @@ import torch
 
 from experiments.finite_guidance_dynamics import (
     central_difference_metrics,
+    decompose_along_reference,
     integrate_baseline_tangent,
+    integrate_baseline_tangent_frozen,
     integrate_frozen_closed_sweep,
     integrate_guidance_sweep,
     jacobian_symmetry_probe,
@@ -103,6 +105,68 @@ def test_frozen_and_closed_are_equal_for_state_independent_direction() -> None:
     assert torch.equal(frozen[0], baseline)
     assert torch.equal(closed[0], baseline)
     torch.testing.assert_close(frozen, closed, rtol=0.0, atol=0.0)
+
+
+def test_joint_tangent_frozen_matches_separate_integrators() -> None:
+    initial = torch.tensor([[0.2, -0.4], [0.7, 0.1]])
+    time_grid = torch.linspace(0.0, 1.0, 17)
+
+    def anchor(time: torch.Tensor, state: torch.Tensor) -> torch.Tensor:
+        return (0.2 + 0.1 * time) * state.square() + 0.05
+
+    def direction(
+        time: torch.Tensor,
+        state: torch.Tensor,
+        anchor_value: torch.Tensor,
+    ) -> torch.Tensor:
+        del anchor_value
+        return torch.sin(state) + 0.3 * time
+
+    expected_baseline, expected_tangent = integrate_baseline_tangent(
+        anchor,
+        direction,
+        initial,
+        time_grid,
+    )
+    feedback_baseline, expected_frozen, _ = integrate_frozen_closed_sweep(
+        anchor,
+        direction,
+        initial,
+        time_grid,
+        torch.tensor([0.7]),
+    )
+    baseline, tangent, frozen = integrate_baseline_tangent_frozen(
+        anchor,
+        direction,
+        initial,
+        time_grid,
+        gamma=0.7,
+    )
+
+    torch.testing.assert_close(baseline, expected_baseline)
+    torch.testing.assert_close(baseline, feedback_baseline)
+    torch.testing.assert_close(tangent, expected_tangent)
+    torch.testing.assert_close(frozen, expected_frozen[0])
+
+
+def test_decompose_along_reference_is_exact_and_orthogonal() -> None:
+    reference = torch.tensor([[1.0, 2.0, -1.0], [0.0, 0.0, 0.0]])
+    response = torch.tensor([[3.0, 1.0, 4.0], [2.0, -1.0, 5.0]])
+
+    coefficient, parallel, orthogonal = decompose_along_reference(
+        response,
+        reference,
+    )
+
+    torch.testing.assert_close(parallel + orthogonal, response)
+    torch.testing.assert_close(
+        (orthogonal * reference).sum(dim=1),
+        torch.zeros(2),
+        atol=1e-6,
+        rtol=0.0,
+    )
+    torch.testing.assert_close(coefficient, torch.tensor([1.0 / 6.0, 0.0]))
+    torch.testing.assert_close(orthogonal[1], response[1])
 
 
 def test_state_dependent_direction_separates_frozen_and_closed() -> None:

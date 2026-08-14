@@ -1,6 +1,6 @@
 # 实验归档索引
 
-更新时间：2026-08-13
+更新时间：2026-08-14
 
 ## 归档目的
 
@@ -174,6 +174,17 @@ field 响应才能产生主要收益；closed 在线重算的额外作用主要�
 frozen 与 closed endpoint response。tangent 在 `gamma<=0.1` 时可以定量预测 frozen；
 实际使用的 `gamma=1` 仍保留约 `0.846` 的方向 cosine，但非线性残差达到 `0.62-0.74`，
 因此不能单独解释有限强度 frozen response。
+
+### 800K tangent endpoint 投影审计
+
+- `docs/IMAGENET100_SIT_800K_TANGENT_PROJECTION_RESULTS_ZH.md`
+- `docs/data/imagenet100_sit_800k_tangent_projection/`
+
+该记录把 `gamma=1` exact frozen endpoint response 逐样本分解为 transported tangent
+方向上的投影与正交余量，并分别解码 5000 张严格配对样本。`x800` 与 `v500` 两组中，
+平行投影分别保留约 `93.4%` 和 `87.1%` 的数值 FID 收益；正交余量单独使用时均使
+FID 恶化。该实验说明 tangent 方向承载主要有益 endpoint 作用，但投影系数依赖 exact
+frozen endpoint，因此当前属于机制 oracle，而不是可部署方法。
 
 ## 验证状态
 

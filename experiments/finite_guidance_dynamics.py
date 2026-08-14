@@ -163,6 +163,96 @@ def integrate_baseline_tangent(
     return state, tangent
 
 
+def integrate_baseline_tangent_frozen(
+    anchor_field: AnchorField,
+    direction_field: DirectionField,
+    initial_state: Tensor,
+    time_grid: Tensor,
+    *,
+    gamma: float = 1.0,
+) -> tuple[Tensor, Tensor, Tensor]:
+    """Jointly integrate the baseline, its tangent, and exact frozen guidance.
+
+    The frozen branch follows ``v(z_f,t) + gamma*u(z_b,t)`` while the tangent
+    obeys ``d xi / dt = J_v(z_b,t) xi + u(z_b,t)``. Sharing the baseline
+    evaluations makes this cheaper than running the two diagnostics separately
+    without changing either numerical update.
+    """
+
+    _validate_time_grid(time_grid)
+    if not torch.isfinite(torch.tensor(float(gamma))):
+        raise ValueError("gamma must be finite")
+    state = initial_state.float()
+    tangent = torch.zeros_like(state)
+    frozen = state.clone()
+    scale = float(gamma)
+    for time_value, next_time in zip(time_grid[:-1], time_grid[1:], strict=True):
+        step = next_time - time_value
+        anchor, anchor_jvp = _anchor_primal_and_jvp(
+            anchor_field,
+            time_value,
+            state,
+            tangent,
+        )
+        direction = direction_field(time_value, state, anchor)
+        tangent_derivative = anchor_jvp + direction
+        frozen_anchor = anchor_field(time_value, frozen)
+        frozen_derivative = frozen_anchor + scale * direction
+
+        predicted_state = state + step * anchor
+        predicted_tangent = tangent + step * tangent_derivative
+        predicted_frozen = frozen + step * frozen_derivative
+        next_anchor, next_anchor_jvp = _anchor_primal_and_jvp(
+            anchor_field,
+            next_time,
+            predicted_state,
+            predicted_tangent,
+        )
+        next_direction = direction_field(next_time, predicted_state, next_anchor)
+        next_tangent_derivative = next_anchor_jvp + next_direction
+        next_frozen_anchor = anchor_field(next_time, predicted_frozen)
+        next_frozen_derivative = next_frozen_anchor + scale * next_direction
+
+        state = state + 0.5 * step * (anchor + next_anchor)
+        tangent = tangent + 0.5 * step * (
+            tangent_derivative + next_tangent_derivative
+        )
+        frozen = frozen + 0.5 * step * (
+            frozen_derivative + next_frozen_derivative
+        )
+    return state, tangent, frozen
+
+
+def decompose_along_reference(
+    response: Tensor,
+    reference: Tensor,
+) -> tuple[Tensor, Tensor, Tensor]:
+    """Project each full sample response onto one paired reference direction.
+
+    The returned coefficient has shape ``[batch]``. The projection uses one
+    scalar over every non-batch dimension, matching the geometry diagnostics
+    used elsewhere in this repository.
+    """
+
+    if response.shape != reference.shape or response.ndim < 2:
+        raise ValueError("response and reference must have the same batched shape")
+    response_flat = response.flatten(1)
+    reference_flat = reference.flatten(1)
+    denominator = reference_flat.square().sum(dim=1)
+    tiny = torch.finfo(reference.dtype).tiny
+    coefficient = (response_flat * reference_flat).sum(dim=1) / denominator.clamp_min(
+        tiny
+    )
+    coefficient = torch.where(
+        denominator > tiny,
+        coefficient,
+        torch.zeros_like(coefficient),
+    )
+    parallel = coefficient.reshape(-1, *([1] * (reference.ndim - 1))) * reference
+    orthogonal = response - parallel
+    return coefficient, parallel, orthogonal
+
+
 def integrate_frozen_closed_sweep(
     anchor_field: AnchorField,
     direction_field: DirectionField,

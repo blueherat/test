@@ -1,0 +1,243 @@
+{
+  "anchor": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "denominator_floor": 0.001,
+    "field_path": "auto",
+    "inference_denominator_floor": 0.001,
+    "model_instantiated": true,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "training_denominator_floor": 0.001,
+    "training_world_size": 4
+  },
+  "conditions": {
+    "baseline": "z_b",
+    "frozen": "z_f",
+    "tangent_orthogonal": "z_b + (I - Proj_xi)(z_f - z_b)",
+    "tangent_parallel": "z_b + Proj_xi(z_f - z_b)",
+    "tangent_raw": "z_b + xi"
+  },
+  "cuda_allocator_limit_gib": 9.5,
+  "direction": "x800",
+  "discarded_samples": 120,
+  "format": "eqvae_imagenet100_sit_tangent_projection_samples_v1",
+  "generated_for_ddp_divisibility": 5120,
+  "geometry_summary": {
+    "orthogonal_energy_fraction": {
+      "max": 0.9883059859275818,
+      "mean": 0.2808198976203799,
+      "median": 0.23858201503753662,
+      "min": 0.006264587864279747,
+      "q05": 0.058913301676511765,
+      "q95": 0.6552585721015931,
+      "std": 0.184650438522123
+    },
+    "orthogonal_rms": {
+      "max": 0.4454514682292938,
+      "mean": 0.08483486121846363,
+      "median": 0.07360734045505524,
+      "min": 0.00673245545476675,
+      "q05": 0.026122163329273463,
+      "q95": 0.179931166023016,
+      "std": 0.050336313000267044
+    },
+    "orthogonality_cosine": {
+      "max": 9.522850632492919e-07,
+      "mean": -4.327692007854988e-09,
+      "median": -3.3757987516480625e-09,
+      "min": -1.076239755093411e-06,
+      "q05": -2.256248080811929e-07,
+      "q95": 2.267387756660356e-07,
+      "std": 1.4117278014071288e-07
+    },
+    "parallel_energy_fraction": {
+      "max": 0.9937353730201721,
+      "mean": 0.7191801059562712,
+      "median": 0.7614180147647858,
+      "min": 0.011694020591676235,
+      "q05": 0.3447414293885231,
+      "q95": 0.9410867780447006,
+      "std": 0.18465044085056143
+    },
+    "parallel_rms": {
+      "max": 0.27463576197624207,
+      "mean": 0.12929371996112168,
+      "median": 0.12761527299880981,
+      "min": 0.022622402757406235,
+      "q05": 0.08790187500417232,
+      "q95": 0.17747597619891167,
+      "std": 0.027614194063226693
+    },
+    "projection_coefficient": {
+      "max": 1.156067967414856,
+      "mean": 0.6753156573471147,
+      "median": 0.7157358229160309,
+      "min": 0.0014940707478672266,
+      "q05": 0.2851647987961769,
+      "q95": 0.9186002135276795,
+      "std": 0.19323017778558763
+    },
+    "reconstruction_max_abs": {
+      "max": 2.384185791015625e-07,
+      "mean": 3.6822445690631864e-08,
+      "median": 2.9802322387695312e-08,
+      "min": 9.313225746154785e-10,
+      "q05": 7.450580596923828e-09,
+      "q95": 1.1920928955078125e-07,
+      "std": 2.942489785915203e-08
+    },
+    "response_rms": {
+      "max": 0.4684029519557953,
+      "mean": 0.15856147104203702,
+      "median": 0.1510748788714409,
+      "min": 0.06327889114618301,
+      "q05": 0.09931717626750469,
+      "q95": 0.24365889430046084,
+      "std": 0.045476609481213626
+    },
+    "response_tangent_cosine": {
+      "max": 0.9968627691268921,
+      "mean": 0.8389339209258556,
+      "median": 0.8725926876068115,
+      "min": 0.10813889652490616,
+      "q05": 0.5871468961238862,
+      "q95": 0.9700961381196975,
+      "std": 0.12398812111809115
+    },
+    "tangent_rms": {
+      "max": 36.52725601196289,
+      "mean": 0.23398297442495822,
+      "median": 0.18791687488555908,
+      "min": 0.06656987965106964,
+      "q05": 0.10987854041159154,
+      "q95": 0.44728960394859335,
+      "std": 0.5442769263633681
+    }
+  },
+  "global_seed": 20260814,
+  "labels": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/sample_labels_n5000.npy",
+  "other": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "22cd7a392b61465c0b1cd2b569eb8678cab169ab4fe492ab2973990dd2b5c79d",
+    "checkpoint_step": 800000,
+    "denominator_floor": 0.05,
+    "field_path": "auto",
+    "inference_denominator_floor": 0.05,
+    "model_instantiated": true,
+    "model_name": "SiT-S/2",
+    "prediction_target": "x",
+    "protocol": "imagenet100_sit_single_target_linear_flow_v2",
+    "training_denominator_floor": 0.05,
+    "training_world_size": 2
+  },
+  "per_rank_batch_size": 32,
+  "pixel_quantization": "clamp(127.5*x + 128, 0, 255), NHWC uint8",
+  "projection_geometry": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/projection_geometry.npz",
+  "projection_scope": "one least-squares scalar per sample over all latent C,H,W values",
+  "rank_label_sha256": [
+    "2bb763aebaf6d5ebc13e6dd1b6402ec5459577318840dc52b18e75305112de74",
+    "e3d8d03b0c0ba57fdfc0d10fa809c77472733265d30395ec04e3429a6fa4d894",
+    "fdd351f26f225cb425f39a5ec4b20b5aba903e3e39458582836fc07d0dac7fc7",
+    "00a1843bbc171ea045b3cdf7a158e047af0dfddca633838de87abf662f69cddc"
+  ],
+  "rank_noise_sha256": [
+    "ba59202fb9b6a20b0c962765e46f4c47e4402ffcfc1cb037c6a822be2939202c",
+    "80b4c81663bca400a6c561c22e16e23372ba26dd9db08a7b74e063b6c3dd1787",
+    "26f2b46a082b45d474ccced129d97d008edda27b73d91a0efd0ffe4ca664e5ed",
+    "1793eeb7b0b0f41debfbec96fb4b24c9b5c30e92568b390306e123125cb8db3e"
+  ],
+  "rank_resource_usage": [
+    {
+      "allocator_fraction": 0.40397203174718527,
+      "allocator_limit_gib": 9.5,
+      "device_total_memory_bytes": 25250627584,
+      "max_memory_allocated_bytes": 1942465024,
+      "max_memory_reserved_bytes": 2262827008,
+      "rank": 0
+    },
+    {
+      "allocator_fraction": 0.40397203174718527,
+      "allocator_limit_gib": 9.5,
+      "device_total_memory_bytes": 25250627584,
+      "max_memory_allocated_bytes": 1942465024,
+      "max_memory_reserved_bytes": 2262827008,
+      "rank": 1
+    },
+    {
+      "allocator_fraction": 0.40397203174718527,
+      "allocator_limit_gib": 9.5,
+      "device_total_memory_bytes": 25250627584,
+      "max_memory_allocated_bytes": 1942465024,
+      "max_memory_reserved_bytes": 2262827008,
+      "rank": 2
+    },
+    {
+      "allocator_fraction": 0.40397203174718527,
+      "allocator_limit_gib": 9.5,
+      "device_total_memory_bytes": 25250627584,
+      "max_memory_allocated_bytes": 1942465024,
+      "max_memory_reserved_bytes": 2262827008,
+      "rank": 3
+    }
+  ],
+  "rank_sampling_stats": [
+    {
+      "anchor_forwards": 16000,
+      "elapsed_seconds": 1025.7188084999943,
+      "other_forwards": 8000,
+      "rank": 0
+    },
+    {
+      "anchor_forwards": 16000,
+      "elapsed_seconds": 1013.5124461329979,
+      "other_forwards": 8000,
+      "rank": 1
+    },
+    {
+      "anchor_forwards": 16000,
+      "elapsed_seconds": 1004.5107290930027,
+      "other_forwards": 8000,
+      "rank": 2
+    },
+    {
+      "anchor_forwards": 16000,
+      "elapsed_seconds": 1026.1447687850014,
+      "other_forwards": 8000,
+      "rank": 3
+    }
+  ],
+  "rank_seeds": [
+    81043256,
+    81043257,
+    81043258,
+    81043259
+  ],
+  "requested_samples": 5000,
+  "same_noise_labels_and_endpoints_across_conditions": true,
+  "sample_paths": {
+    "baseline": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/baseline/samples_unguided_n5000.npz",
+    "frozen": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/frozen/samples_unguided_n5000.npz",
+    "tangent_orthogonal": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/tangent_orthogonal/samples_unguided_n5000.npz",
+    "tangent_parallel": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/tangent_parallel/samples_unguided_n5000.npz",
+    "tangent_raw": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/tangent_projection_800k_v1/x800/tangent_raw/samples_unguided_n5000.npz"
+  },
+  "sampler": {
+    "allow_tf32": false,
+    "attention_backend": "math",
+    "interval": [
+      0.0,
+      1.0
+    ],
+    "method": "fixed_heun",
+    "path": "linear",
+    "precision": "fp32",
+    "steps": 100
+  },
+  "scope": "paired endpoint projection mechanism test on ImageNet-100",
+  "vae_decode_batch_size": 4,
+  "weights": "ema",
+  "world_size": 4
+}
