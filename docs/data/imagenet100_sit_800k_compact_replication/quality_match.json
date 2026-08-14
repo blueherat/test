@@ -1,0 +1,52 @@
+{
+  "protocol": "imagenet100_sit_800k_quality_match_v1",
+  "selection_rule": "minimum absolute ADM FID-5K gap to the standard x800 endpoint",
+  "selection_uses_only_global_seed": 0,
+  "x800_endpoint_fid": 65.24264490669674,
+  "x800_endpoint_sfid": 69.4203855064668,
+  "x800_endpoint_inception_score": 28.48309898376465,
+  "noise_fingerprint": "bb460ea94ef337bca3b15f07d0d136d2fe286168c5afef96aeda2e4757f5c143",
+  "label_fingerprint": "dd55c4ee2ce9e86812f5dd9dbf7262467ac6fda3d319e21ec8716ce7292f6e46",
+  "candidates": [
+    {
+      "label": "v500",
+      "checkpoint_step": 500000,
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+      "fid": 63.28586670394077,
+      "absolute_fid_gap_to_x800": 1.9567782027559701,
+      "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/finite_guidance_800k_compact_replication_v1/selection/v500_endpoint/field_control_fid5k.json"
+    },
+    {
+      "label": "v400",
+      "checkpoint_step": 400000,
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00400000.pt",
+      "fid": 67.47149063368937,
+      "absolute_fid_gap_to_x800": 2.228845726992631,
+      "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/finite_guidance_800k_compact_replication_v1/selection/v400_endpoint/field_control_fid5k.json"
+    },
+    {
+      "label": "v700",
+      "checkpoint_step": 700000,
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00700000.pt",
+      "fid": 67.69488739572864,
+      "absolute_fid_gap_to_x800": 2.452242489031903,
+      "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/finite_guidance_800k_compact_replication_v1/selection/v700_endpoint/field_control_fid5k.json"
+    },
+    {
+      "label": "v600",
+      "checkpoint_step": 600000,
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00600000.pt",
+      "fid": 61.20647853191605,
+      "absolute_fid_gap_to_x800": 4.0361663747806915,
+      "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/finite_guidance_800k_compact_replication_v1/selection/v600_endpoint/field_control_fid5k.json"
+    }
+  ],
+  "matched": {
+    "label": "v500",
+    "checkpoint_step": 500000,
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00500000.pt",
+    "fid": 63.28586670394077,
+    "absolute_fid_gap_to_x800": 1.9567782027559701,
+    "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/finite_guidance_800k_compact_replication_v1/selection/v500_endpoint/field_control_fid5k.json"
+  }
+}

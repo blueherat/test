@@ -295,8 +295,8 @@ def main(args: argparse.Namespace) -> None:
         "format": "eqvae_imagenet100_sit_frozen_guidance_samples_v1",
         "scope": "paired 5k finite-guidance feedback audit",
         "formula": (
-            "base'=v400(base,t); frozen'=v400(frozen,t)+gamma*"
-            "(v400(base,t)-weak(base,t))"
+            "base'=anchor(base,t); frozen'=anchor(frozen,t)+gamma*"
+            "(anchor(base,t)-other(base,t))"
         ),
         "anchor": anchor_metadata,
         "other": other_metadata,
@@ -306,6 +306,7 @@ def main(args: argparse.Namespace) -> None:
         "generated_for_batch_divisibility": total_samples,
         "batch_size": args.batch_size,
         "vae_decode_batch_size": args.vae_decode_batch_size,
+        "cuda_allocator_limit_gib": args.cuda_allocator_limit_gib,
         "global_seed": args.global_seed,
         "rank_seed": seed,
         "noise_sha256": noise_digest.hexdigest(),
