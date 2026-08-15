@@ -29,6 +29,8 @@ z' = S(b,t) + rho * [S(z,t) - S(b,t)] + gamma * g_b
 
 这是一个值得保留的正结果，但还不是完整方法结论。当前最可靠的贡献是：**nominal forcing 的强度与 strong-flow response 可以被因果分离，而且后者存在可利用的有限幅度增益。**理论目前只给出局部 ODE 响应解释，没有说明为什么 `rho=1.3` 改善感知分布、何时稳定、或为什么该效果尚未在 `v500` weak family 上复现。
 
+补充的 `v500` 二维细扫进一步限定了这个结论：在 `gamma={1,1.5,2,2.5,3}`、`rho=1.00...1.50` 的 55 个唯一 FID-1K 条件中，factorized response 最好达到 `74.927`，仍未超过同协议 tuned closed AutoGuidance 的 `74.480`。因此 `rho` 调节确实能恢复大部分 closed 收益，但当前正结果仍只在 `x800` weak family 上得到正式确认。
+
 ## 正式 FID-5K 结果
 
 正式比较使用同一组 initial noise、class label、reference statistics 和采样协议。`closed` 的 `gamma=1.125` 与 response 的 `rho=1.3` 均先由 1K sweep 选择；seed 1 因而是未参与选参的额外采样 seed。
@@ -114,18 +116,60 @@ z' = S(b) + rho*[S(z)-S(b)]
 
 所以当前正结果应归因于 **strong-response amplification**，而不是把此前的 online direction-only 消融与 response 简单叠加。早期 `beta/lambda` factorized screen 同样没有发现稳健的新最优点。
 
-## 结果尚未跨 weak family 成立
+## v500 的 gamma-rho 细扫仍未超过 closed
 
-使用同 target 的 `v500` 作为 weak model 时：
+使用同 target 的 `v500` 作为 weak model 时，本轮固定：
+
+```text
+z' = S(b,t) + rho * [S(z,t) - S(b,t)] + gamma * g_b
+g_b = S(b,t) - W(b,t)
+```
+
+并扫描：
+
+```text
+gamma = {1.0, 1.5, 2.0, 2.5, 3.0}
+rho   = {1.00, 1.05, ..., 1.50}
+```
+
+55 个唯一条件使用同一组 initial noise、class labels、reference statistics、采样 seed 和 1,000 个样本。FID 曲线如下：
+
+![v500 gamma-rho FID-1K sweep](data/imagenet100_sit_800k_v500_gamma_rho/v500_gamma_rho_fid1k.png)
+
+每个 `gamma` 的最优点为：
+
+| gamma | 最优 rho | FID-1K | sFID | IS | NFE |
+|---:|---:|---:|---:|---:|---:|
+| 1.0 | 1.50 | 75.053 | 215.696 | 29.837 | 7,852 |
+| 1.5 | **1.35** | **74.927** | 215.434 | 30.756 | 7,828 |
+| 2.0 | 1.35 | 75.079 | 215.354 | 29.671 | 8,002 |
+| 2.5 | 1.35 | 75.172 | **215.217** | 29.842 | 8,110 |
+| 3.0 | 1.30 | 75.736 | 215.397 | 30.066 | 8,170 |
+
+完整 FID 矩阵为：
+
+| gamma / rho | 1.00 | 1.05 | 1.10 | 1.15 | 1.20 | 1.25 | 1.30 | 1.35 | 1.40 | 1.45 | 1.50 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1.0 | 82.560 | 81.741 | 80.812 | 79.828 | 78.727 | 77.744 | 76.661 | 75.992 | 75.666 | 75.215 | **75.053** |
+| 1.5 | 81.182 | 80.464 | 79.367 | 78.310 | 77.092 | 76.237 | 75.468 | **74.927** | 75.285 | 75.000 | 75.379 |
+| 2.0 | 80.922 | 80.031 | 78.868 | 77.445 | 76.472 | 75.782 | 75.104 | **75.079** | 75.333 | 75.630 | 76.500 |
+| 2.5 | 80.455 | 79.218 | 77.784 | 77.222 | 76.534 | 75.611 | 75.566 | **75.172** | 75.547 | 76.393 | 77.270 |
+| 3.0 | 80.385 | 79.130 | 78.257 | 77.082 | 76.193 | 76.022 | **75.736** | 75.968 | 76.560 | 77.234 | 78.375 |
+
+二维扫描表现出一条宽的低 FID 区域，而不是单点异常：`gamma>=1.5` 时最优 `rho` 集中在 `1.30-1.35`；随着 `gamma` 增大，最佳 `rho` 略向下移动。这说明 nominal forcing 和 strong-response amplification 存在补偿关系，不能独立地越大越好。
+
+但是，二维调参没有改变跨 weak-family 的主结论：
 
 | condition | FID-1K | sFID | IS |
 |---|---:|---:|---:|
-| response `rho=1.45` | 75.217 | **215.380** | 29.952 |
+| factorized best `gamma=1.5, rho=1.35` | 74.927 | **215.434** | 30.756 |
 | tuned closed `gamma=3` | **74.480** | 217.869 | **32.369** |
 
-response 在 sFID 上更低，但 FID 与 IS 都没有超过 tuned closed。因此当前不能声称这是通用的 AutoGuidance 改进；它只在 `v800` strong + `x800` cross-target weak 这一组上得到正式正证据。
+factorized best 在 sFID 上更低，但 FID 高 `0.447`、IS 低 `1.613`。相较此前 `gamma=1,rho=1.5` 的 `75.053`，联合细扫只额外改善 `0.126 FID`；这个量级小于 FID-1K 足以支持的精度，不能宣称新的组合显著更优。因此当前不能声称这是通用的 AutoGuidance 改进；它只在 `v800` strong + `x800` cross-target weak 这一组上得到正式正证据。
 
 这条负结果也限制了理论解释：如果 `rho>1` 只是普遍增强有益 transport，它不应如此依赖 weak family。更可能的情况是，nominal forcing 的时空结构与 strong-flow response 之间需要匹配，而当前还没有可计算的匹配准则。
+
+作为数值稳定性检查，`rho=1.50` 的四个重复端点独立重跑后，FID 差异最大仅 `0.0033`；全部条件的 noise/label fingerprint 一致。结果根目录中的 134 份采样/FID 显存审计均无违规，观测到的最高总显存为 `5,529 MiB`。
 
 ## 证据边界
 
@@ -135,6 +179,7 @@ response 在 sFID 上更低，但 FID 与 IS 都没有超过 tuned closed。因�
 - 方法依赖一条同步 baseline trajectory，并增加约 50% 的模型样本前向量；当前不是低成本 guidance。
 - x800 仍包含既有的 `t_eps=0.05` denominator floor。本轮证明的是 response 控制有效，不是 floor 与 prediction target 的贡献已经被彻底分离。
 - FID、sFID 与 IS 是有限样本估计；两次采样 seed 的一致性降低了偶然性，但不能替代训练 seed 与 50K 评估。
+- `v500` 的 gamma-rho 细扫只有一个 1K 采样 seed，并在同一数据上选出最优组合；小于约 `0.5 FID` 的排序只应视为筛查结果。
 - 当前理论只解释控制变量是什么，不解释它为什么优化图像分布；“响应放大”本身是标准 ODE 操作，理论新意暂时不足。
 
 ## 当前判断
@@ -157,4 +202,9 @@ strong model 如何把该 forcing 引起的离轨偏移运输到 endpoint
 - response sweep：[`response_screen_fid1k.csv`](data/imagenet100_sit_800k_response_amplification/response_screen_fid1k.csv) 与 [`response_refinement_fid1k.csv`](data/imagenet100_sit_800k_response_amplification/response_refinement_fid1k.csv)
 - frozen gamma 对照：[`frozen_low_gain_control_fid1k.csv`](data/imagenet100_sit_800k_response_amplification/frozen_low_gain_control_fid1k.csv) 与 [`frozen_high_gain_control_fid1k.csv`](data/imagenet100_sit_800k_response_amplification/frozen_high_gain_control_fid1k.csv)
 - response + direction 对照：[`joint_response_direction_fid1k.csv`](data/imagenet100_sit_800k_response_amplification/joint_response_direction_fid1k.csv)
+- v500 gamma-rho 唯一网格：[`v500_gamma_rho_fid1k.csv`](data/imagenet100_sit_800k_v500_gamma_rho/v500_gamma_rho_fid1k.csv)
+- v500 每个 gamma 的最优点：[`v500_gamma_rho_best_by_gamma_fid1k.csv`](data/imagenet100_sit_800k_v500_gamma_rho/v500_gamma_rho_best_by_gamma_fid1k.csv)
+- v500 重复端点审计：[`v500_gamma_rho_duplicate_audit.csv`](data/imagenet100_sit_800k_v500_gamma_rho/v500_gamma_rho_duplicate_audit.csv)
+- v500 与 closed 的头部比较：[`v500_gamma_rho_headline_fid1k.csv`](data/imagenet100_sit_800k_v500_gamma_rho/v500_gamma_rho_headline_fid1k.csv)
+- v500 gamma-rho 启动脚本：[`experiments/launch_imagenet100_sit_800k_v500_gamma_rho_grid.sh`](../experiments/launch_imagenet100_sit_800k_v500_gamma_rho_grid.sh)
 - 本地完整结果根目录：`/home/zhoushunyu/data/eqvae/imagenet_sit_flow/factorized_guidance_800k_v1/`
