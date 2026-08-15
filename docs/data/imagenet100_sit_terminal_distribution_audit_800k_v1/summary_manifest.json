@@ -1,0 +1,43 @@
+{
+  "condition_rows": 14,
+  "format": "eqvae_imagenet100_sit_terminal_distribution_summary_v1",
+  "root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/terminal_distribution_audit_800k_v1",
+  "seeds": [
+    0,
+    1
+  ],
+  "tables": {
+    "action": {
+      "aggregate_rows": 6,
+      "combined_rows": 12
+    },
+    "diagnostics": {
+      "aggregate_rows": 120,
+      "combined_rows": 240
+    },
+    "equivalence": {
+      "aggregate_rows": 10,
+      "combined_rows": 20
+    },
+    "feature_pairwise": {
+      "aggregate_rows": 28,
+      "combined_rows": 56
+    },
+    "latent_pairwise": {
+      "aggregate_rows": 560,
+      "combined_rows": 1120
+    },
+    "paired_feature": {
+      "aggregate_rows": 21,
+      "combined_rows": 42
+    },
+    "path": {
+      "aggregate_rows": 7,
+      "combined_rows": 14
+    },
+    "quality": {
+      "aggregate_rows": 7,
+      "combined_rows": 14
+    }
+  }
+}

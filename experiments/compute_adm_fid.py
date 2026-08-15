@@ -64,6 +64,22 @@ def _save_statistics(
     temporary.replace(path)
 
 
+def _save_activations(
+    path: Path,
+    activations: tuple[np.ndarray, np.ndarray],
+) -> None:
+    """Persist ADM pool and spatial features without changing FID evaluation."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp.npz")
+    np.savez(
+        temporary,
+        pool_3=np.asarray(activations[0]),
+        spatial=np.asarray(activations[1]),
+    )
+    temporary.replace(path)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Compute ADM/guided-diffusion FID.")
     parser.add_argument("--reference", required=True, help="ADM reference .npz")
@@ -95,6 +111,11 @@ def main() -> None:
         action="store_true",
         help="Also compute ADM precision/recall. This is expensive for 50k samples.",
     )
+    parser.add_argument(
+        "--activations-output",
+        default=None,
+        help="Optionally save sample pool_3 and spatial activations as an NPZ.",
+    )
     args = parser.parse_args()
     if not 0.0 < args.gpu_memory_fraction < 1.0:
         raise ValueError("--gpu-memory-fraction must be between 0 and 1")
@@ -123,6 +144,10 @@ def main() -> None:
     sample_stats, sample_stats_spatial, sample_acts = _stats_or_activations(evalr, args.samples)
     if sample_acts is None:
         raise ValueError("Sample npz must contain images, not only precomputed statistics.")
+    if args.activations_output:
+        activation_path = Path(args.activations_output).expanduser().resolve()
+        _save_activations(activation_path, sample_acts)
+        print(f"Saved sample activations: {activation_path}")
 
     metrics: dict[str, Any] = {
         "reference": args.reference,
