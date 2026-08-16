@@ -16,6 +16,7 @@ generated ImageNet-1K samples and ADM's evaluator.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import os
@@ -246,6 +247,8 @@ def main(args: argparse.Namespace) -> None:
     rank_indices = np.empty(samples_per_rank, dtype=np.int64)
     autocast_dtype = None if args.precision == "fp32" else torch.bfloat16
     total_nfe = 0
+    noise_digest = hashlib.sha256()
+    label_digest = hashlib.sha256()
     cursor = 0
     started = time.perf_counter()
     preview: torch.Tensor | None = None
@@ -277,6 +280,8 @@ def main(args: argparse.Namespace) -> None:
             chunk_size=args.vae_decode_batch_size,
         )
         stop = cursor + batch_size
+        noise_digest.update(noise.detach().cpu().contiguous().numpy().tobytes())
+        label_digest.update(labels.detach().cpu().contiguous().numpy().tobytes())
         rank_images[cursor:stop] = official_pixel_quantization(decoded)
         rank_labels[cursor:stop] = labels.cpu().numpy().astype(np.int16, copy=False)
         base_index = iteration * global_batch_size
@@ -326,6 +331,8 @@ def main(args: argparse.Namespace) -> None:
             "rank_npz": str(rank_path),
             "total_nfe_across_batches": total_nfe,
             "elapsed_seconds": elapsed,
+            "noise_sha256": noise_digest.hexdigest(),
+            "label_sha256": label_digest.hexdigest(),
             **allocator,
             "max_memory_allocated_bytes": int(torch.cuda.max_memory_allocated(device)),
             "max_memory_reserved_bytes": int(torch.cuda.max_memory_reserved(device)),
@@ -335,6 +342,14 @@ def main(args: argparse.Namespace) -> None:
     dist.barrier()
 
     if rank == 0:
+        rank_payloads = [
+            json.loads(
+                (output_dir / f"rank_{source_rank:02d}.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            for source_rank in range(world_size)
+        ]
         rank_resource_usage = [
             load_rank_resource_usage(output_dir / f"rank_{source_rank:02d}.json")
             for source_rank in range(world_size)
@@ -379,6 +394,7 @@ def main(args: argparse.Namespace) -> None:
             "training_time_logit_mean": time_logit_mean,
             "training_time_logit_std": time_logit_std,
             "official_sit": source_metadata,
+            "weight_extrapolation": checkpoint.get("weight_extrapolation"),
             "num_classes": NUM_CLASSES,
             "requested_samples": int(args.num_samples),
             "generated_for_ddp_divisibility": int(total_samples),
@@ -392,6 +408,12 @@ def main(args: argparse.Namespace) -> None:
             "rank_seeds": [
                 official_rank_seed(args.global_seed, world_size, source_rank)
                 for source_rank in range(world_size)
+            ],
+            "rank_noise_sha256": [
+                payload["noise_sha256"] for payload in rank_payloads
+            ],
+            "rank_label_sha256": [
+                payload["label_sha256"] for payload in rank_payloads
             ],
             "label_sampling": "torch.randint(0, 100), matching official SiT sample_ddp.py",
             "label_histogram": histogram.tolist(),
