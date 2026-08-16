@@ -13,6 +13,7 @@ from experiments.imagenet100_sit_internal_v_head import (
     full_velocity_from_features,
     internal_velocity_from_features,
     select_internal_guidance_field,
+    validate_internal_depth,
 )
 from experiments.train_imagenet100_sit_flow import (
     DEFAULT_OFFICIAL_SIT_REPO,
@@ -60,7 +61,10 @@ def test_official_internal_head_shape_zero_init_and_rng() -> None:
     assert all(torch.count_nonzero(parameter) == 0 for parameter in head.parameters())
 
 
-def test_prefix_plus_suffix_exactly_reproduces_source_forward() -> None:
+@pytest.mark.parametrize("readout_depth", (8, 12))
+def test_prefix_plus_suffix_exactly_reproduces_source_forward(
+    readout_depth: int,
+) -> None:
     sit_module, _ = load_official_sit_module(DEFAULT_OFFICIAL_SIT_REPO)
     torch.manual_seed(41)
     model = make_sit(sit_module).eval()
@@ -75,13 +79,13 @@ def test_prefix_plus_suffix_exactly_reproduces_source_forward() -> None:
             state,
             time_value,
             labels,
-            internal_depth=8,
+            internal_depth=readout_depth,
         )
         actual = full_velocity_from_features(
             model,
             features,
             conditioning,
-            internal_depth=8,
+            internal_depth=readout_depth,
             latent_channels=LATENT_SHAPE[0],
         )
 
@@ -121,7 +125,10 @@ def test_only_internal_head_receives_gradients() -> None:
     assert all(parameter.grad is not None for parameter in head.parameters())
 
 
-def test_single_backbone_pass_returns_exact_full_and_internal() -> None:
+@pytest.mark.parametrize("readout_depth", (8, 12))
+def test_single_backbone_pass_returns_exact_full_and_internal(
+    readout_depth: int,
+) -> None:
     sit_module, _ = load_official_sit_module(DEFAULT_OFFICIAL_SIT_REPO)
     torch.manual_seed(53)
     model = make_sit(sit_module).eval()
@@ -144,12 +151,22 @@ def test_single_backbone_pass_returns_exact_full_and_internal() -> None:
             state,
             time_value,
             labels,
-            internal_depth=8,
+            internal_depth=readout_depth,
             latent_channels=LATENT_SHAPE[0],
         )
 
     assert torch.equal(full, expected_full)
     assert internal.shape == expected_full.shape
+
+
+def test_final_block_readout_is_valid_but_past_final_block_is_not() -> None:
+    sit_module, _ = load_official_sit_module(DEFAULT_OFFICIAL_SIT_REPO)
+    model = make_sit(sit_module)
+
+    assert len(model.blocks) == 12
+    assert validate_internal_depth(model, 12) == 12
+    with pytest.raises(ValueError, match=r"readout depth must lie in \[1, 12\]"):
+        validate_internal_depth(model, 13)
 
 
 def test_internal_guidance_field_endpoints_and_extrapolation() -> None:

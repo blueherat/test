@@ -1,4 +1,4 @@
-"""Frozen-SiT intermediate velocity head used for Internal Guidance."""
+"""Frozen-SiT auxiliary prediction head used for Internal Guidance probes."""
 
 from __future__ import annotations
 
@@ -9,9 +9,9 @@ import torch.nn as nn
 def validate_internal_depth(model: nn.Module, internal_depth: int) -> int:
     depth = int(internal_depth)
     block_count = len(model.blocks)
-    if depth < 1 or depth >= block_count:
+    if depth < 1 or depth > block_count:
         raise ValueError(
-            f"internal depth must lie in [1, {block_count - 1}], found {depth}"
+            f"readout depth must lie in [1, {block_count}], found {depth}"
         )
     return depth
 

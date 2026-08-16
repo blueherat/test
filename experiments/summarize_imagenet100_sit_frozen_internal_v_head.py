@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package a frozen-v800 intermediate-head experiment for Git."""
+"""Package a frozen-v800 auxiliary-head experiment for Git."""
 
 from __future__ import annotations
 
@@ -237,8 +237,19 @@ def validate_inputs(
         raise ValueError("full samples differ from the prior v800 baseline artifact")
 
 
+def readout_label(readout_depth: int, source_block_count: int) -> str:
+    if readout_depth == source_block_count:
+        return f"final block ({readout_depth}/{source_block_count})"
+    return f"block {readout_depth}/{source_block_count}"
+
+
 def plot_training(
-    rows: list[dict[str, Any]], output_path: Path, *, target_display: str
+    rows: list[dict[str, Any]],
+    output_path: Path,
+    *,
+    target_display: str,
+    readout_depth: int,
+    source_block_count: int,
 ) -> None:
     figure, axes = plt.subplots(1, 2, figsize=(11.5, 4.5))
     for branch, color in (("raw", "#4378bf"), ("ema", "#d66a32")):
@@ -248,7 +259,7 @@ def plot_training(
             [row["internal_velocity_mse"] for row in subset],
             marker="o",
             linewidth=2,
-            label=f"Internal {target_display} -> v ({branch.upper()})",
+            label=f"Auxiliary {target_display} -> v ({branch.upper()})",
             color=color,
         )
         axes[1].plot(
@@ -268,20 +279,22 @@ def plot_training(
         label=f"Frozen full v ({frozen:.3f})",
     )
     axes[0].set(
-        xlabel="Internal-head training step",
+        xlabel="Auxiliary-head training step",
         ylabel="Validation velocity MSE",
-        title="Full and internal velocity quality",
+        title="Full and auxiliary velocity quality",
     )
     axes[1].set(
-        xlabel="Internal-head training step",
-        ylabel="RMS(full - internal)",
-        title="Internal Guidance gap",
+        xlabel="Auxiliary-head training step",
+        ylabel="RMS(full - auxiliary)",
+        title="Full-auxiliary prediction gap",
     )
     for axis in axes:
         axis.grid(alpha=0.25)
         axis.legend()
     figure.suptitle(
-        f"Frozen v800 backbone: train only the depth-8 {target_display} FinalLayer"
+        "Frozen v800 backbone: train only the "
+        f"{readout_label(readout_depth, source_block_count)} "
+        f"{target_display} FinalLayer"
     )
     figure.tight_layout()
     figure.savefig(output_path, dpi=180)
@@ -289,7 +302,12 @@ def plot_training(
 
 
 def plot_fid(
-    rows: list[dict[str, Any]], output_path: Path, *, target_display: str
+    rows: list[dict[str, Any]],
+    output_path: Path,
+    *,
+    target_display: str,
+    readout_depth: int,
+    source_block_count: int,
 ) -> None:
     baseline = next(row for row in rows if row["mode"] == "full")
     internal = next(row for row in rows if row["mode"] == "internal")
@@ -318,20 +336,22 @@ def plot_fid(
             "o-",
             color="#2d6a9f",
             linewidth=2,
-            label="full + gamma (full - internal)",
+            label="full + gamma (full - auxiliary)",
         )
         axis.axhline(
             internal_value,
             color="#c84d4d",
             linestyle="--",
             linewidth=1.8,
-            label="Internal head only",
+            label="Auxiliary head only",
         )
         axis.set(xlabel="Extrapolation gamma", ylabel=ylabel)
         axis.grid(alpha=0.25)
         axis.legend(fontsize=8)
     figure.suptitle(
-        f"Frozen v800 + depth-8 internal {target_display} head: paired FID-1K sweep"
+        "Frozen v800 + "
+        f"{readout_label(readout_depth, source_block_count)} "
+        f"auxiliary {target_display} head: paired FID-1K sweep"
     )
     figure.tight_layout()
     figure.savefig(output_path, dpi=180)
@@ -347,7 +367,7 @@ def build_preview_montage(
 ) -> None:
     conditions = (
         ("full", "Full v800"),
-        ("internal", "Internal head"),
+        ("internal", "Auxiliary head"),
         ("extrap_gamma_0p1", "gamma = 0.1"),
         (best_condition, f"best gamma = {best_gamma:g}"),
         ("extrap_gamma_1", "gamma = 1.0"),
@@ -399,11 +419,15 @@ def main(args: argparse.Namespace) -> None:
         validation_rows,
         output_root / "training_validation.png",
         target_display=spec["display"],
+        readout_depth=int(run_config["internal_depth"]),
+        source_block_count=int(run_config["source_block_count"]),
     )
     plot_fid(
         fid_rows,
         output_root / "fid1k_sweep.png",
         target_display=spec["display"],
+        readout_depth=int(run_config["internal_depth"]),
+        source_block_count=int(run_config["source_block_count"]),
     )
     build_preview_montage(
         fid_root,
