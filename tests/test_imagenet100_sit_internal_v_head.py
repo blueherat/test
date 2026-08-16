@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 
+import pytest
 import torch
 
 from experiments.imagenet100_sit_internal_v_head import (
@@ -19,6 +20,12 @@ from experiments.train_imagenet100_sit_flow import (
     NUM_CLASSES,
     load_official_sit_module,
 )
+from experiments.train_imagenet100_sit_frozen_internal_v_head import (
+    CLEAN_PROTOCOL,
+    EPSILON_PROTOCOL,
+    PROTOCOL,
+    protocol_for_prediction_target,
+)
 
 
 def make_sit(sit_module):
@@ -27,6 +34,14 @@ def make_sit(sit_module):
         num_classes=NUM_CLASSES,
         class_dropout_prob=0.1,
     )
+
+
+def test_internal_prediction_target_protocols_are_distinct() -> None:
+    assert protocol_for_prediction_target("velocity") == PROTOCOL
+    assert protocol_for_prediction_target("clean") == CLEAN_PROTOCOL
+    assert protocol_for_prediction_target("epsilon") == EPSILON_PROTOCOL
+    with pytest.raises(ValueError, match="unsupported internal prediction target"):
+        protocol_for_prediction_target("unknown")
 
 
 def test_official_internal_head_shape_zero_init_and_rng() -> None:

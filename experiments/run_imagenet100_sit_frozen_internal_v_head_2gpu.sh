@@ -22,6 +22,8 @@ if [[ "${PREDICTION_TARGET}" == "velocity" ]]; then
   TARGET_TAG="v"
 elif [[ "${PREDICTION_TARGET}" == "clean" ]]; then
   TARGET_TAG="x"
+elif [[ "${PREDICTION_TARGET}" == "epsilon" ]]; then
+  TARGET_TAG="eps"
 else
   echo "Unsupported PREDICTION_TARGET=${PREDICTION_TARGET}" >&2
   exit 2

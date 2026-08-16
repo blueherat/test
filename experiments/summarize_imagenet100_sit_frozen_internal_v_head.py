@@ -52,6 +52,24 @@ TARGET_SPECS = {
         "output_root": REPO_ROOT
         / "docs/data/imagenet100_sit_frozen_internal_x_head_50k",
     },
+    "epsilon": {
+        "tag": "eps",
+        "display": "epsilon",
+        "train_protocol": "imagenet100_sit_frozen_v_internal_epsilon_head_v1",
+        "fid_protocol": "imagenet100_sit_frozen_internal_epsilon_head_fid1k_v1",
+        "summary_protocol": "imagenet100_sit_frozen_internal_epsilon_head_portable_summary_v1",
+        "fid_filename": "frozen_internal_epsilon_head_fid1k.json",
+        "train_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+            "sit-s-2_v800-ema_frozen-internal-eps-depth8_seed0"
+        ),
+        "fid_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
+            "fid1k_v800_frozen_internal_eps_depth8_step50000_ema"
+        ),
+        "output_root": REPO_ROOT
+        / "docs/data/imagenet100_sit_frozen_internal_epsilon_head_50k",
+    },
 }
 REFERENCE_BASELINE_SUMMARY = (
     REPO_ROOT / "docs/data/imagenet100_sit_frozen_v_clean_head_50k/summary.json"

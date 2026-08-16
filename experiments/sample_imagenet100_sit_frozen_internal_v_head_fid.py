@@ -25,6 +25,7 @@ try:
         full_and_internal_velocity,
         select_internal_guidance_field,
     )
+    from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
     from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from experiments.sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
@@ -46,6 +47,7 @@ try:
     )
     from experiments.train_imagenet100_sit_frozen_internal_v_head import (
         CLEAN_PROTOCOL,
+        EPSILON_PROTOCOL,
         PROTOCOL,
         create_frozen_internal_probe,
     )
@@ -54,6 +56,7 @@ except ModuleNotFoundError:
         full_and_internal_velocity,
         select_internal_guidance_field,
     )
+    from imagenet100_sit_prediction_targets import prediction_to_velocity
     from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
@@ -75,6 +78,7 @@ except ModuleNotFoundError:
     )
     from train_imagenet100_sit_frozen_internal_v_head import (
         CLEAN_PROTOCOL,
+        EPSILON_PROTOCOL,
         PROTOCOL,
         create_frozen_internal_probe,
     )
@@ -104,13 +108,20 @@ def load_frozen_internal_model(
         weights_only=False,
     )
     checkpoint_protocol = checkpoint.get("protocol")
-    if checkpoint_protocol not in (PROTOCOL, CLEAN_PROTOCOL):
+    protocols = {
+        "velocity": PROTOCOL,
+        "clean": CLEAN_PROTOCOL,
+        "epsilon": EPSILON_PROTOCOL,
+    }
+    if checkpoint_protocol not in protocols.values():
         raise ValueError(f"unexpected head protocol: {checkpoint.get('protocol')!r}")
     if checkpoint.get("official_sit") != source_metadata:
         raise ValueError("head checkpoint and sampler use different SiT revisions")
     config = checkpoint["config"]
     prediction_target = str(config.get("prediction_target", "velocity"))
-    expected_protocol = PROTOCOL if prediction_target == "velocity" else CLEAN_PROTOCOL
+    expected_protocol = protocols.get(prediction_target)
+    if expected_protocol is None:
+        raise ValueError(f"unsupported internal target: {prediction_target!r}")
     if checkpoint_protocol != expected_protocol:
         raise ValueError("head checkpoint protocol and prediction target disagree")
     source_path = Path(config["source_checkpoint"]).expanduser().resolve()
@@ -208,6 +219,14 @@ def conditional_internal_guidance_field(
                 internal_prediction,
                 state=state,
                 time_value=times,
+                denominator_floor=clean_velocity_denominator_floor,
+            )
+        elif prediction_target == "epsilon":
+            internal_velocity = prediction_to_velocity(
+                internal_prediction,
+                state=state,
+                time_value=times,
+                prediction_target="epsilon",
                 denominator_floor=clean_velocity_denominator_floor,
             )
         else:
@@ -418,21 +437,21 @@ def main(args: argparse.Namespace) -> None:
         np.savez(sample_path, arr_0=merged_images)
         np.save(label_path, merged_labels, allow_pickle=False)
         histogram = np.bincount(merged_labels.astype(np.int64), minlength=NUM_CLASSES)
-        internal_name = (
-            "v_internal_depth"
-            if model_metadata["prediction_target"] == "velocity"
-            else "(x_internal_depth-x_t)/max(1-t,0.05)"
-        )
+        internal_name = {
+            "velocity": "v_internal_depth",
+            "clean": "(x_internal_depth-x_t)/max(1-t,0.05)",
+            "epsilon": "(x_t-epsilon_internal_depth)/max(t,0.05)",
+        }[str(model_metadata["prediction_target"])]
         formula = {
             "full": "v_full",
             "internal": internal_name,
             "extrapolation": f"v_full + gamma * (v_full - {internal_name})",
         }[args.mode]
-        sample_format = (
-            "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1"
-            if model_metadata["prediction_target"] == "velocity"
-            else "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1"
-        )
+        sample_format = {
+            "velocity": "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1",
+            "clean": "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1",
+            "epsilon": "eqvae_imagenet100_sit_frozen_internal_epsilon_head_samples_v1",
+        }[str(model_metadata["prediction_target"])]
         manifest = {
             "format": sample_format,
             "scope": "paired Internal Guidance screening on ImageNet-100",

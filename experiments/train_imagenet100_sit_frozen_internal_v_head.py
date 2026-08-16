@@ -27,6 +27,7 @@ try:
         unpatchify_channels,
         validate_internal_depth,
     )
+    from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
     from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
 except ModuleNotFoundError:
     import train_imagenet100_sit_flow as base
@@ -38,12 +39,14 @@ except ModuleNotFoundError:
         unpatchify_channels,
         validate_internal_depth,
     )
+    from imagenet100_sit_prediction_targets import prediction_to_velocity
     from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
 
 
 PROTOCOL = "imagenet100_sit_frozen_v_internal_velocity_head_v1"
 CLEAN_PROTOCOL = "imagenet100_sit_frozen_v_internal_clean_head_v1"
-PREDICTION_TARGETS = ("velocity", "clean")
+EPSILON_PROTOCOL = "imagenet100_sit_frozen_v_internal_epsilon_head_v1"
+PREDICTION_TARGETS = ("velocity", "clean", "epsilon")
 DEFAULT_SOURCE_CHECKPOINT = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
     "sit-s-2_seed0/checkpoints/step_00800000.pt"
@@ -99,6 +102,8 @@ def protocol_for_prediction_target(prediction_target: str) -> str:
         return PROTOCOL
     if prediction_target == "clean":
         return CLEAN_PROTOCOL
+    if prediction_target == "epsilon":
+        return EPSILON_PROTOCOL
     raise ValueError(f"unsupported internal prediction target: {prediction_target!r}")
 
 
@@ -305,6 +310,15 @@ def validation_metrics(
                 denominator_floor=clean_velocity_denominator_floor,
             )
             native_target = clean
+        elif prediction_target == "epsilon":
+            internal_velocity = prediction_to_velocity(
+                internal_prediction,
+                state=state,
+                time_value=time_value,
+                prediction_target="epsilon",
+                denominator_floor=clean_velocity_denominator_floor,
+            )
+            native_target = noise
         else:
             raise ValueError(
                 f"unsupported internal prediction target: {prediction_target!r}"
@@ -388,19 +402,22 @@ def build_metadata(
         "objective": {
             "path": "x_t=(1-t)*noise+t*clean",
             "target": config.prediction_target,
-            "loss": (
-                "MSE(internal_velocity, clean-noise)"
-                if config.prediction_target == "velocity"
-                else "MSE(internal_clean_prediction, clean)"
-            ),
-            "clean_to_velocity": (
-                None
-                if config.prediction_target == "velocity"
-                else {
+            "loss": {
+                "velocity": "MSE(internal_velocity, clean-noise)",
+                "clean": "MSE(internal_clean_prediction, clean)",
+                "epsilon": "MSE(internal_epsilon_prediction, noise)",
+            }[config.prediction_target],
+            "native_to_velocity": {
+                "velocity": None,
+                "clean": {
                     "formula": "(x_hat-x_t)/max(1-t, denominator_floor)",
                     "denominator_floor": config.clean_velocity_denominator_floor,
-                }
-            ),
+                },
+                "epsilon": {
+                    "formula": "(x_t-epsilon_hat)/max(t, denominator_floor)",
+                    "denominator_floor": config.clean_velocity_denominator_floor,
+                },
+            }[config.prediction_target],
             "training_time_distribution": {"name": "uniform", "interval": "[0,1)"},
             "source_backbone_mode": "eval; class dropout disabled",
             "head_input": f"hidden state after block {config.internal_depth}",
@@ -695,9 +712,11 @@ def train(args: argparse.Namespace) -> None:
                     projected,
                     channels=base.LATENT_SHAPE[0],
                 )
-            native_target = (
-                target_velocity if config.prediction_target == "velocity" else clean
-            )
+            native_target = {
+                "velocity": target_velocity,
+                "clean": clean,
+                "epsilon": noise,
+            }[config.prediction_target]
             loss = F.mse_loss(internal.float(), native_target.float())
             if not torch.isfinite(loss):
                 raise FloatingPointError(f"non-finite training loss at step {step}")

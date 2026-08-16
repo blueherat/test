@@ -27,6 +27,7 @@ try:
     from experiments.train_imagenet100_sit_flow import atomic_json_dump, sha256_file
     from experiments.train_imagenet100_sit_frozen_internal_v_head import (
         CLEAN_PROTOCOL,
+        EPSILON_PROTOCOL,
         PROTOCOL,
     )
 except ModuleNotFoundError:
@@ -41,7 +42,11 @@ except ModuleNotFoundError:
         valid_resource_audit,
     )
     from train_imagenet100_sit_flow import atomic_json_dump, sha256_file
-    from train_imagenet100_sit_frozen_internal_v_head import CLEAN_PROTOCOL, PROTOCOL
+    from train_imagenet100_sit_frozen_internal_v_head import (
+        CLEAN_PROTOCOL,
+        EPSILON_PROTOCOL,
+        PROTOCOL,
+    )
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -69,11 +74,18 @@ def checkpoint_metadata(path: Path, head_weights: str) -> dict[str, object]:
         raise FileNotFoundError(f"missing checkpoint: {path}")
     checkpoint = torch.load(path, map_location="cpu", weights_only=False, mmap=True)
     checkpoint_protocol = checkpoint.get("protocol")
-    if checkpoint_protocol not in (PROTOCOL, CLEAN_PROTOCOL):
+    protocols = {
+        "velocity": PROTOCOL,
+        "clean": CLEAN_PROTOCOL,
+        "epsilon": EPSILON_PROTOCOL,
+    }
+    if checkpoint_protocol not in protocols.values():
         raise ValueError(f"unexpected checkpoint protocol: {checkpoint.get('protocol')!r}")
     config = checkpoint["config"]
     prediction_target = str(config.get("prediction_target", "velocity"))
-    expected_protocol = PROTOCOL if prediction_target == "velocity" else CLEAN_PROTOCOL
+    expected_protocol = protocols.get(prediction_target)
+    if expected_protocol is None:
+        raise ValueError(f"unsupported internal target: {prediction_target!r}")
     if checkpoint_protocol != expected_protocol:
         raise ValueError("checkpoint protocol and prediction target disagree")
     metadata = {
@@ -134,11 +146,11 @@ def valid_sampling_artifact(
     ):
         return False
     manifest = load_json(manifest_path)
-    expected_format = (
-        "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1"
-        if checkpoint["prediction_target"] == "velocity"
-        else "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1"
-    )
+    expected_format = {
+        "velocity": "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1",
+        "clean": "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1",
+        "epsilon": "eqvae_imagenet100_sit_frozen_internal_epsilon_head_samples_v1",
+    }[str(checkpoint["prediction_target"])]
     expected = {
         "format": expected_format,
         "mode": mode,
