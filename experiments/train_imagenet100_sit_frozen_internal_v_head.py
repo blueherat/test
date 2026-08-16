@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train an Internal-Guidance velocity head on a frozen ImageNet-100 v800 SiT."""
+"""Train an Internal-Guidance readout on a frozen ImageNet-100 v800 SiT."""
 
 from __future__ import annotations
 
@@ -27,6 +27,7 @@ try:
         unpatchify_channels,
         validate_internal_depth,
     )
+    from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
 except ModuleNotFoundError:
     import train_imagenet100_sit_flow as base
     from imagenet100_sit_internal_v_head import (
@@ -37,9 +38,12 @@ except ModuleNotFoundError:
         unpatchify_channels,
         validate_internal_depth,
     )
+    from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
 
 
 PROTOCOL = "imagenet100_sit_frozen_v_internal_velocity_head_v1"
+CLEAN_PROTOCOL = "imagenet100_sit_frozen_v_internal_clean_head_v1"
+PREDICTION_TARGETS = ("velocity", "clean")
 DEFAULT_SOURCE_CHECKPOINT = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
     "sit-s-2_seed0/checkpoints/step_00800000.pt"
@@ -68,6 +72,8 @@ class FrozenInternalTrainConfig:
     model_name: str
     cfg_dropout: float
     internal_depth: int
+    prediction_target: str
+    clean_velocity_denominator_floor: float
     global_batch_size: int
     max_steps: int
     learning_rate: float
@@ -86,6 +92,14 @@ class FrozenInternalTrainConfig:
     validation_batches: int
     save_every: int
     seed: int
+
+
+def protocol_for_prediction_target(prediction_target: str) -> str:
+    if prediction_target == "velocity":
+        return PROTOCOL
+    if prediction_target == "clean":
+        return CLEAN_PROTOCOL
+    raise ValueError(f"unsupported internal prediction target: {prediction_target!r}")
 
 
 def broadcast_string(value: str, context: base.DistributedContext) -> str:
@@ -154,6 +168,8 @@ def validate_resume(
         "model_name",
         "cfg_dropout",
         "internal_depth",
+        "prediction_target",
+        "clean_velocity_denominator_floor",
         "global_batch_size",
         "learning_rate",
         "weight_decay",
@@ -167,10 +183,17 @@ def validate_resume(
         "seed",
     )
     current_values = asdict(current)
+    stored_values = {
+        **stored,
+        "prediction_target": stored.get("prediction_target", "velocity"),
+        "clean_velocity_denominator_floor": stored.get(
+            "clean_velocity_denominator_floor", 0.05
+        ),
+    }
     mismatches = [
-        f"{key}: checkpoint={stored.get(key)!r}, current={current_values[key]!r}"
+        f"{key}: checkpoint={stored_values.get(key)!r}, current={current_values[key]!r}"
         for key in immutable
-        if stored.get(key) != current_values[key]
+        if stored_values.get(key) != current_values[key]
     ]
     if int(stored.get("world_size", world_size)) != world_size:
         mismatches.append(
@@ -184,6 +207,8 @@ def per_sample_metrics(
     full: torch.Tensor,
     internal: torch.Tensor,
     target: torch.Tensor,
+    native_internal: torch.Tensor,
+    native_target: torch.Tensor,
 ) -> torch.Tensor:
     full_flat = full.float().flatten(1)
     internal_flat = internal.float().flatten(1)
@@ -201,6 +226,9 @@ def per_sample_metrics(
             direction_norm,
             cosine,
             alignment.gt(0).float(),
+            (native_internal.float().flatten(1) - native_target.float().flatten(1))
+            .square()
+            .mean(dim=1),
         ),
         dim=1,
     )
@@ -217,6 +245,8 @@ def validation_metrics(
     batches: int,
     seed: int,
     internal_depth: int,
+    prediction_target: str,
+    clean_velocity_denominator_floor: float,
 ) -> dict[str, object]:
     generator = torch.Generator(device=context.device).manual_seed(int(seed))
     metric_names = (
@@ -225,6 +255,7 @@ def validation_metrics(
         "full_internal_gap_rms",
         "direction_residual_cosine",
         "positive_alignment_fraction",
+        "internal_native_mse",
     )
     totals = torch.zeros(len(metric_names) + 1, device=context.device, dtype=torch.float64)
     bin_totals = torch.zeros(
@@ -254,7 +285,7 @@ def validation_metrics(
         )
         state, target_velocity = base.linear_flow_state_target(clean, noise, time_value)
         with base.autocast_context(precision):
-            full, internal = full_and_internal_velocity(
+            full, internal_prediction = full_and_internal_velocity(
                 source,
                 head,
                 state,
@@ -263,7 +294,28 @@ def validation_metrics(
                 internal_depth=internal_depth,
                 latent_channels=base.LATENT_SHAPE[0],
             )
-        values = per_sample_metrics(full, internal, target_velocity).double()
+        if prediction_target == "velocity":
+            internal_velocity = internal_prediction.float()
+            native_target = target_velocity
+        elif prediction_target == "clean":
+            internal_velocity = clean_prediction_to_velocity(
+                internal_prediction,
+                state=state,
+                time_value=time_value,
+                denominator_floor=clean_velocity_denominator_floor,
+            )
+            native_target = clean
+        else:
+            raise ValueError(
+                f"unsupported internal prediction target: {prediction_target!r}"
+            )
+        values = per_sample_metrics(
+            full,
+            internal_velocity,
+            target_velocity,
+            internal_prediction,
+            native_target,
+        ).double()
         totals[:-1] += values.sum(dim=0)
         totals[-1] += len(values)
         for index, (lower, upper) in enumerate(
@@ -320,7 +372,7 @@ def build_metadata(
     ig_repo = Path(config.official_ig_repo)
     ig_model_path = ig_repo / "models/sit.py"
     return {
-        "protocol": PROTOCOL,
+        "protocol": protocol_for_prediction_target(config.prediction_target),
         "config": asdict(config),
         "world_size": context.world_size,
         **architecture_stats,
@@ -335,8 +387,20 @@ def build_metadata(
         },
         "objective": {
             "path": "x_t=(1-t)*noise+t*clean",
-            "target": "velocity=clean-noise",
-            "loss": "MSE(internal_velocity, target_velocity)",
+            "target": config.prediction_target,
+            "loss": (
+                "MSE(internal_velocity, clean-noise)"
+                if config.prediction_target == "velocity"
+                else "MSE(internal_clean_prediction, clean)"
+            ),
+            "clean_to_velocity": (
+                None
+                if config.prediction_target == "velocity"
+                else {
+                    "formula": "(x_hat-x_t)/max(1-t, denominator_floor)",
+                    "denominator_floor": config.clean_velocity_denominator_floor,
+                }
+            ),
             "training_time_distribution": {"name": "uniform", "interval": "[0,1)"},
             "source_backbone_mode": "eval; class dropout disabled",
             "head_input": f"hidden state after block {config.internal_depth}",
@@ -347,7 +411,8 @@ def build_metadata(
             "optimizer_contains_only_internal_head": True,
             "source_state_key": config.source_state_key,
             "source_output_is_recomputed_without_modification": True,
-            "same_data_path_and_velocity_target_as_source_sit": True,
+            "same_data_path_as_source_sit": True,
+            "same_velocity_target_as_source_sit": config.prediction_target == "velocity",
             "head_zero_initialized_like_official_internal_guidance": True,
         },
         "scope_boundary": (
@@ -412,6 +477,10 @@ def train(args: argparse.Namespace) -> None:
             model_name=model_name,
             cfg_dropout=cfg_dropout,
             internal_depth=int(args.internal_depth),
+            prediction_target=str(args.prediction_target),
+            clean_velocity_denominator_floor=float(
+                args.clean_velocity_denominator_floor
+            ),
             global_batch_size=int(args.global_batch_size),
             max_steps=int(args.max_steps),
             learning_rate=float(args.learning_rate),
@@ -440,6 +509,9 @@ def train(args: argparse.Namespace) -> None:
             config.learning_rate,
         ) <= 0:
             raise ValueError("depth, batch, steps, intervals, and learning rate must be positive")
+        protocol = protocol_for_prediction_target(config.prediction_target)
+        if not 0 < config.clean_velocity_denominator_floor < 0.5:
+            raise ValueError("clean velocity denominator floor must lie in (0, 0.5)")
         local_batch_size = config.global_batch_size // context.world_size
         base.configure_runtime(config.seed, context.rank, config.allow_tf32)
 
@@ -510,7 +582,7 @@ def train(args: argparse.Namespace) -> None:
                 map_location=context.device,
                 weights_only=False,
             )
-            if checkpoint.get("protocol") != PROTOCOL:
+            if checkpoint.get("protocol") != protocol:
                 raise ValueError(f"unexpected checkpoint protocol: {checkpoint.get('protocol')!r}")
             validate_resume(checkpoint["config"], config, context.world_size)
             if checkpoint.get("data_manifest_sha256") != cache_manifest_sha256:
@@ -578,6 +650,7 @@ def train(args: argparse.Namespace) -> None:
                         "source_state_key": config.source_state_key,
                         "model": config.model_name,
                         "internal_depth": config.internal_depth,
+                        "prediction_target": config.prediction_target,
                         "source_blocks": architecture_stats["source_block_count"],
                         "trainable_parameters": architecture_stats[
                             "trainable_parameter_count"
@@ -622,7 +695,10 @@ def train(args: argparse.Namespace) -> None:
                     projected,
                     channels=base.LATENT_SHAPE[0],
                 )
-            loss = F.mse_loss(internal.float(), target_velocity.float())
+            native_target = (
+                target_velocity if config.prediction_target == "velocity" else clean
+            )
+            loss = F.mse_loss(internal.float(), native_target.float())
             if not torch.isfinite(loss):
                 raise FloatingPointError(f"non-finite training loss at step {step}")
             loss.backward()
@@ -655,7 +731,7 @@ def train(args: argparse.Namespace) -> None:
                 base.reduce_max(memory_tensor, context)
                 row = {
                     "step": step,
-                    "train_internal_velocity_loss": float(
+                    f"train_internal_{config.prediction_target}_loss": float(
                         values[0].item() / values[1].item()
                     ),
                     "steps_per_second": float(running_steps / elapsed_tensor.item()),
@@ -688,6 +764,10 @@ def train(args: argparse.Namespace) -> None:
                     batches=config.validation_batches,
                     seed=config.seed + 800_000,
                     internal_depth=config.internal_depth,
+                    prediction_target=config.prediction_target,
+                    clean_velocity_denominator_floor=(
+                        config.clean_velocity_denominator_floor
+                    ),
                 )
                 ema_metrics = validation_metrics(
                     source=source,
@@ -698,6 +778,10 @@ def train(args: argparse.Namespace) -> None:
                     batches=config.validation_batches,
                     seed=config.seed + 800_000,
                     internal_depth=config.internal_depth,
+                    prediction_target=config.prediction_target,
+                    clean_velocity_denominator_floor=(
+                        config.clean_velocity_denominator_floor
+                    ),
                 )
                 if context.is_main:
                     row = {
@@ -718,7 +802,7 @@ def train(args: argparse.Namespace) -> None:
                     checkpoint_path = output_dir / "checkpoints" / f"step_{step:08d}.pt"
                     base.atomic_torch_save(
                         {
-                            "protocol": PROTOCOL,
+                            "protocol": protocol,
                             "step": step,
                             "internal_head": head.state_dict(),
                             "internal_head_ema": ema.module.state_dict(),
@@ -749,6 +833,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-checkpoint", type=Path, default=DEFAULT_SOURCE_CHECKPOINT)
     parser.add_argument("--source-state-key", choices=("ema", "model"), default="ema")
     parser.add_argument("--internal-depth", type=int, default=8)
+    parser.add_argument(
+        "--prediction-target",
+        choices=PREDICTION_TARGETS,
+        default="velocity",
+    )
+    parser.add_argument("--clean-velocity-denominator-floor", type=float, default=0.05)
     parser.add_argument("--global-batch-size", type=int, default=256)
     parser.add_argument("--max-steps", type=int, default=50_000)
     parser.add_argument("--learning-rate", type=float, default=1e-4)

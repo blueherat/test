@@ -13,10 +13,20 @@ VALIDATION_BATCHES="${VALIDATION_BATCHES:-8}"
 LOG_EVERY="${LOG_EVERY:-50}"
 LEARNING_RATE="${LEARNING_RATE:-1e-4}"
 INTERNAL_DEPTH="${INTERNAL_DEPTH:-8}"
+PREDICTION_TARGET="${PREDICTION_TARGET:-velocity}"
+CLEAN_VELOCITY_DENOMINATOR_FLOOR="${CLEAN_VELOCITY_DENOMINATOR_FLOOR:-0.05}"
 SEED="${SEED:-0}"
 SOURCE_STATE_KEY="${SOURCE_STATE_KEY:-ema}"
 SOURCE_CHECKPOINT="${SOURCE_CHECKPOINT:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt}"
-OUTPUT_DIR="${OUTPUT_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_v800-${SOURCE_STATE_KEY}_frozen-internal-v-depth${INTERNAL_DEPTH}_seed${SEED}}"
+if [[ "${PREDICTION_TARGET}" == "velocity" ]]; then
+  TARGET_TAG="v"
+elif [[ "${PREDICTION_TARGET}" == "clean" ]]; then
+  TARGET_TAG="x"
+else
+  echo "Unsupported PREDICTION_TARGET=${PREDICTION_TARGET}" >&2
+  exit 2
+fi
+OUTPUT_DIR="${OUTPUT_DIR:-/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_v800-${SOURCE_STATE_KEY}_frozen-internal-${TARGET_TAG}-depth${INTERNAL_DEPTH}_seed${SEED}}"
 
 export CUDA_VISIBLE_DEVICES="${GPU_LIST}"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-1}"
@@ -34,6 +44,8 @@ exec torchrun \
   --source-checkpoint "${SOURCE_CHECKPOINT}" \
   --source-state-key "${SOURCE_STATE_KEY}" \
   --internal-depth "${INTERNAL_DEPTH}" \
+  --prediction-target "${PREDICTION_TARGET}" \
+  --clean-velocity-denominator-floor "${CLEAN_VELOCITY_DENOMINATOR_FLOOR}" \
   --output-dir "${OUTPUT_DIR}" \
   --global-batch-size "${GLOBAL_BATCH_SIZE}" \
   --max-steps "${MAX_STEPS}" \

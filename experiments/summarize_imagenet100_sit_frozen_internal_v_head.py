@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package the frozen-v800 intermediate-v-head experiment for Git."""
+"""Package a frozen-v800 intermediate-head experiment for Git."""
 
 from __future__ import annotations
 
@@ -15,17 +15,44 @@ from PIL import Image, ImageDraw
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_TRAIN_ROOT = Path(
-    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
-    "sit-s-2_v800-ema_frozen-internal-v-depth8_seed0"
-)
-DEFAULT_FID_ROOT = Path(
-    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
-    "fid1k_v800_frozen_internal_v_depth8_step50000_ema"
-)
-DEFAULT_OUTPUT_ROOT = (
-    REPO_ROOT / "docs/data/imagenet100_sit_frozen_internal_v_head_50k"
-)
+TARGET_SPECS = {
+    "velocity": {
+        "tag": "v",
+        "display": "v",
+        "train_protocol": "imagenet100_sit_frozen_v_internal_velocity_head_v1",
+        "fid_protocol": "imagenet100_sit_frozen_internal_v_head_fid1k_v1",
+        "summary_protocol": "imagenet100_sit_frozen_internal_v_head_portable_summary_v1",
+        "fid_filename": "frozen_internal_v_head_fid1k.json",
+        "train_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+            "sit-s-2_v800-ema_frozen-internal-v-depth8_seed0"
+        ),
+        "fid_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
+            "fid1k_v800_frozen_internal_v_depth8_step50000_ema"
+        ),
+        "output_root": REPO_ROOT
+        / "docs/data/imagenet100_sit_frozen_internal_v_head_50k",
+    },
+    "clean": {
+        "tag": "x",
+        "display": "x",
+        "train_protocol": "imagenet100_sit_frozen_v_internal_clean_head_v1",
+        "fid_protocol": "imagenet100_sit_frozen_internal_clean_head_fid1k_v1",
+        "summary_protocol": "imagenet100_sit_frozen_internal_clean_head_portable_summary_v1",
+        "fid_filename": "frozen_internal_clean_head_fid1k.json",
+        "train_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/"
+            "sit-s-2_v800-ema_frozen-internal-x-depth8_seed0"
+        ),
+        "fid_root": Path(
+            "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/"
+            "fid1k_v800_frozen_internal_x_depth8_step50000_ema"
+        ),
+        "output_root": REPO_ROOT
+        / "docs/data/imagenet100_sit_frozen_internal_x_head_50k",
+    },
+}
 REFERENCE_BASELINE_SUMMARY = (
     REPO_ROOT / "docs/data/imagenet100_sit_frozen_v_clean_head_50k/summary.json"
 )
@@ -82,6 +109,9 @@ def load_validation_rows(
                     "step": step,
                     "branch": branch_key,
                     "internal_velocity_mse": float(branch["internal_velocity_mse"]),
+                    "internal_native_mse": float(
+                        branch.get("internal_native_mse", branch["internal_velocity_mse"])
+                    ),
                     "frozen_velocity_mse": float(branch["frozen_velocity_mse"]),
                     "full_internal_gap_rms": float(branch["full_internal_gap_rms"]),
                     "direction_residual_cosine": float(
@@ -104,6 +134,12 @@ def load_validation_rows(
                         "count": int(time_bin["count"]),
                         "internal_velocity_mse": float(
                             time_bin["internal_velocity_mse"]
+                        ),
+                        "internal_native_mse": float(
+                            time_bin.get(
+                                "internal_native_mse",
+                                time_bin["internal_velocity_mse"],
+                            )
                         ),
                         "frozen_velocity_mse": float(
                             time_bin["frozen_velocity_mse"]
@@ -151,13 +187,14 @@ def validate_inputs(
     fid_summary: dict[str, Any],
     final_checkpoint: Path,
     reference_baseline: dict[str, Any],
+    spec: dict[str, Any],
 ) -> None:
     config = run_config["config"]
     fairness = run_config["fairness"]
     checkpoint = fid_summary["checkpoint"]
-    if run_config["protocol"] != "imagenet100_sit_frozen_v_internal_velocity_head_v1":
+    if run_config["protocol"] != spec["train_protocol"]:
         raise ValueError("unexpected training protocol")
-    if fid_summary["protocol"] != "imagenet100_sit_frozen_internal_v_head_fid1k_v1":
+    if fid_summary["protocol"] != spec["fid_protocol"]:
         raise ValueError("unexpected FID protocol")
     if config["source_checkpoint_sha256"] != checkpoint["source_checkpoint_sha256"]:
         raise ValueError("training and sampling source checkpoint hashes differ")
@@ -182,7 +219,9 @@ def validate_inputs(
         raise ValueError("full samples differ from the prior v800 baseline artifact")
 
 
-def plot_training(rows: list[dict[str, Any]], output_path: Path) -> None:
+def plot_training(
+    rows: list[dict[str, Any]], output_path: Path, *, target_display: str
+) -> None:
     figure, axes = plt.subplots(1, 2, figsize=(11.5, 4.5))
     for branch, color in (("raw", "#4378bf"), ("ema", "#d66a32")):
         subset = [row for row in rows if row["branch"] == branch]
@@ -191,7 +230,7 @@ def plot_training(rows: list[dict[str, Any]], output_path: Path) -> None:
             [row["internal_velocity_mse"] for row in subset],
             marker="o",
             linewidth=2,
-            label=f"Internal v ({branch.upper()})",
+            label=f"Internal {target_display} -> v ({branch.upper()})",
             color=color,
         )
         axes[1].plot(
@@ -223,13 +262,17 @@ def plot_training(rows: list[dict[str, Any]], output_path: Path) -> None:
     for axis in axes:
         axis.grid(alpha=0.25)
         axis.legend()
-    figure.suptitle("Frozen v800 backbone: train only the depth-8 FinalLayer")
+    figure.suptitle(
+        f"Frozen v800 backbone: train only the depth-8 {target_display} FinalLayer"
+    )
     figure.tight_layout()
     figure.savefig(output_path, dpi=180)
     plt.close(figure)
 
 
-def plot_fid(rows: list[dict[str, Any]], output_path: Path) -> None:
+def plot_fid(
+    rows: list[dict[str, Any]], output_path: Path, *, target_display: str
+) -> None:
     baseline = next(row for row in rows if row["mode"] == "full")
     internal = next(row for row in rows if row["mode"] == "internal")
     sweep = [
@@ -269,18 +312,26 @@ def plot_fid(rows: list[dict[str, Any]], output_path: Path) -> None:
         axis.set(xlabel="Extrapolation gamma", ylabel=ylabel)
         axis.grid(alpha=0.25)
         axis.legend(fontsize=8)
-    figure.suptitle("Frozen v800 + depth-8 internal v head: paired FID-1K sweep")
+    figure.suptitle(
+        f"Frozen v800 + depth-8 internal {target_display} head: paired FID-1K sweep"
+    )
     figure.tight_layout()
     figure.savefig(output_path, dpi=180)
     plt.close(figure)
 
 
-def build_preview_montage(fid_root: Path, output_path: Path) -> None:
+def build_preview_montage(
+    fid_root: Path,
+    output_path: Path,
+    *,
+    best_condition: str,
+    best_gamma: float,
+) -> None:
     conditions = (
         ("full", "Full v800"),
         ("internal", "Internal head"),
         ("extrap_gamma_0p1", "gamma = 0.1"),
-        ("extrap_gamma_0p4", "gamma = 0.4"),
+        (best_condition, f"best gamma = {best_gamma:g}"),
         ("extrap_gamma_1", "gamma = 1.0"),
     )
     width, height, title_height = 420, 210, 34
@@ -297,13 +348,14 @@ def build_preview_montage(fid_root: Path, output_path: Path) -> None:
 
 
 def main(args: argparse.Namespace) -> None:
-    train_root = args.train_root.expanduser().resolve()
-    fid_root = args.fid_root.expanduser().resolve()
-    output_root = args.output_root.expanduser().resolve()
+    spec = TARGET_SPECS[args.prediction_target]
+    train_root = (args.train_root or spec["train_root"]).expanduser().resolve()
+    fid_root = (args.fid_root or spec["fid_root"]).expanduser().resolve()
+    output_root = (args.output_root or spec["output_root"]).expanduser().resolve()
     output_root.mkdir(parents=True, exist_ok=True)
 
     run_config = read_json(train_root / "run_config.json")
-    fid_summary = read_json(fid_root / "frozen_internal_v_head_fid1k.json")
+    fid_summary = read_json(fid_root / spec["fid_filename"])
     reference_baseline = read_json(REFERENCE_BASELINE_SUMMARY)
     validation_rows, final_time_bins = load_validation_rows(
         train_root / "train_metrics.jsonl"
@@ -315,24 +367,39 @@ def main(args: argparse.Namespace) -> None:
         fid_summary,
         final_checkpoint,
         reference_baseline,
+        spec,
     )
     fid_rows = compact_fid_rows(fid_summary)
+
+    extrapolation = [row for row in fid_rows if row["mode"] == "extrapolation"]
+    best = min(extrapolation, key=lambda row: float(row["fid"]))
 
     write_csv(output_root / "training_validation.csv", validation_rows)
     write_csv(output_root / "final_time_bins.csv", final_time_bins)
     write_csv(output_root / "fid1k.csv", fid_rows)
-    plot_training(validation_rows, output_root / "training_validation.png")
-    plot_fid(fid_rows, output_root / "fid1k_sweep.png")
-    build_preview_montage(fid_root, output_root / "preview_comparison.png")
+    plot_training(
+        validation_rows,
+        output_root / "training_validation.png",
+        target_display=spec["display"],
+    )
+    plot_fid(
+        fid_rows,
+        output_root / "fid1k_sweep.png",
+        target_display=spec["display"],
+    )
+    build_preview_montage(
+        fid_root,
+        output_root / "preview_comparison.png",
+        best_condition=str(best["condition"]),
+        best_gamma=float(best["gamma"]),
+    )
 
     final_raw = next(row for row in reversed(validation_rows) if row["branch"] == "raw")
     final_ema = next(row for row in reversed(validation_rows) if row["branch"] == "ema")
     baseline = next(row for row in fid_rows if row["mode"] == "full")
     internal = next(row for row in fid_rows if row["mode"] == "internal")
-    extrapolation = [row for row in fid_rows if row["mode"] == "extrapolation"]
-    best = min(extrapolation, key=lambda row: float(row["fid"]))
     summary = {
-        "protocol": "imagenet100_sit_frozen_internal_v_head_portable_summary_v1",
+        "protocol": spec["summary_protocol"],
         "experiment": {
             "model": run_config["config"]["model_name"],
             "dataset": "ImageNet-100 cached SD-VAE latents",
@@ -355,6 +422,10 @@ def main(args: argparse.Namespace) -> None:
             "global_batch_size": run_config["config"]["global_batch_size"],
             "learning_rate": run_config["config"]["learning_rate"],
             "ema_decay": run_config["config"]["ema_decay"],
+            "prediction_target": run_config["config"].get(
+                "prediction_target", "velocity"
+            ),
+            "objective": run_config["objective"],
             "official_internal_guidance_reference": run_config[
                 "official_internal_guidance_reference"
             ],
@@ -397,9 +468,12 @@ def main(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--train-root", type=Path, default=DEFAULT_TRAIN_ROOT)
-    parser.add_argument("--fid-root", type=Path, default=DEFAULT_FID_ROOT)
-    parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
+    parser.add_argument(
+        "--prediction-target", choices=tuple(TARGET_SPECS), default="velocity"
+    )
+    parser.add_argument("--train-root", type=Path)
+    parser.add_argument("--fid-root", type=Path)
+    parser.add_argument("--output-root", type=Path)
     return parser
 
 

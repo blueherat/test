@@ -1,4 +1,4 @@
-"""Sample a frozen SiT with an independently trained intermediate v head.
+"""Sample a frozen SiT with an independently trained intermediate head.
 
 Separate invocations with the same global seed use identical initial noise and
 class labels.  A single shared-backbone forward returns the frozen final field,
@@ -25,6 +25,7 @@ try:
         full_and_internal_velocity,
         select_internal_guidance_field,
     )
+    from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from experiments.sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
         decode_latents_in_chunks,
@@ -44,6 +45,7 @@ try:
         sha256_file,
     )
     from experiments.train_imagenet100_sit_frozen_internal_v_head import (
+        CLEAN_PROTOCOL,
         PROTOCOL,
         create_frozen_internal_probe,
     )
@@ -52,6 +54,7 @@ except ModuleNotFoundError:
         full_and_internal_velocity,
         select_internal_guidance_field,
     )
+    from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from sample_imagenet100_sit_fid import (
         configure_cuda_allocator,
         decode_latents_in_chunks,
@@ -71,6 +74,7 @@ except ModuleNotFoundError:
         sha256_file,
     )
     from train_imagenet100_sit_frozen_internal_v_head import (
+        CLEAN_PROTOCOL,
         PROTOCOL,
         create_frozen_internal_probe,
     )
@@ -99,11 +103,16 @@ def load_frozen_internal_model(
         map_location="cpu",
         weights_only=False,
     )
-    if checkpoint.get("protocol") != PROTOCOL:
+    checkpoint_protocol = checkpoint.get("protocol")
+    if checkpoint_protocol not in (PROTOCOL, CLEAN_PROTOCOL):
         raise ValueError(f"unexpected head protocol: {checkpoint.get('protocol')!r}")
     if checkpoint.get("official_sit") != source_metadata:
         raise ValueError("head checkpoint and sampler use different SiT revisions")
     config = checkpoint["config"]
+    prediction_target = str(config.get("prediction_target", "velocity"))
+    expected_protocol = PROTOCOL if prediction_target == "velocity" else CLEAN_PROTOCOL
+    if checkpoint_protocol != expected_protocol:
+        raise ValueError("head checkpoint protocol and prediction target disagree")
     source_path = Path(config["source_checkpoint"]).expanduser().resolve()
     source_sha256 = sha256_file(source_path)
     if source_sha256 != config["source_checkpoint_sha256"]:
@@ -140,6 +149,10 @@ def load_frozen_internal_model(
         "model_name": str(config["model_name"]),
         "cfg_dropout": float(config["cfg_dropout"]),
         "internal_depth": int(config["internal_depth"]),
+        "prediction_target": prediction_target,
+        "clean_velocity_denominator_floor": float(
+            config.get("clean_velocity_denominator_floor", 0.05)
+        ),
         "data_manifest_sha256": checkpoint.get("data_manifest_sha256"),
         **probe_metadata,
     }
@@ -157,6 +170,8 @@ def conditional_internal_guidance_field(
     mode: str,
     gamma: float,
     autocast_dtype: torch.dtype | None,
+    prediction_target: str,
+    clean_velocity_denominator_floor: float,
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0, "backbone_forwards": 0, "internal_head_forwards": 0}
 
@@ -166,7 +181,7 @@ def conditional_internal_guidance_field(
         counter["internal_head_forwards"] += 1
         times = time_value.expand(len(state))
         if autocast_dtype is None:
-            full, internal = full_and_internal_velocity(
+            full, internal_prediction = full_and_internal_velocity(
                 model,
                 head,
                 state,
@@ -177,7 +192,7 @@ def conditional_internal_guidance_field(
             )
         else:
             with torch.autocast("cuda", dtype=autocast_dtype):
-                full, internal = full_and_internal_velocity(
+                full, internal_prediction = full_and_internal_velocity(
                     model,
                     head,
                     state,
@@ -186,9 +201,20 @@ def conditional_internal_guidance_field(
                     internal_depth=internal_depth,
                     latent_channels=LATENT_SHAPE[0],
                 )
+        if prediction_target == "velocity":
+            internal_velocity = internal_prediction.float()
+        elif prediction_target == "clean":
+            internal_velocity = clean_prediction_to_velocity(
+                internal_prediction,
+                state=state,
+                time_value=times,
+                denominator_floor=clean_velocity_denominator_floor,
+            )
+        else:
+            raise ValueError(f"unsupported internal target: {prediction_target!r}")
         return select_internal_guidance_field(
             full,
-            internal,
+            internal_velocity,
             mode=mode,
             gamma=gamma,
         )
@@ -275,6 +301,10 @@ def main(args: argparse.Namespace) -> None:
             mode=args.mode,
             gamma=args.gamma,
             autocast_dtype=autocast_dtype,
+            prediction_target=str(model_metadata["prediction_target"]),
+            clean_velocity_denominator_floor=float(
+                model_metadata["clean_velocity_denominator_floor"]
+            ),
         )
         latents = integrate_velocity(
             noise,
@@ -388,13 +418,23 @@ def main(args: argparse.Namespace) -> None:
         np.savez(sample_path, arr_0=merged_images)
         np.save(label_path, merged_labels, allow_pickle=False)
         histogram = np.bincount(merged_labels.astype(np.int64), minlength=NUM_CLASSES)
+        internal_name = (
+            "v_internal_depth"
+            if model_metadata["prediction_target"] == "velocity"
+            else "(x_internal_depth-x_t)/max(1-t,0.05)"
+        )
         formula = {
             "full": "v_full",
-            "internal": "v_internal_depth",
-            "extrapolation": "v_full + gamma * (v_full - v_internal_depth)",
+            "internal": internal_name,
+            "extrapolation": f"v_full + gamma * (v_full - {internal_name})",
         }[args.mode]
+        sample_format = (
+            "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1"
+            if model_metadata["prediction_target"] == "velocity"
+            else "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1"
+        )
         manifest = {
-            "format": "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1",
+            "format": sample_format,
             "scope": "paired Internal Guidance screening on ImageNet-100",
             "model": model_metadata,
             "mode": args.mode,

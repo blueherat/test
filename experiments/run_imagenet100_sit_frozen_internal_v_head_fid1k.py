@@ -25,7 +25,10 @@ try:
         valid_resource_audit,
     )
     from experiments.train_imagenet100_sit_flow import atomic_json_dump, sha256_file
-    from experiments.train_imagenet100_sit_frozen_internal_v_head import PROTOCOL
+    from experiments.train_imagenet100_sit_frozen_internal_v_head import (
+        CLEAN_PROTOCOL,
+        PROTOCOL,
+    )
 except ModuleNotFoundError:
     from run_imagenet100_sit_fid_curve import (
         DEFAULT_ADM_PYTHON,
@@ -38,7 +41,7 @@ except ModuleNotFoundError:
         valid_resource_audit,
     )
     from train_imagenet100_sit_flow import atomic_json_dump, sha256_file
-    from train_imagenet100_sit_frozen_internal_v_head import PROTOCOL
+    from train_imagenet100_sit_frozen_internal_v_head import CLEAN_PROTOCOL, PROTOCOL
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -65,9 +68,14 @@ def checkpoint_metadata(path: Path, head_weights: str) -> dict[str, object]:
     if not path.is_file():
         raise FileNotFoundError(f"missing checkpoint: {path}")
     checkpoint = torch.load(path, map_location="cpu", weights_only=False, mmap=True)
-    if checkpoint.get("protocol") != PROTOCOL:
+    checkpoint_protocol = checkpoint.get("protocol")
+    if checkpoint_protocol not in (PROTOCOL, CLEAN_PROTOCOL):
         raise ValueError(f"unexpected checkpoint protocol: {checkpoint.get('protocol')!r}")
     config = checkpoint["config"]
+    prediction_target = str(config.get("prediction_target", "velocity"))
+    expected_protocol = PROTOCOL if prediction_target == "velocity" else CLEAN_PROTOCOL
+    if checkpoint_protocol != expected_protocol:
+        raise ValueError("checkpoint protocol and prediction target disagree")
     metadata = {
         "checkpoint": str(path),
         "checkpoint_sha256": sha256_file(path),
@@ -79,6 +87,10 @@ def checkpoint_metadata(path: Path, head_weights: str) -> dict[str, object]:
         "source_state_key": str(config["source_state_key"]),
         "model_name": str(config["model_name"]),
         "internal_depth": int(config["internal_depth"]),
+        "prediction_target": prediction_target,
+        "clean_velocity_denominator_floor": float(
+            config.get("clean_velocity_denominator_floor", 0.05)
+        ),
         "data_manifest_sha256": checkpoint.get("data_manifest_sha256"),
     }
     del checkpoint
@@ -122,8 +134,13 @@ def valid_sampling_artifact(
     ):
         return False
     manifest = load_json(manifest_path)
+    expected_format = (
+        "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1"
+        if checkpoint["prediction_target"] == "velocity"
+        else "eqvae_imagenet100_sit_frozen_internal_clean_head_samples_v1"
+    )
     expected = {
-        "format": "eqvae_imagenet100_sit_frozen_internal_v_head_samples_v1",
+        "format": expected_format,
         "mode": mode,
         "gamma": float(gamma),
         "requested_samples": args.num_samples,
@@ -151,12 +168,23 @@ def valid_sampling_artifact(
         "source_step": checkpoint["source_step"],
         "source_state_key": checkpoint["source_state_key"],
         "internal_depth": checkpoint["internal_depth"],
+        "prediction_target": checkpoint["prediction_target"],
     }
     mismatches.update(
         {
-            f"model.{key}": (recorded_model.get(key), value)
+            f"model.{key}": (
+                recorded_model.get(
+                    key,
+                    "velocity" if key == "prediction_target" else None,
+                ),
+                value,
+            )
             for key, value in model_expected.items()
-            if recorded_model.get(key) != value
+            if recorded_model.get(
+                key,
+                "velocity" if key == "prediction_target" else None,
+            )
+            != value
         }
     )
     if mismatches:
@@ -310,7 +338,8 @@ def save_summary(
     }
     if len(fingerprints) != 1:
         raise ValueError("conditions do not share identical noise and labels")
-    csv_path = output_root / "frozen_internal_v_head_fid1k.csv"
+    target = str(checkpoint["prediction_target"])
+    csv_path = output_root / f"frozen_internal_{target}_head_fid1k.csv"
     with csv_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
         writer.writeheader()
@@ -318,7 +347,7 @@ def save_summary(
     extrapolated = [row for row in rows if row["mode"] == "extrapolation"]
     best_extrapolation = min(extrapolated, key=lambda row: float(row["fid"]))
     summary = {
-        "protocol": "imagenet100_sit_frozen_internal_v_head_fid1k_v1",
+        "protocol": f"imagenet100_sit_frozen_internal_{target}_head_fid1k_v1",
         "comparison_is_paired": True,
         "pairing": "same shared model, initial noise, labels, ODE, VAE, and ADM reference",
         "checkpoint": checkpoint,
@@ -326,7 +355,10 @@ def save_summary(
         "rows": rows,
         "csv": str(csv_path),
     }
-    atomic_json_dump(summary, output_root / "frozen_internal_v_head_fid1k.json")
+    atomic_json_dump(
+        summary,
+        output_root / f"frozen_internal_{target}_head_fid1k.json",
+    )
     return summary
 
 
