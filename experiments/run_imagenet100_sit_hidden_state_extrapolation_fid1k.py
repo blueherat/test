@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run a paired FID-1K sweep for frozen-v800 hidden-state extrapolation."""
+"""Run paired FID-1K sweeps for frozen-v800 hidden-state mixing."""
 
 from __future__ import annotations
 
@@ -56,6 +56,8 @@ DEFAULT_OUTPUT_ROOT = Path(
 )
 DEFAULT_HIDDEN_GAMMAS = (0.1, 0.2, 0.4, 0.6, 1.0, 1.5, 2.0, 3.0)
 DEFAULT_OUTPUT_GAMMAS = (0.03, 0.1, 0.2, 0.4)
+DEFAULT_HIDDEN_ALPHAS: tuple[float, ...] = ()
+DEFAULT_OUTPUT_ALPHAS: tuple[float, ...] = ()
 
 
 def format_float(value: float) -> str:
@@ -88,21 +90,24 @@ def checkpoint_metadata(path: Path, weights: str) -> dict[str, object]:
 def conditions(
     hidden_gammas: list[float],
     output_gammas: list[float],
+    hidden_alphas: list[float],
+    output_alphas: list[float],
     *,
     include_final: bool,
     include_internal: bool,
-) -> list[tuple[str, str, str, float]]:
-    rows: list[tuple[str, str, str, float]] = []
+) -> list[tuple[str, str, str, float, float]]:
+    rows: list[tuple[str, str, str, float, float]] = []
     if include_final:
-        rows.append(("final", "final", "hidden", 0.0))
+        rows.append(("final", "final", "hidden", 0.0, 0.0))
     if include_internal:
-        rows.append(("internal_depth8", "internal", "hidden", 0.0))
+        rows.append(("internal_depth8", "internal", "hidden", 0.0, 0.0))
     rows.extend(
         (
             f"hidden_gamma_{format_float(gamma)}",
             "extrapolation",
             "hidden",
             gamma,
+            0.0,
         )
         for gamma in hidden_gammas
     )
@@ -112,8 +117,29 @@ def conditions(
             "extrapolation",
             "output",
             gamma,
+            0.0,
         )
         for gamma in output_gammas
+    )
+    rows.extend(
+        (
+            f"hidden_alpha_{format_float(alpha)}",
+            "interpolation",
+            "hidden",
+            0.0,
+            alpha,
+        )
+        for alpha in hidden_alphas
+    )
+    rows.extend(
+        (
+            f"output_alpha_{format_float(alpha)}",
+            "interpolation",
+            "output",
+            0.0,
+            alpha,
+        )
+        for alpha in output_alphas
     )
     return rows
 
@@ -125,6 +151,7 @@ def valid_sampling_artifact(
     mode: str,
     extrapolation_space: str,
     gamma: float,
+    alpha: float,
     args: argparse.Namespace,
 ) -> bool:
     manifest_path = output_dir / "sampling_manifest.json"
@@ -144,6 +171,7 @@ def valid_sampling_artifact(
         "internal_depth": args.internal_depth,
         "extrapolation_space": extrapolation_space,
         "gamma": float(gamma),
+        "alpha": float(alpha),
         "requested_samples": args.num_samples,
         "world_size": len(args.sampling_gpu_indices),
         "per_rank_batch_size": args.per_rank_batch_size,
@@ -156,9 +184,9 @@ def valid_sampling_artifact(
         "single_shared_backbone_forward_per_nfe": True,
     }
     mismatches = {
-        key: (manifest.get(key), value)
+        key: (manifest.get(key, 0.0) if key == "alpha" else manifest.get(key), value)
         for key, value in expected.items()
-        if manifest.get(key) != value
+        if (manifest.get(key, 0.0) if key == "alpha" else manifest.get(key)) != value
     }
     recorded_model = manifest.get("model", {})
     model_expected = {
@@ -189,6 +217,7 @@ def evaluate_condition(
     mode: str,
     extrapolation_space: str,
     gamma: float,
+    alpha: float,
     checkpoint: dict[str, object],
     args: argparse.Namespace,
     sampling_env: dict[str, str],
@@ -202,6 +231,7 @@ def evaluate_condition(
         mode=mode,
         extrapolation_space=extrapolation_space,
         gamma=gamma,
+        alpha=alpha,
         args=args,
     ):
         run_logged(
@@ -227,6 +257,8 @@ def evaluate_condition(
                 extrapolation_space,
                 "--gamma",
                 str(gamma),
+                "--alpha",
+                str(alpha),
                 "--num-samples",
                 str(args.num_samples),
                 "--per-rank-batch-size",
@@ -254,6 +286,7 @@ def evaluate_condition(
             mode=mode,
             extrapolation_space=extrapolation_space,
             gamma=gamma,
+            alpha=alpha,
             args=args,
         ):
             raise RuntimeError(f"sampler produced an invalid artifact: {output_dir}")
@@ -304,6 +337,7 @@ def evaluate_condition(
         "mode": mode,
         "extrapolation_space": extrapolation_space,
         "gamma": float(gamma),
+        "alpha": float(alpha),
         "source_step": checkpoint["step"],
         "weights": checkpoint["weights"],
         "num_samples": args.num_samples,
@@ -341,6 +375,7 @@ def save_summary(
         writer.writeheader()
         writer.writerows(rows)
     extrapolated = [row for row in rows if row["mode"] == "extrapolation"]
+    interpolated = [row for row in rows if row["mode"] == "interpolation"]
     best_by_space = {
         space: min(
             (row for row in extrapolated if row["extrapolation_space"] == space),
@@ -349,12 +384,21 @@ def save_summary(
         for space in ("hidden", "output")
         if any(row["extrapolation_space"] == space for row in extrapolated)
     }
+    best_interpolation_by_space = {
+        space: min(
+            (row for row in interpolated if row["extrapolation_space"] == space),
+            key=lambda row: float(row["fid"]),
+        )
+        for space in ("hidden", "output")
+        if any(row["extrapolation_space"] == space for row in interpolated)
+    }
     summary = {
         "protocol": PROTOCOL,
         "comparison_is_paired": True,
         "pairing": "same v800 EMA, initial noise, labels, ODE, VAE, and ADM reference",
         "checkpoint": checkpoint,
         "best_by_space": best_by_space,
+        "best_interpolation_by_space": best_interpolation_by_space,
         "rows": rows,
         "csv": str(csv_path),
     }
@@ -371,8 +415,18 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
     parser.add_argument("--torchrun", default=shutil.which("torchrun") or "torchrun")
-    parser.add_argument("--hidden-gammas", nargs="+", type=float, default=list(DEFAULT_HIDDEN_GAMMAS))
-    parser.add_argument("--output-gammas", nargs="*", type=float, default=list(DEFAULT_OUTPUT_GAMMAS))
+    parser.add_argument(
+        "--hidden-gammas", nargs="*", type=float, default=list(DEFAULT_HIDDEN_GAMMAS)
+    )
+    parser.add_argument(
+        "--output-gammas", nargs="*", type=float, default=list(DEFAULT_OUTPUT_GAMMAS)
+    )
+    parser.add_argument(
+        "--hidden-alphas", nargs="*", type=float, default=list(DEFAULT_HIDDEN_ALPHAS)
+    )
+    parser.add_argument(
+        "--output-alphas", nargs="*", type=float, default=list(DEFAULT_OUTPUT_ALPHAS)
+    )
     parser.add_argument("--include-final", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--include-internal", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--num-samples", type=int, default=1_000)
@@ -400,14 +454,28 @@ def main() -> None:
     if len(args.fid_gpu_indices) != 1:
         raise ValueError("ADM FID evaluation requires exactly one visible GPU")
     gamma_values = [*args.hidden_gammas, *args.output_gammas]
-    if not args.hidden_gammas or any(
+    alpha_values = [*args.hidden_alphas, *args.output_alphas]
+    if any(
         gamma <= 0 or not math.isfinite(gamma) for gamma in gamma_values
     ):
         raise ValueError("all gamma values must be finite and positive")
+    if any(
+        alpha <= 0 or alpha >= 1 or not math.isfinite(alpha)
+        for alpha in alpha_values
+    ):
+        raise ValueError("all interpolation alpha values must be finite and lie in (0, 1)")
+    if not gamma_values and not alpha_values and not (
+        args.include_final or args.include_internal
+    ):
+        raise ValueError("at least one treatment or endpoint must be requested")
     if len(set(args.hidden_gammas)) != len(args.hidden_gammas):
         raise ValueError("hidden gamma values must not contain duplicates")
     if len(set(args.output_gammas)) != len(args.output_gammas):
         raise ValueError("output gamma values must not contain duplicates")
+    if len(set(args.hidden_alphas)) != len(args.hidden_alphas):
+        raise ValueError("hidden alpha values must not contain duplicates")
+    if len(set(args.output_alphas)) != len(args.output_alphas):
+        raise ValueError("output alpha values must not contain duplicates")
     if not args.reference.is_file() or not args.adm_python.is_file():
         raise FileNotFoundError("ADM reference or evaluator is missing")
     if not 1 <= args.internal_depth < 12:
@@ -439,13 +507,16 @@ def main() -> None:
             mode=mode,
             extrapolation_space=space,
             gamma=gamma,
+            alpha=alpha,
             checkpoint=checkpoint,
             args=args,
             sampling_env=sampling_env,
         )
-        for name, mode, space, gamma in conditions(
+        for name, mode, space, gamma, alpha in conditions(
             args.hidden_gammas,
             args.output_gammas,
+            args.hidden_alphas,
+            args.output_alphas,
             include_final=args.include_final,
             include_internal=args.include_internal,
         )

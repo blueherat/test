@@ -78,6 +78,59 @@ def test_zero_gamma_is_bitwise_identical_to_source_forward() -> None:
             assert torch.equal(actual, expected)
 
 
+def test_interpolation_endpoints_are_exact() -> None:
+    sit_module, _ = load_official_sit_module(DEFAULT_OFFICIAL_SIT_REPO)
+    torch.manual_seed(105)
+    model = make_sit(sit_module).eval()
+    with torch.no_grad():
+        model.final_layer.linear.weight.normal_(std=0.1)
+    state = torch.randn(2, *LATENT_SHAPE)
+    times = torch.tensor([0.3, 0.7])
+    labels = torch.tensor([2, 8])
+
+    with torch.inference_mode():
+        internal, final, conditioning = internal_and_final_hidden_states(
+            model,
+            state,
+            times,
+            labels,
+            internal_depth=8,
+        )
+        expected_final = velocity_from_hidden_state(
+            model,
+            final,
+            conditioning,
+            latent_channels=LATENT_SHAPE[0],
+        ).float()
+        expected_internal = velocity_from_hidden_state(
+            model,
+            internal,
+            conditioning,
+            latent_channels=LATENT_SHAPE[0],
+        ).float()
+        alpha_zero = select_hidden_state_field(
+            model,
+            internal,
+            final,
+            conditioning,
+            latent_channels=LATENT_SHAPE[0],
+            mode="interpolation",
+            alpha=0.0,
+        )
+        alpha_one = select_hidden_state_field(
+            model,
+            internal,
+            final,
+            conditioning,
+            latent_channels=LATENT_SHAPE[0],
+            mode="interpolation",
+            alpha=1.0,
+        )
+
+    assert torch.equal(alpha_zero, expected_final)
+    assert torch.equal(alpha_one, expected_internal)
+
+
 def test_hidden_and_output_extrapolation_are_distinct_after_adaln() -> None:
     sit_module, _ = load_official_sit_module(DEFAULT_OFFICIAL_SIT_REPO)
     torch.manual_seed(107)

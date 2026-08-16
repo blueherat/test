@@ -1,4 +1,4 @@
-"""Hidden-state extrapolation for a frozen SiT velocity model."""
+"""Hidden-state interpolation and extrapolation for a frozen SiT model."""
 
 from __future__ import annotations
 
@@ -66,9 +66,10 @@ def select_hidden_state_field(
     latent_channels: int,
     mode: str,
     gamma: float = 0.0,
+    alpha: float = 0.0,
     extrapolation_space: str = "hidden",
 ) -> torch.Tensor:
-    """Read out h_final, h_internal, or their frozen-model extrapolation.
+    """Read out h_final, h_internal, or a frozen-model mixture of the two.
 
     ``hidden`` extrapolates before the nonlinear conditional FinalLayer:
 
@@ -78,11 +79,14 @@ def select_hidden_state_field(
     extrapolates their velocity outputs.  It is a diagnostic control because
     FinalLayer contains conditional LayerNorm/AdaLN and the two operations are
     therefore not equivalent.
+
+    Interpolation uses the same two spaces with ``alpha`` in ``[0, 1]`` and
+    moves from the final state (zero) toward the internal state (one).
     """
 
     if internal_hidden.shape != final_hidden.shape:
         raise ValueError("internal and final hidden states must have identical shapes")
-    if mode not in {"final", "internal", "extrapolation"}:
+    if mode not in {"final", "internal", "extrapolation", "interpolation"}:
         raise ValueError(f"unsupported hidden-state mode: {mode!r}")
     if extrapolation_space not in {"hidden", "output"}:
         raise ValueError(
@@ -90,10 +94,22 @@ def select_hidden_state_field(
         )
     if not math.isfinite(float(gamma)):
         raise ValueError("gamma must be finite")
+    if not math.isfinite(float(alpha)):
+        raise ValueError("alpha must be finite")
     if mode != "extrapolation" and float(gamma) != 0.0:
         raise ValueError("gamma is only meaningful in extrapolation mode")
+    if mode != "interpolation" and float(alpha) != 0.0:
+        raise ValueError("alpha is only meaningful in interpolation mode")
+    if mode == "extrapolation" and float(gamma) < 0.0:
+        raise ValueError("extrapolation gamma must be nonnegative")
+    if mode == "interpolation" and not 0.0 <= float(alpha) <= 1.0:
+        raise ValueError("interpolation alpha must lie in [0,1]")
 
-    if mode == "final" or (mode == "extrapolation" and float(gamma) == 0.0):
+    if mode == "final" or (
+        mode in {"extrapolation", "interpolation"}
+        and float(gamma) == 0.0
+        and float(alpha) == 0.0
+    ):
         return velocity_from_hidden_state(
             model,
             final_hidden,
@@ -109,7 +125,8 @@ def select_hidden_state_field(
             latent_channels=latent_channels,
         ).float()
 
-    extrapolated_hidden = final_hidden + float(gamma) * (
+    signed_distance = float(gamma) if mode == "extrapolation" else -float(alpha)
+    extrapolated_hidden = final_hidden + signed_distance * (
         final_hidden - internal_hidden
     )
     if extrapolation_space == "hidden":
@@ -132,7 +149,7 @@ def select_hidden_state_field(
         conditioning,
         latent_channels=latent_channels,
     ).float()
-    return final_velocity + float(gamma) * (final_velocity - internal_velocity)
+    return final_velocity + signed_distance * (final_velocity - internal_velocity)
 
 
 def frozen_hidden_state_field(
@@ -145,6 +162,7 @@ def frozen_hidden_state_field(
     latent_channels: int,
     mode: str,
     gamma: float = 0.0,
+    alpha: float = 0.0,
     extrapolation_space: str = "hidden",
 ) -> torch.Tensor:
     """Evaluate one frozen SiT backbone and select the requested field."""
@@ -164,5 +182,6 @@ def frozen_hidden_state_field(
         latent_channels=latent_channels,
         mode=mode,
         gamma=gamma,
+        alpha=alpha,
         extrapolation_space=extrapolation_space,
     )

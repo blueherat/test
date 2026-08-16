@@ -123,6 +123,7 @@ def conditional_hidden_state_field(
     internal_depth: int,
     mode: str,
     gamma: float,
+    alpha: float,
     extrapolation_space: str,
     autocast_dtype: torch.dtype | None,
 ) -> tuple[object, dict[str, int]]:
@@ -132,7 +133,10 @@ def conditional_hidden_state_field(
         counter["nfe"] += 1
         counter["backbone_forwards"] += 1
         counter["final_layer_forwards"] += (
-            2 if mode == "extrapolation" and extrapolation_space == "output" else 1
+            2
+            if mode in {"extrapolation", "interpolation"}
+            and extrapolation_space == "output"
+            else 1
         )
         times = time_value.expand(len(state))
         if autocast_dtype is None:
@@ -145,6 +149,7 @@ def conditional_hidden_state_field(
                 latent_channels=LATENT_SHAPE[0],
                 mode=mode,
                 gamma=gamma,
+                alpha=alpha,
                 extrapolation_space=extrapolation_space,
             )
         with torch.autocast("cuda", dtype=autocast_dtype):
@@ -157,6 +162,7 @@ def conditional_hidden_state_field(
                 latent_channels=LATENT_SHAPE[0],
                 mode=mode,
                 gamma=gamma,
+                alpha=alpha,
                 extrapolation_space=extrapolation_space,
             )
 
@@ -169,8 +175,12 @@ def main(args: argparse.Namespace) -> None:
         raise RuntimeError("CUDA is required")
     if args.mode != "extrapolation" and args.gamma != 0.0:
         raise ValueError("--gamma is only meaningful for extrapolation mode")
+    if args.mode != "interpolation" and args.alpha != 0.0:
+        raise ValueError("--alpha is only meaningful for interpolation mode")
     if args.mode == "extrapolation" and args.gamma < 0:
-        raise ValueError("this protocol reserves extrapolation for gamma >= 0")
+        raise ValueError("extrapolation gamma must be nonnegative")
+    if args.mode == "interpolation" and not 0 <= args.alpha <= 1:
+        raise ValueError("interpolation alpha must lie in [0,1]")
 
     local_rank = int(os.environ["LOCAL_RANK"])
     device = torch.device("cuda", local_rank)
@@ -245,6 +255,7 @@ def main(args: argparse.Namespace) -> None:
             internal_depth=args.internal_depth,
             mode=args.mode,
             gamma=args.gamma,
+            alpha=args.alpha,
             extrapolation_space=args.extrapolation_space,
             autocast_dtype=autocast_dtype,
         )
@@ -290,6 +301,7 @@ def main(args: argparse.Namespace) -> None:
                         "mode": args.mode,
                         "space": args.extrapolation_space,
                         "gamma": args.gamma,
+                        "alpha": args.alpha,
                         "generated_on_rank": cursor,
                         "samples_per_rank": samples_per_rank,
                         "elapsed_seconds": elapsed,
@@ -318,6 +330,7 @@ def main(args: argparse.Namespace) -> None:
             "mode": args.mode,
             "extrapolation_space": args.extrapolation_space,
             "gamma": float(args.gamma),
+            "alpha": float(args.alpha),
             "sample_count": samples_per_rank,
             "noise_sha256": noise_digest.hexdigest(),
             "label_sha256": label_digest.hexdigest(),
@@ -373,16 +386,25 @@ def main(args: argparse.Namespace) -> None:
                     f"FinalLayer(h_{args.internal_depth},c))"
                 )
             ),
+            "interpolation": (
+                f"FinalLayer((1-alpha) * h_final + alpha * h_{args.internal_depth}, c)"
+                if args.extrapolation_space == "hidden"
+                else (
+                    "(1-alpha) * FinalLayer(h_final,c) + alpha * "
+                    f"FinalLayer(h_{args.internal_depth},c)"
+                )
+            ),
         }[args.mode]
         manifest = {
             "format": "eqvae_imagenet100_sit_hidden_state_extrapolation_samples_v1",
             "protocol": PROTOCOL,
-            "scope": "paired frozen-v800 hidden-state extrapolation screening",
+            "scope": "paired frozen-v800 hidden-state mixing screening",
             "model": model_metadata,
             "mode": args.mode,
             "internal_depth": int(args.internal_depth),
             "extrapolation_space": args.extrapolation_space,
             "gamma": float(args.gamma),
+            "alpha": float(args.alpha),
             "formula": formula,
             "official_sit": source_metadata,
             "requested_samples": int(args.num_samples),
@@ -448,6 +470,7 @@ def main(args: argparse.Namespace) -> None:
                     "mode": args.mode,
                     "space": args.extrapolation_space,
                     "gamma": args.gamma,
+                    "alpha": args.alpha,
                     "samples": str(sample_path),
                     "label_count_min": int(histogram.min()),
                     "label_count_max": int(histogram.max()),
@@ -466,9 +489,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--official-sit-repo", type=Path, default=DEFAULT_OFFICIAL_SIT_REPO)
     parser.add_argument("--weights", choices=("ema", "model"), default="ema")
     parser.add_argument("--internal-depth", type=int, default=8)
-    parser.add_argument("--mode", choices=("final", "internal", "extrapolation"), required=True)
+    parser.add_argument(
+        "--mode",
+        choices=("final", "internal", "extrapolation", "interpolation"),
+        required=True,
+    )
     parser.add_argument("--extrapolation-space", choices=("hidden", "output"), default="hidden")
     parser.add_argument("--gamma", type=float, default=0.0)
+    parser.add_argument("--alpha", type=float, default=0.0)
     parser.add_argument("--num-samples", type=int, default=1_000)
     parser.add_argument("--per-rank-batch-size", type=int, default=8)
     parser.add_argument("--vae-decode-batch-size", type=int, default=2)

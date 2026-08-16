@@ -81,6 +81,39 @@ Output-space 对照：
 
 所有已测正 gamma 的 FID 均差于 baseline。最小差值只有 `0.0390` FID，单独看属于 FID-1K 波动范围；但 FID、sFID 和 IS 随外推强度整体一致退化，没有出现小系数改善窗口。配对预览显示外推先增强锐度，随后产生过曝、轮廓描边和颜色饱和。
 
+## 反向内插补充实验
+
+在相同 `v800` EMA、block 8/12、noise、labels、ODE、VAE 和 ADM reference 下，进一步测试从最终状态向第 8 层状态内插：
+
+```text
+hidden: h_alpha = (1-alpha) * h12 + alpha * h8
+        v_alpha = FinalLayer(h_alpha, time + class)
+
+output: v_alpha = (1-alpha) * FinalLayer(h12, c)
+                + alpha * FinalLayer(h8, c)
+```
+
+Hidden-space 的局部结果：
+
+| alpha | FID ↓ | sFID ↓ | IS ↑ |
+|---:|---:|---:|---:|
+| 0，原始 v800 | 86.9071 | 220.1676 | 29.2484 |
+| 0.005 | 86.7217 | 219.2558 | 29.4521 |
+| 0.010 | 86.6016 | 218.3744 | 29.7584 |
+| 0.0125 | 86.4785 | 217.9469 | 29.6950 |
+| 0.0150 | 86.4709 | 217.5111 | 29.8099 |
+| **0.0175** | **86.3469** | 217.0360 | 29.8342 |
+| 0.0200 | 86.3830 | 216.5615 | 29.9628 |
+| 0.0225 | 86.3923 | 216.1263 | 30.0910 |
+| 0.0250 | 86.4112 | 215.7024 | 30.1230 |
+| 0.0300 | 86.4087 | 214.8188 | 30.2335 |
+| 0.0500 | 87.1078 | 211.4321 | 30.6429 |
+| 0.1000 | 90.9722 | 205.0725 | 28.7862 |
+
+最佳 FID-1K 为 `alpha=0.0175` 的 `86.3469`，相对 baseline 改善 `0.5602`。该差异较小，`0.0175–0.03` 也彼此接近，因此按要求停止细扫，没有做 FID-5K 放大验证，不将其视为显著质量提升。
+
+Output-space 内插没有改善 FID：最小点 `alpha=0.001` 为 `86.9112`，随后随 alpha 增大而持续恶化。这说明局部正信号只出现在 FinalLayer 之前的 hidden-space 内插，而不是两个速度输出的普通线性平均。
+
 ## 方向审计
 
 为区别“原 FinalLayer 直接读取 h8”与“训练过的 depth-8 v-head”，在 32 条从 `t=0` 开始的 v800 baseline rollout 上比较：
@@ -113,6 +146,10 @@ g_trained = v_full - trained_auxiliary_FinalLayer(h8)
 | `hidden_state_gap_audit.csv` | raw 与 trained gap 的逐时间统计 |
 | `hidden_state_gap_audit.png` | gap cosine 与 RMS 比例 |
 | `preview_comparison.png` | 相同 noise/labels 下的配对预览 |
+| `interpolation_summary.json` | 26 个严格配对内插条件、公式、哈希和关键结果 |
+| `interpolation_fid1k.csv` | hidden/output 内插的完整 FID/sFID/IS 数据 |
+| `interpolation_sweep.png` | 内插全局与局部曲线 |
+| `interpolation_preview.png` | baseline、最佳小幅内插和较大内插的配对预览 |
 
 重建方向审计与便携报告：
 
@@ -121,6 +158,8 @@ CUDA_VISIBLE_DEVICES=0 \
 python experiments/analyze_imagenet100_sit_hidden_state_gap.py
 
 python experiments/summarize_imagenet100_sit_hidden_state_extrapolation.py
+
+python experiments/summarize_imagenet100_sit_hidden_state_interpolation.py
 ```
 
-正式 FID sweep 可由 `experiments/run_imagenet100_sit_hidden_state_extrapolation_fid1k.py` 复现。本机未纳入 Git 的主要产物包括 24 份生成样本 NPZ，共 `4,718,598,336` bytes。
+正式 FID sweep 可由 `experiments/run_imagenet100_sit_hidden_state_extrapolation_fid1k.py` 复现。本机未纳入 Git 的主要产物包括旧外推的 24 份生成样本 NPZ，以及本次内插的 26 份配对样本 NPZ；内插样本共 `5,111,814,864` bytes。
