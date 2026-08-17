@@ -1,0 +1,5 @@
+method,condition,seed,num_samples,fid,sfid,inception_score,notes
+unguided_baseline,sit_v800_ema,0,5000,61.00164134432981,68.98711174855703,30.204206466674805,800K SiT-S/2 native velocity baseline
+previous_best_factorized,v500_g1p75_r1p30_l1p25,0,5000,46.06971474071372,67.74666598815122,33.71955490112305,"gamma=1.75; rho=1.30; lambda=1.25"
+previous_best_factorized,v500_g1p75_r1p30_l1p25,1,5000,46.000341537326676,67.89791291419976,34.20922088623047,"gamma=1.75; rho=1.30; lambda=1.25"
+multiscale_depth_schedule,depth4_to_depth8_to_depth10_native_gamma0p4,0,5000,42.6253920448695,69.17208447207872,35.231746673583984,coarse-to-fine frozen internal velocity heads

@@ -2,16 +2,16 @@
 
 ## 一、结论摘要
 
-本轮完整跑完了 4 个内部 velocity head 的训练、1 份 latent 时频 atlas，以及 99 个完全配对的 FID-1K 条件。最重要的结果是：
+本轮完整跑完了 4 个内部 velocity head 的训练、1 份 latent 时频 atlas、99 个完全配对的 FID-1K 条件，并对筛查最优的 `depth 4 -> 8 -> 10` 做了正式 FID-5K 确认。最重要的结果是：
 
 1. **静态频谱统计不能单独区分 useful 与 failed guidance。** 多组成功/失败 gap 的平均频谱质心和高频占比几乎重合，因此“某种频谱长相天然有用”的强假设不成立。
 2. **gap 的终端作用具有明确的时间和尺度结构。** 对成功的 `depth8_v` 与 `external_v500`，最有效的单元都集中在 `mid × high`；失败的 `depth12_x` 在所有 18 个 time-band 条件中都几乎没有作用。
-3. **时间变化的内部深度是本轮最强正结果。** 固定 `gamma=0.4` 时，`depth 4 -> 8 -> 10` 将配对 FID-1K 从 `84.97` 降到 `68.31`，优于任一静态深度、固定 depth-8 gap 和反向 `10 -> 8 -> 4` 调度。
+3. **时间变化的内部深度是本轮最强正结果。** 固定 `gamma=0.4` 时，`depth 4 -> 8 -> 10` 将配对 FID-1K 从 `84.97` 降到 `68.31`；正式 5K 评估进一步得到 FID `42.6254`，相对 800K unguided baseline 的 `61.0016` 改善 `18.3762`，约 `30.1%`。
 4. **结果不是简单由 gap RMS 决定。** RMS 匹配后，正向调度仍比反向调度好 `7.54` FID；频谱 router 也仍比 anti-router 好 `6.88` FID。
 5. **“弱模型只是强模型按频带延迟几步”的版本未通过。** 拟合只得到 low/mid 延迟 1 个 Euler step、high 延迟 0 step；synthetic delayed self-guidance 相对 Euler baseline 最多只改善 `0.94` FID-1K，且 RMS 匹配的大系数明显恶化。
 6. **raw unresolved-computation proxy 失败。** 把未训练的中间 token 直接送进最终输出层会造成严重 representation mismatch；即使 RMS 匹配，FID-1K 仍为 `112.59` 至 `115.27`。这否定的是当前 proxy，不足以否定“剩余计算”概念本身。
 
-这些都是**单训练 seed、单采样 seed、每条件 1,000 张的筛查结果**。用户明确取消了本轮 FID-5K，所以当前不能把最优 FID 当成正式方法结论。
+99 条筛查曲线仍然是**单训练 seed、单采样 seed、每条件 1,000 张**；只有筛查最优的 `depth 4 -> 8 -> 10` 补做了单采样 seed 的 FID-5K。5K 结果确认了大幅 FID/IS 收益，但还没有训练多 seed，也不是等 FLOPs 比较。
 
 ## 二、研究对象
 
@@ -83,6 +83,23 @@ label: 7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6
 Dopri5 与固定 Euler 使用各自的 baseline。固定 Euler 的 `num_output_points` 没有被误当成 NFE；这里真正运行的是 100-step fixed Euler，总计 12,500 次 batch-level model evaluation。
 
 ## 四、主结果
+
+### 4.0 最优调度的 FID-5K 确认
+
+筛查最优条件保持原参数不变：原生幅度、`gamma=0.4`、噪声到数据方向依次使用 depth `4 -> 8 -> 10` 的 frozen velocity readout。正式评估生成 5,000 张，使用同一 ImageNet-100 validation 5K ADM reference statistics：
+
+| 方法 | seed | FID-5K ↓ | sFID ↓ | IS ↑ |
+|---|---:|---:|---:|---:|
+| 800K SiT-v unguided baseline | 0 | 61.0016 | 68.9871 | 30.2042 |
+| 此前最好：v500 response-factorized | 0 | 46.0697 | **67.7467** | 33.7196 |
+| 此前最好：v500 response-factorized | 1 | 46.0003 | 67.8979 | 34.2092 |
+| depth `4 -> 8 -> 10`, native, `gamma=0.4` | 0 | **42.6254** | 69.1721 | **35.2317** |
+
+此前最低的单次生成 FID 是 `46.0003`；对应方法参数为 `gamma=1.75, rho=1.30, lambda=1.25`，两个 seed 的平均 FID 为 `46.0350`。当前调度比此前最低单次 FID 再低 `3.3749`，约 `7.34%`；比此前两 seed 均值低 `3.4096`。
+
+这个提升不是所有指标同向：当前 FID 和 IS 最好，但 sFID 比此前 response-factorized 方法高约 `1.3`。因此更准确的结论是：**`4 -> 8 -> 10` 刷新了当前仓库内生成实验的 FID-5K 与 IS，不是当前 sFID 最优。** 这里排除了 VAE reconstruction oracle 的 FID，因为它不属于从噪声生成。
+
+本次采样耗时 `337.61` 秒，Dopri5 总 batch-level NFE 为 `42,176`；sampling peak allocated/reserved 分别约为 `0.94/1.29 GiB`。样本 NPZ 在完成 ADM 评估后按协议删除，保留 metrics、manifest 和 preview。
 
 ### 4.1 方法级比较
 
@@ -227,7 +244,7 @@ atlas 中存在两组几乎一一对应的反例：
 
 ## 七、证据边界
 
-1. 所有结果都是 FID-1K screen，没有 FID-5K、bootstrap CI 或 sampling multi-seed。
+1. 99 条方法消融仍是 FID-1K screen；只有最优 `4 -> 8 -> 10` 有一次 FID-5K，尚无该条件的 sampling multi-seed 或 bootstrap CI。
 2. 新训练的内部 heads 只有一个训练 seed；strong model 也只有一个 checkpoint family。
 3. 99 个条件共享 noise/label，减少了横向随机差异，但 FID 本身仍是有限样本分布估计量。
 4. 不同方法的 NFE 和额外 head/model forward 不同，当前表不是等 FLOPs 比较。
@@ -250,3 +267,13 @@ docs/data/imagenet100_sit_multiscale_guidance_study
 ```
 
 Git 包不包含 checkpoint、生成样本 NPZ、99 份独立 preview 或训练日志。
+
+最优条件的 5K 便携文件额外保留为：
+
+```text
+depth_schedule_4_8_10_fid5k_metrics.json
+depth_schedule_4_8_10_fid5k_result.json
+depth_schedule_4_8_10_fid5k_sampling_manifest.json
+depth_schedule_4_8_10_fid5k_comparison.csv
+depth_schedule_4_8_10_fid5k_preview.png
+```

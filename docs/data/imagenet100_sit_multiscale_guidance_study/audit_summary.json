@@ -27,13 +27,35 @@
     "fid1k": 68.30638784668116,
     "fid1k_gain": 16.662316547154774
   },
+  "fid5k_confirmation": {
+    "name": "screen_depth_schedule_native_coarse_to_fine",
+    "depths": [
+      4,
+      8,
+      10
+    ],
+    "gamma": 0.4,
+    "rms_matched": false,
+    "seed": 0,
+    "num_samples": 5000,
+    "fid": 42.6253920448695,
+    "sfid": 69.17208447207872,
+    "inception_score": 35.231746673583984,
+    "baseline_fid": 61.00164134432981,
+    "previous_best_single_fid": 46.000341537326676,
+    "sample_retained": false
+  },
   "copied_file_sha256": {
     "condition_metrics.csv": "7df359ea3f5bcd59d8a2c5d730c7134765fef0894b61e3bce36eebd35ad86e9d",
     "study_summary.json": "58c57fb10e97ad4137a8096d561b568b7e095cb28740158ba20d5d9b9b2bef8e",
     "study_protocol.json": "49fa6f6c6e056a81a393c30712b490b85e489c872fdaa4d6f0e9f6161c165c6b",
     "atlas_summary.json": "a2c78eb6871985f1f9e7da2e334bf9a6078045ed1d9bedae4a317bd53225d2ef",
     "latent_spectrum_atlas.csv": "916ca8f816d9e27caa0810c1645a01304b16bb0ef2785092461b7326f7b282f2",
-    "band_delay_fit.csv": "72b524fe3b6765267af21adbc2e09eda260136ba1fa22391e0ebf269692586ee"
+    "band_delay_fit.csv": "72b524fe3b6765267af21adbc2e09eda260136ba1fa22391e0ebf269692586ee",
+    "depth_schedule_4_8_10_fid5k_metrics.json": "6d416dedeae9f9357618569300c01dffb2756b5c3c2f75e8b4fa4466efaaa0a2",
+    "depth_schedule_4_8_10_fid5k_result.json": "430086d6ab6ef29dc2049bf2924976aca45cb980257bf185c6cfa92ecff6c1df",
+    "depth_schedule_4_8_10_fid5k_sampling_manifest.json": "77b56ed43efb61fd0ac00275eb8518ced108e198fcea2f6087c8c56c9cd391dd",
+    "depth_schedule_4_8_10_fid5k_preview.png": "7e4f4d045f8eafaec58f67a00a2c53d57341a4fb2936e0fd2788c87c35a3bbe9"
   },
   "derived_tables": {
     "named_methods": "named_method_comparison.csv",
