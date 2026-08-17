@@ -1,0 +1,45 @@
+{
+  "format": "eqvae_imagenet100_sit_multiscale_portable_audit_v1",
+  "study_root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1",
+  "condition_count": 99,
+  "unique_condition_count": 99,
+  "condition_result_count": 99,
+  "sample_counts": [
+    1000
+  ],
+  "paired_noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+  "paired_label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+  "pipeline_stage_count": 104,
+  "pipeline_stage_status": {
+    "complete": 104
+  },
+  "pipeline_finished_at": "2026-08-17T18:51:42+0800",
+  "retained_sample_npz_count": 0,
+  "label_class_count": 100,
+  "label_count_min": 3,
+  "label_count_max": 16,
+  "max_sampling_memory_allocated_gib": 1.0473971366882324,
+  "max_sampling_memory_reserved_gib": 1.171875,
+  "adaptive_baseline_fid1k": 84.96870439383594,
+  "fixed_euler_baseline_fid1k": 85.82215164453112,
+  "best_screen_condition": {
+    "name": "screen_depth_schedule_native_coarse_to_fine",
+    "fid1k": 68.30638784668116,
+    "fid1k_gain": 16.662316547154774
+  },
+  "copied_file_sha256": {
+    "condition_metrics.csv": "7df359ea3f5bcd59d8a2c5d730c7134765fef0894b61e3bce36eebd35ad86e9d",
+    "study_summary.json": "58c57fb10e97ad4137a8096d561b568b7e095cb28740158ba20d5d9b9b2bef8e",
+    "study_protocol.json": "49fa6f6c6e056a81a393c30712b490b85e489c872fdaa4d6f0e9f6161c165c6b",
+    "atlas_summary.json": "a2c78eb6871985f1f9e7da2e334bf9a6078045ed1d9bedae4a317bd53225d2ef",
+    "latent_spectrum_atlas.csv": "916ca8f816d9e27caa0810c1645a01304b16bb0ef2785092461b7326f7b282f2",
+    "band_delay_fit.csv": "72b524fe3b6765267af21adbc2e09eda260136ba1fa22391e0ebf269692586ee"
+  },
+  "derived_tables": {
+    "named_methods": "named_method_comparison.csv",
+    "causal_map": "causal_map_fid1k.csv",
+    "causal_order": "causal_order_fid1k.csv",
+    "router": "spectral_router_selection_counts.csv",
+    "atlas_compact": "latent_spectrum_atlas_compact.csv"
+  }
+}
