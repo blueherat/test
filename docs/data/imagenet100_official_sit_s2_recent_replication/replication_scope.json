@@ -1,0 +1,35 @@
+{
+  "format": "eqvae_official_sit_s2_recent_replication_scope_v1",
+  "included": [
+    "prepare_official_subset",
+    "train_final_linear_x",
+    "fid_final_linear_x",
+    "train_depth8_v",
+    "fid_depth8_v",
+    "audit_hidden_gap",
+    "train_depth8_x",
+    "fid_depth8_x",
+    "train_depth8_epsilon",
+    "fid_depth8_epsilon",
+    "fid_hidden_state_mixing",
+    "train_depth12_x_full",
+    "fid_depth12_x_full"
+  ],
+  "not_identifiable": [
+    {
+      "commit": "3901741617bdae33e31c9dca04c89b3d7bec8696",
+      "experiment": "same-trajectory EMA weight extrapolation",
+      "reason": "the official collection publishes only one final SiT-S/2 state dict and no aligned intermediate checkpoint; inventing a weak checkpoint would not reproduce the experiment",
+      "substitute_run": false
+    }
+  ],
+  "official_checkpoint": {
+    "filename": "SiT-S-2-256.pt",
+    "repository": "nyu-visionx/SiT-collections",
+    "revision": "9a43ddf08f80ac7f3525208ce72943e98fe98343",
+    "sha256": "a245dc6330cd0d5906a5da00718b7d348a417d740e6b6cfeeb504e9d1448d070"
+  },
+  "profile": "full",
+  "start_commit": "3901741617bdae33e31c9dca04c89b3d7bec8696",
+  "through_commit": "b5a5a3bbaa072135f113da1cf205f779b0542a6c"
+}

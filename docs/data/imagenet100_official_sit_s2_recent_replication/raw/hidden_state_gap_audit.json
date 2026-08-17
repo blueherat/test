@@ -1,0 +1,141 @@
+{
+  "csv": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/official_sit_s2_recent_replication_v1/audit/hidden-gap/hidden_state_gap_audit.csv",
+  "definitions": {
+    "raw_gap": "v_full - v_raw_internal",
+    "raw_internal": "source FinalLayer(h_internal, conditioning)",
+    "trained_gap": "v_full - v_trained_internal",
+    "trained_internal": "trained auxiliary FinalLayer(h_internal, conditioning)"
+  },
+  "head_checkpoint_sha256": "f63e1bf5809c8f6cab6de0515272c2efc8d16d7cb800ffe26b556eb681ee5192",
+  "internal_depth": 8,
+  "protocol": "imagenet100_sit_hidden_state_gap_audit_v1",
+  "rows": [
+    {
+      "hidden_cosine_mean": 0.5901323556900024,
+      "hidden_gap_over_final_rms": 0.8809517621994019,
+      "raw_gap_over_full_rms": 2.863452672958374,
+      "raw_trained_gap_cosine_mean": -0.11627653241157532,
+      "raw_trained_gap_cosine_std": 0.18056944012641907,
+      "raw_trained_gap_positive_fraction": 0.21875,
+      "time": 0.05000000074505806,
+      "trained_gap_over_full_rms": 0.11799736320972443,
+      "trained_gap_over_raw_gap_rms": 0.04139120131731033
+    },
+    {
+      "hidden_cosine_mean": 0.6117337942123413,
+      "hidden_gap_over_final_rms": 0.8793733716011047,
+      "raw_gap_over_full_rms": 2.842935562133789,
+      "raw_trained_gap_cosine_mean": 0.021660152822732925,
+      "raw_trained_gap_cosine_std": 0.18998058140277863,
+      "raw_trained_gap_positive_fraction": 0.5,
+      "time": 0.10000000149011612,
+      "trained_gap_over_full_rms": 0.13102352619171143,
+      "trained_gap_over_raw_gap_rms": 0.04641804099082947
+    },
+    {
+      "hidden_cosine_mean": 0.6091591119766235,
+      "hidden_gap_over_final_rms": 0.8888732194900513,
+      "raw_gap_over_full_rms": 2.865851640701294,
+      "raw_trained_gap_cosine_mean": 0.005035579204559326,
+      "raw_trained_gap_cosine_std": 0.22319291532039642,
+      "raw_trained_gap_positive_fraction": 0.53125,
+      "time": 0.20000000298023224,
+      "trained_gap_over_full_rms": 0.15463797748088837,
+      "trained_gap_over_raw_gap_rms": 0.05487058311700821
+    },
+    {
+      "hidden_cosine_mean": 0.5923386812210083,
+      "hidden_gap_over_final_rms": 0.895501971244812,
+      "raw_gap_over_full_rms": 2.662471294403076,
+      "raw_trained_gap_cosine_mean": 0.13774389028549194,
+      "raw_trained_gap_cosine_std": 0.18939954042434692,
+      "raw_trained_gap_positive_fraction": 0.78125,
+      "time": 0.4000000059604645,
+      "trained_gap_over_full_rms": 0.24768918752670288,
+      "trained_gap_over_raw_gap_rms": 0.09469850361347198
+    },
+    {
+      "hidden_cosine_mean": 0.5698480606079102,
+      "hidden_gap_over_final_rms": 0.8917401432991028,
+      "raw_gap_over_full_rms": 2.27217173576355,
+      "raw_trained_gap_cosine_mean": 0.2600260376930237,
+      "raw_trained_gap_cosine_std": 0.12092392891645432,
+      "raw_trained_gap_positive_fraction": 0.96875,
+      "time": 0.6000000238418579,
+      "trained_gap_over_full_rms": 0.4065437316894531,
+      "trained_gap_over_raw_gap_rms": 0.18093818426132202
+    },
+    {
+      "hidden_cosine_mean": 0.5341624021530151,
+      "hidden_gap_over_final_rms": 0.8909707069396973,
+      "raw_gap_over_full_rms": 1.9686040878295898,
+      "raw_trained_gap_cosine_mean": 0.26591217517852783,
+      "raw_trained_gap_cosine_std": 0.08666906505823135,
+      "raw_trained_gap_positive_fraction": 1.0,
+      "time": 0.800000011920929,
+      "trained_gap_over_full_rms": 0.5066953301429749,
+      "trained_gap_over_raw_gap_rms": 0.2605782747268677
+    },
+    {
+      "hidden_cosine_mean": 0.509830117225647,
+      "hidden_gap_over_final_rms": 0.8974029421806335,
+      "raw_gap_over_full_rms": 1.960671067237854,
+      "raw_trained_gap_cosine_mean": 0.29122012853622437,
+      "raw_trained_gap_cosine_std": 0.07999959588050842,
+      "raw_trained_gap_positive_fraction": 1.0,
+      "time": 0.8999999761581421,
+      "trained_gap_over_full_rms": 0.451198011636734,
+      "trained_gap_over_raw_gap_rms": 0.23305323719978333
+    },
+    {
+      "hidden_cosine_mean": 0.49787914752960205,
+      "hidden_gap_over_final_rms": 0.9032385349273682,
+      "raw_gap_over_full_rms": 1.9780046939849854,
+      "raw_trained_gap_cosine_mean": 0.32320642471313477,
+      "raw_trained_gap_cosine_std": 0.08122758567333221,
+      "raw_trained_gap_positive_fraction": 1.0,
+      "time": 0.949999988079071,
+      "trained_gap_over_full_rms": 0.3654775023460388,
+      "trained_gap_over_raw_gap_rms": 0.18623405694961548
+    }
+  ],
+  "samples": 32,
+  "seed": 2026,
+  "source": {
+    "cfg_dropout": 0.1,
+    "clean_velocity_denominator_floor": 0.05,
+    "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+    "head_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/official_sit_s2_recent_replication_v1/runs/frozen-depth8-v/checkpoints/step_00050000.pt",
+    "head_checkpoint_sha256": "f63e1bf5809c8f6cab6de0515272c2efc8d16d7cb800ffe26b556eb681ee5192",
+    "head_step": 50000,
+    "head_weights": "ema",
+    "internal_depth": 8,
+    "internal_head_parameter_count": 301840,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "source_block_count": 12,
+    "source_checkpoint": "/data/users/zhoushunyu/eqvae/models/SiT-official/SiT-S-2-256-imagenet100-subset.pt",
+    "source_checkpoint_sha256": "2f1cedb41a721ea85b910b7087480770dcb5b2646e62cc1a495fd250a0a5e8e8",
+    "source_parameter_count": 32617760,
+    "source_state_key": "ema",
+    "source_step": 0,
+    "total_parameter_count": 32919600,
+    "trainable_parameter_count": 301840
+  },
+  "trajectory": {
+    "atol": 1e-06,
+    "audit_times": [
+      0.05,
+      0.1,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      0.9,
+      0.95
+    ],
+    "initial_time": 0.0,
+    "method": "dopri5",
+    "rtol": 0.001
+  }
+}

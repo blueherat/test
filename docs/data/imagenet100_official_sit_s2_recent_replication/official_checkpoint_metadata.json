@@ -1,0 +1,43 @@
+{
+  "class_count": 100,
+  "equivalence_audit": {
+    "class_labels": [
+      0,
+      17,
+      53,
+      99
+    ],
+    "class_output_max_abs": 0.0,
+    "device": "cuda:0",
+    "original_imagenet_labels": [
+      15,
+      166,
+      503,
+      994
+    ],
+    "passed": true,
+    "seed": 20260817,
+    "tolerance": 1e-06,
+    "unconditional_output_max_abs": 0.0
+  },
+  "format": "eqvae_official_sit_s2_imagenet100_subset_v1",
+  "official_sit": {
+    "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+    "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+  },
+  "output": "/data/users/zhoushunyu/eqvae/models/SiT-official/SiT-S-2-256-imagenet100-subset.pt",
+  "output_bytes": 130517819,
+  "output_sha256": "2f1cedb41a721ea85b910b7087480770dcb5b2646e62cc1a495fd250a0a5e8e8",
+  "pretrained_source": {
+    "filename": "SiT-S-2-256.pt",
+    "format": "eqvae_official_sit_pretrained_source_v1",
+    "raw_bytes": 131893962,
+    "raw_checkpoint": "/data/users/zhoushunyu/eqvae/models/SiT-official/SiT-S-2-256.pt",
+    "raw_sha256": "a245dc6330cd0d5906a5da00718b7d348a417d740e6b6cfeeb504e9d1448d070",
+    "repository": "nyu-visionx/SiT-collections",
+    "revision": "9a43ddf08f80ac7f3525208ce72943e98fe98343",
+    "training_step": null,
+    "training_step_note": "not published with the final state dict"
+  },
+  "raw_sha256": "a245dc6330cd0d5906a5da00718b7d348a417d740e6b6cfeeb504e9d1448d070"
+}

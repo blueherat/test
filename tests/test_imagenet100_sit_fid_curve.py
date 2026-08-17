@@ -16,6 +16,7 @@ from experiments.run_imagenet100_sit_fid_curve import (
     parse_steps,
     save_summary,
     valid_fid_artifact,
+    valid_resource_audit,
     valid_sampling_artifact,
 )
 
@@ -132,6 +133,31 @@ def test_sampling_and_fid_artifacts_require_exact_protocol(tmp_path: Path) -> No
         fid_gpu_memory_fraction=0.3,
         gpu_indices=[0],
         memory_ceiling_mib=9_216,
+    )
+
+
+def test_stricter_successful_resource_audit_can_be_reused(tmp_path: Path) -> None:
+    path = tmp_path / "resource_audit.json"
+    write_json(
+        path,
+        {
+            "monitored_gpu_indices": [0],
+            "memory_ceiling_mib": 10_240,
+            "peak_memory_mib": {"0": 6_500},
+            "return_code": 0,
+            "violation": None,
+        },
+    )
+
+    assert valid_resource_audit(
+        path,
+        gpu_indices=[0],
+        memory_ceiling_mib=22_528,
+    )
+    assert not valid_resource_audit(
+        path,
+        gpu_indices=[0],
+        memory_ceiling_mib=8_192,
     )
 
 

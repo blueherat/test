@@ -152,7 +152,8 @@ def valid_resource_audit(
     audit = load_json(path)
     if audit.get("violation") is not None or int(audit.get("return_code", -1)) != 0:
         return False
-    if int(audit.get("memory_ceiling_mib", -1)) != memory_ceiling_mib:
+    recorded_ceiling_mib = int(audit.get("memory_ceiling_mib", -1))
+    if recorded_ceiling_mib <= 0 or recorded_ceiling_mib > memory_ceiling_mib:
         return False
     monitored = [int(index) for index in audit.get("monitored_gpu_indices", [])]
     requested = list(gpu_indices)
@@ -166,7 +167,7 @@ def valid_resource_audit(
         checked_indices = requested
     peaks = {int(index): int(value) for index, value in audit.get("peak_memory_mib", {}).items()}
     return all(
-        peaks.get(index, memory_ceiling_mib) < memory_ceiling_mib
+        peaks.get(index, recorded_ceiling_mib) < recorded_ceiling_mib
         for index in checked_indices
     )
 

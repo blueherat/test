@@ -29,6 +29,7 @@ try:
     )
     from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
     from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
+    from experiments.official_imagenet100_sit_s2 import source_step
 except ModuleNotFoundError:
     import train_imagenet100_sit_flow as base
     from imagenet100_sit_internal_v_head import (
@@ -41,6 +42,7 @@ except ModuleNotFoundError:
     )
     from imagenet100_sit_prediction_targets import prediction_to_velocity
     from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
+    from official_imagenet100_sit_s2 import source_step
 
 
 PROTOCOL = "imagenet100_sit_frozen_v_internal_velocity_head_v1"
@@ -478,9 +480,7 @@ def train(args: argparse.Namespace) -> None:
         source_config = source_payload.get("config", {})
         model_name = str(source_config.get("model_name", "SiT-S/2"))
         cfg_dropout = float(source_config.get("cfg_dropout", 0.1))
-        source_step = int(source_payload.get("step", -1))
-        if source_step < 1:
-            raise ValueError("source checkpoint has no valid training step")
+        source_checkpoint_step = source_step(source_payload)
 
         config = FrozenInternalTrainConfig(
             cache_dir=str(args.cache_dir.expanduser().resolve()),
@@ -490,7 +490,7 @@ def train(args: argparse.Namespace) -> None:
             source_checkpoint=str(source_path),
             source_checkpoint_sha256=source_hash,
             source_state_key=args.source_state_key,
-            source_step=source_step,
+            source_step=source_checkpoint_step,
             model_name=model_name,
             cfg_dropout=cfg_dropout,
             internal_depth=int(args.internal_depth),
