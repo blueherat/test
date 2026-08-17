@@ -83,7 +83,7 @@ def direction_metrics(
     """Return per-sample geometry for two extrapolation increments.
 
     The increments use the actual negative-scale orientation:
-    ``g_x = v400 - x400`` and ``g_v = v400 - v270``.
+    ``g_x = anchor - x_other`` and ``g_v = anchor - v_other``.
     """
 
     if anchor.shape != x_other.shape or anchor.shape != v_other.shape:

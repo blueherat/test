@@ -228,7 +228,7 @@ def common_unique_orthogonal_directions(
     x_velocity: torch.Tensor,
     v_velocity: torch.Tensor,
 ) -> dict[str, torch.Tensor]:
-    """Split x400/v270 guidance into reciprocal common and unique components.
+    """Split x-target/same-target guidance into reciprocal common/unique parts.
 
     The two full guidance directions use the empirically beneficial orientation
     ``anchor - other``. Each is first made orthogonal to the anchor field. The

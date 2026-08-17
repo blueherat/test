@@ -136,14 +136,14 @@ def plot_summary(
         rollout.time,
         rollout.x_orthogonal_rms_mean,
         "o-",
-        color=colors["x400"],
+        color=colors[x_label],
         label=f"{anchor_label} - {x_label}",
     )
     axes[2].plot(
         rollout.time,
         rollout.v270_orthogonal_rms_mean,
         "s--",
-        color=colors["v270"],
+        color=colors[v_label],
         label=f"{anchor_label} - {v_label}",
     )
     axes[2].set(
