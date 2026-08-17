@@ -73,3 +73,6 @@ python experiments/summarize_imagenet100_sit_frozen_internal_v_head.py
 ```
 
 本机未纳入 Git 的主要产物包括 12 份生成 NPZ，共 `2,359,299,168` bytes，以及 50K head checkpoint `4,865,577` bytes。
+
+强头、弱头以及 `strong - weak` 的终点与同状态频率分析另见
+[`../imagenet100_sit_internal_head_frequency/README.md`](../imagenet100_sit_internal_head_frequency/README.md)。
