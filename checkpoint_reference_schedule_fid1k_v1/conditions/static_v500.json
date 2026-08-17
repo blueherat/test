@@ -1,0 +1,14 @@
+{
+  "equal_time_partitions": true,
+  "format": "eqvae_checkpoint_reference_condition_v1",
+  "formula": "S + gamma_reference * (S - W_reference)",
+  "gammas": {
+    "v270": 3.5,
+    "v400": 4.0,
+    "v500": 3.0
+  },
+  "name": "static_v500",
+  "order": [
+    "v500"
+  ]
+}
