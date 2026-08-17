@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/data/shared/envs/adm-fid/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/compute_adm_fid.py",
+    "--reference",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+    "--samples",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/v800_v270_v400_gamma_search_fid1k_v2/v400/static_sm1p5/samples_unguided_n1000.npz",
+    "--batch-size",
+    "8",
+    "--gpu-memory-fraction",
+    "0.25",
+    "--output",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/v800_v270_v400_gamma_search_fid1k_v2/v400/static_sm1p5/fid5k_adm_results.json"
+  ],
+  "elapsed_seconds": 28.73600745201111,
+  "initial_memory_mib": {
+    "3": 412
+  },
+  "memory_ceiling_mib": 15360,
+  "memory_poll_interval_seconds": 0.25,
+  "monitor_samples": 93,
+  "monitored_gpu_indices": [
+    3
+  ],
+  "peak_memory_mib": {
+    "3": 12879
+  },
+  "return_code": 0,
+  "violation": null
+}

@@ -394,34 +394,19 @@ def schedule_depth(
     time_value: torch.Tensor,
     *,
     order: str,
-    depths: Sequence[int] = (4, 8, 10),
+    depths: tuple[int, int, int] = (4, 8, 10),
 ) -> torch.Tensor:
-    # gamma_schedule_sweep_v4_generalized_schedule_depth
-    selected = tuple(int(depth) for depth in depths)
-    if len(selected) < 2 or any(depth < 1 for depth in selected):
-        raise ValueError("at least two positive schedule depths are required")
-    if len(set(selected)) != len(selected):
-        raise ValueError("schedule depths must be unique")
+    if len(depths) != 3 or any(depth < 1 for depth in depths):
+        raise ValueError("exactly three positive schedule depths are required")
     if order == "coarse_to_fine":
-        pass
+        selected = depths
     elif order == "fine_to_coarse":
-        selected = tuple(reversed(selected))
+        selected = tuple(reversed(depths))
     else:
         raise ValueError(f"unsupported depth order: {order!r}")
-
-    # Preserve the original implementation exactly for the historical 3-stage
-    # schedule, including boundary/tie semantics.
-    if len(selected) == 3:
-        weights = time_partition_weights(time_value)
-        matrix = torch.stack([weights[name] for name in TIME_NAMES], dim=1)
-        indices = matrix.argmax(dim=1)
-    else:
-        # General N-stage schedule: equal time partitions. At an exact boundary
-        # enter the next stage, matching the effective float32 behavior of the
-        # historical 3-stage implementation.
-        boundaries = torch.arange(1, len(selected), device=time_value.device, dtype=torch.float32)
-        boundaries = boundaries / float(len(selected))
-        indices = torch.bucketize(time_value.float(), boundaries, right=True)
+    weights = time_partition_weights(time_value)
+    matrix = torch.stack([weights[name] for name in TIME_NAMES], dim=1)
+    indices = matrix.argmax(dim=1)
     values = torch.as_tensor(selected, device=time_value.device)
     return values[indices]
 

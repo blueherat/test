@@ -299,11 +299,6 @@ class ConditionField:
                 selected = schedule_depth(
                     times,
                     order=str(self.condition["order"]),
-                    # gamma_schedule_sweep_v4_condition_depths
-                    depths=tuple(
-                        int(value)
-                        for value in self.condition.get("depths", (4, 8, 10))
-                    ),
                 )
                 direction = select_per_sample(gaps, selected)
             else:

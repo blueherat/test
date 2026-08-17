@@ -1,0 +1,42 @@
+{
+  "protocol": "v800_v270_v400_static_closed_guidance_gamma_search_fid1k_v2",
+  "formula": "V_guided = V800 + gamma * (V800 - Vweak)",
+  "strong": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+  "weak_checkpoints": {
+    "v270": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00270000.pt",
+    "v400": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00400000.pt"
+  },
+  "gammas": [
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0
+  ],
+  "num_samples": 1000,
+  "seed": 0,
+  "comparison_is_paired": true,
+  "noise_fingerprint": "b693d3cc2f28249d84942f74586d1afda2df10879225cd69bbf5d6a2d602c7b8",
+  "label_fingerprint": "76fcd0fce6808c069a79ee8fd795edf2a1785d73758dc62306e51700c44c0758",
+  "best": [
+    {
+      "weak": "v270",
+      "best_gamma": 3.5,
+      "best_fid": 61.040592660547986,
+      "sfid_at_best": 219.42024984315958,
+      "is_at_best": 38.52859115600586,
+      "at_search_boundary": false
+    },
+    {
+      "weak": "v400",
+      "best_gamma": 4.0,
+      "best_fid": 68.62171869191951,
+      "sfid_at_best": 219.06019731886363,
+      "is_at_best": 33.40037155151367,
+      "at_search_boundary": true
+    }
+  ],
+  "csv": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/v800_v270_v400_gamma_search_fid1k_v2/summary/v800_v270_v400_gamma_search_fid1k.csv",
+  "best_csv": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/v800_v270_v400_gamma_search_fid1k_v2/summary/best_gamma_by_weak.csv"
+}

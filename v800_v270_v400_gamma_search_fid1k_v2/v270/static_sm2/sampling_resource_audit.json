@@ -1,0 +1,57 @@
+{
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/torchrun",
+    "--standalone",
+    "--nproc_per_node=1",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_static_pair_fid.py",
+    "--anchor-checkpoint",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "--anchor-field",
+    "auto",
+    "--other-checkpoint",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00270000.pt",
+    "--other-field",
+    "auto",
+    "--static-scale",
+    "-2.0",
+    "--control-mode",
+    "full_pair",
+    "--window-transition-width",
+    "0.01",
+    "--output-dir",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/v800_v270_v400_gamma_search_fid1k_v2/v270/static_sm2",
+    "--weights",
+    "ema",
+    "--num-samples",
+    "1000",
+    "--per-rank-batch-size",
+    "8",
+    "--vae-decode-batch-size",
+    "2",
+    "--cuda-allocator-limit-gib",
+    "4.0",
+    "--inter-batch-sleep",
+    "0.0",
+    "--global-seed",
+    "0",
+    "--precision",
+    "fp32",
+    "--allow-tf32",
+    "--allow-step-mismatch"
+  ],
+  "elapsed_seconds": 165.00736689567566,
+  "initial_memory_mib": {
+    "1": 542
+  },
+  "memory_ceiling_mib": 15360,
+  "memory_poll_interval_seconds": 0.25,
+  "monitor_samples": 533,
+  "monitored_gpu_indices": [
+    1
+  ],
+  "peak_memory_mib": {
+    "1": 8653
+  },
+  "return_code": 0,
+  "violation": null
+}
