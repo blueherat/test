@@ -1,0 +1,38 @@
+{
+  "format": "eqvae_imagenet100_sit_internal_head_gamma_schedule_sweep_summary_v4",
+  "baseline_fid": 84.97033706467732,
+  "baseline_condition": "gamma_schedule_sweep_v4_baseline_v800",
+  "num_samples": 1000,
+  "seed": 0,
+  "gammas": [
+    0.0,
+    0.1,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "experiment_count": 49,
+  "static_count": 5,
+  "schedule_count": 44,
+  "completed_curve_rows": 735,
+  "failed_conditions": 0,
+  "paired_noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+  "paired_label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+  "files": {
+    "metrics": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_head_gamma_schedule_sweep_v4/summary/gamma_sweep_metrics.csv",
+    "best": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_head_gamma_schedule_sweep_v4/summary/best_by_experiment.csv",
+    "best_schedules": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_head_gamma_schedule_sweep_v4/summary/best_schedules.csv",
+    "fid_pivot": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_head_gamma_schedule_sweep_v4/summary/fid_by_gamma.csv",
+    "failures": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_head_gamma_schedule_sweep_v4/summary/failures.json"
+  }
+}
