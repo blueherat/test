@@ -1,0 +1,27 @@
+{
+  "boundaries": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "schedule_tuning",
+  "mode": "hard",
+  "name": "v180_v400_v500_alpha125",
+  "note": "global schedule-gain sensitivity",
+  "stages": [
+    {
+      "gamma": 3.8125,
+      "reference": "v180"
+    },
+    {
+      "gamma": 5.0,
+      "reference": "v400"
+    },
+    {
+      "gamma": 3.75,
+      "reference": "v500"
+    }
+  ],
+  "transition_width": 0.08
+}

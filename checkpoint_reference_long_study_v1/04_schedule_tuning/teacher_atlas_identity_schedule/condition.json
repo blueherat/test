@@ -1,0 +1,27 @@
+{
+  "boundaries": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "teacher_predictor",
+  "mode": "hard",
+  "name": "teacher_atlas_identity_schedule",
+  "note": "stage identities chosen only by held-out teacher residual projection; static-calibrated gamma",
+  "stages": [
+    {
+      "gamma": 4.0,
+      "reference": "v600"
+    },
+    {
+      "gamma": 4.0,
+      "reference": "v400"
+    },
+    {
+      "gamma": 4.0,
+      "reference": "v400"
+    }
+  ],
+  "transition_width": 0.08
+}

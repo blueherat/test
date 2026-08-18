@@ -1,0 +1,49 @@
+{
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_checkpoint_reference_schedule_v2.py",
+    "--condition-json",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/03_best_start/beststart_v180_v400_v180/condition.json",
+    "--output-dir",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/03_best_start/beststart_v180_v400_v180",
+    "--strong-checkpoint",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "--num-samples",
+    "1000",
+    "--batch-size",
+    "8",
+    "--vae-decode-batch-size",
+    "2",
+    "--seed",
+    "0",
+    "--num-output-points",
+    "250",
+    "--atol",
+    "1e-06",
+    "--rtol",
+    "0.001",
+    "--cuda-allocator-limit-gib",
+    "4.0",
+    "--device",
+    "cuda:0",
+    "--reference-checkpoint",
+    "v180=/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00180000.pt",
+    "--reference-checkpoint",
+    "v400=/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00400000.pt"
+  ],
+  "elapsed_seconds": 202.62581872940063,
+  "initial_memory_mib": {
+    "2": 5866
+  },
+  "memory_ceiling_mib": 15360,
+  "memory_poll_interval_seconds": 0.25,
+  "monitor_samples": 654,
+  "monitored_gpu_indices": [
+    2
+  ],
+  "peak_memory_mib": {
+    "2": 7741
+  },
+  "return_code": 0,
+  "violation": null
+}

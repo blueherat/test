@@ -1,0 +1,16 @@
+{
+  "boundaries": [],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "static_maturity",
+  "mode": "hard",
+  "name": "static_v400_g4p4",
+  "note": "full-time static checkpoint reference",
+  "stages": [
+    {
+      "gamma": 4.4,
+      "reference": "v400"
+    }
+  ],
+  "transition_width": 0.08
+}

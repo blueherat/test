@@ -1,0 +1,27 @@
+{
+  "boundaries": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "factorial",
+  "mode": "hard",
+  "name": "factorial_100",
+  "note": "2^3 early-v270 / mid-v400 / late-v500 causal factorial",
+  "stages": [
+    {
+      "gamma": 3.5,
+      "reference": "v270"
+    },
+    {
+      "gamma": 0.0,
+      "reference": "strong"
+    },
+    {
+      "gamma": 0.0,
+      "reference": "strong"
+    }
+  ],
+  "transition_width": 0.08
+}

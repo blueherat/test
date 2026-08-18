@@ -1,0 +1,27 @@
+{
+  "boundaries": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "ordering",
+  "mode": "hard",
+  "name": "reverse_v500_v400_v270",
+  "note": "reverse of forward maturity order",
+  "stages": [
+    {
+      "gamma": 3.0,
+      "reference": "v500"
+    },
+    {
+      "gamma": 4.0,
+      "reference": "v400"
+    },
+    {
+      "gamma": 3.5,
+      "reference": "v270"
+    }
+  ],
+  "transition_width": 0.08
+}

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/data/shared/envs/adm-fid/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/compute_adm_fid.py",
+    "--reference",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+    "--samples",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/02_causal_factorial/factorial_011/samples_n1000.npz",
+    "--batch-size",
+    "8",
+    "--gpu-memory-fraction",
+    "0.25",
+    "--output",
+    "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/02_causal_factorial/factorial_011/adm_metrics.json"
+  ],
+  "elapsed_seconds": 27.6593177318573,
+  "initial_memory_mib": {
+    "2": 5864
+  },
+  "memory_ceiling_mib": 15360,
+  "memory_poll_interval_seconds": 0.25,
+  "monitor_samples": 90,
+  "monitored_gpu_indices": [
+    2
+  ],
+  "peak_memory_mib": {
+    "2": 12293
+  },
+  "return_code": 0,
+  "violation": null
+}

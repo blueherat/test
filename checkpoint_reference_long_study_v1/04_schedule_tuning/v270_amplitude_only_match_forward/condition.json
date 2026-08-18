@@ -1,0 +1,27 @@
+{
+  "boundaries": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "format": "eqvae_checkpoint_reference_condition_v2",
+  "formula": "S + sum_i w_i(t)*gamma_i*(S-W_i)",
+  "group": "amplitude_control",
+  "mode": "hard",
+  "name": "v270_amplitude_only_match_forward",
+  "note": "v270-only direction with region-RMS forcing matched to v270/v400/v500 forward",
+  "stages": [
+    {
+      "gamma": 3.5,
+      "reference": "v270"
+    },
+    {
+      "gamma": 3.1899486210572934,
+      "reference": "v270"
+    },
+    {
+      "gamma": 1.9145582056946582,
+      "reference": "v270"
+    }
+  ],
+  "transition_width": 0.08
+}
