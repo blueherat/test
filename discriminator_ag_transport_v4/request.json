@@ -1,0 +1,33 @@
+{
+  "audit_time_centers": [
+    0.0625,
+    0.1875,
+    0.3125,
+    0.4375,
+    0.5625,
+    0.6875,
+    0.8125,
+    0.9375
+  ],
+  "disc_seeds": [
+    0,
+    1
+  ],
+  "disc_steps": 4000,
+  "format": "eqvae_discriminator_ag_transport_request_v1",
+  "gpus": [
+    1,
+    3
+  ],
+  "hypothesis": "AG usefulness follows alignment of S-W with discriminator-estimated marginal transport residual",
+  "num_samples": 1000,
+  "weak_steps": [
+    180000,
+    240000,
+    270000,
+    300000,
+    400000,
+    500000,
+    600000
+  ]
+}

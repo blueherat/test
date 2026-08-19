@@ -1,0 +1,80 @@
+{
+  "condition": {
+    "format": "eqvae_discriminator_ag_transport_condition_v1",
+    "formula": "S + gamma(x,t)*(S-W)",
+    "gain": 200000.0,
+    "gamma_max": 8.0,
+    "lookahead": 0.05,
+    "mode": "disc_state",
+    "name": "seed0_disc_state_k200000",
+    "seed": 0
+  },
+  "format": "eqvae_discriminator_ag_transport_condition_result_v1",
+  "metrics": {
+    "batch_size": 8,
+    "fid": 77.46401841213412,
+    "gpu_memory_fraction": 0.25,
+    "inception_score": 32.76787185668945,
+    "reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+    "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/03_seed0_screen/seed0_disc_state_k200000/samples_n1000.npz",
+    "sfid": 214.75280293104436
+  },
+  "sampling_manifest": {
+    "condition": {
+      "format": "eqvae_discriminator_ag_transport_condition_v1",
+      "formula": "S + gamma(x,t)*(S-W)",
+      "gain": 200000.0,
+      "gamma_max": 8.0,
+      "lookahead": 0.05,
+      "mode": "disc_state",
+      "name": "seed0_disc_state_k200000",
+      "seed": 0
+    },
+    "elapsed_seconds": 354.20908931305166,
+    "field_stats": {
+      "disc_grad_evals": 7909,
+      "gamma_clipped_fraction": 0.04892316966242876,
+      "gamma_mean": 0.8900308259681452,
+      "gamma_positive_fraction": 0.41926512494519946,
+      "nfe": 9124,
+      "strong_forwards": 9124,
+      "weak_forwards": 9124
+    },
+    "format": "eqvae_discriminator_ag_transport_samples_v1",
+    "label_sha256": "76fcd0fce6808c069a79ee8fd795edf2a1785d73758dc62306e51700c44c0758",
+    "noise_sha256": "b693d3cc2f28249d84942f74586d1afda2df10879225cd69bbf5d6a2d602c7b8",
+    "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/03_seed0_screen/seed0_disc_state_k200000/samples_n1000.npz",
+    "sampling": {
+      "atol": 1e-06,
+      "batch_size": 8,
+      "integrator": "dopri5",
+      "num_output_points": 250,
+      "num_samples": 1000,
+      "rtol": 0.001,
+      "seed": 0,
+      "time_convention": "t=0 noise -> t=1 data"
+    },
+    "strong": {
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+      "checkpoint_step": 800000,
+      "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+      "denominator_floor": 0.001,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "weights": "ema"
+    },
+    "weak": {
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00180000.pt",
+      "checkpoint_sha256": "eaeef6552c89fa57c0082d44c0a218188ad8f4d5c7c5636f5fa8a2ca39ac8ef8",
+      "checkpoint_step": 180000,
+      "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+      "denominator_floor": 0.001,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "weights": "ema"
+    }
+  }
+}

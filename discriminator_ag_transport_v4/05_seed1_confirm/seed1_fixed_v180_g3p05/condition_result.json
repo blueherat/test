@@ -1,0 +1,76 @@
+{
+  "condition": {
+    "format": "eqvae_discriminator_ag_transport_condition_v1",
+    "formula": "S + gamma(x,t)*(S-W)",
+    "gamma": 3.05,
+    "mode": "fixed",
+    "name": "seed1_fixed_v180_g3p05",
+    "seed": 1
+  },
+  "format": "eqvae_discriminator_ag_transport_condition_result_v1",
+  "metrics": {
+    "batch_size": 8,
+    "fid": 54.45570497550136,
+    "gpu_memory_fraction": 0.25,
+    "inception_score": 42.78395462036133,
+    "reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+    "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/05_seed1_confirm/seed1_fixed_v180_g3p05/samples_n1000.npz",
+    "sfid": 217.3817923211052
+  },
+  "sampling_manifest": {
+    "condition": {
+      "format": "eqvae_discriminator_ag_transport_condition_v1",
+      "formula": "S + gamma(x,t)*(S-W)",
+      "gamma": 3.05,
+      "mode": "fixed",
+      "name": "seed1_fixed_v180_g3p05",
+      "seed": 1
+    },
+    "elapsed_seconds": 178.79983986896696,
+    "field_stats": {
+      "disc_grad_evals": 0,
+      "gamma_clipped_fraction": 0.0,
+      "gamma_mean": 3.049999952316284,
+      "gamma_positive_fraction": 1.0,
+      "nfe": 11848,
+      "strong_forwards": 11848,
+      "weak_forwards": 11848
+    },
+    "format": "eqvae_discriminator_ag_transport_samples_v1",
+    "label_sha256": "e80693e1116a8def122a2d90085c7f00a992abd4640cc69fe13322866d151e8b",
+    "noise_sha256": "f93c605903ddba79fb765b33e6ee678309edae11409f5fa80f3b6f08ca5bb250",
+    "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/05_seed1_confirm/seed1_fixed_v180_g3p05/samples_n1000.npz",
+    "sampling": {
+      "atol": 1e-06,
+      "batch_size": 8,
+      "integrator": "dopri5",
+      "num_output_points": 250,
+      "num_samples": 1000,
+      "rtol": 0.001,
+      "seed": 1,
+      "time_convention": "t=0 noise -> t=1 data"
+    },
+    "strong": {
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+      "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+      "checkpoint_step": 800000,
+      "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+      "denominator_floor": 0.001,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "weights": "ema"
+    },
+    "weak": {
+      "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00180000.pt",
+      "checkpoint_sha256": "eaeef6552c89fa57c0082d44c0a218188ad8f4d5c7c5636f5fa8a2ca39ac8ef8",
+      "checkpoint_step": 180000,
+      "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+      "denominator_floor": 0.001,
+      "model_name": "SiT-S/2",
+      "prediction_target": "velocity",
+      "protocol": "imagenet100_sit_linear_flow_v1",
+      "weights": "ema"
+    }
+  }
+}

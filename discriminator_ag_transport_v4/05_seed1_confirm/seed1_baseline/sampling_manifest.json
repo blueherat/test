@@ -1,0 +1,45 @@
+{
+  "condition": {
+    "format": "eqvae_discriminator_ag_transport_condition_v1",
+    "formula": "S + gamma(x,t)*(S-W)",
+    "mode": "baseline",
+    "name": "seed1_baseline",
+    "seed": 1
+  },
+  "elapsed_seconds": 74.12241156300297,
+  "field_stats": {
+    "disc_grad_evals": 0,
+    "gamma_clipped_fraction": 0.0,
+    "gamma_mean": 0.0,
+    "gamma_positive_fraction": 0.0,
+    "nfe": 6700,
+    "strong_forwards": 6700,
+    "weak_forwards": 0
+  },
+  "format": "eqvae_discriminator_ag_transport_samples_v1",
+  "label_sha256": "e80693e1116a8def122a2d90085c7f00a992abd4640cc69fe13322866d151e8b",
+  "noise_sha256": "f93c605903ddba79fb765b33e6ee678309edae11409f5fa80f3b6f08ca5bb250",
+  "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/05_seed1_confirm/seed1_baseline/samples_n1000.npz",
+  "sampling": {
+    "atol": 1e-06,
+    "batch_size": 8,
+    "integrator": "dopri5",
+    "num_output_points": 250,
+    "num_samples": 1000,
+    "rtol": 0.001,
+    "seed": 1,
+    "time_convention": "t=0 noise -> t=1 data"
+  },
+  "strong": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+    "denominator_floor": 0.001,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "weights": "ema"
+  },
+  "weak": null
+}
