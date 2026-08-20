@@ -1,0 +1,140 @@
+{
+  "critic_health": {
+    "all_fixed_step_1000": true,
+    "loss_below_zero_critic_baseline_fraction": 0.0,
+    "loss_between_seed_sd": 0.006782388997314462,
+    "loss_mean": 2.0206637447699904,
+    "margin_between_seed_sd": 0.0004969877902198289,
+    "margin_mean": -0.00011251767227804521,
+    "per_seed": [
+      {
+        "fake_sign_accuracy": 0.52197265625,
+        "loss": 2.021037958562374,
+        "margin": 3.845506944344379e-05,
+        "real_sign_accuracy": 0.4853515625,
+        "seed": "seed0",
+        "step": 1000
+      },
+      {
+        "fake_sign_accuracy": 0.63720703125,
+        "loss": 2.0300644114613533,
+        "margin": -0.00013183087867219,
+        "real_sign_accuracy": 0.357421875,
+        "seed": "seed1",
+        "step": 1000
+      },
+      {
+        "fake_sign_accuracy": 0.41552734375,
+        "loss": 2.016702502965927,
+        "margin": 0.00041711780067998916,
+        "real_sign_accuracy": 0.58203125,
+        "seed": "seed2",
+        "step": 1000
+      },
+      {
+        "fake_sign_accuracy": 0.453125,
+        "loss": 2.0148501060903072,
+        "margin": -0.0007738126805634238,
+        "real_sign_accuracy": 0.5322265625,
+        "seed": "seed3",
+        "step": 1000
+      }
+    ],
+    "positive_margin_seed_fraction": 0.5
+  },
+  "critic_seed_count": 4,
+  "evaluation": {
+    "internal_head": {
+      "correlations_with_fid_gain": {
+        "B_mean": {
+          "pvalue": 0.28475697986529375,
+          "rho": -0.6
+        },
+        "cafm_predicted_reduction_at_historical_gamma": {
+          "pvalue": 0.8728885715695383,
+          "rho": 0.09999999999999999
+        },
+        "direction_rms": {
+          "pvalue": 1.4042654220543672e-24,
+          "rho": 0.9999999999999999
+        },
+        "euclidean_B_mean": {
+          "pvalue": 1.4042654220543672e-24,
+          "rho": -0.9999999999999999
+        },
+        "euclidean_cosine_mean": {
+          "pvalue": 0.10408803866182788,
+          "rho": -0.7999999999999999
+        },
+        "predicted_reduction_gamma1_mean_residual": {
+          "pvalue": 0.1881204043741873,
+          "rho": -0.7
+        }
+      },
+      "count": 5,
+      "gamma_hat_median_absolute_error": 0.277100400131889,
+      "gamma_hat_spearman": {
+        "pvalue": 0.004818230468198537,
+        "rho": 0.9746794344808964
+      }
+    },
+    "same_target_checkpoint": {
+      "correlations_with_fid_gain": {
+        "B_mean": {
+          "pvalue": 1.0,
+          "rho": 0.0
+        },
+        "cafm_predicted_reduction_at_historical_gamma": {
+          "pvalue": 0.7599453002180929,
+          "rho": -0.14285714285714288
+        },
+        "checkpoint_age": {
+          "pvalue": 0.0,
+          "rho": 1.0
+        },
+        "direction_rms": {
+          "pvalue": 0.0,
+          "rho": 1.0
+        },
+        "euclidean_B_mean": {
+          "pvalue": 0.0,
+          "rho": -1.0
+        },
+        "euclidean_cosine_mean": {
+          "pvalue": 0.25316999510032273,
+          "rho": -0.5
+        },
+        "predicted_reduction_gamma1_mean_residual": {
+          "pvalue": 0.6445115810207203,
+          "rho": 0.21428571428571433
+        }
+      },
+      "count": 7,
+      "gamma_hat_median_absolute_error": 4.662431183445516,
+      "gamma_hat_spearman": {
+        "pvalue": 0.5577307488053698,
+        "rho": 0.2702812388086677
+      }
+    },
+    "time_window": {
+      "B_difference": 9.70767948307305e-05,
+      "cafm_B_high_exceeds_low": true,
+      "cafm_predicted_reduction_high_exceeds_low": false,
+      "historical_gain_difference": 11.882799683556868,
+      "historical_high_gain_exceeds_low": true
+    }
+  },
+  "format": "eqvae_cafm_tangent_predictivity_summary_v1",
+  "gate": {
+    "decision": "requires_result_review",
+    "requirements": [
+      "fixed-step critics show reproducible held-out tangent separation rather than collapse to loss 2",
+      "CAFM score predicts same-target FID ranking at least as well as norm/cosine/age",
+      "held-out internal-head ordering is nontrivial and correctly ranked",
+      "high-noise v180 utility is ranked above low-noise utility",
+      "predicted gamma is not catastrophically inconsistent with historical optima"
+    ]
+  },
+  "generator_updated": false,
+  "new_fid_computed": false
+}

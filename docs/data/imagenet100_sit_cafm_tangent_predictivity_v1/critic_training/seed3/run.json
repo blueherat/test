@@ -1,0 +1,49 @@
+{
+  "config": {
+    "accumulation_steps": 8,
+    "batch_size": 32,
+    "betas": [
+      0.0,
+      0.95
+    ],
+    "cache_dir": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae",
+    "centering_scale": 0.001,
+    "class_dropout_probability": 0.1,
+    "critic_compute_precision": "fp32",
+    "device": "cuda:3",
+    "effective_batch_size": 256,
+    "fake_label": -1.0,
+    "generator_update": false,
+    "learning_rate": 1e-05,
+    "log_every": 10,
+    "official_sit_repo": "/data/users/zhoushunyu/research_repos/SiT",
+    "optimizer": "AdamW",
+    "output_dir": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/cafm_tangent_predictivity_v1/critics_b256_drop10_fp32/seed3",
+    "precision": "fp32",
+    "real_label": 1.0,
+    "resume": null,
+    "save_every": 250,
+    "seed": 3,
+    "steps": 1000,
+    "strong_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "validate_every": 100,
+    "validation_batches": 64,
+    "weight_decay": 0.0,
+    "workers": 2
+  },
+  "model": {
+    "cafm_repository": "https://github.com/ByteDance-Seed/Adversarial-Flow-Models",
+    "cafm_revision": "9b84a478d523ff8f58b4c930ed43fca087282d31",
+    "model_name": "SiT-S/2",
+    "official_sit": {
+      "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+      "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+    },
+    "strong_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "strong_checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "strong_protocol": "imagenet100_sit_linear_flow_v1",
+    "strong_state_key": "ema",
+    "strong_step": 800000,
+    "time_orientation": "native_noise_t0_to_data_t1"
+  }
+}
