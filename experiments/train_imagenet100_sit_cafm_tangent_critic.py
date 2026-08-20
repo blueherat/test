@@ -14,7 +14,10 @@ from pathlib import Path
 
 import numpy as np
 import torch
+import torch.distributed as dist
+from torch.nn.parallel import DistributedDataParallel
 from torch.utils.data import DataLoader
+from torch.utils.data.distributed import DistributedSampler
 
 from experiments.imagenet100_sit_cafm_tangent import (
     CAFM_REPOSITORY,
@@ -79,12 +82,26 @@ def make_loader(
     seed: int,
     shuffle: bool,
     drop_last: bool,
+    rank: int = 0,
+    world_size: int = 1,
 ) -> DataLoader:
+    dataset = NpyMomentsDataset(cache_dir, split)
     generator = torch.Generator().manual_seed(int(seed))
+    sampler = None
+    if world_size > 1:
+        sampler = DistributedSampler(
+            dataset,
+            num_replicas=int(world_size),
+            rank=int(rank),
+            shuffle=bool(shuffle),
+            seed=int(seed),
+            drop_last=bool(drop_last),
+        )
     kwargs = {
-        "dataset": NpyMomentsDataset(cache_dir, split),
+        "dataset": dataset,
         "batch_size": int(batch_size),
-        "shuffle": bool(shuffle),
+        "shuffle": bool(shuffle) if sampler is None else False,
+        "sampler": sampler,
         "num_workers": int(workers),
         "pin_memory": True,
         "drop_last": bool(drop_last),
@@ -96,12 +113,15 @@ def make_loader(
     return DataLoader(**kwargs)
 
 
-def next_batch(iterator, loader):
+def next_batch(iterator, loader, epoch: int):
     try:
-        return next(iterator), iterator
+        return next(iterator), iterator, epoch
     except StopIteration:
+        epoch += 1
+        if isinstance(loader.sampler, DistributedSampler):
+            loader.sampler.set_epoch(epoch)
         iterator = iter(loader)
-        return next(iterator), iterator
+        return next(iterator), iterator, epoch
 
 
 def load_models(args, device: torch.device):
@@ -244,6 +264,9 @@ def evaluate(
         sums[:9] += metrics * batch_count
         sums[9] += batch_count
         count += batch_count
+    if dist.is_initialized():
+        dist.all_reduce(sums, op=dist.ReduceOp.SUM)
+    count = int(sums[9].item())
     if count == 0:
         raise RuntimeError("validation loader produced no batches")
     means = (sums[:9] / sums[9]).cpu().tolist()
@@ -316,14 +339,27 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     (args.output_dir / "checkpoints").mkdir(exist_ok=True)
 
-    device = torch.device(args.device)
+    world_size = int(os.environ.get("WORLD_SIZE", "1"))
+    rank = int(os.environ.get("RANK", "0"))
+    local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+    if world_size > 1:
+        dist.init_process_group(
+            backend="nccl",
+            rank=rank,
+            world_size=world_size,
+        )
+        device = torch.device("cuda", local_rank)
+    else:
+        device = torch.device(args.device)
+    is_main = rank == 0
     if device.type != "cuda" or not torch.cuda.is_available():
         raise RuntimeError("CAFM tangent training requires CUDA")
     torch.cuda.set_device(device)
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
+    process_seed = int(args.seed) + rank * 100_003
+    random.seed(process_seed)
+    np.random.seed(process_seed)
+    torch.manual_seed(process_seed)
+    torch.cuda.manual_seed(process_seed)
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
     # PyTorch 2.9 flash/memory-efficient SDPA does not implement forward AD.
@@ -337,7 +373,6 @@ def main() -> None:
     torch.set_float32_matmul_precision("high")
 
     strong, critic, model_metadata = load_models(args, device)
-    wrapper = TangentJVP(critic)
     optimizer = torch.optim.AdamW(
         critic.parameters(),
         lr=args.learning_rate,
@@ -353,6 +388,17 @@ def main() -> None:
         optimizer.load_state_dict(resume["optimizer"])
         start_step = int(resume["step"])
         best_loss = float(resume.get("best_validation_loss", best_loss))
+    wrapper = TangentJVP(critic)
+    if world_size > 1:
+        # This is the ordering used by the official CAFM ImageNet code:
+        # DDP owns the JVP wrapper so gradient synchronization covers the
+        # forward-mode discriminator computation itself.
+        wrapper = DistributedDataParallel(
+            wrapper,
+            device_ids=[device.index],
+            output_device=device.index,
+            broadcast_buffers=False,
+        )
 
     train_loader = make_loader(
         args.cache_dir,
@@ -362,6 +408,8 @@ def main() -> None:
         seed=args.seed + 10,
         shuffle=True,
         drop_last=True,
+        rank=rank,
+        world_size=world_size,
     )
     validation_loader = make_loader(
         args.cache_dir,
@@ -371,7 +419,14 @@ def main() -> None:
         seed=args.seed + 20,
         shuffle=False,
         drop_last=False,
+        rank=rank,
+        world_size=world_size,
     )
+    train_epoch = (
+        start_step * args.batch_size * args.accumulation_steps * world_size
+    ) // len(train_loader.dataset)
+    if isinstance(train_loader.sampler, DistributedSampler):
+        train_loader.sampler.set_epoch(train_epoch)
     iterator = iter(train_loader)
     config = {
         **vars(args),
@@ -383,14 +438,22 @@ def main() -> None:
         "optimizer": "AdamW",
         "betas": [0.0, 0.95],
         "weight_decay": 0.0,
-        "effective_batch_size": args.batch_size * args.accumulation_steps,
+        "local_batch_size": args.batch_size,
+        "world_size": world_size,
+        "effective_batch_size": (
+            args.batch_size * args.accumulation_steps * world_size
+        ),
+        "actual_device": str(device),
         "critic_compute_precision": "fp32",
         "generator_update": False,
         "real_label": 1.0,
         "fake_label": -1.0,
     }
-    atomic_json({"config": config, "model": model_metadata}, args.output_dir / "run.json")
-    print(json.dumps({"config": config, "model": model_metadata}, indent=2), flush=True)
+    if is_main:
+        atomic_json(
+            {"config": config, "model": model_metadata}, args.output_dir / "run.json"
+        )
+        print(json.dumps({"config": config, "model": model_metadata}, indent=2), flush=True)
 
     train_csv = args.output_dir / "train_log.csv"
     started = time.monotonic()
@@ -398,52 +461,62 @@ def main() -> None:
     for step in range(start_step + 1, args.steps + 1):
         optimizer.zero_grad(set_to_none=True)
         accumulated = torch.zeros(7, device=device, dtype=torch.float64)
-        for _ in range(args.accumulation_steps):
-            (moments, labels), iterator = next_batch(iterator, train_loader)
-            state, time_value, labels, real_velocity = prepare_teacher_batch(
-                moments,
-                labels,
-                device=device,
-                class_dropout_probability=args.class_dropout_probability,
-            )
-            with torch.no_grad(), autocast_context(args.precision):
-                fake_velocity = strong(state, time_value, labels)
-            values, logits = wrapper(
-                state.float(),
-                time_value.float(),
-                labels,
-                torch.stack((real_velocity, fake_velocity.float())),
-                torch.ones(
-                    (2, state.shape[0]), device=device, dtype=time_value.dtype
-                ),
-            )
-            losses = lsgan_tangent_losses(
-                values[0],
-                logits[0],
-                logits[1],
-                centering_scale=args.centering_scale,
-            )
-            (losses["total"] / args.accumulation_steps).backward()
-            accumulated += torch.tensor(
-                [
-                    losses["total"].detach(),
-                    losses["real"].detach(),
-                    losses["fake"].detach(),
-                    losses["centering"].detach(),
-                    logits[0].detach().mean(),
-                    logits[1].detach().mean(),
-                    (logits[0] - logits[1]).detach().mean(),
-                ],
-                device=device,
-                dtype=torch.float64,
-            )
+        for accumulation_index in range(args.accumulation_steps):
+            sync_context = nullcontext()
+            if world_size > 1 and accumulation_index + 1 < args.accumulation_steps:
+                sync_context = wrapper.no_sync()
+            with sync_context:
+                (moments, labels), iterator, train_epoch = next_batch(
+                    iterator, train_loader, train_epoch
+                )
+                state, time_value, labels, real_velocity = prepare_teacher_batch(
+                    moments,
+                    labels,
+                    device=device,
+                    class_dropout_probability=args.class_dropout_probability,
+                )
+                with torch.no_grad(), autocast_context(args.precision):
+                    fake_velocity = strong(state, time_value, labels)
+                values, logits = wrapper(
+                    state.float(),
+                    time_value.float(),
+                    labels,
+                    torch.stack((real_velocity, fake_velocity.float())),
+                    torch.ones(
+                        (2, state.shape[0]), device=device, dtype=time_value.dtype
+                    ),
+                )
+                losses = lsgan_tangent_losses(
+                    values[0],
+                    logits[0],
+                    logits[1],
+                    centering_scale=args.centering_scale,
+                )
+                (losses["total"] / args.accumulation_steps).backward()
+                accumulated += torch.tensor(
+                    [
+                        losses["total"].detach(),
+                        losses["real"].detach(),
+                        losses["fake"].detach(),
+                        losses["centering"].detach(),
+                        logits[0].detach().mean(),
+                        logits[1].detach().mean(),
+                        (logits[0] - logits[1]).detach().mean(),
+                    ],
+                    device=device,
+                    dtype=torch.float64,
+                )
         grad_norm = torch.nn.utils.clip_grad_norm_(critic.parameters(), 10_000.0)
         if not torch.isfinite(grad_norm):
             raise FloatingPointError(f"non-finite critic gradient at step {step}")
         optimizer.step()
 
         if step % args.log_every == 0 or step == 1:
-            values = (accumulated / args.accumulation_steps).cpu().tolist()
+            if world_size > 1:
+                dist.all_reduce(accumulated, op=dist.ReduceOp.SUM)
+            values = (
+                accumulated / (args.accumulation_steps * world_size)
+            ).cpu().tolist()
             elapsed = time.monotonic() - started
             row = {
                 "step": step,
@@ -459,8 +532,9 @@ def main() -> None:
                 "steps_per_second": (step - start_step) / max(elapsed, 1e-9),
                 "peak_memory_mib": torch.cuda.max_memory_allocated(device) / 2**20,
             }
-            append_csv(train_csv, row)
-            print(json.dumps(row), flush=True)
+            if is_main:
+                append_csv(train_csv, row)
+                print(json.dumps(row), flush=True)
 
         validation = None
         if step % args.validate_every == 0 or step == args.steps:
@@ -471,15 +545,16 @@ def main() -> None:
                 device=device,
                 precision=args.precision,
                 batches=args.validation_batches,
-                seed=args.seed + 100_000,
+                seed=args.seed + 100_000 + rank * 100_003,
                 centering_scale=args.centering_scale,
                 class_dropout_probability=args.class_dropout_probability,
             )
             validation["step"] = step
-            atomic_json(validation, args.output_dir / f"validation_{step:06d}.json")
-            print("validation " + json.dumps(validation), flush=True)
+            if is_main:
+                atomic_json(validation, args.output_dir / f"validation_{step:06d}.json")
+                print("validation " + json.dumps(validation), flush=True)
             critic.train()
-            if validation["loss"] < best_loss:
+            if is_main and validation["loss"] < best_loss:
                 best_loss = float(validation["loss"])
                 atomic_save(
                     {
@@ -495,7 +570,7 @@ def main() -> None:
                     args.output_dir / "checkpoints" / "best.pt",
                 )
 
-        if step % args.save_every == 0 or step == args.steps:
+        if is_main and (step % args.save_every == 0 or step == args.steps):
             atomic_save(
                 {
                     "format": "eqvae_cafm_tangent_critic_v1",
@@ -509,17 +584,27 @@ def main() -> None:
                 },
                 args.output_dir / "checkpoints" / f"step_{step:06d}.pt",
             )
+        if world_size > 1 and (
+            step % args.validate_every == 0
+            or step % args.save_every == 0
+            or step == args.steps
+        ):
+            dist.barrier()
 
-    atomic_json(
-        {
-            "status": "complete",
-            "steps": args.steps,
-            "best_validation_loss": best_loss,
-            "elapsed_seconds": time.monotonic() - started,
-            "peak_memory_mib": torch.cuda.max_memory_allocated(device) / 2**20,
-        },
-        args.output_dir / "complete.json",
-    )
+    if is_main:
+        atomic_json(
+            {
+                "status": "complete",
+                "steps": args.steps,
+                "best_validation_loss": best_loss,
+                "elapsed_seconds": time.monotonic() - started,
+                "peak_memory_mib": torch.cuda.max_memory_allocated(device) / 2**20,
+                "world_size": world_size,
+            },
+            args.output_dir / "complete.json",
+        )
+    if dist.is_initialized():
+        dist.destroy_process_group()
 
 
 if __name__ == "__main__":

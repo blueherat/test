@@ -12,6 +12,10 @@
 - 审计：每个 critic 使用相同的 4096 个 teacher-path 样本，对 26 个候选方向计算 A/B 分数。
 - 本轮没有更新生成器，也没有重新计算 FID。
 
+## Seed 0 延长训练
+
+在原 seed 0 的 step 1000 checkpoint 上，使用 2-GPU DDP、保持 global effective batch 256，继续训练到 step 5000。全程最佳 validation loss 为 `2.000394999`（step 4000），step 5000 为 `2.001162964`；两者仍接近恒定输出 0 的 `2.0` 参考值。完整配置、连续曲线和原始验证文件见 `critic_training_ddp2_seed0_5000/`。
+
 ## 最终验证数据
 
 LSGAN loss 定义下，恒定输出 0 的参考值为 `2.0`。
@@ -31,6 +35,7 @@ LSGAN loss 定义下，恒定输出 0 的参考值为 `2.0`。
 - `critic_training/seed*/run.json`：训练配置、模型与 checkpoint provenance。
 - `critic_training/seed*/train_log.csv`：训练日志。
 - `critic_training/seed*/validation_*.json`：固定验证集上的逐 checkpoint 指标。
+- `critic_training_ddp2_seed0_5000/`：seed 0 从 step 1000 延长至 5000 的 DDP 配置、日志与验证数据。
 - `audit/seed*/manifest.json`：审计配置、输入哈希与 checkpoint 哈希。
 - `audit/seed*/direction_scores.csv`：每个 critic 的方向和时间分段结果。
 - `audit/all_critic_scores.csv`：四个 critic 的完整合并表。
