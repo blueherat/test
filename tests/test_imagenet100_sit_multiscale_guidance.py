@@ -11,6 +11,7 @@ from experiments.imagenet100_sit_multiscale_guidance import (
     BAND_NAMES,
     TIME_NAMES,
     band_time_component,
+    decompose_full_gap_by_weak_head_difference,
     decompose_weak_head_difference,
     frequency_statistics,
     interpolate_time_table,
@@ -137,6 +138,21 @@ def test_weak_head_difference_decomposition_is_exact_and_orthogonal() -> None:
     dot = (orthogonal * reference).sum(dim=1)
     torch.testing.assert_close(dot, torch.zeros_like(dot), atol=1e-6, rtol=0)
     torch.testing.assert_close(coefficient, torch.tensor([0.5, 0.0], dtype=torch.float64))
+
+
+def test_reverse_depth_difference_decomposition_is_exact_and_orthogonal() -> None:
+    strong = torch.tensor([[4.0, 3.0], [1.0, 1.0]])
+    depth8 = torch.tensor([[3.0, 5.0], [4.0, 2.0]])
+    depth4 = torch.tensor([[2.0, 3.0], [1.0, 1.0]])
+    full_gap, parallel, orthogonal, coefficient = (
+        decompose_full_gap_by_weak_head_difference(strong, depth8, depth4)
+    )
+    torch.testing.assert_close(full_gap, strong - depth4)
+    torch.testing.assert_close(parallel + orthogonal, full_gap)
+    weak_difference = depth8 - depth4
+    dot = (orthogonal * weak_difference).sum(dim=1)
+    torch.testing.assert_close(dot, torch.zeros_like(dot), atol=1e-6, rtol=0)
+    torch.testing.assert_close(coefficient, torch.tensor([0.4, 0.0], dtype=torch.float64))
 
 
 def test_spectral_router_and_anti_router_are_predeclared_opposites() -> None:

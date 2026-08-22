@@ -214,6 +214,41 @@ def projection_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
     return rows
 
 
+def reverse_projection_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
+    rows = []
+    heads = {"depth4_v": args.v_depth4_head, "depth8_v": args.v_depth8_head}
+    settings = [("baseline", "full", 0.0)] + [
+        (component, component, args.reverse_projection_gamma)
+        for component in ("full", "parallel", "orthogonal")
+    ]
+    for label, component_name, gamma in settings:
+        name = f"v800_full_gap_onto_weak_difference_{label}_g{gamma_tag(gamma)}"
+        rows.append(
+            evaluate(
+                args,
+                family="v800_reverse_projection",
+                condition=condition(
+                    name=name,
+                    kind="head_difference_component",
+                    gamma=gamma,
+                    formula=(
+                        "v800 + gamma * component(v800 - depth4_v; "
+                        "reference=depth8_v-depth4_v)"
+                    ),
+                    extra={
+                        "positive_head": "depth8_v",
+                        "negative_head": "depth4_v",
+                        "component": component_name,
+                        "projection_orientation": "full_gap_onto_difference",
+                    },
+                ),
+                strong=args.v800_checkpoint,
+                heads=heads,
+            )
+        )
+    return rows
+
+
 def x_transfer_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
     rows = []
     heads = {"depth4_v": args.x_depth4_head, "depth8_v": args.x_depth8_head}
@@ -297,7 +332,11 @@ def validate(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--phase", choices=("v_projection", "x_transfer"), required=True)
+    parser.add_argument(
+        "--phase",
+        choices=("v_projection", "v_reverse_projection", "x_transfer"),
+        required=True,
+    )
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--v800-checkpoint", type=Path, default=DEFAULT_V800)
     parser.add_argument("--v500-checkpoint", type=Path, default=DEFAULT_V500)
@@ -310,6 +349,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
     parser.add_argument("--projection-gamma", type=float, default=0.65)
+    parser.add_argument("--reverse-projection-gamma", type=float, default=0.25)
     parser.add_argument(
         "--x-transfer-gammas",
         type=parse_float_list,
@@ -345,6 +385,12 @@ def main(args: argparse.Namespace) -> None:
     args.output_root.mkdir(parents=True, exist_ok=True)
     if args.phase == "v_projection":
         write_summary(args, "v800_projection", projection_scan(args))
+    elif args.phase == "v_reverse_projection":
+        write_summary(
+            args,
+            "v800_reverse_projection",
+            reverse_projection_scan(args),
+        )
     else:
         write_summary(args, "x800_transfer", x_transfer_scan(args))
 

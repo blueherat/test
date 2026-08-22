@@ -373,37 +373,62 @@ def weak_head_difference_field(
     return strong + float(gamma) * (positive_weak - negative_weak)
 
 
-def decompose_weak_head_difference(
-    strong: torch.Tensor,
-    positive_weak: torch.Tensor,
-    negative_weak: torch.Tensor,
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-    """Split a weak-head difference relative to the full-to-weak gap.
+def decompose_direction(
+    direction: torch.Tensor,
+    reference: torch.Tensor,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Project one latent field onto another with one scalar per sample."""
 
-    The ordered weak-head difference is ``positive_weak - negative_weak`` and
-    the reference is ``strong - negative_weak``.  Projection is performed with
-    one scalar per sample over all latent coordinates.
-    """
-
-    if not (strong.shape == positive_weak.shape == negative_weak.shape):
-        raise ValueError("strong and weak-head fields must have identical shapes")
-    if strong.ndim < 2:
+    if direction.shape != reference.shape:
+        raise ValueError("direction and reference fields must have identical shapes")
+    if direction.ndim < 2:
         raise ValueError("fields must include batch and feature dimensions")
-    difference = positive_weak - negative_weak
-    reference = strong - negative_weak
-    dims = tuple(range(1, strong.ndim))
+    dims = tuple(range(1, direction.ndim))
     reference_energy = reference.double().square().sum(dim=dims)
-    numerator = (difference.double() * reference.double()).sum(dim=dims)
+    numerator = (direction.double() * reference.double()).sum(dim=dims)
     tiny = torch.finfo(torch.float64).tiny
     coefficient = torch.where(
         reference_energy > tiny,
         numerator / reference_energy.clamp_min(tiny),
         torch.zeros_like(numerator),
     )
-    shape = (len(strong),) + (1,) * (strong.ndim - 1)
+    shape = (len(direction),) + (1,) * (direction.ndim - 1)
     parallel = coefficient.to(reference.dtype).reshape(shape) * reference
-    orthogonal = difference - parallel
+    orthogonal = direction - parallel
+    return parallel, orthogonal, coefficient
+
+
+def decompose_weak_head_difference(
+    strong: torch.Tensor,
+    positive_weak: torch.Tensor,
+    negative_weak: torch.Tensor,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Split ``positive-negative`` relative to ``strong-negative``."""
+
+    if not (strong.shape == positive_weak.shape == negative_weak.shape):
+        raise ValueError("strong and weak-head fields must have identical shapes")
+    difference = positive_weak - negative_weak
+    reference = strong - negative_weak
+    parallel, orthogonal, coefficient = decompose_direction(difference, reference)
     return difference, parallel, orthogonal, coefficient
+
+
+def decompose_full_gap_by_weak_head_difference(
+    strong: torch.Tensor,
+    positive_weak: torch.Tensor,
+    negative_weak: torch.Tensor,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Split ``strong-negative`` relative to ``positive-negative``."""
+
+    if not (strong.shape == positive_weak.shape == negative_weak.shape):
+        raise ValueError("strong and weak-head fields must have identical shapes")
+    full_gap = strong - negative_weak
+    weak_difference = positive_weak - negative_weak
+    parallel, orthogonal, coefficient = decompose_direction(
+        full_gap,
+        weak_difference,
+    )
+    return full_gap, parallel, orthogonal, coefficient
 
 
 def route_depth_by_target_band(

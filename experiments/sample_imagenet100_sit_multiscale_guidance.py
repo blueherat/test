@@ -25,6 +25,7 @@ try:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        decompose_full_gap_by_weak_head_difference,
         decompose_weak_head_difference,
         weak_head_difference_field,
     )
@@ -59,6 +60,7 @@ except ModuleNotFoundError:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        decompose_full_gap_by_weak_head_difference,
         decompose_weak_head_difference,
         weak_head_difference_field,
     )
@@ -138,6 +140,15 @@ def load_condition(path: Path) -> dict[str, object]:
             raise ValueError(
                 "head_difference_component requires full, parallel, or orthogonal"
             )
+        orientation = str(
+            payload.get("projection_orientation", "difference_onto_full_gap")
+        )
+        if orientation not in {
+            "difference_onto_full_gap",
+            "full_gap_onto_difference",
+        }:
+            raise ValueError("unsupported head-difference projection orientation")
+        payload["projection_orientation"] = orientation
     return payload
 
 
@@ -317,11 +328,21 @@ class ConditionField:
                 times,
                 head_names={positive_head, negative_head},
             )
-            difference, parallel, orthogonal, _ = decompose_weak_head_difference(
-                full,
-                trained[positive_head],
-                trained[negative_head],
-            )
+            orientation = str(self.condition["projection_orientation"])
+            if orientation == "difference_onto_full_gap":
+                difference, parallel, orthogonal, _ = decompose_weak_head_difference(
+                    full,
+                    trained[positive_head],
+                    trained[negative_head],
+                )
+            else:
+                difference, parallel, orthogonal, _ = (
+                    decompose_full_gap_by_weak_head_difference(
+                        full,
+                        trained[positive_head],
+                        trained[negative_head],
+                    )
+                )
             components = {
                 "full": difference,
                 "parallel": parallel,

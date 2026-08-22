@@ -12,8 +12,10 @@
 - `depth_difference_geometry.png`：cosine、投影系数和残差能量时序；
 - `v800_projection_metrics.csv`、`v800_projection_summary.json`：
   `W`、`W_parallel`、`W_orthogonal` 的配对 FID-1K；
+- `v800_reverse_projection_metrics.csv`、`v800_reverse_projection_summary.json`：
+  把完整差值 `F` 反向投影到 `W` 后的配对 FID-1K；
 - `x800_transfer_metrics.csv`、`x800_transfer_summary.json`：x800 上的完整系数扫描；
-- `depth_difference_fid.png`：两组 FID 结果图。
+- `depth_difference_fid.png`：三组 FID 结果图。
 
 ## 复现入口
 
@@ -22,6 +24,9 @@ python experiments/analyze_imagenet100_sit_depth_difference_geometry.py
 
 python experiments/run_imagenet100_sit_depth_difference_mechanism.py \
   --phase v_projection --gpu 2
+
+python experiments/run_imagenet100_sit_depth_difference_mechanism.py \
+  --phase v_reverse_projection --gpu 2
 
 python experiments/run_imagenet100_sit_depth_difference_mechanism.py \
   --phase x_transfer --gpu 3
