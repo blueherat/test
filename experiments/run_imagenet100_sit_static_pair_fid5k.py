@@ -223,6 +223,13 @@ def valid_sampling_artifact(
             manifest.get("window_transition_width"),
             args.window_transition_width,
         )
+    if args.control_mode == "posterior_response" and manifest.get(
+        "posterior_response_relative_step"
+    ) != args.posterior_response_relative_step:
+        mismatches["posterior_response_relative_step"] = (
+            manifest.get("posterior_response_relative_step"),
+            args.posterior_response_relative_step,
+        )
     for side, metadata in (("anchor", anchor), ("other", other)):
         recorded = manifest.get(side, {})
         for key in (
@@ -328,6 +335,8 @@ def evaluate_scale(
             args.control_mode,
             "--window-transition-width",
             repr(float(args.window_transition_width)),
+            "--posterior-response-relative-step",
+            repr(float(args.posterior_response_relative_step)),
             "--output-dir",
             str(output_dir),
             "--weights",
@@ -559,6 +568,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--scales", nargs="+", type=float, default=list(DEFAULT_SCALES))
     parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
     parser.add_argument("--window-transition-width", type=float, default=0.01)
+    parser.add_argument(
+        "--posterior-response-relative-step", type=float, default=0.01
+    )
     parser.add_argument("--allow-step-mismatch", action="store_true")
     parser.add_argument("--allow-reference-step-mismatch", action="store_true")
     parser.add_argument("--num-samples", type=int, default=5_000)
@@ -610,6 +622,8 @@ def main() -> None:
         raise ValueError("sample, batch, and memory settings must be positive")
     if not 0 < args.fid_gpu_memory_fraction < 1:
         raise ValueError("FID GPU memory fraction must lie in (0, 1)")
+    if args.posterior_response_relative_step <= 0:
+        raise ValueError("posterior response relative step must be positive")
     if args.cuda_allocator_limit_gib * 1024 >= args.gpu_memory_ceiling_mib:
         raise ValueError("allocator limit must leave headroom below memory ceiling")
 

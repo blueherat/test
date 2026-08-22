@@ -338,6 +338,18 @@ class ConstantField(torch.nn.Module):
         return torch.full_like(state, self.value)
 
 
+class IdentityCleanField(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.calls = 0
+
+    def forward(self, state, times, labels):
+        del labels
+        self.calls += 1
+        scale = times.reshape((len(times),) + (1,) * (state.ndim - 1))
+        return state / scale
+
+
 def test_conditional_pair_short_circuits_exact_endpoints() -> None:
     semantics = resolve_field_semantics(
         protocol=SINGLE_TARGET_PROTOCOL,
@@ -410,6 +422,39 @@ def test_floor_only_control_does_not_evaluate_x_model() -> None:
     assert anchor.calls == 1
     assert other.calls == 0
     assert counter == {"nfe": 1, "anchor_forwards": 1, "other_forwards": 0}
+
+
+def test_posterior_response_control_recovers_anchor_for_identity_response() -> None:
+    velocity_semantics = resolve_field_semantics(
+        protocol=SINGLE_TARGET_PROTOCOL,
+        config={"prediction_target": "velocity", "denominator_floor": 1e-3},
+        requested_path="auto",
+    )
+    x_semantics = resolve_field_semantics(
+        protocol=SINGLE_TARGET_PROTOCOL,
+        config={"prediction_target": "x", "denominator_floor": 0.05},
+        requested_path="auto",
+    )
+    anchor = ConstantField(2.0)
+    clean = IdentityCleanField()
+    velocity, counter = conditional_static_pair_velocity(
+        anchor,
+        clean,
+        torch.tensor([1, 2]),
+        anchor_semantics=velocity_semantics,
+        other_semantics=x_semantics,
+        scale=1.0,
+        control_mode="posterior_response",
+        posterior_response_relative_step=0.01,
+        autocast_dtype=None,
+    )
+    state = torch.randn(2, 4, 3, 3)
+    actual = velocity(torch.tensor(0.5), state)
+
+    torch.testing.assert_close(actual, torch.full_like(state, 2.0), atol=2e-5, rtol=2e-5)
+    assert anchor.calls == 1
+    assert clean.calls == 3
+    assert counter == {"nfe": 1, "anchor_forwards": 1, "other_forwards": 3}
 
 
 def test_conditional_common_unique_velocity_evaluates_three_paired_fields() -> None:

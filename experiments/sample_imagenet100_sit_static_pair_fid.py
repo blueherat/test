@@ -21,6 +21,10 @@ import torch.distributed as dist
 from torchvision.utils import save_image
 
 try:
+    from experiments.posterior_response_projector import (
+        posterior_response_action,
+        posterior_response_blend,
+    )
     from experiments.imagenet100_sit_static_pair import (
         COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
@@ -53,6 +57,10 @@ try:
         sha256_file,
     )
 except ModuleNotFoundError:
+    from posterior_response_projector import (
+        posterior_response_action,
+        posterior_response_blend,
+    )
     from imagenet100_sit_static_pair import (
         COMMON_UNIQUE_COMPONENTS,
         CONTROL_MODES,
@@ -206,6 +214,7 @@ def conditional_static_pair_velocity(
     scale: float,
     control_mode: str = "full_pair",
     window_transition_width: float = 0.01,
+    posterior_response_relative_step: float = 0.01,
     autocast_dtype: torch.dtype | None,
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0, "anchor_forwards": 0, "other_forwards": 0}
@@ -247,6 +256,51 @@ def conditional_static_pair_velocity(
                 raise ValueError("the selected control requires an instantiated other model")
             counter["other_forwards"] += 1
             other_velocity = evaluate(other_model, other_semantics, state, times)
+        if control_mode == "posterior_response":
+            if other_model is None or other_velocity is None:
+                raise ValueError("posterior_response requires an instantiated other model")
+
+            def clean_estimator(
+                perturbed_state: torch.Tensor,
+                perturbed_times: torch.Tensor,
+            ) -> torch.Tensor:
+                counter["other_forwards"] += 1
+                if autocast_dtype is None:
+                    output = other_model(perturbed_state, perturbed_times, labels)
+                else:
+                    with torch.autocast("cuda", dtype=autocast_dtype):
+                        output = other_model(perturbed_state, perturbed_times, labels)
+                if (
+                    other_semantics.protocol != DUAL_OUTPUT_PROTOCOL
+                    and other_semantics.prediction_target == "x"
+                ):
+                    return output.float()
+                velocity_output = output_to_field_velocity(
+                    output,
+                    state=perturbed_state,
+                    time_value=perturbed_times,
+                    semantics=other_semantics,
+                )
+                remaining = (1.0 - perturbed_times).reshape(
+                    (len(perturbed_times),) + (1,) * (perturbed_state.ndim - 1)
+                )
+                return perturbed_state.float() + remaining * velocity_output
+
+            direction = anchor_velocity - other_velocity
+            response_action = posterior_response_action(
+                clean_estimator,
+                state=state,
+                time=times,
+                direction=direction,
+                alpha=times,
+                relative_step=posterior_response_relative_step,
+            )
+            return posterior_response_blend(
+                anchor_velocity,
+                other_velocity,
+                response_action,
+                strength=scale,
+            )
         return controlled_pair_velocity(
             anchor_velocity,
             other_velocity,
@@ -329,6 +383,10 @@ def conditional_common_unique_velocity(
 def main(args: argparse.Namespace) -> None:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required")
+    if args.posterior_response_relative_step <= 0:
+        raise ValueError("posterior response relative step must be positive")
+    if args.control_mode == "posterior_response" and args.precision != "fp32":
+        raise ValueError("posterior-response finite differences require fp32")
     common_unique = args.common_unique_component is not None
     if args.anchor_checkpoint.resolve() == args.other_checkpoint.resolve():
         raise ValueError("use the dual-output sampler for two paths from one checkpoint")
@@ -488,6 +546,9 @@ def main(args: argparse.Namespace) -> None:
                 scale=args.static_scale,
                 control_mode=args.control_mode,
                 window_transition_width=args.window_transition_width,
+                posterior_response_relative_step=(
+                    args.posterior_response_relative_step
+                ),
                 autocast_dtype=autocast_dtype,
             )
         latents = integrate_velocity(
@@ -622,6 +683,10 @@ def main(args: argparse.Namespace) -> None:
                 "post_floor_pair": "anchor + scale * w_post(t) * (other - anchor)",
                 "parallel_pair": "anchor + scale * proj_anchor(other - anchor)",
                 "orthogonal_pair": "anchor + scale * orth_anchor(other - anchor)",
+                "posterior_response": (
+                    "anchor + scale * (other + alpha(t) * "
+                    "J_clean(other)(anchor - other) - anchor)"
+                ),
             }[args.control_mode]
         manifest = {
             "format": (
@@ -640,9 +705,15 @@ def main(args: argparse.Namespace) -> None:
             "formula": formula,
             "x_floor_coefficient": "c(t) = (1 - t) / max(1 - t, other.denominator_floor)",
             "projection_scope": (
-                "one scalar per sample and ODE evaluation over all latent C,H,W values"
+                "matrix-free alpha(t) * J_clean(state,t) action on one paired "
+                "velocity difference per sample and ODE evaluation"
+                if args.control_mode == "posterior_response"
+                else "one scalar per sample and ODE evaluation over all latent C,H,W values"
             ),
             "window_transition_width": float(args.window_transition_width),
+            "posterior_response_relative_step": float(
+                args.posterior_response_relative_step
+            ),
             "allow_step_mismatch": bool(args.allow_step_mismatch),
             "allow_reference_step_mismatch": bool(
                 args.allow_reference_step_mismatch
@@ -750,6 +821,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--static-scale", type=float, required=True)
     parser.add_argument("--control-mode", choices=CONTROL_MODES, default="full_pair")
     parser.add_argument("--window-transition-width", type=float, default=0.01)
+    parser.add_argument(
+        "--posterior-response-relative-step", type=float, default=0.01
+    )
     parser.add_argument("--allow-step-mismatch", action="store_true")
     parser.add_argument("--allow-reference-step-mismatch", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)

@@ -30,6 +30,7 @@ ControlMode = Literal[
     "post_floor_pair",
     "parallel_pair",
     "orthogonal_pair",
+    "posterior_response",
 ]
 CommonUniqueComponent = Literal[
     "x_common_on_v",
@@ -45,6 +46,7 @@ CONTROL_MODES = (
     "post_floor_pair",
     "parallel_pair",
     "orthogonal_pair",
+    "posterior_response",
 )
 X_FLOOR_CONTROL_MODES = frozenset(
     ("floor_only", "floor_residual", "pre_floor_pair", "post_floor_pair")
@@ -307,6 +309,11 @@ def controlled_pair_velocity(
 
     if mode not in CONTROL_MODES:
         raise ValueError(f"unsupported control mode: {mode}")
+    if mode == "posterior_response":
+        raise ValueError(
+            "posterior_response requires a clean-estimator callback and must "
+            "be evaluated by conditional_static_pair_velocity"
+        )
     if scale == 0.0:
         return anchor_velocity
     if mode == "full_pair":
