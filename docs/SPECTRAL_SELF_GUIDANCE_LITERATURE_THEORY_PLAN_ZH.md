@@ -2,6 +2,15 @@
 
 更新时间：2026-08-22
 
+> **撤回说明（2026-08-22）：** 本文初版把较早的 `4 -> 8 -> 10` 扫描当成了
+> depth-frequency progression 的正证据，并据此提出用频谱响应选择弱头。后续更严格的
+> 配对控制已经反证这个解释：固定 `depth4` 仅在 `t < 0.5` 启用便解释了主要收益；
+> 将前半程再分段调参只改善 `0.1388` FID-1K，后半程换成 `depth10` 的最优改善只有
+> `0.0860`，在 `gamma_late=0` 时两种 head 的差异仅 `0.0007`。此外，仓库已有 useful
+> 与 failed gap 频谱统计近似相同、分频 controller 不优于 scalar IG 的反例。因此本文
+> 第 10--14 节的“频谱响应选择 IG/AG provider”计划已撤回；保留前文仅用于记录 SAG
+> 重合边界、SNR 软前沿和 denoiser 频带响应的数学审计。
+
 ## 1. 结论先行
 
 这条想法有一个有价值的理论母题，但用户给出的直接算法不能作为新方法：
@@ -19,20 +28,11 @@
 5. “回看过去预测”的轻量变体与 HiGS、频域 moving-average sampling 等历史预测
    guidance 高度重合，并且原描述混淆了两种相反的时间约定，不宜作为主线。
 
-因此，真正还有研究空间的问题应收缩为：
-
-> **频带删除后，生成模型产生的响应能否分解成普通线性锐化与非高斯、跨尺度的语义
-> innovation；后者能否在不使用 FID 标签的情况下，预测哪些 internal/auto guidance
-> 弱头及时间调度真正有用？**
-
-这与 SAG 的差别不是换一个 blur kernel，而是从“直接使用 blur gap”转向：
-
-- 建立可验证的频带响应算子；
-- 给出线性平稳高斯情况下的闭式零假设；
-- 分离普通频率增益与非线性跨频响应；
-- 用该响应无监督选择 IG/AG provider，而不是靠生成 FID 扫出 `4 -> 8 -> 10`。
-
-只有这个版本同时通过机制诊断和 held-out 调度选择，才值得继续发展成方法。
+因此，本项目不再把“网络深度对应频率”或“频谱响应选择弱头”作为研究主线。仍可复用
+的是一个更窄的数学事实：在由真实 Markov noising kernel 构造的嵌套观测下，不同噪声
+级 posterior mean 的差值是条件均值为零的 martingale innovation。它不依赖内部 head，
+也不同于直接模糊 clean prediction；是否能据此得到可校准、能改善闭环生成的 estimator，
+必须作为新的预注册问题独立验证。
 
 ## 2. 文献边界
 
@@ -457,7 +457,9 @@ g_l=P_{high}g_l,
 - `depth8_x` 与 failed `depth12_x` 也相近；
 - static/learned spectral controller 没有超过 scalar IG；
 - 但 time-band causal intervention 显示 useful gap 的主要收益集中在 `mid x high`；
-- `depth 4 -> 8 -> 10` 在 FID-5K 上达到 `42.6254`，明显优于 static heads 与旧 AG。
+- 较早的 `depth 4 -> 8 -> 10` 固定系数实验曾在 FID-5K 上达到 `42.6254`，但它没有
+  匹配各 head 的有效时间窗和幅度，不能识别 depth identity 的因果贡献；后续配对扫描
+  表明主要收益来自前半程的 `depth4`，不支持 depth progression。
 
 所以频率可以是**因果干预坐标**，却不是仅靠静态能量就能读取的 utility 标签。
 
@@ -493,7 +495,10 @@ FID-5K suite 仍停在 49/52 shards，不能把它当成已完成的正结果。
 FID-1K time-band/depth 条件和一个 FID-5K 确认。新研究必须复用这些 useful/failed provider
 作为 held-out 判别题，不能重新从 blur scale 扫参开始。
 
-## 10. 唯一值得优先检验的新假设
+## 10. 已撤回的旧假设
+
+以下 H1--H3 与 Phase A--C 是初版计划，因后续 depth4 对照和静态频谱反例已经失去
+前提，仅作为失败方案归档，不再执行。
 
 ### H1：存在可重复的 model spectral response frontier
 
