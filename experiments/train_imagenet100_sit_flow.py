@@ -37,6 +37,13 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader, Dataset, DistributedSampler
 
 try:
+    from experiments.imagenet100_sit_moment_residual import (
+        VELOCITY_DECOMPOSITIONS,
+        DiagonalMomentStats,
+        diagonal_stats_from_payload,
+        load_diagonal_moment_stats,
+        moment_residual_losses,
+    )
     from experiments.imagenet100_sit_prediction_targets import (
         LOSS_SPACES,
         PREDICTION_TARGETS,
@@ -51,6 +58,13 @@ try:
         validate_time_sampling,
     )
 except ModuleNotFoundError:
+    from imagenet100_sit_moment_residual import (
+        VELOCITY_DECOMPOSITIONS,
+        DiagonalMomentStats,
+        diagonal_stats_from_payload,
+        load_diagonal_moment_stats,
+        moment_residual_losses,
+    )
     from imagenet100_sit_prediction_targets import (
         LOSS_SPACES,
         PREDICTION_TARGETS,
@@ -73,6 +87,7 @@ DEFAULT_CACHE_DIR = Path(
 DEFAULT_OUTPUT_DIR = Path(
     "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit_s2_seed0"
 )
+DEFAULT_MOMENT_STATS = DEFAULT_CACHE_DIR / "train_diagonal_moments.pt"
 DEFAULT_OFFICIAL_SIT_REPO = Path("/home/zhoushunyu/data/research_repos/SiT")
 OFFICIAL_SIT_COMMIT = "cbde832a40b153ccc79603412409da9c9b0c568c"
 OFFICIAL_MODELS_SHA256 = (
@@ -270,6 +285,49 @@ def linear_flow_state_target(
     return state, target
 
 
+def sit_training_losses(
+    prediction: torch.Tensor,
+    *,
+    state: torch.Tensor,
+    data: torch.Tensor,
+    noise: torch.Tensor,
+    time_value: torch.Tensor,
+    prediction_target: str,
+    loss_space: str,
+    denominator_floor: float,
+    velocity_decomposition: str,
+    moment_stats: DiagonalMomentStats | None,
+    moment_variance_floor: float,
+) -> dict[str, torch.Tensor]:
+    if velocity_decomposition == "native":
+        return prediction_losses(
+            prediction,
+            state=state,
+            data=data,
+            noise=noise,
+            time_value=time_value,
+            prediction_target=prediction_target,
+            loss_space=loss_space,
+            denominator_floor=denominator_floor,
+        )
+    if velocity_decomposition == "diagonal_lmmse":
+        if prediction_target != "velocity" or loss_space != "velocity":
+            raise ValueError(
+                "diagonal_lmmse requires velocity prediction and velocity-space loss"
+            )
+        if moment_stats is None:
+            raise ValueError("diagonal_lmmse requires train-only moment statistics")
+        return moment_residual_losses(
+            prediction,
+            state=state,
+            velocity_target=data - noise,
+            time_value=time_value,
+            stats=moment_stats,
+            variance_floor=moment_variance_floor,
+        )
+    raise ValueError(f"unsupported velocity decomposition: {velocity_decomposition}")
+
+
 class ModelEMA:
     def __init__(self, model: nn.Module):
         self.module = copy.deepcopy(model).eval()
@@ -399,6 +457,9 @@ class TrainConfig:
     prediction_target: str
     loss_space: str
     denominator_floor: float
+    velocity_decomposition: str
+    moment_stats_path: str
+    moment_variance_floor: float
     time_sampler: str
     time_logit_mean: float
     time_logit_std: float
@@ -447,6 +508,9 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "prediction_target",
         "loss_space",
         "denominator_floor",
+        "velocity_decomposition",
+        "moment_stats_path",
+        "moment_variance_floor",
         "time_sampler",
         "time_logit_mean",
         "time_logit_std",
@@ -468,6 +532,9 @@ def validate_resume(stored: dict, current: TrainConfig, world_size: int) -> None
         "prediction_target": "velocity",
         "loss_space": "velocity",
         "denominator_floor": 1e-3,
+        "velocity_decomposition": "native",
+        "moment_stats_path": str(DEFAULT_MOMENT_STATS.resolve()),
+        "moment_variance_floor": 1e-6,
         "time_sampler": "uniform",
         "time_logit_mean": -0.8,
         "time_logit_std": 0.8,
@@ -511,6 +578,9 @@ def validation_loss(
     prediction_target: str,
     loss_space: str,
     denominator_floor: float,
+    velocity_decomposition: str = "native",
+    moment_stats: DiagonalMomentStats | None = None,
+    moment_variance_floor: float = 1e-6,
 ) -> dict[str, float]:
     generator = torch.Generator(device=context.device).manual_seed(int(seed))
     total = torch.zeros(4, device=context.device, dtype=torch.float64)
@@ -535,41 +605,60 @@ def validation_loss(
         state, _ = linear_flow_state_target(data, source_noise, time_value)
         with autocast_context(precision):
             prediction = model(state, time_value, labels)
-        native_target = native_prediction_target(
-            data=data,
-            noise=source_noise,
-            prediction_target=prediction_target,
-        )
-        velocity_prediction = prediction_to_velocity(
-            prediction,
-            state=state,
-            time_value=time_value,
-            prediction_target=prediction_target,
-            denominator_floor=denominator_floor,
-        )
-        velocity_target = prediction_to_velocity(
-            native_target,
-            state=state,
-            time_value=time_value,
-            prediction_target=prediction_target,
-            denominator_floor=denominator_floor,
-        )
-        native_losses = (
-            (prediction.float() - native_target.float()).square().flatten(1).mean(1)
-        )
-        velocity_losses = (
-            (velocity_prediction - velocity_target)
-            .square()
-            .flatten(1)
-            .mean(1)
-        )
-        optimized_losses = (
-            velocity_losses if loss_space == "velocity" else native_losses
-        )
+        if velocity_decomposition == "native":
+            native_target = native_prediction_target(
+                data=data,
+                noise=source_noise,
+                prediction_target=prediction_target,
+            )
+            velocity_prediction = prediction_to_velocity(
+                prediction,
+                state=state,
+                time_value=time_value,
+                prediction_target=prediction_target,
+                denominator_floor=denominator_floor,
+            )
+            velocity_target = prediction_to_velocity(
+                native_target,
+                state=state,
+                time_value=time_value,
+                prediction_target=prediction_target,
+                denominator_floor=denominator_floor,
+            )
+            native_losses = (
+                (prediction.float() - native_target.float()).square().flatten(1).mean(1)
+            )
+            velocity_losses = (
+                (velocity_prediction - velocity_target)
+                .square()
+                .flatten(1)
+                .mean(1)
+            )
+            optimized_losses = (
+                velocity_losses if loss_space == "velocity" else native_losses
+            )
+        else:
+            losses = sit_training_losses(
+                prediction,
+                state=state,
+                data=data,
+                noise=source_noise,
+                time_value=time_value,
+                prediction_target=prediction_target,
+                loss_space=loss_space,
+                denominator_floor=denominator_floor,
+                velocity_decomposition=velocity_decomposition,
+                moment_stats=moment_stats,
+                moment_variance_floor=moment_variance_floor,
+            )
+            # The helper returns batch means; validation needs sample-weighted sums.
+            optimized_losses = losses["optimized"].expand(len(data))
+            native_losses = losses["native"].expand(len(data))
+            velocity_losses = losses["velocity"].expand(len(data))
         total[0] += optimized_losses.double().sum()
         total[1] += native_losses.double().sum()
         total[2] += velocity_losses.double().sum()
-        total[3] += len(optimized_losses)
+        total[3] += len(data)
     reduce_sum(total, context)
     if total[3].item() == 0:
         raise RuntimeError("validation loader produced no samples")
@@ -585,9 +674,12 @@ def protocol_for_config(config: TrainConfig) -> str:
         config.prediction_target == "velocity"
         and config.loss_space == "velocity"
         and config.time_sampler == "uniform"
+        and config.velocity_decomposition == "native"
     ):
         return LEGACY_PROTOCOL
-    return TARGET_PROTOCOL
+    if config.velocity_decomposition == "native":
+        return TARGET_PROTOCOL
+    return "imagenet100_sit_diagonal_moment_residual_v1"
 
 
 def build_run_metadata(
@@ -597,6 +689,7 @@ def build_run_metadata(
     source_metadata: dict,
     model: nn.Module,
     cache_manifest: dict,
+    moment_stats: DiagonalMomentStats | None,
 ) -> dict:
     import timm
 
@@ -614,6 +707,8 @@ def build_run_metadata(
             "prediction_target": config.prediction_target,
             "loss_space": config.loss_space,
             "denominator_floor": config.denominator_floor,
+            "velocity_decomposition": config.velocity_decomposition,
+            "moment_variance_floor": config.moment_variance_floor,
             "velocity_target": "data-noise",
             "training_time_distribution": time_distribution_metadata(
                 config.time_sampler,
@@ -630,6 +725,18 @@ def build_run_metadata(
             "posterior": "mean+std*N(0,I)",
             "scaling_factor": SD_VAE_SCALING_FACTOR,
             "shape": list(LATENT_SHAPE),
+            "moment_statistics": (
+                None
+                if moment_stats is None
+                else {
+                    "format": "eqvae_imagenet100_sdvae_diagonal_moments_v1",
+                    "split": "train",
+                    "count": moment_stats.count,
+                    "cache_manifest_sha256": moment_stats.cache_manifest_sha256,
+                    "source_sha256": moment_stats.source_sha256,
+                    "coordinate_family": "diagonal affine",
+                }
+            ),
         },
         "data_manifest": cache_manifest,
         "environment": {
@@ -656,6 +763,9 @@ def train(args: argparse.Namespace) -> None:
             prediction_target=args.prediction_target,
             loss_space=args.loss_space,
             denominator_floor=float(args.denominator_floor),
+            velocity_decomposition=args.velocity_decomposition,
+            moment_stats_path=str(args.moment_stats.expanduser().resolve()),
+            moment_variance_floor=float(args.moment_variance_floor),
             time_sampler=args.time_sampler,
             time_logit_mean=float(args.time_logit_mean),
             time_logit_std=float(args.time_logit_std),
@@ -690,6 +800,15 @@ def train(args: argparse.Namespace) -> None:
             raise ValueError("--cfg-dropout must be in [0,1)")
         if config.denominator_floor <= 0 or config.denominator_floor >= 0.5:
             raise ValueError("--denominator-floor must be in (0,0.5)")
+        if config.moment_variance_floor <= 0:
+            raise ValueError("--moment-variance-floor must be positive")
+        if config.velocity_decomposition != "native" and (
+            config.prediction_target != "velocity" or config.loss_space != "velocity"
+        ):
+            raise ValueError(
+                "moment decomposition requires --prediction-target velocity "
+                "and --loss-space velocity"
+            )
         validate_time_sampling(
             config.time_sampler,
             config.time_logit_mean,
@@ -704,6 +823,13 @@ def train(args: argparse.Namespace) -> None:
         cache_manifest_sha256 = sha256_file(cache_manifest_path)
         if cache_manifest.get("format") != "eqvae_imagenet100_cmc_sdvae_moments_v1":
             raise ValueError(f"unsupported data manifest: {cache_manifest_path}")
+        moment_stats: DiagonalMomentStats | None = None
+        if config.velocity_decomposition == "diagonal_lmmse":
+            moment_stats = load_diagonal_moment_stats(
+                Path(config.moment_stats_path),
+                expected_cache_manifest_sha256=cache_manifest_sha256,
+                expected_scaling_factor=SD_VAE_SCALING_FACTOR,
+            ).to(context.device)
 
         sit_module, source_metadata = load_official_sit_module(
             Path(config.official_sit_repo), verify_source=args.verify_sit_source
@@ -760,6 +886,23 @@ def train(args: argparse.Namespace) -> None:
                 raise ValueError("checkpoint data manifest does not match the current cache")
             if checkpoint.get("official_sit") != source_metadata:
                 raise ValueError("checkpoint official SiT source does not match this run")
+            if moment_stats is not None:
+                stored_payload = checkpoint.get("moment_stats")
+                if stored_payload is None:
+                    raise ValueError("moment-residual checkpoint is missing train statistics")
+                stored_stats = diagonal_stats_from_payload(stored_payload)
+                if (
+                    stored_stats.cache_manifest_sha256
+                    != moment_stats.cache_manifest_sha256
+                    or stored_stats.source_sha256 != moment_stats.source_sha256
+                    or not torch.equal(stored_stats.mean.cpu(), moment_stats.mean.cpu())
+                    or not torch.equal(
+                        stored_stats.variance.cpu(), moment_stats.variance.cpu()
+                    )
+                ):
+                    raise ValueError(
+                        "checkpoint moment statistics do not match the current train statistics"
+                    )
             raw_model.load_state_dict(checkpoint["model"])
             ema.load_state_dict(checkpoint["ema"])
             optimizer.load_state_dict(checkpoint["optimizer"])
@@ -809,6 +952,7 @@ def train(args: argparse.Namespace) -> None:
                 source_metadata=source_metadata,
                 model=raw_model,
                 cache_manifest=cache_manifest,
+                moment_stats=moment_stats,
             )
             atomic_json_dump(metadata, output_dir / "run_config.json")
             print(
@@ -819,6 +963,7 @@ def train(args: argparse.Namespace) -> None:
                         "model": config.model_name,
                         "prediction_target": config.prediction_target,
                         "loss_space": config.loss_space,
+                        "velocity_decomposition": config.velocity_decomposition,
                         "time_sampler": config.time_sampler,
                         "time_logit_mean": config.time_logit_mean,
                         "time_logit_std": config.time_logit_std,
@@ -861,7 +1006,7 @@ def train(args: argparse.Namespace) -> None:
 
             with autocast_context(config.precision):
                 prediction = train_model(state, time_value, labels)
-            losses = prediction_losses(
+            losses = sit_training_losses(
                 prediction,
                 state=state,
                 data=data,
@@ -870,6 +1015,9 @@ def train(args: argparse.Namespace) -> None:
                 prediction_target=config.prediction_target,
                 loss_space=config.loss_space,
                 denominator_floor=config.denominator_floor,
+                velocity_decomposition=config.velocity_decomposition,
+                moment_stats=moment_stats,
+                moment_variance_floor=config.moment_variance_floor,
             )
             loss = losses["optimized"]
             if not torch.isfinite(loss):
@@ -939,6 +1087,9 @@ def train(args: argparse.Namespace) -> None:
                     prediction_target=config.prediction_target,
                     loss_space=config.loss_space,
                     denominator_floor=config.denominator_floor,
+                    velocity_decomposition=config.velocity_decomposition,
+                    moment_stats=moment_stats,
+                    moment_variance_floor=config.moment_variance_floor,
                 )
                 ema_value = validation_loss(
                     model=ema.module,
@@ -950,6 +1101,9 @@ def train(args: argparse.Namespace) -> None:
                     prediction_target=config.prediction_target,
                     loss_space=config.loss_space,
                     denominator_floor=config.denominator_floor,
+                    velocity_decomposition=config.velocity_decomposition,
+                    moment_stats=moment_stats,
+                    moment_variance_floor=config.moment_variance_floor,
                 )
                 raw_model.train()
                 if context.is_main:
@@ -984,6 +1138,11 @@ def train(args: argparse.Namespace) -> None:
                             "config": {**asdict(config), "world_size": context.world_size},
                             "official_sit": source_metadata,
                             "data_manifest_sha256": cache_manifest_sha256,
+                            "moment_stats": (
+                                None
+                                if moment_stats is None
+                                else moment_stats.checkpoint_payload()
+                            ),
                         },
                         checkpoint_path,
                     )
@@ -998,6 +1157,12 @@ def benchmark(args: argparse.Namespace) -> None:
     context = initialize_distributed(args.device)
     try:
         configure_runtime(args.seed, context.rank, args.allow_tf32)
+        moment_stats: DiagonalMomentStats | None = None
+        if args.velocity_decomposition == "diagonal_lmmse":
+            moment_stats = load_diagonal_moment_stats(
+                args.moment_stats.expanduser().resolve(),
+                expected_scaling_factor=SD_VAE_SCALING_FACTOR,
+            ).to(context.device)
         sit_module, source_metadata = load_official_sit_module(
             args.official_sit_repo.expanduser().resolve(),
             verify_source=args.verify_sit_source,
@@ -1057,7 +1222,7 @@ def benchmark(args: argparse.Namespace) -> None:
             optimizer.zero_grad(set_to_none=True)
             with autocast_context(args.precision):
                 prediction = model(state, time_value, labels)
-            losses = prediction_losses(
+            losses = sit_training_losses(
                 prediction,
                 state=state,
                 data=data,
@@ -1066,6 +1231,9 @@ def benchmark(args: argparse.Namespace) -> None:
                 prediction_target=args.prediction_target,
                 loss_space=args.loss_space,
                 denominator_floor=args.denominator_floor,
+                velocity_decomposition=args.velocity_decomposition,
+                moment_stats=moment_stats,
+                moment_variance_floor=args.moment_variance_floor,
             )
             losses["optimized"].backward()
             optimizer.step()
@@ -1091,6 +1259,7 @@ def benchmark(args: argparse.Namespace) -> None:
                         "model": args.model,
                         "prediction_target": args.prediction_target,
                         "loss_space": args.loss_space,
+                        "velocity_decomposition": args.velocity_decomposition,
                         "official_sit": source_metadata,
                         "world_size": context.world_size,
                         "local_batch_size": batch_size,
@@ -1123,6 +1292,13 @@ def add_shared_arguments(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument("--loss-space", choices=LOSS_SPACES, default="velocity")
     parser.add_argument("--denominator-floor", type=float, default=1e-3)
+    parser.add_argument(
+        "--velocity-decomposition",
+        choices=VELOCITY_DECOMPOSITIONS,
+        default="native",
+    )
+    parser.add_argument("--moment-stats", type=Path, default=DEFAULT_MOMENT_STATS)
+    parser.add_argument("--moment-variance-floor", type=float, default=1e-6)
     parser.add_argument("--time-sampler", choices=TIME_SAMPLERS, default="uniform")
     parser.add_argument("--time-logit-mean", type=float, default=-0.8)
     parser.add_argument("--time-logit-std", type=float, default=0.8)

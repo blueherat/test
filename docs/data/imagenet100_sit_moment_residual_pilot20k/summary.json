@@ -1,0 +1,40 @@
+{
+  "format": "eqvae_imagenet100_sit_moment_residual_archive_v1",
+  "status": "stopped_negative_result",
+  "weights": "model",
+  "ema_used": false,
+  "checkpoint_step": 20000,
+  "paired_validation_samples": 5000,
+  "generation_samples": 5000,
+  "train_moment_stats_sha256": "aa923e6e8fdca8d93a02c3863793c1c52f2591b6884d9f9676ae0b28633f6695",
+  "native_checkpoint_sha256": "75950a6144131b8f72eb1ae3d4177d9bc8212388de915aad04cae036fabc261b",
+  "residual_checkpoint_sha256": "7599c4064b6935f2f4bcb41084df5bc6f5431c39fc0d053489727b71b706d37c",
+  "paired_validation": {
+    "native_velocity_mse": 0.82835446357131,
+    "residual_velocity_mse": 0.8286876991391182,
+    "residual_minus_native": 0.0003332355678081512,
+    "relative_percent": 0.04022861980745085,
+    "paired_ci95": [0.0001416794235005102, 0.0005247917121157923]
+  },
+  "generation": {
+    "native": {
+      "fid": 155.69833838805414,
+      "sfid": 84.29937362041164,
+      "inception_score": 9.01119327545166
+    },
+    "diagonal_residual": {
+      "fid": 161.05707838800777,
+      "sfid": 89.04434957973785,
+      "inception_score": 8.294437408447266
+    }
+  },
+  "sampling_pairing": {
+    "same_noise_hashes": true,
+    "same_label_hashes": true,
+    "cfg_scale": 1.0,
+    "sampler": "dopri5",
+    "rtol": 0.001,
+    "atol": 1e-06
+  },
+  "decision": "The exact affine decomposition remains valid, but diagonal residualization did not transfer to raw SiT-S/2 validation risk or FID; do not continue this line."
+}

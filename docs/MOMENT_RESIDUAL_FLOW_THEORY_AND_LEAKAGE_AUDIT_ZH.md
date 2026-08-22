@@ -688,3 +688,63 @@ family。任何 FID 改善必须同时报告额外 preprocessing、训练 FLOPs 
 train-only statistics 和 matched-compute protocol，它不是作弊，也不存在数据泄露。
 真正尚未解决的是有限模型为什么、何时从这个精确分解中获益。这正是下一阶段需要
 用容量定理和短训因果实验回答的问题。
+
+## 21. ImageNet-100 SiT raw-only 终验与停止结论
+
+按照同初始化协议，在 ImageNet-100 的 SD-VAE latent cache 上训练两份 SiT-S/2 到
+`20,000` step：
+
+1. `native`：直接回归 conditional velocity `X-E`；
+2. `diagonal_lmmse`：用 **train split** 的逐坐标均值和方差构造解析 diagonal affine
+   branch，网络只回归剩余项。
+
+两者均使用 raw `model` 权重，不使用 EMA；采样均为无 guidance、相同 5000 个初始
+噪声与类别、相同 Dopri5 配置、相同 VAE 和相同 ImageNet-100 validation reference。
+训练统计文件的 SHA256 为：
+
+```text
+aa923e6e8fdca8d93a02c3863793c1c52f2591b6884d9f9676ae0b28633f6695
+```
+
+### 21.1 配对 validation velocity risk
+
+在 5000 个固定 validation latent、固定 posterior noise、固定 FM source noise 和固定
+时间上：
+
+| 模型 | velocity MSE | residual - native |
+|---|---:|---:|
+| native raw | 0.8283545 | - |
+| diagonal residual raw | 0.8286877 | +0.0003332 |
+
+相对变化为 `+0.0402%`，paired 95% CI 为
+`[+0.0001417, +0.0005248]`。时间分箱并非单调：残差模型在 `[0,0.3)` 与
+`[0.9,1]` 略好，但在 `[0.3,0.9)` 整体更差。因此不能把总体差异解释成某个单一端点
+数值问题。
+
+### 21.2 闭环生成结果
+
+| 模型 | FID-5K | sFID | IS |
+|---|---:|---:|---:|
+| native raw | **155.6983** | **84.2994** | **9.0112** |
+| diagonal residual raw | 161.0571 | 89.0443 | 8.2944 |
+
+残差模型相对 native 的 FID 恶化 `+5.3587`，sFID 恶化 `+4.7450`，IS 也下降。
+两路 sampling manifest 的逐 rank noise/label SHA256 完全一致，排除了样本配对差异。
+
+残差模型的 adaptive solver NFE 反而更少：rank 0 为 `3164`，native 为 `4166`；rank 1
+也呈同样趋势。这说明解析旁路让当前场更易积分，但“更平滑/更低 NFE”没有转化为更好
+的终端分布。
+
+### 21.3 最终判断
+
+这轮真实模型结果否定了当前方法主张，而不是否定第 5--7 节的概率恒等式：
+
+- moment-exact affine projection 仍然数学正确；
+- train-only 统计、checkpoint 绑定和配对评估未发现泄露或作弊；
+- 但 diagonal residualization 在真实 SiT-S/2 上没有降低 raw validation risk，也没有
+  改善生成质量；
+- toy 中的 rank-limited 优势没有迁移到当前 Transformer regime。
+
+因此本路线在当前仓库中定性为**已终止的负结果**。不再追加 EMA、长训、full
+covariance、low-rank 分支或新的预条件变体。代码与小型结果保留，仅用于复核精确分解、
+泄露边界和这个负迁移结论。

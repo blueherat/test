@@ -29,6 +29,11 @@ import torch.distributed as dist
 from torchvision.utils import save_image
 
 try:
+    from experiments.imagenet100_sit_moment_residual import (
+        DiagonalMomentStats,
+        diagonal_stats_from_payload,
+        moment_residual_to_velocity,
+    )
     from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
     from experiments.sample_imagenet100_sit_flow import (
         DEFAULT_CHECKPOINT,
@@ -44,6 +49,11 @@ try:
         sha256_file,
     )
 except ModuleNotFoundError:
+    from imagenet100_sit_moment_residual import (
+        DiagonalMomentStats,
+        diagonal_stats_from_payload,
+        moment_residual_to_velocity,
+    )
     from imagenet100_sit_prediction_targets import prediction_to_velocity
     from sample_imagenet100_sit_flow import DEFAULT_CHECKPOINT, integrate_velocity
     from train_imagenet100_sit_flow import (
@@ -157,6 +167,9 @@ def conditional_velocity(
     autocast_dtype: torch.dtype | None,
     prediction_target: str = "velocity",
     denominator_floor: float = 1e-3,
+    velocity_decomposition: str = "native",
+    moment_stats: DiagonalMomentStats | None = None,
+    moment_variance_floor: float = 1e-6,
 ) -> tuple[object, dict[str, int]]:
     counter = {"nfe": 0}
 
@@ -168,13 +181,25 @@ def conditional_velocity(
         else:
             with torch.autocast("cuda", dtype=autocast_dtype):
                 prediction = model(state, times, labels)
-        return prediction_to_velocity(
-            prediction,
-            state=state,
-            time_value=times,
-            prediction_target=prediction_target,
-            denominator_floor=denominator_floor,
-        )
+        if velocity_decomposition == "native":
+            return prediction_to_velocity(
+                prediction,
+                state=state,
+                time_value=times,
+                prediction_target=prediction_target,
+                denominator_floor=denominator_floor,
+            )
+        if velocity_decomposition == "diagonal_lmmse":
+            if moment_stats is None:
+                raise ValueError("checkpoint is missing diagonal moment statistics")
+            return moment_residual_to_velocity(
+                prediction,
+                state=state,
+                time_value=times,
+                stats=moment_stats,
+                variance_floor=moment_variance_floor,
+            )
+        raise ValueError(f"unsupported velocity decomposition: {velocity_decomposition}")
 
     return velocity, counter
 
@@ -210,6 +235,21 @@ def main(args: argparse.Namespace) -> None:
     checkpoint_protocol = str(checkpoint.get("protocol", ""))
     prediction_target = str(config.get("prediction_target", "velocity"))
     denominator_floor = float(config.get("denominator_floor", 1e-3))
+    velocity_decomposition = str(config.get("velocity_decomposition", "native"))
+    moment_variance_floor = float(config.get("moment_variance_floor", 1e-6))
+    moment_stats_payload = checkpoint.get("moment_stats")
+    moment_stats = (
+        None
+        if moment_stats_payload is None
+        else diagonal_stats_from_payload(moment_stats_payload).to(device)
+    )
+    if velocity_decomposition == "diagonal_lmmse":
+        if moment_stats is None:
+            raise ValueError("moment-residual checkpoint is missing train statistics")
+        if moment_stats.cache_manifest_sha256 != checkpoint.get(
+            "data_manifest_sha256"
+        ):
+            raise ValueError("checkpoint moment statistics do not match its data cache")
     time_sampler = str(config.get("time_sampler", "uniform"))
     time_logit_mean = float(config.get("time_logit_mean", -0.8))
     time_logit_std = float(config.get("time_logit_std", 0.8))
@@ -265,6 +305,9 @@ def main(args: argparse.Namespace) -> None:
             autocast_dtype=autocast_dtype,
             prediction_target=prediction_target,
             denominator_floor=denominator_floor,
+            velocity_decomposition=velocity_decomposition,
+            moment_stats=moment_stats,
+            moment_variance_floor=moment_variance_floor,
         )
         latents = integrate_velocity(
             noise,
@@ -390,6 +433,8 @@ def main(args: argparse.Namespace) -> None:
             "prediction_target": prediction_target,
             "loss_space": str(config.get("loss_space", "velocity")),
             "denominator_floor": denominator_floor,
+            "velocity_decomposition": velocity_decomposition,
+            "moment_variance_floor": moment_variance_floor,
             "training_time_sampler": time_sampler,
             "training_time_logit_mean": time_logit_mean,
             "training_time_logit_std": time_logit_std,

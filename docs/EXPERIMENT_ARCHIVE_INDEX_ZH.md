@@ -1,6 +1,6 @@
 # 实验归档索引
 
-更新时间：2026-08-14
+更新时间：2026-08-22
 
 ## 归档目的
 
@@ -12,6 +12,21 @@
 4. 让实验数据继续留在 `/home/zhoushunyu/data` 或 `/data/shared`，Git 只保存代码、测试和小型文档。
 
 本批归档不包含 checkpoint、样本张量、数据集、缓存或 FID 特征文件。
+
+## 0. 已终止：ImageNet-100 SiT 对角矩残差
+
+- 理论与终验：`docs/MOMENT_RESIDUAL_FLOW_THEORY_AND_LEAKAGE_AUDIT_ZH.md`
+- 便携指标：`docs/data/imagenet100_sit_moment_residual_pilot20k/`
+- 核心实现：
+  - `experiments/imagenet100_sit_moment_residual.py`
+  - `experiments/estimate_imagenet100_sit_diagonal_moments.py`
+  - `experiments/analyze_imagenet100_sit_moment_residual_pair.py`
+  - `experiments/run_imagenet100_sit_moment_residual_pilot20k.sh`
+  - `tests/test_imagenet100_sit_moment_residual.py`
+
+结论：moment-exact affine decomposition 的数学部分成立，但同预算 raw-only SiT-S/2
+终验中，diagonal residual 模型的 paired validation velocity MSE 略高，FID-5K 从
+`155.6983` 恶化到 `161.0571`。该路线按负结果归档，不再继续扩展。
 
 ## A. 预测目标、AutoGuidance 与 Internal Guidance
 
