@@ -357,6 +357,22 @@ def select_per_sample(
     return stacked.gather(1, gather_index).squeeze(1)
 
 
+def weak_head_difference_field(
+    strong: torch.Tensor,
+    positive_weak: torch.Tensor,
+    negative_weak: torch.Tensor,
+    *,
+    gamma: float,
+) -> torch.Tensor:
+    """Extrapolate the strong field along an ordered weak-head difference."""
+
+    if not (strong.shape == positive_weak.shape == negative_weak.shape):
+        raise ValueError("strong and weak-head fields must have identical shapes")
+    if gamma == 0.0:
+        return strong
+    return strong + float(gamma) * (positive_weak - negative_weak)
+
+
 def route_depth_by_target_band(
     gaps: Mapping[int, torch.Tensor],
     time_value: torch.Tensor,

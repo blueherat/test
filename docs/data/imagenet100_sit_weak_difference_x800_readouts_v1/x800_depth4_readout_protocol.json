@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-08-22T14:58:47+0800",
+  "format": "eqvae_weak_difference_x800_depth4_readouts_protocol_v1",
+  "gpu": 0,
+  "head_difference_formula": "v800 + gamma * (depth8_v - depth4_v)",
+  "head_difference_gammas": [
+    -2.0,
+    -1.0,
+    -0.5,
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "num_samples": 1000,
+  "paired_sampling": true,
+  "readout_gammas": [
+    -0.5,
+    0.0,
+    0.1,
+    0.2,
+    0.4,
+    0.6,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "readout_targets": [
+    "velocity",
+    "clean",
+    "epsilon"
+  ],
+  "sample_seed": 0,
+  "train_seed": 0,
+  "train_steps": 50000,
+  "x800_readout_formula": "velocity(x800) + gamma * (velocity(x800) - velocity(depth4_target))"
+}

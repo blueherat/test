@@ -163,7 +163,7 @@ def load_internal_head_for_source(
     if source_digest != config["source_checkpoint_sha256"]:
         raise ValueError("head source SHA256 does not match the live source checkpoint")
     if str(config["source_state_key"]) != "ema":
-        raise ValueError("the multiscale study requires heads trained from v800 EMA")
+        raise ValueError("the shared-backbone sampler requires heads trained from EMA")
     depth = int(config["internal_depth"])
     head = create_internal_velocity_head(
         sit_module,
@@ -215,7 +215,7 @@ def internal_prediction_to_velocity(
     raise ValueError(f"unsupported internal prediction target: {spec.prediction_target}")
 
 
-def _source_velocity_from_tokens(
+def _source_output_from_tokens(
     model: nn.Module,
     tokens: torch.Tensor,
     conditioning: torch.Tensor,
@@ -235,8 +235,14 @@ def evaluate_source_with_heads(
     *,
     heads: dict[str, InternalHeadSpec],
     raw_depths: tuple[int, ...] = (),
+    source_semantics: FieldSemantics | None = None,
 ) -> tuple[torch.Tensor, dict[str, torch.Tensor], dict[int, torch.Tensor]]:
-    """Run one shared backbone and evaluate all requested trained/raw readouts."""
+    """Run one shared backbone and return every requested field as velocity.
+
+    Omitting ``source_semantics`` preserves the historical native-velocity
+    behavior. Clean/noise source checkpoints must pass their explicit
+    semantics so the final and raw source outputs are converted correctly.
+    """
 
     required_depths = {spec.depth for spec in heads.values()} | set(raw_depths)
     block_count = len(model.blocks)
@@ -266,9 +272,29 @@ def evaluate_source_with_heads(
                 spec=spec,
             )
         if depth in raw_depths:
-            raw[depth] = _source_velocity_from_tokens(model, tokens, conditioning)
+            raw_output = _source_output_from_tokens(model, tokens, conditioning)
+            raw[depth] = (
+                raw_output
+                if source_semantics is None
+                else output_to_field_velocity(
+                    raw_output,
+                    state=state,
+                    time_value=time_value,
+                    semantics=source_semantics,
+                )
+            )
 
-    full = _source_velocity_from_tokens(model, tokens, conditioning)
+    full_output = _source_output_from_tokens(model, tokens, conditioning)
+    full = (
+        full_output
+        if source_semantics is None
+        else output_to_field_velocity(
+            full_output,
+            state=state,
+            time_value=time_value,
+            semantics=source_semantics,
+        )
+    )
     if set(trained) != set(heads):
         raise RuntimeError("not all trained heads were evaluated")
     if set(raw) != set(raw_depths):

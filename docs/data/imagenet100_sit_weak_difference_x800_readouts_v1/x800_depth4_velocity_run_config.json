@@ -1,0 +1,239 @@
+{
+  "config": {
+    "allow_tf32": true,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "cache_dir": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae",
+    "cfg_dropout": 0.1,
+    "clean_velocity_denominator_floor": 0.05,
+    "compile": true,
+    "compile_mode": "default",
+    "ema_decay": 0.9999,
+    "global_batch_size": 256,
+    "internal_depth": 4,
+    "learning_rate": 0.0001,
+    "log_every": 100,
+    "max_steps": 50000,
+    "model_name": "SiT-S/2",
+    "num_workers": 4,
+    "official_ig_repo": "/home/zhoushunyu/eqvae/research_repos/internal_guidance_study/Internal-Guidance/SiT",
+    "official_sit_repo": "/data/users/zhoushunyu/research_repos/SiT",
+    "output_dir": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/weak_difference_x800_depth4_readouts_v1/runs/x800_depth4_velocity",
+    "precision": "bf16",
+    "prediction_target": "velocity",
+    "prefetch_factor": 4,
+    "save_every": 10000,
+    "seed": 0,
+    "source_checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_x-velocity-loss-floor0p05_seed0/checkpoints/step_00800000.pt",
+    "source_checkpoint_sha256": "22cd7a392b61465c0b1cd2b569eb8678cab169ab4fe492ab2973990dd2b5c79d",
+    "source_state_key": "ema",
+    "source_step": 800000,
+    "validation_batches": 8,
+    "validation_every": 5000,
+    "weight_decay": 0.0
+  },
+  "data_manifest": {
+    "format": "eqvae_imagenet100_cmc_sdvae_moments_v1",
+    "preprocessing": {
+      "crop": "source cache center crop",
+      "horizontal_flip": false,
+      "note": "The public cache has one deterministic latent per image.",
+      "resolution": 256
+    },
+    "source": {
+      "index_manifest": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc/manifest.json",
+      "index_manifest_sha256": "6de2f588d8ff10e7c7ecf1ab818aae29bc5f15a6c85e04968e06a22934c796ad",
+      "latent_root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/irepa_collections/data/imagenet-latents-sdvae-ft-mse-f8d4",
+      "posterior_layout": "channels 0:4 mean, channels 4:8 standard deviation",
+      "vae": "stabilityai/sd-vae-ft-mse",
+      "vae_scaling_factor": 0.18215
+    },
+    "splits": {
+      "train": {
+        "channel_max": [
+          68.25838470458984,
+          60.742374420166016,
+          23.97480583190918,
+          33.51053237915039,
+          0.07551700621843338,
+          0.10291659832000732,
+          0.12448020279407501,
+          0.08045025169849396
+        ],
+        "channel_mean": [
+          0.8470251117725621,
+          -0.24112873077944239,
+          0.11432772242668227,
+          0.42359968519542807,
+          0.0007398297915274763,
+          0.0010388503372568644,
+          0.0010645109782524021,
+          0.0007243481197806463
+        ],
+        "channel_min": [
+          -28.70476722717285,
+          -29.3118953704834,
+          -78.2072525024414,
+          -26.31654930114746,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07
+        ],
+        "channel_std": [
+          4.838619349453776,
+          5.296769445948805,
+          3.871420763323805,
+          3.9607453377432837,
+          0.0007605033155196965,
+          0.0010512176224668364,
+          0.0010594255491857799,
+          0.0007813169014645807
+        ],
+        "count": 126689,
+        "dtype": "float32",
+        "labels_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/train_labels.npy",
+        "labels_sha256": "2128cfad9fb41838f03ba3f4c8f05d539bbd55d907e78444b95a543c3b88040c",
+        "moments_bytes": 4151345280,
+        "moments_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/train_moments.npy",
+        "moments_sha256": "af8347763a8f97d4deaa99fcdac58bb134d40ed171e67762e7a0b414831131ab",
+        "shape": [
+          126689,
+          8,
+          32,
+          32
+        ],
+        "source_count": 1281167,
+        "source_indices_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/train_source_indices.npy",
+        "source_indices_sha256": "998de07857d94f7b8dc135f65dda87cc7ef6dd5becafc37b911be22972aa989f",
+        "source_shards": 87
+      },
+      "validation": {
+        "channel_max": [
+          51.98902893066406,
+          44.14453125,
+          18.492450714111328,
+          23.436487197875977,
+          0.049532029777765274,
+          0.060441236943006516,
+          0.053768135607242584,
+          0.05407851189374924
+        ],
+        "channel_mean": [
+          0.5925967651339932,
+          -0.31307355508429463,
+          0.12697925619811867,
+          0.4293730214137468,
+          0.0007503375391422684,
+          0.0010513108680212,
+          0.0010745204564912624,
+          0.0007338090924955078
+        ],
+        "channel_min": [
+          -23.92635726928711,
+          -25.231019973754883,
+          -60.3690185546875,
+          -22.18920135498047,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07,
+          3.0590231858695915e-07
+        ],
+        "channel_std": [
+          4.712295070449588,
+          5.213502279994429,
+          3.8184033695739985,
+          3.9031353337310883,
+          0.0007575351928406802,
+          0.0010453503549810665,
+          0.0010550487675586692,
+          0.0007769850234477307
+        ],
+        "count": 5000,
+        "dtype": "float32",
+        "labels_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/validation_labels.npy",
+        "labels_sha256": "c6ca6da13ca7850b3a431eb3d83dee81921417f49b95657aef0a69f7a28c781d",
+        "moments_bytes": 163840128,
+        "moments_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/validation_moments.npy",
+        "moments_sha256": "c81a9826c55d3a14cc85fc0b7e03dbe016bab741801a4ff5be76f6c7b32430c0",
+        "shape": [
+          5000,
+          8,
+          32,
+          32
+        ],
+        "source_count": 50000,
+        "source_indices_path": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae/validation_source_indices.npy",
+        "source_indices_sha256": "f85e9ed5c32041e79b040700b022d1e8706c3dc2184afbb419f22697febdad6c",
+        "source_shards": 4
+      }
+    }
+  },
+  "environment": {
+    "cuda": "13.0",
+    "gpus": [
+      "NVIDIA GeForce RTX 4090"
+    ],
+    "repo_git_commit": "98588d41d5cb83d906c20253a0d99c81931bcc85",
+    "torch": "2.11.0+cu130"
+  },
+  "fairness": {
+    "head_zero_initialized_like_official_internal_guidance": true,
+    "optimizer_contains_only_internal_head": true,
+    "same_data_path_as_source_sit": true,
+    "same_velocity_target_as_source_sit": true,
+    "source_output_is_recomputed_without_modification": true,
+    "source_parameters_updated": false,
+    "source_state_key": "ema"
+  },
+  "internal_depth": 4,
+  "internal_head_parameter_count": 301840,
+  "latent": {
+    "posterior": "mean+std*N(0,I)",
+    "scaling_factor": 0.18215,
+    "shape": [
+      4,
+      32,
+      32
+    ]
+  },
+  "objective": {
+    "head_architecture": "official SiT FinalLayer (AdaLN + linear projection)",
+    "head_input": "hidden state after block 4",
+    "loss": "MSE(internal_velocity, clean-noise)",
+    "native_to_velocity": null,
+    "path": "x_t=(1-t)*noise+t*clean",
+    "source_backbone_mode": "eval; class dropout disabled",
+    "target": "velocity",
+    "training_time_distribution": {
+      "interval": "[0,1)",
+      "name": "uniform"
+    }
+  },
+  "official_internal_guidance_reference": {
+    "git_commit": "d048cc3e132001636dd35114720c4754295d1e52",
+    "model_sha256": "205e1b7fabf106d5f720ed03f70bc43b4d3a93330834425ba091431ef7655e51",
+    "reference_auxiliary_loss_weight": 0.5,
+    "reference_structure": "independent FinalLayer after encoder_depth=8",
+    "reference_training": "joint full-model training",
+    "repo": "/home/zhoushunyu/eqvae/research_repos/internal_guidance_study/Internal-Guidance/SiT"
+  },
+  "official_sit": {
+    "git_commit": "cbde832a40b153ccc79603412409da9c9b0c568c",
+    "models_sha256": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+  },
+  "protocol": "imagenet100_sit_frozen_v_internal_velocity_head_v1",
+  "scope_boundary": "frozen-probe Internal Guidance; unlike the paper, the full model and intermediate head are not jointly trained",
+  "source_block_count": 12,
+  "source_field_semantics": {
+    "denominator_floor": 0.05,
+    "field_path": "auto",
+    "gate_activation": null,
+    "prediction_target": "x",
+    "protocol": "imagenet100_sit_single_target_linear_flow_v2"
+  },
+  "source_parameter_count": 32617760,
+  "total_parameter_count": 32919600,
+  "trainable_parameter_count": 301840,
+  "world_size": 1
+}

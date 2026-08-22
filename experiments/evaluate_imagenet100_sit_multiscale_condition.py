@@ -122,6 +122,18 @@ def main(args: argparse.Namespace) -> None:
 
     fid_environment = os.environ.copy()
     fid_environment.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+    # The shared ADM environment uses the current CPython binary via a
+    # symlink while keeping TensorFlow in its own site-packages directory.
+    # Preserve that isolated package set even when the symlink target lives
+    # in another environment.
+    adm_site_packages = sorted(
+        args.adm_python.parent.parent.glob("lib/python*/site-packages")
+    )
+    if len(adm_site_packages) == 1:
+        existing_pythonpath = fid_environment.get("PYTHONPATH", "")
+        fid_environment["PYTHONPATH"] = str(adm_site_packages[0]) + (
+            os.pathsep + existing_pythonpath if existing_pythonpath else ""
+        )
     fid_command = [
         str(args.adm_python),
         str(REPO_ROOT / "experiments/compute_adm_fid.py"),

@@ -20,6 +20,7 @@ from experiments.imagenet100_sit_multiscale_guidance import (
     select_per_sample,
     split_frequency_bands,
     time_partition_weights,
+    weak_head_difference_field,
 )
 
 
@@ -104,6 +105,20 @@ def test_per_sample_selection_and_depth_schedules() -> None:
     reverse = schedule_depth(times, order="fine_to_coarse")
     assert forward.tolist() == [4, 8, 10]
     assert reverse.tolist() == [10, 8, 4]
+
+
+def test_weak_head_difference_extrapolates_in_declared_order() -> None:
+    strong = torch.tensor([10.0, 20.0])
+    depth8 = torch.tensor([7.0, 13.0])
+    depth4 = torch.tensor([3.0, 5.0])
+    torch.testing.assert_close(
+        weak_head_difference_field(strong, depth8, depth4, gamma=0.0),
+        strong,
+    )
+    torch.testing.assert_close(
+        weak_head_difference_field(strong, depth8, depth4, gamma=1.5),
+        strong + 1.5 * (depth8 - depth4),
+    )
 
 
 def test_spectral_router_and_anti_router_are_predeclared_opposites() -> None:

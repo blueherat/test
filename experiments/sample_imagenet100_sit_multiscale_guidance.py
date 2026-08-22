@@ -25,6 +25,7 @@ try:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        weak_head_difference_field,
     )
     from experiments.imagenet100_sit_multiscale_models import (
         InternalHeadSpec,
@@ -57,6 +58,7 @@ except ModuleNotFoundError:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        weak_head_difference_field,
     )
     from imagenet100_sit_multiscale_models import (
         InternalHeadSpec,
@@ -97,6 +99,7 @@ ADAPTIVE_KINDS = {
     "depth_schedule",
     "spectral_router",
     "raw_compute_schedule",
+    "head_difference",
 }
 EULER_KINDS = {"euler_baseline", "euler_depth8", "spectral_delay"}
 
@@ -119,6 +122,13 @@ def load_condition(path: Path) -> dict[str, object]:
     payload.setdefault("gamma", 0.0)
     if not np.isfinite(float(payload["gamma"])):
         raise ValueError("condition gamma must be finite")
+    if kind == "head_difference":
+        positive = str(payload.get("positive_head", ""))
+        negative = str(payload.get("negative_head", ""))
+        if not positive or not negative:
+            raise ValueError("head_difference requires positive_head and negative_head")
+        if positive == negative:
+            raise ValueError("head_difference requires two distinct heads")
     return payload
 
 
@@ -182,6 +192,7 @@ class ConditionField:
             self.labels,
             heads=selected,
             raw_depths=raw_depths,
+            source_semantics=self.strong_semantics,
         )
 
     def _provider_gap(
@@ -273,6 +284,21 @@ class ConditionField:
                     cell_scales=cell_scales,
                 )
             return full + gamma * direction
+
+        if kind == "head_difference":
+            positive_head = str(self.condition["positive_head"])
+            negative_head = str(self.condition["negative_head"])
+            full, trained, _ = self._evaluate_source(
+                state,
+                times,
+                head_names={positive_head, negative_head},
+            )
+            return weak_head_difference_field(
+                full,
+                trained[positive_head],
+                trained[negative_head],
+                gamma=gamma,
+            )
 
         if kind in {"static_depth", "depth_schedule", "spectral_router"}:
             head_names = set(self.depth_names.values())
@@ -391,6 +417,7 @@ def fixed_euler_endpoint(
                 times,
                 labels,
                 heads={depth8_name: heads[depth8_name]},
+                source_semantics=strong_semantics,
             )
             direction = full - trained[depth8_name]
             velocity = full + gamma * direction
@@ -473,9 +500,6 @@ def main(args: argparse.Namespace) -> None:
         source_metadata=source_metadata,
         device=device,
     )
-    if strong_semantics.prediction_target != "velocity":
-        raise ValueError("strong checkpoint must be a native velocity model")
-
     head_paths = dict(args.head)
     needed_head_names: set[str] = set()
     kind = str(condition["kind"])
@@ -495,6 +519,10 @@ def main(args: argparse.Namespace) -> None:
         )
     elif kind == "euler_depth8":
         needed_head_names.add("depth8_v")
+    elif kind == "head_difference":
+        needed_head_names.update(
+            (str(condition["positive_head"]), str(condition["negative_head"]))
+        )
     missing_heads = sorted(needed_head_names - set(head_paths))
     if missing_heads:
         raise ValueError(f"condition requires missing heads: {missing_heads}")

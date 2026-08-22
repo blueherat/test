@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train an Internal-Guidance readout on a frozen ImageNet-100 v800 SiT."""
+"""Train an Internal-Guidance readout on a frozen ImageNet-100 SiT."""
 
 from __future__ import annotations
 
@@ -28,6 +28,11 @@ try:
         validate_internal_depth,
     )
     from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
+    from experiments.imagenet100_sit_static_pair import (
+        FieldSemantics,
+        output_to_field_velocity,
+        resolve_field_semantics,
+    )
     from experiments.imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from experiments.official_imagenet100_sit_s2 import source_step
 except ModuleNotFoundError:
@@ -41,6 +46,11 @@ except ModuleNotFoundError:
         validate_internal_depth,
     )
     from imagenet100_sit_prediction_targets import prediction_to_velocity
+    from imagenet100_sit_static_pair import (
+        FieldSemantics,
+        output_to_field_velocity,
+        resolve_field_semantics,
+    )
     from imagenet100_sit_vx_dual_head import clean_prediction_to_velocity
     from official_imagenet100_sit_s2 import source_step
 
@@ -254,6 +264,7 @@ def validation_metrics(
     internal_depth: int,
     prediction_target: str,
     clean_velocity_denominator_floor: float,
+    source_semantics: FieldSemantics,
 ) -> dict[str, object]:
     generator = torch.Generator(device=context.device).manual_seed(int(seed))
     metric_names = (
@@ -301,6 +312,12 @@ def validation_metrics(
                 internal_depth=internal_depth,
                 latent_channels=base.LATENT_SHAPE[0],
             )
+        full = output_to_field_velocity(
+            full,
+            state=state,
+            time_value=time_value,
+            semantics=source_semantics,
+        )
         if prediction_target == "velocity":
             internal_velocity = internal_prediction.float()
             native_target = target_velocity
@@ -384,6 +401,7 @@ def build_metadata(
     source_metadata: dict,
     architecture_stats: dict[str, int],
     cache_manifest: dict,
+    source_semantics: FieldSemantics,
 ) -> dict:
     ig_repo = Path(config.official_ig_repo)
     ig_model_path = ig_repo / "models/sit.py"
@@ -393,6 +411,7 @@ def build_metadata(
         "world_size": context.world_size,
         **architecture_stats,
         "official_sit": source_metadata,
+        "source_field_semantics": asdict(source_semantics),
         "official_internal_guidance_reference": {
             "repo": str(ig_repo),
             "git_commit": base.git_value(ig_repo.parent, "rev-parse", "HEAD"),
@@ -481,6 +500,11 @@ def train(args: argparse.Namespace) -> None:
         model_name = str(source_config.get("model_name", "SiT-S/2"))
         cfg_dropout = float(source_config.get("cfg_dropout", 0.1))
         source_checkpoint_step = source_step(source_payload)
+        source_semantics = resolve_field_semantics(
+            protocol=str(source_payload.get("protocol")),
+            config=source_config,
+            requested_path="auto",
+        )
 
         config = FrozenInternalTrainConfig(
             cache_dir=str(args.cache_dir.expanduser().resolve()),
@@ -656,6 +680,7 @@ def train(args: argparse.Namespace) -> None:
                 source_metadata=source_metadata,
                 architecture_stats=architecture_stats,
                 cache_manifest=cache_manifest,
+                source_semantics=source_semantics,
             )
             base.atomic_json_dump(metadata, output_dir / "run_config.json")
             print(
@@ -787,6 +812,7 @@ def train(args: argparse.Namespace) -> None:
                     clean_velocity_denominator_floor=(
                         config.clean_velocity_denominator_floor
                     ),
+                    source_semantics=source_semantics,
                 )
                 ema_metrics = validation_metrics(
                     source=source,
@@ -801,6 +827,7 @@ def train(args: argparse.Namespace) -> None:
                     clean_velocity_denominator_floor=(
                         config.clean_velocity_denominator_floor
                     ),
+                    source_semantics=source_semantics,
                 )
                 if context.is_main:
                     row = {
