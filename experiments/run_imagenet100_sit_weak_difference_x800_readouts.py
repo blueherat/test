@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run weak-head-difference and frozen-x800 depth-4 readout experiments."""
+"""Run weak-head-difference and frozen-x800 internal-readout experiments."""
 
 from __future__ import annotations
 
@@ -67,6 +67,20 @@ def parse_float_list(value: str) -> tuple[float, ...]:
     return result
 
 
+def parse_target_list(value: str) -> tuple[str, ...]:
+    result = tuple(item.strip() for item in value.split(",") if item.strip())
+    if not result:
+        raise argparse.ArgumentTypeError("expected at least one prediction target")
+    invalid = sorted(set(result) - set(TARGETS))
+    if invalid:
+        raise argparse.ArgumentTypeError(
+            "unsupported prediction target(s): " + ", ".join(invalid)
+        )
+    if len(set(result)) != len(result):
+        raise argparse.ArgumentTypeError("prediction targets must be unique")
+    return result
+
+
 def valid_result(path: Path, expected_samples: int) -> bool:
     if not path.is_file():
         return False
@@ -116,7 +130,7 @@ def run_logged(
 
 
 def head_run_dir(args: argparse.Namespace, target: str) -> Path:
-    return args.output_root / "runs" / f"x800_depth4_{target}"
+    return args.output_root / "runs" / f"x800_depth{args.readout_depth}_{target}"
 
 
 def head_checkpoint(args: argparse.Namespace, target: str) -> Path:
@@ -124,7 +138,7 @@ def head_checkpoint(args: argparse.Namespace, target: str) -> Path:
 
 
 def train_heads(args: argparse.Namespace) -> None:
-    for target in TARGETS:
+    for target in args.readout_targets:
         checkpoint = head_checkpoint(args, target)
         if checkpoint.is_file():
             print(json.dumps({"event": "reuse_head", "target": target, "checkpoint": str(checkpoint)}), flush=True)
@@ -142,7 +156,7 @@ def train_heads(args: argparse.Namespace) -> None:
             "--source-state-key",
             "ema",
             "--internal-depth",
-            "4",
+            str(args.readout_depth),
             "--prediction-target",
             target,
             "--clean-velocity-denominator-floor",
@@ -169,7 +183,11 @@ def train_heads(args: argparse.Namespace) -> None:
         command.append("--compile" if args.compile else "--no-compile")
         run_logged(
             command,
-            log_path=args.output_root / "logs" / f"train_x800_depth4_{target}.log",
+            log_path=(
+                args.output_root
+                / "logs"
+                / f"train_x800_depth{args.readout_depth}_{target}.log"
+            ),
             gpu=args.gpu,
         )
         if not checkpoint.is_file():
@@ -182,12 +200,13 @@ def condition_payload(
     kind: str,
     gamma: float,
     formula: str,
+    evaluation_group: str,
     extra: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     return {
         "format": "eqvae_imagenet100_sit_multiscale_condition_v1",
         "name": name,
-        "evaluation_group": "weak_difference_x800_depth4_readouts_v1",
+        "evaluation_group": evaluation_group,
         "hypothesis_id": kind,
         "kind": kind,
         "gamma": float(gamma),
@@ -271,6 +290,7 @@ def run_head_difference_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
                 kind="head_difference",
                 gamma=gamma,
                 formula="v800 + gamma * (depth8_v - depth4_v)",
+                evaluation_group=args.output_root.name,
                 extra={"positive_head": "depth8_v", "negative_head": "depth4_v"},
             ),
             strong_checkpoint=args.v800_checkpoint,
@@ -282,19 +302,26 @@ def run_head_difference_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
 
 def run_x800_readout_scan(args: argparse.Namespace) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for target in TARGETS:
-        provider = f"x800_depth4_{target}"
+    for target in args.readout_targets:
+        provider = f"x800_depth{args.readout_depth}_{target}"
         heads = {provider: head_checkpoint(args, target)}
         for gamma in args.readout_gammas:
-            name = f"x800_plus_g_strong_minus_depth4_{target}_g{gamma_tag(gamma)}"
+            name = (
+                "x800_plus_g_strong_minus_"
+                f"depth{args.readout_depth}_{target}_g{gamma_tag(gamma)}"
+            )
             result = evaluate_condition(
                 args,
-                family=f"x800_{target}",
+                family=f"x800_depth{args.readout_depth}_{target}",
                 condition=condition_payload(
                     name=name,
                     kind="full_gap",
                     gamma=gamma,
-                    formula=f"velocity(x800) + gamma * (velocity(x800) - velocity(depth4_{target}))",
+                    formula=(
+                        "velocity(x800) + gamma * (velocity(x800) - "
+                        f"velocity(depth{args.readout_depth}_{target}))"
+                    ),
+                    evaluation_group=args.output_root.name,
                     extra={"provider": provider},
                 ),
                 strong_checkpoint=args.x800_checkpoint,
@@ -348,7 +375,8 @@ def write_summary(args: argparse.Namespace) -> None:
     atomic_json(
         summary_dir / "summary.json",
         {
-            "format": "eqvae_weak_difference_x800_depth4_readouts_summary_v1",
+            "format": "eqvae_weak_difference_x800_readouts_summary_v1",
+            "readout_depth": args.readout_depth,
             "num_samples": args.num_samples,
             "records": records,
             "best_by_family": grouped_best,
@@ -392,17 +420,21 @@ def main(args: argparse.Namespace) -> None:
     validate_inputs(args)
     args.output_root.mkdir(parents=True, exist_ok=True)
     protocol = {
-        "format": "eqvae_weak_difference_x800_depth4_readouts_protocol_v1",
+        "format": "eqvae_weak_difference_x800_readouts_protocol_v1",
         "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "gpu": args.gpu,
         "num_samples": args.num_samples,
         "sample_seed": args.sample_seed,
         "train_seed": args.train_seed,
         "train_steps": args.train_steps,
+        "readout_depth": args.readout_depth,
         "head_difference_formula": "v800 + gamma * (depth8_v - depth4_v)",
         "head_difference_gammas": list(args.head_difference_gammas),
-        "x800_readout_formula": "velocity(x800) + gamma * (velocity(x800) - velocity(depth4_target))",
-        "readout_targets": list(TARGETS),
+        "x800_readout_formula": (
+            "velocity(x800) + gamma * (velocity(x800) - "
+            f"velocity(depth{args.readout_depth}_target))"
+        ),
+        "readout_targets": list(args.readout_targets),
         "readout_gammas": list(args.readout_gammas),
         "paired_sampling": True,
     }
@@ -415,7 +447,7 @@ def main(args: argparse.Namespace) -> None:
     if args.phase in {"all", "train_heads"}:
         train_heads(args)
     if args.phase in {"all", "x800_scan"}:
-        for target in TARGETS:
+        for target in args.readout_targets:
             if not head_checkpoint(args, target).is_file():
                 raise FileNotFoundError(head_checkpoint(args, target))
         run_x800_readout_scan(args)
@@ -436,6 +468,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--adm-python", type=Path, default=DEFAULT_ADM_PYTHON)
     parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--readout-depth", type=int, default=4)
+    parser.add_argument(
+        "--readout-targets",
+        type=parse_target_list,
+        default=TARGETS,
+        help="comma-separated subset of velocity,clean,epsilon",
+    )
     parser.add_argument(
         "--phase",
         choices=("all", "head_difference", "train_heads", "x800_scan"),

@@ -373,6 +373,39 @@ def weak_head_difference_field(
     return strong + float(gamma) * (positive_weak - negative_weak)
 
 
+def decompose_weak_head_difference(
+    strong: torch.Tensor,
+    positive_weak: torch.Tensor,
+    negative_weak: torch.Tensor,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """Split a weak-head difference relative to the full-to-weak gap.
+
+    The ordered weak-head difference is ``positive_weak - negative_weak`` and
+    the reference is ``strong - negative_weak``.  Projection is performed with
+    one scalar per sample over all latent coordinates.
+    """
+
+    if not (strong.shape == positive_weak.shape == negative_weak.shape):
+        raise ValueError("strong and weak-head fields must have identical shapes")
+    if strong.ndim < 2:
+        raise ValueError("fields must include batch and feature dimensions")
+    difference = positive_weak - negative_weak
+    reference = strong - negative_weak
+    dims = tuple(range(1, strong.ndim))
+    reference_energy = reference.double().square().sum(dim=dims)
+    numerator = (difference.double() * reference.double()).sum(dim=dims)
+    tiny = torch.finfo(torch.float64).tiny
+    coefficient = torch.where(
+        reference_energy > tiny,
+        numerator / reference_energy.clamp_min(tiny),
+        torch.zeros_like(numerator),
+    )
+    shape = (len(strong),) + (1,) * (strong.ndim - 1)
+    parallel = coefficient.to(reference.dtype).reshape(shape) * reference
+    orthogonal = difference - parallel
+    return difference, parallel, orthogonal, coefficient
+
+
 def route_depth_by_target_band(
     gaps: Mapping[int, torch.Tensor],
     time_value: torch.Tensor,

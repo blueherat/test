@@ -25,6 +25,7 @@ try:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        decompose_weak_head_difference,
         weak_head_difference_field,
     )
     from experiments.imagenet100_sit_multiscale_models import (
@@ -58,6 +59,7 @@ except ModuleNotFoundError:
         schedule_depth,
         select_per_sample,
         band_time_component,
+        decompose_weak_head_difference,
         weak_head_difference_field,
     )
     from imagenet100_sit_multiscale_models import (
@@ -100,6 +102,7 @@ ADAPTIVE_KINDS = {
     "spectral_router",
     "raw_compute_schedule",
     "head_difference",
+    "head_difference_component",
 }
 EULER_KINDS = {"euler_baseline", "euler_depth8", "spectral_delay"}
 
@@ -122,13 +125,19 @@ def load_condition(path: Path) -> dict[str, object]:
     payload.setdefault("gamma", 0.0)
     if not np.isfinite(float(payload["gamma"])):
         raise ValueError("condition gamma must be finite")
-    if kind == "head_difference":
+    if kind in {"head_difference", "head_difference_component"}:
         positive = str(payload.get("positive_head", ""))
         negative = str(payload.get("negative_head", ""))
         if not positive or not negative:
-            raise ValueError("head_difference requires positive_head and negative_head")
+            raise ValueError(f"{kind} requires positive_head and negative_head")
         if positive == negative:
-            raise ValueError("head_difference requires two distinct heads")
+            raise ValueError(f"{kind} requires two distinct heads")
+    if kind == "head_difference_component":
+        component = str(payload.get("component", ""))
+        if component not in {"full", "parallel", "orthogonal"}:
+            raise ValueError(
+                "head_difference_component requires full, parallel, or orthogonal"
+            )
     return payload
 
 
@@ -299,6 +308,26 @@ class ConditionField:
                 trained[negative_head],
                 gamma=gamma,
             )
+
+        if kind == "head_difference_component":
+            positive_head = str(self.condition["positive_head"])
+            negative_head = str(self.condition["negative_head"])
+            full, trained, _ = self._evaluate_source(
+                state,
+                times,
+                head_names={positive_head, negative_head},
+            )
+            difference, parallel, orthogonal, _ = decompose_weak_head_difference(
+                full,
+                trained[positive_head],
+                trained[negative_head],
+            )
+            components = {
+                "full": difference,
+                "parallel": parallel,
+                "orthogonal": orthogonal,
+            }
+            return full + gamma * components[str(self.condition["component"])]
 
         if kind in {"static_depth", "depth_schedule", "spectral_router"}:
             head_names = set(self.depth_names.values())
@@ -519,7 +548,7 @@ def main(args: argparse.Namespace) -> None:
         )
     elif kind == "euler_depth8":
         needed_head_names.add("depth8_v")
-    elif kind == "head_difference":
+    elif kind in {"head_difference", "head_difference_component"}:
         needed_head_names.update(
             (str(condition["positive_head"]), str(condition["negative_head"]))
         )
