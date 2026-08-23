@@ -191,6 +191,7 @@ m'_k=Q_km_k, \qquad S'_k=Q_kS_kQ_k^\top.
 - `experiments/advfd_cleanroom/temporal_gauge.py`：FP64 moments、合并、EMA 插值、FD 分解工具
 - `experiments/advfd_cleanroom/audit_advfd_temporal_gauge_stats.py`：真实分布统计审计
 - `experiments/advfd_cleanroom/audit_advfd_temporal_gauge_current_fake_stats.py`：当前 fake 统计审计
+- `experiments/advfd_cleanroom/audit_advfd_temporal_gauge_fake_stats.py`：早期 PNG-based fake 审计入口，仅用于复现历史产物，不提供本文正式数字
 - `experiments/advfd_cleanroom/audit_advfd_temporal_gauge_gradients.py`：图像梯度与刷新路径审计
 - `experiments/advfd_cleanroom/audit_advfd_covariance_spectrum.py`：协方差贡献谱
 - `experiments/advfd_cleanroom/audit_advfd_rotating_gaussian.py`：精确旋转高斯对照
