@@ -1,0 +1,63 @@
+{
+  "protocol": "frozen_pmf_b_inception64_residual_feature_bank_v1",
+  "diagnostics": {
+    "whitening": {
+      "minimum_eigenvalue": 0.04440001611148011,
+      "median_eigenvalue": 0.08057421390289952,
+      "maximum_eigenvalue": 0.30395120028341943,
+      "average_variance": 0.08711094653699547,
+      "ridge": 8.711094653699548e-06,
+      "condition_after_ridge": 6.844598584579333
+    },
+    "real_train": {
+      "count": 8192,
+      "dimension": 64,
+      "mean_rms": 0.009486645508878943,
+      "coordinate_std_mean": 0.9990635719701857,
+      "covariance_trace_per_dim": 0.9981883966609918,
+      "covariance_minimum_eigenvalue": 0.8295333824850405,
+      "covariance_maximum_eigenvalue": 1.1882750075384259
+    },
+    "real_heldout": {
+      "count": 4096,
+      "dimension": 64,
+      "mean_rms": 0.014881157636199186,
+      "coordinate_std_mean": 1.000067061053676,
+      "covariance_trace_per_dim": 1.0002319816627385,
+      "covariance_minimum_eigenvalue": 0.7696268557374989,
+      "covariance_maximum_eigenvalue": 1.2967990599628714
+    },
+    "fake_train": {
+      "count": 8192,
+      "dimension": 64,
+      "mean_rms": 0.04355315345968165,
+      "coordinate_std_mean": 0.9616519183163347,
+      "covariance_trace_per_dim": 0.9249160409523486,
+      "covariance_minimum_eigenvalue": 0.7120235792694951,
+      "covariance_maximum_eigenvalue": 1.2074421545860226
+    },
+    "fake_heldout": {
+      "count": 4096,
+      "dimension": 64,
+      "mean_rms": 0.044152279784058224,
+      "coordinate_std_mean": 0.9605705323387188,
+      "covariance_trace_per_dim": 0.9228908752109621,
+      "covariance_minimum_eigenvalue": 0.6793678426792912,
+      "covariance_maximum_eigenvalue": 1.2558841772822291
+    }
+  },
+  "config": {
+    "train_samples": 8192,
+    "heldout_samples": 4096,
+    "batch_size": 24,
+    "ridge_fraction": 0.0001,
+    "seed": 20260824,
+    "amp": true,
+    "warmstart": "/data/users/zhoushunyu/eqvae/experiments/advfd_cleanroom_pmf_projected_pilot_v1/warmstart.pt",
+    "warmstart_sha256": "92385997c43b10a780ad247bc2adf2fefe558bb79c32819fe76c29d7dd335a9e",
+    "checkpoint": "/data/users/zhoushunyu/research_repos/FD-Loss-assets/pMF-B_256.pth",
+    "checkpoint_sha256": "aa95e128b3378e25285f9c2470d1e074d73a8d9d7846a7c9ab59e851c2ed64f8",
+    "packed_data": "/data/shared/imagenet-1k/random_access_v1"
+  },
+  "elapsed_seconds": 67.2531937629683
+}

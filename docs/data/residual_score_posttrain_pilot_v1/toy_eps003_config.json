@@ -1,0 +1,54 @@
+{
+  "epsilons": [
+    0.03
+  ],
+  "train_samples": [
+    8192
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "methods": [
+    "zero_ratio",
+    "ratio",
+    "sobolev_ratio",
+    "separate_dsm",
+    "shared_dsm",
+    "factorized_dsm_coupled"
+  ],
+  "sobolev_lambdas": [
+    0.1
+  ],
+  "train_steps": 3000,
+  "batch_size": 1024,
+  "learning_rate": 0.002,
+  "weight_decay": 0.0,
+  "hidden_dim": 128,
+  "depth": 3,
+  "frequencies": 6,
+  "domain_dim": 16,
+  "train_sigma_min": 0.03,
+  "train_sigma_max": 1.5,
+  "eval_sigmas": [
+    0.0,
+    0.03,
+    0.1,
+    0.3,
+    0.7,
+    1.5
+  ],
+  "eval_samples": 4096,
+  "pushforward_step_size": 0.01,
+  "quadrature_grid_size": 128,
+  "quadrature_batch_size": 4096,
+  "log_every": 250,
+  "components": 12,
+  "radius": 2.5,
+  "component_std": 0.22,
+  "perturbation_amplitude": 0.85,
+  "data_seed": 20260824,
+  "eval_seed": 20260825,
+  "device": "cuda:3"
+}

@@ -1,0 +1,52 @@
+{
+  "protocol": "pmf_b_residual_score_posttraining_pilot_v1",
+  "baseline_mean_fid_5k": 8.891979000000001,
+  "positive_mean_fid_5k": 8.847153666666665,
+  "negative_mean_fid_5k": 8.934168,
+  "positive_mean_fid_delta": -0.04482533333333247,
+  "negative_mean_fid_delta": 0.04218900000000044,
+  "positive_fid_delta_each_seed": [
+    -0.0604069999999996,
+    -0.0517589999999987,
+    -0.0223099999999991
+  ],
+  "negative_fid_delta_each_seed": [
+    0.0326029999999999,
+    0.0316520000000011,
+    0.0623120000000003
+  ],
+  "baseline_mean_is_5k": 152.2926,
+  "positive_mean_is_5k": 150.98666666666668,
+  "negative_mean_is_5k": 153.4605,
+  "proxy_fd_initial": 0.8851216320974515,
+  "proxy_fd_positive_step100": 0.8711274494976919,
+  "proxy_fd_negative_step100": 0.905954400650586,
+  "global_parameter_relative_l2": 9.854919036873922e-06,
+  "checkpoint_advfd_sha256": "cb6b460defbe91d5255d7efb66467095a58fc31752a700538fdf3fd5c01fa3f1",
+  "single_sigma_seed1": [
+    {
+      "sigma": 0.1,
+      "fid": 8.869654,
+      "fdr": 5.279556,
+      "is": 149.1617
+    },
+    {
+      "sigma": 0.3,
+      "fid": 8.859125,
+      "fdr": 5.273289,
+      "is": 149.399
+    },
+    {
+      "sigma": 0.7,
+      "fid": 8.848961,
+      "fdr": 5.267239,
+      "is": 149.1033
+    },
+    {
+      "sigma": 1.5,
+      "fid": 8.874761,
+      "fdr": 5.282596,
+      "is": 150.0646
+    }
+  ]
+}

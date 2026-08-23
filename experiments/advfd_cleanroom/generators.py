@@ -49,6 +49,36 @@ def checkpoint_state_dict(payload: Any) -> dict[str, torch.Tensor]:
     raise TypeError("Could not identify a plain online model state dictionary")
 
 
+def pmf_state_dict_for_advfd(
+    state_dict: dict[str, torch.Tensor],
+) -> dict[str, torch.Tensor]:
+    """Convert an upstream pMF state dict to the public AdvFD model layout.
+
+    The two repositories implement the same pMF network but expose wrapper
+    parameters under different names and store type tokens with different
+    singleton dimensions. RoPE frequencies are deterministic buffers in the
+    upstream model and are recomputed by AdvFD.
+    """
+
+    converted: dict[str, torch.Tensor] = {}
+    for source_key, source_value in state_dict.items():
+        if "rope_freqs" in source_key:
+            continue
+        target_key = source_key.replace("._flax_linear.", ".linear.")
+        target_key = target_key.replace("._flax_embedding.", ".embedding.")
+        target_value = source_value
+        if (
+            target_key.endswith("_tokens")
+            and target_value.ndim == 3
+            and target_value.shape[0] == 1
+        ):
+            target_value = target_value.squeeze(0)
+        if target_key in converted:
+            raise ValueError(f"duplicate converted pMF key: {target_key}")
+        converted[target_key] = target_value
+    return converted
+
+
 def load_pmf_b16(
     *, repo: Path, checkpoint: Path, device: torch.device
 ) -> nn.Module:

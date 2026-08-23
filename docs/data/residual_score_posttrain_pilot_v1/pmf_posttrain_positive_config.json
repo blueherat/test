@@ -1,0 +1,34 @@
+{
+  "feature_bank": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_feature_bank_8k4k_20260824/features.pt",
+  "estimator_root": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_estimator_audit_5k_20260824",
+  "output_root": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_posttrain_pos100_gb72_lr1e7_eval4k_20260824",
+  "pmf_repo": "/data/users/zhoushunyu/research_repos/pMF",
+  "pmf_checkpoint": "/data/users/zhoushunyu/research_repos/FD-Loss-assets/pMF-B_256.pth",
+  "estimator_seeds": [
+    0,
+    1,
+    2
+  ],
+  "sigmas": [
+    0.1,
+    0.3,
+    0.7,
+    1.5
+  ],
+  "steps": 100,
+  "batch_size": 8,
+  "gradient_accumulation": 9,
+  "learning_rate": 1e-07,
+  "update_sign": 1.0,
+  "eval_every": 20,
+  "eval_samples": 4096,
+  "eval_batch_size": 24,
+  "seed": 20260824,
+  "device": "cuda:0",
+  "no_amp": true,
+  "save_checkpoint": true,
+  "protocol": "pmf_b_frozen_shared_dsm_residual_posttrain_pilot_v1",
+  "objective": "loss=-sign*E[stopgrad(s_real-s_fake)^T whitened_inception64]",
+  "estimator_refresh": false,
+  "amp": false
+}

@@ -1,0 +1,31 @@
+{
+  "feature_bank": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_feature_bank_8k4k_20260824/features.pt",
+  "estimator_root": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_estimator_audit_5k_20260824",
+  "output_root": "/data/users/zhoushunyu/eqvae/experiments/pmf_residual_generator_vjp_2x3_20260824",
+  "pmf_repo": "/data/users/zhoushunyu/research_repos/pMF",
+  "pmf_checkpoint": "/data/users/zhoushunyu/research_repos/FD-Loss-assets/pMF-B_256.pth",
+  "methods": [
+    "zero_ratio",
+    "sobolev_ratio_lam0.1",
+    "shared_dsm"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "sigmas": [
+    0.1,
+    0.3,
+    0.7,
+    1.5
+  ],
+  "trials": 2,
+  "batch_size": 2,
+  "sketch_coordinates": 262144,
+  "seed": 20260824,
+  "device": "cuda:0",
+  "no_amp": false,
+  "protocol": "frozen_pmf_b_residual_generator_vjp_v1",
+  "update_sign": "positive VJP J_theta^T(s_real-s_fake)"
+}
