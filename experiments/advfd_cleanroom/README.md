@@ -13,6 +13,9 @@
   CLIP 组成的 held-out FDr3 也更差。
 - adaptive critic 的 real/fake feature 一起发生尺度漂移和低秩化；当前 checkpoint 不支持
   selective fake-artifact amplification 作为实际训练机制。
+- 相同步数的 `h=0` 局部速度 MSE 续训降低 continuation-unseen MSE，却显著恶化 1-NFE
+  FID/FDr3；因此 static/AdvFD 收益不能解释为普通 ImageNet batch exposure。详见
+  [`ADVFD_PMF_B_VELOCITY_CONTROL_10K_RESULTS_ZH.md`](../../docs/ADVFD_PMF_B_VELOCITY_CONTROL_10K_RESULTS_ZH.md)。
 
 ## 代码分组
 
@@ -42,6 +45,10 @@
   汇总。
 - `diagnose_official_advfd_checkpoints.py`、`plot_official_advfd_diagnostics.py`：训练与
   critic 诊断。
+- `pmf_velocity_control.py`、`train_pmf_velocity_continuation.py`：公开 pMF-B 上不含
+  feature loss/critic 的局部速度 MSE 对照。
+- `eval_pmf_velocity_mse.py`：重建 continuation sampler，使用未被 10K 续训访问的
+  配对 index bank 评估局部速度 MSE。
 
 ### 历史入口
 
