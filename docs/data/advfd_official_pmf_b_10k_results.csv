@@ -1,0 +1,6 @@
+condition,training_step,num_eval_images,fid_adm,inception_score,train_ema_whitened_fd,train_ema_whitened_fd_mean,train_ema_whitened_fd_covariance,heldout_checkpoint_whitened_fd,heldout_checkpoint_whitened_fd_mean,heldout_checkpoint_whitened_fd_covariance,heldout_fresh_real_whitened_fd,heldout_pooled_whitened_fd,adaptive_real_feature_rms,adaptive_fake_feature_rms,adaptive_real_effective_rank,adaptive_fake_effective_rank,reference_heldout_fd
+baseline,0,5000,8.975176,153.7304,,,,,,,,,,,,,
+static,5000,5000,7.643893,162.1664,,,,,,,,,,,,,
+advfd,5000,5000,7.846770,165.8716,102.756966,0.382262,102.374704,155.030456,12.292213,142.738243,958.982868,563.226112,291.954267,293.944342,5.696851,5.383584,15.412674
+static,9999,5000,7.497064,165.0477,,,,,,,,,,,,,
+advfd,9999,5000,7.439548,171.4698,257.142357,0.596043,256.546314,276.310864,5.940098,270.370766,1510.276014,703.641836,4236.080544,4238.886529,1.902721,1.811199,15.121764

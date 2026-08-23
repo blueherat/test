@@ -1,0 +1,67 @@
+{
+  "device": "cuda",
+  "models": {
+    "mae": {
+      "clean_global_pool": "token",
+      "feature_error": {
+        "max_abs": 0.0,
+        "rms": 0.0
+      },
+      "feature_shape": [
+        1,
+        1024
+      ],
+      "input_gradient_error": {
+        "max_abs": 2.9802322387695312e-08,
+        "rms": 2.297913279796203e-10
+      },
+      "model_name": "vit_large_patch16_224.mae",
+      "official_feature_rms": 0.48610244804187175,
+      "official_has_attn_pool": false,
+      "official_input_gradient_rms": 0.00834048900665783,
+      "official_num_prefix_tokens": 1,
+      "weights": {
+        "common_tensors": 294,
+        "left_only": [],
+        "left_tensors": 294,
+        "max_abs_common": 0.0,
+        "right_only": [],
+        "right_tensors": 294,
+        "shape_mismatches": []
+      }
+    },
+    "siglip2": {
+      "clean_global_pool": "map",
+      "feature_error": {
+        "max_abs": 2.0325183868408203e-05,
+        "rms": 5.773919508582647e-06
+      },
+      "feature_shape": [
+        1,
+        1152
+      ],
+      "input_gradient_error": {
+        "max_abs": 0.00872039794921875,
+        "rms": 0.00022294551122069352
+      },
+      "model_name": "vit_so400m_patch16_siglip_256.v2_webli",
+      "official_feature_rms": 0.6771708860872031,
+      "official_has_attn_pool": true,
+      "official_input_gradient_rms": 0.4980733358535743,
+      "official_num_prefix_tokens": 0,
+      "weights": {
+        "common_tensors": 342,
+        "left_only": [],
+        "left_tensors": 342,
+        "max_abs_common": 0.0,
+        "right_only": [],
+        "right_tensors": 342,
+        "shape_mismatches": [
+          "pos_embed"
+        ]
+      }
+    }
+  },
+  "protocol": "official_vs_cleanroom_timm_feature_and_input_gradient_v1",
+  "seed": 260823
+}

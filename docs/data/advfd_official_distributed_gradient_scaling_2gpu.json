@@ -1,0 +1,18 @@
+{
+  "backend": "nccl",
+  "centralized_gradient": 1.8866133772366505,
+  "centralized_loss": 0.5325649380683899,
+  "expected_centralized_div_world_size": 0.9433066886183252,
+  "local_gradient_contributions": [
+    0.6200902356203759,
+    1.2665231416162746
+  ],
+  "loss_per_rank": 0.5325649380683899,
+  "official_average_gradient": 0.9433066886183252,
+  "official_collective_calls": 1,
+  "official_to_centralized_ratio": 0.5,
+  "official_vs_divided_abs_error": 0.0,
+  "sum_vs_centralized_abs_error": 0.0,
+  "summed_gradient": 1.8866133772366505,
+  "world_size": 2
+}
