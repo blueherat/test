@@ -15,6 +15,9 @@ from experiments.advfd_cleanroom.temporal_gauge import (
 import torch
 
 from experiments.advfd_cleanroom.audit_advfd_rotating_gaussian import run_condition
+from experiments.advfd_cleanroom.audit_advfd_temporal_gauge_gradients import (
+    gradient_concentration_metrics,
+)
 
 
 def test_population_moments_match_direct_computation() -> None:
@@ -181,6 +184,20 @@ def test_fd_mean_and_covariance_gradients_sum_to_total_gradient() -> None:
         mean_gradient + covariance_gradient,
         rtol=1e-10,
         atol=1e-10,
+    )
+
+
+def test_gradient_concentration_distinguishes_uniform_and_sparse_energy() -> None:
+    uniform = torch.ones(4, 3, 2, 2)
+    sparse = torch.zeros_like(uniform)
+    sparse[0, 0, 0, 0] = 1.0
+    uniform_metrics = gradient_concentration_metrics(uniform)
+    sparse_metrics = gradient_concentration_metrics(sparse)
+    assert uniform_metrics["sample_effective_fraction"] == pytest.approx(1.0)
+    assert uniform_metrics["coordinate_effective_fraction"] == pytest.approx(1.0)
+    assert sparse_metrics["sample_effective_fraction"] == pytest.approx(0.25)
+    assert sparse_metrics["coordinate_effective_fraction"] == pytest.approx(
+        1.0 / sparse.numel()
     )
 
 

@@ -79,6 +79,29 @@ def pmf_state_dict_for_advfd(
     return converted
 
 
+def pmf_state_dict_from_advfd(
+    state_dict: dict[str, torch.Tensor],
+) -> dict[str, torch.Tensor]:
+    """Convert the public AdvFD pMF layout back to the upstream pMF layout."""
+
+    converted: dict[str, torch.Tensor] = {}
+    for source_key, source_value in state_dict.items():
+        target_key = source_key
+        if ".linear." in target_key:
+            prefix, suffix = target_key.rsplit(".linear.", maxsplit=1)
+            target_key = f"{prefix}._flax_linear.{suffix}"
+        if ".embedding." in target_key:
+            prefix, suffix = target_key.rsplit(".embedding.", maxsplit=1)
+            target_key = f"{prefix}._flax_embedding.{suffix}"
+        target_value = source_value
+        if target_key.endswith("_tokens") and target_value.ndim == 2:
+            target_value = target_value.unsqueeze(0)
+        if target_key in converted:
+            raise ValueError(f"duplicate converted pMF key: {target_key}")
+        converted[target_key] = target_value
+    return converted
+
+
 def load_pmf_b16(
     *, repo: Path, checkpoint: Path, device: torch.device
 ) -> nn.Module:
@@ -86,6 +109,8 @@ def load_pmf_b16(
     model = pmf.pixelMeanFlow("pmfDiT_B_16", img_size=256)
     payload = torch.load(Path(checkpoint), map_location="cpu", weights_only=False)
     state = checkpoint_state_dict(payload)
+    if any(".linear." in key or ".embedding." in key for key in state):
+        state = pmf_state_dict_from_advfd(state)
     incompatible = model.load_state_dict(state, strict=False)
     allowed_missing = {"net.rope_freqs"}
     disallowed_missing = set(incompatible.missing_keys) - allowed_missing

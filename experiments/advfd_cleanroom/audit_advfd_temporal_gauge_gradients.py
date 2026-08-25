@@ -124,6 +124,33 @@ def pair_metrics(first: torch.Tensor, second: torch.Tensor) -> dict[str, float]:
     }
 
 
+def gradient_concentration_metrics(gradient: torch.Tensor) -> dict[str, float]:
+    """Summarize how much of a batch/image carries squared gradient energy."""
+
+    squared = gradient.detach().double().square()
+    sample_energy = squared.flatten(1).sum(dim=1)
+    spatial_energy = squared.sum(dim=1).flatten()
+    coordinate_energy = squared.flatten()
+
+    def effective_fraction(energy: torch.Tensor) -> float:
+        numerator = energy.sum().square()
+        denominator = energy.numel() * energy.square().sum()
+        return float(numerator / denominator.clamp_min(1e-30))
+
+    sample_norm = sample_energy.sqrt()
+    return {
+        "sample_effective_fraction": effective_fraction(sample_energy),
+        "spatial_effective_fraction": effective_fraction(spatial_energy),
+        "coordinate_effective_fraction": effective_fraction(coordinate_energy),
+        "sample_norm_min": float(sample_norm.min()),
+        "sample_norm_median": float(sample_norm.median()),
+        "sample_norm_max": float(sample_norm.max()),
+        "sample_norm_max_to_median": float(
+            sample_norm.max() / sample_norm.median().clamp_min(1e-30)
+        ),
+    }
+
+
 def aggregate_scalars(records: list[dict[str, float]]) -> dict[str, dict[str, float]]:
     keys = records[0].keys()
     return {
@@ -408,6 +435,7 @@ def main() -> None:
                 "raw_covariance_term": float(covariance_term.detach()),
                 "normalized_fd": float(normalized_loss.detach()),
                 "image_gradient_norm": float(torch.linalg.vector_norm(gradient.double())),
+                "gradient_concentration": gradient_concentration_metrics(gradient),
             }
             del (
                 images,
@@ -436,6 +464,15 @@ def main() -> None:
                 "total_vs_component_sum": pair_metrics(
                     gradients[variant],
                     mean_gradient + covariance_gradient,
+                ),
+                "mean_concentration": gradient_concentration_metrics(
+                    mean_gradient
+                ),
+                "covariance_concentration": gradient_concentration_metrics(
+                    covariance_gradient
+                ),
+                "full_concentration": gradient_concentration_metrics(
+                    gradients[variant]
                 ),
             }
         component_cross_pairs = {

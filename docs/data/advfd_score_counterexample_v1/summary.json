@@ -1,0 +1,64 @@
+{
+  "distributions": {
+    "real_atoms": [
+      -1.0,
+      1.0
+    ],
+    "real_weights": [
+      0.5,
+      0.5
+    ],
+    "fake_atoms": [
+      -0.5,
+      2.0
+    ],
+    "fake_weights": [
+      0.8,
+      0.2
+    ],
+    "real_mean": 0.0,
+    "fake_mean": 0.0,
+    "real_variance": 1.0,
+    "fake_variance": 1.0,
+    "identity_fd": 0.0
+  },
+  "shared_support_control": {
+    "objective": 0.3600000000000001,
+    "pearson_chi_square": 0.36000000000000004
+  },
+  "flat_witness": {
+    "amplitude": 4.0,
+    "official_loaded_fd": 16.921801030888805,
+    "generator_gradient_l2": 3.788081122714909e-13
+  },
+  "checks": {
+    "all_score_steps_lower_kl": true,
+    "all_continuity_derivatives_negative": true,
+    "jet_scan_fd_span": 2.1387336346379016e-12
+  },
+  "config": {
+    "amplitudes": [
+      0.0,
+      1.0,
+      2.0,
+      4.0,
+      8.0,
+      16.0,
+      32.0
+    ],
+    "epsilons": [
+      0.001,
+      0.1
+    ],
+    "jet_amplitude": 4.0,
+    "jet_epsilon": 0.001,
+    "sigmas": [
+      0.1,
+      0.2,
+      0.4,
+      0.8
+    ],
+    "grid_points": 40001,
+    "score_step_factor": 0.02
+  }
+}

@@ -4,6 +4,7 @@ import torch
 from experiments.advfd_cleanroom.generators import (
     checkpoint_state_dict,
     pmf_state_dict_for_advfd,
+    pmf_state_dict_from_advfd,
 )
 
 
@@ -54,3 +55,18 @@ def test_pmf_state_dict_for_advfd_refuses_key_collisions() -> None:
     }
     with pytest.raises(ValueError, match="duplicate"):
         pmf_state_dict_for_advfd(state)
+
+
+def test_pmf_advfd_layout_conversion_is_reversible() -> None:
+    upstream = {
+        "net.time_tokens": torch.randn(1, 4, 8),
+        "net.block.proj._flax_linear.weight": torch.randn(8, 8),
+        "net.labels._flax_embedding.weight": torch.randn(3, 8),
+        "net.rope_freqs": torch.randn(2, 2),
+    }
+    public = pmf_state_dict_for_advfd(upstream)
+    assert "net.rope_freqs" not in public
+    assert public["net.time_tokens"].shape == (4, 8)
+    restored = pmf_state_dict_from_advfd(public)
+    for key in upstream.keys() - {"net.rope_freqs"}:
+        torch.testing.assert_close(restored[key], upstream[key])
