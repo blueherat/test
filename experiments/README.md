@@ -1,10 +1,261 @@
-# RAE experiments
+# Research experiments
+
+## Paused mainline snapshot: model-relative bad/good trajectory metrics
+
+> Paused on 2026-08-28 by user request. No command in this section is currently
+> authorized for automatic continuation. The source/lock/data retention map is
+> in
+> [`DIT_BAD_GOOD_PAUSE_ARCHIVE_2026-08-28_ZH.md`](../docs/DIT_BAD_GOOD_PAUSE_ARCHIVE_2026-08-28_ZH.md),
+> and corrected final/unfinished statuses are in
+> [`DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md`](../docs/DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md).
+
+The paused direction was a frozen-model, inference-only search for a quantity
+that distinguishes visually obvious, model-relative bad cases from ordinary
+outputs before generation finishes. Predictable model outputs, realized
+transition surprises, reverse-kernel uncertainty, cross-scale disagreements,
+spatial/edge structure, and sparse combinations are evaluated under blind
+labels and discovery/confirmation separation. The protocol and current
+evidence are in
+[`BAD_GOOD_TRAJECTORY_METRICS_ZH.md`](../docs/BAD_GOOD_TRAJECTORY_METRICS_ZH.md).
+
+The older cross-scale path-evidence tools below are retained as reproducible
+history and as one metric family. Their fixed higher-noise alternative failed
+its prospective cross-prefix test and does not authorize rollback.
+
+The later DiT v2.2 repairability pilot is also complete. It retains every one
+of four suffix attempts at two rollback depths for 8 joint `E+B` and 8 exact-
+schedule, class, continuous-B-matched `B`-only paths. Its frozen visual-
+opportunity guard failed (`3/8` versus `6/8` paths), and the protocol-literal
+matched repair differences contain four joint-worse, zero joint-better, and
+four tied pairs. Consequently `E` is no longer an active quality or rollback
+candidate; B remains a weak blur-phenotype diagnostic only. The first frozen
+analyzer's fresh-preference repair definition is preserved for audit but is
+superseded for success claims by:
+
+```bash
+python experiments/analyze_dit_v22_repairability_protocol_conformance.py --self-test
+python experiments/analyze_dit_v22_repairability_protocol_conformance.py
+```
+
+The first prefix-conditional branch-consensus form is now also closed. Its
+frozen horizon-10 medoid selected 5/18 strict repairs (`27.8%`), below the
+same-four-scout uniform-policy value of `37.5%`; higher attempt-0 outlier ratio
+had opportunity AUC `0.286`. A reveal-after-freeze reverse audit found the
+horizon-10 max-nonconformity rank at 10/18 (`55.6%`), but this was post-hoc,
+class-concentrated, horizon-unstable, and slightly worse on the small safety
+readouts. It motivates exactly one narrow new-suffix prospective test, not a
+claim that outliers are generally better.
+
+The V1.2 lock freezes 128 step149 prefixes, four symmetric baseline-P scouts,
+the exact shared-prefix-normalized multi-scale distance, horizon 10, max-
+nonconformity direction, anonymous tie breaks, and 512 fresh RNG streams before
+any new suffix exists. Its internal extractor reads only `internal_timestep`
+and `target_pred_xstart`, seals every selection before endpoint judging, and
+never consumes labels, PNG pixels, B/E/O, FID, or embeddings:
+
+```bash
+python experiments/freeze_dit_v22_transient_escape_prospective.py
+CUDA_VISIBLE_DEVICES=0 python \
+  experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2/sources/run_dit_v22_transient_escape_prospective_shard.py \
+  --lock experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2 \
+  --shard-index 0 --shard-count 2
+CUDA_VISIBLE_DEVICES=1 python \
+  experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2/sources/run_dit_v22_transient_escape_prospective_shard.py \
+  --lock experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2 \
+  --shard-index 1 --shard-count 2
+python \
+  experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2/sources/extract_dit_v22_transient_escape_internal.py \
+  --lock experiments/locks/dit_v22_transient_escape_prospective_lock_v1_2
+```
+
+The complete method ledger and claim boundaries are documented in
+[`DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md`](../docs/DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md).
+The detailed E/B repairability record remains in
+[`DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md`](../docs/DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md).
+
+The first reproducible entry points are:
+
+```bash
+bash experiments/download_cross_scale_baselines.sh
+torchrun --standalone --nproc_per_node=4 \
+  experiments/reproduce_cfg_rejection_edm2.py --protocol smoke
+python experiments/summarize_cfg_rejection_edm2.py \
+  --run-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/cfg_rejection_edm2/smoke_official_v3"
+python experiments/score_cfg_rejection_edm2_imagenet.py \
+  --run-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/cfg_rejection_edm2/paper_10k_official_v3"
+python experiments/reproduce_adm64_guided.py --self-test
+python experiments/reproduce_adm64_guided.py \
+  --protocol smoke --batch 2 --device cuda:0
+python experiments/adm64_path_evidence.py --self-test
+CUDA_VISIBLE_DEVICES=0 python experiments/observe_adm64_cross_scale_evidence.py \
+  --protocol smoke \
+  --baseline-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/adm64_guided/smoke" \
+  --output-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/adm64_cross_scale_evidence/smoke_k020_v2" \
+  --max-conditional-kl 0.2 --alpha 0.05 --batch 3 --device cuda:0
+python experiments/summarize_adm64_cross_scale_evidence.py \
+  --run-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/adm64_cross_scale_evidence/smoke_k020_v2" \
+  --output-dir "$EQVAE_DATA_ROOT/cross_scale_evidence/adm64_cross_scale_evidence_summary/smoke_k020_v2" \
+  --cap-grid 0.01,0.05,0.2,1.0
+python experiments/reproduce_fkc_edm2.py --self-test
+CUDA_VISIBLE_DEVICES=0 python experiments/reproduce_fkc_edm2.py \
+  --mode cfg --seeds 0-7 --resample-seed 20260826 \
+  --outdir "$EQVAE_DATA_ROOT/cross_scale_evidence/fkc_edm2/strict_cfg_seed0_7"
+CUDA_VISIBLE_DEVICES=0 python experiments/reproduce_fkc_edm2.py \
+  --mode fkc --seeds 0-7 --resample-seed 20260826 \
+  --outdir "$EQVAE_DATA_ROOT/cross_scale_evidence/fkc_edm2/strict_fkc_seed0_7"
+```
+
+The reproduction runner stores both the paper-equation ASD and the different
+statistic actually used by the released ImageNet notebook. Its deterministic
+Heun trajectories are not represented as Gaussian likelihood-ratio paths.
+Visual review must use full-resolution images and separate semantic class
+agreement from structural/image artifacts; the mandatory rubric and the
+corrected smoke audit are in
+[`CFG_REJECTION_VISUAL_AUDIT_ZH.md`](../docs/CFG_REJECTION_VISUAL_AUDIT_ZH.md).
+`build_blind_bad_case_audit.py` creates per-reviewer full-resolution anonymous
+packets; `analyze_cfg_rejection_pilot_statistics.py` reports class-stratified,
+seed-clustered secondary classifier summaries without confirmatory claims.
+
+The observe-only ADM runner never rejects, rolls back, or changes P. Its
+schema-v2 signals retain both raw and tempered sufficient statistics for an
+independent LR audit. The primary discovery cap is fixed at 0.2; cap
+reconstructions from the raw records are exploratory unless their grid and
+weights were frozen before endpoint labels were viewed.
+
+`reproduce_adm64_guided.py` is the stochastic baseline-only runner. It uses
+the official ImageNet-64 ADM and noisy classifier, 250-step ancestral DDPM,
+classifier scale 1, and does not contain Q or a likelihood ratio. The same
+sample seed deliberately reuses its full Gaussian innovation stream across
+classes; neural evaluations remain singleton so changing logical `--batch`
+does not change a path. `adm64_path_evidence.py` contains the independently
+tested normalized-heat coordinate transform, KL tempering, same-covariance
+Gaussian likelihood ratio, log-space mixture, and Ville crossing primitives.
+
+`reproduce_fkc_edm2.py` is a fail-closed wrapper around the frozen released
+FKC image code. It retains the upstream random-class behavior, extra unused
+class draw, 63 systematic-resampling events, and slot-0-only save policy. The
+otherwise-uncontrolled CPU resampling RNG must be supplied explicitly through
+`--resample-seed`; completed outputs are content-hash validated and immutable.
+Its ordinary-CFG mode retains the upstream default batch 32, whereas FKC mode
+enforces the released eight-particle batch.
+
+The post-hoc DiT suffix discovery audit is intentionally split into three
+tools so visual labels, trajectory dynamics, and endpoint proxies cannot be
+silently conflated:
+
+```bash
+python experiments/analyze_dit_suffix_trajectory_quality.py --self-test-only
+python experiments/visualize_dit_suffix_predxstart.py --self-test
+python experiments/score_dit_suffix_endpoint_quality_proxies.py --help
+python experiments/replay_dit_suffix_cross_scale_diagnostics.py --self-test
+python experiments/summarize_dit_suffix_cross_scale_replay.py --self-test
+python experiments/visualize_dit_suffix_cross_scale_replay.py --self-test
+python experiments/run_dit_t60_within_prefix_validation_pool.py --self-test
+python experiments/build_dit_t60_within_prefix_blind_pack.py --self-test
+python experiments/summarize_dit_t60_within_prefix_validation.py --self-test
+python experiments/run_dit_t60_cross_prefix_mixture_validation_pool.py --self-test
+python experiments/build_dit_t60_cross_prefix_blind_pack.py --self-test
+python experiments/lock_dit_t60_cross_prefix_consensus.py self-test
+python experiments/summarize_dit_t60_cross_prefix_mixture_validation.py --self-test
+```
+
+`analyze_dit_suffix_trajectory_quality.py` validates and reconstructs every
+saved Gaussian transition, excludes the shared suffix-entry row from
+post-divergence state summaries, and reports tie-aware within-checkpoint ranks.
+`visualize_dit_suffix_predxstart.py` only decodes selected frozen
+`pred_xstart` frames and performs no scoring. The endpoint proxy script uses
+two ImageNet classifiers for class fidelity only and clearly marks its fixed
+tail/hind texture boxes as post-hoc and pose-specific. The quality labels are
+in `annotations/dit_imagenet256_seed2_suffix_quality_review_v2.json`; they
+separate endpoint quality, prefix preservation, and tail naturalness. All
+three analyses are discovery-only and require a new output directory rather
+than overwriting a completed bundle.
+
+`replay_dit_suffix_cross_scale_diagnostics.py` performs a hash-validated,
+observe-only shifted-DiT replay at fixed normalized-heat offsets. It records
+the saved-P innovation, predictable whitened mean shift, conditional KL, and
+exact same-covariance Gaussian LR for one global and sixteen fixed latent
+tiles; it never changes a sample. `summarize_dit_suffix_cross_scale_replay.py`
+independently reconstructs the one-sided, path-level fixed-sign, and uniform
+change-point mixtures from those raw sufficient statistics. The visualization
+script consumes only a fully validated raw bundle and includes an explicit
+latent-to-image grid audit. That audit shows the post-hoc t60 `tile_12`
+component is nominally lower-left background, not the tail or malformed hind
+leg, so it may only be tested as a frozen black-box candidate. The tail rubric
+separately evaluates attachment, taper, feathered hair flow, and distal-tip
+continuity; a merely identifiable broad, blunt, or filament-tipped structure
+is not automatically natural. No discovery ranking is an intervention claim,
+and the observed log-e values are far below a useful Ville threshold.
+
+`run_dit_t60_within_prefix_validation_pool.py` is the first prospective
+within-prefix falsification run. Its self-hashed protocol fixes the exact
+class-207/seed-2 `x60`, 32 branch-local innovation streams in four 8-branch
+shards, `delta_nu=0.25`, the post-hoc black-box `+theta/tile_12` component,
+total `K=0.5`, and the `log(5)` alarm before GPU execution. It generates only
+unchanged baseline-P suffixes; evidence is private and observation-only. The
+four completed shards must all be retained, endpoint labels must be locked and
+hashed using an evidence-free blind-review pack, and only then may scores be
+unsealed once. This pool tests reproducibility conditional on one fixed prefix,
+not new-seed, cross-prefix, class-level, or general quality detection. Tail
+identity/naturalness, hind-limb topology, and overall structural failure are
+three separate review fields.
+
+`build_dit_t60_within_prefix_blind_pack.py` validates all four shards while
+suppressing private validator output, strips PNG metadata, and publishes only
+32 blind-ID images, a contact sheet, the visual rubric, and an empty template.
+`summarize_dit_t60_within_prefix_validation.py` refuses to touch a shard until
+the exact 32-row consensus annotation and all evidence-unseen declarations are
+validated and copied into a byte-identical staged lock. It then emits only the
+preregistered aggregate tables in a closed no-overwrite bundle; no per-branch
+alarm, evidence, rank, image, or trace is exported.
+
+The completed one-time readout is a negative result for the frozen primary
+candidate: `+theta/tile_12/log(5)` produced 0/32 alarms, including 0/2 blindly
+adjudicated clear hind-limb failures and 0/3 overall clear structural bad
+images. The primary run is also event-limited because it contains fewer than
+three clear failures. The fixed 34-path signed spatial mixture remains a
+strictly descriptive lead: running-maximum AUC is 0.944 for the 2 clear versus
+18 not-clear primary labels, while terminal AUC is 0.611. This may motivate a
+new-prefix preregistration of transient mixed evidence, but it does not permit
+threshold or component tuning on these 32 images and does not authorize a
+rollback experiment.
+
+`run_dit_t60_cross_prefix_mixture_validation_pool.py` is the prospective
+cross-prefix follow-up. Its pre-GPU self-hashed protocol fixes 64 independent
+class-207 prefixes, eight shards, the same `delta_nu=0.25`, total
+per-component `K<=0.5`, and the uniform complete-path mixture over global plus
+16 tiles and both signs. It contains a literal bitwise baseline-P mirror;
+evidence is computed before each innovation and never changes the P update.
+`build_dit_t60_cross_prefix_blind_pack.py` publishes only randomized images
+and frozen external anchors. `lock_dit_t60_cross_prefix_consensus.py` requires
+two sealed independent reviews and a later evidence-blind adjudication before
+creating an immutable 64-row consensus. The aggregate summarizer claims its
+one allowed unseal before opening any private mapping or trajectory and emits
+no per-sample join.
+
+The formal cross-prefix result retires the fixed candidate. Consensus contains
+4 clear overall bad, 59 not-clear bad, and 1 uncertain image. `E_mix>=5`
+crossed on 0/64 paths (TP 0/4, FP 0/59; Fisher one-sided `p=1`), so the frozen
+outcome is `frozen_threshold_failed_to_pass`; no rollback is authorized. The
+within-prefix running-maximum AUC 0.944 failed to replicate at 0.441, and the
+terminal AUC is 0.169. A pre-frozen secondary peak-to-terminal drawdown has AUC
+0.805, but with only four positives and eleven related trajectory features it
+is a new reversal hypothesis, not a successful detector. Tail identity and
+naturalness remain separate: only 7/64 tails were scorable, with 1 natural,
+5 odd, and 1 malformed. Any successor must first pass a matched-Q power test;
+the current 34-way uniform, `K<=0.5`, threshold-5 combination was not shown to
+have useful power even when one operational component is correct.
+
+All earlier RAE geometry, transport, spectral, and continuation experiments
+below are retained as an audit archive. They are not active tuning directions.
+
+## Archived RAE experiments
 
 This directory contains the research extensions added on top of EQ-VAE. They
 are intentionally separated into diagnostics, adapter experiments, and
 stage-2 generation orchestration.
 
-## Current mainline: RAEv2 continuation
+## Archived mainline: RAEv2 continuation
 
 The active experiment starts from the official RAEv2 DINOv3-L-K7 full training
 state and compares three strictly paired branches:

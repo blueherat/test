@@ -1,9 +1,286 @@
-# RAE Geometry Research Status
+# Research Status
 
-## Current engineering mainline
+> **Pause notice — 2026-08-28.** The DiT model-relative bad/good line is
+> paused by user request. No sampling, model download, metric search, or
+> intervention experiment is active. Statements such as “current”, “now”, or
+> “in progress” below are dated execution-history snapshots unless the work is
+> explicitly resumed. The authoritative pause boundary, evidence tiers, data
+> retention policy, and Git inventory are in
+> [`DIT_BAD_GOOD_PAUSE_ARCHIVE_2026-08-28_ZH.md`](DIT_BAD_GOOD_PAUSE_ARCHIVE_2026-08-28_ZH.md);
+> the corrected method-level outcomes are in
+> [`DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md`](DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md).
 
-The active run has moved to the official RAEv2 DINOv3-L-K7 full training state.
-It uses a staged continuation gate: first evaluate a 2,000-step Flow-only
+## Paused DiT research snapshot
+
+Latest internal-signal decision on 2026-08-28: the v2.2 cross-scale e-process
+`E` is retired as both a generic bad-image alarm and a suffix-repair trigger.
+Its operational likelihood-ratio martingale remains mathematically valid, but
+the frozen quality alternative did not survive external tests. In the matched
+suffix pilot, only 3/8 joint `E+B` paths versus 6/8 `B`-only paths had a stable
+visible repair opportunity. The protocol-consistent strict outcome was 10/23
+opportunity successes for joint and 17/48 for B-only, but these pooled rates
+come from different paths and are not an E comparison. Across the eight
+matched path pairs, joint-minus-B-only differences were four negative, zero
+positive, and four tied. The immutable corrigendum result is
+`f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358`.
+
+The first conditional-branch proposal has also been falsified in its frozen
+form. At horizon 10, choosing the four-scout medoid repaired 5/18 opportunities
+(`27.8%`), below the exact same-four-scout uniform-policy value of `37.5%`;
+higher attempt-0 outlier ratio predicted opportunity with AUC `0.286`.
+Therefore medoid/high-O is `STOP_CURRENT_FORM`, and low-O AUC `0.714` is only
+the algebraic sign reversal of the same failed statistic.
+
+A reveal-after-freeze audit found one reverse, post-hoc clue: the horizon-10
+maximum-nonconformity scout repaired 10/18 (`55.6%`), `+18.1pp` over uniform.
+The effect was much weaker at horizon 5 (`+6.9pp`) and horizon 20 (`+1.4pp`),
+concentrated in class 795, and accompanied by slightly worse small-sample
+safety readouts. It is therefore not a result to promote, only a narrow
+early-horizon escape hypothesis.
+
+That exact hypothesis is now frozen in the V1.2 new-suffix prospective lock
+`cd8154479f5f6f883ae21d6657a61ec91ff6d2c77f569e18ea589d83517671a9`.
+It uses only the common-prefix-normalized, multi-scale `pred_xstart` geometry
+of four symmetric baseline-P scouts at step149/h10, seals the argmax choice
+before opening endpoints, and compares it with the exact uniform policy over
+the same four scouts. The 128-prefix design contains 96 class-795 confirmation
+prefixes and 16 each from classes 207/602 as gross-harm sentinels. It tests a
+branch selector, not a bad-prefix detector. External blind severity, FID, and
+representations remain evaluation only and cannot enter the selector.
+
+Execution is now complete: all `128/128` prefixes and `640/640` endpoints
+finished without deletion or failed jobs. Before opening any prospective PNG,
+the frozen internal extractor sealed all 128 h10 choices in product
+`1c2ee25f6ca7b07c6259a0d9abeb176df9e7b26a0413d197417d24a62d24c72e`;
+an exact-validation rerun returned the same identity. The downstream builder,
+qualification gate, and analyzer were separately frozen in blind-evaluation
+lock V1.1
+`42529439647c1647800ff7bdbed587c6e991d816ef7c1909d4ca0fcdc12db7db`.
+The public blind pack contains 640 anonymous absolute images, 512 anonymous
+attempt0-vs-fresh pairs, and seven old frozen qualification anchors. Two
+initial reviewers passed 6/7; an initial third scored 5/7 and was excluded
+before formal review; a fresh replacement passed 6/7. Three qualified reviews
+are now in progress. No efficacy result is available until all three complete
+and the frozen reliability, effect, index, and safety gates are evaluated.
+
+The complete method ledger, including formulas, positive clues, failures, and
+claim boundaries, is in
+[`DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md`](DIT_BAD_GOOD_METHOD_LEDGER_2026-08-28_ZH.md).
+The detailed E/B repairability audit remains in
+[`DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md`](DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md).
+
+Latest evidence on 2026-08-28: the disjoint third pool is complete at 1,800
+trajectories, but its preregistered label-only Stage A found only six
+clear-bad endpoints, four with blur/soft fusion, versus required event counts
+of 30 and 15. The formal run therefore ended as
+`EVENT_GATE_FAILED_NO_SCORE_ACCESS`; Stage B never opened row-level labels or
+either frozen internal score. This is an event-limited no-test result, not a
+formal pass or failure of B/C. Label reliability is also inadequate: the three
+independent model reviewers have binary clear-bad Fleiss kappa 0.147, and a
+single adjudicator downgraded 23 of 29 raw-majority bad cases. A future pool
+must qualify reviewers against frozen anchors and use two independent
+adjudicators before any candidate score is opened.
+
+After that failed gate, a separately frozen, aggregate-only sensitivity audit
+read exactly the two pre-existing internal candidates under five already
+available blind-label definitions. It did not search features, change
+directions or thresholds, compute confirmatory p-values, or authorize an
+intervention. Mean decoded-pred-xstart local blur severity B has AUC
+0.668--0.848 across definitions and fixed-threshold TPR/FPR ranges
+0.250--0.593 / 0.045--0.073. Its direction is comparatively robust, but it is
+only an optional hand-crafted blur/fusion subtype detector for a future
+event-rich pool, not the current theory or intervention mainline. The latent-channel-3
+low-structure-jump candidate C has AUC 0.428--0.728 and TPR 0--0.483, so it is
+label-sensitive and remains a falsification/control candidate rather than an
+intervention trigger.
+
+A hard method/evaluation boundary now applies. The method may use only
+preterminal sampler-internal state: latent trajectories, predicted-clean
+states, score/variance outputs, realized innovations, and predeclared
+cross-scale counterfactuals. Human labels and AUC evaluate a fixed detector;
+Inception, DINO, and FID are terminal external judges. None may enter online
+features, thresholds, class ranking, rollback decisions, or intervention
+directions. The earlier endpoint representation audit is retained only as
+retrospective label/batch context and cannot rescue B/C. No intervention is
+authorized. The current formulas, evidence boundaries, third-pool result, and
+next-pool plan are in
+[`BAD_GOOD_METRIC_SCREEN_RESULTS_2026-08-27_ZH.md`](BAD_GOOD_METRIC_SCREEN_RESULTS_2026-08-27_ZH.md).
+
+The current mainline is **model-relative bad/good trajectory-metric
+discovery**. The goal is to find a computable, pre-terminal quantity that
+separates conspicuous outputs below the frozen model's ordinary quality from
+ordinary outputs, and then validate it on new blind trajectories. The search
+keeps predictable, online-causal, and retrospective measurements separate and
+covers predicted-clean dynamics, reverse-kernel uncertainty, realized
+innovation, cross-scale disagreement, spatial/edge structure, and sparse
+combinations. The protocol, notation, current post-hoc clue, controls, and
+falsification gates are in
+[`BAD_GOOD_TRAJECTORY_METRICS_ZH.md`](BAD_GOOD_TRAJECTORY_METRICS_ZH.md).
+
+The earlier cross-scale likelihood-ratio theorem remains mathematically valid,
+but its frozen higher-noise quality alternative failed the prospective
+cross-prefix screen and is retired. It is now one candidate family inside the
+broader diagnostic inventory, not the assumed quality mechanism. No guidance,
+rejection, or rollback intervention is authorized by the present evidence.
+The complete historical theory audit remains in
+[`CROSS_SCALE_SEQUENTIAL_EVIDENCE_ZH.md`](CROSS_SCALE_SEQUENTIAL_EVIDENCE_ZH.md).
+
+Execution status through 2026-08-28:
+
+- The exact CFG-Rejection/EDM2 replication is complete at the paper's
+  50-class × 200-seed = 10,000-image scale. Its released early-path statistic
+  is at most a weak semantic/prototypicality signal; full-resolution review
+  finds clear structural failures in both score tails.
+- The OpenAI ADM ImageNet-64 stochastic baseline is reproduced with 249
+  Gaussian reverse transitions plus its deterministic final transition. A
+  fixed class/seed smoke is bitwise identical to the upstream
+  `p_sample_loop` under the same CUDA random stream.
+- The primary alternative is now uniquely defined in normalized VP heat
+  coordinates, with an additive heat-variance shift, same-normalized-state
+  score pullback, the actual baseline learned variance, and a predictable KL
+  cap. Its schema-v2 observe-only smoke is complete for six ADM paths: the
+  instrumented and pure-P float tensors match bitwise on a real audit path,
+  all six PNGs match the frozen baseline, and no intervention occurred. The
+  locked per-checkpoint `kappa=0.2` reference produced 0/6 crossings; this tiny
+  result is not a detector failure. Because roughly 30 active capped steps can
+  still accumulate a large information budget and collapse likelihood-ratio
+  power, the next exploratory comparison uses predeclared total-K budgets 0.5
+  and 1.0 while preserving the old run unchanged. The implementation is still
+  observe-only for every formal claim. Separately, one explicitly post-hoc
+  mechanics run used the single shift 1, alpha 0.25 and a fixed one-checkpoint
+  rollback on six already viewed paths. It completed 6/6 exact state restores
+  and fresh suffix draws while preserving all original-P pixels, but the
+  outputs mix improvements and regressions and are not evidence of efficacy.
+- The visual audit was upgraded to a false-negative-oriented v2 protocol with
+  mandatory regional checks, native/nearest/smooth views, hard structural
+  flags, delayed re-review of apparent clean/mild images, and separate
+  semantic, absolute-defect, possible-defect, and clean outcomes. Under the
+  corrected full-resolution review, none of the six ADM smoke images is
+  eligible for a clean label; class recognizability is never used as a
+  structural pass. This does **not** mean all six are below ADM's normal
+  quality. The six ADM images and eight FKC CFG images are absolute
+  defect-present but have `relative_bad=not_evaluated`. The documented v3
+  primary endpoint instead requires a material, localized failure plus blind
+  losses against five frozen, same-baseline, same-class typical anchors.
+- The rollback theorem now distinguishes a future-dependent last-exit anchor
+  from a stopping time. Conditional Ville does not apply to the already failed
+  suffix. It applies to a newly and independently sampled baseline-P suffix
+  from a saved prefix with `E_j <= rho_rb / alpha`; repeated fresh failures are
+  then conditionally bounded by `rho_rb`, giving at most
+  `1 / (1 - rho_rb)` new suffix draws in expectation under the stated kernel,
+  state, independence, and termination conditions.
+- The FKC EDM2 image path is source-audited: XS conditional/unconditional
+  0.045, CFG 1.4, 64-step Heun with churn 40, and eight-particle resampling.
+  Its released class flag is ineffective and its CPU resampling RNG is not
+  seeded by the CLI seed, so a strict reproduction must record an additional
+  resampling seed. A fail-closed local wrapper reproduces both released CFG
+  and FKC smoke outputs byte-for-byte and validates source, checkpoint,
+  manifest, and PNG hashes on re-entry. This nonlinear Heun transition is a
+  prior-art baseline, not the first exact-Gaussian-LR test bed.
+- The official DiT-XL/2 ImageNet-256 demo checkpoint is pinned and reproduced
+  with 250 ancestral DDPM steps, CFG 4 and the MSE VAE. The strict wrapper's
+  seed-0 grid is byte-identical to a separate direct execution of upstream
+  `sample.py` (SHA-256
+  `909d19ece2a0ed77b1318eb9e79d967980341322db72ccea6cf55473ccbb3a55`).
+- A post-hoc DiT class-207/seed-2 suffix screen now contains exact replay plus
+  four fresh baseline-P suffixes at internal timesteps 225, 180, 120, and 60.
+  Its corrected v2 review separates endpoint quality from prefix preservation
+  and distinguishes a merely identifiable tail from a naturally attached,
+  tapered, feathered tail. The clearest late matched failure is a looped hind
+  leg, while the best matched branch has the most natural tail. Decoded
+  `pred_xstart` histories and hash-bound offline metrics show no common
+  one-sided jump signal across three clear failures: one branch is burst-like,
+  whereas others commit early to wrong topology. Both ImageNet classifiers
+  still predict golden retriever for all 20 endpoints.
+- Exact multi-scale shifted-DiT replay is now complete for all 16 fresh
+  branches at `delta_nu={0.25,1,4}`, with global plus 4x4 spatial components,
+  shared baseline covariance, and reconstructable Gaussian innovations. The
+  original one-sided high-noise LR fails: the t120/t180 failures require the
+  opposite sign, and clear-good branches can have larger running maxima. A
+  fixed path-level sign mixture is still an exact e-process. At
+  `delta_nu=0.25`, its terminal value ranks each of the three clear failures
+  first within its four-branch checkpoint, but a clear-good t225 branch
+  overlaps; the corresponding anytime change-point maxima are only
+  `0.099/0.050/0.162` log-e, so catching all three would require
+  `alpha >= 0.951`. This is a weak post-hoc ranking clue, not a usable Ville
+  trigger.
+- The strongest local t60 component was also spatially re-audited. Its
+  nominal `tile_12` box is mostly lower-left snow, not the tail or malformed
+  hind leg; tail pixels are mainly in tiles 4/5 and the leg is nearer tile 13.
+  The signal can only be treated as a frozen black-box candidate, possibly
+  due to VAE receptive-field spillover or chance. Tail quality is now graded
+  separately by root attachment, continuous taper, and feathered hair flow:
+  attempt 004 is the most natural, while merely tail-like broad/blunt/filament
+  shapes are not called fully normal. All of these remain discovery results
+  from one viewed prefix. New baseline-P suffixes must be blindly labeled
+  before revealing frozen scores; failure to enrich clear structural errors
+  retires the candidate rather than prompting more tile selection.
+- A prospective within-prefix pool is now frozen and sampled for that narrow
+  falsification. The protocol binds the exact observer/trace/baseline/x60 and
+  schedule hashes, 32 branch-local RNG streams, `delta_nu=0.25`, black-box
+  `+theta/tile_12`, `K=0.5`, and a `log(5)` alarm. Four 8-branch GPU shards all
+  completed under unchanged baseline-P sampling and passed full state,
+  innovation, CFG, LR, image, and closed-bundle reconstruction. No endpoint
+  image or evidence value was inspected during generation. An initial attempt
+  reached the publication validator but installed no bundle because NumPy's
+  contiguous-copy helper changed the scalar `per_step_K_cap` from shape `()`
+  to `(1,)`; runner `edb18e9...` was replaced by `104b099...` only to preserve
+  zero-dimensional NPZ arrays, with no sampler/evidence/protocol change. The
+  four failed staging directories were automatically removed. Evidence-free
+  dual review had very low raw agreement on the hind-limb endpoint (9/32 exact,
+  Cohen's kappa about 0.056), so a third reviewer conservatively adjudicated all
+  native images before the complete annotation was self-hashed and locked. The
+  final labels contain 2 clear hind-limb failures, 18 not-clear failures, and 12
+  uncertain images; overall structure has 3 clear bad cases. Tail naturalness
+  remains separate at 9 natural, 12 odd, 8 malformed, and 3 unscorable. The
+  one-time unseal then found **0/32 alarms** for the frozen
+  `+theta/tile_12/log(5)` candidate, including 0/2 clear failures and 0/3 overall
+  clear bad cases. Thus `TPR=FPR=0`; the run is event-limited by its preregistered
+  `<3` rule, while the specific tile-12 quality interpretation is retired for
+  having no usable absolute crossing. The frozen 34-path signed spatial
+  mixture is only a descriptive lead: its running-maximum AUC is 0.944 on the
+  2 versus 18 non-uncertain labels, whereas terminal AUC is 0.611. This supports
+  a fresh-prefix test of transient mixed evidence, not a cutoff search or a
+  rollback claim on this pool. These data remain conditional on one shared x60.
+- The carried-forward 34-way signed spatial mixture has now received its
+  prospective cross-prefix test on 64 new class-207 baseline-P trajectories.
+  Two independent reviews plus evidence-blind adjudication locked 4 clear
+  overall bad, 59 not-clear bad, and 1 uncertain endpoint before the sole
+  aggregate unseal. The fixed `E_mix>=5` event occurred **0/64** times:
+  TP=`0/4`, FP=`0/59`, so TPR=FPR=0 and one-sided Fisher `p=1`. The frozen
+  outcome is `frozen_threshold_failed_to_pass` (also event-limited at 4 clear
+  bad); it cannot be rescued by threshold, sign, tile, or label changes.
+  Crucially, the within-prefix running-max AUC 0.944 did not replicate:
+  cross-prefix AUC is 0.441 and terminal AUC is 0.169. The only notable frozen
+  secondary is peak-to-terminal drawdown AUC 0.805, but maximum positive jump
+  is only 0.610 and there are 4 positives across 11 related features. This is
+  a hypothesis-generating reversal/termination clue, not a validated
+  `high-noise-like` detector or an intervention trigger. Raw cross-scale K is
+  also lower for bad paths (running-max AUC 0.131), opposing the original
+  large-scale-discrepancy story. The exact theorem is retained; the fixed
+  empirical quality alternative is **NO-GO**.
+- Tail identity remains explicitly separate from naturalness in the new pool.
+  Only 7/64 tails were reliably scorable: 1 natural, 5 odd, 1 malformed; 57
+  were hidden, cropped, or identity-ambiguous. Among scorable tails, distal
+  termination and taper/volume are the dominant visible problems; fluffy hair
+  flow alone never upgrades an odd attachment/volume/tip to fully natural.
+- The failed design also lacked a matched-alternative power gate. With
+  per-component total KL `K<=0.5`, 34 uniform components, and threshold 5, a
+  single dominant component pays roughly `log(34)` dilution and would need
+  log-LR on the order of `log(170)=5.14`, versus matched-Q mean 0.5 and standard
+  deviation 1. Future exact-evidence candidates must demonstrate Q-side power
+  before any visually labeled P pool is generated. A switching-state/HMM
+  mixture can preserve exact martingale calibration while allowing inactive,
+  sign-changing, or location-changing alternatives, but it remains untested
+  and cannot authorize current rollback.
+
+Everything below is retained as failed or completed research history and is
+not an active branch.
+
+## Archived engineering mainline
+
+This former run had moved to the official RAEv2 DINOv3-L-K7 full training state.
+It used a staged continuation gate: first evaluate a 2,000-step Flow-only
 control, then run the preregistered 5,000-step Flow/LPL comparison only if the
 control remains healthy. Checkpoints are saved every 1,000 steps and all
 comparisons reuse labels and initial sampling noise. The protocol is recorded
@@ -15,11 +292,11 @@ audit history but are not the current training mainline.
 
 ## Scope
 
-The repository now contains two distinct research lines.  The earlier geometry
-line asks whether frozen RAE tokenizers contain a usable group response; its
-adapter attempts did not improve generation.  The current spectral line asks
-why a fixed inverse-variance direction loss improves held-out teacher metrics
-but worsens rollout.  These lines must not be combined into a claim that
+The archived work contains distinct geometry and spectral lines.  The geometry
+line asked whether frozen RAE tokenizers contain a usable group response; its
+adapter attempts did not improve generation.  The spectral line asked why a
+fixed inverse-variance direction loss improves held-out teacher metrics but
+worsens rollout.  These lines must not be combined into a claim that
 RAE-DINOv2 has a global group representation.
 
 ## Latest controlled generative result: prior-decoder mismatch
