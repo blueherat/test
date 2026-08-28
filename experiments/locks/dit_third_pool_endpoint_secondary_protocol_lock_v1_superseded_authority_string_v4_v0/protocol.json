@@ -1,0 +1,192 @@
+{
+  "all_fixed_metrics": [
+    "inception_fid_pool2048__cosine_to_class_clean_centroid",
+    "inception_fid_pool2048__shared_ledoitwolf_mahalanobis",
+    "inception_fid_pool2048__knn5_mean_cosine_to_class_clean",
+    "dinov2_registers_large_cls1024__cosine_to_class_clean_centroid",
+    "dinov2_registers_large_cls1024__shared_ledoitwolf_mahalanobis",
+    "dinov2_registers_large_cls1024__knn5_mean_cosine_to_class_clean"
+  ],
+  "descriptive_guardrails": {
+    "all_other_metrics_and_cuts": "descriptive only",
+    "all_six_metrics_by_four_frozen_endpoints": true,
+    "inferential_family_members": [
+      "E1_inception_blur_centroid",
+      "E2_dino_allbad_mahalanobis"
+    ],
+    "no_post_hoc_combination_threshold_or_direction_change": true
+  },
+  "evidence_access_audit": {
+    "old_reference_inputs_opened": true,
+    "scientific_override_interface_exists": false,
+    "third_pool_image_trace_embedding_label_review_score_or_screen_opened": false,
+    "third_pool_path_opened_statted_or_hashed": false,
+    "third_pool_score_label_join_performed": false
+  },
+  "experiment": "dit_third_pool_endpoint_secondary_v1",
+  "foundation_identity_pins": {
+    "primary_evaluation_contract_identity_sha256": "6638f75eef792fa313fa14ebb0b6c65a696dab881c193f2bf8fa83615e1475e2",
+    "primary_evaluation_source_manifest_identity_sha256": "d7467275fab416a5eddadf528fd24b98ffb6bfeed499711c3e8ba6b6f72cd6e8",
+    "primary_evaluator_source_sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c",
+    "sampling_manifest_identity_sha256": "eae86d48c1c1b9c732fbeea4838b2418b9b7261b61db0355fd7306469f5b6df3",
+    "sampling_protocol_identity_sha256": "330661e87de7846e1f590660f03ecef6270fa45e2f39c4fc54d992e3260950d8"
+  },
+  "identity_sha256": "6b3dfd73aa91530416313d417ad5e88bb48e4d0fcc356cd2407c043e2937c844",
+  "implementation_source_sha256": "6ef2ccde79297622258465806d224d2375fa1c8960a5295950f9d4a44b3ba6e6",
+  "label_free_extraction": {
+    "dino_snapshot": {
+      "file_sha256": {
+        "config.json": "03eee42f646659a9480f8911a81fdd81efeedd7ff39083c8e36398068daf72f5",
+        "model.safetensors": "edccedab2c4e164e80833096de89a32a6e8d7365870499a066a61dbc8894b42b",
+        "preprocessor_config.json": "14e780d86fa1861f8751f868d7f45425b5feb55c38ca26f152ca5097ab30f828"
+      },
+      "path": "/home/zhoushunyu/.cache/huggingface/hub/models--facebook--dinov2-with-registers-large/snapshots/e4c89a4e05589de9b3e188688a303d0f3c04d0f3",
+      "revision": "e4c89a4e05589de9b3e188688a303d0f3c04d0f3"
+    },
+    "existing_extractor_compatible": true,
+    "expected_trajectory_count": 1800,
+    "future_command_template": [
+      "python",
+      "experiments/extract_dit_endpoint_embeddings_label_free.py",
+      "--source-inventory",
+      "<PRIMARY_LABEL_FREE_PRODUCT>/source_inventory.json",
+      "--expected-seeds",
+      "250:850",
+      "--expected-classes",
+      "207,602,795",
+      "--inception-weights",
+      "/home/zhoushunyu/.cache/torch/hub/checkpoints/pt_inception-2015-12-05-6726825d.pth",
+      "--dino-snapshot",
+      "/home/zhoushunyu/.cache/huggingface/hub/models--facebook--dinov2-with-registers-large/snapshots/e4c89a4e05589de9b3e188688a303d0f3c04d0f3",
+      "--device",
+      "cuda:<GPU_ID>",
+      "--batch-size",
+      "16",
+      "--output-dir",
+      "<THIRD_POOL_ENDPOINT_EMBEDDING_OUTPUT>"
+    ],
+    "inception_weights": {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/pt_inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2"
+    },
+    "inventory_adapter_required": false,
+    "inventory_source": "the future primary label-free product source_inventory.json already bound by the primary evaluator input lock",
+    "labels_reviews_scores_or_distances_read_by_extractor": false,
+    "representations": {
+      "dinov2_registers_large_cls1024": 1024,
+      "inception_fid_pool2048": 2048
+    },
+    "required_classes_ordered": [
+      207,
+      602,
+      795
+    ],
+    "required_seed_axis_half_open": "250:850"
+  },
+  "publication": {
+    "aggregate_only": true,
+    "no_overwrite": true,
+    "sample_rows_scores_distances_ranks_or_permutation_draws_emitted": false,
+    "secondary_cannot_authorize_intervention": true,
+    "secondary_cannot_rescue_B_or_C": true
+  },
+  "reference": {
+    "array_bundle_logical_identity_sha256": "51c3e80e712912a39c65cca977756b4bf125feba83579c4820ba0f0c143e5070",
+    "clean_good_count_by_class": {
+      "207": 71,
+      "602": 70,
+      "795": 75
+    },
+    "knn_k": 5,
+    "normalization": "rowwise L2",
+    "old_discovery_clean_good_only": true,
+    "old_discovery_seeds_inclusive": [
+      50,
+      129
+    ],
+    "pooled_covariance": "within-class residual Ledoit-Wolf, one per representation",
+    "summary_identity_sha256": "e0538863a1edc02e6f21d6ad7c6ddd32f8cc57046adcd4b88016d7ae5e1889fd",
+    "third_pool_refit_or_adaptation_allowed": false
+  },
+  "schema_version": 1,
+  "secondary_family": {
+    "candidate_combination_allowed": false,
+    "each_secondary_reported_independently": true,
+    "family_size": 2,
+    "method": "Holm step-down across exactly E1 and E2",
+    "ordered_ids": [
+      "E1_inception_blur_centroid",
+      "E2_dino_allbad_mahalanobis"
+    ],
+    "strict_alpha": 0.05
+  },
+  "secondary_hypotheses": {
+    "E1_inception_blur_centroid": {
+      "Holm_adjusted_p_strictly_below": 0.05,
+      "direction": "distance_high_is_bad",
+      "endpoint": "blur_or_soft_fusion_clear_bad_vs_clean_good",
+      "metric": "inception_fid_pool2048__cosine_to_class_clean_centroid",
+      "pair_weighted_auc_at_least": 0.75,
+      "role": "secondary_corroboration_only"
+    },
+    "E2_dino_allbad_mahalanobis": {
+      "Holm_adjusted_p_strictly_below": 0.05,
+      "direction": "distance_high_is_bad",
+      "endpoint": "all_clear_bad_vs_clean_good",
+      "metric": "dinov2_registers_large_cls1024__shared_ledoitwolf_mahalanobis",
+      "pair_weighted_auc_at_least": 0.7,
+      "role": "secondary_corroboration_only"
+    }
+  },
+  "source_snapshots": {
+    "audit_dit_endpoint_representation_distances.py": {
+      "bytes": 51063,
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/audit_dit_endpoint_representation_distances.py",
+      "sha256": "fa1db6520cbc3f5fb828c7bcc8404dd907ffe2041693863e48f0f79bf0b5e317"
+    },
+    "evaluate_dit_bad_good_third_pool_confirmation.py": {
+      "bytes": 96924,
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/evaluate_dit_bad_good_third_pool_confirmation.py",
+      "sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c"
+    },
+    "evaluate_dit_third_pool_endpoint_secondary.py": {
+      "bytes": 67236,
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/evaluate_dit_third_pool_endpoint_secondary.py",
+      "sha256": "6ef2ccde79297622258465806d224d2375fa1c8960a5295950f9d4a44b3ba6e6"
+    },
+    "extract_dit_endpoint_embeddings_label_free.py": {
+      "bytes": 39121,
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/extract_dit_endpoint_embeddings_label_free.py",
+      "sha256": "5f3d52cb24e89e2c92639e70200f72f1e739344906550385c46ea2dfff343f8b"
+    },
+    "freeze_dit_third_pool_endpoint_secondary.py": {
+      "bytes": 31370,
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_third_pool_endpoint_secondary.py",
+      "sha256": "c0937eb295997b39a6272b46dbbc128ed7f139ee710ccb99254217f805b241e6"
+    }
+  },
+  "stage_a_gate_contract": {
+    "authority": "validate_stage_a_receipt from the exact frozen primary evaluator v4",
+    "both_minima_required": true,
+    "failure_action": "fail before endpoint product, consensus rows, sampling pool, or reference access",
+    "minimum_blur_or_soft_fusion_clear_bad": 15,
+    "minimum_total_clear_bad": 30,
+    "only_after_pass": "open endpoint embeddings, full consensus rows, sampling lineage, and frozen reference"
+  },
+  "statistics": {
+    "descriptive_zero_pair_endpoint": "report non-evaluable with null AUC",
+    "minimum_group_size_for_per_class_publication": 5,
+    "other_four_metrics_inferential_p_values_allowed": false,
+    "permutation_alternative": "distance-high one-sided",
+    "permutation_draws": 100000,
+    "permutation_seed": 2026082802,
+    "permutation_unit": "one intact ordered three-class severity/phenotype block per global seed",
+    "primary_auc": "sum over classes of distance-high concordant bad-good pairs, ties=0.5, divided by sum over classes n_positive_class*n_clean_good_class; zero total pair denominator fails closed",
+    "subtype_and_per_class_inferential_p_values_allowed": false
+  },
+  "status": "FROZEN_BEFORE_ANY_THIRD_POOL_LABEL_IMAGE_SCORE_OR_EMBEDDING_ACCESS",
+  "threat_model": {
+    "assumption": "hash locks live on a controlled, static, non-concurrently-rewritten local filesystem and chronology is established by Git or an append-only record",
+    "not_claimed": "cryptographic authentication against malicious directory replacement or manual re-signing of a self-consistent JSON tree"
+  }
+}

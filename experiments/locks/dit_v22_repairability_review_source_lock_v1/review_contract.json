@@ -1,0 +1,186 @@
+{
+  "absence_at_freeze": {
+    "analysis": true,
+    "blind_delivery": true,
+    "formal_execution_receipt_root": true,
+    "formal_gpu_output_root": true,
+    "private_mapping": true,
+    "review_responses": true
+  },
+  "analysis": {
+    "claim_limit": "exploratory observational effect-modification only; no causal, deployment, rollback-authorization, FID, or e-process-guarantee claim",
+    "fixed_seed_path_cluster_bootstrap": {
+      "cluster": "original selected path",
+      "interval": "percentile_95_CI",
+      "replicates": 50000,
+      "seed": 2026082812
+    },
+    "required_summaries": [
+      "role by rollback step",
+      "each original path's eight-attempt rates",
+      "baseline repair-opportunity rates",
+      "joint-E-and-B minus matched-B-only descriptive differences",
+      "three-reviewer agreement"
+    ]
+  },
+  "artifact_kind": "DIT_V22_REPAIRABILITY_REVIEW_CONTRACT_V1",
+  "blind_pack": {
+    "comparison_count": 128,
+    "delivery_and_private_mapping_physically_separate": true,
+    "deterministic_randomization_namespace": "eqvae.dit.v22.repairability.blind-review.v1",
+    "forbidden_delivery_metadata": [
+      "seed/class/role/rollback-step/fresh-attempt mapping",
+      "internal scores or alarms",
+      "prior visual labels",
+      "FID or endpoint representations"
+    ],
+    "fresh_attempts_per_job": 4,
+    "job_count_required_and_validated": 32,
+    "mapping_unsealed_only_after_three_complete_responses": true,
+    "native_left_right_png_count": 256,
+    "reviewer_count": 3
+  },
+  "canonical_commands": {
+    "analyze": [
+      "python",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_review_source_lock_v1/sources/analyze_dit_v22_repairability_blind_review.py",
+      "--delivery",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_delivery",
+      "--mapping",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_private/sealed_mapping.json",
+      "--reviewers",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_1.csv",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_2.csv",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_3.csv",
+      "--output",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_analysis"
+    ],
+    "prepare": [
+      "python",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_review_source_lock_v1/sources/prepare_dit_v22_repairability_blind_review.py",
+      "--selection-lock",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_pilot_lock_v1_2",
+      "--execution-lock",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_execution_source_lock_v1",
+      "--receipts",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_receipts",
+      "--delivery",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_delivery",
+      "--private",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_private"
+    ]
+  },
+  "consensus": {
+    "baseline_repair_opportunity": "2/3 reviewers each judge the baseline both non-clean AND blurred",
+    "fresh_failure": "2/3 fresh quality=clear_bad",
+    "improvement": "2/3 preferred_side=fresh",
+    "path_has_baseline_opportunity": "at least 4 of that path's 8 anonymous comparisons meet pair-level opportunity",
+    "semantic_preservation": "2/3 identity_composition_preserved=yes",
+    "success": "opportunity AND preservation AND improvement AND NOT fresh_failure"
+  },
+  "fixed_paths": {
+    "analysis": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_analysis",
+    "blind_delivery": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_delivery",
+    "formal_execution_receipts": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_receipts",
+    "formal_gpu_outputs": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs",
+    "private_mapping": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_private",
+    "review_responses_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews",
+    "reviewer_responses": [
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_1.csv",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_2.csv",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_blind_review_v1_reviews/reviewer_3.csv"
+    ]
+  },
+  "identity_sha256": "3de445dde23e433131e5b82b47d15504a7b308103426548b442def5706f5a6aa",
+  "response_schema": [
+    "anonymous_pair_id",
+    "left_quality",
+    "right_quality",
+    "left_blur",
+    "right_blur",
+    "left_topology",
+    "right_topology",
+    "identity_composition_preserved",
+    "preferred_side",
+    "localized_reason"
+  ],
+  "response_values": {
+    "boolean": [
+      "true",
+      "false"
+    ],
+    "identity_composition_preserved": [
+      "yes",
+      "no",
+      "uncertain"
+    ],
+    "localized_reason_nonempty": true,
+    "preferred_side": [
+      "left",
+      "right",
+      "tie"
+    ],
+    "quality": [
+      "clean_good",
+      "mild_or_uncertain",
+      "clear_bad"
+    ]
+  },
+  "rubric": {
+    "blur_fields": "true/false independently for LEFT and RIGHT; true for conspicuous blur, melting, smearing, or soft fusion.",
+    "clear_bad_rule": "Only an obvious defect below ordinary batch quality: conspicuous blur/melting/fusion, gross misregistration, or malformed/missing/duplicated/misattached anatomy or object structure. Do not call normal model roughness clear_bad.",
+    "forbidden_context": [
+      "any production provenance or hidden experimental assignment",
+      "any internal measurement, prior judgment, or other reviewer response",
+      "any external representation or batch-level metric"
+    ],
+    "identity_composition_preserved": "yes only when the two sides preserve class/identity, object count, main pose, and composition; otherwise no, or uncertain when genuinely ambiguous.",
+    "localized_reason": "required short localized explanation for every pair.",
+    "preferred_side": "left/right/tie by overall visible quality; do not infer how either side was produced.",
+    "quality_values": [
+      "clean_good",
+      "mild_or_uncertain",
+      "clear_bad"
+    ],
+    "review_order": "Open both native PNGs at 100% first; pair images and sheets are navigation aids.",
+    "task": "Compare each anonymous LEFT/RIGHT endpoint at native resolution, relative to ordinary quality in this frozen model batch.",
+    "topology_fields": "true/false independently for LEFT and RIGHT; true for conspicuous malformed, duplicated, fused, missing, or misattached anatomy/object geometry."
+  },
+  "schema_version": 1,
+  "source_records": [
+    {
+      "bytes": 23896,
+      "locked_name": "sources/prepare_dit_v22_repairability_blind_review.py",
+      "name": "prepare_dit_v22_repairability_blind_review.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/prepare_dit_v22_repairability_blind_review.py",
+      "sha256": "34d52c83730d7aadc250ef01e5a9f7914538af24f54d65b8c0505c71f910e2c4"
+    },
+    {
+      "bytes": 29381,
+      "locked_name": "sources/analyze_dit_v22_repairability_blind_review.py",
+      "name": "analyze_dit_v22_repairability_blind_review.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/analyze_dit_v22_repairability_blind_review.py",
+      "sha256": "27fbf251c7c41b12ff814f651482145e1730bce69285f55820af718f3b98d572"
+    },
+    {
+      "bytes": 15817,
+      "locked_name": "sources/freeze_dit_v22_repairability_review_sources.py",
+      "name": "freeze_dit_v22_repairability_review_sources.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/freeze_dit_v22_repairability_review_sources.py",
+      "sha256": "47cbe37676b78d21f96ec7ad17ba5dc2243aa75fea1a362a5d0c9ba890f80c30"
+    }
+  ],
+  "status": "REVIEW_EXECUTION_READY_BEFORE_FORMAL_GPU_OUTPUTS",
+  "upstream": {
+    "execution_lock": {
+      "contract_identity_sha256": "e5a585dd2a4c850a9543192d8dac69c3d9aebfa41171263e377f515e5c8e52bf",
+      "manifest_identity_sha256": "c71ac783f2f72b9ec599b20ec7134c0ea1ebad642dbb1155fc7d873cc63d1cb6",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_execution_source_lock_v1"
+    },
+    "selection_lock": {
+      "manifest_identity_sha256": "16acd0bffda207ed73ef78a62909e53997bef68baae66cdffedede1bb207fbd0",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_pilot_lock_v1_2",
+      "protocol_identity_sha256": "f39c5a8bfbbc129d6e80ca5e38a07dfd886c6c41faff15337042127e78b3ae77"
+    }
+  }
+}

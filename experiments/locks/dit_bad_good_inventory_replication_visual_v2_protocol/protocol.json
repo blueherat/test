@@ -1,0 +1,90 @@
+{
+  "schema_version": 2,
+  "status": "FROZEN_BEFORE_FIRST_VISUAL_FEATURE_LABEL_JOIN",
+  "scientific_role": "exploratory_next_candidate_generation_with_disjoint_replication",
+  "frozen_at_local_date": "2026-08-27",
+  "chronology": {
+    "visual_feature_formulas_frozen_before_extraction": true,
+    "visual_products_extracted_without_labels": true,
+    "visual_screen_source_completed_without_reading_labels_or_v1_results": true,
+    "base_6844_screen_result_known_to_root_before_this_protocol_file_was_written": true,
+    "interpretation": "This v2 screen supersedes the exploratory inventory accounting and remains candidate-generating, not confirmatory."
+  },
+  "runtime_sources": {
+    "analysis_path": "/home/zhoushunyu/eqvae/experiments/explore_dit_bad_good_inventory_replication_visual_v2.py",
+    "analysis_sha256": "e7c27e1381e5d6c62e64735e7b2ab7609663f88fd4b6603d5f485ca420e30c84",
+    "pinned_base_path": "/home/zhoushunyu/eqvae/experiments/explore_dit_bad_good_inventory_replication.py",
+    "pinned_base_sha256": "c23ef50713e3a310bf8a6bb7b0541563717b5979cca035f3b15394f68aaaca90",
+    "visual_extractor_path": "/home/zhoushunyu/eqvae/experiments/extract_dit_predxstart_visual_tracks.py",
+    "visual_extractor_sha256": "452ae0e61fe36d027036e0d74c232fbcfbd7cb462d3749db92e062a104d0e398"
+  },
+  "cohorts": {
+    "discovery": {
+      "classes": [207, 602, 795],
+      "global_seed_start_inclusive": 50,
+      "global_seed_stop_exclusive": 130,
+      "trajectory_count": 240,
+      "final_visual_consensus_identity_sha256": "21c242dc796d5c8baa4568c9f82add0d1b64c984477cf8698efbbca5889e166a"
+    },
+    "independent_replication": {
+      "classes": [207, 602, 795],
+      "global_seed_start_inclusive": 130,
+      "global_seed_stop_exclusive": 250,
+      "trajectory_count": 360,
+      "final_visual_consensus_identity_sha256": "fc478b7ae04b67869d0dfca3b63f169a5266bacc1c8701e1ae20368516e793fd"
+    },
+    "binary_labels": ["clear_bad", "clean_good"],
+    "excluded_label": "mild_or_disputed"
+  },
+  "label_free_feature_products": {
+    "original_primary_manifest_identity_sha256": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+    "original_posterior_manifest_identity_sha256": "e7abf3a8968f986779c101a05be8066754f4fa154cafe31ee74223789c4568ab",
+    "original_normalized_posterior_manifest_identity_sha256": "0eb3c0a94ecbf3bf6e44bff8a6df09210e856e6b6d6bf591b93bd05583e7c221",
+    "original_predxstart_visual_manifest_identity_sha256": "7554c9bf8a15375e83df50a4308a00176a5e2dc5deb8f378a5611cd8f3c322cd",
+    "expansion_primary_manifest_identity_sha256": "e9e441c379796a2066ef672987c36dd52bc77b59578e3133b8372743c1593a31",
+    "expansion_posterior_manifest_identity_sha256": "df902c7ee526da2e2f1a12d483338d595af4393133729028f5e2835a5658c9cf",
+    "expansion_normalized_posterior_manifest_identity_sha256": "db9022e9779dca0884108215bd6da845a5327b88b0b25ed48eb921e6c6b5d572",
+    "expansion_predxstart_visual_manifest_identity_sha256": "bddd0e9d17fcce2f1c87a02373991a83b6091b6b46e05f8fe7f7566718913696",
+    "expected_scalar_feature_count": 6884,
+    "expected_unique_track_count": 200,
+    "visual_scalar_feature_count": 40,
+    "visual_track_count": 8,
+    "visual_latest_sampling_step": 149,
+    "visual_latest_internal_timestep": 100,
+    "visual_observation_timing": "before_transition_at_latest_checkpoint",
+    "visual_uses_realized_innovation": false,
+    "decoded_images_saved": false
+  },
+  "tiers": {
+    "primary_preterminal": "preterminal_actionable=true and latest_required_sampling_step<=149",
+    "secondary_preterminal": "preterminal_actionable=true and latest_required_sampling_step<=199",
+    "retrospective_control": "preterminal_actionable=false or latest_required_sampling_step>199"
+  },
+  "selection_and_replication": {
+    "selection_unit": "one scalar reduction and one bad-high/bad-low direction per track per tier",
+    "selection_data": "discovery cohort only",
+    "selection_statistic": "class-matched bad-good-pair-weighted AUC; macro within-class AUC then feature name break ties",
+    "replication_feature_and_direction_frozen_from_discovery": true,
+    "replication_statistic": "same class-matched pair-weighted AUC",
+    "within_class_fixed_bad_count_permutation_draws": 100000,
+    "permutation_rng": "numpy.default_rng(seed=20260827)",
+    "permutation_sidedness": "one-sided higher-is-bad after discovery-only direction freeze",
+    "multiple_testing": "Benjamini-Hochberg and Holm jointly over every emitted track-tier winner; Holm is the robust primary reading",
+    "tier_overlap_caveat": "The <=149 tier is nested in <=199; duplicate rows are not independent replications."
+  },
+  "publication": {
+    "aggregate_tables_only": true,
+    "row_labels_scores_ranks_seeds_paths_images_or_sample_keys_published": false,
+    "output": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/inventory_replication_exploratory_visual_v2",
+    "no_overwrite": true,
+    "frozen_contract_enforced_in_source": true,
+    "source_and_pinned_base_copied_into_result": true
+  },
+  "claim_limits": {
+    "exploratory_not_confirmatory": true,
+    "a_replication_hit_only_nominates_a_next_candidate": true,
+    "any_next_candidate_requires_a_new_disjoint_confirmation_pool": true,
+    "no_intervention_authorized_by_this_screen_alone": true,
+    "resnet_target_log_odds_is_semantic_confidence_not_quality_posterior": true
+  }
+}

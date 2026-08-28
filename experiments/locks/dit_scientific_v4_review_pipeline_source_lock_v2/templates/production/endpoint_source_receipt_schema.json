@@ -1,0 +1,27 @@
+{
+  "exact_fields": [
+    "schema_version",
+    "status",
+    "phase",
+    "event_protocol_identity_sha256",
+    "phase_plan_identity_sha256",
+    "model",
+    "sampler",
+    "cfg_scale",
+    "endpoint_count",
+    "endpoint_only_review_payload",
+    "source_artifact_path",
+    "source_artifact_identity_sha256",
+    "source_manifest_sha256",
+    "source_payload_role",
+    "method_traces_sibling_path",
+    "physical_tree_separation_verified",
+    "labels_reviews_metrics_features_embeddings_or_scores_opened_for_sampling"
+  ],
+  "no_example_values": "intentionally omitted to avoid fabricating a completed sampler receipt",
+  "phase_roles": {
+    "confirmation": "external_review_endpoints_only; source root basename review_endpoints; exact sibling basename method_traces",
+    "discovery_anchor": "endpoint_only_screen_root with null method_traces_sibling_path"
+  },
+  "recursive_firewall": "reject symlinks, any trace/B/E/calibration/score/metric/feature/embedding member name, material JSON field, or array/table payload; every indexed PNG must resolve under source_artifact_path"
+}

@@ -1,0 +1,32 @@
+{
+  "anchor": {
+    "artifact_kind": "EVENT_RICH_BLUR_SCREEN_SELECTION_LOCK_V1",
+    "axis": "the one exact selected_classes list (6 classes) x seeds 1012..1035, global-seed-major/class-minor",
+    "kind": "authoritative select_dit_event_rich_blur_classes_v4.py rank output",
+    "status": "BLUR_ENRICHED_CLASSES_SELECTED_BEFORE_ANCHOR"
+  },
+  "confirmation": {
+    "artifact_kind": "EVENT_RICH_BLUR_ANCHOR_PLAN_LOCK_V1",
+    "axis": "the same exact selected_classes list (6 classes) with decision.go=true x seeds 1200..1327, global-seed-major/class-minor",
+    "kind": "authoritative select_dit_event_rich_blur_classes_v4.py anchor output",
+    "manifest_binding": "consensus identity records this file's identity_sha256 as anchor_plan_identity_sha256",
+    "status": "BLUR_ANCHOR_GO_DECISION_LOCKED_BEFORE_INTERNAL_TRACES"
+  },
+  "discovery": {
+    "exact_fields": [
+      "schema_version",
+      "status",
+      "phase",
+      "event_protocol_identity_sha256",
+      "class_ids_ordered",
+      "global_seeds_ordered",
+      "upstream_plan_identity_sha256",
+      "labels_locked_before_plan",
+      "candidate_scores_features_trajectories_embeddings_or_ranks_used",
+      "identity_sha256"
+    ],
+    "kind": "static exact 84-class roster x seeds 1000..1011 wrapper"
+  },
+  "identity_rule": "all plan identities are canonical SHA256 over all other exact fields",
+  "no_example_values": "intentionally omitted to avoid creating a fake phase plan"
+}

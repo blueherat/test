@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "frozen_before_targeted_scan_outputs",
+  "purpose": "Find conspicuous model-relative DiT failures dominated by blur, fusion, or limb/object topology errors rather than mild local detail defects.",
+  "baseline": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+    "sampler": "250-step ancestral DDPM",
+    "cfg_scale": 4.0,
+    "vae": "stabilityai/sd-vae-ft-mse"
+  },
+  "scan": {
+    "global_seeds_inclusive": [10, 29],
+    "class_ids": [207, 340, 354, 366, 444, 602, 795, 981],
+    "class_names": [
+      "golden retriever",
+      "zebra",
+      "Arabian camel",
+      "gorilla",
+      "bicycle-built-for-two",
+      "horizontal bar",
+      "ski",
+      "ballplayer"
+    ],
+    "images_per_class": 20,
+    "total_images": 160,
+    "targeted_not_prevalence_representative": true
+  },
+  "visual_rule": {
+    "primary_failures": [
+      "obvious subject or major-region blur below the same-class cohort",
+      "fused or duplicated bodies, limbs, heads, wheels, frames, or objects",
+      "impossible attachment, pose, count, or large-part topology",
+      "gross spatial misalignment between interacting major components"
+    ],
+    "exclude_as_primary_bad": [
+      "ordinary style variation",
+      "minor texture or edge defects",
+      "a recognizable and coherent sample that merely lacks photographic realism",
+      "a mild local detail issue when the full sample remains near the model's class-average quality"
+    ],
+    "relative_requirement": "A discovery candidate must be plainly below its 20-image same-class cohort, not merely imperfect in an absolute sense.",
+    "review_views": ["native 256x256", "smooth enlargement", "nearest-neighbor enlargement"],
+    "formal_endpoint": false
+  },
+  "selection_boundary": {
+    "path_evidence_seen": false,
+    "repair_outputs_seen": false,
+    "candidate_use": "engineering discovery only until independent model-relative review is completed"
+  }
+}

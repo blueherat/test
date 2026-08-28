@@ -1,0 +1,108 @@
+{
+  "candidate_manifest_file_sha256": "b6557c371fe0e5a8b160bb9c599fa359ce560f0a6c545c610834ae93524b6be5",
+  "candidate_protocol_file_sha256": "abfc8d61ec9d00f3c34a5565da264a7ebccaf76eb6abf62c2bd0635616b76d8d",
+  "candidate_protocol_identity_sha256": "198a82a7c8a0ab79d901c76a5c810f4a40889604a66f18e995d0699f73c12bce",
+  "commands_in_order": [
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/analyze_dit_bad_good_custom_traces.py",
+        "--trace-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+        "--trace-glob",
+        "confirmation_v1_seed*",
+        "--expected-classes",
+        "207,602,795",
+        "--expected-seeds",
+        "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1"
+      ],
+      "stage": "primary_feature_extraction"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/analyze_dit_posterior_evidence_metrics.py",
+        "--trace-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+        "--trace-glob",
+        "confirmation_v1_seed*",
+        "--expected-classes",
+        "207,602,795",
+        "--expected-seeds",
+        "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1"
+      ],
+      "stage": "posterior_feature_extraction"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/score_dit_bad_good_frozen_candidates.py",
+        "--lock-root",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--primary-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1",
+        "--posterior-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1"
+      ],
+      "stage": "frozen_candidate_scoring"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/calibrate_dit_bad_good_conformal_thresholds.py",
+        "--candidate-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--scores-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+        "--output",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1"
+      ],
+      "stage": "label_free_calibration"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/apply_dit_bad_good_conformal_thresholds.py",
+        "--candidate-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--calibration-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+        "--scores-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1"
+      ],
+      "stage": "apply_calibration_to_evaluation"
+    }
+  ],
+  "identity_sha256": "a2e0f9d9865f9a0eda2e25b7b695f19db7d1632b52b790aba11d824284ee15f9",
+  "import_contracts": {
+    "applicator_imports_calibrator_sha256": "cadfe09b6638f1cec95c14befd3839e42cb0c71f83762301ced31d71e5876127",
+    "applicator_imports_scorer_sha256": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "calibrator_imports_scorer_sha256": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "posterior_imports_primary_analysis_helper_sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129"
+  },
+  "labels_read_or_emitted_by_any_command": false,
+  "schema_version": 1,
+  "source_sha256_by_basename": {
+    "analyze_dit_bad_good_custom_traces.py": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129",
+    "analyze_dit_posterior_evidence_metrics.py": "9e0576146f14ccd433899802dfb1ed97b22b84aacbcf2b84e5d791d74755a695",
+    "apply_dit_bad_good_conformal_thresholds.py": "89ac04ed90c6d4d752448e2370ff2e7b4f55fec569d197c436248825bdff4a78",
+    "calibrate_dit_bad_good_conformal_thresholds.py": "cadfe09b6638f1cec95c14befd3839e42cb0c71f83762301ced31d71e5876127",
+    "freeze_dit_bad_good_execution_sources.py": "6e1b4d1f8b87f4fbc053d16b62b1e8a28430fdc7a25ebbd2d5ee563c65f437f4",
+    "reproduce_dit_imagenet256.py": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+    "run_dit_bad_good_confirmation_pool.py": "32b994d157744b6317c7a9834211742566164351abcf6dd4a7eda445c8643922",
+    "sample_dit_imagenet256_custom.py": "40a3a29a39f30545298e0d4c86367c87114751f3f7766560a649af91ecfd3e2c",
+    "score_dit_bad_good_frozen_candidates.py": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "trace_dit_imagenet256_custom_batch.py": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79"
+  },
+  "status": "FROZEN_BEFORE_ANY_FRESH_SCORE_EXTRACTION_OR_VISUAL_LABEL_JOIN",
+  "trace_glob": "confirmation_v1_seed*",
+  "trace_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked"
+}

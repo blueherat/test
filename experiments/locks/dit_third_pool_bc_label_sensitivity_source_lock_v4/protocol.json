@@ -1,0 +1,217 @@
+{
+  "candidates": {
+    "B_blur_mean": {
+      "direction": "high_is_bad",
+      "feature": "decoded_local_blur_severity__mean",
+      "negative_endpoint_for_every_label_definition": "clean-good under the same label definition",
+      "positive_endpoint_for_every_label_definition": "clear-bad AND blur-or-soft-fusion phenotype"
+    },
+    "C_c3_low_jump": {
+      "direction": "low_is_bad",
+      "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+      "negative_endpoint_for_every_label_definition": "clean-good under the same label definition",
+      "positive_endpoint_for_every_label_definition": "all clear-bad"
+    }
+  },
+  "cohort": {
+    "classes_ordered": [
+      207,
+      602,
+      795
+    ],
+    "complete_class_matched_cohort_required": true,
+    "global_seed_semantics": "inclusive endpoints; exact frozen set range(250,850)",
+    "global_seeds": [
+      250,
+      849
+    ],
+    "trajectory_count": 1800
+  },
+  "designation": "POST_FAILED_GATE_EXPLORATORY_ONLY_FOR_NEXT_POOL_DESIGN",
+  "experiment": "dit_third_pool_bc_label_sensitivity_v4",
+  "foundation_identity_pins": {
+    "blind_review_pipeline_source_sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c",
+    "phase1_protocol_identity_sha256": "0788c7074adc55f1896dea4e0626f57c8b2b4899a5b600f38d2f982a87acfed5",
+    "phase1_threshold_identity_sha256": "c89fee87731968aa0c8a7ef086cb9a95a578dc3462149a6135bb71275bdbe43d",
+    "primary_evaluator_source_sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c",
+    "sampling_protocol_identity_sha256": "330661e87de7846e1f590660f03ecef6270fa45e2f39c4fc54d992e3260950d8"
+  },
+  "identity_sha256": "4b9e03f4e07044ec48fa149245bdd7b0d8b5ce9a4b55c49ba328e482494fd290",
+  "label_definitions_ordered": {
+    "final_adjudicated": {
+      "bad": "final_severity == clear_bad",
+      "blur": "frozen two-of-three blur_component_consensus",
+      "good": "final_severity == clean_good"
+    },
+    "raw_majority": {
+      "bad": "at least two of three reviewer severities are 2 or 3",
+      "blur": "at least two reviewers mark any frozen blur-group flag",
+      "good": "at least two of three reviewer severities are 0"
+    },
+    "reviewer_1": {
+      "bad": "reviewer_1 severity is 2 or 3",
+      "blur": "reviewer_1 marks any frozen blur-group flag",
+      "good": "reviewer_1 severity is 0"
+    },
+    "reviewer_2": {
+      "bad": "reviewer_2 severity is 2 or 3",
+      "blur": "reviewer_2 marks any frozen blur-group flag",
+      "good": "reviewer_2 severity is 0"
+    },
+    "reviewer_3": {
+      "bad": "reviewer_3 severity is 2 or 3",
+      "blur": "reviewer_3 marks any frozen blur-group flag",
+      "good": "reviewer_3 severity is 0"
+    }
+  },
+  "output_contract": {
+    "aggregate_only": true,
+    "cannot_call_candidate_passed": true,
+    "cannot_rescue_or_override_failed_stage_A_or_primary_stage_B": true,
+    "forbidden": [
+      "row-level score",
+      "row-level label",
+      "row-level rank",
+      "sample identifier joined to any score or label",
+      "confirmatory p-value",
+      "pass/fail claim"
+    ],
+    "intervention_experiment_authorized": false
+  },
+  "question": "How sensitive are the two already-frozen B/C associations to five pre-enumerated blind-label definitions after the formal third-pool event gate failed?",
+  "schema_version": 1,
+  "sources": {
+    "audit_dit_third_pool_bc_label_sensitivity.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/audit_dit_third_pool_bc_label_sensitivity.py",
+      "sha256": "dea54c1744deef94998d5b5d2a1af3f7d5333f602243066ed13bce13a70206d3"
+    },
+    "evaluate_dit_bad_good_third_pool_confirmation.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/evaluate_dit_bad_good_third_pool_confirmation.py",
+      "sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c"
+    },
+    "freeze_dit_third_pool_bc_label_sensitivity.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_third_pool_bc_label_sensitivity.py",
+      "sha256": "cc6d4e81cae5e550cd076a0b31197db6f5a6e5dd13b84eec60f30c4919759815"
+    },
+    "prepare_dit_bad_good_third_pool_blind_reviews.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/prepare_dit_bad_good_third_pool_blind_reviews.py",
+      "sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c"
+    }
+  },
+  "statistics": {
+    "auc": "class-matched pair-weighted Mann-Whitney AUC; ties receive 0.5; orientation fixed by candidate",
+    "candidate_combination": false,
+    "confidence_intervals": false,
+    "confirmatory_p_values": false,
+    "fixed_operating_point": {
+      "alpha": "alpha_0p10",
+      "comparison_B": "raw B > class-specific frozen threshold",
+      "comparison_C": "raw C < class-specific frozen threshold",
+      "reported": [
+        "positive and clean-good counts",
+        "TP and FP counts",
+        "micro TPR and FPR",
+        "all-trajectory alert count and rate",
+        "excluded non-endpoint alert count"
+      ],
+      "threshold_source": "frozen old-data third-pool threshold lock"
+    },
+    "label_definition_sensitivity": {
+      "for_each_candidate": [
+        "AUC min, max, range across the five definitions",
+        "micro TPR min, max, range across the five definitions",
+        "micro FPR min, max, range across the five definitions",
+        "each non-final AUC minus final-adjudicated AUC"
+      ],
+      "missing_value_rule": "a range or contrast is null if a required endpoint denominator is zero"
+    },
+    "new_feature_direction_threshold_or_label_selection": false,
+    "per_class_reporting": "counts, pair counts, and AUC; numeric class AUC suppressed when either endpoint has fewer than five samples"
+  },
+  "supersession": {
+    "v1_reason": "v1 incorrectly required a passed Stage-A receipt and therefore could not answer the post-failure design question",
+    "v1_snapshot_must_remain_unchanged": true,
+    "v1_source_lock_manifest_identity_sha256": "b3e4fd24d471b7fc5dc71067262abe1b4029d6cf675fec2672261633f3a822f8",
+    "v1_status": "SUPERSEDED_NO_RUN",
+    "v2_failure_cause": "the otherwise label-free upstream product retained fixed placeholder columns label and raw_consensus_label; V5's generic label-like-header guard rejects raw_consensus_label",
+    "v2_failure_fact": "the first real v2 attempt rejected the upstream primary CSV header before opening any C score value or producing an output artifact",
+    "v2_snapshot_must_remain_unchanged": true,
+    "v2_source_lock_manifest_identity_sha256": "088c54a76cf7055c6946f8437804ef3e440d0249dc272a6b91022916aaf8d127",
+    "v2_status": "SUPERSEDED_AFTER_FAIL_CLOSED_FIRST_REAL_ATTEMPT",
+    "v3_failed_output_target": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_third_pool_v1/bc_label_sensitivity_exploratory_v3",
+    "v3_failed_output_target_confirmed_absent_before_v4_freeze": true,
+    "v3_failure_cause": "V5's generic label-like substring guard interpreted the legitimate frozen feature decoded_local_blur_severity__maximum as label metadata",
+    "v3_failure_fact": "the first real v3 attempt rejected the visual B header before producing an output artifact",
+    "v3_snapshot_must_remain_unchanged": true,
+    "v3_source_lock_manifest_identity_sha256": "d4a59bc7e9f0dc2939b5b0714e072b85a375a6742ffb532750f92ef49dfe5bdb",
+    "v3_status": "SUPERSEDED_AFTER_FAIL_CLOSED_FIRST_REAL_ATTEMPT"
+  },
+  "temporal_firewall": {
+    "allowed_before_freeze": [
+      "locked label/reviewer/consensus schemas",
+      "aggregate event counts",
+      "artifact paths and identities without score payload access"
+    ],
+    "failed_stage_A_remains_failed_and_cannot_be_overridden": true,
+    "production_join_requires_valid_replayed_stage_A_failure_receipt": true,
+    "protocol_and_all_executable_sources_frozen_before_any_third_pool_primary_or_visual_score_value_is_opened": true,
+    "receipt_must_attest_primary_and_visual_feature_paths_unopened": true,
+    "required_replayed_counts": {
+      "blur_or_soft_fusion_clear_bad": 4,
+      "total_clear_bad": 6
+    },
+    "required_stage_A_status": "EVENT_GATE_FAILED_NO_SCORE_ACCESS"
+  },
+  "upstream_schema_defect_exception": {
+    "all_other_label_like_columns_forbidden": true,
+    "allowed_raw_consensus_label_values_exact": [
+      "",
+      "nan",
+      "NaN"
+    ],
+    "candidate_score_values_used_to_define_exception": false,
+    "decision_basis_only": [
+      "upstream CSV schema/header",
+      "fixed placeholder sentinel semantics"
+    ],
+    "exception_changes_candidate_label_threshold_or_direction": false,
+    "formal_evaluator_V5_never_reached_Stage_B_because_Stage_A_already_failed": true,
+    "formal_evaluator_V5_would_also_reject_if_Stage_B_were_reached": true,
+    "formal_failed_gate_result_affected": false,
+    "future_pipeline_required_fix": "label-free products must omit label and raw_consensus_label entirely",
+    "label_values_or_outcomes_used_to_define_exception": false,
+    "only_fixed_C_feature_is_numeric_parsed": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+    "required_label_value_every_row": "unlabeled",
+    "required_placeholder_columns_exact": [
+      "label",
+      "raw_consensus_label"
+    ]
+  },
+  "visual_B_explicit_role_contract": {
+    "all_other_columns_must_be_registered_in_frozen_feature_catalog": true,
+    "candidate_label_threshold_or_direction_changed": false,
+    "candidate_score_values_used_to_define_loader": false,
+    "catalog_registered_feature_names_may_contain_blur_or_severity": true,
+    "decision_basis_only": [
+      "frozen visual CSV header",
+      "frozen visual feature catalog",
+      "pinned visual product manifest and extractor identity"
+    ],
+    "duplicate_missing_extra_or_renamed_columns_forbidden": true,
+    "fixed_metadata_columns_exact": [
+      "sample_index",
+      "run_index",
+      "global_seed",
+      "class_slot",
+      "class_id",
+      "trace_dir",
+      "endpoint_png_path"
+    ],
+    "fixed_numeric_feature": "decoded_local_blur_severity__mean",
+    "future_formal_schema_rule": "label-free products must classify every column by an explicit role and frozen catalog, not by substring matching on feature names",
+    "numeric_parsed_feature_columns_exact": [
+      "decoded_local_blur_severity__mean"
+    ],
+    "uncatalogued_or_label_metadata_columns_forbidden": true
+  }
+}

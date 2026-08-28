@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "lock_type": "immutable_label_free_product_binding",
+  "scientific_revision": "branch_consensus_v1_posthoc_discovery",
+  "product_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_branch_consensus_label_free_v1",
+  "product_identity_sha256": "5c060c1f5c756df66993c153ec7a5e93224482efaa6743ac9ed7038323d38f5a",
+  "product_manifest_identity_sha256": "300a140c70c327ed353aea041f101bc73719121d577e892c542fa949f239a1b1",
+  "source_sha256": "74bc27a7bacf0aecd90fba2dcfdd429018ab22f2879e9fa40f20384d9e7fc9ae",
+  "config_sha256": "5d8689cc70a0ccd8ba90c2fab99f3d9c2dd6c21ac441f412c2c00cd406b4216f",
+  "input_inventory_identity_sha256": "f28b22da44bb96fe84ed4dabb6c25b3b031cd4d7ef7b6a41e00affe43e7c3935",
+  "product_files": {
+    "catalog.json": {
+      "bytes": 1539,
+      "sha256": "4a68350065a2e4115c1e6e9115b05a713f0af0637dc4a0c51391ec63d06d0ba4"
+    },
+    "common_prefix_hashes.jsonl": {
+      "bytes": 15328,
+      "sha256": "50ab9d6a0fe4418bab2af98233c69f096a8ed7f9d8d9024693d3145d4aca2ba6"
+    },
+    "distance_matrices.jsonl": {
+      "bytes": 194862,
+      "sha256": "5a9c9b0c1c9ffc990d987f30434ad5ee438eaa80dfea6c4f4acd0a732f5136dc"
+    },
+    "extractor_source.py": {
+      "bytes": 33371,
+      "sha256": "74bc27a7bacf0aecd90fba2dcfdd429018ab22f2879e9fa40f20384d9e7fc9ae"
+    },
+    "features.csv": {
+      "bytes": 50851,
+      "sha256": "64f2ffae494fdab0a4ede44dc869b3f949b95888e82bb2a821eaacd8af1ae440"
+    },
+    "features.jsonl": {
+      "bytes": 148150,
+      "sha256": "9d0b14d8345c79dbf0f721108da98406dd6b526db3aa8a4bb8b2e712765d8abc"
+    },
+    "frozen_config.json": {
+      "bytes": 1838,
+      "sha256": "5d8689cc70a0ccd8ba90c2fab99f3d9c2dd6c21ac441f412c2c00cd406b4216f"
+    },
+    "input_inventory.json": {
+      "bytes": 104205,
+      "sha256": "4cf2ae0388d730d886eab26014b286a8d900932ab4b310c3c07ca753cc6fe39e"
+    },
+    "manifest.json": {
+      "bytes": 1432,
+      "sha256": "766976d5f36bbade0c572a3f8cf895ba2b14d4b4ec755d93219a99c42e143974"
+    }
+  },
+  "counts": {
+    "jobs": 32,
+    "branches": 160,
+    "feature_rows": 96,
+    "distance_matrix_rows": 96,
+    "horizons": 3
+  },
+  "method_inputs": "sampler_internal_predicted_clean_latents_only",
+  "external_judges_opened_before_product_completion": false,
+  "feature_selection_auc_thresholding_or_label_join_performed": false,
+  "attempt0_rank_calibrated": false,
+  "current_product_confirmatory": false,
+  "downstream_use": "posthoc discovery evaluator must bind this exact product before opening labels",
+  "lock_identity_sha256": "838d0be5fc9b5e9e206bae5ea3bbd59bcb8b208c170928347466ea3c8b7bcc5e"
+}

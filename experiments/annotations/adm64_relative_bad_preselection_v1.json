@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "exploratory_single_reviewer_preselection_not_a_formal_bad_label",
+  "purpose": "Freeze an obvious-below-local-baseline matched micro-audit before computing local path evidence.",
+  "baseline": {
+    "experiment": "adm64_guided",
+    "manifest_identity_sha256": "ccd54451fd448652ea8927a0309af3d4a4f757f7847c4c9cb7ac54288f2f20db",
+    "reference_seeds_inclusive": [100, 119],
+    "samples_per_class": 20,
+    "model_relative_scope": "same weights, classifier guidance, ancestral sampler, resolution, and ImageNet class"
+  },
+  "selection_constraints": {
+    "path_evidence_seen": false,
+    "formal_endpoint": false,
+    "reviewers": 1,
+    "required_interpretation": "discovery candidate only; relative_bad remains not_evaluated until the frozen v3 two-reviewer protocol is completed"
+  },
+  "matched_seed_blocks": [
+    {
+      "seed": 104,
+      "candidate_class_id": 949,
+      "candidate_reason": "The subject is an amorphous glossy red field with no stable strawberry boundary, calyx, or fruit geometry; it is plainly below the class-949 cohort's typical recognizable fruit samples.",
+      "same_innovation_controls": [207, 388]
+    },
+    {
+      "seed": 105,
+      "candidate_class_id": 388,
+      "candidate_reason": "Multiple panda-like heads and bodies fuse into an incoherent topology; this is plainly below the class-388 cohort's typical single-panda structure.",
+      "same_innovation_controls": [207, 949]
+    },
+    {
+      "seed": 116,
+      "candidate_class_id": 207,
+      "candidate_reason": "The dog's face, muzzle, neck, and torso collapse into smeared geometry with no stable body boundary; this is plainly below the class-207 cohort's typical dog samples.",
+      "same_innovation_controls": [388, 949]
+    }
+  ],
+  "provisional_typical_anchors": {
+    "207": [100, 102, 103, 112, 118],
+    "388": [101, 102, 104, 112, 118],
+    "949": [103, 107, 113, 116, 118]
+  },
+  "analysis_rule": "Within each seed block, first ask whether the evidence distinguishes the preselected class-specific failure from the two outputs generated with the identical Gaussian innovation stream. Do not pool these three candidates into a TPR estimate."
+}

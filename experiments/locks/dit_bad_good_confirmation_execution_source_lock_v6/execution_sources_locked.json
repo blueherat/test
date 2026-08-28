@@ -1,0 +1,210 @@
+{
+  "candidate_manifest_file_sha256": "b6557c371fe0e5a8b160bb9c599fa359ce560f0a6c545c610834ae93524b6be5",
+  "candidate_protocol_file_sha256": "abfc8d61ec9d00f3c34a5565da264a7ebccaf76eb6abf62c2bd0635616b76d8d",
+  "candidate_protocol_identity_sha256": "198a82a7c8a0ab79d901c76a5c810f4a40889604a66f18e995d0699f73c12bce",
+  "commands_in_order": [
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/analyze_dit_bad_good_custom_traces.py",
+        "--trace-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+        "--trace-glob",
+        "confirmation_v1_seed*",
+        "--expected-classes",
+        "207,602,795",
+        "--expected-seeds",
+        "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1"
+      ],
+      "stage": "primary_feature_extraction"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/analyze_dit_posterior_evidence_metrics.py",
+        "--trace-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+        "--trace-glob",
+        "confirmation_v1_seed*",
+        "--expected-classes",
+        "207,602,795",
+        "--expected-seeds",
+        "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1"
+      ],
+      "stage": "posterior_feature_extraction"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/score_dit_bad_good_frozen_candidates.py",
+        "--lock-root",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--primary-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1",
+        "--posterior-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1"
+      ],
+      "stage": "frozen_candidate_scoring"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/calibrate_dit_bad_good_conformal_thresholds.py",
+        "--candidate-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--scores-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+        "--output",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1"
+      ],
+      "stage": "label_free_calibration"
+    },
+    {
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/apply_dit_bad_good_conformal_thresholds.py",
+        "--candidate-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+        "--calibration-lock",
+        "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+        "--scores-root",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1"
+      ],
+      "stage": "apply_calibration_to_evaluation"
+    }
+  ],
+  "executed_product_lineage": {
+    "calibrated_evaluation_alerts": {
+      "completion_file_sha256": "8b3946940692fefc253114d3d3c9611f722abd6b334440865b930a483ea36e77",
+      "manifest_file_sha256": "d3ef72ea7f3d10435075abe0cbe3994930f2752ed2165640355a592b6020a743",
+      "manifest_identity_sha256": "3122250c7fdbf758de140ec6a47d95414fb6beda6688fefae738804e16e7baf2",
+      "member_count": 5,
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1",
+      "semantic_receipt_name": "summary.json",
+      "semantic_receipt_sha256": "06cf1daef991c91266cdc6f48b6ac87c595a83c979649393d39010e93d5bf26c"
+    },
+    "cross_product_audit": {
+      "all_candidate_lineage_matches_v5": true,
+      "all_embedded_source_copies_match_execution_sources": true,
+      "primary_and_posterior_trace_identity_lists_equal": true,
+      "score_to_calibration_to_alert_lineage_matches": true,
+      "trace_run_count": 100,
+      "visual_labels_read_or_emitted": false
+    },
+    "frozen_candidate_scores": {
+      "completion_file_sha256": "0c69eb13c27f46af5b9c00846467e1ed50bfccc371fbffcf30f4d9f32588202f",
+      "manifest_file_sha256": "5efdb92fb1026b3e40b23b04484690bce4ca77cf3f8e740225b3a6582bb05310",
+      "manifest_identity_sha256": "e2f6e53186aceb381961c98a603b68884d66da95cb9f7bfa547ca091cc58e6a3",
+      "member_count": 3,
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+      "semantic_receipt_name": "summary.json",
+      "semantic_receipt_sha256": "51521f62611c4f148036cb7fe39d479f5be31d9b961ef1117e293459ca83073f"
+    },
+    "label_free_calibration": {
+      "completion_file_sha256": "db40b4cd042852a4c2c99853552e7bfe42de2d7e88f56d267d3f77eaf59295a9",
+      "manifest_file_sha256": "3866638e8d8da583bcc5b3dfc1ba7689fd32dfa26800c1c19ad849c7e64a84c9",
+      "manifest_identity_sha256": "37b2bd0f9e5df239a604e4b12caff30a0102dd1315678e26c18f4b01570361c3",
+      "member_count": 4,
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+      "semantic_receipt_name": "calibration_locked.json",
+      "semantic_receipt_sha256": "2424d3e36078028a894d4c84b68995499494a088e627f30addacb7c5b156756d"
+    },
+    "posterior_label_free_features": {
+      "completion_file_sha256": "220133142faae4cd12dc174c1f145a69b90bc7184ebe721f6b360cfea699a196",
+      "manifest_file_sha256": "336ca334b49dd9040fc3dde32325e2c5402a28cc7b37334fdcbafb53d17f4bc6",
+      "manifest_identity_sha256": "e7abf3a8968f986779c101a05be8066754f4fa154cafe31ee74223789c4568ab",
+      "member_count": 7,
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1",
+      "semantic_receipt_name": "summary.json",
+      "semantic_receipt_sha256": "3ff2f4c0e9433385b9c3276cebb6e91ea4040fe906caeb76171bdafbd3147aaf"
+    },
+    "primary_label_free_features": {
+      "completion_file_sha256": "ba95487e6186e469f3c1d5d1b9506a0f5f7b5a063c07b74ebb3c9d6416f24bff",
+      "manifest_file_sha256": "6998136462ef36f4b866506bcb5065722ca1e3abfe4dcdf2e64be926b108d8b8",
+      "manifest_identity_sha256": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+      "member_count": 8,
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1",
+      "semantic_receipt_name": "summary.json",
+      "semantic_receipt_sha256": "5504b7e5cf6ae0f28fe0f4f98778594262c582723331c76ec0388eed88923d43"
+    }
+  },
+  "identity_sha256": "723fb4bd1b74154b6e707bd3792f7c55aa2b0f0d1d2a168d6cfcfd29aecaf18c",
+  "import_contracts": {
+    "applicator_imports_calibrator_sha256": "cadfe09b6638f1cec95c14befd3839e42cb0c71f83762301ced31d71e5876127",
+    "applicator_imports_scorer_sha256": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "calibrator_imports_scorer_sha256": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "posterior_imports_primary_analysis_helper_sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129"
+  },
+  "labels_read_or_emitted_by_any_command": false,
+  "prior_execution_lineage": {
+    "cross_lock_source_audit": {
+      "hash_identical_source_basenames_excluding_locker": [
+        "analyze_dit_bad_good_custom_traces.py",
+        "analyze_dit_posterior_evidence_metrics.py",
+        "apply_dit_bad_good_conformal_thresholds.py",
+        "calibrate_dit_bad_good_conformal_thresholds.py",
+        "reproduce_dit_imagenet256.py",
+        "run_dit_bad_good_confirmation_pool.py",
+        "sample_dit_imagenet256_custom.py",
+        "score_dit_bad_good_frozen_candidates.py",
+        "trace_dit_imagenet256_custom_batch.py"
+      ],
+      "locker_excluded_because_each_lock_snapshots_its_own_version": true
+    },
+    "post_execution_source_audit_v5": {
+      "execution_sources_file_sha256": "cd3e7fd73f9a0c7a63197a7531445d88b931ac98a5ddc7e3eb84b2ff77463049",
+      "execution_sources_identity_sha256": "2f485c184d8f3ce2a3369306b6f5c27b025c984ef90dbc4bcb74cb94ed2a6d73",
+      "manifest_file_sha256": "f184d73ad28dc3c5075243a6d2b64bd3a97d4a1eb75087abf3dfd0b56c9e0d44",
+      "manifest_identity_sha256": "c30af0b1e4112e1cbe964030d02c53c1d047335c5af307efe0307df973e55637",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_confirmation_execution_source_lock_v5",
+      "status": "AUDITED_AFTER_LABEL_FREE_EXECUTION_BEFORE_ANY_VISUAL_LABEL_JOIN"
+    },
+    "pre_candidate_scoring_v4": {
+      "execution_sources_file_sha256": "689aca83e775583a7bc0e974ccf148dfb1ae858c383c0129611fbae049e19dce",
+      "execution_sources_identity_sha256": "a2e0f9d9865f9a0eda2e25b7b695f19db7d1632b52b790aba11d824284ee15f9",
+      "manifest_file_sha256": "77cc95deba4df657bc2b8f1bf9d271965fc5639501b03c6967e62c31e3f93529",
+      "manifest_identity_sha256": "809e4f206350ac5ce2dfc1cbadd4add75b505e40289e845e241adcc4c6f1fad9",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_confirmation_execution_source_lock_v4",
+      "status": "FROZEN_BEFORE_ANY_FRESH_SCORE_EXTRACTION_OR_VISUAL_LABEL_JOIN"
+    },
+    "pre_feature_extraction_v3": {
+      "execution_sources_file_sha256": "8c16ade71741ff688b192f2c53b12a9b3ca727cc4ccf0f8089c1e8f287ba5561",
+      "execution_sources_identity_sha256": "299dccb91eb903cd16d892c94a249ccec34508c0b3383a6f3788b42e75f3d5ec",
+      "manifest_file_sha256": "7bea2748d812af9b9242acf02ed9b5977338d0ba3134a0a7c45c25eb2a137c1d",
+      "manifest_identity_sha256": "dad7beb9123eeee1a0e5d6a80018fd65047f5874e7ccd1a47b1ef6a67397d0f5",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_confirmation_execution_source_lock_v3",
+      "status": "FROZEN_BEFORE_ANY_FRESH_SCORE_EXTRACTION_OR_VISUAL_LABEL_JOIN"
+    }
+  },
+  "schema_version": 1,
+  "source_sha256_by_basename": {
+    "analyze_dit_bad_good_custom_traces.py": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129",
+    "analyze_dit_posterior_evidence_metrics.py": "9e0576146f14ccd433899802dfb1ed97b22b84aacbcf2b84e5d791d74755a695",
+    "apply_dit_bad_good_conformal_thresholds.py": "89ac04ed90c6d4d752448e2370ff2e7b4f55fec569d197c436248825bdff4a78",
+    "calibrate_dit_bad_good_conformal_thresholds.py": "cadfe09b6638f1cec95c14befd3839e42cb0c71f83762301ced31d71e5876127",
+    "freeze_dit_bad_good_execution_sources.py": "c15d04a43e9b7c22ef357a4f85b5e77667379dd8c42ef089bbf1b07ca3f54615",
+    "reproduce_dit_imagenet256.py": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+    "run_dit_bad_good_confirmation_pool.py": "32b994d157744b6317c7a9834211742566164351abcf6dd4a7eda445c8643922",
+    "sample_dit_imagenet256_custom.py": "40a3a29a39f30545298e0d4c86367c87114751f3f7766560a649af91ecfd3e2c",
+    "score_dit_bad_good_frozen_candidates.py": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c",
+    "trace_dit_imagenet256_custom_batch.py": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79"
+  },
+  "status": "AUDITED_AFTER_LABEL_FREE_EXECUTION_BEFORE_ANY_VISUAL_LABEL_JOIN",
+  "timeline_interpretation": {
+    "candidate_v5": "frozen after observation-only sampling but before feature extraction, endpoint review, or candidate scoring",
+    "execution_v3": "frozen before feature extraction; commands were addressed by stage name despite dictionary serialization order",
+    "execution_v4": "frozen after label-free feature extraction and before frozen candidate scoring; command dependency order represented as a list",
+    "execution_v5": "post-execution source-chain audit refreeze before visual label join",
+    "execution_v6": "post-execution product-and-source receipt before visual label join; it does not claim prospective timing for itself"
+  },
+  "trace_glob": "confirmation_v1_seed*",
+  "trace_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked"
+}

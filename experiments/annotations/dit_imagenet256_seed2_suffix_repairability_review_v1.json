@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-27",
+  "status": "posthoc_single_reviewer_complete_second_review_pending",
+  "purpose": "Visual review of every retained branch in the frozen oracle suffix-repairability screen for DiT class 207 / global seed 2. This is a mechanical repairability diagnostic, not an online method result.",
+  "runner": {
+    "path": "/home/zhoushunyu/eqvae/experiments/intervene_dit_imagenet256_suffix.py",
+    "sha256": "8062294923dcfe497fb374a5d99925b089a2ce29fb17c1d1625253c376156d73"
+  },
+  "review_scope": {
+    "reviewer_count": 1,
+    "independent_second_review_pending": true,
+    "automatic_quality_score_used": false,
+    "automatic_attempt_or_checkpoint_selection": false,
+    "all_16_fresh_attempts_reviewed": true,
+    "pass_rule": "The conspicuous fused or duplicated torso-tail defect must be removed while preserving one adult golden retriever, the main full-body standing pose, and the coarse composition. A different object count, age or subject identity, main pose, crop, or composition is failure even when attractive.",
+    "method_success_eligible": false,
+    "oracle_repairability_only": true
+  },
+  "input": {
+    "seed": 2,
+    "batch_index": 0,
+    "class_id": 207,
+    "class_name": "golden retriever",
+    "baseline_png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+    "baseline_defect": "An impossible horizontal duplicate torso or tail-like mass protrudes from the dog's left shoulder/body, with incoherent hindquarter and leg topology."
+  },
+  "validation": {
+    "all_four_bundles_completed_and_passed_the_runner_validator": true,
+    "attempt_000_pixel_identical_to_baseline_at_all_four_checkpoints": true,
+    "non_target_batch_tiles_pixel_identical_to_baseline": true,
+    "all_attempts_retained": true,
+    "selected_attempt": null,
+    "bundle_manifest_identity_sha256_by_internal_timestep": {
+      "225": "fc29b5ea9521943a6df2d8767bcf1c85a17e5d35549cfc974e1b5e0995eea3d1",
+      "180": "0ad20528e06b4310ed040d5804d2eccea03547915d97f93e5e8b1266f0fff393",
+      "120": "30c6f6d419824dda0a5c7734a9c876874a441ce8fff420323ed3dbf871159d96",
+      "60": "54bb04e0c221bd9bc48f8ea597d6679719800b947ffff42247a8d4760f0630ce"
+    }
+  },
+  "contact_sheets": {
+    "all_smooth": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/review_seed2_class207/all_checkpoints_contact_sheet_smooth.png",
+    "all_nearest": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/review_seed2_class207/all_checkpoints_contact_sheet_nearest.png",
+    "layout": "rows t=225,180,120,60; columns replay attempt_000 then fresh attempts_001..004"
+  },
+  "branch_reviews": [
+    {
+      "internal_timestep": 225,
+      "attempt": 0,
+      "role": "exact_replay_control",
+      "verdict": "control",
+      "reason": "Pixel-identical baseline; the horizontal fused duplicate structure is present."
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 1,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Changes the full-body standing subject into a lying dog in a snow scene; main pose and composition change."
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 2,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Changes the full-body standing composition into a close face-and-chest portrait on grass."
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 3,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Changes the adult full-body subject into a frontal puppy portrait; age, identity, pose, and crop change."
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 4,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Changes the adult standing dog into a seated puppy and changes the scene composition."
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 0,
+      "role": "exact_replay_control",
+      "verdict": "control",
+      "reason": "Pixel-identical baseline; the horizontal fused duplicate structure is present."
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 1,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Becomes an extreme close-up face portrait with a different crop, pose, and background."
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 2,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation_and_defect_persists",
+      "reason": "Becomes a lying or standing hybrid on a dark bed with another incoherent elongated body connection; pose and composition change and topology remains bad."
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 3,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Produces a coherent standing dog but flips the body orientation and changes subject appearance and the snow composition to a beach scene."
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 4,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_semantic_preservation",
+      "reason": "Produces a coherent pale retriever but changes subject appearance, body orientation, and background composition substantially."
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 0,
+      "role": "exact_replay_control",
+      "verdict": "control",
+      "reason": "Pixel-identical baseline; the horizontal fused duplicate structure is present."
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 1,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_object_count_and_topology",
+      "reason": "Produces an adult and a puppy, changing object count; the adult hindquarters also remain malformed."
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 2,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_defect_persists",
+      "reason": "Keeps one standing dog but replaces the original fusion with a conspicuous giant upright tail-like appendage and warped hindquarters."
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 3,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_object_count_and_pose",
+      "reason": "Produces two dogs and changes the main standing pose and composition."
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 4,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "provisional_pass_pending_second_reviewer",
+      "reason": "Keeps one adult golden retriever in a full-body standing pose, with the body extending left of a near-frontal head on a pale ground and a similar coarse placement. The horizontal fused mass is absent and the visible limb/body topology is coherent."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 0,
+      "role": "exact_replay_control",
+      "verdict": "control",
+      "reason": "Pixel-identical baseline; the horizontal fused duplicate structure is present."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 1,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_defect_persists",
+      "reason": "Preserves the subject and layout, but the horizontal shoulder/body appendage and incoherent rear-body topology remain obvious."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 2,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_defect_persists",
+      "reason": "Preserves the subject and layout, but the lateral fused mass and malformed rear leg remain."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 3,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_defect_persists",
+      "reason": "Preserves the subject and layout, but the same horizontal fused appendage remains conspicuous."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 4,
+      "role": "fresh_target_suffix_attempt",
+      "verdict": "fail_defect_persists",
+      "reason": "Preserves the subject and layout, but the fused lateral body/tail structure remains."
+    }
+  ],
+  "summary": {
+    "fresh_attempt_count": 16,
+    "provisional_semantic_preserving_repairs": 1,
+    "provisional_repair_location": "internal_timestep=120, attempt_004",
+    "mechanical_repairability_gate": "provisional_pass_pending_independent_second_review",
+    "time_window_interpretation": "At t=225 and t=180 the suffix has enough freedom to replace identity, pose, or composition. At t=60 the topology is already committed. The t=120 screen contains one suffix that removes the defect while retaining the coarse subject and composition.",
+    "online_method_result": "no; the frozen path-evidence detector did not trigger this rollback and did not select attempt_004"
+  }
+}

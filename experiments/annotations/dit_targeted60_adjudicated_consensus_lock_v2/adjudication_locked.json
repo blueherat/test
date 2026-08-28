@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_VISUAL_ONLY_ADJUDICATION_BEFORE_ANY_TARGETED60_METRIC_JOIN",
+  "adjudicator": "root_conservative_visual_review",
+  "metrics_seen_during_adjudication": false,
+  "trajectories_seen_during_adjudication": false,
+  "candidate_signal_values_seen_during_adjudication": false,
+  "review_scope": "Only the two 2-of-3 clear-bad rows from the already locked targeted60 consensus; native images checked at original pixels against the same-class review cohort.",
+  "policy": {
+    "retain": "An obvious model-relative blur, fusion, gross topology, or major limb/object attachment failure is visible without relying on class rarity or minor detail.",
+    "downgrade": "The majority call is explainable by ordinary model quality, plausible pose/occlusion/perspective, semantic mismatch without a visible structural artifact, or only mild ambiguity."
+  },
+  "rows": [
+    {
+      "sample_key": "class0444_seed19",
+      "decision": "retain_clear_bad",
+      "subtype": "topology_attachment",
+      "reason": "前轮出现清楚的重复/脱离椭圆轮圈，轮叉与轮圈拓扑不能连续追踪；这不是透视缩短或普通线缆复杂度，明显低于同类双人自行车的通常结构质量。"
+    },
+    {
+      "sample_key": "class0981_seed26",
+      "decision": "retain_clear_bad",
+      "subtype": "limb_object_misalignment",
+      "reason": "球员左侧伸出细长、近乎刚性的异常附着物并以圆盘状末端结束，手臂、手套/球棒与躯干的连接无法形成合理运动关系；主体虽清晰，但该主要物体/肢体错位足够明显。"
+    }
+  ]
+}

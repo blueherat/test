@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "experiment": "dit_v22_transient_escape_prospective_v1",
+  "scientific_role": "prospective_sampler_internal_branch_selector_validation",
+  "status_before_gpu_execution": "FROZEN_HYPOTHESIS_NOT_YET_TESTED",
+  "model_scope": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "sampler": "official ancestral DDPM-250",
+    "cfg_scale": 4.0,
+    "rollback_sampling_step_zero_based": 149,
+    "scout_count": 4,
+    "primary_horizon_transitions": 10,
+    "secondary_horizons_descriptive_only": [5, 20]
+  },
+  "prefix_population": {
+    "source": "existing completed label-free third-pool trajectories",
+    "seed_range_inclusive": [250, 849],
+    "class_slots": {
+      "207": 0,
+      "602": 1,
+      "795": 2
+    },
+    "class_quotas": {
+      "207": 16,
+      "602": 16,
+      "795": 96
+    },
+    "unique_global_seed_across_jobs": true,
+    "selection_namespace": "dit-v22-h10-max-nonconformity-prospective-v1",
+    "selection_rule": "sort eligible (seed,class,step149) tuples by SHA256(salt|seed|class|step), greedily accept only if the class quota is open and the global seed is unused; class795 is the only confirmatory stratum because the motivating posthoc effect was concentrated there, while classes207/602 are gross-harm sentinels",
+    "selection_must_not_read": [
+      "PNG or decoded image pixels",
+      "visual labels or review mappings",
+      "endpoint quality tables",
+      "B or E values",
+      "FID, Inception, DINO, CLIP, or any external embedding"
+    ],
+    "exclusion_rule": "exclude an exact (global_seed,class_id,step149) tuple if an earlier DiT-v2.2 suffix manifest already consumed it; exclusions are collision control, not quality filtering"
+  },
+  "fresh_rng": {
+    "namespace": "eqvae-dit-v22-h10-max-nonconformity-prospective-v1",
+    "attempt_indices": [1, 2, 3, 4],
+    "derivation": "first 63 bits of SHA256(namespace NUL trace_identity NUL global_seed NUL rollback_step NUL target_slot NUL attempt_index)",
+    "preflight": [
+      "all 512 new fresh stream seeds must be unique",
+      "their set must be disjoint from every fresh stream seed recorded by earlier DiT-v2.2 suffix manifests",
+      "the generated runner source must contain the frozen new namespace"
+    ]
+  },
+  "internal_selector": {
+    "method_name": "h10_transient_max_nonconformity",
+    "trace_array": "target_pred_xstart",
+    "reference_index": 0,
+    "primary_horizon_index": 10,
+    "primary_horizon_timing": "index 0 is the common prediction before the first fresh step149 innovation; index 10 is the prediction after exactly ten fresh P transitions",
+    "fresh_attempt_indices": [1, 2, 3, 4],
+    "pool_scales": [1, 2, 4],
+    "epsilon": 1e-06,
+    "channel_center": "C(U)=U-spatial_mean_per_channel(U)",
+    "reference_norm": "r_s=RMS(avgpool_s(C(X_shared_at_h0)))+epsilon",
+    "pair_distance": "d_h(m,n)=mean_s RMS(avgpool_s(C(X_h^m-X_h^n)))/r_s",
+    "branch_nonconformity": "A_m=(1/3)*sum_{n!=m} d_h(m,n)",
+    "anonymous_slot_rule": "map physical attempts 1..4 to anonymous slots A..D by a frozen per-prefix SHA256 permutation before computing any tie break or external mapping",
+    "candidate": "argmax_m A_m at h=10",
+    "negative_control": "argmin_m A_m at h=10",
+    "equal_compute_control": "one of the same four scouts selected by a frozen uniform hash independent of arrays and images",
+    "tie_break": "smallest anonymous slot under the frozen per-prefix permutation, never physical attempt index or endpoint quality",
+    "important_interpretation": "A_m is a relative branch-geometry rank, not a probability of image quality and not an anytime-valid p-value"
+  },
+  "execution_firewall": {
+    "gpu_runner_reads_external_quality": false,
+    "internal_extractor_allowed_basenames": [
+      "manifest.json",
+      "branch.json",
+      "trace.npz",
+      "protocol.json"
+    ],
+    "internal_extractor_allowed_arrays": [
+      "internal_timestep",
+      "target_pred_xstart"
+    ],
+    "all_branch_endpoints_retained_until_selection_is_sealed": true,
+    "images_may_be_opened_only_after_internal_product_hash_is_frozen": true
+  },
+  "external_judge_only": {
+    "method_input": false,
+    "primary_population": "the 96 frozen class795 prefixes; no posthoc bad-prefix filter",
+    "blind_defect_scale": "0=ordinary for this frozen model, 1=obviously below the model's ordinary level because of blur/fusion/misalignment, 2=severe or catastrophic clear-bad; do not penalize mild ordinary model imperfections",
+    "primary_comparison": "blind absolute defect severity of max-A versus the exact uniform-random policy value over the same four already-computed scouts",
+    "primary_estimand": "D_i=mean_m L_im-L_i,max on class795, where L is consensus defect severity divided by two; positive is better",
+    "primary_test": "within-prefix branch-label randomization, at least 1000000 permutations with a frozen seed, one-sided alpha 0.05, plus prefix bootstrap 95% interval",
+    "primary_minimum_effect": 0.1,
+    "secondary_comparisons": [
+      "a frozen realized hash-random slot for win/tie/loss intuition only",
+      "max-A versus min-A negative control",
+      "repair of blur, fusion, topology, limb/object attachment, or displacement when attempt0 is independently judged a clear opportunity",
+      "per-class effects and branch-attempt-index sensitivity"
+    ],
+    "safety": [
+      "semantic/category preservation",
+      "new severe blur, fusion, topology, limb/object attachment, displacement, count, pose, or composition error",
+      "harm among prefixes whose attempt0 is not clear-bad"
+    ],
+    "judges": "three fresh isolated blind reviewers after frozen anchor qualification; consensus and each reviewer reported",
+    "reliability_gate": "anchor accuracy at least 80 percent per reviewer, at least 95 percent valid votes, and weighted kappa at least 0.3; otherwise INCONCLUSIVE",
+    "allowed_external_secondary_metrics": "FID/Inception/DINO/CLIP may be reported only after sealing and may never select a branch, prefix, threshold, or horizon"
+  },
+  "decision_rule": {
+    "promote_candidate_only_if": [
+      "class795 mean D is at least 0.10 normalized severity",
+      "the frozen one-sided primary test is <=0.05 and the prefix-bootstrap 95 percent lower bound is above zero",
+      "the effect is not solely an attempt-index artifact",
+      "clear-bad and semantic-preservation one-sided 95 percent safety bounds stay within a 5 percentage-point noninferiority margin"
+    ],
+    "transfer_boundary": "classes207 and 602 have only 16 prefixes each and are gross-harm sentinels, not powered benefit confirmations; no generic three-class claim is allowed",
+    "failure_action": "stop h10 max-nonconformity in this concrete form; do not rescue it by switching to low-O, another horizon, a class slice, or an external score on the same pool"
+  },
+  "claim_boundary": [
+    "The earlier medoid/high-O rule failed and is not part of this candidate.",
+    "The earlier h10 max-A result was posthoc and only motivated this test.",
+    "This experiment tests branch selection, not a pure internal trigger deciding which prefixes need intervention.",
+    "Even a positive result does not establish a consensus-trap law, an anytime-valid quality guarantee, or generalization beyond this frozen sampler and class design."
+  ]
+}

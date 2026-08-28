@@ -1,0 +1,25 @@
+{
+  "bytecode_written": false,
+  "entrypoints": [
+    {
+      "entrypoint": "observe_dit_blur_focused_eprocess_v2.py",
+      "returncode": 0,
+      "stderr_empty": true,
+      "stdout_last_line": "v2 self-test passed: immutable v1 primitives, predictable latch/late h=3, innovation-poison invariance, no carry, one-shot ablation, complete-path mechanics pass/single-step and stale-direction rejection, and all-h conditional matched-Q anytime power 0.329178; adaptive null mixture mean 0.995762, Ville trigger 0.028008"
+    },
+    {
+      "entrypoint": "calibrate_dit_blur_focused_eprocess_v2.py",
+      "returncode": 0,
+      "stderr_empty": true,
+      "stdout_last_line": "self-test passed: label-free 17th/20 and 19th/20 B calibration"
+    },
+    {
+      "entrypoint": "replay_dit_blur_focused_eprocess_inputs_v2.py",
+      "returncode": 0,
+      "stderr_empty": true,
+      "stdout_last_line": "v2 replay self-test passed: unchanged pre-innovation inputs, v2 validation, and explicit disjoint-calibration requirement for confirmatory use"
+    }
+  ],
+  "repository_pythonpath_available": false,
+  "status": "PASS"
+}

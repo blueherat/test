@@ -1,0 +1,26 @@
+{
+  "alpha_e": 0.1,
+  "analytic_terminal_reference_other_component_fixed_at_one": 0.31838506493989954,
+  "component_results": [
+    {
+      "anytime_power": 0.320155,
+      "matched_heat_shift": 1.0,
+      "matched_scale_index": 0,
+      "terminal_power": 0.3201125
+    },
+    {
+      "anytime_power": 0.32738,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "terminal_power": 0.321045
+    }
+  ],
+  "draws": 400000,
+  "minimum_anytime_power": 0.320155,
+  "minimum_required_anytime_power": 0.3,
+  "model": "two orthogonal Gaussian component directions; matched Q_d; full K at first eligible gate",
+  "passes": true,
+  "scope": "necessary oracle full-budget power gate only; real label-free gate-open and K-utilization gates remain required",
+  "seed": 2026082808,
+  "total_K_per_component": 2.0
+}

@@ -1,0 +1,91 @@
+{
+  "analysis_source_sha256": "fa1db6520cbc3f5fb828c7bcc8404dd907ffe2041693863e48f0f79bf0b5e317",
+  "cohorts": {
+    "classes": [
+      207,
+      602,
+      795
+    ],
+    "discovery_seeds": [
+      50,
+      129
+    ],
+    "expansion_seeds": [
+      130,
+      249
+    ]
+  },
+  "endpoint_role": "terminal retrospective diagnostic only; never an online intervention signal",
+  "experiment": "dit_endpoint_representation_distance_audit_v1",
+  "identity_sha256": "1489f4d5f9844977fe3ec5950e9cca1e08b2dc4b734d6d1ef6786a585df5299f",
+  "input_identities": {
+    "endpoint_embedding_manifest_identity_sha256": "3116d850421cae89245ff50e84d915e87c74fb1218f12de5c1dda10f77f04912",
+    "label_consensus_identity_sha256": {
+      "expansion": "fc478b7ae04b67869d0dfca3b63f169a5266bacc1c8701e1ae20368516e793fd",
+      "original": "21c242dc796d5c8baa4568c9f82add0d1b64c984477cf8698efbbca5889e166a"
+    },
+    "preterminal_product_manifest_identity_sha256": {
+      "expansion_primary": "e9e441c379796a2066ef672987c36dd52bc77b59578e3133b8372743c1593a31",
+      "expansion_visual": "bddd0e9d17fcce2f1c87a02373991a83b6091b6b46e05f8fe7f7566718913696",
+      "original_primary": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+      "original_visual": "7554c9bf8a15375e83df50a4308a00176a5e2dc5deb8f378a5611cd8f3c322cd"
+    }
+  },
+  "metric_family": [
+    {
+      "direction": "distance_high_is_bad",
+      "name": "inception_fid_pool2048__cosine_to_class_clean_centroid",
+      "role": "terminal_retrospective_only"
+    },
+    {
+      "direction": "distance_high_is_bad",
+      "name": "inception_fid_pool2048__shared_ledoitwolf_mahalanobis",
+      "role": "terminal_retrospective_only"
+    },
+    {
+      "direction": "distance_high_is_bad",
+      "name": "inception_fid_pool2048__knn5_mean_cosine_to_class_clean",
+      "role": "terminal_retrospective_only"
+    },
+    {
+      "direction": "distance_high_is_bad",
+      "name": "dinov2_registers_large_cls1024__cosine_to_class_clean_centroid",
+      "role": "terminal_retrospective_only"
+    },
+    {
+      "direction": "distance_high_is_bad",
+      "name": "dinov2_registers_large_cls1024__shared_ledoitwolf_mahalanobis",
+      "role": "terminal_retrospective_only"
+    },
+    {
+      "direction": "distance_high_is_bad",
+      "name": "dinov2_registers_large_cls1024__knn5_mean_cosine_to_class_clean",
+      "role": "terminal_retrospective_only"
+    }
+  ],
+  "publication": {
+    "aggregate_only": true,
+    "minimum_group_size": 5,
+    "no_overwrite": true,
+    "output": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/endpoint_representation_distance_audit_v1"
+  },
+  "reference": {
+    "crossfit_folds": 5,
+    "discovery_fit": "out-of-fold clean_good reference only",
+    "expansion_fit": "all discovery clean_good endpoints only",
+    "fold_assignment": "global_seed mod 5; intact three-class seed block",
+    "knn_k": 5,
+    "normalization": "rowwise L2 before every frozen distance",
+    "pooled_covariance": "single Ledoit-Wolf covariance of within-class clean_good residuals"
+  },
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_ENDPOINT_EMBEDDING_LABEL_JOIN",
+  "test": {
+    "auc": "tie-aware class-matched bad-vs-good AUC weighted by within-class pair count",
+    "labels": "clear_bad and clean_good define the primary contrast; mild_or_disputed is retained in intact permutation blocks",
+    "multiple_testing": "Holm across exactly six frozen expansion bad-vs-good distance tests",
+    "permutation_draws": 100000,
+    "permutation_seed": 20260827,
+    "permutation_unit": "intact global-seed three-class label vector including mild"
+  }
+}

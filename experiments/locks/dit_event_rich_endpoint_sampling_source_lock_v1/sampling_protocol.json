@@ -1,0 +1,316 @@
+{
+  "assets": {
+    "checkpoint": {
+      "bytes": 2700611775,
+      "filename": "DiT-XL-2-256x256.pt",
+      "path": "/data/users/zhoushunyu/eqvae/baselines/DiT/pretrained_models/DiT-XL-2-256x256.pt",
+      "sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+      "url": "https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt"
+    },
+    "dit_repository": {
+      "allowed_untracked_checkpoint": "pretrained_models/DiT-XL-2-256x256.pt",
+      "commit_tree": "db610f6412cf70fdb6c5b2ffb46c362dd74c6bcf",
+      "pinned_source_sha256": {
+        "diffusion/__init__.py": "0128da38ee27ab91b78458809f9c50d188d7377b60cc73d3ee777bca8029425d",
+        "diffusion/gaussian_diffusion.py": "d7d095d98ff4666e565d0a854790992e24cc09a4ac75e8eaae9a4ee186a8887b",
+        "diffusion/respace.py": "9dde1492dd9d03e47caa12c7a7293dd7a5af1a79f3ddb0629f1692d97c856903",
+        "download.py": "f9ea211a0fa8f5ad18e3b3059dbcad38d8e6598a308bc0de744758bcb649a857",
+        "models.py": "1b8031a1340a3d1045c0bdb382334068f5f20e32edf67b3e6aba961ba91846ca",
+        "sample.py": "e82038ecd6d6303208b6a9940705f9c3cd49219f5d76e2caa8d07813d086e2dc"
+      },
+      "revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+      "root": "/data/users/zhoushunyu/eqvae/baselines/DiT",
+      "tracked_and_index_clean": true,
+      "tracked_file_count": 18,
+      "url": "https://github.com/facebookresearch/DiT",
+      "working_tracked_tree_sha256": "0d3dcc2c656a6e5400b8e53360fc2354eda63ea624a6c467ac71a6129c4225e3"
+    },
+    "vae_snapshot": {
+      "files": [
+        {
+          "bytes": 547,
+          "name": "config.json",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/config.json",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/0db26717579be63eb0ddbf15b43faa43700dfe5a",
+          "sha256": "92d3dfb746fca211a2c9e019e285f8597412211728dce3c5bcf4eda0f2d62e7e"
+        },
+        {
+          "bytes": 334643276,
+          "name": "diffusion_pytorch_model.safetensors",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/diffusion_pytorch_model.safetensors",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+        }
+      ],
+      "kind": "mse",
+      "model_id": "stabilityai/sd-vae-ft-mse",
+      "offline_only": true,
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "snapshot": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493"
+    }
+  },
+  "event_protocol": {
+    "completion_file_sha256": "f8239202ad0cce2db8196d961ea79dc525384cb68e579ceb6b9ecae44cd535cf",
+    "file_sha256": "952f2ce5f2a3f289b3b91fd19df534ba30150f119ae13b27993ebd958b122e33",
+    "identity_sha256": "04e933793992e2a7ce62aa4ac66836412f3c4f221cce731f2e072da97e892dd7",
+    "manifest_file_sha256": "a62551ccd213ca585902cf35d484ddb0966ea1f35ffdec832f2bd2f8640fb16e",
+    "manifest_identity_sha256": "0778e0ad2732256a1377d61ba7f04c6ad4f1fdca3a7fd9dec00d0b89e0247e36",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_confirmation_protocol_lock_v3"
+  },
+  "evidence_access_audit": {
+    "labels_or_reviews_opened": false,
+    "metrics_features_embeddings_or_scores_opened": false,
+    "score_label_join_performed": false
+  },
+  "execution_contract": {
+    "assignment_is_not_scientific_rng_input": true,
+    "assignment_kind": "four contiguous 252-pair operational shards",
+    "gpu_worker_count": 4,
+    "one_model_and_vae_load_per_worker": true,
+    "ordered_shards": [
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1000
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1002
+        },
+        "pair_count": 252,
+        "worker_index": 0
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1003
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1005
+        },
+        "pair_count": 252,
+        "worker_index": 1
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1006
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1008
+        },
+        "pair_count": 252,
+        "worker_index": 2
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1009
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1011
+        },
+        "pair_count": 252,
+        "worker_index": 3
+      }
+    ],
+    "pair_count_per_worker": 252
+  },
+  "identity_sha256": "6e0a222ff313262f641b1a2b6d70cdfbc73fd71da844396a5d4db3974ceb58d3",
+  "output_contract": {
+    "all_endpoint_file_and_pixel_hashes_bound": true,
+    "endpoint_filename": "endpoint.png",
+    "endpoint_mode": "RGB",
+    "endpoint_size": [
+      256,
+      256
+    ],
+    "files_per_pair": [
+      "endpoint.png",
+      "manifest.json",
+      "completion.json"
+    ],
+    "pair_and_pool_receipts_required": true,
+    "pair_directory_template": "pairs/seed{global_seed:04d}_class{class_id:04d}",
+    "trajectory_or_latent_payload": null
+  },
+  "resume_and_failure_contract": {
+    "automatic_deletion_or_quarantine": false,
+    "completed_pair_reuse": "full identity and endpoint file/pixel hash validation",
+    "partial_or_changed_pair": "fail closed; preserve and refuse overwrite",
+    "pool_receipts": "published only after all 1008 pair outputs fully revalidate"
+  },
+  "rng_contract": {
+    "classes_per_sampler_invocation": 1,
+    "derivation": "uint64_be(first_8_bytes(SHA256(ASCII(domain + NUL + global_seed + NUL + class_id)))) mod 2^63",
+    "domain": "eqvae.dit.event-rich.endpoint.v1",
+    "duplicated_cfg_state_shape": [
+      2,
+      4,
+      32,
+      32
+    ],
+    "full_2B_randn_like_each_transition_including_t0": true,
+    "initial_noise_shape": [
+      1,
+      4,
+      32,
+      32
+    ],
+    "manual_seed_timing": "after frozen model/VAE load, immediately before singleton initial latent",
+    "relation_to_third_pool": "same singleton-or-batch first-half latent duplication, upstream CFG and full-2B ancestral transition semantics; pair-keyed reseeding replaces the third pool's ordered three-class batch RNG so endpoint pixels are shard/order invariant",
+    "same_global_seed_classes_share_initial_noise": false,
+    "same_global_seed_classes_share_transition_innovations": false,
+    "second_half_transition_noises_consumed_then_state_discarded": true,
+    "task_order_worker_shard_resume_invariant": true,
+    "terminal_t0_randn_consumed_then_masked": true,
+    "transition_noise_shape_each_call": [
+      2,
+      4,
+      32,
+      32
+    ],
+    "transition_randn_like_calls": 250,
+    "unit": "(global_seed,class_id)"
+  },
+  "schema_version": 1,
+  "scientific_contract": {
+    "cfg_epsilon_channels": 3,
+    "cfg_scale": 4.0,
+    "classes_ordered": [
+      160,
+      170,
+      228,
+      229,
+      231,
+      250,
+      258,
+      281,
+      283,
+      332,
+      366,
+      381,
+      9,
+      22,
+      72,
+      79,
+      84,
+      94,
+      127,
+      130,
+      315,
+      319,
+      320,
+      321,
+      29,
+      43,
+      47,
+      69,
+      71,
+      118,
+      121,
+      122,
+      125,
+      327,
+      328,
+      363,
+      411,
+      414,
+      433,
+      445,
+      459,
+      578,
+      610,
+      614,
+      652,
+      981,
+      982,
+      983,
+      401,
+      402,
+      420,
+      444,
+      486,
+      488,
+      489,
+      491,
+      545,
+      559,
+      594,
+      671,
+      403,
+      404,
+      407,
+      476,
+      517,
+      537,
+      555,
+      561,
+      603,
+      609,
+      717,
+      817,
+      107,
+      108,
+      109,
+      115,
+      393,
+      396,
+      599,
+      927,
+      933,
+      953,
+      959,
+      963
+    ],
+    "clip_denoised": false,
+    "endpoint_only": true,
+    "global_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011
+    ],
+    "intervention": null,
+    "model": "DiT-XL/2 ImageNet-256",
+    "pair_axis_order": "seed-major, frozen-class-roster-minor",
+    "pair_count": 1008,
+    "quality_score": null,
+    "sampler": "official 250-step ancestral DDPM",
+    "sampling_steps": 250,
+    "selection": null,
+    "trace_saved": false,
+    "vae": "mse",
+    "vae_scaling_factor": 0.18215
+  },
+  "source_snapshots": {
+    "freeze_dit_event_rich_endpoint_sampling_sources.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_event_rich_endpoint_sampling_sources.py",
+      "sha256": "00811121b63ff372adfa24796515bd7acb8e3e5f60ffe9c724656281c039f431"
+    },
+    "reproduce_dit_imagenet256.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/reproduce_dit_imagenet256.py",
+      "sha256": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746"
+    },
+    "run_dit_event_rich_endpoint_screen.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/run_dit_event_rich_endpoint_screen.py",
+      "sha256": "646296010aefe8f8d6011e994b54457dc40cca6c21ad0d680d44fe15c919c95b"
+    },
+    "sample_dit_imagenet256_endpoint_pairs.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/sample_dit_imagenet256_endpoint_pairs.py",
+      "sha256": "6aec3259360e4a405345a154449cec1dac34766fd49683f7c6401e5ebc46318b"
+    }
+  },
+  "status": "FROZEN_BEFORE_EVENT_RICH_ENDPOINT_GPU_SAMPLING"
+}

@@ -1,0 +1,317 @@
+{
+  "blinding": {
+    "adjudicators_cannot_see": [
+      "reviewer identity",
+      "reviewer votes/counts",
+      "trigger versus decoy",
+      "candidate B/E values",
+      "class enrichment rank",
+      "trajectory",
+      "score",
+      "metric",
+      "embedding",
+      "each other"
+    ],
+    "delivery_isolation": "send only the named role's delivery subdirectory",
+    "reviewers_cannot_see": [
+      "candidate B/E values",
+      "class enrichment rank",
+      "trajectory",
+      "score",
+      "metric",
+      "threshold",
+      "alert",
+      "embedding",
+      "other votes"
+    ]
+  },
+  "canonical_source_lock_version": "scientific-v4.2.1-adapter-v1",
+  "canonical_v7_reuse": {
+    "manifest_identity_sha256": "b015b4c173db1e09da2608ccb5bd3958be185fa876e304e4f80f316a098050c8",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_review_pipeline_source_lock_v7",
+    "real_results_present": false,
+    "rules_reused": [
+      "two independent visible-anchor experts",
+      "hidden-gold five-role qualification",
+      "three reviewers and two adjudicators",
+      "union-any-positive plus equal decoy audit",
+      "per-pair source receipt reconciliation"
+    ]
+  },
+  "endpoint_sampling_source_lock": {
+    "completion_file_sha256": "030cc77fdf62942d6b4ad987b46f17d2efe727036267797e02e193d49aa4c191",
+    "manifest_file_sha256": "7ef6dc7373bfbd10b67829371edaa3b502f96ae58ce3ecb9c98f78ddca00aa69",
+    "manifest_identity_sha256": "ca01effe354104f878244f7d0493dccb839659a93fb4dd8862ef41a93610b1ff",
+    "method_v2_2_identity_sha256": "cc4dc5e7c06c25f4d8567a42fb4f0387097a6296c587543830bfeaa4771f6921",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_scientific_v4_2_1_endpoint_sampling_source_lock_v1",
+    "sampling_protocol_file_sha256": "c59c2307cb534864f461381ad0d7680f3217e65fdf06799d66808b4d407b6226",
+    "sampling_protocol_identity_sha256": "afb468cd092942fffdee35d267e3dd5bd61623a778c7a099ddfd22a9a535f499"
+  },
+  "event_protocol": {
+    "completion_file_sha256": "5a12d184fc8abf7d11ed39686b1d7b884c81c5ccfc6ab4313f3c39c013321157",
+    "manifest_file_sha256": "30e767800a59e51d94dbdba9d5be89c81bcfa9c72e31dd89aee53793832ff43c",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_confirmation_protocol_lock_v4_2_1",
+    "protocol_file_sha256": "2a3035e15372db26f8a81b131dba21869f2159952cae51ab6d8ff96a861a1972",
+    "protocol_identity_sha256": "af65e362cd8c543f898a3dbeb3a7b4478940966b48bfef689db7afdbad8d97d2"
+  },
+  "event_protocol_identity_sha256": "af65e362cd8c543f898a3dbeb3a7b4478940966b48bfef689db7afdbad8d97d2",
+  "external_evaluation_boundary": {
+    "B_E_calibration_input_artifact_kind": "frozen label-free internal B product only",
+    "B_E_replay_input_artifact_kind": "completed preterminal dynamic trace only",
+    "Inception_DINO_FID_CLIP_allowed_in_review_or_selection": false,
+    "class_selection_is_evaluation_event_enrichment_not_method": true,
+    "confirmation_review_source_root_basename": "review_endpoints",
+    "endpoint_review_or_consensus_is_B_E_method_input": false,
+    "external_representation_is_method_input": false,
+    "internal_method_source_root_basename": "method_traces",
+    "review_validator_recursively_rejects_internal_payload_members": true,
+    "trees_must_be_exact_siblings": true,
+    "visual_labels_used_for_evaluation_cohort_enrichment": true
+  },
+  "identity_sha256": "f6d11ff5840a63613014c1084794bccaf1d148200fe3d7b756e31c3913fe899b",
+  "immutability": {
+    "duplicate_missing_extra_rows_fail": true,
+    "exact_axes": true,
+    "file_and_artifact_hashes": true,
+    "no_overwrite": true,
+    "unexpected_or_poison_columns_fail": true
+  },
+  "method_v2_2_identity_sha256": "cc4dc5e7c06c25f4d8567a42fb4f0387097a6296c587543830bfeaa4771f6921",
+  "production": {
+    "adjudicators": 2,
+    "all_applied_changes_require_two_component_and_written_reason_records": true,
+    "audit_population": "union of every endpoint with any reviewer severity>=2 plus an equal frozen SHA256-sort simple-random sample of zero-positive decoys",
+    "phases": [
+      "discovery",
+      "anchor",
+      "confirmation"
+    ],
+    "raw_2of3": "downgrade only if both adjudicators independently choose mild_or_not_clear_bad",
+    "raw_nonmajority_and_decoy": "promote only if both adjudicators independently choose clear_bad",
+    "reviewers": 3,
+    "single_adjudicator_change": false,
+    "unanimous_3of3": "never downgradable"
+  },
+  "qualification": {
+    "every_of_10_role_pairs_binary_cohen_kappa_minimum": 0.5,
+    "every_of_10_role_pairs_positive_agreement_minimum": 0.6,
+    "every_role_gold_recall_minimum": 0.8,
+    "every_role_gold_specificity_minimum": 0.8,
+    "failure": "STOP before formal screen release; consumed form cannot be reused; replace/retrain failed roles and run complete panel on pre-frozen disjoint reserve",
+    "primary_and_reserve_hidden_forms": "each 60 items; disjoint endpoint pixels; 15 clean, 15 mild, 15 clear blur/fusion, 15 clear topology/attachment",
+    "roles_qualified_together": [
+      "reviewer_1",
+      "reviewer_2",
+      "reviewer_3",
+      "adjudicator_1",
+      "adjudicator_2"
+    ]
+  },
+  "ready_for_real_sampling": false,
+  "real_expert_or_reviewer_results_present": false,
+  "real_v4_endpoint_labels_consensus_or_production_results_present": false,
+  "remaining_non_automatable_inputs": [
+    "two genuinely independent qualified experts must ratify all 20 visible anchors",
+    "independent expert curators/resolver must create actual disjoint primary and reserve hidden-gold forms",
+    "five genuinely independent role holders must complete a hidden qualification form and all gates must pass",
+    "no formal endpoint image may be released before the qualification PASS lock exists"
+  ],
+  "role_language": {
+    "allowed": [
+      "expert",
+      "reviewer",
+      "adjudicator",
+      "qualified external blind-review service"
+    ],
+    "current_execution_completed": false,
+    "does_not_assert_human_participation": true,
+    "execution_options": "a genuinely qualified independent human team or a qualified external blind-review service may fill the forms"
+  },
+  "schema_version": 1,
+  "schemas": {
+    "aggregate_counts": {
+      "clean_mild_clear_partition_exact_axis": true,
+      "counts_are_nonnegative_integers": true,
+      "exact_top_level_fields": [
+        "phase",
+        "overall",
+        "per_class"
+      ],
+      "format": "JSON",
+      "overall_exact_fields": [
+        "endpoint_count",
+        "raw_clear_bad",
+        "final_clean_good",
+        "final_mild_or_disputed",
+        "final_clear_bad",
+        "final_blur_or_soft_fusion",
+        "final_structural_non_blur",
+        "union_any_positive",
+        "random_decoys",
+        "promoted_union_minority",
+        "promoted_zero_positive_decoys",
+        "downgraded_raw_2of3",
+        "unanimous_3of3_retained"
+      ],
+      "per_class_exact_fields": [
+        "endpoint_count",
+        "raw_clear_bad",
+        "final_clean_good",
+        "final_mild_or_disputed",
+        "final_clear_bad",
+        "final_blur_or_soft_fusion",
+        "final_structural_non_blur"
+      ]
+    },
+    "blind_adjudication_response": {
+      "decisions": [
+        "clear_bad",
+        "mild_or_not_clear_bad"
+      ],
+      "exact_columns_ordered": [
+        "adjudication_id",
+        "decision",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV",
+      "roles": [
+        "adjudicator_1",
+        "adjudicator_2"
+      ]
+    },
+    "endpoint_cohort_input": {
+      "axis": "exact frozen phase Cartesian product; no missing, duplicate, extra, or reordered row",
+      "exact_columns_ordered": [
+        "class_id",
+        "global_seed",
+        "class_name",
+        "image_path",
+        "image_sha256",
+        "image_pixel_sha256",
+        "width",
+        "height",
+        "mode",
+        "source_pair_identity_sha256",
+        "source_manifest_sha256"
+      ],
+      "format": "CSV",
+      "source_tree_firewall": "confirmation images must resolve under the dedicated review_endpoints sibling of method_traces; internal arrays/tables or material trace/B/E/calibration/score fields fail closed"
+    },
+    "final_evaluation_labels": {
+      "blur_component": [
+        "0",
+        "1"
+      ],
+      "compatibility": "exact frozen select_dit_event_rich_blur_classes_v4.py input; blur_component=1 only for final clear_bad",
+      "exact_columns_ordered": [
+        "phase",
+        "global_seed",
+        "class_id",
+        "final_severity",
+        "blur_component"
+      ],
+      "final_severity": [
+        "clean_good",
+        "mild_or_disputed",
+        "clear_bad"
+      ],
+      "format": "CSV"
+    },
+    "hidden_expert_label": {
+      "curation": "two independent expert forms cover all 60; third independent resolver covers exactly curator disagreements",
+      "exact_columns_ordered": [
+        "item_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "expert_role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV"
+    },
+    "hidden_item_index": {
+      "exact_columns_ordered": [
+        "item_id",
+        "class_id",
+        "class_name",
+        "image_path",
+        "image_sha256",
+        "image_pixel_sha256",
+        "width",
+        "height",
+        "mode"
+      ],
+      "exact_rows_per_form": 60,
+      "forbidden": "any label, model score, metric, feature, trajectory, embedding, rank, threshold or alert column",
+      "format": "CSV",
+      "image_contract": "60 unique actual RGB 256x256 endpoint PNGs with byte and pixel hashes"
+    },
+    "production_review_response": {
+      "exact_columns_ordered": [
+        "blind_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV",
+      "roles": [
+        "reviewer_1",
+        "reviewer_2",
+        "reviewer_3"
+      ]
+    },
+    "qualification_response": {
+      "exact_columns_ordered": [
+        "qualification_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "exact_rows_per_role": 60,
+      "format": "CSV",
+      "role_slots": [
+        "reviewer_1",
+        "reviewer_2",
+        "reviewer_3",
+        "adjudicator_1",
+        "adjudicator_2"
+      ]
+    },
+    "visible_anchor_ratification": {
+      "completed_rule": "both distinct expert role tokens independently ratify every frozen proposal; any rejection stops and requires a protocol revision",
+      "exact_columns_ordered": [
+        "anchor_id",
+        "image_sha256",
+        "proposed_severity",
+        "proposed_component_group",
+        "proposed_reason",
+        "decision",
+        "correction_severity",
+        "correction_component_group",
+        "correction_reason",
+        "expert_role_token",
+        "independence_attestation"
+      ],
+      "exact_rows": 20,
+      "format": "CSV"
+    }
+  },
+  "status": "INFRASTRUCTURE_FROZEN_NO_REAL_LABEL_ROLES_COMPLETED",
+  "supersedes_scientific_v4_adapter_v2": {
+    "manifest_identity_sha256": "2b1f20e63544da77c8b4de20b84ae6f8e7abfccb172ef72bd3058887a919efa5",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_scientific_v4_review_pipeline_source_lock_v2",
+    "real_results_present": false,
+    "reason": "v2 is immutably bound to superseded scientific-v4.1; this new adapter binds v4.2.1 and method-v2.2 without relabeling the old artifact",
+    "source_lock_identity_sha256": "90b0411415d00fb47be574858c0c292dbe0e61c522aaf9193bda90f721f47084"
+  }
+}

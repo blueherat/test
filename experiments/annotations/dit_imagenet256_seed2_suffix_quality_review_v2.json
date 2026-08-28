@@ -1,0 +1,303 @@
+{
+  "schema_version": 2,
+  "created_date": "2026-08-27",
+  "status": "posthoc_discovery_labels_not_for_confirmatory_claims",
+  "purpose": "Two-axis visual review of the frozen DiT class-207/seed-2 suffix branches. Absolute endpoint quality is separated from prefix preservation. These labels are for metric discovery only and must be frozen before validation on new seeds and prefixes.",
+  "supersedes_for_quality_analysis": {
+    "path": "experiments/annotations/dit_imagenet256_seed2_suffix_repairability_review_v1.json",
+    "reason": "The v1 pass rule incorrectly treated pose, crop, object-count, and composition changes as quality failures and assumed the baseline horizontal structure was an unambiguous fused artifact. The revised review allows a tail interpretation and evaluates its naturalness separately."
+  },
+  "review_scope": {
+    "human_reviewers": 1,
+    "user_corrections_incorporated": true,
+    "automatic_quality_score_used": false,
+    "all_20_retained_endpoints_reviewed_at_native_resolution": true,
+    "absolute_quality_target": "Clearly below this frozen model's ordinary sampling level because of blur, fusion, or limb/object topology failure.",
+    "prefix_preservation_target": "Similarity of subject age/count, pose, crop, background, and coarse layout to the shared prefix or replay endpoint; this is not an image-quality label.",
+    "ambiguous_policy": "A structure that has a plausible anatomical interpretation but looks mildly odd is not promoted to a clear failure.",
+    "independence_warning": "All fresh outcomes descend from one class-207/seed-2 path. Four attempt-000 images are the same replay endpoint and count as one control, not four independent normal samples."
+  },
+  "input": {
+    "seed": 2,
+    "batch_index": 0,
+    "class_id": 207,
+    "class_name": "golden retriever",
+    "baseline_png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+    "baseline_revised_interpretation": "Acceptable but visually odd. The leftward horizontal structure can be a tail, so it is not a clear fusion label. Its broad, flat contour and weak taper are less natural than the best suffix tail, and the pseudo-text near the lower edge is an additional minor artifact."
+  },
+  "label_vocabulary": {
+    "absolute_quality": [
+      "confident_good",
+      "soft_good",
+      "acceptable_but_odd",
+      "uncertain",
+      "clear_structural_failure"
+    ],
+    "prefix_preservation": [
+      "exact_replay",
+      "very_high",
+      "high",
+      "medium",
+      "low"
+    ],
+    "local_naturalness": [
+      "natural",
+      "near_natural",
+      "acceptable_but_odd",
+      "clearly_malformed",
+      "not_scored"
+    ]
+  },
+  "branch_reviews": [
+    {
+      "internal_timestep": 225,
+      "attempt": 0,
+      "absolute_quality": "acceptable_but_odd",
+      "class_fidelity": "pass",
+      "prefix_preservation": "exact_replay",
+      "reason": "Replayed baseline. The horizontal structure is plausibly a tail but has a broad, flat silhouette; pseudo-text is visible near the bottom.",
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 1,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "Coherent retriever lying in snow; changed pose and composition do not make it a quality failure.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 2,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "Coherent close portrait of an adult retriever.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 3,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "Coherent puppy portrait; age and crop changed, but absolute quality is good.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 225,
+      "attempt": 4,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "Coherent seated puppy and scene.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 0,
+      "absolute_quality": "acceptable_but_odd",
+      "class_fidelity": "pass",
+      "prefix_preservation": "exact_replay",
+      "reason": "Same replay endpoint as t=225 attempt 0.",
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 1,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "Anatomically coherent close retriever portrait.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 2,
+      "absolute_quality": "clear_structural_failure",
+      "class_fidelity": "pass",
+      "prefix_preservation": "low",
+      "reason": "The lying body is stretched into an implausible tubular form with fused neck, shoulder, torso, and hindquarter boundaries.",
+      "binary_discovery_label": "bad"
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 3,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "medium",
+      "reason": "Coherent standing retriever on a beach; orientation and background changed.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 180,
+      "attempt": 4,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "medium",
+      "reason": "Coherent pale standing retriever; hindquarters are soft and partly cropped but remain anatomically interpretable.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 0,
+      "absolute_quality": "acceptable_but_odd",
+      "class_fidelity": "pass",
+      "prefix_preservation": "exact_replay",
+      "reason": "Same replay endpoint as t=225 attempt 0.",
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 1,
+      "absolute_quality": "clear_structural_failure",
+      "class_fidelity": "pass",
+      "prefix_preservation": "medium",
+      "reason": "The adult dog has a hanging fused limb/body structure behind its abdomen; leg count and attachment are incoherent. The puppy itself is coherent.",
+      "binary_discovery_label": "bad"
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 2,
+      "absolute_quality": "uncertain",
+      "class_fidelity": "pass",
+      "prefix_preservation": "high",
+      "reason": "The large upright structure is plausibly a raised tail, but its scale, root, and relation to the hind legs remain conspicuous. Excluded from binary discovery.",
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 3,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "medium",
+      "reason": "Two structurally coherent retrievers; object count changed without an absolute quality failure.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 120,
+      "attempt": 4,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "high",
+      "reason": "Coherent single wet retriever in a standing pose.",
+      "binary_discovery_label": "good"
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 0,
+      "absolute_quality": "acceptable_but_odd",
+      "class_fidelity": "pass",
+      "prefix_preservation": "exact_replay",
+      "reason": "Replayed baseline; the tail interpretation is plausible but the tail is broad and flat rather than fully natural.",
+      "tail": {
+        "root_attachment": "acceptable_but_odd",
+        "taper": "acceptable_but_odd",
+        "fur_contour": "acceptable_but_odd",
+        "overall": "acceptable_but_odd"
+      },
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 1,
+      "absolute_quality": "acceptable_but_odd",
+      "class_fidelity": "pass",
+      "prefix_preservation": "very_high",
+      "reason": "The dog is coherent overall, but the tail is short, blunt, and paddle-like with weak taper.",
+      "tail": {
+        "root_attachment": "acceptable_but_odd",
+        "taper": "acceptable_but_odd",
+        "fur_contour": "acceptable_but_odd",
+        "overall": "acceptable_but_odd"
+      },
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 2,
+      "absolute_quality": "soft_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "very_high",
+      "reason": "The tail connects to the rump with plausible feathering and taper, though it remains slightly broad.",
+      "tail": {
+        "root_attachment": "near_natural",
+        "taper": "acceptable_but_odd",
+        "fur_contour": "near_natural",
+        "overall": "near_natural"
+      },
+      "binary_discovery_label": null
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 3,
+      "absolute_quality": "clear_structural_failure",
+      "class_fidelity": "pass",
+      "prefix_preservation": "very_high",
+      "reason": "The tail is only mildly odd, with an abruptly filament-like tip. The clear failure is separate: the left hind leg forms a hanging U-shaped loop without a coherent paw.",
+      "tail": {
+        "root_attachment": "acceptable_but_odd",
+        "taper": "acceptable_but_odd",
+        "fur_contour": "acceptable_but_odd",
+        "overall": "acceptable_but_odd"
+      },
+      "hind_leg": "clearly_malformed",
+      "binary_discovery_label": "bad"
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 4,
+      "absolute_quality": "confident_good",
+      "class_fidelity": "pass",
+      "prefix_preservation": "very_high",
+      "reason": "The tail has the clearest rump attachment, continuous coarse-to-fine taper, and natural feathered fur contour in the matched late-suffix group.",
+      "tail": {
+        "root_attachment": "natural",
+        "taper": "natural",
+        "fur_contour": "natural",
+        "overall": "natural"
+      },
+      "binary_discovery_label": "good"
+    }
+  ],
+  "discovery_cohorts": {
+    "primary_matched_late_suffix": {
+      "good": ["t60_attempt004"],
+      "bad": ["t60_attempt003"],
+      "soft_or_boundary_excluded": [
+        "t60_attempt000",
+        "t60_attempt001",
+        "t60_attempt002"
+      ],
+      "reason": "The two selected endpoints share a very late prefix and nearly identical class, pose, and background. Attempt 004 has the most natural tail and coherent legs; attempt 003 has a clear looped hind leg."
+    },
+    "broader_clear_quality": {
+      "good": [
+        "t225_attempt001",
+        "t225_attempt002",
+        "t225_attempt003",
+        "t225_attempt004",
+        "t180_attempt001",
+        "t180_attempt003",
+        "t180_attempt004",
+        "t120_attempt003",
+        "t120_attempt004",
+        "t60_attempt004"
+      ],
+      "bad": [
+        "t180_attempt002",
+        "t120_attempt001",
+        "t60_attempt003"
+      ],
+      "warning": "This pool is composition-confounded and contains only three bad endpoints. It is descriptive, not an estimate of TPR, FPR, or generalization."
+    }
+  },
+  "tail_specific_order_at_t60": [
+    "attempt004",
+    "attempt002",
+    "attempt000",
+    "attempt001_or_attempt003"
+  ],
+  "methodological_conclusion": "A plausible semantic identity such as 'tail' is not enough: local attachment, taper, fur flow, and contour continuity determine naturalness. Conversely, an odd tail is not automatically a catastrophic quality failure. Tail naturalness and clear limb topology failure must be analyzed as separate outcomes."
+}

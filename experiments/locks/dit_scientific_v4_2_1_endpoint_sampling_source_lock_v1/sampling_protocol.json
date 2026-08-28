@@ -1,0 +1,349 @@
+{
+  "assets": {
+    "checkpoint": {
+      "bytes": 2700611775,
+      "filename": "DiT-XL-2-256x256.pt",
+      "path": "/data/users/zhoushunyu/eqvae/baselines/DiT/pretrained_models/DiT-XL-2-256x256.pt",
+      "sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+      "url": "https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt"
+    },
+    "dit_repository": {
+      "allowed_untracked_checkpoint": "pretrained_models/DiT-XL-2-256x256.pt",
+      "commit_tree": "db610f6412cf70fdb6c5b2ffb46c362dd74c6bcf",
+      "pinned_source_sha256": {
+        "diffusion/__init__.py": "0128da38ee27ab91b78458809f9c50d188d7377b60cc73d3ee777bca8029425d",
+        "diffusion/gaussian_diffusion.py": "d7d095d98ff4666e565d0a854790992e24cc09a4ac75e8eaae9a4ee186a8887b",
+        "diffusion/respace.py": "9dde1492dd9d03e47caa12c7a7293dd7a5af1a79f3ddb0629f1692d97c856903",
+        "download.py": "f9ea211a0fa8f5ad18e3b3059dbcad38d8e6598a308bc0de744758bcb649a857",
+        "models.py": "1b8031a1340a3d1045c0bdb382334068f5f20e32edf67b3e6aba961ba91846ca",
+        "sample.py": "e82038ecd6d6303208b6a9940705f9c3cd49219f5d76e2caa8d07813d086e2dc"
+      },
+      "revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+      "root": "/data/users/zhoushunyu/eqvae/baselines/DiT",
+      "tracked_and_index_clean": true,
+      "tracked_file_count": 18,
+      "url": "https://github.com/facebookresearch/DiT",
+      "working_tracked_tree_sha256": "0d3dcc2c656a6e5400b8e53360fc2354eda63ea624a6c467ac71a6129c4225e3"
+    },
+    "vae_snapshot": {
+      "files": [
+        {
+          "bytes": 547,
+          "name": "config.json",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/config.json",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/0db26717579be63eb0ddbf15b43faa43700dfe5a",
+          "sha256": "92d3dfb746fca211a2c9e019e285f8597412211728dce3c5bcf4eda0f2d62e7e"
+        },
+        {
+          "bytes": 334643276,
+          "name": "diffusion_pytorch_model.safetensors",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/diffusion_pytorch_model.safetensors",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+        }
+      ],
+      "kind": "mse",
+      "model_id": "stabilityai/sd-vae-ft-mse",
+      "offline_only": true,
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "snapshot": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493"
+    }
+  },
+  "event_protocol": {
+    "completion_file_sha256": "5a12d184fc8abf7d11ed39686b1d7b884c81c5ccfc6ab4313f3c39c013321157",
+    "file_sha256": "2a3035e15372db26f8a81b131dba21869f2159952cae51ab6d8ff96a861a1972",
+    "identity_sha256": "af65e362cd8c543f898a3dbeb3a7b4478940966b48bfef689db7afdbad8d97d2",
+    "manifest_file_sha256": "30e767800a59e51d94dbdba9d5be89c81bcfa9c72e31dd89aee53793832ff43c",
+    "manifest_identity_sha256": "86e76c7c16185f3d399a1e96ba0ee6b9243495be6a610f3240ae4e48175e8a49",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_confirmation_protocol_lock_v4_2_1"
+  },
+  "evidence_access_audit": {
+    "labels_or_reviews_opened": false,
+    "metrics_features_embeddings_or_scores_opened": false,
+    "score_label_join_performed": false
+  },
+  "execution_contract": {
+    "allowed_logical_worker_subset": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "assignment_kind": "four immutable contiguous 252-pair logical shards",
+    "logical_assignment_is_not_scientific_rng_input": true,
+    "logical_worker_count": 4,
+    "one_model_and_vae_load_per_logical_worker_invocation": true,
+    "ordered_logical_shards": [
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1000
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1002
+        },
+        "logical_worker_index": 0,
+        "pair_count": 252
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1003
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1005
+        },
+        "logical_worker_index": 1,
+        "pair_count": 252
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1006
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1008
+        },
+        "logical_worker_index": 2,
+        "pair_count": 252
+      },
+      {
+        "first_pair": {
+          "class_id": 160,
+          "global_seed": 1009
+        },
+        "last_pair": {
+          "class_id": 963,
+          "global_seed": 1011
+        },
+        "logical_worker_index": 3,
+        "pair_count": 252
+      }
+    ],
+    "pair_count_per_worker": 252,
+    "physical_gpu_rule": "one to four currently free unique devices; multiple selected logical workers assigned to one device execute sequentially",
+    "physical_gpu_schedule_is_not_scientific_rng_input": true,
+    "pool_validation_and_receipts_only_after_all_four_logical_shard_receipts": true,
+    "subset_rule": "any fixed nonempty duplicate-free subset of logical workers 0..3"
+  },
+  "execution_ready": false,
+  "external_evaluation_boundary": {
+    "B_E_calibration_accepts_only_frozen_label_free_internal_B_products": true,
+    "B_E_replay_accepts_only_completed_preterminal_trace_schema": true,
+    "Inception_DINO_FID_CLIP_or_other_external_representation_used": false,
+    "class_selection_is_evaluation_event_enrichment_not_method": true,
+    "endpoint_or_review_artifacts_are_forbidden_B_E_method_inputs": true,
+    "visual_labels_scores_or_selected_class_rank_used_as_B_E_method_input": false,
+    "visual_labels_used_for_evaluation_cohort_enrichment": true
+  },
+  "identity_sha256": "afb468cd092942fffdee35d267e3dd5bd61623a778c7a099ddfd22a9a535f499",
+  "method_lock": {
+    "adaptive_null_audit_file_sha256": "2ccc1afbe2ee303753366c813f73ed17139a7b84b60dd1e603ecab4ea274e1d0",
+    "completion_file_sha256": "964b45cb18b2c960d7a6f1ee6d785a3a54485a21960ed9f557b942d687344bf4",
+    "execution_ready": false,
+    "identity_sha256": "cc4dc5e7c06c25f4d8567a42fb4f0387097a6296c587543830bfeaa4771f6921",
+    "manifest_file_sha256": "000a10908fc9139e26f1e801c1b1f2a8df0405603d38d3b39f7ffa6cae59736f",
+    "matched_q_power_gate_file_sha256": "106decda87d07a1cd6ce0b125547a7713a604ad9e6f5fb3be46aed417c199149",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_blur_focused_eprocess_protocol_lock_v2_2",
+    "protocol_file_sha256": "b5f171747edd8e19fb5307ed1fa411c43a261c908cb4b795b00396e9a0562dd5"
+  },
+  "output_contract": {
+    "all_endpoint_file_and_pixel_hashes_bound": true,
+    "endpoint_filename": "endpoint.png",
+    "endpoint_mode": "RGB",
+    "endpoint_size": [
+      256,
+      256
+    ],
+    "files_per_pair": [
+      "endpoint.png",
+      "manifest.json",
+      "completion.json"
+    ],
+    "logical_shard_receipt_required_before_pool_receipt": true,
+    "pair_and_pool_receipts_required": true,
+    "pair_directory_template": "pairs/seed{global_seed:04d}_class{class_id:04d}",
+    "trajectory_or_latent_payload": null
+  },
+  "real_endpoint_outputs_present_at_freeze": false,
+  "real_expert_label_review_or_consensus_results_present": false,
+  "resume_and_failure_contract": {
+    "automatic_deletion_or_quarantine": false,
+    "completed_pair_reuse": "full identity and endpoint file/pixel hash validation",
+    "partial_or_changed_pair": "fail closed; preserve and refuse overwrite",
+    "pool_receipts": "published only after all 1008 pair outputs fully revalidate"
+  },
+  "rng_contract": {
+    "classes_per_sampler_invocation": 1,
+    "derivation": "uint64_be(first_8_bytes(SHA256(ASCII(domain + NUL + global_seed + NUL + class_id)))) mod 2^63",
+    "domain": "eqvae.dit.event-rich.endpoint.v1",
+    "duplicated_cfg_state_shape": [
+      2,
+      4,
+      32,
+      32
+    ],
+    "full_2B_randn_like_each_transition_including_t0": true,
+    "initial_noise_shape": [
+      1,
+      4,
+      32,
+      32
+    ],
+    "manual_seed_timing": "after frozen model/VAE load, immediately before singleton initial latent",
+    "relation_to_third_pool": "same singleton-or-batch first-half latent duplication, upstream CFG and full-2B ancestral transition semantics; pair-keyed reseeding replaces the third pool's ordered three-class batch RNG so endpoint pixels are shard/order invariant",
+    "same_global_seed_classes_share_initial_noise": false,
+    "same_global_seed_classes_share_transition_innovations": false,
+    "second_half_transition_noises_consumed_then_state_discarded": true,
+    "task_order_worker_shard_resume_invariant": true,
+    "terminal_t0_randn_consumed_then_masked": true,
+    "transition_noise_shape_each_call": [
+      2,
+      4,
+      32,
+      32
+    ],
+    "transition_randn_like_calls": 250,
+    "unit": "(global_seed,class_id)"
+  },
+  "schema_version": 1,
+  "scientific_contract": {
+    "cfg_epsilon_channels": 3,
+    "cfg_scale": 4.0,
+    "classes_ordered": [
+      160,
+      170,
+      228,
+      229,
+      231,
+      250,
+      258,
+      281,
+      283,
+      332,
+      366,
+      381,
+      9,
+      22,
+      72,
+      79,
+      84,
+      94,
+      127,
+      130,
+      315,
+      319,
+      320,
+      321,
+      29,
+      43,
+      47,
+      69,
+      71,
+      118,
+      121,
+      122,
+      125,
+      327,
+      328,
+      363,
+      411,
+      414,
+      433,
+      445,
+      459,
+      578,
+      610,
+      614,
+      652,
+      981,
+      982,
+      983,
+      401,
+      402,
+      420,
+      444,
+      486,
+      488,
+      489,
+      491,
+      545,
+      559,
+      594,
+      671,
+      403,
+      404,
+      407,
+      476,
+      517,
+      537,
+      555,
+      561,
+      603,
+      609,
+      717,
+      817,
+      107,
+      108,
+      109,
+      115,
+      393,
+      396,
+      599,
+      927,
+      933,
+      953,
+      959,
+      963
+    ],
+    "clip_denoised": false,
+    "endpoint_only": true,
+    "global_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011
+    ],
+    "intervention": null,
+    "model": "DiT-XL/2 ImageNet-256",
+    "pair_axis_order": "seed-major, frozen-class-roster-minor",
+    "pair_count": 1008,
+    "quality_score": null,
+    "sampler": "official 250-step ancestral DDPM",
+    "sampling_steps": 250,
+    "selection": null,
+    "trace_saved": false,
+    "vae": "mse",
+    "vae_scaling_factor": 0.18215
+  },
+  "source_snapshots": {
+    "freeze_dit_event_rich_endpoint_sampling_sources.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_event_rich_endpoint_sampling_sources.py",
+      "sha256": "a0bf3c27690e69411bdc65a512717f85ddb0e609b8ec030e501f1c63e2ca10fc"
+    },
+    "reproduce_dit_imagenet256.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/reproduce_dit_imagenet256.py",
+      "sha256": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746"
+    },
+    "run_dit_event_rich_endpoint_screen.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/run_dit_event_rich_endpoint_screen.py",
+      "sha256": "259f6ef915b1381a56adac4311d06d5eb7963e46c7c8ca86559a1f0a90f00648"
+    },
+    "sample_dit_imagenet256_endpoint_pairs.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/sample_dit_imagenet256_endpoint_pairs.py",
+      "sha256": "6aec3259360e4a405345a154449cec1dac34766fd49683f7c6401e5ebc46318b"
+    }
+  },
+  "status": "SCIENTIFIC_V4_2_1_ENDPOINT_SOURCE_FROZEN_EXECUTION_NOT_READY"
+}

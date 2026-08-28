@@ -1,0 +1,483 @@
+{
+  "amendment_lineage": {
+    "failure_message": "discovery_visual has invalid ordered trace identities",
+    "failure_stage": "discovery_visual feature-envelope validation",
+    "labels_joined_to_features": false,
+    "labels_loaded": false,
+    "output_published": false,
+    "root_cause": "visual-v2 lineage is represented by source_inventory trace_runs, not manifest.trace_identity_sha256_ordered expected by the frozen base validator",
+    "scientific_rules_changed": false,
+    "sole_change": "use an embedded strict visual-v2 validator with exact file set, supervision, source-inventory trace lineage, all-array NPZ hashes, axes, and feature replay",
+    "statistics_started": false,
+    "status": "MECHANICAL_VALIDATOR_FIX_AFTER_FAIL_CLOSED_BEFORE_LABEL_LOAD",
+    "superseded_protocol_file_sha256": "fc3484603df9d43c9480d42d6a5d9d7ebffaf82f87995c3d7c28d6cae651a8e9",
+    "superseded_protocol_identity_sha256": "d6bad25c50ea40819f29000783bae572c5af3b165d62f9274d7400f3c7c0c27c"
+  },
+  "candidates": {
+    "alpha_compensated_gradient_energy_c3_q2_jump": {
+      "catalog": {
+        "availability": "predictable",
+        "deployment_note": "none",
+        "feature_formula": "max_positive_jump over pred_xstart_alpha_compensated_gradient_energy_c3[100:150] under fixed phase q2",
+        "latest_required_internal_timestep": 100,
+        "latest_required_sampling_step": 149,
+        "observation_timing": "before_transition_at_latest_step",
+        "preterminal_actionable": true,
+        "track_formula": "alpha_bar[k] * (mean vertical-difference^2 + mean horizontal-difference^2), pred_xstart channel 3",
+        "track_length": 250,
+        "uses_realized_innovation": false
+      },
+      "direction": "bad_low",
+      "family": "predicted_clean",
+      "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+      "reduction": "q2_max_positive_jump",
+      "risk_transform": "negative_raw",
+      "role": "secondary",
+      "screen_key": "c3_screen",
+      "source_product": "primary",
+      "track": "pred_xstart_alpha_compensated_gradient_energy_c3"
+    },
+    "decoded_local_blur_severity_mean": {
+      "catalog": {
+        "availability": "pre_innovation_current_model_output",
+        "checkpoint_internal_timesteps": "180,170,160,150,140,130,120,110,100",
+        "checkpoint_sampling_steps": "69,79,89,99,109,119,129,139,149",
+        "deployment_note": "fixed decoded-pred_xstart diagnostic; no endpoint, future innovation, label, or quality posterior is used",
+        "feature_index": 0,
+        "formula_source": "protocol_snapshot.json",
+        "latest_required_internal_timestep": 100,
+        "latest_required_sampling_step": 149,
+        "observation_timing": "before_transition_at_latest_checkpoint",
+        "preterminal_actionable": true,
+        "track_length": 9,
+        "uses_realized_innovation": false
+      },
+      "direction": "bad_high",
+      "family": "decoded_pixels",
+      "feature": "decoded_local_blur_severity__mean",
+      "protocol_formula": "q_j=mean(l_j^2)/(mean(g_j^2)+1e-12); B=-log(percentile_25(q over active tiles)+1e-12)",
+      "reduction": "mean over selected checkpoints",
+      "risk_transform": "raw",
+      "role": "primary",
+      "screen_key": "blur_screen",
+      "source_product": "predxstart_visual",
+      "track": "decoded_local_blur_severity"
+    }
+  },
+  "claim_limits": {
+    "conformal_alpha_is_not_ville_alpha": true,
+    "no_combined_score": true,
+    "no_intervention_authorized": true,
+    "not_fresh_confirmation": true,
+    "post_selection": true
+  },
+  "cohorts": {
+    "discovery": {
+      "classes": [
+        207,
+        602,
+        795
+      ],
+      "global_seed_start_inclusive": 50,
+      "global_seed_stop_exclusive": 130,
+      "label_consensus_identity_sha256": "21c242dc796d5c8baa4568c9f82add0d1b64c984477cf8698efbbca5889e166a",
+      "label_lock_path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_fresh_eval240_adjudicated_consensus_lock_v2",
+      "trajectory_count": 240
+    },
+    "expansion": {
+      "classes": [
+        207,
+        602,
+        795
+      ],
+      "global_seed_start_inclusive": 130,
+      "global_seed_stop_exclusive": 250,
+      "label_consensus_identity_sha256": "fc478b7ae04b67869d0dfca3b63f169a5266bacc1c8701e1ae20368516e793fd",
+      "label_lock_path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_adjudicated_consensus_lock_v1",
+      "trajectory_count": 360
+    }
+  },
+  "exploratory_screens": {
+    "blur_screen": {
+      "candidate_table_member": "primary_preterminal_step149_track_winners.csv",
+      "manifest_identity_sha256": "a5d5b13317fdc6e5881398da1c91e92a140c6c1f77c9cd15f7f8a57119e1527c",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/inventory_replication_exploratory_visual_v2"
+    },
+    "c3_screen": {
+      "candidate_table_member": "primary_preterminal_step149_track_winners.csv",
+      "manifest_identity_sha256": "04458d39bf8ab34242b1287140f8a6e83cf712afdc49de35f76ab6d774fe55a9",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/inventory_replication_exploratory_amendment_v1_1"
+    }
+  },
+  "feature_products": {
+    "discovery_primary": {
+      "manifest_identity_sha256": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1"
+    },
+    "discovery_visual": {
+      "manifest_identity_sha256": "7554c9bf8a15375e83df50a4308a00176a5e2dc5deb8f378a5611cd8f3c322cd",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/predxstart_visual_label_free_v1"
+    },
+    "expansion_primary": {
+      "manifest_identity_sha256": "e9e441c379796a2066ef672987c36dd52bc77b59578e3133b8372743c1593a31",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/primary_label_free_v1"
+    },
+    "expansion_visual": {
+      "manifest_identity_sha256": "bddd0e9d17fcce2f1c87a02373991a83b6091b6b46e05f8fe7f7566718913696",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/predxstart_visual_label_free_v1"
+    }
+  },
+  "identity_sha256": "94912c5039c90686b8b97f62321e243fe1f311ef17f831b4422729ceafe03fbf",
+  "publication": {
+    "aggregate_only": true,
+    "atomic": true,
+    "no_overwrite": true,
+    "output": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/dual_candidate_operational_audit_v1",
+    "row_level_payload_emitted": false,
+    "sealed_members": [
+      "audit_source.py",
+      "pinned_inventory_helper.py",
+      "protocol_snapshot.json"
+    ]
+  },
+  "runtime": {
+    "audit_source_path": "/home/zhoushunyu/eqvae/experiments/audit_dit_candidate_c3_operational_v1.py",
+    "audit_source_sha256": "63d13d38cb29868164ea52e854d824b9fd602d9ff8cd0d23c97bffb3c2cf5359",
+    "pinned_inventory_helper_path": "/home/zhoushunyu/eqvae/experiments/explore_dit_bad_good_inventory_replication.py",
+    "pinned_inventory_helper_sha256": "c23ef50713e3a310bf8a6bb7b0541563717b5979cca035f3b15394f68aaaca90"
+  },
+  "schema_version": 1,
+  "scientific_role": "post_selection_operational_audit_not_confirmation",
+  "statistics": {
+    "block_permutation": {
+      "alternative": "class_matched_pair_weighted_auc_greater_than_chance_in_frozen_direction",
+      "draws": 100000,
+      "monte_carlo_p_formula": "(1+exceedances)/(1+draws)",
+      "multiple_testing": "Holm across exactly the two frozen candidates",
+      "scheme": "permute intact three-class label-and-mild vectors across global_seed",
+      "seed": 20260827
+    },
+    "conformal_risk": {
+      "alert_rule": "risk_p <= alpha",
+      "alpha_semantics": "upper-tail conformal-style operational risk level; not Ville alpha",
+      "alphas": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "calibration_population": "discovery clean_good only",
+      "class_specific": true,
+      "risk_p_formula": "(1 + count(calibration_risk >= test_risk)) / (n_calibration + 1)"
+    },
+    "group_score_summary": {
+      "minimum_group_size": 5,
+      "quantiles": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        0.9
+      ],
+      "small_group_policy": "counts_only_statistics_null"
+    },
+    "labels": {
+      "excluded_from_auc": "mild_or_disputed",
+      "mild_retained_in_seed_block_permutation": true,
+      "negative": "clean_good",
+      "positive": "clear_bad"
+    }
+  },
+  "status": "FROZEN_DUAL_CANDIDATE_OPERATIONAL_AUDIT_AMENDMENT_V1_1",
+  "time_series_descriptive": {
+    "fixed_grids": {
+      "blur_level_sampling_steps": [
+        69,
+        79,
+        89,
+        99,
+        109,
+        119,
+        129,
+        139,
+        149
+      ],
+      "c3_adjacent_jump_formula": "G[k] - G[k-1] within q2 only",
+      "c3_q2_adjacent_jump_sampling_steps": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149
+      ],
+      "c3_q2_level_sampling_steps": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149
+      ]
+    },
+    "inference_policy": "no p-values, thresholds, window selection, candidate selection, or score combination",
+    "npz_member": "time_series.npz",
+    "products": {
+      "discovery_primary": {
+        "arrays": {
+          "class_id": {
+            "dtype": "int16",
+            "raw_sha256": "604ebde08d52055e6f5a07dcafe0ba4d93c1f2be069d8f8236fc4e0e9e2e9d98",
+            "shape": [
+              300
+            ]
+          },
+          "global_seed": {
+            "dtype": "int64",
+            "raw_sha256": "8078caead813002ed470df147625ac7e24e0b22f87c415e4c4818619fad4ef02",
+            "shape": [
+              300
+            ]
+          },
+          "internal_timestep_250": {
+            "dtype": "int16",
+            "raw_sha256": "1ae8e9470a17622397f15a6b981c1cc4de802532d6a934289c3a7b88c653ce27",
+            "shape": [
+              250
+            ]
+          },
+          "pred_xstart_alpha_compensated_gradient_energy_c3": {
+            "dtype": "float64",
+            "raw_sha256": "6a59bd99d07fc2a20b588dcc5c4417e4551408b26f4c1de4eda9773eb6cf9eae",
+            "shape": [
+              300,
+              250
+            ]
+          },
+          "sampling_step_250": {
+            "dtype": "int16",
+            "raw_sha256": "73a6bd8e22ccd6317c7918f34a73b9a5ebaaf679f1d74af561251c905ec276bb",
+            "shape": [
+              250
+            ]
+          }
+        },
+        "npz_sha256": "6f8bbb0fa5d4b42b7f5509ac9398cf0ccc1612eeab119f1cbac580d95b16cb0d",
+        "row_count": 300
+      },
+      "discovery_visual": {
+        "arrays": {
+          "class_id": {
+            "dtype": "int16",
+            "raw_sha256": "604ebde08d52055e6f5a07dcafe0ba4d93c1f2be069d8f8236fc4e0e9e2e9d98",
+            "shape": [
+              300
+            ]
+          },
+          "decoded_local_blur_severity": {
+            "dtype": "float64",
+            "raw_sha256": "b68b6f9f90156ee4046bf86b227ea8c6ede6fc08f89e9704c13f3009dd918937",
+            "shape": [
+              300,
+              9
+            ]
+          },
+          "global_seed": {
+            "dtype": "int64",
+            "raw_sha256": "8078caead813002ed470df147625ac7e24e0b22f87c415e4c4818619fad4ef02",
+            "shape": [
+              300
+            ]
+          },
+          "selected_internal_timestep": {
+            "dtype": "int16",
+            "raw_sha256": "0c878fe46e56de57ed3cc2cac0a8f5e5b4ea1e8e568475f57be9ad9c2c94863a",
+            "shape": [
+              9
+            ]
+          },
+          "selected_sampling_step": {
+            "dtype": "int16",
+            "raw_sha256": "bece1004441c32eea8bbce159c7f3efce5b25a06786aa2a853c072e21769b756",
+            "shape": [
+              9
+            ]
+          }
+        },
+        "npz_sha256": "9c8dbbc30bce973548314a3bef50c7f9fed5f386d380fae576075646f048811c",
+        "row_count": 300
+      },
+      "expansion_primary": {
+        "arrays": {
+          "class_id": {
+            "dtype": "int16",
+            "raw_sha256": "8f76d55e7bf6ea7d74de86a1ebbce1a92597387083de5dd05a57a807dbd2083b",
+            "shape": [
+              360
+            ]
+          },
+          "global_seed": {
+            "dtype": "int64",
+            "raw_sha256": "c517a141babe985cd083b29b76c6145f8c22b28cc890fe5a53eb36b27c50a6e1",
+            "shape": [
+              360
+            ]
+          },
+          "internal_timestep_250": {
+            "dtype": "int16",
+            "raw_sha256": "1ae8e9470a17622397f15a6b981c1cc4de802532d6a934289c3a7b88c653ce27",
+            "shape": [
+              250
+            ]
+          },
+          "pred_xstart_alpha_compensated_gradient_energy_c3": {
+            "dtype": "float64",
+            "raw_sha256": "78ff0a2703aa1d917a868ead3430f3948bc7679c337bdda4b558cfea3a7c767c",
+            "shape": [
+              360,
+              250
+            ]
+          },
+          "sampling_step_250": {
+            "dtype": "int16",
+            "raw_sha256": "73a6bd8e22ccd6317c7918f34a73b9a5ebaaf679f1d74af561251c905ec276bb",
+            "shape": [
+              250
+            ]
+          }
+        },
+        "npz_sha256": "4f58d2805f177dbed089b5286b2ba76e9e6e43405d1ae69b32184e5ceae8f0f0",
+        "row_count": 360
+      },
+      "expansion_visual": {
+        "arrays": {
+          "class_id": {
+            "dtype": "int16",
+            "raw_sha256": "8f76d55e7bf6ea7d74de86a1ebbce1a92597387083de5dd05a57a807dbd2083b",
+            "shape": [
+              360
+            ]
+          },
+          "decoded_local_blur_severity": {
+            "dtype": "float64",
+            "raw_sha256": "13f22f7f99f18a6e9e957185aab1bfaf9b6477b1524c242dd742f83fbbf667ba",
+            "shape": [
+              360,
+              9
+            ]
+          },
+          "global_seed": {
+            "dtype": "int64",
+            "raw_sha256": "c517a141babe985cd083b29b76c6145f8c22b28cc890fe5a53eb36b27c50a6e1",
+            "shape": [
+              360
+            ]
+          },
+          "selected_internal_timestep": {
+            "dtype": "int16",
+            "raw_sha256": "0c878fe46e56de57ed3cc2cac0a8f5e5b4ea1e8e568475f57be9ad9c2c94863a",
+            "shape": [
+              9
+            ]
+          },
+          "selected_sampling_step": {
+            "dtype": "int16",
+            "raw_sha256": "bece1004441c32eea8bbce159c7f3efce5b25a06786aa2a853c072e21769b756",
+            "shape": [
+              9
+            ]
+          }
+        },
+        "npz_sha256": "a7786a4a4d34470f0f4571ef422e418ad82eeff794d6219c53eb669aba0f53be",
+        "row_count": 360
+      }
+    },
+    "role": "post_selection_descriptive_only"
+  }
+}

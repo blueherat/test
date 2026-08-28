@@ -1,0 +1,141 @@
+{
+  "candidates": {
+    "B_blur_mean": {
+      "direction": "high_is_bad",
+      "feature": "decoded_local_blur_severity__mean",
+      "negative_endpoint_for_every_label_definition": "clean-good under the same label definition",
+      "positive_endpoint_for_every_label_definition": "clear-bad AND blur-or-soft-fusion phenotype"
+    },
+    "C_c3_low_jump": {
+      "direction": "low_is_bad",
+      "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+      "negative_endpoint_for_every_label_definition": "clean-good under the same label definition",
+      "positive_endpoint_for_every_label_definition": "all clear-bad"
+    }
+  },
+  "cohort": {
+    "classes_ordered": [
+      207,
+      602,
+      795
+    ],
+    "complete_class_matched_cohort_required": true,
+    "global_seed_semantics": "inclusive endpoints; exact frozen set range(250,850)",
+    "global_seeds": [
+      250,
+      849
+    ],
+    "trajectory_count": 1800
+  },
+  "designation": "POST_GATE_EXPLORATORY_ONLY_NEVER_AUTHORIZES_INTERVENTION",
+  "experiment": "dit_third_pool_bc_label_sensitivity_v1",
+  "foundation_identity_pins": {
+    "blind_review_pipeline_source_sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c",
+    "phase1_protocol_identity_sha256": "0788c7074adc55f1896dea4e0626f57c8b2b4899a5b600f38d2f982a87acfed5",
+    "phase1_threshold_identity_sha256": "c89fee87731968aa0c8a7ef086cb9a95a578dc3462149a6135bb71275bdbe43d",
+    "primary_evaluator_source_sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c",
+    "sampling_protocol_identity_sha256": "330661e87de7846e1f590660f03ecef6270fa45e2f39c4fc54d992e3260950d8"
+  },
+  "identity_sha256": "db80ad3457cf3fbf64d209d3792bc88e24c5160aa3f9c317c7b5dfc667430fa7",
+  "label_definitions_ordered": {
+    "final_adjudicated": {
+      "bad": "final_severity == clear_bad",
+      "blur": "frozen two-of-three blur_component_consensus",
+      "good": "final_severity == clean_good"
+    },
+    "raw_majority": {
+      "bad": "at least two of three reviewer severities are 2 or 3",
+      "blur": "at least two reviewers mark any frozen blur-group flag",
+      "good": "at least two of three reviewer severities are 0"
+    },
+    "reviewer_1": {
+      "bad": "reviewer_1 severity is 2 or 3",
+      "blur": "reviewer_1 marks any frozen blur-group flag",
+      "good": "reviewer_1 severity is 0"
+    },
+    "reviewer_2": {
+      "bad": "reviewer_2 severity is 2 or 3",
+      "blur": "reviewer_2 marks any frozen blur-group flag",
+      "good": "reviewer_2 severity is 0"
+    },
+    "reviewer_3": {
+      "bad": "reviewer_3 severity is 2 or 3",
+      "blur": "reviewer_3 marks any frozen blur-group flag",
+      "good": "reviewer_3 severity is 0"
+    }
+  },
+  "output_contract": {
+    "aggregate_only": true,
+    "cannot_call_candidate_passed": true,
+    "cannot_rescue_or_override_stage_A_or_primary_stage_B": true,
+    "forbidden": [
+      "row-level score",
+      "row-level label",
+      "row-level rank",
+      "sample identifier joined to any score or label",
+      "confirmatory p-value",
+      "pass/fail claim"
+    ],
+    "intervention_experiment_authorized": false
+  },
+  "question": "How sensitive are the two already-frozen B/C associations to five pre-enumerated blind-label definitions?",
+  "schema_version": 1,
+  "sources": {
+    "audit_dit_third_pool_bc_label_sensitivity.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/audit_dit_third_pool_bc_label_sensitivity.py",
+      "sha256": "00283e10d48057e11439d826521c611cf8b7d72f9a1248cb1fe709473da23594"
+    },
+    "evaluate_dit_bad_good_third_pool_confirmation.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/evaluate_dit_bad_good_third_pool_confirmation.py",
+      "sha256": "006a9337295d1a3f27ad8626fdff21d227038cf11f291a769dde1af8c41aff5c"
+    },
+    "freeze_dit_third_pool_bc_label_sensitivity.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_third_pool_bc_label_sensitivity.py",
+      "sha256": "cc6d4e81cae5e550cd076a0b31197db6f5a6e5dd13b84eec60f30c4919759815"
+    },
+    "prepare_dit_bad_good_third_pool_blind_reviews.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/prepare_dit_bad_good_third_pool_blind_reviews.py",
+      "sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c"
+    }
+  },
+  "statistics": {
+    "auc": "class-matched pair-weighted Mann-Whitney AUC; ties receive 0.5; orientation fixed by candidate",
+    "candidate_combination": false,
+    "confidence_intervals": false,
+    "confirmatory_p_values": false,
+    "fixed_operating_point": {
+      "alpha": "alpha_0p10",
+      "comparison_B": "raw B > class-specific frozen threshold",
+      "comparison_C": "raw C < class-specific frozen threshold",
+      "reported": [
+        "positive and clean-good counts",
+        "TP and FP counts",
+        "micro TPR and FPR",
+        "all-trajectory alert count and rate",
+        "excluded non-endpoint alert count"
+      ],
+      "threshold_source": "frozen old-data third-pool threshold lock"
+    },
+    "label_definition_sensitivity": {
+      "for_each_candidate": [
+        "AUC min, max, range across the five definitions",
+        "micro TPR min, max, range across the five definitions",
+        "micro FPR min, max, range across the five definitions",
+        "each non-final AUC minus final-adjudicated AUC"
+      ],
+      "missing_value_rule": "a range or contrast is null if a required endpoint denominator is zero"
+    },
+    "new_feature_direction_threshold_or_label_selection": false,
+    "per_class_reporting": "counts, pair counts, and AUC; numeric class AUC suppressed when either endpoint has fewer than five samples"
+  },
+  "temporal_firewall": {
+    "allowed_before_freeze": [
+      "locked label/reviewer/consensus schemas",
+      "aggregate event counts",
+      "artifact paths and identities without score payload access"
+    ],
+    "production_join_requires_valid_replayed_stage_A_pass_receipt": true,
+    "protocol_and_all_executable_sources_frozen_before_any_third_pool_primary_or_visual_score_value_is_opened": true,
+    "stage_A_failure_cannot_be_overridden": true
+  }
+}

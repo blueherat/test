@@ -1,0 +1,44 @@
+{
+  "artifact_kind": "DIT_V22_TRANSIENT_ESCAPE_BLIND_EVALUATION_PROTOCOL_V1_1",
+  "decision_order": [
+    "reliability_or_attempt_index_failure_implies_INCONCLUSIVE",
+    "interpretable_nonpositive_effect_or_material_point_harm_implies_STOP",
+    "all_effect_inference_integrity_and_safety_gates_imply_NARROW_GO",
+    "otherwise_INCONCLUSIVE"
+  ],
+  "external_metrics_are_method_inputs": false,
+  "identity_sha256": "4b72313de34148307add44593089c45e3ad67c8d4e6528e3bb895c4448927440",
+  "invalid_vote_rule": "any absolute or pair valid=no is code-enforced as INCONCLUSIVE",
+  "primary": {
+    "bootstrap_replicates": 100000,
+    "bootstrap_seed": 2026082808,
+    "estimand": "mean_four_fresh(severity/2)-sealed_h10_max_A(severity/2)",
+    "minimum_effect": 0.1,
+    "monte_carlo_replicates": 1000000,
+    "monte_carlo_seed": 2026082807,
+    "population": "96 frozen class795 prefixes"
+  },
+  "qualification": "at least 6 of 7 exact frozen-anchor severities before full review",
+  "review_axis_per_reviewer": {
+    "absolute": 640,
+    "attempt0_vs_fresh_pairs": 512,
+    "qualification": 7,
+    "reviewers": 3
+  },
+  "safety": {
+    "bootstrap_replicates": 100000,
+    "bootstrap_seed": 2026082809,
+    "comparison": "sealed selected fresh versus exact uniform policy over the same four fresh branches",
+    "margin": 0.05
+  },
+  "same_pool_failed_primary_may_be_rescued_by_other_horizon_direction_class_or_embedding": false,
+  "schema_version": 1,
+  "source_sha256": {
+    "analyze_dit_v22_transient_escape_blind_review.py": "00fb8a7bb6fa556f2d1368a6dfe3c32397ec69c650915375d807bb56154a5224",
+    "check_dit_v22_transient_escape_reviewer_qualification.py": "9dd63c83409aa607bc3a5cb172e62c1300fc6f19e5dc6be315a4513458138c1d",
+    "prepare_dit_v22_transient_escape_blind_review.py": "a59c7d26a06c5f0407a0b48a604bc5d51186753e8af8de8751c23b86f46abc23"
+  },
+  "status": "FROZEN_BEFORE_ANY_REAL_REVIEW_OR_ENDPOINT_OPENING",
+  "upstream_lock_identity_sha256": "cd8154479f5f6f883ae21d6657a61ec91ff6d2c77f569e18ea589d83517671a9",
+  "upstream_protocol_identity_sha256": "54b11c1ebb6e310c73bb14e27c18e0f1810b5598212e2dc0c9be915f861155c1"
+}

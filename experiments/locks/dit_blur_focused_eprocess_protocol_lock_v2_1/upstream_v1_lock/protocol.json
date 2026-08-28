@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "protocol_name": "dit_blur_focused_cross_scale_eprocess_v1",
+  "status": "METHOD_PROTOCOL_ONLY_NOT_EXECUTION_READY",
+  "execution_ready": false,
+  "scientific_protocol_compatibility": {
+    "existing_event_rich_v3": "incompatible: v3 freezes B/C as its two co-primary candidates and selects classes separately for B and C",
+    "current_real_event_screen_samples": 0,
+    "same_pool_option": "before any real screen sampling, explicitly freeze a scientific v4 that replaces the blur-family co-primary set with B/E, rewrites selector targets, Holm family, event gates, label-free products, and evaluator, and moves C to a separately declared diagnostic or independent family",
+    "separate_pool_option": "leave event-rich v3 unchanged and evaluate E only in a later independent pool with disjoint calibration and confirmation seeds",
+    "forbidden": "silently add E to the v3 confirmation or evaluate E on a pool whose classes were selected by v3 B/C rules and call it confirmatory"
+  },
+  "scientific_question": "Does an exact cross-scale operational path likelihood ratio add blur/fusion failure information beyond the already frozen preterminal B statistic when Q* is activated and localized only by the current B state?",
+  "frozen_generator": {
+    "model": "official DiT-XL/2 ImageNet-256",
+    "sampler": "250-step ancestral DDPM",
+    "cfg_scale": 4.0,
+    "clip_denoised": false,
+    "vae": "stabilityai/sd-vae-ft-mse",
+    "vae_scaling_factor": 0.18215
+  },
+  "observation_window": {
+    "sampling_steps": [69, 79, 89, 99, 109, 119, 129, 139, 149],
+    "internal_timesteps": [180, 170, 160, 150, 140, 130, 120, 110, 100],
+    "latest_observation": "after the model prediction at sampling step 149 and before its transition innovation",
+    "preterminal_steps_remaining_after_latest_observation": 100
+  },
+  "cross_scale_components": {
+    "normalized_heat_variance": "nu=(1-alpha_bar)/alpha_bar",
+    "additive_heat_shifts": [1.0, 4.0],
+    "shifted_internal_timesteps": [
+      [180, 170, 160, 150, 141, 131, 122, 114, 105],
+      [180, 171, 161, 152, 143, 135, 128, 122, 116]
+    ],
+    "mapping_rule": "nearest internal timestep to nu_current+Delta_nu among equal-or-higher-noise timesteps; ties prefer higher noise",
+    "path_mixture_weights": [0.5, 0.5],
+    "weights_fixed_before_any_confirmation_trace": true,
+    "future_or_identity_components_remain_at_e_value_one": true
+  },
+  "B_internal_statistic": {
+    "decoded_draft": "I_k=clip((VAE(pred_xstart_k/0.18215)+1)/2,0,1)",
+    "grayscale": "Y=0.2989R+0.5870G+0.1140B",
+    "derivatives": "Gaussian sigma 0.7, Sobel gx/gy divided by 8, and discrete Laplacian",
+    "tiles": "fixed row-major 4x4 grid",
+    "active_tiles": "eight highest grayscale-variance tiles with stable row-major tie breaking",
+    "tile_ratio": "q_j=mean(Laplacian_j^2)/(mean(gx_j^2+gy_j^2)+1e-12)",
+    "checkpoint_severity": "B_k=-log(percentile_25(q_j over active tiles)+1e-12)",
+    "pure_B_score": "B_persistence=mean(B_k over the nine frozen checkpoints)",
+    "orientation": "larger is more blur/fusion risk",
+    "exact_eprocess": false,
+    "predictable": true
+  },
+  "label_free_calibration": {
+    "count_per_selected_class": 20,
+    "seed_binding": "must be frozen by the compatible scientific protocol; scientific v4 may bind the still-unused v3-planned calibration cohort only if v3 is explicitly superseded before sampling, while a later independent pool must use new disjoint seeds",
+    "labels_or_endpoint_quality_used": false,
+    "state_gate_threshold": "for each class and checkpoint, the 17th ascending B_k among 20 calibration paths; gate opens only under strict B_k>threshold",
+    "state_gate_interpretation": "predictable sparsification of Q*, not a false-positive guarantee and not an alarm; for one fresh exchangeable path at one fixed checkpoint, strict exceedance has rank probability 4/21",
+    "pure_B_alarm_threshold": "for each class, the 19th ascending B_persistence among 20 calibration paths; strict score>threshold",
+    "pure_B_marginal_trigger_bound": "under within-class exchangeability, at most 2/21; this is an overall trigger budget, not clean-good conditional FPR",
+    "calibrator_input_whitelist": "sample/class/seed identifiers, frozen checkpoint axes, and decoded_local_blur_severity only; endpoint CSV, labels, reviews, external representations, and all coexisting non-B tracks are not loaded",
+    "calibrator_lineage": "threshold JSON binds source manifest identity, time-series hash, loaded-array hashes, the common 20-seed cohort, and calibrator source hash",
+    "confirmation_reuse_forbidden": true
+  },
+  "blur_gated_operational_Q_star": {
+    "current_raw_vp_score": "s_t=-epsilon_t/sqrt(1-alpha_bar_t)",
+    "normalized_state_pullback": "x_shifted=rho*x_current, rho=sqrt(alpha_bar_shifted/alpha_bar_current)",
+    "cross_scale_direction": "theta=rho*s_shifted(rho*x)-s_current(x)",
+    "focus_tiles": "the two lowest-q tiles among the current eight active B tiles, ties by row-major tile index",
+    "latent_localization": "same normalized 4x4 coordinates in the 32x32 latent; all four channels retained",
+    "state_gate": "a_k=1{B_k exceeds its frozen class/checkpoint label-free threshold}",
+    "raw_whitened_shift": "w=a_k*mask_k*p_sigma_k*theta_k",
+    "per_scale_total_K": 2.0,
+    "allowance": "at each nonidentity checkpoint, the allowance is that sample/scale component's complete remaining path budget; a closed gate spends zero, a strong first open gate may spend the full K_total, and any residual from a weak direction carries forward by a rule computed before the next innovation",
+    "scaling": "gamma=min(1,sqrt(K_allowance/(0.5*||w||^2))) with gamma=1 if w=0",
+    "implemented_whitened_shift": "u=gamma*w",
+    "implemented_mean_shift": "delta=p_sigma*u",
+    "one_step_log_lr": "Delta ell=u^T transition_innovation-0.5*||u||^2",
+    "component_path_e": "exp(sum Delta ell)",
+    "primary_mixture_e": "0.5*E_Delta1+0.5*E_Delta4",
+    "anytime_alpha": 0.1,
+    "alarm": "first time primary_mixture_e>=10",
+    "second_moment_bound_per_component": "E_P[E_T^2]<=exp(2*K_total)=exp(4), a deliberately looser bound accepted only after the frozen matched-Q power gate rejected K_total=0.5 as powerless",
+    "operational_exactness": true,
+    "ideal_heat_marginal_ratio_claimed": false,
+    "semantic_caveat": "the predictable B gate, local mask, and binding KL scaling define a different operational alternative Q*; exact Q*/P accounting does not restore the ideal p_(v+Delta)/p_v semantics; normalized image-tile to latent-tile mapping is only a frozen localization heuristic because the VAE decoder is nonlocal"
+  },
+  "pre_real_trace_matched_Q_power_gate": {
+    "purpose": "reject an e-process that is perfectly calibrated but nearly unable to cross its own threshold even under its matched operational alternative",
+    "model": "two orthogonal scalar Gaussian component directions; generate from each matched Q_d in turn; the matched component spends its complete K at its first eligible gate and the other coordinate remains P",
+    "draws": 400000,
+    "rng": "numpy.default_rng(PCG64(seed=2026082808))",
+    "alpha_e": 0.1,
+    "minimum_over_two_matched_components_anytime_power_at_least": 0.3,
+    "frozen_K_total_2_observed_synthetic_minimum": 0.320155,
+    "rejected_K_total_0p5_observed_synthetic_minimum": 0.007933,
+    "analytic_reference": "if the nonmatched mixture component were fixed at E=1, the matched component must reach E=19; under full K=2 its terminal log-LR is N(2,4), giving about 0.318 reference power",
+    "scope": "necessary oracle full-budget gate, not a quality result and not sufficient for real power",
+    "additional_label_free_real_gate_before_labels": [
+      "evaluate on at least 60 paths before making the aggregate gate decision",
+      "report fraction of paths with at least one B state gate open for each scale",
+      "report fraction of gate-open paths that actually use at least K=1.5 per scale",
+      "STOP before opening labels if either scale has fewer than 50 percent gate-open paths or fewer than 50 percent of gate-open paths reach K=1.5"
+    ],
+    "post_label_tuning_forbidden": true
+  },
+  "candidate_family": {
+    "family_size": 2,
+    "co_primary": [
+      {
+        "id": "B_persistence",
+        "kind": "predictable_internal_heuristic",
+        "endpoint": "blur_or_soft_fusion_clear_bad_vs_clean_good",
+        "orientation": "bad_high"
+      },
+      {
+        "id": "E_blur_gated_running_max_log",
+        "kind": "running_max_report_of_exact_operational_eprocess",
+        "endpoint": "blur_or_soft_fusion_clear_bad_vs_clean_good",
+        "orientation": "bad_high"
+      }
+    ],
+    "combination_or_candidate_substitution_after_confirmation_is_forbidden": true,
+    "multiple_testing": "Holm step-down across exactly the two co-primary raw class-matched permutation p-values"
+  },
+  "fixed_diagnostics_and_ablations": {
+    "B_formation_slope": "OLS slope of the nine B_k values against checkpoint index; diagnostic only",
+    "E_no_state_gate": "same focus masks, cross-scale directions, heat shifts, mixture, and KL budgets, but a_k=1 at every nonidentity checkpoint; exact operational e-process, ablation only",
+    "rank_one_no_shrink_witness": "rewriting the full whitened mean shift as ||w|| times w/||w|| gives exactly the same LR and is not a collapse remedy",
+    "no_ablation_may_replace_a_failed_primary": true
+  },
+  "confirmation_design": {
+    "confirmation_seed_binding": "not set by this method-only lock; a compatible scientific v4 or a later independent-pool protocol must bind unused seeds before sampling",
+    "visual_label_join_stage": "only after endpoint labels, reviewer reliability, event counts, trace products, source identities, and label-free thresholds are independently locked",
+    "event_gate": {
+      "blur_or_soft_fusion_clear_bad_at_least": 15,
+      "clean_good_at_least": 60,
+      "comparable_classes_at_least": 3,
+      "failure_action": "stop before opening candidate values"
+    },
+    "primary_statistic": "within-class pair-count-weighted tie-aware ROC AUC",
+    "randomization_unit": "complete global-seed class block",
+    "quality_gates": {
+      "B_persistence": [
+        "class-matched AUC>=0.75",
+        "Holm-adjusted one-sided permutation p<0.05",
+        "at its frozen label-free threshold, TPR>FPR"
+      ],
+      "E_blur_gated": [
+        "class-matched AUC>=0.70",
+        "Holm-adjusted one-sided permutation p<0.05",
+        "at alpha_e=0.10, TPR>FPR",
+        "at least three blur/fusion positives cross the anytime threshold"
+      ]
+    },
+    "incremental_value_tests": {
+      "E_beyond_B": "report paired class-matched DeltaAUC=AUC(E_blur_gated)-AUC(B_persistence); a positive method-addition claim requires DeltaAUC>0 and a predeclared one-sided paired seed-block permutation p<0.05",
+      "B_gate_beyond_localization": "report paired DeltaAUC=AUC(E_blur_gated)-AUC(E_no_state_gate); a B-gating mechanism claim requires DeltaAUC>0",
+      "operating_point": "compare B-alone and E_blur_gated TPR/FPR at their separately frozen approximately ten-percent overall intervention budgets",
+      "no_posthoc_combination": true
+    }
+  },
+  "falsification_and_stop_rules": [
+    "If any gate, mask, direction, scale, scale weight, or KL scaling depends on the current transition innovation or a later state, the exact e-process claim fails.",
+    "If the observation hook changes any baseline latent, RNG state, transition draw, or endpoint pixel, the implementation fails.",
+    "If any scale component exceeds total K=2.0, the collapse-control contract fails.",
+    "If the frozen matched-Q synthetic gate or the later label-free real gate-open/K-utilization gate fails, stop before any label join.",
+    "If E_blur_gated fails its independent quality gates, do not intervene and do not reinterpret exact calibration as quality evidence.",
+    "If E_blur_gated does not add information beyond pure B, retain B as a heuristic detector but drop the sequential-evidence contribution claim.",
+    "If E_blur_gated does not improve over E_no_state_gate, drop the claim that the B state gate adds value.",
+    "A failed v1 cannot be rescued by selecting another tile count, checkpoint window, heat shift, sign, channel, aggregation, or threshold on the confirmation pool."
+  ],
+  "forbidden_method_inputs": [
+    "endpoint images",
+    "human or model visual labels/reviews/adjudication",
+    "FID or any batch endpoint metric",
+    "Inception features",
+    "DINO features",
+    "CLIP features",
+    "any endpoint representation distance",
+    "any learned quality posterior",
+    "any candidate value or threshold selected after seeing confirmation labels"
+  ],
+  "allowed_external_evaluation_only": "locked endpoint visual labels may be joined by a separate evaluator solely to falsify the frozen internal candidates; external representations are not required even for evaluation"
+}

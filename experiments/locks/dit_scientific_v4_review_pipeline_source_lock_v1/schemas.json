@@ -1,0 +1,177 @@
+{
+  "aggregate_counts": {
+    "clean_mild_clear_partition_exact_axis": true,
+    "counts_are_nonnegative_integers": true,
+    "exact_top_level_fields": [
+      "phase",
+      "overall",
+      "per_class"
+    ],
+    "format": "JSON",
+    "overall_exact_fields": [
+      "endpoint_count",
+      "raw_clear_bad",
+      "final_clean_good",
+      "final_mild_or_disputed",
+      "final_clear_bad",
+      "final_blur_or_soft_fusion",
+      "final_structural_non_blur",
+      "union_any_positive",
+      "random_decoys",
+      "promoted_union_minority",
+      "promoted_zero_positive_decoys",
+      "downgraded_raw_2of3",
+      "unanimous_3of3_retained"
+    ],
+    "per_class_exact_fields": [
+      "endpoint_count",
+      "raw_clear_bad",
+      "final_clean_good",
+      "final_mild_or_disputed",
+      "final_clear_bad",
+      "final_blur_or_soft_fusion",
+      "final_structural_non_blur"
+    ]
+  },
+  "blind_adjudication_response": {
+    "decisions": [
+      "clear_bad",
+      "mild_or_not_clear_bad"
+    ],
+    "exact_columns_ordered": [
+      "adjudication_id",
+      "decision",
+      "components",
+      "localization_reason",
+      "role_slot",
+      "role_token",
+      "independence_attestation"
+    ],
+    "format": "CSV",
+    "roles": [
+      "adjudicator_1",
+      "adjudicator_2"
+    ]
+  },
+  "endpoint_cohort_input": {
+    "axis": "exact frozen phase Cartesian product; no missing, duplicate, extra, or reordered row",
+    "exact_columns_ordered": [
+      "class_id",
+      "global_seed",
+      "class_name",
+      "image_path",
+      "image_sha256",
+      "image_pixel_sha256",
+      "width",
+      "height",
+      "mode",
+      "source_pair_identity_sha256",
+      "source_manifest_sha256"
+    ],
+    "format": "CSV"
+  },
+  "final_evaluation_labels": {
+    "blur_component": [
+      "0",
+      "1"
+    ],
+    "compatibility": "exact frozen select_dit_event_rich_blur_classes_v4.py input; blur_component=1 only for final clear_bad",
+    "exact_columns_ordered": [
+      "phase",
+      "global_seed",
+      "class_id",
+      "final_severity",
+      "blur_component"
+    ],
+    "final_severity": [
+      "clean_good",
+      "mild_or_disputed",
+      "clear_bad"
+    ],
+    "format": "CSV"
+  },
+  "hidden_expert_label": {
+    "curation": "two independent expert forms cover all 60; third independent resolver covers exactly curator disagreements",
+    "exact_columns_ordered": [
+      "item_id",
+      "severity",
+      "components",
+      "localization_reason",
+      "expert_role_token",
+      "independence_attestation"
+    ],
+    "format": "CSV"
+  },
+  "hidden_item_index": {
+    "exact_columns_ordered": [
+      "item_id",
+      "class_id",
+      "class_name",
+      "image_path",
+      "image_sha256",
+      "image_pixel_sha256",
+      "width",
+      "height",
+      "mode"
+    ],
+    "exact_rows_per_form": 60,
+    "forbidden": "any label, model score, metric, feature, trajectory, embedding, rank, threshold or alert column",
+    "format": "CSV",
+    "image_contract": "60 unique actual RGB 256x256 endpoint PNGs with byte and pixel hashes"
+  },
+  "production_review_response": {
+    "exact_columns_ordered": [
+      "blind_id",
+      "severity",
+      "components",
+      "localization_reason",
+      "role_slot",
+      "role_token",
+      "independence_attestation"
+    ],
+    "format": "CSV",
+    "roles": [
+      "reviewer_1",
+      "reviewer_2",
+      "reviewer_3"
+    ]
+  },
+  "qualification_response": {
+    "exact_columns_ordered": [
+      "qualification_id",
+      "severity",
+      "components",
+      "localization_reason",
+      "role_slot",
+      "role_token",
+      "independence_attestation"
+    ],
+    "exact_rows_per_role": 60,
+    "format": "CSV",
+    "role_slots": [
+      "reviewer_1",
+      "reviewer_2",
+      "reviewer_3",
+      "adjudicator_1",
+      "adjudicator_2"
+    ]
+  },
+  "visible_anchor_ratification": {
+    "completed_rule": "both distinct expert role tokens independently ratify every frozen proposal; any rejection stops and requires a protocol revision",
+    "exact_columns_ordered": [
+      "anchor_id",
+      "image_sha256",
+      "proposed_severity",
+      "proposed_component_group",
+      "proposed_reason",
+      "decision",
+      "correction_severity",
+      "correction_component_group",
+      "correction_reason",
+      "expert_role_token",
+      "independence_attestation"
+    ],
+    "exact_rows": 20,
+    "format": "CSV"
+  }
+}

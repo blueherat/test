@@ -1,0 +1,38 @@
+{
+  "known_incompatible_existing_locks": [
+    {
+      "path": "experiments/locks/dit_scientific_v4_endpoint_sampling_source_lock_v1",
+      "role": "endpoint_sampler",
+      "sampling_protocol_identity": "acfd7345d350a67f8974396b5799a892263609aa42e19633f2dd68e9fe33e92c",
+      "source_lock_identity": "48924d64b0e24caf02ea2458ef837be843e46dff2fe33731d585e0c91f67ec7d"
+    },
+    {
+      "inner_manifest_identity": "2b1f20e63544da77c8b4de20b84ae6f8e7abfccb172ef72bd3058887a919efa5",
+      "path": "experiments/locks/dit_scientific_v4_review_pipeline_source_lock_v2",
+      "review_contract_identity": "1f3936a0065753633fb42108cd58b5a4335b6464a27af77087db0410c09af528",
+      "role": "review_pipeline",
+      "source_lock_identity": "90b0411415d00fb47be574858c0c292dbe0e61c522aaf9193bda90f721f47084"
+    },
+    {
+      "path": "any artifact bound to scientific v4.1 or v4.2",
+      "role": "dynamic_selector_selftest_or_evaluator"
+    }
+  ],
+  "method_v2_2_identity_sha256": "cc4dc5e7c06c25f4d8567a42fb4f0387097a6296c587543830bfeaa4771f6921",
+  "real_sampling_authorized": false,
+  "reuse_or_manifest_relabeling_forbidden": true,
+  "roles_requiring_new_non_overwriting_binding": [
+    "endpoint_sampler",
+    "review_pipeline",
+    "class_selector_output",
+    "scientific_selftest",
+    "dynamic_B_E_G_and_ablation_pipeline",
+    "primary_and_incremental_evaluator",
+    "schedule_exact_conditional_concordance_diagnostic",
+    "execution_authorization_receipt"
+  ],
+  "schema_version": 1,
+  "status": "ALL_V4_1_OR_V4_2_BOUND_EXECUTION_SOURCES_INCOMPATIBLE_WITH_V4_2_1",
+  "v4_2_1_protocol_identity_sha256": "af65e362cd8c543f898a3dbeb3a7b4478940966b48bfef689db7afdbad8d97d2",
+  "v4_2_protocol_identity_sha256": "03a82123980c63d91029ebeb146240123f5cfae5ca90eff8f8342f203b3b8e9f"
+}

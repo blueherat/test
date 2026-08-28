@@ -1,0 +1,25 @@
+class_id,seed,class_name,semantic_match,artifact_severity,flags,notes,audit_status
+207,0,golden_retriever,yes,1,local_geometry;texture,"eye/face geometry and fine fur transitions are locally irregular",exploratory_nonblind
+207,1,golden_retriever,yes,2,local_geometry;color_artifact,"nose contains an implausible blue-purple patch; eye and muzzle geometry are asymmetric",exploratory_nonblind
+207,2,golden_retriever,yes,2,local_geometry;object_boundary,"glassy misaligned eyes and simplified mouth; hat/fur boundary is unstable",exploratory_nonblind
+207,3,golden_retriever,yes,3,subject_background_entanglement;human_anatomy;object_fusion,"human face and hand are badly deformed; dog mouth and held object merge",exploratory_nonblind
+207,4,golden_retriever,yes,2,limb_geometry;blur,"far legs and hindquarters are poorly resolved and partially fused",exploratory_nonblind
+207,5,golden_retriever,yes,3,multi_subject_fusion;limb_geometry;face_geometry,"two dogs overlap incoherently; lower face and limbs collapse into surrounding texture",exploratory_nonblind
+207,6,golden_retriever,yes,2,local_geometry;object_boundary;text_artifact,"eyes are plastic/uneven; cone-to-head and body-to-floor boundaries are unstable; timestamp-like glyphs are corrupted",exploratory_nonblind
+207,7,golden_retriever,yes,2,limb_geometry;body_geometry,"hindquarters and legs are ambiguous and the body silhouette is anatomically weak",exploratory_nonblind
+388,0,giant_panda,yes,1,local_geometry;object_fusion,"mouth/tongue and foreground contact region blend locally",exploratory_nonblind
+388,1,giant_panda,yes,2,limb_geometry;subject_background_entanglement,"reclining body and paws are difficult to separate from log and vegetation",exploratory_nonblind
+388,2,giant_panda,yes,2,mouth_geometry;limb_geometry,"mouth/teeth are unnaturally human-like and the raised forepaw is malformed",exploratory_nonblind
+388,3,giant_panda,yes,2,face_geometry;subject_background_entanglement,"head and body merge into the tree; muzzle and eye-patch geometry are unstable",exploratory_nonblind
+388,4,giant_panda,yes,2,limb_geometry;subject_background_entanglement,"forepaws become amorphous dark masses and mix with foreground objects",exploratory_nonblind
+388,5,giant_panda,yes,2,limb_geometry;object_fusion,"both forelimbs are poorly articulated and mouth/grass contact is fused",exploratory_nonblind
+388,6,giant_panda,yes,3,face_geometry;body_geometry;subject_background_entanglement,"eyes and muzzle are displaced; body collapses into shadow, log, and foliage",exploratory_nonblind
+388,7,giant_panda,yes,2,limb_geometry;subject_background_entanglement,"forelimbs/paws merge with vegetation and the face is asymmetric",exploratory_nonblind
+949,0,strawberry,yes,2,texture;surface_geometry,"surface holes/ridges are exaggerated and partially liquefied",exploratory_nonblind
+949,1,strawberry,yes,2,object_geometry;multi_subject_fusion,"central fruit has a blocky protrusion and neighboring fruit/leaf boundaries fuse",exploratory_nonblind
+949,2,strawberry,yes,2,multi_subject_fusion;repetition;texture,"many fruits are amorphous or fused and repeat a plastic surface pattern",exploratory_nonblind
+949,3,strawberry,yes,2,multi_subject_fusion;object_geometry,"two main fruits join unnaturally and their attachment/growth geometry is inconsistent",exploratory_nonblind
+949,4,strawberry,yes,3,object_geometry;texture;blur,"foreground fruit is malformed/fused; surfaces are oversharpened while other regions smear",exploratory_nonblind
+949,5,strawberry,yes,2,multi_subject_fusion;object_boundary;blur,"central fruits and leaves have cut/fused boundaries with substantial local blur",exploratory_nonblind
+949,6,strawberry,yes,3,texture;multi_subject_fusion;repetition,"plastic liquefied surface, repeated cavities, and severe fruit-to-fruit fusion",exploratory_nonblind
+949,7,strawberry,yes,2,texture;plant_geometry;object_boundary,"fruit surface and attachments are unstable and leaf/plant anatomy is incoherent",exploratory_nonblind

@@ -1,0 +1,60 @@
+{
+  "PYTHONPATH_empty_and_script_directory_is_frozen_sources": true,
+  "empty_external_cwd": true,
+  "endpoint_label_score_embedding_opened": false,
+  "real_GPU_sampling_run": false,
+  "status": "PASS_CPU_SYNTHETIC_NO_GPU_NO_LABEL_NO_ENDPOINT",
+  "test_count": 6,
+  "tests": [
+    {
+      "arguments": [],
+      "command_basename": "dit_scientific_v4_be_contract.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "34ad7adbc31c8986aa4d190b113b14d2b36d01beceeb439ce439a17558d6cf10"
+    },
+    {
+      "arguments": [],
+      "command_basename": "selftest_dit_scientific_v4_be.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "1cfe529c13b7aa90c73cb4ab808f9235f1cb81892eea3b958eb5ec9398a0e294"
+    },
+    {
+      "arguments": [
+        "--help"
+      ],
+      "command_basename": "sample_dit_scientific_v4_be_traces.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "50307b25a4256275b1be70e87d10e3c079e59e96f7d6ac3c3f6fa76dcfe986aa"
+    },
+    {
+      "arguments": [
+        "--help"
+      ],
+      "command_basename": "calibrate_dit_scientific_v4_be.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "f4234b35434a7537ab347dce19faf7012d1da3bff3201af8911fb4f68685af33"
+    },
+    {
+      "arguments": [
+        "--help"
+      ],
+      "command_basename": "extract_dit_scientific_v4_be_products.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "6d736b548627e44e25eef9d720a60546417f760169ec19b0e699fe5d67ca79f9"
+    },
+    {
+      "arguments": [
+        "--help"
+      ],
+      "command_basename": "evaluate_dit_scientific_v4_be.py",
+      "returncode": 0,
+      "stderr_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "stdout_sha256": "d74cad2091664a16abb8637350652ee13f5e30821da50c1b6efe68585d3724c8"
+    }
+  ]
+}

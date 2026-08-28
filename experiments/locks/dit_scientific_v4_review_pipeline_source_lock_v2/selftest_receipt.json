@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "scientific_labels_or_results_created": false,
+  "status": "PASS",
+  "synthetic_test_only": true,
+  "test_count": 24,
+  "tests": [
+    "frozen_corrected_scientific_v4_identity",
+    "poison_column_B_score",
+    "poison_column_E_metric",
+    "poison_column_trajectory_feature",
+    "poison_column_DINO_embedding",
+    "poison_column_FID",
+    "poison_column_class_rank",
+    "poison_column_label",
+    "exact_axis_accepts_complete_unique_order",
+    "duplicate_row_rejected",
+    "missing_row_rejected",
+    "extra_row_rejected",
+    "strict_csv_schema_accepts_exact",
+    "strict_csv_extra_poison_column_rejected",
+    "five_role_all_pairs_qualification_pass",
+    "qualified_role_map_is_json_order_invariant",
+    "qualification_any_individual_or_pair_failure_stops",
+    "three_of_three_never_downgradable",
+    "single_adjudicator_cannot_downgrade_two_of_three",
+    "dual_unanimous_can_downgrade_two_of_three",
+    "single_adjudicator_cannot_promote_minority_positive",
+    "dual_unanimous_can_promote_minority_positive",
+    "decoy_uses_same_dual_promotion_rule",
+    "severity_two_without_component_rejected"
+  ]
+}

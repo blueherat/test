@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "user_identified_exploratory_candidate_before_path_evidence",
+  "purpose": "Freeze the localized strawberry calyx/body attachment failure before computing any path-evidence trace for this seed.",
+  "baseline": {
+    "experiment": "adm64_guided",
+    "manifest_identity_sha256": "ccd54451fd448652ea8927a0309af3d4a4f757f7847c4c9cb7ac54288f2f20db",
+    "candidate_png_sha256": "6fea07dfe33944db702dd5aa0a37e21b8afd1ac73272f6a2d01438b1b1c70b95",
+    "model_relative_scope": "same weights, classifier guidance, ancestral sampler, resolution, and ImageNet class"
+  },
+  "selection_constraints": {
+    "path_evidence_seen": false,
+    "formal_endpoint": false,
+    "reviewers": 1,
+    "selected_by": "user visual audit",
+    "required_interpretation": "discovery candidate only; relative_bad remains not_evaluated until the frozen two-reviewer protocol is completed"
+  },
+  "matched_seed_blocks": [
+    {
+      "seed": 115,
+      "candidate_class_id": 949,
+      "candidate_reason": "The strawberry is recognizable, but the green calyx is displaced toward the left/back and grows upward beside the fruit instead of attaching coherently to its top; this localized attachment/orientation failure is visibly below the class-949 cohort's usual fruit geometry.",
+      "failure_region_xyxy": [0, 0, 32, 45],
+      "failure_region_note": "Approximate frozen image-space region covering the left/top calyx and its connection to the red fruit; coordinates are for the 64x64 decoded image.",
+      "same_innovation_controls": [207, 388]
+    }
+  ],
+  "provisional_typical_anchors": {
+    "949": [103, 107, 113, 116, 118]
+  },
+  "analysis_rule": "First test whether evidence for class 949 / seed 115 exceeds both same-innovation controls and whether its spatial concentration overlaps the frozen calyx failure region. Do not call this a formal TPR estimate or a confirmed model-relative endpoint."
+}

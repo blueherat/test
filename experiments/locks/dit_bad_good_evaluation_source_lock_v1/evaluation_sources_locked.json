@@ -1,0 +1,44 @@
+{
+  "blind_pack_identity_sha256": "59791e2fe6b319bb312060991efed01e6b1e9d5ad608e8a5b38e77c6f4a241ff",
+  "candidate_protocol_identity_sha256": "198a82a7c8a0ab79d901c76a5c810f4a40889604a66f18e995d0699f73c12bce",
+  "evaluation_command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_dit_bad_good_prospective_confirmation.py",
+    "--candidate-lock",
+    "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+    "--calibration-lock",
+    "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+    "--alerts-root",
+    "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1",
+    "--consensus-lock",
+    "/home/zhoushunyu/eqvae/experiments/annotations/dit_fresh_eval240_adjudicated_consensus_lock_v2",
+    "--output",
+    "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/prospective_confirmation_result_v1"
+  ],
+  "identity_sha256": "23b48d2d6307292147c551c9acd4bad06330ae71cfd39a8fb8a27d86f7a21c3c",
+  "individual_scores_thresholds_alerts_or_labels_read_by_this_freezer": false,
+  "input_lineage": {
+    "alerts_completion_file_sha256": "8b3946940692fefc253114d3d3c9611f722abd6b334440865b930a483ea36e77",
+    "alerts_manifest_file_sha256": "d3ef72ea7f3d10435075abe0cbe3994930f2752ed2165640355a592b6020a743",
+    "alerts_manifest_identity_sha256": "3122250c7fdbf758de140ec6a47d95414fb6beda6688fefae738804e16e7baf2",
+    "calibration_completion_file_sha256": "db40b4cd042852a4c2c99853552e7bfe42de2d7e88f56d267d3f77eaf59295a9",
+    "calibration_identity_sha256": "77c09e844ae510342f7370cbaacbbfb9e7de3378b6efaa6ddfada26c7375b03a",
+    "calibration_manifest_file_sha256": "3866638e8d8da583bcc5b3dfc1ba7689fd32dfa26800c1c19ad849c7e64a84c9",
+    "calibration_manifest_identity_sha256": "37b2bd0f9e5df239a604e4b12caff30a0102dd1315678e26c18f4b01570361c3",
+    "candidate_completion_file_sha256": "d9b799172a5bacab252bd5fb0753f7fc20502487b07d52c5dfc10038f68dc572",
+    "candidate_manifest_file_sha256": "b6557c371fe0e5a8b160bb9c599fa359ce560f0a6c545c610834ae93524b6be5",
+    "candidate_manifest_identity_sha256": "773d564419517bc7eb9b9b75a7677aa08d466c4abe0d0caa90a34c2d49809b7b",
+    "candidate_score_manifest_identity_sha256": "e2f6e53186aceb381961c98a603b68884d66da95cb9f7bfa547ca091cc58e6a3",
+    "unused_receipt_fields_are_intentionally_not_score_values": true
+  },
+  "planned_final_consensus_lock": "/home/zhoushunyu/eqvae/experiments/annotations/dit_fresh_eval240_adjudicated_consensus_lock_v2",
+  "planned_result_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/prospective_confirmation_result_v1",
+  "schema_version": 1,
+  "source_sha256_by_basename": {
+    "evaluate_dit_bad_good_prospective_confirmation.py": "8934c36e5427d4fefbe1312645da742fd52a7d77d2b12ea835b30643b7e58b81",
+    "freeze_dit_bad_good_evaluation_sources.py": "75febf9a72085a58e7d71e1df84809242ae0a9c054201ea71121008aaeaf3b17",
+    "lock_dit_fresh_eval240_adjudicated_consensus.py": "cb35ab5caae03f61042f63e6670bfa178ff81c514e1b0d1463195915e9e71e99",
+    "lock_dit_fresh_eval240_consensus.py": "f3bd9bdf1505be7916e23b4f88170f05c387f7cbfd7ab0a84ea111d696d37f7f"
+  },
+  "status": "FROZEN_BEFORE_FINAL_VISUAL_LABEL_LOCK_OR_ANY_LABEL_SCORE_JOIN"
+}

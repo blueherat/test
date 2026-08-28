@@ -1,0 +1,93 @@
+{
+  "candidate_manifest_file_sha256": "bcbb75bb181c384991e2c2e883dc305f3ece5eadc916bb3157c002266418d399",
+  "candidate_protocol_file_sha256": "4e8784b7acd3234d85572db06a43b129404d8132d747b447529d7ac337bd9756",
+  "candidate_protocol_identity_sha256": "1beb3cbf74018b49b432b24d6d64b0f5f402cc129741bcf471d507666d4a7b34",
+  "commands_in_order": {
+    "apply_calibration_to_evaluation": [
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/apply_dit_bad_good_conformal_thresholds.py",
+      "--candidate-lock",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v4",
+      "--calibration-lock",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+      "--scores-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+      "--output",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1"
+    ],
+    "frozen_candidate_scoring": [
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/score_dit_bad_good_frozen_candidates.py",
+      "--lock-root",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v4",
+      "--primary-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1",
+      "--posterior-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1",
+      "--output",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1"
+    ],
+    "label_free_calibration": [
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/calibrate_dit_bad_good_conformal_thresholds.py",
+      "--candidate-lock",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v4",
+      "--scores-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/frozen_candidate_scores_label_free_v1",
+      "--output",
+      "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1"
+    ],
+    "posterior_feature_extraction": [
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/analyze_dit_posterior_evidence_metrics.py",
+      "--trace-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+      "--trace-glob",
+      "confirmation_v1_seed*",
+      "--expected-classes",
+      "207,602,795",
+      "--expected-seeds",
+      "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+      "--output-dir",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/posterior_label_free_v1"
+    ],
+    "primary_feature_extraction": [
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/analyze_dit_bad_good_custom_traces.py",
+      "--trace-root",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked",
+      "--trace-glob",
+      "confirmation_v1_seed*",
+      "--expected-classes",
+      "207,602,795",
+      "--expected-seeds",
+      "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129",
+      "--output-dir",
+      "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1"
+    ]
+  },
+  "identity_sha256": "c62d75f21cd1909fc9947f9412718e7c31d8720c44a46cc3812559124f4cf30d",
+  "import_contracts": {
+    "applicator_imports_calibrator_sha256": "59d75709df544c219f4d479423bc66ebeddfc30bfac950d5ed3a92ac62d12843",
+    "applicator_imports_scorer_sha256": "55389157cb3c9503c644deda5bc72780d9d9431ba7d3e7e115922f785c9f1386",
+    "calibrator_imports_scorer_sha256": "55389157cb3c9503c644deda5bc72780d9d9431ba7d3e7e115922f785c9f1386",
+    "posterior_imports_primary_analysis_helper_sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129"
+  },
+  "labels_read_or_emitted_by_any_command": false,
+  "schema_version": 1,
+  "source_sha256_by_basename": {
+    "analyze_dit_bad_good_custom_traces.py": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129",
+    "analyze_dit_posterior_evidence_metrics.py": "9e0576146f14ccd433899802dfb1ed97b22b84aacbcf2b84e5d791d74755a695",
+    "apply_dit_bad_good_conformal_thresholds.py": "415a990f8c08ed74793aab0d224c6de0a8f5492fa76eb71447bf9b602916b5cc",
+    "calibrate_dit_bad_good_conformal_thresholds.py": "59d75709df544c219f4d479423bc66ebeddfc30bfac950d5ed3a92ac62d12843",
+    "freeze_dit_bad_good_execution_sources.py": "391d4a9f28a5dd227feb3783fffdd2aa48eae74f146395cf9b73406250db744a",
+    "reproduce_dit_imagenet256.py": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+    "run_dit_bad_good_confirmation_pool.py": "32b994d157744b6317c7a9834211742566164351abcf6dd4a7eda445c8643922",
+    "sample_dit_imagenet256_custom.py": "40a3a29a39f30545298e0d4c86367c87114751f3f7766560a649af91ecfd3e2c",
+    "score_dit_bad_good_frozen_candidates.py": "55389157cb3c9503c644deda5bc72780d9d9431ba7d3e7e115922f785c9f1386",
+    "trace_dit_imagenet256_custom_batch.py": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79"
+  },
+  "status": "FROZEN_BEFORE_ANY_FRESH_SCORE_EXTRACTION_OR_VISUAL_LABEL_JOIN",
+  "trace_glob": "confirmation_v1_seed*",
+  "trace_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_v1_custom_traces_cfg_locked"
+}

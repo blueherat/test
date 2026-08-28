@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "frozen_after_visual_scan_before_path_evidence_or_repair",
+  "purpose": "Engineering discovery set for conspicuous, model-relative blur, fusion, and major limb/object topology failures. This is not a prevalence estimate or a formal evaluation endpoint.",
+  "review_boundary": {
+    "reviewer_count": 1,
+    "independent_second_review_pending": true,
+    "path_evidence_seen": false,
+    "repair_outputs_seen": false,
+    "automatic_quality_scoring_used": false,
+    "selection_rule": "Keep only samples plainly below their same-model, same-class cohort. Exclude mild texture/style/detail defects and coherent samples that are merely imperfect.",
+    "primary_failure_families": [
+      "obvious subject or major-region blur",
+      "fused or duplicated subject structure",
+      "major limb, body-part, or object topology error",
+      "gross attachment or spatial misalignment of major components"
+    ]
+  },
+  "baseline": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+    "sampler": "250-step ancestral DDPM",
+    "cfg_scale": 4.0,
+    "vae": "stabilityai/sd-vae-ft-mse"
+  },
+  "cohorts": [
+    {
+      "name": "official_class207_seed0_29",
+      "class_id": 207,
+      "class_name": "golden retriever",
+      "seeds_inclusive": [0, 29],
+      "count": 30,
+      "review_grid": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/review_class207_seed0_29"
+    },
+    {
+      "name": "targeted_scan_v1_seed10_29",
+      "class_ids": [207, 340, 354, 366, 444, 602, 795, 981],
+      "seeds_inclusive": [10, 29],
+      "count_per_class": 20,
+      "targeted_not_prevalence_representative": true,
+      "review_grid": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_review"
+    }
+  ],
+  "primary_candidates": [
+    {
+      "source_batch": "official_class207_seed0_29",
+      "seed": 2,
+      "class_id": 207,
+      "class_name": "golden retriever",
+      "failure_family": "fused_or_duplicated_subject_topology",
+      "visual_reason": "The main dog has an impossible horizontally protruding duplicate torso/tail-like mass at the left shoulder, with incoherent body and leg topology; it is plainly worse than the 30-image class cohort.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/official_demo_seed2/images/00_class0207.png",
+      "run_identity_sha256": "9bfb3436c47080eb22c160252a0a0fa2b09adcb707c6aefd9ced0c74e77059b8",
+      "png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+      "pixel_sha256": "0e6e3c3cd65e1c66fbd838f0e5829e86247c0b867840c86fe3d2804499c3065b",
+      "priority": 1,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    },
+    {
+      "source_batch": "targeted_scan_v1_seed10_29",
+      "seed": 26,
+      "class_id": 207,
+      "class_name": "golden retriever",
+      "failure_family": "obvious_subject_blur",
+      "visual_reason": "The entire dog face is strongly smeared and low-detail relative to the other 19 class-207 samples, while the intended subject and composition remain simple.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed26/images/00_class0207.png",
+      "run_identity_sha256": "87b0fd8a2d3c393436318ec3e9147b8fc137f6ea1f179af6c5854aec7722a880",
+      "png_sha256": "7968ede692e687bee86ae18d60af8670d806b342038609cb586a9a528bd3e12b",
+      "pixel_sha256": "12ded78d11bc43f8dc4cc92e871c44a45a5b2e8ca458e130451fb139c2237274",
+      "priority": 2,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    },
+    {
+      "source_batch": "targeted_scan_v1_seed10_29",
+      "seed": 16,
+      "class_id": 340,
+      "class_name": "zebra",
+      "failure_family": "fused_head_part_topology",
+      "visual_reason": "A large looped striped structure is fused into the top/back of the zebra head instead of forming a coherent ear, mane, or second animal; the body is otherwise simple, making the topology failure conspicuous within the cohort.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed16/images/01_class0340.png",
+      "run_identity_sha256": "de3ad0a074809a6053446af6602547c5f122bb3ff432d4acc93fab3dd8f0dc7d",
+      "png_sha256": "285ec9693df7333c80216098f13940ec4e4e25909210f2520b01d019cb030a6c",
+      "pixel_sha256": "b4b6266883e5dac1807ee471f9d0529db25d7252ec7ca92e2a71150e95b72a3e",
+      "priority": 3,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    },
+    {
+      "source_batch": "targeted_scan_v1_seed10_29",
+      "seed": 12,
+      "class_id": 602,
+      "class_name": "horizontal bar",
+      "failure_family": "major_limb_and_apparatus_misalignment",
+      "visual_reason": "The gymnast's lower body collapses into an incoherent blue limb/garment mass while the arms and bar relation are anatomically inconsistent; this is a major topology failure rather than a small hand defect.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed12/images/05_class0602.png",
+      "run_identity_sha256": "d77817446f26ad6d3bfb0ac794e6ba7fe9e039e8b1272cea63af766951a78fd1",
+      "png_sha256": "8b70a1d8a11fecfe6e71d884c6050e4ec8a1ab9250127022a21f7ce59ec6bf5d",
+      "pixel_sha256": "5a07abdb82d282cce5558e1e5f2f7512d74ad84e520ecf7634a9672538255a7a",
+      "priority": 4,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    },
+    {
+      "source_batch": "targeted_scan_v1_seed10_29",
+      "seed": 29,
+      "class_id": 354,
+      "class_name": "Arabian camel",
+      "failure_family": "obvious_full_scene_blur",
+      "visual_reason": "Both camels and their boundaries are heavily smeared compared with the other 19 class-354 samples; the scene remains semantically simple enough for a suffix-repair test.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed29/images/02_class0354.png",
+      "run_identity_sha256": "18ceab02884413871efc9dab8ff94a09bd92e913ae2b84b180f6296b02bd02e9",
+      "png_sha256": "1380eb7fad6049907a4d7752ba0238ef9e86236a9cd77b49c89b2998131c75c0",
+      "pixel_sha256": "26a72d63cff6ea5328b569f0be1b08091569129abcb9d205942398e575f4a2c3",
+      "priority": 5,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    },
+    {
+      "source_batch": "targeted_scan_v1_seed10_29",
+      "seed": 22,
+      "class_id": 795,
+      "class_name": "ski",
+      "failure_family": "obvious_object_blur",
+      "visual_reason": "The paired ski/binding objects are globally smeared and lack stable boundaries, visibly below most of the 20-image class cohort; class semantics are retained but rendering quality fails.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed22/images/06_class0795.png",
+      "run_identity_sha256": "97700c225ca663506039af8901fb5ae87f61f5325ca6197b710c5bbc1794ccb4",
+      "png_sha256": "ef3cc87ffa592627325a6e776d81aab27adf1818fb6ec24c385bcdd667878baa",
+      "pixel_sha256": "3458062422177d280e3bb2fe909fe5d2df44a7d699c21d81aedc872c6a3d7cc1",
+      "priority": 6,
+      "repairability_gate": "pending_same_prefix_semantic_preservation_test"
+    }
+  ],
+  "secondary_or_ambiguous": [
+    {
+      "seed": 11,
+      "class_id": 354,
+      "reason_not_primary": "Camel body/leg structure is suspicious, but crop and occlusion make the anatomical error less unambiguous than the primary set.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed11/images/02_class0354.png"
+    },
+    {
+      "seed": 15,
+      "class_id": 795,
+      "reason_not_primary": "Severe blur is clear, but it duplicates the same product-shot failure family as class-795 seed22 and is retained as a within-family comparison rather than another primary target.",
+      "path": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256/targeted_scan_v1_seed15/images/06_class0795.png"
+    }
+  ],
+  "classes_with_no_forced_primary_candidate": [366, 444, 981],
+  "next_gate": "Run path evidence without seeing repair attempts, then test same-prefix suffix repair only when evidence localizes before the visible defect becomes terminal. A visually better output that changes object count, subject identity, main pose, or composition does not pass."
+}

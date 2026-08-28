@@ -1,0 +1,113 @@
+{
+  "visual_only_adjudication": true,
+  "metrics_seen": false,
+  "candidate_scores_seen": false,
+  "calibration_thresholds_seen": false,
+  "alert_decisions_seen": false,
+  "trajectories_seen": false,
+  "other_samples_promoted": false,
+  "blind_pack_identity_sha256": "44ea283e2c3a7cae8263a803bb105bac03e85fc6f8878bf0c112789603128ad4",
+  "adjudication_scope": "raw_majority_clear_bad_only",
+  "decisions": {
+    "class0207_seed131": {
+      "decision": "retain_clear_bad",
+      "reason": "The native endpoint is conspicuously soft across the dog's face, coat, torso, and boundary against the scene; this is material whole-subject blur rather than a small texture imperfection."
+    },
+    "class0207_seed134": {
+      "decision": "retain_clear_bad",
+      "reason": "The dog's lower face, chest, and crossed forelimb region are broadly smeared, and the forelimb loses a stable attachment and boundary; the degradation is obvious at native resolution."
+    },
+    "class0207_seed200": {
+      "decision": "downgrade_to_mild",
+      "reason": "The puppy's eyes, muzzle, ears, and coat boundary remain coherent and reasonably resolved; mild softness does not place this endpoint clearly below the model's ordinary output level."
+    },
+    "class0207_seed201": {
+      "decision": "retain_clear_bad",
+      "reason": "Although the face is readable, the reclining dog's lower torso and forelimb/paw regions are conspicuously smeared and fused into incompatible soft shapes, producing a material structure-and-blur failure."
+    },
+    "class0207_seed205": {
+      "decision": "downgrade_to_mild",
+      "reason": "The close portrait has stable eyes, muzzle, ears, and coat structure; its modest softness is compatible with an ordinary generated portrait and is not a clear failure."
+    },
+    "class0207_seed208": {
+      "decision": "retain_clear_bad",
+      "reason": "The entire reclining body, legs, and contact with the floor are strongly smeared, with only the face retaining a rough outline; the whole-subject loss of structure is conspicuous."
+    },
+    "class0207_seed212": {
+      "decision": "retain_clear_bad",
+      "reason": "The seated puppy is visibly low-resolution and smeared across the face, chest, forelegs, paws, and silhouette; this is a broad material degradation, not isolated fur softness."
+    },
+    "class0207_seed222": {
+      "decision": "downgrade_to_mild",
+      "reason": "The profile, eye, muzzle, mouth, ear, collar, and coat boundary are all coherent; slight smoothing is not severe enough for the strict clear-bad set."
+    },
+    "class0207_seed244": {
+      "decision": "downgrade_to_mild",
+      "reason": "The face and coat in this close portrait are structurally coherent and substantially sharper than the truly blurred endpoints; no conspicuous failure remains after native-resolution review."
+    },
+    "class0602_seed183": {
+      "decision": "downgrade_to_mild",
+      "reason": "The inverted athlete has two plausibly attached arms and a coherent hanging pose; the small face is soft, but there is no unambiguous duplication, fusion, or major global blur."
+    },
+    "class0602_seed239": {
+      "decision": "retain_clear_bad",
+      "reason": "The inverted gymnast's head, shoulders, hands, and apparatus-contact region collapse into a single indistinct grey mass with incompatible attachment cues; this is a conspicuous local fusion and blur failure."
+    },
+    "class0795_seed133": {
+      "decision": "downgrade_to_mild",
+      "reason": "The ski tip, edges, binding, and central rail remain readable; mild product-image softness is not an obvious below-average structural failure."
+    },
+    "class0795_seed142": {
+      "decision": "retain_clear_bad",
+      "reason": "Both skis and their bindings are severely smeared along almost their full visible length, with repeated mechanical details reduced to unstable blobs; the global object blur is unmistakable."
+    },
+    "class0795_seed151": {
+      "decision": "downgrade_to_mild",
+      "reason": "The long ski retains a stable silhouette, straight edges, binding layout, and recognizable internal parts; softness alone is not severe enough for clear bad."
+    },
+    "class0795_seed153": {
+      "decision": "retain_clear_bad",
+      "reason": "The large close-up binding and ski surface are strongly out of focus across nearly every informative edge, despite occupying most of the frame; the material loss of object detail is conspicuous."
+    },
+    "class0795_seed162": {
+      "decision": "downgrade_to_mild",
+      "reason": "The ski remains straight and coherent with a readable binding and central structure; its modest softness does not constitute an obvious failure."
+    },
+    "class0795_seed181": {
+      "decision": "retain_clear_bad",
+      "reason": "The paired skis and bindings are heavily smeared from end to end, and their repeated mechanical structures lack stable boundaries; this is clear whole-object blur."
+    },
+    "class0795_seed186": {
+      "decision": "downgrade_to_mild",
+      "reason": "The ski and binding have a coherent silhouette and recognizable parts; their slightly soft rendering is within ordinary product-image variation."
+    },
+    "class0795_seed223": {
+      "decision": "downgrade_to_mild",
+      "reason": "The large binding remains mechanically coherent with distinct black, white, and orange components; the endpoint is soft but not unambiguously failed."
+    },
+    "class0795_seed224": {
+      "decision": "downgrade_to_mild",
+      "reason": "The ski tip, red binding, shaft, and printed details are consistently attached and readable; no gross blur or topology error is evident."
+    },
+    "class0795_seed241": {
+      "decision": "downgrade_to_mild",
+      "reason": "The ski and binding retain a stable overall layout and multiple distinct mechanical features; moderate softness is insufficient for the strict clear-bad category."
+    },
+    "class0795_seed242": {
+      "decision": "downgrade_to_mild",
+      "reason": "The red binding and adjacent ski structure remain coherent and sharply separated enough to read; this is not an obvious material failure."
+    },
+    "class0795_seed243": {
+      "decision": "downgrade_to_mild",
+      "reason": "The close binding has a coherent symmetric shape, stable attachment, and distinct internal black-and-white parts; ordinary softness is not clear bad."
+    },
+    "class0795_seed244": {
+      "decision": "downgrade_to_mild",
+      "reason": "The skiers are small in frame, so fine detail is naturally limited, but their bodies and equipment remain plausible; scale-related softness is not a conspicuous failure."
+    },
+    "class0795_seed246": {
+      "decision": "downgrade_to_mild",
+      "reason": "The distant skier has a readable body, skis, poles, and snow contact; softness at this subject scale does not clearly fall below the model's ordinary level."
+    }
+  }
+}

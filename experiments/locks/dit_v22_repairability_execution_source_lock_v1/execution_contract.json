@@ -1,0 +1,668 @@
+{
+  "claim_limits": "exploratory predictive effect-modification screen only: suffix noise is randomized within a path, but E group membership is observational and is not a causal treatment; positive results must be frozen and replicated on disjoint fresh paths",
+  "decision_and_rollback_timing": {
+    "baseline_replay_attempt": 0,
+    "decision_time": "after the sampling-step149 transition has been observed, so the complete frozen E running maximum through that innovation and the ninth-draft B persistence are both available; then restore the saved state_before at step109 or step149",
+    "fresh_attempts_per_path_and_step": 4,
+    "fresh_suffixes_ranked_or_selected": false,
+    "online_requirement": "a deployable sampler must retain the relevant checkpoint state; it cannot claim to know the full E alarm before observing the step149 innovation",
+    "retry_loop": false,
+    "rollback_meaning": {
+      "109": "start-informed deeper rollback: state before the delta1 start transition",
+      "149": "shallow rollback: restore the saved state before the ninth-checkpoint transition"
+    },
+    "rollback_sampling_steps": [
+      109,
+      149
+    ],
+    "sampler": "frozen official DiT-XL/2 250-step ancestral DDPM, CFG=4",
+    "termination": "every branch runs exactly once to t=0"
+  },
+  "forbidden_execution_inputs": [
+    "endpoint pixels",
+    "old or new visual labels",
+    "FID or batch endpoint metrics",
+    "Inception, DINO, CLIP, or other endpoint representations",
+    "best-of-N quality ranking"
+  ],
+  "identity_sha256": "e5a585dd2a4c850a9543192d8dac69c3d9aebfa41171263e377f515e5c8e52bf",
+  "input_traces": [
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "9ff142db35ed49104ba86056db801f27eeebc68d5d40c4e0c6322617f4838fb4",
+      "global_seed": 507,
+      "manifest_file_sha256": "a0a23cfd4b624f61486318ee44b8263eb60481024795baa4e57a2b097fabb253",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed507",
+      "trace_identity_sha256": "bbdeb42ebf550111b1833d875073eecc59663aaa58cade138518afa929b0094d",
+      "trace_npz_sha256": "b3f108fde8c785d8395794fc9c34987f252364eadea00969d5e0cf66ac35b04d"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "cbfec1b9557bd6b67e124656c13f0ea38e8093afa13edb3ffd4263ea2ccf8a34",
+      "global_seed": 619,
+      "manifest_file_sha256": "7dfbd1992750f25579343d585714797eea1bdef2d62c3ad406816b6d3a16aed2",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed619",
+      "trace_identity_sha256": "b4c6c07daf9f3ac9f709df6ffef1f6ee768ae068ab7c0408208d31a76ef64e45",
+      "trace_npz_sha256": "d3e14e91648f3e0865ebed2e005fe0e67cb32893f937e6d772a57147770e00e8"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "2c1d0cbbef99abfe81ab4919209c035a17e3cdde5735a9b75678453dfae2fb72",
+      "global_seed": 741,
+      "manifest_file_sha256": "ede97905a8391532820e29e48a49bbfce755b2eee8d6cf4eb969af55b9abb918",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed741",
+      "trace_identity_sha256": "0f431c45fb60e4b382edd7d752c7a0e72706ef941ccbcff8432b2586bedd9830",
+      "trace_npz_sha256": "eefde3216beb0d95bb4f9e569dbf8e5ec3a640042c86020f7f338426c83be4f5"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "3bfb0912b5c7e30272cace0cb9f94fd1924e45c0abcb43a013fd39c6eac9eb95",
+      "global_seed": 476,
+      "manifest_file_sha256": "3583135bd343f3cd033890aad306eb22b3059a70fc75ca4c2f09bdee51b24e7f",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed476",
+      "trace_identity_sha256": "ba9cf172324d23eaf1419e9db30072293e0ed41c99ef116c05aa5978248a8254",
+      "trace_npz_sha256": "203a99aa0f073d47c2299ba6723de4ae917055e307609986fa07511e44973cdd"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "aeabd295bb5c6215bbbfe1139a7e59b98b9bb126a1ff6e7ff825be743b50d255",
+      "global_seed": 519,
+      "manifest_file_sha256": "cc871512ed538aaee81517af2a5ed6289c45d8adc89221ccd453458e69ce63a3",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed519",
+      "trace_identity_sha256": "ed109a12076d1307bb60224cd36e9591446657591b7465ec08bcc96ddf848365",
+      "trace_npz_sha256": "17d31752eb9a212b3281228378f451df2af46dad9f3af2bdd13f84ce5fb24ece"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "a510b329da542f5f0a232b73d2e606de392f62654e67b699a9f6c5e91b4a36ea",
+      "global_seed": 529,
+      "manifest_file_sha256": "b5e5787029370cfd30fadfe2477eb7cf7c2eca12ea894d33d9f5d39ba2f0da49",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed529",
+      "trace_identity_sha256": "578ab8265cc88c3451a093159950fb14cee00261ce94b6d0d50f8230be2830e4",
+      "trace_npz_sha256": "f2a159e4be7ad35cc2dea8e467722e74fc2e68501d371a35275fd78bc939a7d6"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "06bc3c129e594c12ff3dded58c08a35762af3d8ac3f1b7ff28d42f993999e8c6",
+      "global_seed": 814,
+      "manifest_file_sha256": "41682df2e8eb56fb18fd72f2253ebaeceb66d722888e87a6db8af5c545feb5c2",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed814",
+      "trace_identity_sha256": "9b18b074c4de5e8cfe2af5738c30cc4e2e13a22e911abd036062669f4f665036",
+      "trace_npz_sha256": "b9098520f391c46395f0b4feb0e0a89171c8d2e18d891a0a53d0df973dd3a57f"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "2cf17f92faadc0cfb6405cb5e43f413c33a14069429fbee70935ab28fb2f0405",
+      "global_seed": 831,
+      "manifest_file_sha256": "dc5770de6a960fc1db6c422568ba940fbfb2b75a31b9d67e2ea385d5b8431891",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed831",
+      "trace_identity_sha256": "ca0ee367e850b61a27997cc0ebb715a8f62fcac7d9ce026a352f4491bfac6779",
+      "trace_npz_sha256": "ca64e3e16beb54abc0d6ad22a2999b0674ad1ac4149b19519142bbf272212a71"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "f658f0a1603fee49d7d79ed45b7ccb5f463e35892dafd7464099856b7eda9363",
+      "global_seed": 322,
+      "manifest_file_sha256": "4d8ff82a73208aac48325327ea70d23ca59106011e29782223b0815a26b2cac2",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed322",
+      "trace_identity_sha256": "2e3e79f4daed8887ed1580d3d4a8481e69db2e251b84513a093d73fbdd48596c",
+      "trace_npz_sha256": "120fdd510b8e5113c4f52949d6c6051ee16b74ba3d2c1896f7a01643859725ea"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "c0ea10e47c2fd70880d4ccd537cea64a6995ba1041dab5e114a9d6e82cb954bd",
+      "global_seed": 559,
+      "manifest_file_sha256": "692f82a05e8e76cb178ec31447f24bdea0645dc156b23615b8e6d83b587b4657",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed559",
+      "trace_identity_sha256": "4f3d2526481ceb860875de88e49e8723d62747fa9ba869fe2b91fdc8cad49491",
+      "trace_npz_sha256": "4aea785c2d3bd6d518b73eca111ce0929637cb986424a921589b4b64b050f3b9"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "completion_file_sha256": "354b34efa8b2a1100aaca646a9dbd71ee1481585cb1eb739677d7631313c4629",
+      "global_seed": 771,
+      "manifest_file_sha256": "b38c3f9cd9132bff9d643845df86210947a770a484bc484b9068cf96ccf3cc43",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed771",
+      "trace_identity_sha256": "e790ac0f6312c928a9e8938719d46d37d95fc5fa0f5f6c117019ef8178972376",
+      "trace_npz_sha256": "44b8d7e05a066f5dadb0a450bbd5294672be81e9352dde7eda942ea373d8f72f"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "224f19ed0b47280c45aeeaa8cc50f6de89adb03c570dcfa2442ee21d94a4562c",
+      "global_seed": 324,
+      "manifest_file_sha256": "3180c14f4cb4ddf4808d1d6b93e5cd016782636fbeb87b8429138c1bc795dc65",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed324",
+      "trace_identity_sha256": "6bfa92963c8095c1d5ca4aacee132bc6030870df0bb868a3eadd6b5a36f28fc4",
+      "trace_npz_sha256": "338299107c1b53060c433ff3f869e00e8b6b3ab5a3367f460d2b6df50f1ddb37"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "346a7d0f17d356d5cdd0e5fcd9adcd59f0444fc03f338d2f122dda0321b2e3af",
+      "global_seed": 696,
+      "manifest_file_sha256": "91d1b8a56d25521ada8af932db5756923eca29930be3163462400be3a7f2cd4a",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed696",
+      "trace_identity_sha256": "002ec5f7cf5b8a05db81d180a2a808f4b403b0c445b2ec959ac5c87d1627d9cc",
+      "trace_npz_sha256": "7a2fb6008b13673357b177e6f8c021d51d2f56fdda14e1704ec815c1d7337119"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "a4e79ee8e19d0f25fe6c8499969b8340be740e585cc961dfd2610c042e8ef339",
+      "global_seed": 826,
+      "manifest_file_sha256": "4240c89fee42befef586127864617f0dc10ef8db04fd047742ec30ee060b2ef6",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed826",
+      "trace_identity_sha256": "bfdad56a0f38a7758dd8e2a65c07cf830b7423a52772d1cb92298a00261e2e85",
+      "trace_npz_sha256": "e15c3173fda62c84b744273b4174a969946c331539b5d9c3f718638933aeb8fa"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "0166504e2aefa4a6b212103a78808cf097791445cfbc99dcce4bae21fb58de24",
+      "global_seed": 527,
+      "manifest_file_sha256": "2bbb5361ae00b107f8b27ff7326992309c105f473272229d49354eafbc3e775b",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed527",
+      "trace_identity_sha256": "607c5841a3641504da29bedb0f840440c538ea891626c0c8e415ab4fd473a431",
+      "trace_npz_sha256": "0beb43bd016634139f9bd1506a1a59c7a460b853bc3be764dd54163d64626212"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "completion_file_sha256": "0d7407b18bfd74503111aac62186e125ea844da55c5811b4ad9b55709cdec8bf",
+      "global_seed": 296,
+      "manifest_file_sha256": "5d479bd0c8f5e51157fa9b56d93f39c7bf46dacbcdf8fe37ae501c9bc4a24b2e",
+      "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed296",
+      "trace_identity_sha256": "84fd68e2b65162e800db5f1d9b619616bd9a4922096a2fb1c39ecb0b23d8a979",
+      "trace_npz_sha256": "88f68626e4c4994609330f79942b751bf3edb9914ea7d1752565d3476ca7d98e"
+    }
+  ],
+  "jobs": [
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 507,
+      "job_index": 0,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair00_joint_seed507_class207_step109",
+      "pair_index": 0,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed507"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 507,
+      "job_index": 1,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair00_joint_seed507_class207_step149",
+      "pair_index": 0,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed507"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 619,
+      "job_index": 2,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair01_joint_seed619_class207_step109",
+      "pair_index": 1,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed619"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 619,
+      "job_index": 3,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair01_joint_seed619_class207_step149",
+      "pair_index": 1,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed619"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 741,
+      "job_index": 4,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair02_joint_seed741_class207_step109",
+      "pair_index": 2,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed741"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 741,
+      "job_index": 5,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair02_joint_seed741_class207_step149",
+      "pair_index": 2,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed741"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 476,
+      "job_index": 6,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair03_joint_seed476_class795_step109",
+      "pair_index": 3,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed476"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 476,
+      "job_index": 7,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair03_joint_seed476_class795_step149",
+      "pair_index": 3,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed476"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 519,
+      "job_index": 8,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair04_joint_seed519_class795_step109",
+      "pair_index": 4,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed519"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 519,
+      "job_index": 9,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair04_joint_seed519_class795_step149",
+      "pair_index": 4,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed519"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 529,
+      "job_index": 10,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair05_joint_seed529_class795_step109",
+      "pair_index": 5,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed529"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 529,
+      "job_index": 11,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair05_joint_seed529_class795_step149",
+      "pair_index": 5,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed529"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 814,
+      "job_index": 12,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair06_joint_seed814_class795_step109",
+      "pair_index": 6,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed814"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 814,
+      "job_index": 13,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair06_joint_seed814_class795_step149",
+      "pair_index": 6,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed814"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 831,
+      "job_index": 14,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair07_joint_seed831_class795_step109",
+      "pair_index": 7,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed831"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 831,
+      "job_index": 15,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair07_joint_seed831_class795_step149",
+      "pair_index": 7,
+      "role": "joint_E_and_B",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed831"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 322,
+      "job_index": 16,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair00_bonly_seed322_class207_step109",
+      "pair_index": 0,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed322"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 322,
+      "job_index": 17,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair00_bonly_seed322_class207_step149",
+      "pair_index": 0,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed322"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 559,
+      "job_index": 18,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair01_bonly_seed559_class207_step109",
+      "pair_index": 1,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed559"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 559,
+      "job_index": 19,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair01_bonly_seed559_class207_step149",
+      "pair_index": 1,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed559"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 771,
+      "job_index": 20,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair02_bonly_seed771_class207_step109",
+      "pair_index": 2,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed771"
+    },
+    {
+      "class_id": 207,
+      "class_slot": 0,
+      "global_seed": 771,
+      "job_index": 21,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair02_bonly_seed771_class207_step149",
+      "pair_index": 2,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed771"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 324,
+      "job_index": 22,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair03_bonly_seed324_class795_step109",
+      "pair_index": 3,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed324"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 324,
+      "job_index": 23,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair03_bonly_seed324_class795_step149",
+      "pair_index": 3,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed324"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 696,
+      "job_index": 24,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair04_bonly_seed696_class795_step109",
+      "pair_index": 4,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed696"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 696,
+      "job_index": 25,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair04_bonly_seed696_class795_step149",
+      "pair_index": 4,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed696"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 826,
+      "job_index": 26,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair05_bonly_seed826_class795_step109",
+      "pair_index": 5,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed826"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 826,
+      "job_index": 27,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair05_bonly_seed826_class795_step149",
+      "pair_index": 5,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed826"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 527,
+      "job_index": 28,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair06_bonly_seed527_class795_step109",
+      "pair_index": 6,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed527"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 527,
+      "job_index": 29,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair06_bonly_seed527_class795_step149",
+      "pair_index": 6,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed527"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 296,
+      "job_index": 30,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair07_bonly_seed296_class795_step109",
+      "pair_index": 7,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 109,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed296"
+    },
+    {
+      "class_id": 795,
+      "class_slot": 2,
+      "global_seed": 296,
+      "job_index": 31,
+      "outdir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs/pair07_bonly_seed296_class795_step149",
+      "pair_index": 7,
+      "role": "B_only_exact_schedule_B_matched_control",
+      "rollback_sampling_step": 149,
+      "trace_dir": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_custom_traces_cfg_locked/third_pool_v1_seed296"
+    }
+  ],
+  "lineage": {
+    "checkpoint": {
+      "bytes": 2700611775,
+      "filename": "DiT-XL-2-256x256.pt",
+      "path": "/data/users/zhoushunyu/eqvae/baselines/DiT/pretrained_models/DiT-XL-2-256x256.pt",
+      "sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+      "url": "https://dl.fbaipublicfiles.com/DiT/models/DiT-XL-2-256x256.pt"
+    },
+    "dit_source": {
+      "allowed_untracked_checkpoint": "pretrained_models/DiT-XL-2-256x256.pt",
+      "commit_tree": "db610f6412cf70fdb6c5b2ffb46c362dd74c6bcf",
+      "pinned_source_sha256": {
+        "diffusion/__init__.py": "0128da38ee27ab91b78458809f9c50d188d7377b60cc73d3ee777bca8029425d",
+        "diffusion/gaussian_diffusion.py": "d7d095d98ff4666e565d0a854790992e24cc09a4ac75e8eaae9a4ee186a8887b",
+        "diffusion/respace.py": "9dde1492dd9d03e47caa12c7a7293dd7a5af1a79f3ddb0629f1692d97c856903",
+        "download.py": "f9ea211a0fa8f5ad18e3b3059dbcad38d8e6598a308bc0de744758bcb649a857",
+        "models.py": "1b8031a1340a3d1045c0bdb382334068f5f20e32edf67b3e6aba961ba91846ca",
+        "sample.py": "e82038ecd6d6303208b6a9940705f9c3cd49219f5d76e2caa8d07813d086e2dc"
+      },
+      "revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+      "root": "/data/users/zhoushunyu/eqvae/baselines/DiT",
+      "tracked_and_index_clean": true,
+      "tracked_file_count": 18,
+      "url": "https://github.com/facebookresearch/DiT",
+      "working_tracked_tree_sha256": "0d3dcc2c656a6e5400b8e53360fc2354eda63ea624a6c467ac71a6129c4225e3"
+    },
+    "vae_snapshot": {
+      "files": [
+        {
+          "bytes": 547,
+          "name": "config.json",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/config.json",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/0db26717579be63eb0ddbf15b43faa43700dfe5a",
+          "sha256": "92d3dfb746fca211a2c9e019e285f8597412211728dce3c5bcf4eda0f2d62e7e"
+        },
+        {
+          "bytes": 334643276,
+          "name": "diffusion_pytorch_model.safetensors",
+          "path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/diffusion_pytorch_model.safetensors",
+          "resolved_path": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+        }
+      ],
+      "kind": "mse",
+      "model_id": "stabilityai/sd-vae-ft-mse",
+      "offline_only": true,
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "snapshot": "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493"
+    }
+  },
+  "mechanics_smoke": {
+    "completion_file_sha256": "365d1503c2a1dc8baad27d3113b93829e35cd83132bb70d2fd0a870f59d65bc7",
+    "endpoint_pixels_or_quality_opened": false,
+    "manifest_file_sha256": "7ebd52bd15a967f8e3194afc7d75e0ad7c4306a9d6251460cbeb101b031632cd",
+    "manifest_identity_sha256": "b3c16f95be6eafd6b12360414b755b47a28aaeb789098744b5f295bbac3ea0a6",
+    "mechanical_validation_only": true,
+    "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_mechanics_smoke_v2_seed507_step149"
+  },
+  "output_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_v22_repairability_pilot_v1_2_outputs",
+  "output_root_absent_at_freeze": true,
+  "runner_contract": {
+    "branch_count_including_exact_replay": 5,
+    "fresh_attempts": 4,
+    "rng_namespace": "eqvae-dit-v22-custom-trace-suffix-v1",
+    "rollback_steps": [
+      109,
+      149
+    ],
+    "runner": "intervene_dit_v22_custom_trace_suffix"
+  },
+  "schema_version": 1,
+  "scientific_scope": {
+    "all_fresh_attempts_retained": true,
+    "attempt_ranking_or_best_of_n": false,
+    "exploratory_only": true,
+    "external_quality_inputs_used_by_execution": false,
+    "intervention_or_deployment_authority": false,
+    "question": "Conditional on the frozen internal B alarm, does the frozen E>=10 event predict successful single-shot suffix repair rather than visual severity?"
+  },
+  "selection_lock": {
+    "manifest_identity_sha256": "16acd0bffda207ed73ef78a62909e53997bef68baae66cdffedede1bb207fbd0",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_v22_repairability_pilot_lock_v1_2",
+    "protocol_identity_sha256": "f39c5a8bfbbc129d6e80ca5e38a07dfd886c6c41faff15337042127e78b3ae77"
+  },
+  "source_records": [
+    {
+      "bytes": 69877,
+      "name": "sources/intervene_dit_v22_custom_trace_suffix.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/intervene_dit_v22_custom_trace_suffix.py",
+      "sha256": "7f4b90d55f1a1fea5de192b7a70b73cb54fdc355f4f2b15e6d78647e089cee49"
+    },
+    {
+      "bytes": 43118,
+      "name": "sources/reproduce_dit_imagenet256.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/reproduce_dit_imagenet256.py",
+      "sha256": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746"
+    },
+    {
+      "bytes": 37916,
+      "name": "sources/sample_dit_imagenet256_custom.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/sample_dit_imagenet256_custom.py",
+      "sha256": "40a3a29a39f30545298e0d4c86367c87114751f3f7766560a649af91ecfd3e2c"
+    },
+    {
+      "bytes": 48113,
+      "name": "sources/trace_dit_imagenet256_custom_batch.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/trace_dit_imagenet256_custom_batch.py",
+      "sha256": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79"
+    },
+    {
+      "bytes": 13666,
+      "name": "sources/freeze_dit_v22_repairability_execution_sources.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/freeze_dit_v22_repairability_execution_sources.py",
+      "sha256": "0c2fe779ef5101e1c1a78e04fe3b28f8584ae6a9661b1f61ee80692ec58777ff"
+    },
+    {
+      "bytes": 8423,
+      "name": "sources/run_dit_v22_repairability_pilot_shard.py",
+      "origin": "/home/zhoushunyu/eqvae/experiments/run_dit_v22_repairability_pilot_shard.py",
+      "sha256": "67876679698bc607ca9cb4488d7becf0649d04fa03213323a6236ca2fccb38a7"
+    }
+  ],
+  "status": "EXECUTION_READY_RETROSPECTIVE_EXPLORATORY_ONLY"
+}

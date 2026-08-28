@@ -1,0 +1,44 @@
+{
+  "status": "all_frozen_source_selftests_passed_without_GPU_or_real_data",
+  "tests": [
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/locks/.dit_event_rich_dynamic_confirmation_source_lock_v2.tmp-j668tign/sources/dit_event_rich_dynamic_contract.py"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "self-test passed: RNG, single-score schemas, and external-metric poisons\n"
+    },
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/locks/.dit_event_rich_dynamic_confirmation_source_lock_v2.tmp-j668tign/sources/sample_dit_event_rich_dynamic_traces.py",
+        "self-test"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "self-test passed: dynamic minimum-trace axes and poison rejection; no GPU\n"
+    },
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/locks/.dit_event_rich_dynamic_confirmation_source_lock_v2.tmp-j668tign/sources/extract_dit_event_rich_candidate_product.py",
+        "--self-test"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "self-test passed: exact B/C formulas and single-column no-label products\n"
+    },
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/locks/.dit_event_rich_dynamic_confirmation_source_lock_v2.tmp-j668tign/sources/evaluate_dit_event_rich_dynamic_confirmation.py",
+        "self-test"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "self-test passed: separate gates, directional AUC, shared block permutation, Holm p=1, fixed thresholds, and score/external poisons\n"
+    }
+  ]
+}

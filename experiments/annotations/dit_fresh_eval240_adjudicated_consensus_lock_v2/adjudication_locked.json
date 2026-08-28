@@ -1,0 +1,53 @@
+{
+  "visual_only_adjudication": true,
+  "metrics_seen": false,
+  "candidate_scores_seen": false,
+  "calibration_thresholds_seen": false,
+  "alert_decisions_seen": false,
+  "trajectories_seen": false,
+  "other_samples_promoted": false,
+  "blind_pack_identity_sha256": "59791e2fe6b319bb312060991efed01e6b1e9d5ad608e8a5b38e77c6f4a241ff",
+  "adjudication_scope": "raw_majority_clear_bad_only",
+  "decisions": {
+    "class0207_seed100": {
+      "decision": "retain_clear_bad",
+      "reason": "Native and endpoint-only enlarged views show conspicuous whole-image pixelation and soft smearing across the eye, muzzle, ear, and coat; this is a clear global-blur failure rather than a small texture defect."
+    },
+    "class0602_seed059": {
+      "decision": "retain_clear_bad",
+      "reason": "The enlarged endpoint clearly shows one lower pair of arms beside the head plus a second lateral bent pair ending in gloves, producing a major duplicated-upper-limb topology failure."
+    },
+    "class0602_seed069": {
+      "decision": "retain_clear_bad",
+      "reason": "The upside-down gymnast has a complete pair of arms supporting the bar and a second complete pair extending horizontally from the torso; the duplicated limbs are conspicuous."
+    },
+    "class0602_seed072": {
+      "decision": "retain_clear_bad",
+      "reason": "The frontal gymnast has a pair of hands/arms at the horizontal bar and another pair extending outward above it, yielding an obvious four-arm duplication."
+    },
+    "class0602_seed108": {
+      "decision": "retain_clear_bad",
+      "reason": "In addition to the vertical red-clad legs, a second red-clad limb pair extends laterally from the pelvis while the actual arms support the bar; this is a clear duplicated-lower-limb failure."
+    },
+    "class0602_seed114": {
+      "decision": "downgrade_to_mild",
+      "reason": "The lower body is poorly resolved and suspicious, but a tucked or strongly foreshortened pose could plausibly hide both legs behind the rounded torso; the endpoint is not unambiguous enough for the strict clear-bad set."
+    },
+    "class0602_seed119": {
+      "decision": "retain_clear_bad",
+      "reason": "The inverted athlete has lateral arms plus a separate lower arm reaching toward the bar, with incompatible shoulder attachments; the extra-limb topology is conspicuous."
+    },
+    "class0795_seed072": {
+      "decision": "retain_clear_bad",
+      "reason": "A complete pink ski-like object floats in the sky well away from the skier, feet, and snow while the skier already has equipment underfoot; this is an obvious detached/duplicated-object failure."
+    },
+    "class0795_seed120": {
+      "decision": "retain_clear_bad",
+      "reason": "A second pole with a visible handle floats independently to the skier's right with no hand or ground connection, making the object-attachment failure clear."
+    },
+    "class0795_seed122": {
+      "decision": "downgrade_to_mild",
+      "reason": "The isolated blue vertical pole can plausibly be a planted slalom or course marker rather than a detached ski pole; under the strict obvious-failure rule this case remains ambiguous."
+    }
+  }
+}

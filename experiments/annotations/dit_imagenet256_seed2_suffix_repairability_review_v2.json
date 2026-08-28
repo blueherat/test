@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "created_date": "2026-08-27",
+  "status": "two_agent_visual_reviews_reconciled_formal_human_review_pending",
+  "purpose": "Reconciled visual audit of all frozen oracle suffix branches for DiT class 207 / global seed 2. This remains an exploratory mechanical repairability diagnostic and is not an online-method result.",
+  "history": {
+    "initial_review": "experiments/annotations/dit_imagenet256_seed2_suffix_repairability_review_v1.json",
+    "initial_review_sha256": "5530a735e6727696a941a95b7d782a49fd348787b66cbb259576155ee94417bd",
+    "initial_reviewer_used_low_resolution_all_branch_sheet": true,
+    "second_agent_review_was_independent_of_v1": true,
+    "v1_preserved_without_rewrite": true
+  },
+  "review_scope": {
+    "agent_visual_reviewer_count": 2,
+    "human_reviewer_count": 0,
+    "formal_blind_human_review_pending": true,
+    "automatic_quality_score_used": false,
+    "automatic_attempt_or_checkpoint_selection": false,
+    "all_16_fresh_attempts_retained_and_reviewed": true,
+    "pass_rule": "Remove the conspicuous fused or duplicated torso-tail defect while preserving one adult golden retriever, full-body standing pose, coarse orientation and placement, and snow or pale-ground composition. Mild residual imperfections do not fail unless they remain conspicuously below the model-relative cohort.",
+    "method_success_eligible": false,
+    "oracle_repairability_only": true
+  },
+  "runner": {
+    "path": "/home/zhoushunyu/eqvae/experiments/intervene_dit_imagenet256_suffix.py",
+    "sha256": "8062294923dcfe497fb374a5d99925b089a2ce29fb17c1d1625253c376156d73",
+    "source_changed_after_runs": false
+  },
+  "validation": {
+    "all_four_bundles_completed_and_passed_exact_runner_validation": true,
+    "attempt_000_png_sha256_at_every_checkpoint": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+    "baseline_png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+    "non_target_batch_tiles_pixel_identical_to_baseline": true,
+    "all_attempts_retained": true,
+    "selected_attempt": null
+  },
+  "review_artifacts": {
+    "all_branches_smooth": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/review_seed2_class207/all_checkpoints_contact_sheet_smooth.png",
+    "all_branches_smooth_sha256": "33dd089b73cc084b0eb486572d5cf2aee93a4330253e45eda6160e0d9ab7db7b",
+    "all_branches_nearest": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/review_seed2_class207/all_checkpoints_contact_sheet_nearest.png",
+    "all_branches_nearest_sha256": "69c4896ac4733cf44495ab4c43f99e73dad3b7c705eb2c6776c17f11e01bb492",
+    "t60_reconciliation_focus_smooth": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/review_seed2_class207/focus_t60_replay_a002_a004_smooth.png",
+    "t60_reconciliation_focus_smooth_sha256": "928a681a75c60789196d507d605a5ab0d6d706a7e671d4643e2d622f9c7b2b0d",
+    "layout": "all-branch rows t=225,180,120,60; columns replay then fresh attempts 001..004"
+  },
+  "consensus_verdict_matrix": {
+    "225": ["control", "fail", "fail", "fail", "fail"],
+    "180": ["control", "fail", "fail", "fail", "fail"],
+    "120": ["control", "fail", "fail", "fail", "provisional_pass"],
+    "60": ["control", "fail", "provisional_pass", "fail", "provisional_pass"]
+  },
+  "provisional_passes": [
+    {
+      "internal_timestep": 120,
+      "attempt": 4,
+      "png": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/official_demo_seed2_batch0_class0207_t120_n4/branches/attempt_004/target.png",
+      "png_sha256": "24652852147a8a3de6875bf8db72525f9e350f9a6ef5dfe71f453b7ca0812cab",
+      "reason": "Both reviews agree: one adult golden retriever, coherent full-body standing anatomy, matching coarse orientation and placement on pale ground; the fused torso-tail mass is absent."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 2,
+      "png": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/official_demo_seed2_batch0_class0207_t60_n4/branches/attempt_002/target.png",
+      "png_sha256": "c5f8c1469980baabc3c95fc6f0e80d9e571d4ee433d76f5e96e71a76f8c7b2b4",
+      "reason": "After enlarged comparison, the tail attaches to a recognizable rear torso and the hindquarters are substantially repaired while the same adult-dog pose, placement, and snow composition remain. It is no longer an obvious model-relative fusion failure."
+    },
+    {
+      "internal_timestep": 60,
+      "attempt": 4,
+      "png": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256_suffix_repairability/official_demo_seed2_batch0_class0207_t60_n4/branches/attempt_004/target.png",
+      "png_sha256": "a2ee78b639a4d9ca557df65f25d15cbd1a518fb495ba8560952884f3b4e2d6d9",
+      "reason": "Enlarged comparison shows a coherent rump, legs, and tail attachment with the adult subject, full-body standing pose, orientation, placement, and snowy composition preserved."
+    }
+  ],
+  "review_disagreement_and_resolution": {
+    "branches": ["t60_attempt_002", "t60_attempt_004"],
+    "initial_view": "The first reviewer marked both as persistent fusion from the reduced all-branch sheet.",
+    "independent_view": "The second reviewer marked both as repaired while preserving semantics and composition.",
+    "resolution": "The first reviewer re-inspected an enlarged baseline-versus-branch sheet and agreed that the lateral form reads as a tail attached to a coherent rear torso, not the baseline shoulder-level duplicate mass. Both are upgraded to provisional pass.",
+    "why_provisional": "Only agent visual review has occurred; no formal blind human panel has adjudicated the images."
+  },
+  "summary": {
+    "fresh_attempt_count": 16,
+    "provisional_semantic_preserving_repairs": 3,
+    "repair_locations": ["t120_attempt_004", "t60_attempt_002", "t60_attempt_004"],
+    "mechanical_repairability_gate": "provisional_pass",
+    "time_window_interpretation": "Very early t=225 and t=180 suffixes mostly replace identity, pose, or composition. At t=120 one suffix repairs the topology while retaining coarse semantics. Contrary to the initial low-resolution read, two t=60 suffixes can still clarify the rump-tail connection without changing the composition, although two other t=60 suffixes retain the defect.",
+    "selection_warning": "The 3/16 count is a descriptive oracle screen, not an estimator of an online intervention success probability and not a best-of-N method output.",
+    "online_method_result": "No. The frozen path-evidence detector did not trigger these rollback times and did not select these attempts."
+  }
+}

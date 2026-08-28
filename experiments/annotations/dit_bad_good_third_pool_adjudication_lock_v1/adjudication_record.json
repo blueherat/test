@@ -1,0 +1,58 @@
+{
+  "adjudication_pack": {
+    "manifest_identity_sha256": "e331542b667b47e590dec5ff5fce92945a7b969130151ce20529ee6b2fc0075a",
+    "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_adjudication_pack",
+    "record_identity_sha256": "5260cad9dd908ffc30f1160d8b835456b4a8e759839095686d4f98ee7ed36ca3"
+  },
+  "adjudicator_attestation": {
+    "candidate_hypothesis_seen": false,
+    "feature_product_seen": false,
+    "metric_score_threshold_rank_or_alert_seen": false,
+    "old_label_or_screen_result_seen": false,
+    "promotion_allowed": false,
+    "raw_majority_clear_bad_only": true,
+    "trajectory_or_intermediate_state_seen": false,
+    "visual_endpoint_only": true
+  },
+  "blind_review_source_contract_identity_sha256": "3a08403990acab4b16b855811dd41a013901820fd1791c7fa54246a110382f80",
+  "blind_review_source_manifest_identity_sha256": "e473cedc3442b14457da01658764765db5efe26f643ab41ace16adf08ad804b6",
+  "decisions": {
+    "action_counts": {
+      "downgrade_to_mild": 23,
+      "retain_clear_bad": 6
+    },
+    "columns_exact": [
+      "case_id",
+      "action"
+    ],
+    "file_sha256": "8b69c7002541eea035a4debc06560683e2b7832df882d5709d9f3a3b879f68a8",
+    "member": "adjudication_decisions.csv",
+    "row_count": 29
+  },
+  "identity_sha256": "ac23843539c0f310daea8a4aabc47bffed8d1f95f78635a4b1d0c78db5072148",
+  "implementation_source_sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c",
+  "review_locks": {
+    "reviewer_1": {
+      "manifest_identity_sha256": "08045c11638d9e4d45ce699bebac8b007acaff75ee9feec99744abf35d24346f",
+      "path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_bad_good_third_pool_reviewer_1_lock_v1",
+      "record_identity_sha256": "97ea84d807cf3f1a0f56df8541b5a1d40be4c7918610164457ee4b711d81b740",
+      "review_rows_file_sha256": "76b22edd7e89295b62396ece1e1ec0634b6f94ccc4969cab569141f0f9bc7f38"
+    },
+    "reviewer_2": {
+      "manifest_identity_sha256": "058f4a377a69b9b5a8de739ce95339e441ae44fcf0e1379f423c2ed6267152d0",
+      "path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_bad_good_third_pool_reviewer_2_lock_v1",
+      "record_identity_sha256": "d2e926bde0b45774131e77f8ee3184b847251cfa93d5d218c4ab4b615e8966ab",
+      "review_rows_file_sha256": "00acbd62e53f635609af37f936d9e2a8ce88dd840a3d7b15699644922010577a"
+    },
+    "reviewer_3": {
+      "manifest_identity_sha256": "69b8900a40bf931f726828430959ad06cc8cb14320741246c6d1040b6129dd66",
+      "path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_bad_good_third_pool_reviewer_3_lock_v1",
+      "record_identity_sha256": "2b3aea7d6bab3bd098b15bcebca69f03c2d9d85bc0d1cb45e9c2c731a3a1bbe1",
+      "review_rows_file_sha256": "8d15770773e302d109b6b1fe0a61370c7c65f2d2fe17aea44ecf227b71984b27"
+    }
+  },
+  "review_pack_manifest_identity_sha256": "04a5e86ad6ccab0a52a4c9f8ff023cae7ed2c4037bace86be2841fbb2c699dff",
+  "review_pack_record_identity_sha256": "d52cf650980a2efc2461ccb702a78b405cfd34e9089a506e7d8b57246e2b2b15",
+  "schema_version": 1,
+  "status": "LOCKED_CONSERVATIVE_RAW_CLEAR_BAD_ADJUDICATION"
+}

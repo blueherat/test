@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "POSTHOC_EXECUTION_MATCH_VERIFIED",
+  "verified_at_local_date": "2026-08-27",
+  "protocol_sha256": "d2cceadb4ef036ec540a7906b3d69ae44be745d05478a8a4c677bf06ea6f0c6f",
+  "result_manifest_identity_sha256": "04458d39bf8ab34242b1287140f8a6e83cf712afdc49de35f76ab6d774fe55a9",
+  "checks": {
+    "all_frozen_label_consensus_identities_match": true,
+    "all_six_frozen_feature_manifest_identities_match": true,
+    "launcher_and_pinned_implementation_sha256_match": true,
+    "permutation_draws_and_rng_seed_match": true,
+    "inventory_counts_match_6844_features_192_tracks": true,
+    "aggregate_only_payload_members_match": true,
+    "row_level_payload_emitted": false
+  },
+  "caveat": "This is a posthoc exact-lineage verification. The v1.1 launcher validated each input product internally but did not itself compare every identity with protocol.json before execution; later protocols must enforce that comparison before any label-feature join."
+}

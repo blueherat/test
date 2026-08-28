@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_MECHANICAL_AMENDMENT_BEFORE_ANY_LABEL_FEATURE_JOIN_OR_RANKING",
+  "scientific_role": "exploratory_next_candidate_generation_with_disjoint_replication",
+  "frozen_at_local_date": "2026-08-27",
+  "supersedes_failed_protocol": {
+    "protocol_path": "experiments/locks/dit_bad_good_inventory_replication_protocol_v1/protocol.json",
+    "protocol_sha256": "d0ccfb4eff3dfba41061d5b6705b49754999b80f2f672aa62c56b64bc5b3d2c3",
+    "failure_record_path": "experiments/locks/dit_bad_good_inventory_replication_protocol_v1/failure.json",
+    "failure_record_sha256": "3c49ae33d6f21af07b93e7440613bfb76a41cdad0d486e0b7386a3f646c0fc76",
+    "failure_stage": "combined label-free catalog count validation",
+    "labels_loaded_into_memory": true,
+    "labels_joined_to_features": false,
+    "feature_ranking_or_testing_started": false,
+    "output_published": false
+  },
+  "sole_amendment": {
+    "field": "expected_unique_track_count",
+    "old_value": 190,
+    "new_value": 192,
+    "label_free_reconciliation": "79 primary + 106 posterior + 7 normalized-posterior tracks, with zero cross-product track-name overlap",
+    "unchanged_scalar_feature_count": 6844,
+    "all_statistical_rules_unchanged": true
+  },
+  "runtime_sources": {
+    "launcher_path": "/home/zhoushunyu/eqvae/experiments/explore_dit_bad_good_inventory_replication_amendment_v1_1.py",
+    "launcher_sha256": "ea19696df375a4fbb582910ae5a84f9c37206871dab0662d64921cda63745e21",
+    "pinned_implementation_path": "/home/zhoushunyu/eqvae/experiments/explore_dit_bad_good_inventory_replication.py",
+    "pinned_implementation_sha256": "c23ef50713e3a310bf8a6bb7b0541563717b5979cca035f3b15394f68aaaca90"
+  },
+  "cohorts": {
+    "discovery": {
+      "classes": [207, 602, 795],
+      "global_seed_start_inclusive": 50,
+      "global_seed_stop_exclusive": 130,
+      "trajectory_count": 240,
+      "final_visual_consensus_identity_sha256": "21c242dc796d5c8baa4568c9f82add0d1b64c984477cf8698efbbca5889e166a"
+    },
+    "independent_replication": {
+      "classes": [207, 602, 795],
+      "global_seed_start_inclusive": 130,
+      "global_seed_stop_exclusive": 250,
+      "trajectory_count": 360,
+      "final_visual_consensus_identity_sha256": "fc478b7ae04b67869d0dfca3b63f169a5266bacc1c8701e1ae20368516e793fd"
+    },
+    "binary_labels": ["clear_bad", "clean_good"],
+    "excluded_label": "mild_or_disputed"
+  },
+  "label_free_feature_products": {
+    "original_primary_manifest_identity_sha256": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+    "original_posterior_manifest_identity_sha256": "e7abf3a8968f986779c101a05be8066754f4fa154cafe31ee74223789c4568ab",
+    "original_normalized_posterior_manifest_identity_sha256": "0eb3c0a94ecbf3bf6e44bff8a6df09210e856e6b6d6bf591b93bd05583e7c221",
+    "expansion_primary_manifest_identity_sha256": "e9e441c379796a2066ef672987c36dd52bc77b59578e3133b8372743c1593a31",
+    "expansion_posterior_manifest_identity_sha256": "df902c7ee526da2e2f1a12d483338d595af4393133729028f5e2835a5658c9cf",
+    "expansion_normalized_posterior_manifest_identity_sha256": "db9022e9779dca0884108215bd6da845a5327b88b0b25ed48eb921e6c6b5d572",
+    "expected_scalar_feature_count": 6844,
+    "expected_unique_track_count": 192
+  },
+  "tiers": {
+    "primary_preterminal": "preterminal_actionable=true and latest_required_sampling_step<=149",
+    "secondary_preterminal": "preterminal_actionable=true and latest_required_sampling_step<=199",
+    "retrospective_control": "preterminal_actionable=false or latest_required_sampling_step>199"
+  },
+  "selection_and_replication": {
+    "selection_unit": "one scalar reduction and one bad-high/bad-low direction per track per tier",
+    "selection_data": "discovery cohort only",
+    "selection_statistic": "class-matched bad-good-pair-weighted AUC; macro within-class AUC then feature name break ties",
+    "replication_feature_and_direction_frozen_from_discovery": true,
+    "replication_statistic": "same class-matched pair-weighted AUC",
+    "within_class_fixed_bad_count_permutation_draws": 100000,
+    "permutation_rng": "numpy.default_rng(seed=20260827)",
+    "permutation_sidedness": "one-sided higher-is-bad after discovery-only direction freeze",
+    "multiple_testing": "Benjamini-Hochberg and Holm jointly over all emitted track-tier winners"
+  },
+  "publication": {
+    "aggregate_tables_only": true,
+    "row_labels_scores_ranks_seeds_or_sample_keys_published": false,
+    "output": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/inventory_replication_exploratory_amendment_v1_1",
+    "no_overwrite": true
+  },
+  "claim_limits": {
+    "exploratory_not_confirmatory": true,
+    "a_replication_hit_only_nominates_a_next_candidate": true,
+    "any_next_candidate_requires_a_new_disjoint_confirmation_pool": true,
+    "no_intervention_authorized_by_this_screen_alone": true
+  }
+}

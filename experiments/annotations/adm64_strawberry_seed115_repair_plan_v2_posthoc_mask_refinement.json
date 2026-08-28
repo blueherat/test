@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "posthoc_exploratory_refinement_frozen_before_v2_outputs",
+  "candidate": {"class_id": 949, "seed": 115},
+  "selection_boundary": {
+    "v1_repair_outputs_seen": true,
+    "v2_repair_outputs_seen": false,
+    "oracle_diagnostic": true,
+    "method_claim_eligible": false
+  },
+  "change_from_v1": {
+    "rollback_internal_timestep": 120,
+    "old_rectangle_xyxy_half_open": [0, 0, 32, 45],
+    "new_rectangle_xyxy_half_open": [8, 0, 32, 32],
+    "rationale": "The first late-mask screen often perturbed the lower left leaf cluster while retaining or worsening the upright blade. Restrict the second and final exploratory mask to the upper calyx/fruit connection; do not change rollback time or attempt count."
+  },
+  "attempts": {
+    "localized_attempt_count": 4,
+    "full_fresh_control_count": 1,
+    "retain_every_output": true,
+    "automatic_best_of_n_selection": false
+  },
+  "stopping_rule": "This is the only post-v1 mask refinement. Stop localized-mask tuning after these outputs regardless of visual result.",
+  "theory_guard": "Post-hoc oracle mechanics only. No detector, calibration, Ville, TV, TPR, FPR, or method-efficacy claim may use this screen."
+}

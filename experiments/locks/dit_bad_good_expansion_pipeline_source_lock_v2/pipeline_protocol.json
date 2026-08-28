@@ -1,0 +1,159 @@
+{
+  "candidate_protocol_identity_sha256": "198a82a7c8a0ab79d901c76a5c810f4a40889604a66f18e995d0699f73c12bce",
+  "event_count_expansion_protocol_identity_sha256": "78c37ba24922075357ccf459837b2c5695343779c100091036d7f9f4eda9a652",
+  "evidence_access_audit": {
+    "alert_file_opened": false,
+    "calibration_member_or_threshold_opened": false,
+    "candidate_score_file_opened": false,
+    "expansion_trace_or_endpoint_opened": false,
+    "feature_or_metric_product_opened": false,
+    "label_score_join_performed": false,
+    "only_source_and_protocol_inputs": true,
+    "review_or_row_level_label_file_opened": false
+  },
+  "execution_order": [
+    "complete and validate observation-only expansion sampling",
+    "freeze this pipeline source lock",
+    "extract primary and posterior features label-free (no scoring)",
+    "build endpoint-only blind pack",
+    "three independent endpoint-only reviews",
+    "lock raw consensus and visual-only no-promotion adjudication",
+    "only after final expansion label lock, compute frozen A/B/S_UNION scores",
+    "apply immutable seeds30..49 thresholds without re-estimation",
+    "combined evaluator first counts 8 plus expansion bad events",
+    "below 15: event-count-only return before original row labels/calibration/scores",
+    "at least 15: open both alert products, join in memory, publish aggregate only"
+  ],
+  "identity_sha256": "bb7911227642b7e50532152c3c176bb991071b029a0bbc36fe244dbfe0705b85",
+  "immutable_statistical_contract": {
+    "aggregate_only_output": true,
+    "calibration": "unchanged seeds30..49 class thresholds",
+    "candidate": "S_UNION=max(z_A,z_B)",
+    "initial_go_gates_changed": false,
+    "normalizers": "candidate-v5 discovery medians/MAD scales",
+    "permutation": "100000 within-class label permutations; PCG64 seed 2026082701"
+  },
+  "original_aggregate_lineage_copied_without_row_decode": {
+    "candidate_v5": {
+      "completion_file_sha256": "d9b799172a5bacab252bd5fb0753f7fc20502487b07d52c5dfc10038f68dc572",
+      "manifest_file_sha256": "b6557c371fe0e5a8b160bb9c599fa359ce560f0a6c545c610834ae93524b6be5",
+      "manifest_identity_sha256": "773d564419517bc7eb9b9b75a7677aa08d466c4abe0d0caa90a34c2d49809b7b",
+      "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+      "protocol_file_sha256": "abfc8d61ec9d00f3c34a5565da264a7ebccaf76eb6abf62c2bd0635616b76d8d",
+      "protocol_identity_sha256": "198a82a7c8a0ab79d901c76a5c810f4a40889604a66f18e995d0699f73c12bce"
+    },
+    "event_count_only_result": {
+      "completion_file_sha256": "bce6185d5fa0c44e74f7d552e7ae111ee848acc1ff5b1e8058ea598827bf9513",
+      "evidence_access_audit": {
+        "aggregate_only": true,
+        "calibration_lock_or_members_opened": false,
+        "evaluation_alert_lock_or_score_CSV_opened": false,
+        "individual_labels_or_identifiers_published": false,
+        "score_label_join_performed": false
+      },
+      "manifest_file_sha256": "9a1d3d2fb46711775daa06eda83ef98b032bd7b079de093de0b1eed9ad268e2a",
+      "manifest_identity_sha256": "9e0ade60202970f30adecec0a0ec5661ee5e55348d2562fd6ee5676d2ea84990",
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/prospective_confirmation_result_v1",
+      "result_file_sha256": "d89985ddc1ac48febc293f50854850dafe7331073ffda44c9d80e304669486a2",
+      "result_identity_sha256": "4791dafe591823b22c3b89aaca5bcf287a06493cc65b13be740e81c389a88e31"
+    },
+    "final_visual_consensus_aggregate": {
+      "aggregate_counts": {
+        "clean_good": 216,
+        "clear_bad": 8,
+        "mild_or_disputed": 16
+      },
+      "completion_file_sha256": "60758a2fc1998eab4720c35696e1f5621dd87f331778e5345e60c8a3c9278c3b",
+      "consensus_file_sha256": "5de85939ed73f1217c8b9225a41899cb5939ba5b27b7c689a212f49f1f4762b5",
+      "consensus_identity_sha256": "21c242dc796d5c8baa4568c9f82add0d1b64c984477cf8698efbbca5889e166a",
+      "manifest_file_sha256": "8983a254c7d190587f71f9b339dedd45dcde8d52cccbb601e82b586e23edb748",
+      "manifest_identity_sha256": "857c1454f3ec6f0cc24b743932e7da494a6a391d71e607574ca1904856ad818e",
+      "path": "/home/zhoushunyu/eqvae/experiments/annotations/dit_fresh_eval240_adjudicated_consensus_lock_v2",
+      "sample_level_consensus_decoded_by_this_locker": false
+    }
+  },
+  "planned_paths": {
+    "adjudication_draft": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_adjudication_v1_draft.json",
+    "calibration_lock": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_conformal_calibration_lock_v1",
+    "candidate_v5_lock": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_candidate_confirmation_lock_v5",
+    "combined_aggregate_result": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/combined_confirmation_result_v1",
+    "endpoint_only_blind_pack": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/blind_review_expansion_seed130_249_v1",
+    "event_count_expansion_lock": "/home/zhoushunyu/eqvae/experiments/locks/dit_bad_good_event_count_expansion_lock_v1",
+    "final_consensus_lock": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_adjudicated_consensus_lock_v1",
+    "label_free_calibrated_alerts": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/calibrated_alerts_label_free_v1",
+    "label_free_candidate_scores": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/frozen_candidate_scores_label_free_v1",
+    "label_free_posterior_features": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/posterior_label_free_v1",
+    "label_free_primary_features": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_expansion_v1/primary_label_free_v1",
+    "original_event_receipt": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/prospective_confirmation_result_v1",
+    "original_final_consensus_lock": "/home/zhoushunyu/eqvae/experiments/annotations/dit_fresh_eval240_adjudicated_consensus_lock_v2",
+    "original_label_free_alerts": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/calibrated_evaluation_alerts_label_free_v1",
+    "raw_consensus_lock": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_consensus_lock_v1",
+    "review_drafts": {
+      "J": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_review_J_v1_draft.json",
+      "K": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_review_K_v1_draft.json",
+      "L": "/home/zhoushunyu/eqvae/experiments/annotations/dit_expansion_eval360_review_L_v1_draft.json"
+    },
+    "trace_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_expansion_v1_custom_traces_cfg_locked"
+  },
+  "reuse_vs_wrapper": {
+    "directly_parameterized": [
+      "analyze_dit_bad_good_custom_traces.py --trace-root/--trace-glob/--expected-seeds",
+      "analyze_dit_posterior_evidence_metrics.py --trace-root/--trace-glob/--expected-seeds"
+    ],
+    "new_expansion_wrappers_required_because_original_is_seed_or_lineage_hardcoded": [
+      "score_dit_bad_good_expansion_candidates.py",
+      "apply_dit_bad_good_expansion_thresholds.py",
+      "build_dit_bad_good_expansion_blind_review_pack.py",
+      "lock_dit_bad_good_expansion_labels.py",
+      "evaluate_dit_bad_good_combined_expansion.py"
+    ]
+  },
+  "schema_version": 1,
+  "source_snapshots": {
+    "analyze_dit_bad_good_custom_traces.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/analyze_dit_bad_good_custom_traces.py",
+      "sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129"
+    },
+    "analyze_dit_posterior_evidence_metrics.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/analyze_dit_posterior_evidence_metrics.py",
+      "sha256": "9e0576146f14ccd433899802dfb1ed97b22b84aacbcf2b84e5d791d74755a695"
+    },
+    "apply_dit_bad_good_expansion_thresholds.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/apply_dit_bad_good_expansion_thresholds.py",
+      "sha256": "ade98aa3747fb6d0c951f2a3c4e82a3c4bf9306a4a33949e07c2937969a1c589"
+    },
+    "build_dit_bad_good_expansion_blind_review_pack.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/build_dit_bad_good_expansion_blind_review_pack.py",
+      "sha256": "411e4b58684f92eccc76f89bf6955d5508c8e5f4306f28b42280602fc3b3926e"
+    },
+    "build_dit_bad_good_fresh_blind_review_pack.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/build_dit_bad_good_fresh_blind_review_pack.py",
+      "sha256": "a974eba233b3dfba0725ef6934e18bf317060f23142cef835e80a22c03474e9d"
+    },
+    "dit_bad_good_expansion_contract.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/dit_bad_good_expansion_contract.py",
+      "sha256": "090a05380c52297fd73d18fc213bf3fe9015c20db7549e9589e016d029d6dd6e"
+    },
+    "evaluate_dit_bad_good_combined_expansion.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/evaluate_dit_bad_good_combined_expansion.py",
+      "sha256": "ef89812a39b4e8a9e8463061d9d5b3e74c7915c6eb0de4d26cfd2abfd43d5a02"
+    },
+    "freeze_dit_bad_good_expansion_pipeline_sources.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/freeze_dit_bad_good_expansion_pipeline_sources.py",
+      "sha256": "4667238a960121cc3b578248c13bf27b4a9789c278641895eb6bb6526d906425"
+    },
+    "lock_dit_bad_good_expansion_labels.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/lock_dit_bad_good_expansion_labels.py",
+      "sha256": "3ccfb98957827c70fb969cb2bd79730877d2edcf611a03adca205fc29cec3069"
+    },
+    "score_dit_bad_good_expansion_candidates.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/score_dit_bad_good_expansion_candidates.py",
+      "sha256": "f667060512aaef275c8ccd0ac23fe51e92f9406f8807cb760cf9477e60d12ca5"
+    },
+    "score_dit_bad_good_frozen_candidates.py": {
+      "live_path_at_freeze": "/home/zhoushunyu/eqvae/experiments/score_dit_bad_good_frozen_candidates.py",
+      "sha256": "8704335266564eea4ff2d26343703aeecf83a863f85b0af91dd6cf6285014d1c"
+    }
+  },
+  "status": "FROZEN_BEFORE_ANY_EXPANSION_ENDPOINT_REVIEW_OR_SCORE_EXTRACTION"
+}

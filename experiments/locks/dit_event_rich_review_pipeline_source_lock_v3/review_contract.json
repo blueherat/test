@@ -1,0 +1,227 @@
+{
+  "blinding": {
+    "adjudicators_cannot_see": [
+      "reviewer identity",
+      "reviewer votes/counts",
+      "trigger versus decoy",
+      "candidate B/C",
+      "class rank",
+      "trajectory",
+      "score",
+      "metric",
+      "embedding",
+      "each other"
+    ],
+    "delivery_isolation": "send only the named role's delivery subdirectory",
+    "reviewers_cannot_see": [
+      "candidate B/C",
+      "class rank",
+      "trajectory",
+      "score",
+      "metric",
+      "threshold",
+      "alert",
+      "embedding",
+      "other votes"
+    ]
+  },
+  "endpoint_sampling_source_lock": {
+    "completion_file_sha256": "924a20b22f97411f5b26d16f53452bddff13b032ee2c8fb69131b725d6ea8e93",
+    "manifest_file_sha256": "761b75a8ff6ae7984f1b824eae4011079f31ec3bfd095e26e2b4ebf2b23b8be8",
+    "manifest_identity_sha256": "36cc1dfa90aff69737338f8970703c726a6794cc8a7677bbe4d1494ac8e40da4",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_endpoint_sampling_source_lock_v1",
+    "sampling_protocol_file_sha256": "ad83fb516350a86ddad6a7bff7e981c155bcccead3fd36dc44e2b7cbc20438ed",
+    "sampling_protocol_identity_sha256": "6e0a222ff313262f641b1a2b6d70cdfbc73fd71da844396a5d4db3974ceb58d3"
+  },
+  "event_protocol": {
+    "completion_file_sha256": "f8239202ad0cce2db8196d961ea79dc525384cb68e579ceb6b9ecae44cd535cf",
+    "manifest_file_sha256": "a62551ccd213ca585902cf35d484ddb0966ea1f35ffdec832f2bd2f8640fb16e",
+    "path": "/home/zhoushunyu/eqvae/experiments/locks/dit_event_rich_confirmation_protocol_lock_v3",
+    "protocol_file_sha256": "952f2ce5f2a3f289b3b91fd19df534ba30150f119ae13b27993ebd958b122e33",
+    "protocol_identity_sha256": "04e933793992e2a7ce62aa4ac66836412f3c4f221cce731f2e072da97e892dd7"
+  },
+  "event_protocol_identity_sha256": "04e933793992e2a7ce62aa4ac66836412f3c4f221cce731f2e072da97e892dd7",
+  "identity_sha256": "936075a0719e3457e203fdec6e2f36293af4da2250e76b8ca82248c9f405cf6d",
+  "immutability": {
+    "duplicate_missing_extra_rows_fail": true,
+    "exact_axes": true,
+    "file_and_artifact_hashes": true,
+    "no_overwrite": true,
+    "unexpected_or_poison_columns_fail": true
+  },
+  "production": {
+    "adjudicators": 2,
+    "all_applied_changes_require_two_component_and_written_reason_records": true,
+    "audit_population": "union of every endpoint with any reviewer severity>=2 plus an equal frozen SHA256-sort simple-random sample of zero-positive decoys",
+    "phases": [
+      "discovery",
+      "anchor",
+      "confirmation"
+    ],
+    "raw_2of3": "downgrade only if both adjudicators independently choose mild_or_not_clear_bad",
+    "raw_nonmajority_and_decoy": "promote only if both adjudicators independently choose clear_bad",
+    "reviewers": 3,
+    "single_adjudicator_change": false,
+    "unanimous_3of3": "never downgradable"
+  },
+  "qualification": {
+    "every_of_10_role_pairs_binary_cohen_kappa_minimum": 0.5,
+    "every_of_10_role_pairs_positive_agreement_minimum": 0.6,
+    "every_role_gold_recall_minimum": 0.8,
+    "every_role_gold_specificity_minimum": 0.8,
+    "failure": "STOP before formal screen release; consumed form cannot be reused; replace/retrain failed roles and run complete panel on pre-frozen disjoint reserve",
+    "primary_and_reserve_hidden_forms": "each 60 items; disjoint endpoint pixels; 15 clean, 15 mild, 15 clear blur/fusion, 15 clear topology/attachment",
+    "roles_qualified_together": [
+      "reviewer_1",
+      "reviewer_2",
+      "reviewer_3",
+      "adjudicator_1",
+      "adjudicator_2"
+    ]
+  },
+  "ready_for_real_sampling": false,
+  "real_expert_or_reviewer_results_present": false,
+  "remaining_non_automatable_inputs": [
+    "two genuinely independent qualified experts must ratify all 20 visible anchors",
+    "independent expert curators/resolver must create actual disjoint primary and reserve hidden-gold forms",
+    "five genuinely independent role holders must complete a hidden qualification form and all gates must pass",
+    "no formal endpoint image may be released before the qualification PASS lock exists"
+  ],
+  "role_language": {
+    "allowed": [
+      "expert",
+      "reviewer",
+      "adjudicator",
+      "qualified external blind-review service"
+    ],
+    "current_execution_completed": false,
+    "does_not_assert_human_participation": true,
+    "execution_options": "a genuinely qualified independent human team or a qualified external blind-review service may fill the forms"
+  },
+  "schema_version": 1,
+  "schemas": {
+    "blind_adjudication_response": {
+      "decisions": [
+        "clear_bad",
+        "mild_or_not_clear_bad"
+      ],
+      "exact_columns_ordered": [
+        "adjudication_id",
+        "decision",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV",
+      "roles": [
+        "adjudicator_1",
+        "adjudicator_2"
+      ]
+    },
+    "endpoint_cohort_input": {
+      "axis": "exact frozen phase Cartesian product; no missing, duplicate, extra, or reordered row",
+      "exact_columns_ordered": [
+        "class_id",
+        "global_seed",
+        "class_name",
+        "image_path",
+        "image_sha256",
+        "image_pixel_sha256",
+        "width",
+        "height",
+        "mode",
+        "source_pair_identity_sha256",
+        "source_manifest_sha256"
+      ],
+      "format": "CSV"
+    },
+    "hidden_expert_label": {
+      "curation": "two independent expert forms cover all 60; third independent resolver covers exactly curator disagreements",
+      "exact_columns_ordered": [
+        "item_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "expert_role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV"
+    },
+    "hidden_item_index": {
+      "exact_columns_ordered": [
+        "item_id",
+        "class_id",
+        "class_name",
+        "image_path",
+        "image_sha256",
+        "image_pixel_sha256",
+        "width",
+        "height",
+        "mode"
+      ],
+      "exact_rows_per_form": 60,
+      "forbidden": "any label, model score, metric, feature, trajectory, embedding, rank, threshold or alert column",
+      "format": "CSV",
+      "image_contract": "60 unique actual RGB 256x256 endpoint PNGs with byte and pixel hashes"
+    },
+    "production_review_response": {
+      "exact_columns_ordered": [
+        "blind_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "format": "CSV",
+      "roles": [
+        "reviewer_1",
+        "reviewer_2",
+        "reviewer_3"
+      ]
+    },
+    "qualification_response": {
+      "exact_columns_ordered": [
+        "qualification_id",
+        "severity",
+        "components",
+        "localization_reason",
+        "role_slot",
+        "role_token",
+        "independence_attestation"
+      ],
+      "exact_rows_per_role": 60,
+      "format": "CSV",
+      "role_slots": [
+        "reviewer_1",
+        "reviewer_2",
+        "reviewer_3",
+        "adjudicator_1",
+        "adjudicator_2"
+      ]
+    },
+    "visible_anchor_ratification": {
+      "completed_rule": "both distinct expert role tokens independently ratify every frozen proposal; any rejection stops and requires a protocol revision",
+      "exact_columns_ordered": [
+        "anchor_id",
+        "image_sha256",
+        "proposed_severity",
+        "proposed_component_group",
+        "proposed_reason",
+        "decision",
+        "correction_severity",
+        "correction_component_group",
+        "correction_reason",
+        "expert_role_token",
+        "independence_attestation"
+      ],
+      "exact_rows": 20,
+      "format": "CSV"
+    }
+  },
+  "status": "INFRASTRUCTURE_FROZEN_NO_REAL_LABEL_ROLES_COMPLETED",
+  "supersedes_source_lock": "dit_event_rich_review_pipeline_source_lock_v2 (pre-canonical-review-axis draft; no real results)"
+}

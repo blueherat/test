@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "FAILED_CLOSED_BEFORE_LABEL_FEATURE_JOIN_OR_RANKING",
+  "attempted_at_local_date": "2026-08-27",
+  "analysis_source_sha256": "c23ef50713e3a310bf8a6bb7b0541563717b5979cca035f3b15394f68aaaca90",
+  "failure": {
+    "message": "combined inventory is not the frozen 6844-feature/190-track set",
+    "stage": "combined label-free catalog validation",
+    "labels_loaded_into_memory": true,
+    "labels_joined_to_features": false,
+    "feature_ranking_or_testing_started": false,
+    "output_published": false
+  },
+  "label_free_catalog_reconciliation_after_failure": {
+    "scalar_feature_count": 6844,
+    "primary_unique_tracks": 79,
+    "posterior_unique_tracks": 106,
+    "normalized_posterior_unique_tracks": 7,
+    "cross_product_track_name_overlaps": 0,
+    "correct_unique_track_union": 192
+  },
+  "amendment_policy": "Preserve v1 unchanged; v1.1 may correct only the expected unique-track count and output path."
+}

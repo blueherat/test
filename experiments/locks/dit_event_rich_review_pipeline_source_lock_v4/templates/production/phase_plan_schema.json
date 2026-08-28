@@ -1,0 +1,16 @@
+{
+  "exact_fields": [
+    "schema_version",
+    "status",
+    "phase",
+    "event_protocol_identity_sha256",
+    "class_ids_ordered",
+    "global_seeds_ordered",
+    "upstream_plan_identity_sha256",
+    "labels_locked_before_plan",
+    "candidate_scores_features_trajectories_embeddings_or_ranks_used",
+    "identity_sha256"
+  ],
+  "identity_rule": "identity_sha256=canonical SHA256 of all other fields",
+  "no_example_values": "intentionally omitted to avoid creating a fake phase plan"
+}

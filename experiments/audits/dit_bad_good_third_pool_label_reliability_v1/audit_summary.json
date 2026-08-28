@@ -1,0 +1,1532 @@
+{
+  "agreement": {
+    "all_three_clear_bad_binary_exact": 0.9188888888888889,
+    "all_three_four_level_exact": 0.8883333333333333,
+    "fleiss_kappa_clear_bad_binary": 0.1471879593843114,
+    "fleiss_kappa_four_level": 0.12967691718943258,
+    "pairwise": {
+      "reviewer_1_vs_2": {
+        "clean_binary": {
+          "a_only_positive": 16,
+          "b_only_positive": 68,
+          "both_negative": 10,
+          "both_positive": 1706,
+          "cohen_kappa": 0.17442012842353694,
+          "gwet_ac1": 0.9505592817754712,
+          "negative_agreement": 0.19230769230769232,
+          "positive_agreement": 0.9759725400457666,
+          "positive_jaccard": 0.9530726256983241,
+          "raw_agreement": 0.9533333333333334
+        },
+        "clear_bad_binary": {
+          "a_only_positive": 41,
+          "b_only_positive": 11,
+          "both_negative": 1741,
+          "both_positive": 7,
+          "cohen_kappa": 0.2004920049200506,
+          "gwet_ac1": 0.9700324456405853,
+          "negative_agreement": 0.9852857951329937,
+          "positive_agreement": 0.21212121212121213,
+          "positive_jaccard": 0.11864406779661017,
+          "raw_agreement": 0.9711111111111111
+        },
+        "four_level": {
+          "cohen_kappa_quadratic_weighted": 0.22629359657437975,
+          "cohen_kappa_unweighted": 0.14071823803840638,
+          "raw_agreement": 0.9511111111111111
+        }
+      },
+      "reviewer_1_vs_3": {
+        "clean_binary": {
+          "a_only_positive": 108,
+          "b_only_positive": 39,
+          "both_negative": 39,
+          "both_positive": 1614,
+          "cohen_kappa": 0.30745312352774923,
+          "gwet_ac1": 0.9074926253687315,
+          "negative_agreement": 0.3466666666666667,
+          "positive_agreement": 0.9564444444444444,
+          "positive_jaccard": 0.9165247018739353,
+          "raw_agreement": 0.9183333333333333
+        },
+        "clear_bad_binary": {
+          "a_only_positive": 25,
+          "b_only_positive": 88,
+          "both_negative": 1664,
+          "both_positive": 23,
+          "cohen_kappa": 0.2618238829370252,
+          "gwet_ac1": 0.9314329749745528,
+          "negative_agreement": 0.967160709096193,
+          "positive_agreement": 0.2893081761006289,
+          "positive_jaccard": 0.16911764705882354,
+          "raw_agreement": 0.9372222222222222
+        },
+        "four_level": {
+          "cohen_kappa_quadratic_weighted": 0.3069916839002069,
+          "cohen_kappa_unweighted": 0.2348713192673316,
+          "raw_agreement": 0.9083333333333333
+        }
+      },
+      "reviewer_2_vs_3": {
+        "clean_binary": {
+          "a_only_positive": 144,
+          "b_only_positive": 23,
+          "both_negative": 3,
+          "both_positive": 1630,
+          "cohen_kappa": 0.01038991822383929,
+          "gwet_ac1": 0.8978789151724041,
+          "negative_agreement": 0.03468208092485549,
+          "positive_agreement": 0.9512693317770645,
+          "positive_jaccard": 0.9070673344462994,
+          "raw_agreement": 0.9072222222222223
+        },
+        "clear_bad_binary": {
+          "a_only_positive": 17,
+          "b_only_positive": 110,
+          "both_negative": 1672,
+          "both_positive": 1,
+          "cohen_kappa": -0.0017352894778375337,
+          "gwet_ac1": 0.9242072722227113,
+          "negative_agreement": 0.9634111207144915,
+          "positive_agreement": 0.015503875968992248,
+          "positive_jaccard": 0.0078125,
+          "raw_agreement": 0.9294444444444444
+        },
+        "four_level": {
+          "cohen_kappa_quadratic_weighted": 0.0017619005792054443,
+          "cohen_kappa_unweighted": 0.005775132612340757,
+          "raw_agreement": 0.9061111111111111
+        }
+      }
+    },
+    "per_class_pairwise": {
+      "207": {
+        "reviewer_1_vs_2": {
+          "binary_kappa": 0.09420289855072615,
+          "binary_positive_agreement": 0.10256410256410256,
+          "both_positive": 2,
+          "four_level_kappa": 0.11504424778760983
+        },
+        "reviewer_1_vs_3": {
+          "binary_kappa": 0.5292887029288696,
+          "binary_positive_agreement": 0.5609756097560976,
+          "both_positive": 23,
+          "four_level_kappa": 0.4074886846797421
+        },
+        "reviewer_2_vs_3": {
+          "binary_kappa": 0.03172641120725234,
+          "binary_positive_agreement": 0.04081632653061224,
+          "both_positive": 1,
+          "four_level_kappa": 0.036355672360929174
+        }
+      },
+      "602": {
+        "reviewer_1_vs_2": {
+          "binary_kappa": 0.5663695495061444,
+          "binary_positive_agreement": 0.5714285714285714,
+          "both_positive": 4,
+          "four_level_kappa": 0.2525829852714883
+        },
+        "reviewer_1_vs_3": {
+          "binary_kappa": -0.00704934541793143,
+          "binary_positive_agreement": 0.0,
+          "both_positive": 0,
+          "four_level_kappa": -0.005025125628143881
+        },
+        "reviewer_2_vs_3": {
+          "binary_kappa": -0.00704934541793143,
+          "binary_positive_agreement": 0.0,
+          "both_positive": 0,
+          "four_level_kappa": -0.005025125628143211
+        }
+      },
+      "795": {
+        "reviewer_1_vs_2": {
+          "binary_kappa": 0.1450777202072566,
+          "binary_positive_agreement": 0.15384615384615385,
+          "both_positive": 1,
+          "four_level_kappa": 0.10230035533944727
+        },
+        "reviewer_1_vs_3": {
+          "binary_kappa": -0.01566447700858981,
+          "binary_positive_agreement": 0.0,
+          "both_positive": 0,
+          "four_level_kappa": -0.015824284972572655
+        },
+        "reviewer_2_vs_3": {
+          "binary_kappa": -0.024190401872805897,
+          "binary_positive_agreement": 0.0,
+          "both_positive": 0,
+          "four_level_kappa": -0.025402987593889214
+        }
+      }
+    }
+  },
+  "components": {
+    "detachment_or_floating_part": {
+      "counts_by_reviewer": {
+        "reviewer_1": 3,
+        "reviewer_2": 7,
+        "reviewer_3": 2
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "602": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "795": {
+          "count": 1,
+          "n": 600,
+          "rate": 0.0016666666666666668
+        }
+      },
+      "majority_count": 1,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 1,
+        "reviewer_1_vs_3": 0,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "discrete_duplication_or_extra_part": {
+      "counts_by_reviewer": {
+        "reviewer_1": 10,
+        "reviewer_2": 6,
+        "reviewer_3": 1
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "602": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 2,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 2,
+        "reviewer_1_vs_3": 0,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "global_blur": {
+      "counts_by_reviewer": {
+        "reviewer_1": 40,
+        "reviewer_2": 5,
+        "reviewer_3": 129
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 29,
+          "n": 600,
+          "rate": 0.04833333333333333
+        },
+        "602": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 29,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 3,
+        "reviewer_1_vs_3": 28,
+        "reviewer_2_vs_3": 2
+      }
+    },
+    "limb_or_object_misalignment": {
+      "counts_by_reviewer": {
+        "reviewer_1": 11,
+        "reviewer_2": 11,
+        "reviewer_3": 4
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "602": {
+          "count": 1,
+          "n": 600,
+          "rate": 0.0016666666666666668
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 3,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 1,
+        "reviewer_1_vs_3": 1,
+        "reviewer_2_vs_3": 1
+      }
+    },
+    "local_blur": {
+      "counts_by_reviewer": {
+        "reviewer_1": 11,
+        "reviewer_2": 6,
+        "reviewer_3": 0
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "602": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 2,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 2,
+        "reviewer_1_vs_3": 0,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "other": {
+      "counts_by_reviewer": {
+        "reviewer_1": 0,
+        "reviewer_2": 1,
+        "reviewer_3": 0
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "602": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 0,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 0,
+        "reviewer_1_vs_3": 0,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "soft_fusion_or_melting": {
+      "counts_by_reviewer": {
+        "reviewer_1": 14,
+        "reviewer_2": 2,
+        "reviewer_3": 8
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 3,
+          "n": 600,
+          "rate": 0.005
+        },
+        "602": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 5,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 2,
+        "reviewer_1_vs_3": 3,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "texture_break": {
+      "counts_by_reviewer": {
+        "reviewer_1": 15,
+        "reviewer_2": 1,
+        "reviewer_3": 12
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 4,
+          "n": 600,
+          "rate": 0.006666666666666667
+        },
+        "602": {
+          "count": 1,
+          "n": 600,
+          "rate": 0.0016666666666666668
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 5,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 1,
+        "reviewer_1_vs_3": 4,
+        "reviewer_2_vs_3": 0
+      }
+    },
+    "topology_or_attachment_error": {
+      "counts_by_reviewer": {
+        "reviewer_1": 6,
+        "reviewer_2": 4,
+        "reviewer_3": 7
+      },
+      "majority_by_class": {
+        "207": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "602": {
+          "count": 2,
+          "n": 600,
+          "rate": 0.0033333333333333335
+        },
+        "795": {
+          "count": 0,
+          "n": 600,
+          "rate": 0.0
+        }
+      },
+      "majority_count": 4,
+      "pairwise_positive_intersections": {
+        "reviewer_1_vs_2": 2,
+        "reviewer_1_vs_3": 2,
+        "reviewer_2_vs_3": 0
+      }
+    }
+  },
+  "grain": {
+    "class_count": 3,
+    "raters_per_trajectory": 3,
+    "trajectory_count": 1800
+  },
+  "independent_visual_reaudit": {
+    "clear_bad_downgraded_count_in_reaudit": 7,
+    "counts": {
+      "acceptable_for_class_band": 2,
+      "borderline_mild": 14,
+      "clear_bad_missed_by_adjudication": 7,
+      "confirmed_clear_bad": 6
+    },
+    "final_six_false_positive_count_in_reaudit": 0,
+    "status": "DESCRIPTIVE_SINGLE_AUDITOR_QA_NOT_A_NEW_LABEL_LOCK",
+    "visually_clear_count": 13
+  },
+  "positive_sets": {
+    "adjudication_retention_rate_by_class": {
+      "207": 0.041666666666666664,
+      "602": 1.0,
+      "795": 1.0
+    },
+    "adjudication_retention_rate_overall": 0.20689655172413793,
+    "at_least_one_clear_bad_vote_count": 147,
+    "downgraded_count": 23,
+    "exactly_two_clear_bad_votes_count": 28,
+    "final_retained_by_class": {
+      "207": {
+        "count": 1,
+        "n": 600,
+        "rate": 0.0016666666666666668
+      },
+      "602": {
+        "count": 4,
+        "n": 600,
+        "rate": 0.006666666666666667
+      },
+      "795": {
+        "count": 1,
+        "n": 600,
+        "rate": 0.0016666666666666668
+      }
+    },
+    "final_retained_count": 6,
+    "raw_majority_by_class": {
+      "207": {
+        "count": 24,
+        "n": 600,
+        "rate": 0.04
+      },
+      "602": {
+        "count": 4,
+        "n": 600,
+        "rate": 0.006666666666666667
+      },
+      "795": {
+        "count": 1,
+        "n": 600,
+        "rate": 0.0016666666666666668
+      }
+    },
+    "raw_majority_clear_bad_count": 29,
+    "unanimous_clear_bad_count": 1
+  },
+  "raw_majority_cases": [
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_9ad471876dc990d2d654",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 275,
+      "independent_visual_reason": "moderate softness; coherent face",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 75,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_336f97fcc1178bf2dbcd",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 278,
+      "independent_visual_reason": "soft/low-resolution portrait",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 84,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_cce9b548639bc67a200d",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 294,
+      "independent_visual_reason": "coherent profile; ordinary rendering",
+      "independent_visual_reaudit": "acceptable_for_class_band",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 132,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_515a4b503c1fd57fd5ee",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 1,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 317,
+      "independent_visual_reason": "strong global smoothing and plastic blur",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 201,
+      "severities": [
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_ef44037d7ee862b96b89",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 1,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 322,
+      "independent_visual_reason": "blurred/melted eyes and head contour",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 216,
+      "severities": [
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_627316462cd5d7537fff",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 335,
+      "independent_visual_reason": "low-resolution distant pose",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 255,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_4858b4716a422c5eb990",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 375,
+      "independent_visual_reason": "strong global blur with lost facial texture",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 375,
+      "severities": [
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_720cc0c5f7c3e89c2a5a",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 1,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 2,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 2,
+        "texture_break": 0,
+        "topology_or_attachment_error": 2
+      },
+      "global_seed": 383,
+      "independent_visual_reason": "hind-limb/topology fusion and misalignment",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "soft_fusion_or_melting",
+        "topology_or_attachment_error",
+        "limb_or_object_misalignment"
+      ],
+      "sample_index": 399,
+      "severities": [
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_3f63cf46c6130a63d31b",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 414,
+      "independent_visual_reason": "distance/occlusion makes softness ambiguous",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 492,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_e468ca547b1f131f7431",
+      "class_id": 602,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 2,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 1,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 1,
+        "texture_break": 0,
+        "topology_or_attachment_error": 2
+      },
+      "global_seed": 488,
+      "independent_visual_reason": "duplicated/incoherent gymnast limbs",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "discrete_duplication_or_extra_part",
+        "topology_or_attachment_error"
+      ],
+      "sample_index": 715,
+      "severities": [
+        2,
+        3,
+        0
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_4874ca86b95c84b66485",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 501,
+      "independent_visual_reason": "soft portrait but coherent subject",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 753,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_599eddbdd5f736978b89",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 507,
+      "independent_visual_reason": "soft puppy portrait",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 771,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_3e1309c9e3c749510d84",
+      "class_id": 602,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 1,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 2,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 2,
+        "texture_break": 2,
+        "topology_or_attachment_error": 2
+      },
+      "global_seed": 509,
+      "independent_visual_reason": "grossly fused and stretched gymnast/body",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "soft_fusion_or_melting",
+        "topology_or_attachment_error",
+        "limb_or_object_misalignment",
+        "texture_break"
+      ],
+      "sample_index": 778,
+      "severities": [
+        3,
+        3,
+        0
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_90977ccfce178905e8c9",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 535,
+      "independent_visual_reason": "moderate blur; recognizable coherent pose",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 855,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_5e6c3da3330b864cc75b",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 536,
+      "independent_visual_reason": "distant/cropped dog with ordinary softness",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 858,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_ed27d667ce92e5820e7f",
+      "class_id": 207,
+      "clear_bad_votes": 3,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 3,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 559,
+      "independent_visual_reason": "clear global blur below class band",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 927,
+      "severities": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_a2416447e741903e7dfe",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 567,
+      "independent_visual_reason": "face and eyes globally blurred below class band",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 951,
+      "severities": [
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_f25b0da489235c5aa7cd",
+      "class_id": 795,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 2,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 579,
+      "independent_visual_reason": "detached floating ski/object",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "detachment_or_floating_part"
+      ],
+      "sample_index": 989,
+      "severities": [
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_666f48e492a03a24e107",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 619,
+      "independent_visual_reason": "soft puppy portrait; structure remains coherent",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1107,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_d584026c314976576004",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 635,
+      "independent_visual_reason": "coherent portrait with normal detail",
+      "independent_visual_reaudit": "acceptable_for_class_band",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1155,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_5312507c0cf7c057bf40",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 2,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 2,
+        "texture_break": 1,
+        "topology_or_attachment_error": 2
+      },
+      "global_seed": 693,
+      "independent_visual_reason": "gross fused/duplicated dog anatomy",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "soft_fusion_or_melting",
+        "topology_or_attachment_error",
+        "limb_or_object_misalignment"
+      ],
+      "sample_index": 1329,
+      "severities": [
+        3,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_b9cd71c896ba08733d0a",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 1,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 715,
+      "independent_visual_reason": "old-photo softness and background blur",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1395,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_d9f66b1812eebd828d92",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 753,
+      "independent_visual_reason": "severe global blur and body/background fusion",
+      "independent_visual_reaudit": "clear_bad_missed_by_adjudication",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1509,
+      "severities": [
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_e471e50a51ed243ba5bd",
+      "class_id": 602,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 2,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 1,
+        "local_blur": 2,
+        "other": 0,
+        "soft_fusion_or_melting": 1,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 753,
+      "independent_visual_reason": "missing/fused gymnast arms",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "local_blur",
+        "discrete_duplication_or_extra_part"
+      ],
+      "sample_index": 1510,
+      "severities": [
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_baba4b1e0d90f094f07f",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 3,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 770,
+      "independent_visual_reason": "sleeping pose and shallow-focus softness",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1560,
+      "severities": [
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_97b9afd957ef1a159782",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 790,
+      "independent_visual_reason": "ordinary low-resolution portrait",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1620,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_5912cf551725a801481f",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 2,
+        "limb_or_object_misalignment": 0,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 0,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 791,
+      "independent_visual_reason": "oversaturated/painterly but coherent portrait",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [
+        "global_blur"
+      ],
+      "sample_index": 1623,
+      "severities": [
+        2,
+        0,
+        3
+      ]
+    },
+    {
+      "adjudication": "retain_clear_bad",
+      "case_id": "a_fc5049c19a28864f43b7",
+      "class_id": 602,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 1,
+        "global_blur": 0,
+        "limb_or_object_misalignment": 1,
+        "local_blur": 2,
+        "other": 0,
+        "soft_fusion_or_melting": 2,
+        "texture_break": 0,
+        "topology_or_attachment_error": 0
+      },
+      "global_seed": 830,
+      "independent_visual_reason": "fused/duplicated gymnast limbs and torso",
+      "independent_visual_reaudit": "confirmed_clear_bad",
+      "majority_components": [
+        "local_blur",
+        "soft_fusion_or_melting"
+      ],
+      "sample_index": 1741,
+      "severities": [
+        3,
+        2,
+        0
+      ]
+    },
+    {
+      "adjudication": "downgrade_to_mild",
+      "case_id": "a_f6f00ed9c164e9e19318",
+      "class_id": 207,
+      "clear_bad_votes": 2,
+      "component_vote_counts": {
+        "detachment_or_floating_part": 0,
+        "discrete_duplication_or_extra_part": 0,
+        "global_blur": 1,
+        "limb_or_object_misalignment": 1,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 1,
+        "texture_break": 0,
+        "topology_or_attachment_error": 1
+      },
+      "global_seed": 832,
+      "independent_visual_reason": "slightly unusual body proportions but plausible",
+      "independent_visual_reaudit": "borderline_mild",
+      "majority_components": [],
+      "sample_index": 1746,
+      "severities": [
+        2,
+        0,
+        2
+      ]
+    }
+  ],
+  "reviewer_summary": {
+    "reviewer_1": {
+      "clear_bad_count": 48,
+      "clear_bad_rate": 0.02666666666666667,
+      "component_counts": {
+        "detachment_or_floating_part": 3,
+        "discrete_duplication_or_extra_part": 10,
+        "global_blur": 40,
+        "limb_or_object_misalignment": 11,
+        "local_blur": 11,
+        "other": 0,
+        "soft_fusion_or_melting": 14,
+        "texture_break": 15,
+        "topology_or_attachment_error": 6
+      },
+      "nonzero_severity_count": 78,
+      "nonzero_severity_rate": 0.043333333333333335,
+      "per_class": {
+        "207": {
+          "clear_bad_count": 36,
+          "clear_bad_rate": 0.06,
+          "severity_counts": {
+            "0": 543,
+            "1": 21,
+            "2": 35,
+            "3": 1
+          }
+        },
+        "602": {
+          "clear_bad_count": 7,
+          "clear_bad_rate": 0.011666666666666667,
+          "severity_counts": {
+            "0": 585,
+            "1": 8,
+            "2": 4,
+            "3": 3
+          }
+        },
+        "795": {
+          "clear_bad_count": 5,
+          "clear_bad_rate": 0.008333333333333333,
+          "severity_counts": {
+            "0": 594,
+            "1": 1,
+            "2": 5
+          }
+        }
+      },
+      "severity_counts": {
+        "0": 1722,
+        "1": 30,
+        "2": 44,
+        "3": 4
+      }
+    },
+    "reviewer_2": {
+      "clear_bad_count": 18,
+      "clear_bad_rate": 0.01,
+      "component_counts": {
+        "detachment_or_floating_part": 7,
+        "discrete_duplication_or_extra_part": 6,
+        "global_blur": 5,
+        "limb_or_object_misalignment": 11,
+        "local_blur": 6,
+        "other": 1,
+        "soft_fusion_or_melting": 2,
+        "texture_break": 1,
+        "topology_or_attachment_error": 4
+      },
+      "nonzero_severity_count": 26,
+      "nonzero_severity_rate": 0.014444444444444444,
+      "per_class": {
+        "207": {
+          "clear_bad_count": 3,
+          "clear_bad_rate": 0.005,
+          "severity_counts": {
+            "0": 594,
+            "1": 3,
+            "2": 3
+          }
+        },
+        "602": {
+          "clear_bad_count": 7,
+          "clear_bad_rate": 0.011666666666666667,
+          "severity_counts": {
+            "0": 592,
+            "1": 1,
+            "2": 4,
+            "3": 3
+          }
+        },
+        "795": {
+          "clear_bad_count": 8,
+          "clear_bad_rate": 0.013333333333333334,
+          "severity_counts": {
+            "0": 588,
+            "1": 4,
+            "2": 6,
+            "3": 2
+          }
+        }
+      },
+      "severity_counts": {
+        "0": 1774,
+        "1": 8,
+        "2": 13,
+        "3": 5
+      }
+    },
+    "reviewer_3": {
+      "clear_bad_count": 111,
+      "clear_bad_rate": 0.06166666666666667,
+      "component_counts": {
+        "detachment_or_floating_part": 2,
+        "discrete_duplication_or_extra_part": 1,
+        "global_blur": 129,
+        "limb_or_object_misalignment": 4,
+        "local_blur": 0,
+        "other": 0,
+        "soft_fusion_or_melting": 8,
+        "texture_break": 12,
+        "topology_or_attachment_error": 7
+      },
+      "nonzero_severity_count": 147,
+      "nonzero_severity_rate": 0.08166666666666667,
+      "per_class": {
+        "207": {
+          "clear_bad_count": 46,
+          "clear_bad_rate": 0.07666666666666666,
+          "severity_counts": {
+            "0": 525,
+            "1": 29,
+            "2": 40,
+            "3": 6
+          }
+        },
+        "602": {
+          "clear_bad_count": 3,
+          "clear_bad_rate": 0.005,
+          "severity_counts": {
+            "0": 597,
+            "3": 3
+          }
+        },
+        "795": {
+          "clear_bad_count": 62,
+          "clear_bad_rate": 0.10333333333333333,
+          "severity_counts": {
+            "0": 531,
+            "1": 7,
+            "2": 56,
+            "3": 6
+          }
+        }
+      },
+      "severity_counts": {
+        "0": 1653,
+        "1": 36,
+        "2": 96,
+        "3": 15
+      }
+    }
+  },
+  "scope_guard": {
+    "explicitly_not_opened": [
+      "trajectories/intermediate states",
+      "primary metric features/scores",
+      "visual-track features/scores",
+      "endpoint embeddings/distances",
+      "thresholds/ranks/alerts"
+    ],
+    "opened": [
+      "three reviewer locks",
+      "adjudication lock",
+      "consensus lock",
+      "endpoint-only blind review pack",
+      "raw-majority-only adjudication pack"
+    ]
+  }
+}

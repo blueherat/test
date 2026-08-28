@@ -1,0 +1,234 @@
+{
+  "claims_forbidden_before_confirmation_unseal": [
+    "validated detector",
+    "bad-case posterior probability",
+    "authorization to guide, reject, or roll back",
+    "cross-class or cross-model generalization"
+  ],
+  "discovery_role": "hypothesis_generation_only",
+  "evaluation": {
+    "excluded": "mild, disputed, uncertain, or adjudication downgrade",
+    "initial_go_gate": {
+      "S_AND_class_matched_auc_at_least": 0.75,
+      "S_AND_stratified_permutation_one_sided_p_below": 0.05,
+      "minimum_clear_bad_events_for_decision": 15,
+      "no_class_with_two_or_more_bad_events_has_auc_below": 0.6,
+      "q90_TPR_minus_FPR_point_above": 0.0
+    },
+    "interpretation_if_fewer_than_15_bad_events": "pilot only; expand using disjoint seeds without changing formulas",
+    "negative": "2-of-3 blind reviewers rate ordinary/clean (severity 0)",
+    "positive": "2-of-3 blind reviewers rate clear bad (severity 2 or 3), after conservative adjudication",
+    "primary_continuous_statistic": "class-matched pair-weighted ROC AUC of S_AND",
+    "primary_fixed_operating_point": "frozen class-specific q90_linear alert",
+    "report": [
+      "TPR and FPR with exact binomial intervals",
+      "TPR minus FPR with class-stratified bootstrap interval",
+      "per-class bad ranks and per-class AUC",
+      "A and B separately to test conjunction mechanism",
+      "time-to-signal using prefixes fixed by the same windows"
+    ],
+    "secondary_continuous_statistic": "macro mean of within-class ROC AUC"
+  },
+  "fresh_confirmation": {
+    "cfg_scale": 4.0,
+    "classes": [
+      207,
+      602,
+      795
+    ],
+    "expansion_or_stopping_rule": "The 300-path cohort is fixed. Any later expansion must use disjoint seeds and be decided from locked label event count or precision, not observed score performance.",
+    "metric_visibility_to_reviewers": "forbidden",
+    "model": "DiT-XL/2 ImageNet-256",
+    "sampler": "official 250-step ancestral DDPM",
+    "seeds": {
+      "count": 100,
+      "start_inclusive": 30,
+      "stop_inclusive": 129
+    },
+    "trajectory_count": 300,
+    "visual_labels_must_be_locked_before_score_join": true
+  },
+  "identity_sha256": "49f9fbf18b0d5441e100e2ea801b5b8a7f769c2894b909f1250e8e90683063ac",
+  "negative_controls": {
+    "exact_e_value_alert_log_thresholds": {
+      "alpha_0p05": 2.995732273553991,
+      "alpha_0p10": 2.302585092994046
+    },
+    "exact_path_evidence_running_maxima": [
+      "weak_conditional_cfg1_full_running_max_log_e_from_E0__full_maximum",
+      "weak_conditional_cfg1_tile4x4_uniform_mixture_running_max_log_e_from_E0__full_maximum",
+      "weak_unconditional_full_running_max_log_e_from_E0__full_maximum",
+      "weak_unconditional_tile4x4_uniform_mixture_running_max_log_e_from_E0__full_maximum"
+    ],
+    "old_fixed_predicted_clean_score": "fixed_two_phase_predicted_clean_score_label_free_reference"
+  },
+  "normalization": {
+    "class_reference": {
+      "207": {
+        "S_AND_label_free_reference_thresholds": {
+          "q90_linear": 0.17550308577174972,
+          "q95_linear": 0.7123087764123408
+        },
+        "sample_count": 20,
+        "statistics": {
+          "A_low_is_bad": {
+            "mad": 0.01388712148911105,
+            "median": -0.04711704970168115,
+            "scale": 0.020589046319756044
+          },
+          "B_high_is_bad": {
+            "mad": 0.5369817366298364,
+            "median": 2.7011389048590235,
+            "scale": 0.7961291227273954
+          }
+        }
+      },
+      "602": {
+        "S_AND_label_free_reference_thresholds": {
+          "q90_linear": 0.6393714597727702,
+          "q95_linear": 0.7580597305511448
+        },
+        "sample_count": 20,
+        "statistics": {
+          "A_low_is_bad": {
+            "mad": 0.02072794281679575,
+            "median": -0.0918446863366778,
+            "scale": 0.030731248020181373
+          },
+          "B_high_is_bad": {
+            "mad": 0.41852716485928787,
+            "median": 2.955734833070744,
+            "scale": 0.6205083746203801
+          }
+        }
+      },
+      "795": {
+        "S_AND_label_free_reference_thresholds": {
+          "q90_linear": 0.6852090622451257,
+          "q95_linear": 0.8266674258228415
+        },
+        "sample_count": 20,
+        "statistics": {
+          "A_low_is_bad": {
+            "mad": 0.015380009617726547,
+            "median": -0.04938546820372735,
+            "scale": 0.022802402259241378
+          },
+          "B_high_is_bad": {
+            "mad": 0.6890245911812394,
+            "median": 3.2962056785131963,
+            "scale": 1.0215478588853055
+          }
+        }
+      }
+    },
+    "median_absolute_deviation_factor": 1.4826,
+    "reference_classes": [
+      207,
+      602,
+      795
+    ],
+    "reference_is_label_free": true,
+    "reference_seeds": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "scale_floor": 1e-06,
+    "scale_formula": "max(1.4826 * MAD, 1e-6)"
+  },
+  "objective": "Prospectively test a preterminal, model-relative score for obvious blur, fusion, gross topology, and major limb/object misalignment failures.",
+  "primary_candidate": {
+    "alert_budgets": {
+      "primary": "strictly greater than frozen class-specific q90_linear threshold",
+      "secondary": "strictly greater than frozen class-specific q95_linear threshold",
+      "thresholds_use_no_visual_labels": true
+    },
+    "formula": "min(z_A, z_B)",
+    "latest_required_internal_timestep": 100,
+    "latest_required_sampling_step": 149,
+    "motivation": "Require both abnormal failure to spatially localize conditional-vs-unconditional posterior log-standard-deviation disagreement in q2 and abnormal q1 branch disagreement regime change in the deliberately unguided fourth epsilon channel.",
+    "name": "S_AND",
+    "orientation": "higher_is_more_bad_like",
+    "preterminal_actionable": true,
+    "selection_warning": "Post-hoc on discovery labels; only fresh confirmation is inferential.",
+    "z_A": "(-A - class_median_reference(-A)) / class_robust_scale_reference(-A)",
+    "z_B": "(B - class_median_reference(B)) / class_robust_scale_reference(B)"
+  },
+  "schema_version": 1,
+  "single_feature_backups": {
+    "A": {
+      "catalog": {
+        "availability": "predictable",
+        "deployment_note": "Q evidence retains conditional P covariance; gap is descriptive",
+        "family": "transformed_learned_range_logstd",
+        "feature": "learned_range_cond_minus_uncond_logstd_gap_tile4x4_concentration_guided3__q2_max_positive_jump",
+        "feature_formula": "max_positive_jump over learned_range_cond_minus_uncond_logstd_gap_tile4x4_concentration_guided3[100:150] under fixed phase q2",
+        "feature_index": 986,
+        "latest_required_internal_timestep": 100,
+        "latest_required_sampling_step": 149,
+        "observation_timing": "before_transition_at_latest_step",
+        "preterminal_actionable": true,
+        "reduction": "q2_max_positive_jump",
+        "track": "learned_range_cond_minus_uncond_logstd_gap_tile4x4_concentration_guided3",
+        "track_formula": "fixed 4x4 tile concentration of transformed conditional-unconditional logstd gap, guided3",
+        "track_length": 250,
+        "uses_realized_innovation": false
+      },
+      "feature": "learned_range_cond_minus_uncond_logstd_gap_tile4x4_concentration_guided3__q2_max_positive_jump",
+      "orientation": "lower_is_more_bad_like"
+    },
+    "B": {
+      "catalog": {
+        "availability": "predictable",
+        "deployment_note": "none",
+        "family": "conditional_unconditional_predicted_clean_disagreement",
+        "feature": "pred_xstart_cond_uncond_disagreement_rms_channel4__q1_centered_cusum_range",
+        "feature_formula": "centered_cusum_range over pred_xstart_cond_uncond_disagreement_rms_channel4[50:100] under fixed phase q1",
+        "latest_required_internal_timestep": 150,
+        "latest_required_sampling_step": 99,
+        "observation_timing": "before_transition_at_latest_step",
+        "preterminal_actionable": true,
+        "reduction": "q1_centered_cusum_range",
+        "track": "pred_xstart_cond_uncond_disagreement_rms_channel4",
+        "track_formula": "RMS of branch pred_x0 disagreement = sqrt((1-alpha)/alpha) times epsilon-gap RMS, channel4",
+        "track_length": 250.0,
+        "uses_realized_innovation": false
+      },
+      "feature": "pred_xstart_cond_uncond_disagreement_rms_channel4__q1_centered_cusum_range",
+      "orientation": "higher_is_more_bad_like"
+    }
+  },
+  "source_products": {
+    "posterior_label_free": {
+      "analysis_source_sha256": "9e0576146f14ccd433899802dfb1ed97b22b84aacbcf2b84e5d791d74755a695",
+      "manifest_identity_sha256": "bc3cde8aeb408fb21a66ccb6d39acb51fe89e40dfb46943e16007c5989e9bac6",
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_discovery/dit_targeted160_posterior_evidence_label_free_v1",
+      "sample_features_sha256": "cb871301313cee2234a891c9979189140e7ccfd98d2b25c030efecf5e857defd"
+    },
+    "primary_label_free": {
+      "analysis_source_sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129",
+      "manifest_identity_sha256": "76d9148c3928a12031707c61f8afa583fd804a4c25358997fb024ebbaeca03dd",
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_discovery/dit_targeted160_custom_label_free_v3",
+      "sample_features_sha256": "3526488f8533b2886b9bba3f46c7e5c4700928ab190dfbe085af1f118addd7c8"
+    }
+  },
+  "status": "FROZEN_BEFORE_FRESH_CONFIRMATION_GENERATION_AND_LABEL_JOIN"
+}

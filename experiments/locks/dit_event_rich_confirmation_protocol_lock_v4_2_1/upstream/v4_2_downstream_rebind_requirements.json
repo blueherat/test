@@ -1,0 +1,35 @@
+{
+  "incompatible_existing_locks": [
+    {
+      "path": "experiments/locks/dit_scientific_v4_endpoint_sampling_source_lock_v1",
+      "role": "endpoint_sampler",
+      "sampling_protocol_identity": "acfd7345d350a67f8974396b5799a892263609aa42e19633f2dd68e9fe33e92c",
+      "source_lock_identity": "48924d64b0e24caf02ea2458ef837be843e46dff2fe33731d585e0c91f67ec7d"
+    },
+    {
+      "inner_manifest_identity": "2b1f20e63544da77c8b4de20b84ae6f8e7abfccb172ef72bd3058887a919efa5",
+      "path": "experiments/locks/dit_scientific_v4_review_pipeline_source_lock_v2",
+      "review_contract_identity": "1f3936a0065753633fb42108cd58b5a4335b6464a27af77087db0410c09af528",
+      "role": "review_pipeline",
+      "source_lock_identity": "90b0411415d00fb47be574858c0c292dbe0e61c522aaf9193bda90f721f47084"
+    },
+    {
+      "path": "any current v4.1-bound dynamic source lock",
+      "reason": "must bind method v2.2 tracks, mechanics schema, G_start, and cluster bootstrap",
+      "role": "dynamic_B_E_pipeline"
+    }
+  ],
+  "real_sampling_authorized": false,
+  "reuse_without_new_lock_forbidden": true,
+  "schema_version": 1,
+  "source_files_requiring_new_frozen_hashes_or_contracts": [
+    "select_dit_event_rich_blur_classes_v4.py output artifacts must bind v4.2",
+    "selftest_dit_event_rich_scientific_v4.py must validate v4.2 method/gates",
+    "run_dit_event_rich_endpoint_screen.py source lock must embed v4.2",
+    "dit_event_rich_review_contract.py and review source lock must embed v4.2",
+    "all DiT B/E trace, extraction, isolated-product, evaluator, and bootstrap sources must bind v4.2 and method v2.2"
+  ],
+  "status": "ALL_V4_1_BOUND_EXECUTION_SOURCES_INCOMPATIBLE_WITH_V4_2",
+  "v4_1_protocol_identity_sha256": "0998e0a9def75fa26fa3403f589c6d86bdeb4b96747b1ee6d035d4e92a07d5b9",
+  "v4_2_protocol_identity_sha256": "03a82123980c63d91029ebeb146240123f5cfae5ca90eff8f8342f203b3b8e9f"
+}

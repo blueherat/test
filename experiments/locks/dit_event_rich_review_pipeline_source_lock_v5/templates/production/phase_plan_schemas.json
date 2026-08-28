@@ -1,0 +1,30 @@
+{
+  "anchor": {
+    "axis": "union_selected_classes (6..12, frozen roster order) x seeds 1012..1035",
+    "kind": "authoritative select_dit_event_rich_classes.py rank output",
+    "status": "SCREEN_DISCOVERY_CLASSES_SELECTED_BEFORE_ANCHOR_SAMPLING"
+  },
+  "confirmation": {
+    "axis": "nonempty active_union_classes, exactly the roster-ordered union of GO candidate six-class scopes, x seeds 1200..1327",
+    "kind": "authoritative select_dit_event_rich_classes.py anchor output",
+    "manifest_binding": "consensus identity records this file's identity_sha256 as anchor_plan_identity_sha256",
+    "status": "PROSPECTIVE_TRACE_PLAN_LOCKED_AFTER_INDEPENDENT_ENDPOINT_ANCHOR"
+  },
+  "discovery": {
+    "exact_fields": [
+      "schema_version",
+      "status",
+      "phase",
+      "event_protocol_identity_sha256",
+      "class_ids_ordered",
+      "global_seeds_ordered",
+      "upstream_plan_identity_sha256",
+      "labels_locked_before_plan",
+      "candidate_scores_features_trajectories_embeddings_or_ranks_used",
+      "identity_sha256"
+    ],
+    "kind": "static exact 84-class roster x seeds 1000..1011 wrapper"
+  },
+  "identity_rule": "all plan identities are canonical SHA256 over all other exact fields",
+  "no_example_values": "intentionally omitted to avoid creating a fake phase plan"
+}

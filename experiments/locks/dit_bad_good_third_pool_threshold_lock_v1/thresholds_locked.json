@@ -1,0 +1,293 @@
+{
+  "access_audit": {
+    "endpoint_images_opened": false,
+    "individual_scores_emitted": false,
+    "non_calibration_score_values_used": false,
+    "only_calibration_seed_scores_used": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "only_candidate_columns_used": [
+      "decoded_local_blur_severity__mean",
+      "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump"
+    ],
+    "screening_results_opened": false,
+    "trajectory_archives_opened": false,
+    "visual_label_columns_read": false,
+    "visual_label_or_review_files_opened": false
+  },
+  "calibration": {
+    "alphas": [
+      0.1,
+      0.05
+    ],
+    "candidate_selection_used_calibration_values": false,
+    "classes": [
+      207,
+      602,
+      795
+    ],
+    "count_per_candidate_class": 20,
+    "review_or_endpoint_image_used": false,
+    "screening_result_used": false,
+    "seeds": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "third_pool_values_used": false,
+    "total_distinct_trajectory_rows": 60,
+    "visual_labels_used": false
+  },
+  "guarantee_scope": "Under within-class exchangeability of the 20 reserved calibration scores and one future score, strict alpha0.10 and alpha0.05 alerts have marginal trigger bounds 2/21 and 1/21. These are overall intervention budgets, not clean-good conditional false-positive rates.",
+  "identity_sha256": "c89fee87731968aa0c8a7ef086cb9a95a578dc3462149a6135bb71275bdbe43d",
+  "implementation_source_sha256": "9bc15ff5c4da951b7a24666fc6bee4c67526db4b9df4bb87cc8077271bc3c3c8",
+  "input_lineage": {
+    "primary_label_free_product": {
+      "analysis_source_file_sha256": "acc348c7aa94ffe53d59ef4268c669fd948448de86f67202573bd04b69e9e129",
+      "completion_file_sha256": "ba95487e6186e469f3c1d5d1b9506a0f5f7b5a063c07b74ebb3c9d6416f24bff",
+      "experiment": "dit_bad_good_custom_trace_metric_discovery",
+      "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+      "feature_catalog_file_sha256": "70f26f2f73f5f31c528e0e2769515a7e470a2eeaeb5da30b05f082338152acab",
+      "feature_catalog_record": {
+        "availability": "predictable",
+        "deployment_note": "none",
+        "family": "predicted_clean",
+        "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+        "feature_formula": "max_positive_jump over pred_xstart_alpha_compensated_gradient_energy_c3[100:150] under fixed phase q2",
+        "latest_required_internal_timestep": "100",
+        "latest_required_sampling_step": "149",
+        "observation_timing": "before_transition_at_latest_step",
+        "preterminal_actionable": "True",
+        "reduction": "q2_max_positive_jump",
+        "track": "pred_xstart_alpha_compensated_gradient_energy_c3",
+        "track_formula": "alpha_bar[k] * (mean vertical-difference^2 + mean horizontal-difference^2), pred_xstart channel 3",
+        "track_length": "250.0",
+        "uses_realized_innovation": "False"
+      },
+      "label_free_supervision_verified": true,
+      "manifest_file_sha256": "6998136462ef36f4b866506bcb5065722ca1e3abfe4dcdf2e64be926b108d8b8",
+      "manifest_identity_sha256": "a0aa2d1c8ffb8a2be2b95cc6cba7710a282f22ff3d5f24d246e8ea23b6e01044",
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/custom_label_free_v1",
+      "protocol_snapshot_file_sha256": "0503fb4fc9be2124ab9d4079efd8b017e7ba29e2ef6b273b3c8b0dc3d64187bd",
+      "sample_features_file_sha256": "87d5165d5ab6d3750ab7d8aeedc99532a0846754c2e1ed0adacdb277d5919520",
+      "source_inventory_file_sha256": "27c31eac3e32af0c2b632f6fa76c003e6dad5090fe05f5c4a0fafe9e794e7c1f",
+      "summary_file_sha256": "5504b7e5cf6ae0f28fe0f4f98778594262c582723331c76ec0388eed88923d43"
+    },
+    "visual_label_free_product": {
+      "analysis_source_file_sha256": "452ae0e61fe36d027036e0d74c232fbcfbd7cb462d3749db92e062a104d0e398",
+      "completion_file_sha256": "884a848a8e3564086693d62974df7c5a401a7f65f11f50ff58196805e3094cdc",
+      "experiment": "dit_predxstart_preterminal_visual_tracks_label_free",
+      "feature": "decoded_local_blur_severity__mean",
+      "feature_catalog_file_sha256": "f2c0168ba3cebb5941fc49e228f04ebf645a871ed44fb31d897deb712e52b299",
+      "feature_catalog_record": {
+        "availability": "pre_innovation_current_model_output",
+        "checkpoint_internal_timesteps": "180,170,160,150,140,130,120,110,100",
+        "checkpoint_sampling_steps": "69,79,89,99,109,119,129,139,149",
+        "deployment_note": "fixed decoded-pred_xstart diagnostic; no endpoint, future innovation, label, or quality posterior is used",
+        "family": "decoded_pixels",
+        "feature": "decoded_local_blur_severity__mean",
+        "feature_index": "0",
+        "formula_source": "protocol_snapshot.json",
+        "latest_required_internal_timestep": "100",
+        "latest_required_sampling_step": "149",
+        "observation_timing": "before_transition_at_latest_checkpoint",
+        "preterminal_actionable": "True",
+        "reduction": "mean over selected checkpoints",
+        "track": "decoded_local_blur_severity",
+        "track_length": "9",
+        "uses_realized_innovation": "False"
+      },
+      "label_free_supervision_verified": true,
+      "manifest_file_sha256": "193dcdc8f7b514a40334bc386af66e85368e5706348760abedb1d675c8b69c3e",
+      "manifest_identity_sha256": "7554c9bf8a15375e83df50a4308a00176a5e2dc5deb8f378a5611cd8f3c322cd",
+      "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/bad_good_metric_confirmation_v1/predxstart_visual_label_free_v1",
+      "protocol_snapshot_file_sha256": "ce14104dfd0e320f6b58ba062db1206744b794f2bdc415e6a68eceef616ba5b0",
+      "sample_features_file_sha256": "820d79d5bf034965587e1cc19d930b0fc9f30d4cf25fbc95ad1fa932d76245e7",
+      "source_inventory_file_sha256": "8d56957cdeb01ee0aabe9c33088c052b590aa4702938d828d0bf712a6ddfc732",
+      "summary_file_sha256": "8bdae226809f0a677f6ee017c6e37f9c5254b9a892d257a3a0bc472e61e4c736"
+    }
+  },
+  "schema_version": 1,
+  "status": "FROZEN_LABEL_FREE_BEFORE_THIRD_POOL_SAMPLING_OR_SCORE_LABEL_JOIN",
+  "third_pool_protocol_completion_file_sha256": "00188fea6507472d03ee2bea3dbbb699665a94ad55e7a1b0b9e8cd8318643df7",
+  "third_pool_protocol_file_sha256": "b52bdf6df31def13c409b0756d7011fa561f36f4f43809e4810562faab060ba5",
+  "third_pool_protocol_identity_sha256": "0788c7074adc55f1896dea4e0626f57c8b2b4899a5b600f38d2f982a87acfed5",
+  "third_pool_protocol_manifest_file_sha256": "ffe48e1ee5fd2ea86b1b2d130d32a38b2f3f2969129bc7f6bdc6c94dc0f75a42",
+  "third_pool_protocol_manifest_identity_sha256": "931c928054da332dd83501e09a69793b5217596609e085b441b7cb993a325aa2",
+  "thresholds": {
+    "B_blur_mean": {
+      "classes": {
+        "207": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 20,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 1.8713360433458075
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 19,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 1.6845439114173861
+          },
+          "calibration_values_ordered_by_seed_sha256": "4499297c7f728631c0d0af1970a2e0f7c313965eb3076392562ffa94cf2f2806"
+        },
+        "602": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 20,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 1.8299527451809579
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 19,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 1.5941125150362363
+          },
+          "calibration_values_ordered_by_seed_sha256": "c26c325a0646eee1845aedb5254d6bfb2d17b93d3a2b9d5161f78939e0106873"
+        },
+        "795": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 20,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 2.6794243417393875
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 19,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score > threshold",
+            "tail": "upper",
+            "threshold": 2.2540606485633297
+          },
+          "calibration_values_ordered_by_seed_sha256": "615fa64ff70c1f2d2c22b6172b2bd81c44767fb2a8dd2eb3ffbb7241e52dcd0c"
+        }
+      },
+      "feature": "decoded_local_blur_severity__mean",
+      "raw_orientation": "bad_high"
+    },
+    "C_c3_low_jump": {
+      "classes": {
+        "207": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 1,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.001981385152863016
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 2,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.0023630427053825016
+          },
+          "calibration_values_ordered_by_seed_sha256": "762a4c2c891f44046243dfbf1754a07e76db2131b61896a24c90f3ef12da6fe7"
+        },
+        "602": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 1,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.0018793649149947134
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 2,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.00207918611649955
+          },
+          "calibration_values_ordered_by_seed_sha256": "067045a8474a7a92e904ea4e1824ad0eba62475c6fd17ded82e85ce5e66c4273"
+        },
+        "795": {
+          "alpha_0p05": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 1,
+            "finite_sample_bound_fraction": "1/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.047619047619047616,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.0013807050521773903
+          },
+          "alpha_0p10": {
+            "calibration_count": 20,
+            "calibration_order_statistic_1_based": 2,
+            "finite_sample_bound_fraction": "2/21",
+            "finite_sample_marginal_trigger_probability_upper_bound": 0.09523809523809523,
+            "strict_comparison": "third_pool_raw_score < threshold",
+            "tail": "lower",
+            "threshold": 0.0017606006992473104
+          },
+          "calibration_values_ordered_by_seed_sha256": "7b79596fd84e62777b08a1bf384af55487e3799121e0694f4c71e820d57bb9fa"
+        }
+      },
+      "feature": "pred_xstart_alpha_compensated_gradient_energy_c3__q2_max_positive_jump",
+      "raw_orientation": "bad_low"
+    }
+  }
+}

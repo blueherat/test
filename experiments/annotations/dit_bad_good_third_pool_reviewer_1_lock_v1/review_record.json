@@ -1,0 +1,53 @@
+{
+  "blind_review_source_contract_identity_sha256": "3a08403990acab4b16b855811dd41a013901820fd1791c7fa54246a110382f80",
+  "blind_review_source_manifest_identity_sha256": "e473cedc3442b14457da01658764765db5efe26f643ab41ace16adf08ad804b6",
+  "identity_sha256": "97ea84d807cf3f1a0f56df8541b5a1d40be4c7918610164457ee4b711d81b740",
+  "implementation_source_sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c",
+  "review_pack": {
+    "manifest_identity_sha256": "04a5e86ad6ccab0a52a4c9f8ff023cae7ed2c4037bace86be2841fbb2c699dff",
+    "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_blind_review_pack",
+    "record_identity_sha256": "d52cf650980a2efc2461ccb702a78b405cfd34e9089a506e7d8b57246e2b2b15",
+    "review_order_file_sha256": "5e30f38fce4da63f9d1cad67bfc5df5902600c1ea131aee45f2054b79eb7a4a5",
+    "review_template_file_sha256": "cdd080db9cce89d5f1f52f0ffcbe6354b20606ab93969384c5b52e9af47e1633",
+    "sampling_pool_identity_sha256": "d7f98049c43383fede2d0eec685c2d75d09470bf623aa31cdfff0ec000bfd022"
+  },
+  "review_rows": {
+    "columns_exact": [
+      "review_id",
+      "severity",
+      "global_blur",
+      "local_blur",
+      "soft_fusion_or_melting",
+      "discrete_duplication_or_extra_part",
+      "detachment_or_floating_part",
+      "topology_or_attachment_error",
+      "limb_or_object_misalignment",
+      "texture_break",
+      "other",
+      "none"
+    ],
+    "file_sha256": "76b22edd7e89295b62396ece1e1ec0634b6f94ccc4969cab569141f0f9bc7f38",
+    "member": "review_rows.csv",
+    "row_count": 1800,
+    "severity_counts": {
+      "0": 1722,
+      "1": 30,
+      "2": 44,
+      "3": 4
+    }
+  },
+  "reviewer_attestation": {
+    "candidate_hypothesis_seen": false,
+    "endpoint_images_only": true,
+    "feature_product_seen": false,
+    "independent_review": true,
+    "metric_score_threshold_rank_or_alert_seen": false,
+    "native_images_or_frozen_grids_only": true,
+    "old_label_or_screen_result_seen": false,
+    "other_reviewer_rows_or_summary_seen": false,
+    "trajectory_or_intermediate_state_seen": false
+  },
+  "reviewer_id": "reviewer_1",
+  "schema_version": 1,
+  "status": "LOCKED_INDEPENDENT_ENDPOINT_ONLY_REVIEW"
+}

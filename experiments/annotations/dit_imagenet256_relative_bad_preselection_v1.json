@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "exploratory_single_reviewer_preselection_not_a_formal_bad_label",
+  "purpose": "Freeze an obvious rare DiT-XL/2 ImageNet-256 failure before any cross-scale path evidence is implemented for DiT.",
+  "baseline": {
+    "runner": "reproduce_dit_imagenet256",
+    "upstream_revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+    "checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+    "global_seeds_inclusive": [0, 9],
+    "images_reviewed": 80,
+    "configuration": "DiT-XL/2, ImageNet-256, 250-step ancestral DDPM, CFG 4.0, MSE VAE"
+  },
+  "selection_constraints": {
+    "path_evidence_seen": false,
+    "formal_endpoint": false,
+    "reviewers": 1,
+    "required_interpretation": "discovery target only; a larger blinded same-class reference set and two-reviewer v3 adjudication are still required"
+  },
+  "candidate": {
+    "global_seed": 2,
+    "batch_index": 0,
+    "class_id": 207,
+    "relative_path": "official_demo_seed2/images/00_class0207.png",
+    "reason": "The golden retriever has an impossible duplicated/fused torso: a tail-like appendage exits near the shoulder while the hindquarters and limb topology do not form a coherent single dog. The defect is conspicuous at native 256 resolution and is plainly below the other nine class-207 samples in this scan."
+  },
+  "provisional_same_class_typical_anchors": [
+    {"global_seed": 1, "relative_path": "official_demo_seed1/images/00_class0207.png"},
+    {"global_seed": 3, "relative_path": "official_demo_seed3/images/00_class0207.png"},
+    {"global_seed": 4, "relative_path": "official_demo_seed4/images/00_class0207.png"},
+    {"global_seed": 7, "relative_path": "official_demo_seed7/images/00_class0207.png"},
+    {"global_seed": 9, "relative_path": "official_demo_seed9/images/00_class0207.png"}
+  ],
+  "analysis_rule": "Do not call the 1/80 scan rate an artifact-rate estimate. Use this image only as a frozen engineering target when DiT path evidence and intervention are implemented."
+}

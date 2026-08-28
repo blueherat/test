@@ -1,0 +1,41 @@
+{
+  "artifact_kind": "SELF_GUIDANCE_SD14_COCO1K_SCREEN_LOCK_V1",
+  "comparison": {
+    "baseline": "SD1.4 Euler50 CFG7.5 PAG0.3 SG-prev scale 0",
+    "method": "SD1.4 Euler50 CFG7.5 PAG0.3 SG-prev scale 3",
+    "only_primary_arm_difference": "self_guidance_scale 0 versus 3",
+    "paired_seed": 0
+  },
+  "decision_rule": {
+    "green": "delta <= -0.25, at least 3/4 fixed blocks negative, and paired 80% bootstrap CI upper bound < 0",
+    "paper_comparison_boundary": "local 1k absolute FID is never compared directly with paper 5k/30k/50k FID",
+    "primary": "delta_FID_1k = FID_method - FID_baseline",
+    "red": "delta >= 0 or at most 2/4 fixed blocks negative",
+    "yellow": "delta < 0 and at least 3/4 blocks negative, but magnitude < 0.25 or the 80% CI crosses 0; rerun one untouched fresh 1k"
+  },
+  "files": {
+    "manifest.csv": "e2312db4c2304ba46d7fb9eb8a214a9fe60b19916f1f00baeb88254e324aa3b1",
+    "prompts.txt": "070bfe03d2000380d284f113eb19e281b52fb43d5bf3520b3db7ce0ba2f1ab14"
+  },
+  "identity_sha256": "9db842a042fb19d3060c881224247d40284c1dbb297e83599c5b6f2bca0206f4",
+  "schema_version": 1,
+  "selected_count": 1000,
+  "selection_is_label_and_image_free": true,
+  "selection_rule": "take the 1000 lexicographically smallest SHA256(salt\\0source_index\\0prompt), then emit in source-index order",
+  "selection_salt": "eqvae-self-guidance-coco1k-screen-v1-20260828",
+  "source": {
+    "line_count": 5000,
+    "path": "/data/users/zhoushunyu/eqvae/baselines/Self-Guidance/data/coco/coco_val5000_prompts.txt",
+    "sha256": "97b02328e93d2ced00df0fe9221ca05441eaa48356d62e496f6e053074876837"
+  },
+  "uncertainty_blocks": {
+    "assignment": "selection_rank // 250",
+    "count": 4,
+    "sizes": {
+      "0": 250,
+      "1": 250,
+      "2": 250,
+      "3": 250
+    }
+  }
+}

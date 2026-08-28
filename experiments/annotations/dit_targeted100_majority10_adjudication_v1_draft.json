@@ -1,0 +1,121 @@
+{
+  "artifact": "dit_targeted100_majority10_adjudication_v1_draft",
+  "status": "draft",
+  "independent_adjudication": true,
+  "metrics_seen": false,
+  "trajectories_seen": false,
+  "other_reviews_seen": false,
+  "adjudication_basis": {
+    "evidence_scope": "仅查看指定的 10 张原始 256 PNG，以及相关类别 seed10..29 的 native、nearest、smooth 完整对照网格。",
+    "decision_rule": "以同模型、同类别的通常视觉水平为基线；少见构图或合法姿势本身不构成 clear bad。仅在明显全局模糊、物体融合、主要肢体或物体错位、或附着拓扑明确错误时 retain_clear_bad。",
+    "candidate_count": 10
+  },
+  "decisions": [
+    {
+      "candidate_id": "class0207_seed26",
+      "class_id": 207,
+      "seed": 26,
+      "decision": "retain_clear_bad",
+      "failure_subtype": "severe_global_blur_and_texture_collapse",
+      "reason": "犬脸虽可辨认，但整张主体没有可信的清晰焦平面：双眼、耳缘、口鼻边界和毛发纹理同时被大范围涂抹，面部只剩低频色块。这不是单一背景虚化或轻微景深效果，而是主体细节整体坍塌。",
+      "relative_to_same_class_controls": "class0207 的大多数 seed 能稳定解析眼、鼻、嘴和毛发；即使 seed12、16、22、23、28 等较软或低分辨率样本仍保留更清楚的面部边缘与局部纹理。seed26 位于该类别明显的清晰度尾端，低于通常水平。"
+    },
+    {
+      "candidate_id": "class0340_seed13",
+      "class_id": 340,
+      "seed": 13,
+      "decision": "downgrade_mild_or_typical",
+      "failure_subtype": "ambiguous_foreshortened_tail_tuft",
+      "reason": "臀侧的灰白圆钝结构看起来略古怪，但可合理读作甩向镜头、因透视缩短而显得粗短的尾巴或尾簇；没有足够视觉证据证明它是额外肢体或错误附着。头、躯干、四肢承重关系及主体轮廓均连贯。",
+      "relative_to_same_class_controls": "相较 class0340 对照，seed13 的条纹连续性、头部、腿部和整体锐度处于正常乃至较好水平；问题局限在一个小型、可由尾巴姿态解释的局部，不像同类清晰主体中的主要拓扑失败。"
+    },
+    {
+      "candidate_id": "class0354_seed29",
+      "class_id": 354,
+      "seed": 29,
+      "decision": "downgrade_mild_or_typical",
+      "failure_subtype": "distant_subject_softness_within_class_range",
+      "reason": "两只骆驼采用远景构图，主体像素占比很小，因此边缘和毛发细节偏软；但两只动物的驼峰、颈部、头部、腿和相互分离的轮廓仍可追踪，没有明显融合、肢体错位或错误附着。",
+      "relative_to_same_class_controls": "class0354 本身包含 seed17、20、21 等多只骆驼的远景样本，远距离下同样会损失局部细节。seed29 比类别中位样本更软，却仍落在该模型对此类远景构图的可见范围内，不能仅凭尺度导致的低分辨率判为 clear bad。"
+    },
+    {
+      "candidate_id": "class0602_seed12",
+      "class_id": 602,
+      "seed": 12,
+      "decision": "retain_clear_bad",
+      "failure_subtype": "human_figure_fusion_and_limb_topology_failure",
+      "reason": "主运动员上身横跨器械，但下半身无法组成一套连贯人体：红色躯干下方的裸色肢段终止在黑色团块，并与一个蓝色、近似缩小第二人物或残肢的结构融合；主要腿部数量、连接和朝向均无法合理追踪。左手还抓向器械拉索而非横杆，整体同时存在明显模糊和人物—肢体融合。",
+      "relative_to_same_class_controls": "class0602 虽有大量倒立、横杆和腾空姿势，但其他 seed 通常仍能从肩、髋追踪两臂两腿；即使 seed17、19、28 未接触横杆，也保留完整人体。seed12 的下半身融合与连接丢失显著低于该类别通常水平。"
+    },
+    {
+      "candidate_id": "class0602_seed17",
+      "class_id": 602,
+      "seed": 17,
+      "decision": "downgrade_mild_or_typical",
+      "failure_subtype": "atypical_but_plausible_inverted_cross_or_release_pose",
+      "reason": "运动员倒立并水平伸展双臂，双腿、髋、躯干、头和两臂都可连续追踪；双手接近画面边缘，可能处于吊环倒十字或横杆腾空释放瞬间。横杆位于下方且当前无接触并不自动构成附着错误。",
+      "relative_to_same_class_controls": "class0602 对照覆盖倒立、单臂支撑、分腿和离杆腾空等很宽的合法姿势范围。seed17 的主体清晰度较好、左右肢体成对且没有融合，视觉质量不明显低于同类动态样本。"
+    },
+    {
+      "candidate_id": "class0602_seed19",
+      "class_id": 602,
+      "seed": 19,
+      "decision": "downgrade_mild_or_typical",
+      "failure_subtype": "plausible_airborne_inverted_release_pose",
+      "reason": "倒立运动员位于横杆上方、双臂张开且双手未接触器械，可合理解释为释放动作中的单帧。肩—臂—腕—手连接以及躯干—双腿关系均可辨认；手指和面部有轻微软化，但没有主要肢体缺失或融合。",
+      "relative_to_same_class_controls": "class0602 的 seed17、26、28 等也呈现无即时器械接触的空中动作，许多对照采用倒立构图。seed19 的清晰度与人体完整性落在这些动态样本的通常范围内。"
+    },
+    {
+      "candidate_id": "class0602_seed27",
+      "class_id": 602,
+      "seed": 27,
+      "decision": "retain_clear_bad",
+      "failure_subtype": "missing_arms_and_detached_hand_bar_attachment",
+      "reason": "头、躯干与两条腿完整可见，但肩部之后没有可追踪的两条手臂；横杆左侧仅出现一只孤立手状结构，视觉上直接叠接在大腿与横杆处，找不到与肩或前臂的连续连接，另一只手臂则完全缺失。倒立或旋转姿势不能解释这种主要肢体拓扑丢失。",
+      "relative_to_same_class_controls": "class0602 其他倒立样本通常能清楚看到双臂如何连到横杆；腾空样本 seed17、19、28 虽不接杆，也仍保留成对手臂。seed27 的孤立手与双臂消失是该类别对照中明显异常的附着拓扑。"
+    },
+    {
+      "candidate_id": "class0602_seed28",
+      "class_id": 602,
+      "seed": 28,
+      "decision": "downgrade_mild_or_typical",
+      "failure_subtype": "dynamic_straddle_release_with_hand_overlap",
+      "reason": "画面表现横杆上方的分腿腾空动作：左右腿分别伸向两侧，双臂从肩部向前下方延伸，双手因透视和动作瞬间而重叠。肢体数量与主要连接关系仍成立，轻度运动软化或手部重叠不足以构成 clear bad。",
+      "relative_to_same_class_controls": "class0602 的 seed10、25 等同样包含大幅分腿或腾空构图，seed26 也处于离杆阶段。seed28 的主体清晰度和人体可读性与这些动态对照相当，没有明显低于模型同类通常水平。"
+    },
+    {
+      "candidate_id": "class0795_seed15",
+      "class_id": 795,
+      "seed": 15,
+      "decision": "retain_clear_bad",
+      "failure_subtype": "severe_defocus_and_subject_detail_loss",
+      "reason": "画面几乎全部由被截断的滑雪器材特写占据，但器材轮廓、绑定结构和标识同时严重失焦，没有任何局部形成清晰焦点；大面积白底进一步凸显主体只剩模糊条带，已不仅是器材题材或近景构图差异。",
+      "relative_to_same_class_controls": "class0795 虽包含 seed11 的器材近景，但该对照仍能读出两条滑雪板、平行边缘和绑定部件；其余多数 seed 的人物与雪具也更清楚。seed15 的全主体失焦显著超出同类通常清晰度。"
+    },
+    {
+      "candidate_id": "class0795_seed22",
+      "class_id": 795,
+      "seed": 22,
+      "decision": "retain_clear_bad",
+      "failure_subtype": "severe_global_blur_and_repeated_object_smearing",
+      "reason": "上下两件平行滑雪器材均被大范围横向涂抹，绑定、边缘和材质细节无法可靠分辨，整张图同样没有清晰焦平面。重复器材仍可猜出，但视觉结构已明显坍塌。",
+      "relative_to_same_class_controls": "与同类别 seed11 的器材近景相比，seed22 的轮廓和绑定细节更严重地被抹平；与人物滑雪样本相比差距更大。它与 seed15 一样属于 class0795 清晰度的显著异常尾部。"
+    }
+  ],
+  "summary": {
+    "retain_clear_bad": 5,
+    "downgrade_mild_or_typical": 5,
+    "uncertain": 0
+  },
+  "self_check": {
+    "expected_candidate_count": 10,
+    "actual_candidate_count": 10,
+    "all_requested_candidates_present": true,
+    "candidate_ids_unique": true,
+    "decision_values_valid": true,
+    "each_item_has_failure_subtype": true,
+    "each_item_has_detailed_reason": true,
+    "each_item_has_same_class_control_comparison": true,
+    "decision_count_sum": 10
+  }
+}

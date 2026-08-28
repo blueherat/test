@@ -1,0 +1,178 @@
+{
+  "schema_version": 2,
+  "protocol_name": "dit_blur_latched_directional_eprocess_v2_1",
+  "scientific_revision": "v2.1",
+  "status": "METHOD_PROTOCOL_ONLY_NOT_EXECUTION_READY",
+  "execution_ready": false,
+  "supersedes_method_v1": {
+    "v1_lock": "experiments/locks/dit_blur_focused_eprocess_protocol_lock_v1",
+    "v1_identity_sha256": "facef0f59d1f10cde339440db3bc47dc26ca7fcef012faca01f7f2dfbb31b985",
+    "preserved_immutable": true,
+    "reason": "v1 could spend nearly all K=2 at its first open gate, so its nominal path evidence often collapsed to a one-step test"
+  },
+  "supersedes_method_v2": {
+    "v2_lock": "experiments/locks/dit_blur_focused_eprocess_protocol_lock_v2",
+    "v2_identity_sha256": "8932af74660eeab9ed3961ae598432b1af61d56331ddefff9005de7428ab618a",
+    "preserved_immutable": true,
+    "real_data_opened_before_correction": false,
+    "correction": "disjoint calibration is required for fresh-rank, pre-label mechanics GO, and confirmatory quality claims, but not by itself for operational Gaussian LR exactness when an in-sample threshold remains pre-innovation predictable"
+  },
+  "scientific_question": "After a predictable B start, does a fixed-information multi-step directional operational likelihood ratio add preterminal blur/fusion information beyond B alone?",
+  "frozen_generator": {
+    "model": "official DiT-XL/2 ImageNet-256",
+    "sampler": "250-step ancestral DDPM",
+    "cfg_scale": 4.0,
+    "clip_denoised": false,
+    "vae": "stabilityai/sd-vae-ft-mse",
+    "vae_scaling_factor": 0.18215
+  },
+  "observation_window": {
+    "sampling_steps": [69, 79, 89, 99, 109, 119, 129, 139, 149],
+    "internal_timesteps": [180, 170, 160, 150, 140, 130, 120, 110, 100],
+    "latest_observation": "after model prediction at sampling step 149 and before its transition innovation",
+    "preterminal_steps_remaining_after_latest_observation": 100
+  },
+  "cross_scale_components": {
+    "normalized_heat_variance": "nu=(1-alpha_bar)/alpha_bar",
+    "additive_heat_shifts": [1.0, 4.0],
+    "shifted_internal_timesteps": [
+      [180, 170, 160, 150, 141, 131, 122, 114, 105],
+      [180, 171, 161, 152, 143, 135, 128, 122, 116]
+    ],
+    "effective_checkpoint_counts": [5, 8],
+    "path_mixture_weights": [0.5, 0.5],
+    "weights_fixed_before_any_trace": true,
+    "initial_e_values": [1.0, 1.0],
+    "shared_initial_noise": true
+  },
+  "B_internal_statistic": {
+    "status": "unchanged from immutable v1",
+    "decoded_draft": "I_k=clip((VAE(pred_xstart_k/0.18215)+1)/2,0,1)",
+    "grayscale": "Y=0.2989R+0.5870G+0.1140B",
+    "derivatives": "Gaussian sigma 0.7, Sobel gx/gy divided by 8, discrete Laplacian",
+    "tiles": "fixed row-major 4x4 grid",
+    "active_tiles": "eight highest grayscale-variance tiles, stable row-major ties",
+    "tile_ratio": "q_j=mean(Laplacian_j^2)/(mean(gx_j^2+gy_j^2)+1e-12)",
+    "checkpoint_severity": "B_k=-log(percentile_25(q_j over active tiles)+1e-12)",
+    "pure_B_score": "B_persistence=mean(B_k over nine checkpoints)",
+    "orientation": "larger is more blur/fusion risk",
+    "predictable": true,
+    "exact_eprocess": false
+  },
+  "label_free_calibration": {
+    "status": "unchanged v1 B calibration implementation",
+    "count_per_selected_class": 20,
+    "calibration_seeds": [1100, 1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1112, 1113, 1114, 1115, 1116, 1117, 1118, 1119],
+    "state_gate_threshold": "per class/checkpoint 17th ascending B_k; strict greater",
+    "pure_B_alarm_threshold": "per class 19th ascending B_persistence; strict greater",
+    "threshold_interpretation": "exchangeability rank rule only, never clean-good FPR",
+    "confirmation_seed_disjointness_required": true,
+    "in_sample_E_on_threshold_fitting_paths": "operational LR accounting may remain exact because the cross-path threshold is fixed before each current innovation; nevertheless it is in-sample and cannot support fresh rank semantics, the mechanics GO decision, or confirmatory quality claims",
+    "labels_endpoints_external_representations_used": false
+  },
+  "blur_latched_directional_operational_Q_star": {
+    "raw_direction": "w_{d,k}=mask_k*p_sigma_k*theta_{d,k}, with theta=rho*s_shifted(rho*x)-s_current(x)",
+    "direction_norm_floor": 1e-8,
+    "eligible_start": "T_d=first effective k with B_k>frozen threshold, ||w_{d,k}||>=1e-8, and h_d(k)>=3 remaining effective checkpoints including k",
+    "no_start": "if no eligible T_d exists then Q_d=P and E_d remains one",
+    "latch": "after T_d the component remains active at every remaining effective checkpoint; later B values do not close it",
+    "remaining_count": "h_d=h_d(T_d) is frozen at the predictable first hit",
+    "per_step_information": "kappa_d=K_total/h_d with K_total=2",
+    "implemented_whitened_shift": "at start use u=sqrt(2*kappa_d)*w/||w||; after start refresh to the current normalized direction whenever ||w||>=1e-8, otherwise reuse the most recent valid whitened unit direction and still set ||u||=sqrt(2*kappa_d)",
+    "semantic_choice": "fixed-information directional Q*: normalization may amplify a small-but-above-floor direction and therefore intentionally changes the alternative rather than recovering the ideal high-noise marginal",
+    "mean_shift": "delta=p_sigma*u",
+    "unused_allowance_carried_forward": false,
+    "future_direction_below_floor": "reuse the most recent valid unit direction; the qualifying start guarantees such a direction already exists; record every fallback step",
+    "one_step_log_lr": "Delta ell=u^T transition_innovation-0.5||u||^2",
+    "component_path_e": "E_{d,k}=exp(sum_{i<=k} Delta ell_{d,i}) with E_{d,0}=1",
+    "primary_mixture_e": "E_mix=0.5*E_Delta1+0.5*E_Delta4",
+    "anytime_alpha": 0.1,
+    "alarm": "first time E_mix>=10",
+    "total_K_for_every_started_path": 2.0,
+    "second_moment_bound_for_started_component": "E_P[E_T^2]=exp(4)",
+    "operational_exactness": true,
+    "ideal_heat_marginal_ratio_claimed": false
+  },
+  "pre_real_matched_Q_conditional_power_gate": {
+    "condition": "conditional on the predictable qualifying start history only; last-valid fallback makes all h future shift norms fixed and total K=2 without conditioning on future direction-valid events",
+    "allowed_h_by_scale": [[3, 4, 5], [3, 4, 5, 6, 7, 8]],
+    "distribution": "under its matched directional Q*, terminal log E_d is N(2,4) for every allowed h",
+    "dependence_robust_sufficient_event": "E_d>=20 alone implies 0.5*E_d+0.5*E_other>=10 because E_other>=0",
+    "conditional_terminal_power_lower_bound_formula": "P[N(2,4)>=log(20)]",
+    "conditional_terminal_power_lower_bound": 0.3092891983219736,
+    "minimum_required": 0.3,
+    "monte_carlo_draws_per_scale_h": 400000,
+    "rng_seed": 2026082808,
+    "scope": "conditional mechanism power only; no claim about start frequency, image quality, or ideal heat likelihood"
+  },
+  "pre_real_adaptive_predictable_null_audit": {
+    "model": "two dependent fixed-mixture components whose directions adapt only to past shared innovations",
+    "draws": 250000,
+    "rng_seed": 2026082821,
+    "required": [
+      "each component terminal e-value Monte Carlo mean within 0.04 of one",
+      "fixed-mixture terminal e-value Monte Carlo mean within 0.03 of one",
+      "empirical anytime trigger fraction at E_mix>=10 no larger than 0.105"
+    ],
+    "purpose": "implementation witness for predictability, mean-one calibration, fixed-mixture validity, and Ville behavior; not a quality result"
+  },
+  "pre_label_confirmation_path_mechanics_gate": {
+    "population": "all 768 confirmation traces at seeds 1200..1327 across the frozen six classes",
+    "timing": "after B thresholds are frozen on disjoint calibration seeds and before any confirmation label/review is opened",
+    "minimum_confirmation_paths": 768,
+    "minimum_qualifying_started_paths_per_scale": 12,
+    "minimum_qualifying_started_classes_per_scale": 3,
+    "complete_coverage_definition": "positive_K_step_count equals frozen h and every one of those h steps has K=kappa=2/h",
+    "minimum_complete_coverage_fraction_among_started_paths": 1.0,
+    "maximum_last_valid_fallback_fraction_among_started_steps_per_scale": 0.01,
+    "required_reports": [
+      "qualifying start count and class count",
+      "positive-K step-count histogram",
+      "KL maximum-share quantiles",
+      "KL participation-ratio effective-step-count quantiles",
+      "total-K quantiles as mechanics bookkeeping",
+      "fresh-versus-last-valid-fallback direction counts, fallback-path count, and maximum consecutive fallback run"
+    ],
+    "quality_or_endpoint_metric": false,
+    "failure_action": "STOP E before confirmation label join; no tuning on this pool"
+  },
+  "candidate_family": {
+    "family_size": 2,
+    "co_primary": [
+      {
+        "id": "B_persistence",
+        "kind": "predictable internal heuristic",
+        "orientation": "bad_high"
+      },
+      {
+        "id": "E_blur_gated_running_max_log",
+        "kind": "running-max report of exact blur-latched directional operational e-process",
+        "orientation": "bad_high"
+      }
+    ],
+    "combination_or_candidate_substitution_forbidden": true
+  },
+  "fixed_ablations": {
+    "E_no_state_gate": "remove B crossing but retain predictable first direction-available start, latch, fixed normalization, no carry, mixture, and K",
+    "E_first_hit_full_budget": "at the same predictable qualifying first hit use one fixed-normalized K=2 increment and identity thereafter; a distinct exact one-shot alternative, not a stopped primary",
+    "G_start_schedule": "innovation-free bad-high diagnostic G=0.5*1[T_1 finite]*h_1/5+0.5*1[T_4 finite]*h_4/8; isolates information carried by whether/when the B/direction start occurs",
+    "B_formation_slope": "diagnostic only",
+    "no_ablation_may_rescue_or_replace_a_failed_primary": true
+  },
+  "forbidden_method_inputs": [
+    "endpoint images",
+    "human, model, or adjudicated visual labels/reviews",
+    "FID or batch endpoint metrics",
+    "Inception, DINO, or CLIP features/distances",
+    "learned quality posteriors",
+    "confirmation outcomes or post-label thresholds"
+  ],
+  "falsification_and_stop_rules": [
+    "Any start, h, kappa, mask, direction, or normalized u that changes when current/future innovation is replaced invalidates predictability.",
+    "Any confirmation threshold not frozen on disjoint calibration paths invalidates fresh-rank, pre-label mechanics GO, and confirmatory quality claims; operational LR exactness fails specifically if the threshold or shift reads the current innovation.",
+    "Any started path missing one of its h fixed-information increments fails the complete-coverage mechanics gate.",
+    "Fewer than 12 starts or fewer than three started classes at either scale stops E before labels.",
+    "Exact Q*/P accounting alone is not image-quality evidence and never authorizes intervention.",
+    "No confirmation-label failure may be rescued by changing floor, start depth, K, B gate, mask, heat shift, mixture weight, or ablation."
+  ]
+}

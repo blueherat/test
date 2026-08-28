@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-08-26",
+  "status": "frozen_before_any_repair_output_was_generated",
+  "purpose": "Separate coarse-structure repairability from late-detail repairability for the user-identified strawberry calyx displacement.",
+  "candidate": {
+    "class_id": 949,
+    "seed": 115,
+    "preselection": "experiments/annotations/adm64_strawberry_seed115_preselection_v1.json",
+    "failure_region_xyxy_half_open": [0, 0, 32, 45]
+  },
+  "inputs": {
+    "baseline_manifest_identity_sha256": "3cbce9e7328c5f5de42d227135748424fb078b2c5606c87bed7bb90154fe9f8b",
+    "local_trace_manifest_identity_sha256": "3705901d66ee5179274ea350d0d60453760908809be4e23c1651f5853398cdc5",
+    "localized_suffix_runner_sha256": "02deccf4fb714bf177d06c0164c60be1ebcaddfe54ecf42646d9f652eff414ae"
+  },
+  "selection_boundary": {
+    "path_evidence_seen": true,
+    "repair_outputs_seen": false,
+    "oracle_diagnostic": true,
+    "method_claim_eligible": false,
+    "reason": "The endpoint and pred_xstart timeline were inspected to choose the mask and rollback times. This can test repairability but cannot validate autonomous detection or rollback selection."
+  },
+  "arms": [
+    {
+      "rollback_internal_timestep": 225,
+      "interpretation": "Before the displaced green structure becomes a stable coarse object; tests coarse topology repair.",
+      "localized_attempt_count": 4,
+      "full_fresh_control_count": 1
+    },
+    {
+      "rollback_internal_timestep": 120,
+      "interpretation": "After the left-shifted coarse calyx is established but before the upright blade is fully sharpened; tests whether late resampling can change only detail or also attachment topology.",
+      "localized_attempt_count": 4,
+      "full_fresh_control_count": 1
+    }
+  ],
+  "retention_and_judgment": {
+    "retain_every_output": true,
+    "automatic_best_of_n_selection": false,
+    "primary_visual_question": "Does the green calyx attach coherently to the fruit top without introducing a comparably severe new defect?",
+    "secondary_visual_question": "How much did fruit identity, pose, background, and non-target pixels change?",
+    "required_report": "Show and count all four localized attempts at each rollback time, alongside original replay and the full-fresh control; do not present only a successful attempt."
+  },
+  "theory_guard": "Localized attempts reuse the already observed baseline innovations outside the hard mask, so they are trace-conditioned hybrid suffixes, not fresh baseline-P suffixes. Conditional Ville retry and output-distribution bounds do not apply."
+}

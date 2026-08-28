@@ -1,0 +1,995 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "DiT v2.2 内部信号复核：E 退役，分支共识首版未通过",
+    "description": "跨尺度 e-process、分支共识首版及反向短暂离群线索的盲化复核与下一轮冻结验证。",
+    "generatedAt": "2026-08-28T11:49:34+08:00",
+    "charts": [
+      {
+        "id": "matched_strict_repair_difference",
+        "title": "8 个匹配路径的严格修复率差",
+        "subtitle": "Joint E+B − B-only；每条路径含 8 个匿名比较；机会门失败，区间仅作事后稳定性描述",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "matched_path_differences",
+        "sourceId": "report_analysis",
+        "encodings": {
+          "x": {
+            "field": "pair_label",
+            "type": "ordinal",
+            "label": "匹配路径对"
+          },
+          "y": {
+            "field": "difference",
+            "type": "quantitative",
+            "label": "严格修复率差",
+            "format": "percent"
+          },
+          "tooltip": [
+            {
+              "field": "pair_index",
+              "label": "匹配对"
+            },
+            {
+              "field": "joint_success_count",
+              "label": "Joint 成功数"
+            },
+            {
+              "field": "b_only_success_count",
+              "label": "B-only 成功数"
+            },
+            {
+              "field": "comparisons_per_path",
+              "label": "每路径比较数"
+            },
+            {
+              "field": "difference",
+              "label": "Joint − B-only",
+              "format": "percent"
+            }
+          ]
+        },
+        "xAxisTitle": "匹配路径对",
+        "yAxisTitle": "Joint E+B − B-only",
+        "valueFormat": "percent",
+        "unit": "比例点",
+        "intent": "comparison",
+        "question": "匹配路径是否显示 E 对严格修复率的增量优势？",
+        "rationale": "有符号柱形图保留零点，并逐对展示方向，避免被不匹配的 pooled rate 误导。",
+        "comparisonContext": {
+          "paired": true,
+          "comparisonsPerPath": 8,
+          "guardSatisfied": false,
+          "confirmatory": false
+        },
+        "referenceLines": [
+          {
+            "value": 0,
+            "label": "无差异"
+          }
+        ],
+        "maxRows": 8,
+        "layout": "full"
+      },
+      {
+        "id": "branch_rank_success_by_horizon",
+        "title": "四个内部 rank 的严格修复率",
+        "subtitle": "9 条 opportunity path、18 个 job；虚线为同四条 scout 均匀选择的 37.5% 期望",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "branch_rank_success",
+        "sourceId": "report_analysis",
+        "encodings": {
+          "x": {
+            "field": "horizon_label",
+            "type": "ordinal",
+            "label": "短程 horizon"
+          },
+          "y": {
+            "field": "rate",
+            "type": "quantitative",
+            "label": "严格修复率",
+            "format": "percent"
+          },
+          "color": {
+            "field": "rank_label",
+            "type": "nominal",
+            "label": "内部中心性 rank"
+          },
+          "tooltip": [
+            {
+              "field": "horizon",
+              "label": "horizon"
+            },
+            {
+              "field": "rank_label",
+              "label": "内部 rank"
+            },
+            {
+              "field": "success_count",
+              "label": "成功数"
+            },
+            {
+              "field": "job_count",
+              "label": "job 数"
+            },
+            {
+              "field": "rate",
+              "label": "修复率",
+              "format": "percent"
+            },
+            {
+              "field": "difference",
+              "label": "相对随机",
+              "format": "percent"
+            }
+          ]
+        },
+        "xAxisTitle": "短程 horizon",
+        "yAxisTitle": "严格修复率",
+        "valueFormat": "percent",
+        "intent": "comparison",
+        "question": "medoid 与 max-outlier 的方向是否跨 horizon 稳定？",
+        "rationale": "同时展示全部四个 rank，避免只报告揭盲后最好的 rank4 而隐藏 max-of-four 选择偏差。",
+        "comparisonContext": {
+          "pairedWithinJob": true,
+          "opportunityPaths": 9,
+          "jobs": 18,
+          "posthocDirection": true,
+          "confirmatory": false
+        },
+        "referenceLines": [
+          {
+            "value": 0.375,
+            "label": "同预算均匀随机"
+          }
+        ],
+        "maxRows": 12,
+        "layout": "full"
+      }
+    ],
+    "tables": [
+      {
+        "id": "audit_evidence",
+        "title": "E 警报、机会门与协议更正",
+        "subtitle": "这些结果只评价内部候选量，不进入在线采样规则。",
+        "showDescription": true,
+        "dataset": "audit_evidence",
+        "sourceId": "report_analysis",
+        "defaultSort": {
+          "field": "row_order",
+          "direction": "asc"
+        },
+        "density": "comfortable",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "row_order",
+            "label": "顺序",
+            "type": "number"
+          },
+          {
+            "field": "stage",
+            "label": "审计阶段",
+            "type": "text"
+          },
+          {
+            "field": "group_name",
+            "label": "事件或组别",
+            "type": "text"
+          },
+          {
+            "field": "numerator",
+            "label": "分子",
+            "type": "number"
+          },
+          {
+            "field": "denominator",
+            "label": "分母",
+            "type": "number"
+          },
+          {
+            "field": "rate",
+            "label": "比例",
+            "type": "percent",
+            "format": "percent"
+          },
+          {
+            "field": "note",
+            "label": "定义/限制",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "strict_repair_summary",
+        "title": "协议一致的严格修复汇总",
+        "subtitle": "成功要求模糊明确减轻、语义与构图保持，且 fresh 未出现同等严重缺陷。",
+        "showDescription": true,
+        "dataset": "strict_repair_summary",
+        "sourceId": "report_analysis",
+        "defaultSort": {
+          "field": "row_order",
+          "direction": "asc"
+        },
+        "density": "comfortable",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "row_order",
+            "label": "顺序",
+            "type": "number"
+          },
+          {
+            "field": "group_name",
+            "label": "组别/范围",
+            "type": "text"
+          },
+          {
+            "field": "rollback_step",
+            "label": "回滚步",
+            "type": "number"
+          },
+          {
+            "field": "numerator",
+            "label": "成功数",
+            "type": "number"
+          },
+          {
+            "field": "denominator",
+            "label": "比较数",
+            "type": "number"
+          },
+          {
+            "field": "rate",
+            "label": "严格修复率",
+            "type": "percent",
+            "format": "percent"
+          },
+          {
+            "field": "opportunity_guard",
+            "label": "机会门",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "branch_hypothesis_audit",
+        "title": "分支共识首版与反向线索审计",
+        "subtitle": "medoid/high-O 是冻结失败；max-outlier 与安全结果均为揭盲后审计。",
+        "showDescription": true,
+        "dataset": "branch_hypothesis_audit",
+        "sourceId": "report_analysis",
+        "defaultSort": {
+          "field": "metric",
+          "direction": "asc"
+        },
+        "density": "comfortable",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "metric",
+            "label": "指标",
+            "type": "text"
+          },
+          {
+            "field": "horizon",
+            "label": "horizon",
+            "type": "number"
+          },
+          {
+            "field": "observed",
+            "label": "观察值",
+            "type": "percent",
+            "format": "percent"
+          },
+          {
+            "field": "comparator",
+            "label": "比较值",
+            "type": "percent",
+            "format": "percent"
+          },
+          {
+            "field": "difference",
+            "label": "差值",
+            "type": "percent",
+            "format": "percent"
+          },
+          {
+            "field": "status",
+            "label": "证据状态",
+            "type": "text"
+          },
+          {
+            "field": "note",
+            "label": "限制",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "report_analysis",
+        "label": "内部信号复核分析 SQL",
+        "path": "reports/dit_v22_internal_signal_reassessment/queries/report_analysis.sql"
+      },
+      {
+        "id": "method_note",
+        "label": "内部信号复核与下一方法说明",
+        "path": "docs/DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# DiT v2.2 内部信号复核：E 退役，分支共识首版未通过"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 技术摘要\n\n跨尺度路径比值 `E` 的鞅记账是正确的，但两轮盲化检验均未建立它与可见坏图或可修复性的对应关系。通用警报审计中，严格 clear-bad 为 `1/26` 对 `2/26`；修复 pilot 的机会门又以 `3/8` 对 `6/8` 失败。因此当前 `E` 应退出质量报警、回滚与 guidance；`B` 只保留为弱表型量。随后冻结的分支共识首版也没有通过：`h=10` medoid 严格修复为 `5/18=27.8%`，低于同四条 scout 均匀随机的 `37.5%`；较高 attempt-0 `O` 的 opportunity AUC 仅 `0.286`。外部视觉标签、FID、DINO、CLIP 或 Inception 只充当封存后的裁判，绝不进入 selector、触发器或阈值。"
+      },
+      {
+        "id": "key_findings",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 关键发现\n\n第一版 analyzer 把“偏好 fresh”误当成“模糊明确减轻”，多算了 17 个成功。协议一致更正后，Joint E+B 为 `10/64`，B-only 为 `17/64`。机会内 pooled rate 看似是 `43.5%` 对 `35.4%`，但它来自 3 条对 6 条不同路径，不能归因给 `E`。真正的一一匹配差值中，4 对为负、0 对为正、4 对持平。在分支 rank 揭盲后，`h=10` 最离群分支是 `10/18=55.6%`，比随机期望高 `18.1` 个百分点；但这是看到 medoid 失败后才提出的反向解释，且 `h=5` 仅 `+6.9`、`h=20` 仅 `+1.4` 个百分点。非机会样本的 clear-bad 与 preservation 安全读数也都略差于随机，所以它只能触发一次新数据上的窄验证，不能被写成已成立的方法。"
+      },
+      {
+        "id": "matched_chart",
+        "type": "chart",
+        "chartId": "matched_strict_repair_difference",
+        "layout": "full"
+      },
+      {
+        "id": "branch_first_form_result",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 分支共识首版没有通过\n\n首版具体预测是：四条短程 fresh scout 中的 medoid 更可靠，且 current 相对 fresh 共识的 `O` 越高越像可修复事故。冻结结果方向相反：`h=10` medoid 为 `5/18`，随机期望为 `6.75/18`；higher-`O` AUC 为 `0.286`。把符号翻过来得到 low-`O` AUC `0.714` 并不是第二份独立证据，而只是同一个失败 AUC 的代数翻转。"
+      },
+      {
+        "id": "branch_rank_chart",
+        "type": "chart",
+        "chartId": "branch_rank_success_by_horizon",
+        "layout": "full"
+      },
+      {
+        "id": "branch_reverse_boundary",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 反向结果为什么仍只是线索\n\n完整四-rank 结果必须一起看：`h=10` 从中心到离群依次是 `5, 7, 5, 10/18`，并非随 nonconformity 单调改善。rank4 是揭盲后从四个 rank 中挑出的最好方向，样本只有 9 条独立原路径，而且增益主要集中在 class 795。因此当前只能把它叫作“短暂 minority-branch escape 候选”，不能声称多数分支形成了错误共识盆地。"
+      },
+      {
+        "id": "branch_audit_table",
+        "type": "table",
+        "tableId": "branch_hypothesis_audit",
+        "layout": "full"
+      },
+      {
+        "id": "scope_and_definitions",
+        "type": "markdown",
+        "sourceId": "method_note",
+        "body": "## 范围、定义与方法边界\n\n`P` 是冻结的实际基线采样器；`Q*` 是人为跨尺度备择；`E_k` 是已实现两条 Markov 路径之间的累计似然比；`B_k` 是 predicted-clean 内部得到的低边缘/软融合持续量。`E` 只回答路径更像 `Q*` 还是 `P`，不自动回答图像是否坏。盲评得到的 opportunity 与 successful repair 都是事后外部终点，只能验证内部指标，不能反馈到在线判定。"
+      },
+      {
+        "id": "audit_table_intro",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 证据链审计\n\n表中同时保留警报盲审、冻结机会门和协议更正。它们回答的是候选内部量有没有外部效度，而不是构造一个由外部分数驱动的新方法。"
+      },
+      {
+        "id": "audit_table",
+        "type": "table",
+        "tableId": "audit_evidence",
+        "layout": "full"
+      },
+      {
+        "id": "repair_table_intro",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 严格修复结果\n\n后缀重采并非完全无效：在 71 个被盲评确认存在模糊修复机会的比较中，有 27 个满足严格修复定义。但成功和失败混在一起，当前又没有可靠内部 selector，因此不能把“偶尔可修”写成“方法已能自动改善”。"
+      },
+      {
+        "id": "repair_table",
+        "type": "table",
+        "tableId": "strict_repair_summary",
+        "layout": "full"
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "sourceId": "method_note",
+        "body": "## 实验设计与误差控制\n\npilot 使用 8 条 Joint E+B 与 8 条连续 `B` 强度匹配的 B-only 路径；每条在两个回滚位置保留一次精确重放和四条 fresh 后缀，共 160 个分支。128 个 baseline–fresh 对由三名彼此隔离、看不到 seed、角色、分数和另两人回答的评审判断。统计独立单位是原路径；step 109 与 step 149 不能被当成 32 条独立路径。分支内部提取器只打开 manifest、branch metadata 以及 `target_pred_xstart`/timestep 数组；一次逐行复核发现旧实现用 h 时刻 attempt-0 做尺度归一化，而文档声称共同前缀。改为真正 h0 共同前缀后，32 个 job 的 max/min 排名和上述成功计数均未变化；新 prospective 实现已固定采用共同前缀。"
+      },
+      {
+        "id": "uncertainty",
+        "type": "markdown",
+        "sourceId": "report_analysis",
+        "body": "## 不确定性与稳健性\n\n机会门失败使组间 repairability 比较按冻结协议必须记为 inconclusive。配对 bootstrap `[-20.3,-3.1]` 个百分点和 leave-one-pair-out 方向一致，只是揭盲后的稳定性描述，不是确认性区间或因果效应。本试验不能证明 `E` 会伤害图像；能支持的动作只是停止把它解释成质量触发器。max-outlier 的非机会安全审计为 clear-bad `14.3%` 对 `10.7%`、preservation `85.7%` 对 `87.5%`，样本很小但方向要求下一轮设置硬安全门。"
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "sourceId": "method_note",
+        "body": "## 下一步：冻结检验短暂离群分支，而不是继续修补首版\n\n新实验只读取冻结采样器内部的 predicted-clean latent：在 step149 的共同前缀上生成四条对称 scout，完成 10 次转移后计算多尺度两两距离，选择平均距离最大的分支。主比较是同四条 scout 的均匀随机策略值，因此计算预算一致；四条都跑到终点只属于实验评估开销，部署时可在 h10 后只继续一条。96 个 class-795 prefix 用于确认最初线索，class 207/602 各 16 个只做明显伤害哨兵。内部选择表必须在打开任何 PNG、人工标签、FID 或表征模型结果前封存。"
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "sourceId": "method_note",
+        "body": "## 仍需回答的问题\n\n现有 18 个 opportunity job 来自 `B/E` 富集 pilot，max-outlier 方向又是在揭盲后提出，不能代表普通基线分布。新 suffix 虽然未生成过，但其共同 prefix 来自曾用于历史研究的第三池，因此最准确的名称是 new-suffix conditional prospective，而不是完全独立 fresh-prefix confirmation。即使新主结果通过，它也只证明窄条件下的分支选择优势；仍缺少一个纯内部 trigger 来判断哪些 prefix 值得付出四-scout 计算，也不能据此声称 FID 改善或罕见灾难率受控。"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-28T11:49:34+08:00",
+    "status": "ready",
+    "datasets": {
+      "matched_path_differences": [
+        {
+          "pair_label": "Pair 0",
+          "pair_index": 0,
+          "joint_success_count": 0,
+          "b_only_success_count": 3,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.375,
+          "difference": -0.375,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 1",
+          "pair_index": 1,
+          "joint_success_count": 0,
+          "b_only_success_count": 0,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.0,
+          "difference": 0.0,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 2",
+          "pair_index": 2,
+          "joint_success_count": 0,
+          "b_only_success_count": 0,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.0,
+          "difference": 0.0,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 3",
+          "pair_index": 3,
+          "joint_success_count": 6,
+          "b_only_success_count": 7,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.75,
+          "b_only_rate": 0.875,
+          "difference": -0.125,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 4",
+          "pair_index": 4,
+          "joint_success_count": 4,
+          "b_only_success_count": 4,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.5,
+          "b_only_rate": 0.5,
+          "difference": 0.0,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 5",
+          "pair_index": 5,
+          "joint_success_count": 0,
+          "b_only_success_count": 2,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.25,
+          "difference": -0.25,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 6",
+          "pair_index": 6,
+          "joint_success_count": 0,
+          "b_only_success_count": 1,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.125,
+          "difference": -0.125,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "pair_label": "Pair 7",
+          "pair_index": 7,
+          "joint_success_count": 0,
+          "b_only_success_count": 0,
+          "comparisons_per_path": 8,
+          "joint_rate": 0.0,
+          "b_only_rate": 0.0,
+          "difference": 0.0,
+          "guard_satisfied": false,
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "row_order": 50,
+          "stage": "协议更正",
+          "group_name": "Joint v1-only successes",
+          "numerator": 4,
+          "denominator": 14,
+          "rate": 0.2857142857142857,
+          "note": "Preferred-fresh successes that did not meet literal blur reduction",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 51,
+          "stage": "协议更正",
+          "group_name": "B-only v1-only successes",
+          "numerator": 13,
+          "denominator": 30,
+          "rate": 0.43333333333333335,
+          "note": "Preferred-fresh successes that did not meet literal blur reduction",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 10,
+          "stage": "E 警报盲审",
+          "group_name": "E alarm: strict clear-bad",
+          "numerator": 1,
+          "denominator": 26,
+          "rate": 0.038461538461538464,
+          "note": "Strict 2-of-2 score-blind consensus",
+          "result_id": "d21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc"
+        },
+        {
+          "row_order": 11,
+          "stage": "E 警报盲审",
+          "group_name": "Matched control: strict clear-bad",
+          "numerator": 2,
+          "denominator": 26,
+          "rate": 0.07692307692307693,
+          "note": "Same-class exact-start-schedule control",
+          "result_id": "d21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc"
+        },
+        {
+          "row_order": 12,
+          "stage": "E 警报盲审",
+          "group_name": "E alarm: blur/fusion",
+          "numerator": 9,
+          "denominator": 26,
+          "rate": 0.34615384615384615,
+          "note": "Strict 2-of-2 score-blind consensus",
+          "result_id": "d21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc"
+        },
+        {
+          "row_order": 13,
+          "stage": "E 警报盲审",
+          "group_name": "Matched control: blur/fusion",
+          "numerator": 5,
+          "denominator": 26,
+          "rate": 0.19230769230769232,
+          "note": "Paired one-sided exact p for alarm enrichment = 0.0625",
+          "result_id": "d21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc"
+        },
+        {
+          "row_order": 20,
+          "stage": "修复机会门",
+          "group_name": "Joint E+B",
+          "numerator": 3,
+          "denominator": 8,
+          "rate": 0.375,
+          "note": "Frozen guard requires at least four opportunity paths per role",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 21,
+          "stage": "修复机会门",
+          "group_name": "Matched B-only",
+          "numerator": 6,
+          "denominator": 8,
+          "rate": 0.75,
+          "note": "Frozen guard fails because joint has only three paths",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        }
+      ],
+      "strict_repair_summary": [
+        {
+          "row_order": 30,
+          "group_name": "Joint E+B · all",
+          "rollback_step": null,
+          "numerator": 10,
+          "denominator": 64,
+          "rate": 0.15625,
+          "opportunity_guard": "失败",
+          "interpretation": "Protocol-literal blur reduction, preservation, and no fresh clear-bad",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 31,
+          "group_name": "Matched B-only · all",
+          "rollback_step": null,
+          "numerator": 17,
+          "denominator": 64,
+          "rate": 0.265625,
+          "opportunity_guard": "失败",
+          "interpretation": "Protocol-literal blur reduction, preservation, and no fresh clear-bad",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 32,
+          "group_name": "Joint E+B · opportunities",
+          "rollback_step": null,
+          "numerator": 10,
+          "denominator": 23,
+          "rate": 0.43478260869565216,
+          "opportunity_guard": "失败",
+          "interpretation": "Unmatched pooled opportunity rate; three underlying paths",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 33,
+          "group_name": "Matched B-only · opportunities",
+          "rollback_step": null,
+          "numerator": 17,
+          "denominator": 48,
+          "rate": 0.3541666666666667,
+          "opportunity_guard": "失败",
+          "interpretation": "Unmatched pooled opportunity rate; six underlying paths",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 34,
+          "group_name": "Joint E+B · step109 opportunities",
+          "rollback_step": 109,
+          "numerator": 5,
+          "denominator": 11,
+          "rate": 0.45454545454545453,
+          "opportunity_guard": "失败",
+          "interpretation": "Exploratory role-by-step result",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 35,
+          "group_name": "Matched B-only · step109 opportunities",
+          "rollback_step": 109,
+          "numerator": 8,
+          "denominator": 24,
+          "rate": 0.3333333333333333,
+          "opportunity_guard": "失败",
+          "interpretation": "Exploratory role-by-step result",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 36,
+          "group_name": "Joint E+B · step149 opportunities",
+          "rollback_step": 149,
+          "numerator": 5,
+          "denominator": 12,
+          "rate": 0.4166666666666667,
+          "opportunity_guard": "失败",
+          "interpretation": "Exploratory role-by-step result",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        },
+        {
+          "row_order": 37,
+          "group_name": "Matched B-only · step149 opportunities",
+          "rollback_step": 149,
+          "numerator": 9,
+          "denominator": 24,
+          "rate": 0.375,
+          "opportunity_guard": "失败",
+          "interpretation": "Exploratory role-by-step result",
+          "result_id": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358"
+        }
+      ],
+      "branch_rank_success": [
+        {
+          "row_order": 60,
+          "horizon": 5,
+          "horizon_label": "h=5",
+          "centrality_order": 1,
+          "rank_label": "rank1 · medoid",
+          "success_count": 7,
+          "job_count": 18,
+          "rate": 0.3888888888888889,
+          "random_rate": 0.375,
+          "difference": 0.013888888888888895,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 61,
+          "horizon": 5,
+          "horizon_label": "h=5",
+          "centrality_order": 2,
+          "rank_label": "rank2",
+          "success_count": 7,
+          "job_count": 18,
+          "rate": 0.3888888888888889,
+          "random_rate": 0.375,
+          "difference": 0.013888888888888895,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 62,
+          "horizon": 5,
+          "horizon_label": "h=5",
+          "centrality_order": 3,
+          "rank_label": "rank3",
+          "success_count": 5,
+          "job_count": 18,
+          "rate": 0.2777777777777778,
+          "random_rate": 0.375,
+          "difference": -0.09722222222222221,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 63,
+          "horizon": 5,
+          "horizon_label": "h=5",
+          "centrality_order": 4,
+          "rank_label": "rank4 · max-outlier",
+          "success_count": 8,
+          "job_count": 18,
+          "rate": 0.4444444444444444,
+          "random_rate": 0.375,
+          "difference": 0.06944444444444442,
+          "note": "Posthoc reverse-direction clue",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 64,
+          "horizon": 10,
+          "horizon_label": "h=10",
+          "centrality_order": 1,
+          "rank_label": "rank1 · medoid",
+          "success_count": 5,
+          "job_count": 18,
+          "rate": 0.2777777777777778,
+          "random_rate": 0.375,
+          "difference": -0.09722222222222221,
+          "note": "Frozen primary medoid rule failed",
+          "result_id": "00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703"
+        },
+        {
+          "row_order": 65,
+          "horizon": 10,
+          "horizon_label": "h=10",
+          "centrality_order": 2,
+          "rank_label": "rank2",
+          "success_count": 7,
+          "job_count": 18,
+          "rate": 0.3888888888888889,
+          "random_rate": 0.375,
+          "difference": 0.013888888888888895,
+          "note": "Posthoc full-rank audit",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 66,
+          "horizon": 10,
+          "horizon_label": "h=10",
+          "centrality_order": 3,
+          "rank_label": "rank3",
+          "success_count": 5,
+          "job_count": 18,
+          "rate": 0.2777777777777778,
+          "random_rate": 0.375,
+          "difference": -0.09722222222222221,
+          "note": "Posthoc full-rank audit",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 67,
+          "horizon": 10,
+          "horizon_label": "h=10",
+          "centrality_order": 4,
+          "rank_label": "rank4 · max-outlier",
+          "success_count": 10,
+          "job_count": 18,
+          "rate": 0.5555555555555556,
+          "random_rate": 0.375,
+          "difference": 0.18055555555555558,
+          "note": "Posthoc reverse-direction clue selected after medoid failure; not confirmatory",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 68,
+          "horizon": 20,
+          "horizon_label": "h=20",
+          "centrality_order": 1,
+          "rank_label": "rank1 · medoid",
+          "success_count": 5,
+          "job_count": 18,
+          "rate": 0.2777777777777778,
+          "random_rate": 0.375,
+          "difference": -0.09722222222222221,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 69,
+          "horizon": 20,
+          "horizon_label": "h=20",
+          "centrality_order": 2,
+          "rank_label": "rank2",
+          "success_count": 7,
+          "job_count": 18,
+          "rate": 0.3888888888888889,
+          "random_rate": 0.375,
+          "difference": 0.013888888888888895,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 70,
+          "horizon": 20,
+          "horizon_label": "h=20",
+          "centrality_order": 3,
+          "rank_label": "rank3",
+          "success_count": 8,
+          "job_count": 18,
+          "rate": 0.4444444444444444,
+          "random_rate": 0.375,
+          "difference": 0.06944444444444442,
+          "note": "Posthoc full-rank audit; same-four-scout uniform-random baseline",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 71,
+          "horizon": 20,
+          "horizon_label": "h=20",
+          "centrality_order": 4,
+          "rank_label": "rank4 · max-outlier",
+          "success_count": 7,
+          "job_count": 18,
+          "rate": 0.3888888888888889,
+          "random_rate": 0.375,
+          "difference": 0.013888888888888895,
+          "note": "Posthoc reverse-direction clue is nearly null at h20",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        }
+      ],
+      "branch_hypothesis_audit": [
+        {
+          "row_order": 80,
+          "metric": "higher-O opportunity AUC",
+          "horizon": 10,
+          "observed": 0.2857142857142857,
+          "comparator": 0.5,
+          "difference": -0.2142857142857143,
+          "status": "冻结首版失败",
+          "note": "Frozen higher-O detection prediction failed; low-O 0.714 is only its algebraic sign flip",
+          "result_id": "00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703"
+        },
+        {
+          "row_order": 63,
+          "metric": "h5 · rank4 max-outlier",
+          "horizon": 5,
+          "observed": 0.4444444444444444,
+          "comparator": 0.375,
+          "difference": 0.06944444444444442,
+          "status": "事后线索/安全审计",
+          "note": "Posthoc reverse-direction clue",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 64,
+          "metric": "h10 · rank1 medoid",
+          "horizon": 10,
+          "observed": 0.2777777777777778,
+          "comparator": 0.375,
+          "difference": -0.09722222222222221,
+          "status": "冻结首版失败",
+          "note": "Frozen primary medoid rule failed",
+          "result_id": "00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703"
+        },
+        {
+          "row_order": 67,
+          "metric": "h10 · rank4 max-outlier",
+          "horizon": 10,
+          "observed": 0.5555555555555556,
+          "comparator": 0.375,
+          "difference": 0.18055555555555558,
+          "status": "事后线索/安全审计",
+          "note": "Posthoc reverse-direction clue selected after medoid failure; not confirmatory",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 71,
+          "metric": "h20 · rank4 max-outlier",
+          "horizon": 20,
+          "observed": 0.3888888888888889,
+          "comparator": 0.375,
+          "difference": 0.013888888888888895,
+          "status": "事后线索/安全审计",
+          "note": "Posthoc reverse-direction clue is nearly null at h20",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 81,
+          "metric": "non-opportunity clear-bad",
+          "horizon": 10,
+          "observed": 0.14285714285714285,
+          "comparator": 0.10714285714285714,
+          "difference": 0.03571428571428571,
+          "status": "事后线索/安全审计",
+          "note": "Max-outlier is worse than uniform-random expectation on this safety readout",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        },
+        {
+          "row_order": 82,
+          "metric": "non-opportunity preservation",
+          "horizon": 10,
+          "observed": 0.8571428571428571,
+          "comparator": 0.875,
+          "difference": -0.017857142857142905,
+          "status": "事后线索/安全审计",
+          "note": "Max-outlier is worse than uniform-random expectation on this safety readout",
+          "result_id": "7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "report_analysis",
+      "label": "内部信号复核分析 SQL",
+      "path": "reports/dit_v22_internal_signal_reassessment/queries/report_analysis.sql",
+      "query": {
+        "engine": "sqlite3",
+        "sql": "WITH report_evidence(\n  section,\n  row_order,\n  group_name,\n  role,\n  rollback_step,\n  pair_index,\n  numerator,\n  denominator,\n  rate,\n  difference,\n  source_artifact_id,\n  note\n) AS (\n  VALUES\n    ('signal_cell', 1, 'E0B0', NULL, NULL, NULL, 1575, 1740, 1575.0 / 1740.0, NULL,\n     'ded658ed3008f1639aca2671db9e5add48b3e9a27765fa870d8ec92aa81c3616',\n     'Retrospective internal-only path count'),\n    ('signal_cell', 2, 'E0B1', NULL, NULL, NULL, 139, 1740, 139.0 / 1740.0, NULL,\n     'ded658ed3008f1639aca2671db9e5add48b3e9a27765fa870d8ec92aa81c3616',\n     'Retrospective internal-only path count'),\n    ('signal_cell', 3, 'E1B0', NULL, NULL, NULL, 18, 1740, 18.0 / 1740.0, NULL,\n     'ded658ed3008f1639aca2671db9e5add48b3e9a27765fa870d8ec92aa81c3616',\n     'Retrospective internal-only path count'),\n    ('signal_cell', 4, 'E1B1', NULL, NULL, NULL, 8, 1740, 8.0 / 1740.0, NULL,\n     'ded658ed3008f1639aca2671db9e5add48b3e9a27765fa870d8ec92aa81c3616',\n     'Retrospective internal-only path count'),\n\n    ('blind_alarm_audit', 10, 'E alarm: strict clear-bad', 'E alarm', NULL, NULL, 1, 26, 1.0 / 26.0, NULL,\n     'd21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc',\n     'Strict 2-of-2 score-blind consensus'),\n    ('blind_alarm_audit', 11, 'Matched control: strict clear-bad', 'control', NULL, NULL, 2, 26, 2.0 / 26.0, NULL,\n     'd21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc',\n     'Same-class exact-start-schedule control'),\n    ('blind_alarm_audit', 12, 'E alarm: blur/fusion', 'E alarm', NULL, NULL, 9, 26, 9.0 / 26.0, NULL,\n     'd21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc',\n     'Strict 2-of-2 score-blind consensus'),\n    ('blind_alarm_audit', 13, 'Matched control: blur/fusion', 'control', NULL, NULL, 5, 26, 5.0 / 26.0, NULL,\n     'd21e1b85d64cf990945eaae9ddab1349238fc6f4769a11672ba1c8d4722712fc',\n     'Paired one-sided exact p for alarm enrichment = 0.0625'),\n\n    ('opportunity_path', 20, 'Joint E+B', 'joint_E_and_B', NULL, NULL, 3, 8, 3.0 / 8.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Frozen guard requires at least four opportunity paths per role'),\n    ('opportunity_path', 21, 'Matched B-only', 'B_only_exact_schedule_B_matched_control', NULL, NULL, 6, 8, 6.0 / 8.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Frozen guard fails because joint has only three paths'),\n\n    ('strict_repair', 30, 'Joint E+B · all', 'joint_E_and_B', NULL, NULL, 10, 64, 10.0 / 64.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Protocol-literal blur reduction, preservation, and no fresh clear-bad'),\n    ('strict_repair', 31, 'Matched B-only · all', 'B_only_exact_schedule_B_matched_control', NULL, NULL, 17, 64, 17.0 / 64.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Protocol-literal blur reduction, preservation, and no fresh clear-bad'),\n    ('strict_repair', 32, 'Joint E+B · opportunities', 'joint_E_and_B', NULL, NULL, 10, 23, 10.0 / 23.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Unmatched pooled opportunity rate; three underlying paths'),\n    ('strict_repair', 33, 'Matched B-only · opportunities', 'B_only_exact_schedule_B_matched_control', NULL, NULL, 17, 48, 17.0 / 48.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Unmatched pooled opportunity rate; six underlying paths'),\n    ('strict_repair', 34, 'Joint E+B · step109 opportunities', 'joint_E_and_B', 109, NULL, 5, 11, 5.0 / 11.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Exploratory role-by-step result'),\n    ('strict_repair', 35, 'Matched B-only · step109 opportunities', 'B_only_exact_schedule_B_matched_control', 109, NULL, 8, 24, 8.0 / 24.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Exploratory role-by-step result'),\n    ('strict_repair', 36, 'Joint E+B · step149 opportunities', 'joint_E_and_B', 149, NULL, 5, 12, 5.0 / 12.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Exploratory role-by-step result'),\n    ('strict_repair', 37, 'Matched B-only · step149 opportunities', 'B_only_exact_schedule_B_matched_control', 149, NULL, 9, 24, 9.0 / 24.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Exploratory role-by-step result'),\n\n    ('matched_path_difference', 40, 'Pair 0', NULL, NULL, 0, 0, 8, NULL, -0.375,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 41, 'Pair 1', NULL, NULL, 1, 0, 8, NULL, 0.0,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 42, 'Pair 2', NULL, NULL, 2, 0, 8, NULL, 0.0,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 43, 'Pair 3', NULL, NULL, 3, 0, 8, NULL, -0.125,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 44, 'Pair 4', NULL, NULL, 4, 0, 8, NULL, 0.0,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 45, 'Pair 5', NULL, NULL, 5, 0, 8, NULL, -0.25,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 46, 'Pair 6', NULL, NULL, 6, 0, 8, NULL, -0.125,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n    ('matched_path_difference', 47, 'Pair 7', NULL, NULL, 7, 0, 8, NULL, 0.0,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Joint strict repair rate minus matched B-only strict repair rate'),\n\n    ('analysis_correction', 50, 'Joint v1-only successes', 'joint_E_and_B', NULL, NULL, 4, 14, 4.0 / 14.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Preferred-fresh successes that did not meet literal blur reduction'),\n    ('analysis_correction', 51, 'B-only v1-only successes', 'B_only_exact_schedule_B_matched_control', NULL, NULL, 13, 30, 13.0 / 30.0, NULL,\n     'f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358',\n     'Preferred-fresh successes that did not meet literal blur reduction')\n),\nbase_output AS (\nSELECT\n  report_evidence.*,\n  CASE\n    WHEN section = 'matched_path_difference' THEN\n      CASE pair_index\n        WHEN 0 THEN 0 WHEN 1 THEN 0 WHEN 2 THEN 0 WHEN 3 THEN 6\n        WHEN 4 THEN 4 WHEN 5 THEN 0 WHEN 6 THEN 0 WHEN 7 THEN 0\n      END\n  END AS joint_success_count,\n  CASE\n    WHEN section = 'matched_path_difference' THEN\n      CASE pair_index\n        WHEN 0 THEN 3 WHEN 1 THEN 0 WHEN 2 THEN 0 WHEN 3 THEN 7\n        WHEN 4 THEN 4 WHEN 5 THEN 2 WHEN 6 THEN 1 WHEN 7 THEN 0\n      END\n  END AS b_only_success_count,\n  CASE\n    WHEN section = 'matched_path_difference' THEN 8\n  END AS comparisons_per_path,\n  CASE\n    WHEN section IN ('opportunity_path', 'strict_repair', 'matched_path_difference') THEN 0\n  END AS opportunity_guard_satisfied,\n  source_artifact_id AS result_id\nFROM report_evidence\n),\nbranch_evidence(\n  section,\n  row_order,\n  group_name,\n  role,\n  rollback_step,\n  pair_index,\n  numerator,\n  denominator,\n  rate,\n  difference,\n  source_artifact_id,\n  note,\n  horizon,\n  centrality_order,\n  comparator_rate\n) AS (\n  VALUES\n    ('branch_rank', 60, 'h5 · rank1 medoid', 'rank1_medoid', NULL, NULL, 7, 18, 7.0 / 18.0, 7.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 5, 1, 0.375),\n    ('branch_rank', 61, 'h5 · rank2', 'rank2', NULL, NULL, 7, 18, 7.0 / 18.0, 7.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 5, 2, 0.375),\n    ('branch_rank', 62, 'h5 · rank3', 'rank3', NULL, NULL, 5, 18, 5.0 / 18.0, 5.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 5, 3, 0.375),\n    ('branch_rank', 63, 'h5 · rank4 max-outlier', 'rank4_max', NULL, NULL, 8, 18, 8.0 / 18.0, 8.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc reverse-direction clue', 5, 4, 0.375),\n\n    ('branch_rank', 64, 'h10 · rank1 medoid', 'rank1_medoid', NULL, NULL, 5, 18, 5.0 / 18.0, 5.0 / 18.0 - 0.375,\n     '00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703',\n     'Frozen primary medoid rule failed', 10, 1, 0.375),\n    ('branch_rank', 65, 'h10 · rank2', 'rank2', NULL, NULL, 7, 18, 7.0 / 18.0, 7.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit', 10, 2, 0.375),\n    ('branch_rank', 66, 'h10 · rank3', 'rank3', NULL, NULL, 5, 18, 5.0 / 18.0, 5.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit', 10, 3, 0.375),\n    ('branch_rank', 67, 'h10 · rank4 max-outlier', 'rank4_max', NULL, NULL, 10, 18, 10.0 / 18.0, 10.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc reverse-direction clue selected after medoid failure; not confirmatory', 10, 4, 0.375),\n\n    ('branch_rank', 68, 'h20 · rank1 medoid', 'rank1_medoid', NULL, NULL, 5, 18, 5.0 / 18.0, 5.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 20, 1, 0.375),\n    ('branch_rank', 69, 'h20 · rank2', 'rank2', NULL, NULL, 7, 18, 7.0 / 18.0, 7.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 20, 2, 0.375),\n    ('branch_rank', 70, 'h20 · rank3', 'rank3', NULL, NULL, 8, 18, 8.0 / 18.0, 8.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc full-rank audit; same-four-scout uniform-random baseline', 20, 3, 0.375),\n    ('branch_rank', 71, 'h20 · rank4 max-outlier', 'rank4_max', NULL, NULL, 7, 18, 7.0 / 18.0, 7.0 / 18.0 - 0.375,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Posthoc reverse-direction clue is nearly null at h20', 20, 4, 0.375),\n\n    ('branch_detection', 80, 'higher-O opportunity AUC', 'higher_O', NULL, NULL, 18, 63, 18.0 / 63.0, 18.0 / 63.0 - 0.5,\n     '00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703',\n     'Frozen higher-O detection prediction failed; low-O 0.714 is only its algebraic sign flip', 10, NULL, 0.5),\n    ('branch_safety', 81, 'non-opportunity clear-bad', 'max_outlier', NULL, NULL, 2, 14, 2.0 / 14.0, 2.0 / 14.0 - 6.0 / 56.0,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Max-outlier is worse than uniform-random expectation on this safety readout', 10, 4, 6.0 / 56.0),\n    ('branch_safety', 82, 'non-opportunity preservation', 'max_outlier', NULL, NULL, 12, 14, 12.0 / 14.0, 12.0 / 14.0 - 49.0 / 56.0,\n     '7d0a0094db136c2c6d644733b71b4cd634ad11bf7b9738151771d360c947508a',\n     'Max-outlier is worse than uniform-random expectation on this safety readout', 10, 4, 49.0 / 56.0)\n),\nall_output AS (\n  SELECT\n    base_output.*,\n    NULL AS horizon,\n    NULL AS centrality_order,\n    NULL AS comparator_rate\n  FROM base_output\n  UNION ALL\n  SELECT\n    section,\n    row_order,\n    group_name,\n    role,\n    rollback_step,\n    pair_index,\n    numerator,\n    denominator,\n    rate,\n    difference,\n    source_artifact_id,\n    note,\n    NULL AS joint_success_count,\n    NULL AS b_only_success_count,\n    NULL AS comparisons_per_path,\n    NULL AS opportunity_guard_satisfied,\n    source_artifact_id AS result_id,\n    horizon,\n    centrality_order,\n    comparator_rate\n  FROM branch_evidence\n)\nSELECT *\nFROM all_output\nORDER BY section, row_order;\n",
+        "description": "从冻结结果标识、协议一致更正与分支假设审计中形成报告用的 43 行证据表。",
+        "language": "sql",
+        "executed_at": "2026-08-28T11:49:34+08:00",
+        "tables_used": [
+          "inline CTE report_evidence"
+        ],
+        "filters": [
+          "仅纳入冻结 E 警报盲审、repairability pilot、协议一致更正与匹配路径结果",
+          "分支 rank 方向来自 posthoc 审计，不能与冻结 medoid/high-O 主预测混同",
+          "不读取 FID、DINO、CLIP、Inception 或终点特征作为方法输入"
+        ],
+        "metric_definitions": [
+          "rate = numerator / denominator",
+          "matched difference = Joint E+B strict repair rate − matched B-only strict repair rate",
+          "strict repair requires reviewer-level blur reduction, preservation, and no fresh 2-of-3 clear-bad consensus",
+          "opportunity guard requires at least four stable opportunity paths per role",
+          "branch random baseline = uniform policy value over the same four already-computed scouts",
+          "max-outlier, h5/h20, and safety rows are posthoc descriptive evidence"
+        ]
+      }
+    },
+    {
+      "id": "method_note",
+      "label": "内部信号复核与下一方法说明",
+      "path": "docs/DIT_V22_INTERNAL_SIGNAL_REASSESSMENT_ZH.md"
+    }
+  ],
+  "package_info": {
+    "report_kind": "technical_research_audit",
+    "language": "zh-CN",
+    "external_metrics_role": "evaluation_only"
+  }
+}

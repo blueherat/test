@@ -1,0 +1,53 @@
+{
+  "blind_review_source_contract_identity_sha256": "3a08403990acab4b16b855811dd41a013901820fd1791c7fa54246a110382f80",
+  "blind_review_source_manifest_identity_sha256": "e473cedc3442b14457da01658764765db5efe26f643ab41ace16adf08ad804b6",
+  "identity_sha256": "d2e926bde0b45774131e77f8ee3184b847251cfa93d5d218c4ab4b615e8966ab",
+  "implementation_source_sha256": "7af7ccac6a6bcf310919a3654ce164179a84ff296346186cba8087705819996c",
+  "review_pack": {
+    "manifest_identity_sha256": "04a5e86ad6ccab0a52a4c9f8ff023cae7ed2c4037bace86be2841fbb2c699dff",
+    "path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_third_pool_v1_blind_review_pack",
+    "record_identity_sha256": "d52cf650980a2efc2461ccb702a78b405cfd34e9089a506e7d8b57246e2b2b15",
+    "review_order_file_sha256": "88cb2b7dfa7492531dd1ca2fae4f06471b4ec427eb52cd9e09b1d1a64f501d2a",
+    "review_template_file_sha256": "4cbfbbd89095b5c7942c9fbf7318e44051204a4826e01ea51c46b8782e899e7f",
+    "sampling_pool_identity_sha256": "d7f98049c43383fede2d0eec685c2d75d09470bf623aa31cdfff0ec000bfd022"
+  },
+  "review_rows": {
+    "columns_exact": [
+      "review_id",
+      "severity",
+      "global_blur",
+      "local_blur",
+      "soft_fusion_or_melting",
+      "discrete_duplication_or_extra_part",
+      "detachment_or_floating_part",
+      "topology_or_attachment_error",
+      "limb_or_object_misalignment",
+      "texture_break",
+      "other",
+      "none"
+    ],
+    "file_sha256": "00acbd62e53f635609af37f936d9e2a8ce88dd840a3d7b15699644922010577a",
+    "member": "review_rows.csv",
+    "row_count": 1800,
+    "severity_counts": {
+      "0": 1774,
+      "1": 8,
+      "2": 13,
+      "3": 5
+    }
+  },
+  "reviewer_attestation": {
+    "candidate_hypothesis_seen": false,
+    "endpoint_images_only": true,
+    "feature_product_seen": false,
+    "independent_review": true,
+    "metric_score_threshold_rank_or_alert_seen": false,
+    "native_images_or_frozen_grids_only": true,
+    "old_label_or_screen_result_seen": false,
+    "other_reviewer_rows_or_summary_seen": false,
+    "trajectory_or_intermediate_state_seen": false
+  },
+  "reviewer_id": "reviewer_2",
+  "schema_version": 1,
+  "status": "LOCKED_INDEPENDENT_ENDPOINT_ONLY_REVIEW"
+}

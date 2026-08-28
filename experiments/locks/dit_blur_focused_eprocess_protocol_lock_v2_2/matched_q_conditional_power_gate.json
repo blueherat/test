@@ -1,0 +1,108 @@
+{
+  "allowed_start_remaining_counts_by_scale": [
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  ],
+  "alpha_e": 0.1,
+  "component_results": [
+    {
+      "anytime_sufficient_event_power": 0.3291775,
+      "fixed_K_per_step_kappa": 0.6666666666666666,
+      "matched_heat_shift": 1.0,
+      "matched_scale_index": 0,
+      "start_remaining_effective_count_h": 3,
+      "terminal_sufficient_event_power": 0.3076575
+    },
+    {
+      "anytime_sufficient_event_power": 0.3402175,
+      "fixed_K_per_step_kappa": 0.5,
+      "matched_heat_shift": 1.0,
+      "matched_scale_index": 0,
+      "start_remaining_effective_count_h": 4,
+      "terminal_sufficient_event_power": 0.3098525
+    },
+    {
+      "anytime_sufficient_event_power": 0.345925,
+      "fixed_K_per_step_kappa": 0.4,
+      "matched_heat_shift": 1.0,
+      "matched_scale_index": 0,
+      "start_remaining_effective_count_h": 5,
+      "terminal_sufficient_event_power": 0.3084925
+    },
+    {
+      "anytime_sufficient_event_power": 0.3307725,
+      "fixed_K_per_step_kappa": 0.6666666666666666,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 3,
+      "terminal_sufficient_event_power": 0.30898
+    },
+    {
+      "anytime_sufficient_event_power": 0.339835,
+      "fixed_K_per_step_kappa": 0.5,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 4,
+      "terminal_sufficient_event_power": 0.3094575
+    },
+    {
+      "anytime_sufficient_event_power": 0.3462975,
+      "fixed_K_per_step_kappa": 0.4,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 5,
+      "terminal_sufficient_event_power": 0.3090525
+    },
+    {
+      "anytime_sufficient_event_power": 0.3512325,
+      "fixed_K_per_step_kappa": 0.3333333333333333,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 6,
+      "terminal_sufficient_event_power": 0.309025
+    },
+    {
+      "anytime_sufficient_event_power": 0.356035,
+      "fixed_K_per_step_kappa": 0.2857142857142857,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 7,
+      "terminal_sufficient_event_power": 0.3091175
+    },
+    {
+      "anytime_sufficient_event_power": 0.361155,
+      "fixed_K_per_step_kappa": 0.25,
+      "matched_heat_shift": 4.0,
+      "matched_scale_index": 1,
+      "start_remaining_effective_count_h": 8,
+      "terminal_sufficient_event_power": 0.309865
+    }
+  ],
+  "dependence_robust_conditional_terminal_power_lower_bound": 0.3092891983219736,
+  "draws": 400000,
+  "lower_bound_reason": "if E_matched>=1/(alpha*pi)=20 then the positive fixed mixture crosses 10, without assumptions on the other component or component dependence",
+  "maximum_effective_checkpoint_counts": [
+    5,
+    8
+  ],
+  "minimum_anytime_power": 0.3291775,
+  "minimum_required_anytime_power": 0.3,
+  "model": "conditional directional matched Q* after a qualifying start; enumerate every allowed h and split K exactly as kappa=K/h with no carry",
+  "passes": true,
+  "scope": "conditional only on a real qualifying predictable start history; the start direction clears the floor by definition and later unavailable directions reuse the last valid unit direction, so no future-validity conditioning occurs",
+  "seed": 2026082808,
+  "sufficient_matched_component_terminal_e_threshold": 20.0,
+  "total_K_per_component": 2.0,
+  "unused_allowance_carried_forward": false
+}
