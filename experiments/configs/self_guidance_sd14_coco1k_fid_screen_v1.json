@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_WAITING_FOR_MODEL_AND_SMOKE",
+  "purpose": "Paired 1k FID quick screen of the released Self-Guidance implementation, not a paper-scale absolute FID reproduction.",
+  "upstream": {
+    "repository": "https://github.com/maple-research-lab/Self-Guidance",
+    "commit": "843bda799bb531ccf8d98164d8ccf1a3b8ce3f6d",
+    "root": "/data/users/zhoushunyu/eqvae/baselines/Self-Guidance",
+    "coco_runner_sha256": "0e5d1b98df8b600895d04c193be233418b8d3abd5398c93fedcb869975688504",
+    "sd_pipeline_sha256": "55af28c38b2dfc88b70bf2ea313d8c0b626fc3542dd843d15d23c0a037125147",
+    "official_sd14_config_sha256": "c2f16defba32d34198563fad953fb45a2ac59c5db1ee9c6df59abb39a35390a7"
+  },
+  "model": {
+    "id": "CompVis/stable-diffusion-v1-4",
+    "revision": "133a221b8aa7292a167afc5127cb63fb5005638b",
+    "dtype": "float16",
+    "scheduler": "EulerDiscreteScheduler",
+    "inference_steps": 50,
+    "image_size": 512
+  },
+  "cohort": {
+    "lock": "experiments/locks/self_guidance_sd14_coco1k_screen_v1/lock.json",
+    "lock_identity_sha256": "9db842a042fb19d3060c881224247d40284c1dbb297e83599c5b6f2bca0206f4",
+    "prompts_sha256": "070bfe03d2000380d284f113eb19e281b52fb43d5bf3520b3db7ce0ba2f1ab14",
+    "manifest_sha256": "e2312db4c2304ba46d7fb9eb8a214a9fe60b19916f1f00baeb88254e324aa3b1",
+    "count": 1000,
+    "fixed_uncertainty_blocks": 4,
+    "prompts_per_block": 250,
+    "selection_used_no_images_labels_or_metrics": true
+  },
+  "paired_sampling": {
+    "generator_seed_reset_per_prompt": 0,
+    "devices": [0, 1, 2, 3],
+    "num_processes": 4,
+    "images_per_prompt": 1,
+    "same_prompts_order_initial_noise_model_precision_scheduler_steps_cfg_and_pag": true
+  },
+  "arms": {
+    "baseline": {
+      "config": "experiments/configs/self_guidance_sd14_coco5k_pag_baseline_v1.yaml",
+      "config_sha256": "e1259a054070cc290f474556113115a9287599f55088945a5b641907c97c8410",
+      "cfg_scale": 7.5,
+      "pag_scale": 0.3,
+      "sg_scale": 0,
+      "sg_shift_scale": 10,
+      "sg_type": "sg_prev",
+      "sg_prev_max_t": 500
+    },
+    "method": {
+      "config": "experiments/configs/self_guidance_sd14_coco5k_sgprev_v1.yaml",
+      "config_sha256": "a58b38b194b4f84b854e1932ea90683a827f21aec5905f0beef8f3eb3a082ef9",
+      "cfg_scale": 7.5,
+      "pag_scale": 0.3,
+      "sg_scale": 3,
+      "sg_shift_scale": 10,
+      "sg_type": "sg_prev",
+      "sg_prev_max_t": 500
+    },
+    "only_primary_difference": "sg_scale 0 versus 3"
+  },
+  "preflight": {
+    "smoke_prompt_file": "experiments/configs/self_guidance_coco_smoke8_prompts_v1.txt",
+    "smoke_prompt_file_sha256": "fc12204f458e37c05f38564dbc15af400918b6329e5b1488d188719a555c3e08",
+    "requirements": [
+      "both arms produce exactly 8 readable 512x512 RGB PNGs",
+      "a second baseline run is pixel-identical to the first",
+      "paired output indices and dimensions match",
+      "no NaN or runtime exception"
+    ]
+  },
+  "evaluation": {
+    "primary": "delta_FID_1k = FID_method - FID_baseline against one frozen released-code COCO reference-stat file",
+    "t2ibenchmark_commit": "532229f679d7e97ecba61914db7276f95733e707",
+    "openai_clip_import_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+    "reference_stats_path": "/data/users/zhoushunyu/eqvae/eval_assets/t2ibenchmark_532229f/MS-COCO_val2014_fid_stats.npz",
+    "reference_stats_sha256": "40b27df19d61e075b75a0783fe3d603fcd3532cfebfa220d172474dbf8b38a8b",
+    "generated_files_are_always_sorted_by_numeric_output_index": true,
+    "save_generated_inception_features": true,
+    "uncertainty": "paired bootstrap over the 1000 prompt pairs plus four fixed 250-prompt block FIDs",
+    "green": "delta <= -0.25 and at least 3/4 block deltas < 0 and paired 80% bootstrap CI upper bound < 0",
+    "yellow": "delta < 0 and at least 3/4 block deltas < 0, but magnitude < 0.25 or CI crosses 0; run one untouched fresh 1k without tuning",
+    "red": "delta >= 0 or at most 2/4 block deltas < 0",
+    "scope_warning": "Absolute local 1k FID must not be compared numerically with paper 5k, 30k, or 50k FID. Paper numbers are background only."
+  },
+  "paper_release_mismatch": {
+    "paper_sd14_solver": "DDIM 50 steps",
+    "released_sd14_config_solver": "Euler 50 steps",
+    "paper_table_reference_text": "MS-COCO 2017 validation subset",
+    "released_evaluator_reference": "T2IBenchmark get_coco_fid_stats, whose package names the asset MS-COCO val2014",
+    "consequence": "This stage is explicitly release-faithful and paired. It must not be called an absolute reproduction of the paper table.",
+    "paper_background_only": {
+      "CFG_plus_PAG_FID": 27.37,
+      "CFG_plus_PAG_plus_SG_prev_FID": 23.58
+    }
+  },
+  "next_stage": "Only a green result authorizes an unchanged expansion to the released 5k prompt cohort; it does not validate the repository's new cross-scale evidence theory."
+}

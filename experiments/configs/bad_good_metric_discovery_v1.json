@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "protocol_name": "bad_good_metric_discovery_v1",
+  "status": "EXPLORATORY_POST_UNSEAL_DO_NOT_USE_FOR_CONFIRMATION",
+  "objective": "Discover a computable path score that separates visually obvious, model-relative bad cases from ordinary model-quality outputs before the endpoint is complete.",
+  "quality_endpoint": {
+    "positive": "clear_overall_structural_bad",
+    "negative": "not_clear_overall_structural_bad",
+    "excluded": "uncertain",
+    "negative_semantics_warning": "The negative label means no clear overall bad case was established; it is not equivalent to a separately adjudicated pristine-good label.",
+    "bad_case_scope": [
+      "obvious global or major-region blur below the same-model cohort",
+      "conspicuous fusion or duplicated major structure",
+      "major limb, body-part, or object misalignment",
+      "gross attachment or topology failure"
+    ],
+    "not_automatically_bad": [
+      "ordinary model style variation",
+      "mild local imperfections",
+      "non-photorealism without a conspicuous failure",
+      "natural crop or occlusion"
+    ]
+  },
+  "data_roles": {
+    "legacy_64_path_pool": {
+      "role": "hypothesis_generation_and_code_development_only",
+      "reason": "Labels and the original likelihood-ratio summaries have already been unsealed; this pool cannot validate a newly selected metric.",
+      "model": "DiT-XL/2 ImageNet-256",
+      "class_id": 207,
+      "sampler": "250-step ancestral DDPM",
+      "cfg_scale": 4.0,
+      "sample_count": 64,
+      "clear_bad_count": 4,
+      "not_clear_bad_count": 59,
+      "uncertain_count": 1,
+      "sample_key": "protocol_identity_sha256 + global_index"
+    },
+    "new_discovery": {
+      "initial_trajectory_count": 1024,
+      "batch_increment": 256,
+      "target_clear_bad_count": 60,
+      "minimum_clear_bad_count_to_fit_combinations": 40,
+      "maximum_trajectory_count": 2048,
+      "expansion_rule": "Expand only because the locked visual labels contain too few clear bad events; do not inspect candidate scores when deciding to expand."
+    },
+    "new_confirmation": {
+      "initial_trajectory_count": 1536,
+      "batch_increment": 256,
+      "target_clear_bad_count": 80,
+      "minimum_clear_bad_count": 50,
+      "maximum_trajectory_count": 3072,
+      "unseal_rule": "Freeze one primary score, at most two single-feature backups, all reference normalization, thresholds, and code hashes before joining confirmation labels to metrics."
+    }
+  },
+  "sampling_phase_axis": {
+    "array_order": "sampling step k=0..249, corresponding to internal timestep t=249..0",
+    "equal_quintiles": [
+      {"name": "q0", "step_start_inclusive": 0, "step_stop_exclusive": 50, "internal_timestep": "249..200"},
+      {"name": "q1", "step_start_inclusive": 50, "step_stop_exclusive": 100, "internal_timestep": "199..150"},
+      {"name": "q2", "step_start_inclusive": 100, "step_stop_exclusive": 150, "internal_timestep": "149..100"},
+      {"name": "q3", "step_start_inclusive": 150, "step_stop_exclusive": 200, "internal_timestep": "99..50"},
+      {"name": "q4", "step_start_inclusive": 200, "step_stop_exclusive": 250, "internal_timestep": "49..0"}
+    ]
+  },
+  "candidate_families": [
+    "predictable predicted-clean latent amplitude and spatial roughness",
+    "online-causal predicted-clean temporal instability",
+    "predictable learned reverse-kernel variance morphology",
+    "online-causal realized Gaussian innovation surprise and localization",
+    "predictable cross-scale score disagreement and spatial concentration",
+    "online-causal directional innovation and likelihood-ratio shape",
+    "retrospective endpoint blur, edge, spectrum, and semantic negative controls"
+  ],
+  "legacy_emerging_hypothesis": {
+    "name": "two_phase_predicted_clean_instability",
+    "status": "POSTHOC_HYPOTHESIS_FROM_THE_ALREADY_UNSEALED_64_PATH_POOL",
+    "components": [
+      "q1 per-channel amplitude-normalized predicted-clean Dirichlet roughness",
+      "q2 predicted-clean per-channel log spatial variance"
+    ],
+    "interpretation": "A possible early rough/unstable phase followed by a mid-trajectory amplitude overshoot. It is not a posterior probability and is not yet a detector.",
+    "must_be_frozen_before_new_validation": true
+  },
+  "time_availability": {
+    "predictable": "Uses only the current state and model outputs available before the current Gaussian innovation is drawn.",
+    "online_causal": "Uses the just-observed transition or the change from the previous prediction and can affect only later steps or a rollback.",
+    "retrospective": "Uses a future state, endpoint, whole-path maximum, or endpoint image and is eligible only for mining or mechanism discovery."
+  },
+  "combination_search": {
+    "allowed_only_in_new_discovery": true,
+    "outer_validation": "grouped by class or semantic superclass, with a separate seed/prefix grouped audit",
+    "inner_model": "elastic-net logistic regression or a low-degree predeclared interaction model",
+    "maximum_nonzero_parameters": "floor(number_of_clear_bad_events / 10)",
+    "primary_selection_target": "partial ROC area at false-positive rate <= 0.10",
+    "maximum_frozen_outputs": "one primary combination and two single-feature backups"
+  },
+  "confirmation_success_gate": {
+    "roc_auc_point_at_least": 0.70,
+    "roc_auc_group_bootstrap_95pct_lower_above": 0.60,
+    "frozen_threshold_fpr_point_at_most": 0.10,
+    "frozen_threshold_fpr_95pct_upper_at_most": 0.12,
+    "tpr_point_at_least": 0.35,
+    "tpr_95pct_lower_at_least": 0.20,
+    "tpr_minus_fpr_95pct_lower_above": 0.0,
+    "unseen_class_auc_at_least": 0.60,
+    "minimum_median_lead_fraction_for_intervention": 0.10
+  },
+  "claims_forbidden_on_legacy_data": [
+    "validated detector",
+    "confirmatory p-value",
+    "general bad-case posterior probability",
+    "cross-class or cross-model generalization",
+    "authorization to guide, reject, resample, or roll back"
+  ]
+}

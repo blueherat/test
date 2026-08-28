@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "experiment": "dit_projected_tweedie_cone_discovery_v1",
+  "status": "FROZEN_AFTER_LABEL_FREE_SEED10_NUMERICAL_SMOKE_BEFORE_FULL_SCORE_LABEL_JOIN",
+  "scientific_role": "post_unseal_discovery_not_confirmation",
+  "model_scope": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "sampler_states": "official CFG=4 ancestral DDPM-250 trajectory states",
+    "queried_mapping": "raw class-conditional unclipped pred_xstart",
+    "queried_mapping_precision": "float32 without autocast",
+    "backbone_frozen": true,
+    "cfg_prediction_used_as_cone_metric": false
+  },
+  "source_population": {
+    "global_seeds": "10..29",
+    "ordered_class_ids": [207, 340, 354, 366, 444, 602, 795, 981],
+    "trajectory_count": 160,
+    "existing_locked_label_counts": {
+      "clear_bad": 5,
+      "clean_good": 69,
+      "mild_or_disputed": 26,
+      "unlabeled": 60
+    },
+    "primary_comparison": "all 5 clear_bad versus all 69 clean_good",
+    "excluded_from_primary": ["mild_or_disputed", "unlabeled"],
+    "known_label_exposure_boundary": "Visual labels predate this candidate, so this pool is discovery only. PTCV values have not been joined to them before this freeze."
+  },
+  "mathematical_object": {
+    "forward_corruption": "X_t=alpha_t*X_0+sigma_t*epsilon with scalar alpha_t>0 and isotropic Gaussian epsilon",
+    "ideal_map": "m_t^c(x)=E[X_0|X_t=x,c]",
+    "identity": "Jacobian_x m_t^c=(alpha_t/sigma_t^2) Cov(X_0|X_t=x,c), hence it is symmetric PSD",
+    "learned_surrogate": "the frozen raw conditional unclipped clean-latent prediction at a CFG-visited state",
+    "projection": "B_ik=Q^T Jacobian_x mhat_t^c Q",
+    "cone_distance": "dist_F^2(B,S_+)=||skew(B)||_F^2+sum_{lambda(sym(B))<0}lambda^2",
+    "boundary": "A violation is a projected posterior-realizability defect, not a universal artifact theorem and not a CFG-Jacobian defect."
+  },
+  "fixed_projection": {
+    "kind": "normalized 4x4 Hadamard channel modes tensor four orthonormal 2-D DCT modes",
+    "spatial_frequencies_vertical_horizontal": [[0, 1], [1, 0], [1, 1], [2, 2]],
+    "dimension": 16,
+    "latent_shape": [4, 32, 32],
+    "basis_raw_sha256": "698fa3fcf6a67265ccdb618f3d1c6642affd03aa41dbcb5ffce8d6f36529d179",
+    "smoke_maximum_orthonormality_error": 1.7763568394002505e-15,
+    "basis_or_frequency_rescue_after_join_forbidden": true
+  },
+  "fixed_numerics": {
+    "checkpoints_zero_based": [99, 149, 199],
+    "internal_timesteps": [150, 100, 50],
+    "relative_l2_radii": [0.001953125, 0.00390625],
+    "absolute_radius": "relative_radius*sqrt(d)*max(RMS(state),sqrt(1-alpha_bar))",
+    "centered_difference": "[m(x+h*q)-m(x-h*q)]/(2h)",
+    "primary_matrix": "B_R=(4*B_small-B_large)/3",
+    "network_query_dtype": "float32",
+    "projection_and_eigendecomposition_dtype": "float64",
+    "single_checkpoint_radius_or_component_selection_after_join_forbidden": true
+  },
+  "label_free_numerical_gates_before_any_join": {
+    "all_60_raw_conditional_checkpoint_replays_bitwise_exact": true,
+    "all_matrices_and_scores_finite": true,
+    "all_cone_scores_in_closed_unit_interval": true,
+    "spearman_small_vs_large_path_score_at_least": 0.8,
+    "spearman_small_vs_richardson_path_score_at_least": 0.8,
+    "spearman_large_vs_richardson_path_score_at_least": 0.8,
+    "median_per_path_maximum_small_large_relative_matrix_gap_at_most": 0.05,
+    "q95_per_path_maximum_small_large_relative_matrix_gap_at_most": 0.1,
+    "failure_action": "STOP as numerically unresolved before labels are opened."
+  },
+  "frozen_primary_score": {
+    "raw_path_score": "D_i=sum_k dist_F^2(B_R,ik,S_+)/[sum_k ||B_R,ik||_F^2+1e-30]",
+    "class_standardization": "For each class c, compute mean and sample SD of raw D_i over all 20 label-free paths; S_i=(D_i-mean_c)/(sd_c+1e-12).",
+    "quality_direction": "higher_S_is_more_likely_clear_bad",
+    "low_direction_rescue_forbidden": true,
+    "component_rescue_forbidden": "skew-only, negative-eigen-only, minimum eigenvalue, finite secant, or maximum-checkpoint scores are descriptive only"
+  },
+  "fixed_simple_controls": {
+    "path_matrix_energy": "sum_k ||B_R,ik||_F^2, class-standardized; higher is worse",
+    "finite_difference_gap": "maximum_k ||B_small-B_large||_F/||B_R||_F, class-standardized; higher is worse",
+    "single_path_temporal_change": "mean over checkpoints of RMS(cfg_pred_xstart[k+1]-cfg_pred_xstart[k])/(RMS(cfg_pred_xstart[k])+1e-12), standardized per class; higher is worse",
+    "raw_conditional_cfg_gap": "mean over checkpoints of RMS(raw_conditional_pred_xstart-cfg_pred_xstart)/(RMS(raw_conditional_pred_xstart)+1e-12), standardized per class; higher is worse"
+  },
+  "frozen_readouts": {
+    "primary": [
+      "tie-aware ROC AUC for S on 5 clear_bad versus 69 clean_good",
+      "exact one-sided class-stratified randomization p-value for higher S",
+      "each clear_bad sample's within-class percentile and rank",
+      "count of clear_bad samples above their class median"
+    ],
+    "robustness": [
+      "leave-one-positive-class-out AUC, recomputed without changing the score formula",
+      "leave-one-checkpoint-out AUC, recomputing the same ratio over the remaining fixed checkpoints and class-standardizing label-free",
+      "class-specific AUC for every class containing a clear_bad"
+    ],
+    "descriptive_only": [
+      "blur versus structural subtype results",
+      "checkpoint-specific cone scores",
+      "skew and negative-eigen components",
+      "finite-secant negativity",
+      "the four simple controls"
+    ]
+  },
+  "decision_rule": {
+    "advance_to_new_pool_only_if": [
+      "every label-free numerical gate passes before labels are opened",
+      "primary higher-direction AUC is at least 0.65",
+      "at least 3 of 5 clear_bad samples are above their class-specific median",
+      "the exact higher-direction class-stratified randomization p-value is at most 0.10",
+      "primary AUC is not below any fixed simple control AUC",
+      "every leave-one-positive-class-out AUC with at least two remaining positives is at least 0.55",
+      "every leave-one-checkpoint-out AUC is at least 0.55",
+      "at least two positive-containing classes have class-specific AUC strictly above 0.5"
+    ],
+    "strong_discovery_signal": "All advance gates plus AUC>=0.75, at least 4/5 bad above class median, exact p<=0.05, all leave-one-axis AUCs>=0.60, and primary AUC exceeds every control by >=0.03.",
+    "failure_action": "STOP as an artifact detector on this formulation. Do not flip sign, select one component/checkpoint/frequency/radius, or redefine the endpoint on this pool.",
+    "intervention_boundary": "No intervention is authorized until the unchanged score passes an independent event-rich pool with fresh blinded labels."
+  },
+  "smoke_receipt": {
+    "seed": 10,
+    "identity_sha256": "b50f089203c965128062979b6536e64060256939286e6792c662219235e57831",
+    "status": "label_free_numerical_only",
+    "observed_path_cone_violation_range": [0.0018697869577814353, 0.010423528374639642],
+    "observed_maximum_relative_matrix_gap_range": [0.013271459870329684, 0.022123910977126647],
+    "observed_negative_eigen_fraction": 0.0,
+    "interpretation": "The measurement is resolved in this smoke, but the observed cone distance is entirely skew-based; no quality meaning is inferred."
+  },
+  "source_freeze": {
+    "numerical_core_sha256": "986f0fc8bbf22b84731ffb9b8b73bc9d73db263ae7f32d05e4ec812acf6900fe",
+    "gpu_runner_sha256": "25a4c07e779fc5117225b2b0787a093ac6ddb2b81377a87fabe6459d28f27997",
+    "strict_dit_helper_sha256": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+    "trace_runner_sha256": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79",
+    "dit_checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521"
+  },
+  "prior_art_boundary": {
+    "known": "Tweedie covariance-Jacobian identities, denoiser Jacobian symmetry/PSD constraints and violations, non-conservative score analysis, Jacobian-spectrum OOD detection, and temporal artifact detection/correction already exist.",
+    "tested_here": "Whether a frozen raw conditional denoiser's per-trajectory projected distance to the symmetric PSD cone predicts its own generation artifacts before completion.",
+    "forbidden_claim": "first discovery of denoiser Jacobian symmetry, PSD, non-conservativity, or Jacobian-related artifacts"
+  }
+}

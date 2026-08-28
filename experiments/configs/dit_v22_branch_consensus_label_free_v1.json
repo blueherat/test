@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "method_version": "dit_v22_prefix_conditional_branch_consensus_v1",
+  "scientific_role": "posthoc_label_free_feature_discovery_only",
+  "primary_horizon": 10,
+  "secondary_horizons": [5, 20],
+  "all_horizons": [5, 10, 20],
+  "pool_scales": [1, 2, 4],
+  "epsilon": 1e-06,
+  "expected_jobs": 32,
+  "expected_attempts_per_job": 5,
+  "attempt_zero_role": "retrospectively_selected_exact_replay_not_exchangeable_with_fresh",
+  "fresh_attempt_indices": [1, 2, 3, 4],
+  "trace_array": "target_pred_xstart",
+  "prefix_index": 0,
+  "distance": {
+    "spatial_center_each_latent_channel": true,
+    "pooling": "nonoverlapping_average_pool",
+    "per_scale_measure": "root_mean_square",
+    "scale_combination": "unweighted_arithmetic_mean",
+    "normalizer": "same_transform_root_mean_square_of_shared_prefix_pred_xstart",
+    "dispersion": "median_of_six_fresh_pairwise_distances",
+    "branch_nonconformity": "mean_distance_to_other_branches"
+  },
+  "rank_contract": {
+    "fresh_only_rank_is_exchangeability_eligible": true,
+    "fresh_only_minimum_p": 0.25,
+    "attempt_zero_rank_is_descriptive_not_calibrated": true,
+    "ties": "greater_than_or_equal_conservative"
+  },
+  "allowed_input_basenames": [
+    "manifest.json",
+    "branch.json",
+    "trace.npz"
+  ],
+  "forbidden_inputs": [
+    "png_or_decoded_image_pixels",
+    "review_or_consensus_labels",
+    "sealed_mapping",
+    "FID",
+    "Inception",
+    "DINO",
+    "CLIP",
+    "external_embeddings",
+    "AUC_or_thresholds"
+  ],
+  "evaluation_contract": {
+    "extractor_must_finish_and_hash_outputs_before_any_label_join": true,
+    "current_selected_pilot_is_posthoc_discovery_only": true,
+    "future_confirmation_requires_unselected_symmetric_current_and_scout_suffixes": true,
+    "future_intervention_control": "same_compute_budget_random_scout"
+  }
+}

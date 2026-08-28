@@ -1,0 +1,712 @@
+{
+  "authorization_gate": {
+    "authorization_basis": "The user repeatedly and explicitly directed the repository work to proceed from reproduction into implementation, extensive trials, and direct validation of the new method. This authorizes the already scoped observation-only 64-trajectory experiment; it does not authorize intervention, seed replacement, evidence peeking, or a broader model/class claim.",
+    "gpu_execution_authorized": true,
+    "pre_freeze_checklist_completed": true,
+    "required_before_freeze": [
+      "Audit every known DiT class-207 manifest, branch-local RNG namespace, rendered endpoint, review grid, and annotation ledger and certify that none of the 64 predeclared branch_local_trajectory_seeds has ever been consumed, generated, rendered, or reviewed.",
+      "Freeze the exact runner SHA-256, upstream DiT source/checkpoint/VAE hashes, diffusion schedule hashes, and CUDA execution contract.",
+      "Complete synthetic-only tests of exact P replay, the 34 component likelihood ratios, the fixed path mixture, the predictable K cap, private/public artifact separation, and fail-closed shard validation.",
+      "Build and freeze a metadata-stripped seven-image external-anchor pack and manifest, verify every source PNG and RGB-pixel hash bound by external_visual_anchor_binding, and record the final anchor-pack and manifest hashes in a new protocol version before GPU execution.",
+      "Freeze the blind-pack builder, randomized blind-ID mapping, external-anchor visual rubric, consensus annotation schema, and aggregate-only unseal summarizer before any real pool output is viewed.",
+      "Obtain explicit authorization to change protocol_status to FROZEN_BEFORE_GPU_EXECUTION and recompute the canonical protocol self-hash."
+    ],
+    "runner_requirement": "Every real runner must fail closed unless this exact self-hashed protocol is FROZEN_BEFORE_GPU_EXECUTION and all seed-audit, blind-pipeline, blind-mapping, external-anchor, runner/source/runtime/hardware, checkpoint, VAE, and schedule bindings validate from their immutable on-disk artifacts before model loading or sampling.",
+    "seed_novelty_failure_rule": "If even one listed seed is found in prior DiT class-207 lineage, do not replace only that seed. Keep this v1 draft unauthorized and create a new protocol version with a completely regenerated 64-seed slate before GPU execution."
+  },
+  "blind_review": {
+    "annotation_lock": {
+      "applies_to": "All visual reviewers, the visual adjudicator, every person who participates in a visual-label decision, and every result analyst who will read or interpret evidence-quality association.",
+      "must_happen_before": "Any covered visual reviewer/adjudicator or result analyst reads or receives an alarm flag, path-mixture value, component value, evidence-derived rank, private trace, or evidence-bearing terminal output. Visual reviewers and the adjudicator must additionally remain blind to seed, shard, slot, trajectory index, and generation order through consensus lock.",
+      "pre_lock_role_exceptions": {
+        "automation": "Purpose-limited automation may receive seed/shard identifiers to launch, validate, stage, hash, and blind-pack artifacts. It may not expose evidence values, alarms, ranks, or private traces in logs or outputs available to humans; only the sealed evidence-writing/validation process may parse private arrays internally.",
+        "execution_custodian": "A separately designated execution custodian may see commands, branch-local seeds, shard/slot assignments, completion status, and non-evidence hashes. The custodian may not visually inspect pool endpoints, participate in visual annotation/adjudication, or read evidence values, alarms, ranks, or private traces.",
+        "seed_lineage_auditor": "A separately designated seed-lineage auditor may inspect seed namespaces, values, shard assignments, prior manifests, and materialization ledgers before sampling. The auditor may not inspect pool images or evidence, and may not serve as a visual reviewer, adjudicator, or result analyst for this pool."
+      },
+      "required_artifacts": [
+        "two independent completed 64-row reviewer files",
+        "one adjudicated completed 64-row consensus file",
+        "reviewer and adjudicator identities, UTC timestamps, and explicit evidence-unseen declarations",
+        "canonical self-hash and file SHA-256 of the final consensus annotation"
+      ],
+      "unseal_count": 1
+    },
+    "blind_pack_boundary": {
+      "allowed": "Only 64 canonical RGB class-207 endpoint PNGs under randomized opaque blind IDs, the frozen metadata-stripped external-anchor pack and rubric, contact sheets used solely for missing/duplicate/layout QA, and empty annotation templates.",
+      "forbidden_until_consensus_lock": [
+        "branch-local trajectory seeds and seed lineage",
+        "trajectory, shard, and slot indices",
+        "generation order and filenames that encode lineage",
+        "all manifests, completion files, results files, logs, and private traces",
+        "all binary alarms, mixture scores, component scores, ranks, and evidence-derived selections"
+      ],
+      "contact_sheet_restriction": "The current 64-image contact sheet may be used to catch missing, duplicate, corrupt, or badly laid-out images. It must not define, estimate, or recalibrate the ordinary-quality threshold; each endpoint is judged independently against the frozen external anchors and rubric.",
+      "procedural_boundary": "This is strict procedural blinding, not cryptographic secrecy. The public blind pack must contain no reversible lineage or evidence metadata."
+    },
+    "independent_review_and_adjudication": {
+      "adjudication": "After both complete reviews are locked, an evidence-blind adjudicator inspects every disagreement and every uncertain call, then locks one 64-row consensus. Genuine ambiguity may remain uncertain; the adjudicator must not force it into either analysis class.",
+      "reviewer_A": "Independently label all 64 images before seeing reviewer B's labels.",
+      "reviewer_B": "Independently label all 64 images before seeing reviewer A's labels.",
+      "shared_constraint": "Both reviewers and the adjudicator must remain blind to method scores, alarms, seeds, shards, and lineage through consensus lock."
+    },
+    "primary_visual_endpoint": {
+      "labels": [
+        "clear_overall_structural_bad",
+        "not_clear_overall_structural_bad",
+        "uncertain"
+      ],
+      "independent_per_image_rule": "Judge each new endpoint on its own against the frozen written rubric, five ordinary external anchors, and two clear-bad calibration anchors. The other 63 new endpoints and their empirical quality distribution may not move the threshold.",
+      "name": "overall_obvious_structural_bad_under_frozen_external_anchor_rubric",
+      "negative_definition": "Against the five frozen same-model class-207 ordinary anchors, no obvious blur, fusion, duplication, broken attachment, impossible overlap, severe displacement, or major topology failure reaches the clear-bad calibration level. Mild oddness, imperfect texture, stylization, unusual pose, or an ordinary model limitation is not enough.",
+      "positive_definition": "At native and enlarged view, the endpoint has an obvious blur, fusion, duplicated/floating part, broken attachment, impossible overlap, severe limb/object displacement, or major topology failure comparable in conspicuousness to the frozen topology/blur clear-bad calibration anchors and clearly below the frozen ordinary anchors.",
+      "pose_invariance": "The judgment is across independently varying poses and compositions. It must not depend on a fixed lower-left location, one shared pose, one object count, or one tail orientation.",
+      "role": "sole primary visual endpoint"
+    },
+    "secondary_visual_endpoints": {
+      "hind_limb_topology": {
+        "labels": [
+          "clear_failure",
+          "not_clear_failure",
+          "uncertain_or_not_scorable"
+        ],
+        "role": "secondary only; cannot redefine, rescue, or replace the primary endpoint"
+      },
+      "tail_naturalness": {
+        "derived_labels": [
+          "natural",
+          "odd",
+          "malformed",
+          "uncertain_or_not_scorable"
+        ],
+        "dimensions": {
+          "distal_tip": "0=natural; 1=mildly odd or uncertain; 2=clear defect",
+          "feather_or_hair_flow": "0=coherent fluffy/fur flow; 1=mildly odd or uncertain; 2=clear texture/flow defect",
+          "root_attachment": "0=natural attachment; 1=mildly odd or uncertain; 2=clearly detached, fused, or anatomically implausible",
+          "taper_and_volume": "0=natural taper and volume; 1=mildly odd or uncertain; 2=clear paddle-like, constant-width, filament-jump, or impossible volume"
+        },
+        "missing_tail_rule": "A missing, hidden, or occluded tail is not automatically bad; mark it not scorable when geometry cannot be judged.",
+        "role": "secondary only; a recognizable tail is not automatically a natural tail, and mild tail oddness alone cannot determine primary badness",
+        "shape_flags": [
+          "paddle_like",
+          "short_or_blunt",
+          "abrupt_filament_transition"
+        ]
+      }
+    },
+    "uncertain_policy": {
+      "analysis": "Exclude consensus-uncertain primary rows from both TPR and FPR denominators, but always report their count and alarm count. Never merge uncertain into either class after evidence unseal.",
+      "pre_unseal": "Reviewers use uncertain for genuine ambiguity. The adjudicator resolves only when the pixels support a confident call and otherwise preserves uncertain.",
+      "prohibited": "No evidence-assisted relabeling, no forced binary label to increase event count, and no post-unseal change to notes or endpoint definitions."
+    }
+  },
+  "blind_mapping_commitment_binding": {
+    "commitment_file_sha256": "43296e6697220d4991ed12e7502b10e759efc9e8f0d760e631fe992f42255b84",
+    "commitment_identity_sha256": "fc70686f93700ff7e9a48cb03db524381f4eca4fa62b920c15f8fea0e6b9fac6",
+    "commitment_path": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_imagenet256_t60_cross_prefix_protocol_private/blind_mapping_commitment_v2.json",
+    "commitment_schema": "dit_t60_cross_prefix_randomized_blind_mapping_commitment_v1",
+    "mapping_builder_filename": "build_dit_t60_cross_prefix_blind_pack.py",
+    "mapping_builder_sha256": "c8aaa9075ee1828775ec2e131f3b075f052595a3acb39fd2ba9cb1a1f78f1776",
+    "pool_size": 64,
+    "status": "FROZEN_BEFORE_GPU_EXECUTION"
+  },
+  "blind_pipeline_binding": {
+    "aggregate_unseal_summarizer_filename": "summarize_dit_t60_cross_prefix_mixture_validation.py",
+    "aggregate_unseal_summarizer_sha256": "ae0a48b90759cce41d6ac78a073fa7ec16b3ba3148581ab1298b798d11ea6fad",
+    "blind_pack_builder_filename": "build_dit_t60_cross_prefix_blind_pack.py",
+    "blind_pack_builder_sha256": "c8aaa9075ee1828775ec2e131f3b075f052595a3acb39fd2ba9cb1a1f78f1776",
+    "consensus_locker_filename": "lock_dit_t60_cross_prefix_consensus.py",
+    "consensus_locker_sha256": "278675a57f378b30804412c6197b48abcc2f974092d287fb74209cbe8da8c4a7"
+  },
+  "external_visual_anchor_binding": {
+    "anchor_model_configuration": "DiT-XL/2 ImageNet-256, class 207 golden retriever, checkpoint 9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521, 250-step ancestral DDPM, CFG 4.0, stabilityai/sd-vae-ft-mse",
+    "clear_bad_calibration_anchors": [
+      {
+        "legacy_upstream_demo_seed": 2,
+        "png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393",
+        "pixel_rgb_sha256": "0e6e3c3cd65e1c66fbd838f0e5829e86247c0b867840c86fe3d2804499c3065b",
+        "role": "clear_bad_topology_calibration"
+      },
+      {
+        "legacy_upstream_demo_seed": 26,
+        "png_sha256": "7968ede692e687bee86ae18d60af8670d806b342038609cb586a9a528bd3e12b",
+        "pixel_rgb_sha256": "12ded78d11bc43f8dc4cc92e871c44a45a5b2e8ca458e130451fb139c2237274",
+        "role": "clear_bad_blur_calibration"
+      }
+    ],
+    "frozen_rubric_use": "The five ordinary anchors bound ordinary same-model imperfections; the two clear-bad anchors calibrate the required conspicuousness for topology and blur failure families. Reviewers classify every new image independently under the written rubric. The seven anchors calibrate severity but do not imply that only their exact poses or defect shapes count.",
+    "metadata_stripped_anchor_pack": {
+      "anchor_config_file_sha256": "cd8777ab20ca8f0cf9d983f1b210a3cca1fde268defca09815b93e51373678ba",
+      "anchor_config_identity_sha256": "e2a6ebf5eeb0e43cba302c40f3f54151bf542debff2d25df4c540a5d9cbdb38a",
+      "anchor_config_path": "/home/zhoushunyu/eqvae/experiments/configs/dit_imagenet256_class207_visual_anchors_v1.json",
+      "builder": {
+        "filename": "build_dit_class207_visual_anchor_pack.py",
+        "sha256": "2bacb634c437c82746cf148558f2924deb2f92bca70e7022feb833732ab31f65"
+      },
+      "completion_file_sha256": "178ceb334b587da7657ff1e959fb49e07b8a4619ea33736cacaa38807f6377ba",
+      "completion_payload_sha256": "15c60954ed3f3f93926e64a99de53bb3444f36bac4bc6f9dedc4dbdeb4f32a21",
+      "manifest_file_sha256": "7293d59db7284cb1c5effe1fef635b9f46d6f81c059ef3e4e29801964bbbc638",
+      "manifest_identity_sha256": "ca259d0a66762c85b01c3d341041a2cd41ee8a08f0dd3b9d849e4ab59d0f233a",
+      "pack_payload_sha256": "d08d732b988be32ec0e4e59051da1ab93b641bf7d3beae0df82b239a7d18f07e",
+      "public_pack_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_imagenet256_visual_anchor_review/class207_visual_anchor_pack_v1",
+      "public_pack_root_identity_sha256": "34ce5c958d0361d307305d411c40d9ea549a734d1694e8b1c0ca4ffe28e3988a",
+      "rubric_file_sha256": "6f47c80b3ba3acdce9e728a1a421d6f843585576206dabafd6c7f3a0ed030e01",
+      "rubric_identity_sha256": "e2c60bf159c24cd5af193332fc76b872aff589c80cb5080bd055e938b5e07720",
+      "status": "COMPLETE_AND_FROZEN_BEFORE_GPU_EXECUTION"
+    },
+    "ordinary_same_model_class207_anchors": [
+      {
+        "legacy_upstream_demo_seed": 1,
+        "png_sha256": "24c64335e765a2f247565a1a7d9e9cb0ca303aa0ec1ca4a628e7aa2093fe35de",
+        "pixel_rgb_sha256": "7ceb432517bb90998149dc0502eca3c609618bc054d1db2af565cb250d459bd6",
+        "role": "ordinary_anchor"
+      },
+      {
+        "legacy_upstream_demo_seed": 3,
+        "png_sha256": "54e5dc2c72a276537ead4d180cf08d3fa26bf84919eed6439bb31f2970b6deb7",
+        "pixel_rgb_sha256": "eda05486cff70f4f47d92bc634f49b139c0188303f45db28452045b9a807d202",
+        "role": "ordinary_anchor"
+      },
+      {
+        "legacy_upstream_demo_seed": 4,
+        "png_sha256": "51594287a669fee9d7c6e718c644d357f25f06ce6e024eb5541ae5e679628a8a",
+        "pixel_rgb_sha256": "3033f3309859d42507a6197e32d4375b0b90ab655774845365e06ef4689eb1c4",
+        "role": "ordinary_anchor"
+      },
+      {
+        "legacy_upstream_demo_seed": 7,
+        "png_sha256": "aa3c0ce64e25b4bda3553a870b322fb7563afe0eb0aebffaa8f5403a616f49fb",
+        "pixel_rgb_sha256": "cdb87f794546dc6494bfaee5f2d4c2d4b5c65b0f5408f35b2e51375dc7a36cef",
+        "role": "ordinary_anchor"
+      },
+      {
+        "legacy_upstream_demo_seed": 9,
+        "png_sha256": "bb22f4ebe5700b12ec86c3487d799da0030c0c8de54bd6bbc18a2325072c4dd5",
+        "pixel_rgb_sha256": "f913ca2af7d2a3bbffc1139b9d10553d32758fb421479d77e6d3f58c702c2429",
+        "role": "ordinary_anchor"
+      }
+    ],
+    "pool_independence": "These seven anchors are external calibration images and are not members of the new 64-trajectory pool. No current-pool contact sheet, quantile, prevalence, or majority judgment may redefine the primary threshold.",
+    "source_hash_status": "FROZEN_IN_THIS_DRAFT"
+  },
+  "evidence_candidate": {
+    "alarm_boundary": {
+      "alpha_e": 0.2,
+      "ever_event": "ever E_mix >= 5 over the observed t60-through-t0 suffix, with the initial E_mix=1 included in the running maximum",
+      "e_value_threshold": 5.0,
+      "log_e_threshold": 1.6094379124341003
+    },
+    "component_construction": {
+      "base_components": "one global 32x32 latent mask plus sixteen fixed row-major non-overlapping 4x4-grid latent tiles",
+      "component_count": 34,
+      "delta_nu": 0.25,
+      "path_component_order": "global +theta, global -theta, then tile_00 +theta, tile_00 -theta, ..., tile_15 +theta, tile_15 -theta",
+      "signs": [
+        "+theta",
+        "-theta"
+      ],
+      "theta_semantics": "The current-scale versus additive-higher-noise score difference computed predictably from the current state before the realized P innovation."
+    },
+    "exactness_scope": "Each component is the exact finite-step likelihood ratio of its frozen operational Gaussian Q transition against the actually implemented Gaussian baseline-P transition. This operational exactness is not a claim that the learned discretized ratio equals the ideal heat-flow marginal density ratio.",
+    "fixed_path_mixture": {
+      "formula": "E_mix(k) = (1/34) * sum_{j=1}^{34} exp(sum_{i<k} Delta_ell_i^(j))",
+      "initial_value": 1.0,
+      "posthoc_component_max_forbidden": true,
+      "weights": "uniform 1/34, fixed before sampling"
+    },
+    "information_cap": {
+      "per_component_total_K_cap": 0.5,
+      "predictable_rule": "Let N_eff be the schedule-fixed number of stochastic t60..0 transitions whose Delta-nu=0.25 shifted timestep differs from the current timestep. Before each innovation, set K_step_cap=(0.5/N_eff)*(1-2e-12). If K_raw=0 set scale=1 exactly; otherwise set scale=min(1,sqrt(K_step_cap/K_raw)). Identity or deterministic steps contribute zero. Thus every component has sum_t K_t <= 0.5 without hindsight normalization.",
+      "same_rule_for_all_trajectories": true
+    },
+    "observation_window": {
+      "end_internal_timestep": 0,
+      "prefix_usage": "The independently sampled prefix above t60 defines the held-out x60 but contributes no likelihood-ratio increment.",
+      "start_internal_timestep": 60
+    },
+    "primary_evidence_endpoint": "The single predeclared primary evidence variable is the binary ever-crossing indicator of the fixed 34-way complete-path mixture at E_mix>=5. No tile, sign, component, terminal score, or alternate threshold is co-primary.",
+    "selection_lineage": "The 34-way uniform complete-path mixture, Delta-nu=0.25, K_total<=0.5, t60 start, and threshold 5 are carried forward unchanged from the already examined discovery/within-prefix work. Their prior use must be disclosed; this pool is prospective cross-prefix validation, not a fresh candidate search."
+  },
+  "execution_and_retention": {
+    "baseline_P_only": "All 64 saved class-207 endpoints are unmodified baseline-P samples. Evidence is observation-only and may not change a mean, variance, innovation, state, endpoint, or decode.",
+    "exact_duplicate_endpoint_rule": "If two independently seeded endpoints are byte-identical or pixel-identical, or one exactly duplicates an external anchor, the frozen v1 blind builder aborts the entire experiment as a nonreplaceable protocol failure. Do not delete, substitute, or resample either seed. This rare abort may represent model collapse and is not evidence that the candidate passed or failed its quality-enrichment screen.",
+    "failure_recovery": "An incomplete or corrupted shard may only be deterministically replayed with the identical eight predeclared branch-local trajectory seeds into a clean staged directory before any pool image or evidence is viewed. It may not receive substitute seeds or extra trajectories.",
+    "full_retention": [
+      "all 64 class-207 endpoint PNGs, with no filtering, deletion, replacement, early stopping, or quality-based selection",
+      "the initial latent and every target class-207 state from the full trajectory, including the saved x60 and terminal latent",
+      "each branch's initial latent draw and all 250 branch-local transition innovation draws, including the t=0 draw that is subsequently multiplied by zero, plus per-generator state hashes before and after all 251 draws",
+      "every baseline-P mean, variance or standard deviation, predicted x_start, current-scale prediction, shifted-scale prediction, theta, mask, predictable scale, K, reward, log-LR increment, cumulative component log-e, and path-mixture log-e required for exact reconstruction",
+      "all eight class-207 endpoint PNGs and hashes in every shard, with exactly one endpoint for each predeclared branch-local trajectory seed",
+      "source, checkpoint, VAE, schedule, runner, protocol, command, environment, shard, seed-lineage, manifest, trace, results, and completion hashes"
+    ],
+    "no_rollback": true,
+    "no_sampling_intervention": true,
+    "private_public_separation": "Images for blind review are exported through a metadata-stripping random blind-ID pack. All evidence and lineage remain private until the consensus annotation is locked.",
+    "shard_completion_gate": "All eight shards and all 64 class-207 trajectories must validate and be retained before any blind review begins. No partial-pool review or evidence inspection is permitted."
+  },
+  "frozen_execution_binding": {
+    "alpha_bar_raw_sha256": "468a6428a0a9f392b09d2a04aecdf11925d846bf3fb74571f903558571f3b631",
+    "cfg_scale": 4.0,
+    "checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+    "conditional_null_model_batch_size": 16,
+    "cuda_execution_contract": {
+      "required_compute_capability": [
+        8,
+        9
+      ],
+      "required_device_name": "NVIDIA GeForce RTX 4090",
+      "runtime_dependency_identity": {
+        "cuda_runtime": "13.0",
+        "cudnn": 91900,
+        "diffusers": "0.30.0",
+        "huggingface_hub": "1.13.0",
+        "numpy": "2.2.6",
+        "pillow": "12.2.0",
+        "python": "3.10.20",
+        "safetensors": "0.7.0",
+        "timm": "0.9.16",
+        "torch": "2.11.0+cu130",
+        "torchvision": "0.26.0"
+      },
+      "runtime_dependency_identity_sha256": "dd3a79687aa1fc319b0f6627e650323f163bcd5c67c3d861b6e6130386edc9eb",
+      "torch_backend_flags": {
+        "cuda_matmul_allow_tf32": true,
+        "cudnn_allow_tf32": true,
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": false,
+        "cudnn_enabled": true,
+        "deterministic_algorithms_enabled": false,
+        "deterministic_debug_mode": 0,
+        "float32_matmul_precision": "high"
+      }
+    },
+    "dependency_identity": {
+      "cuda_runtime": "13.0",
+      "cudnn": 91900,
+      "diffusers": "0.30.0",
+      "huggingface_hub": "1.13.0",
+      "numpy": "2.2.6",
+      "pillow": "12.2.0",
+      "python": "3.10.20",
+      "safetensors": "0.7.0",
+      "timm": "0.9.16",
+      "torch": "2.11.0+cu130",
+      "torchvision": "0.26.0"
+    },
+    "dependency_identity_sha256": "dd3a79687aa1fc319b0f6627e650323f163bcd5c67c3d861b6e6130386edc9eb",
+    "dit_commit_tree": "db610f6412cf70fdb6c5b2ffb46c362dd74c6bcf",
+    "dit_revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+    "dit_working_tracked_tree_sha256": "0d3dcc2c656a6e5400b8e53360fc2354eda63ea624a6c467ac71a6129c4225e3",
+    "local_dependency_sha256": {
+      "adm64_path_evidence.py": "c69985c3387424e24e833774018867eca1357ebb835403a79164685a98e44aaf",
+      "audit_dit_t60_cross_prefix_seed_materialization.py": "f0353354fd97ee25fc01470298b16a57e0b092a3289210de16b13357610b8d94",
+      "build_dit_class207_visual_anchor_pack.py": "2bacb634c437c82746cf148558f2924deb2f92bca70e7022feb833732ab31f65",
+      "build_dit_t60_cross_prefix_blind_pack.py": "c8aaa9075ee1828775ec2e131f3b075f052595a3acb39fd2ba9cb1a1f78f1776",
+      "intervene_dit_imagenet256_suffix.py": "8062294923dcfe497fb374a5d99925b089a2ce29fb17c1d1625253c376156d73",
+      "lock_dit_t60_cross_prefix_consensus.py": "278675a57f378b30804412c6197b48abcc2f974092d287fb74209cbe8da8c4a7",
+      "observe_dit_imagenet256_path_evidence.py": "a58dea689de3df5610a84365f558dba0949f5cd4c0e69e9ff892255b35fa00ee",
+      "reproduce_dit_imagenet256.py": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+      "summarize_dit_t60_cross_prefix_mixture_validation.py": "ae0a48b90759cce41d6ac78a073fa7ec16b3ba3148581ab1298b798d11ea6fad"
+    },
+    "original_timestep_map_raw_sha256": "d802631b9565348c39ff401852126cabdfc0f575393a99b0354101a479392264",
+    "runner_sha256": "f6ce16c695d92059db8bf72603a9c169db96e431b530b7cd450b421fb8a2ee23",
+    "target_batch_size": 8,
+    "vae_artifact_list_sha256": "f08c9fb130f169cb5243244262e0660e7e98df350cb3ad78732b7c764b2b1222"
+  },
+  "hash_conventions": {
+    "canonical_json": {
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "sort_keys": true
+    },
+    "existing_branch_local_exclusion_hash": "SHA-256 of canonical JSON for the ascending numerically sorted unique list of all existing branch-local seed values; do not include the semantically distinct conservative legacy demo integers 0..29.",
+    "file_sha256": "SHA-256 of the exact on-disk UTF-8 file bytes, including indentation and trailing newline; this is distinct from the canonical protocol self-hash.",
+    "future_self_hashed_records": "Any anchor-pack manifest, blind-pack manifest, annotation, result, manifest, or completion self-hash must name its self-hash key and apply the same remove-only-that-key plus canonical-JSON rule.",
+    "protocol_identity_sha256": "Make a shallow copy of the complete parsed protocol object, remove only the top-level protocol_identity_sha256 key, serialize using canonical_json, and SHA-256 the resulting bytes.",
+    "seed_list_sha256": "SHA-256 of canonical JSON for the flattened 64-element branch_local_trajectory_seed integer list in trajectory_index order."
+  },
+  "iid_and_cluster_boundary": {
+    "iid_target": "The intended experimental units are 64 separately seeded draws from the same frozen class-207 baseline-P full-trajectory sampler. Every unit has its own initial noise/prefix and exactly one realized suffix from its own x60.",
+    "not_clustered_by_prefix": "No two analysis units share x60 or any earlier latent. There are no repeated suffixes within a prefix and no within-prefix pseudo-replication.",
+    "not_claimed": [
+      "literal physical randomness rather than deterministic pseudorandom streams",
+      "independence across model weights, classes, prompts, samplers, hardware stacks, or semantic failure families",
+      "general ImageNet or unconditional real-world artifact prevalence",
+      "that the eight execution shards are eight independent scientific replications"
+    ],
+    "shard_role": "Shard is a mechanical storage/execution partition only. Its eight trajectories are distinct experimental units; shard index must not be used as a quality feature or hidden selection variable.",
+    "shared_factors": "All units share class 207, DiT-XL/2 weights, VAE, schedule, CFG, code, and runtime family. Conclusions are limited to this exact conditional sampler and seed design.",
+    "statistical_caveat": "Standard two-sample binomial summaries treat the predeclared seed streams as independent draws from P. Report results by shard as a QA table, but do not inflate or reduce the nominal sample size by treating shards as biological-style clusters. Any detected hardware- or shard-specific corruption invalidates the pool rather than authorizing posthoc cluster correction."
+  },
+  "pool": {
+    "class207_trajectories_per_shard": 8,
+    "cfg_batch_contract": {
+      "full_x_expression": "full_x = cat([x, x], dim=0) for x containing the eight independently evolving class-207 target states",
+      "labels": "[207,207,207,207,207,207,207,207,1000,1000,1000,1000,1000,1000,1000,1000]",
+      "model_batch_size": 16,
+      "null_class_id": 1000,
+      "released_contract_preserved": "The pinned upstream forward_with_cfg receives eight conditional rows followed by their eight null-conditioned duplicates; only the first eight target trajectories evolve."
+    },
+    "evidence_start_internal_timestep": 60,
+    "full_trajectory_definition": "Each branch-local trajectory seed initializes one explicit CUDA torch.Generator. That generator draws one class-207 initial latent and then one class-207 innovation at each of the 250 internal transitions 249..0. The initial-to-x60 portion is the branch's unique prefix and x60-to-x0 is its only suffix.",
+    "independent_branch_generators_per_shard": 8,
+    "per_prefix_suffix_count": 1,
+    "shard_count": 8,
+    "target_class_id": 207,
+    "total_branch_local_generators": 64,
+    "total_class207_trajectories": 64
+  },
+  "protocol_identity_sha256": "b2ab6bf57596cffdb0d545e49f831d753a09da18edbf11108e26dc2e62e4eccd",
+  "protocol_name": "dit_imagenet256_t60_cross_prefix_mixture_validation_v1",
+  "protocol_status": "FROZEN_BEFORE_GPU_EXECUTION",
+  "sampler_binding_intent": {
+    "cfg_scale": 4.0,
+    "checkpoint_filename": "DiT-XL-2-256x256.pt",
+    "checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521",
+    "classifier_free_guidance_contract": "For each shard, batch eight independently evolving class-207 target states x, construct full_x=cat([x,x]), use labels [207 x 8, null-class 1000 x 8], and preserve the pinned released 8-to-16 forward_with_cfg behavior including guidance on only the first three epsilon channels.",
+    "diffusion_steps": 250,
+    "image_size": 256,
+    "model": "DiT-XL/2",
+    "model_revision": "ed81ce2229091fd4ecc9a223645f95cf379d582b",
+    "P_distribution_statement": "This construction implements the correct independent class-207 baseline-P marginal with the released CFG model contract. It does not reproduce or claim the byte-level semantics of upstream demo seed N, whose one global RNG stream jointly serves an eight-class batch.",
+    "P_replay_requirement": "For every branch-local seed, inserting deterministic shifted-scale forward calls and trace capture must leave the complete baseline-P trajectory and endpoint byte-identical to an evidence-disabled mirror execution under the same runner, source, runtime, seed list, and shard layout.",
+    "rng_contract": "Create eight explicit CUDA torch.Generator instances per shard. Generator j is seeded only by its predeclared branch_local_trajectory_seed and consecutively draws one [1,4,32,32] initial latent followed by 250 [1,4,32,32] transition innovations, including t=0. Batched tensors are concatenations of these per-branch draws; evidence/model calls must not consume any branch generator or global RNG.",
+    "sampler": "ancestral DDPM",
+    "vae_kind": "mse",
+    "vae_model_id": "stabilityai/sd-vae-ft-mse",
+    "vae_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493"
+  },
+  "scope": {
+    "candidate_configuration_selected_before_this_pool": true,
+    "held_out_unit": "a previously unseen independently seeded complete class-207 baseline-P trajectory, including a unique prefix and exactly one suffix",
+    "valid_description": "prospective cross-prefix validation of one frozen mixture alarm for the exact DiT class-207 sampler",
+    "valid_generalization": "cross-prefix within class 207 under the exact frozen model, VAE, CFG, schedule, and sampler only",
+    "invalid_descriptions": [
+      "within-prefix suffix validation",
+      "a new candidate-discovery scan",
+      "class-general or ImageNet-wide validation",
+      "proof that the alarm detects every visual artifact",
+      "rollback or quality-improvement validation"
+    ]
+  },
+  "seed_materialization_audit_binding": {
+    "audit_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_imagenet256_t60_cross_prefix_seed_audit/cross_prefix_v1_seedlist_2ba12c11_src_f0353354_v4_final_pipeline",
+    "audit_source": {
+      "filename": "audit_dit_t60_cross_prefix_seed_materialization.py",
+      "sha256": "f0353354fd97ee25fc01470298b16a57e0b092a3289210de16b13357610b8d94"
+    },
+    "candidate_seed_list_sha256": "2ba12c119a0333bc9ea9bee76449f7aa03b35ee17c968cbb4510ea00dd6ae6aa",
+    "completion_file_sha256": "70023e7dea4bf1c7e70688f92a3770a308780baf60b1127d984fbc2c2547e227",
+    "completion_payload_sha256": "070a781742b1454ca094743fd1b085ffe8ee03e51c0d381d29c1631382672737",
+    "inventory_file_sha256": "2c62e09147e381f95dc42804fcfe63c8f37d9a2a1c1ef358806252a29e65960f",
+    "inventory_identity_sha256": "4b01e02d7bfa56c9ca1f1283fb6bfdd9d16cf2890274f1aa159e8b1437f9ecc1",
+    "inventory_records_sha256": "7a98d38bd2f37a6a7a6e8db37ef133693a1c17a81cd8df20217efeeaa3eeee25",
+    "report_file_sha256": "a4cfc9b436e967743a55a7978da29350119833062d2d23f41c2b121e5d5fc49f",
+    "report_payload_sha256": "97e801959f8dffbe89430317644b85c38b4314f10c07441301c24cee1edc588f",
+    "status": "PASS"
+  },
+  "seed_lineage": {
+    "derivation": {
+      "candidate_formula": "branch_local_trajectory_seed(i) = int.from_bytes(SHA256(payload)[0:8], 'big') & (2^63-1)",
+      "encoding": "ASCII exactly",
+      "namespace": "eqvae-dit256-t60-cross-prefix-mixture-validation-v1",
+      "no_rejection_or_replacement": "The runner directly derives the fixed 64 values; it has no rejection counter. Any zero, duplicate, prior-value collision, or prior-materialization finding invalidates this draft slate and requires a new protocol version before GPU use.",
+      "payload_formula": "namespace + NUL + decimal(pool_seed) + NUL + decimal(target_class_id) + NUL + decimal(num_sampling_steps) + NUL + decimal(trajectory_index)",
+      "pool_seed": 20260827,
+      "target_class_id": 207,
+      "trajectory_index_order": "i=0..63; shard_index=floor(i/8); slot_index=i mod 8",
+      "transition_draw_contract": "The explicit CUDA generator seeded by branch_local_trajectory_seed(i) consecutively draws one initial latent and 250 innovations for only trajectory i; no generator is shared across branches.",
+      "num_sampling_steps": 250
+    },
+    "draft_exclusion_snapshot": {
+      "combined_existing_branch_local_value_count": 52,
+      "combined_existing_branch_local_values_sorted_sha256": "a6475553de61ffe917d061a7689c0fc85bf48269befb1435f90cc995b97daa02",
+      "existing_DiT_branch_local_namespaces": [
+        {
+          "derivation_binding": "observer_identity=a9a596bf9db90a67d8260aebadfdcd7ccddadf1f170181cbba693cc113d37606, pool_seed=20260827, legacy prefix input=2, class=207, t=60, indices=0..31",
+          "namespace": "eqvae-dit256-t60-within-prefix-validation-pool-v1",
+          "semantics": "32 already consumed within-prefix suffix innovation streams; these did not draw independent initial latents",
+          "value_count": 32,
+          "values": [
+            254506468232414214,
+            7004062704106109433,
+            8729449038775264802,
+            8629365685119166319,
+            3664892250004529903,
+            7927671679285815188,
+            2699853325308477000,
+            1854372903902657697,
+            7510312093862891800,
+            7469652111305480507,
+            302065341388389035,
+            5988646092695041146,
+            4428390606729071426,
+            7564858800782660870,
+            8034811520267556091,
+            3226935374299401000,
+            3729821314523916129,
+            8942327930862693196,
+            7384363187523181299,
+            14976451937588335,
+            566640298707223017,
+            2447287856886263042,
+            5560103967765978449,
+            1457293076133476884,
+            3367906887060440839,
+            802881187681865536,
+            7308457004593000594,
+            166625126167935091,
+            2342577194563860939,
+            6112708488425514975,
+            2779240802212020382,
+            4388615228003376939
+          ],
+          "values_sha256": "8c2c51f0cbbb06117409f1949aae5b9515928676218670bf27458533f43aa706"
+        },
+        {
+          "derivation_binding": "observer_identity=a9a596bf9db90a67d8260aebadfdcd7ccddadf1f170181cbba693cc113d37606, legacy upstream demo seed input=2, target batch index=0, checkpoints=(225,180,120,60), attempts=0..4",
+          "namespace": "eqvae-dit256-oracle-target-suffix-v1",
+          "semantics": "20 already consumed oracle target-suffix streams; these did not draw independent initial latents",
+          "value_count": 20,
+          "values": [
+            1877113947188900463,
+            6745603902159339648,
+            4730359896259383383,
+            1600279573959787759,
+            4014071079005653560,
+            1516393864073718226,
+            8602208698538818845,
+            957680746878685300,
+            9076995035032987319,
+            331895732281314060,
+            1107887375594625683,
+            5710220136514047770,
+            6493583319091413054,
+            6727882767741645102,
+            4769115393289430735,
+            1658689895106996957,
+            3471246437026719724,
+            2333706730626377848,
+            2333018968853371893,
+            4963249438997307201
+          ],
+          "values_sha256": "0e94b78c4979f9ddd2ac82aab7664688761e2d01cefb274637a0c0f76f765886"
+        }
+      ],
+      "legacy_upstream_demo_seed_integers_conservative_only": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "legacy_demo_lineage_sources": [
+        "experiments/annotations/dit_imagenet256_relative_bad_preselection_v1.json (seeds 0..9)",
+        "experiments/annotations/dit_imagenet256_targeted_bad_case_scan_v1.json (seeds 10..29)",
+        "experiments/annotations/dit_imagenet256_obvious_bad_discovery_v1.json (combined seeds 0..29)"
+      ],
+      "legacy_demo_semantics_warning": "The integers 0..29 are global RNG inputs from older upstream-demo executions, not branch-local trajectory seeds. They are excluded only as an extra conservative numeric guard; no equality of RNG-stream or byte-level seed semantics is claimed.",
+      "pre_freeze_completeness_requirement": "The two named DiT branch-local namespaces and 52 values are the repository-known draft snapshot, not a sufficient external novelty certificate. Before freeze, audit every repository and external DiT run manifest plus review/export ledger for every branch-local namespace and consumed value. If any additional consumed value or namespace is found, keep v1 unauthorized and create a revised protocol/seed slate.",
+      "reason": "A new branch_local_trajectory_seed must not reuse any known consumed DiT branch-local generator seed. Every previously rendered or reviewed class-207 trajectory is separately ineligible even if it used a different legacy RNG convention."
+    },
+    "branch_local_trajectory_seeds_by_shard": [
+      [
+        675936720070743359,
+        5350744814579212989,
+        3492195469865720144,
+        3499206057748114970,
+        3711473267645858620,
+        1202937809352492579,
+        2011076351716084078,
+        1334924390085903978
+      ],
+      [
+        3394010784480326290,
+        6295573883991917880,
+        955751088175950441,
+        3654757811383542283,
+        1142611579948399718,
+        9102473457797021127,
+        2564751132376877241,
+        8564670394474524139
+      ],
+      [
+        5654865164349594688,
+        3706118765715229851,
+        8018444859759226465,
+        617984178797338697,
+        911296783764707779,
+        5805735626823459669,
+        4374534504781434690,
+        1024988422289357169
+      ],
+      [
+        7807336077503847702,
+        4696245272618848334,
+        1281366392205699972,
+        1087498069665391870,
+        2205910608528887647,
+        4307968703571125141,
+        2311214629833210439,
+        1787176938770541640
+      ],
+      [
+        2396261273808563656,
+        8234264605535959724,
+        6719167082003173217,
+        3028666828215765069,
+        4934813853809213791,
+        4193870143703023650,
+        1972265785557833973,
+        1367721105459576156
+      ],
+      [
+        562348801629854791,
+        3806350765105931449,
+        6052364420937665987,
+        8719985679717310626,
+        7186661228258513770,
+        6844474499775931215,
+        246147782352896393,
+        3468160332020792788
+      ],
+      [
+        7597355650402326684,
+        575302035460990109,
+        7532834106949269033,
+        8455171385340233594,
+        7698510729560822575,
+        8912318760584436320,
+        221129846017419466,
+        1036681093957735172
+      ],
+      [
+        5621322693657228156,
+        7845810367125088174,
+        8203041524991330319,
+        6158371000813120157,
+        5817483802189696163,
+        7581759505051265029,
+        5267761526159082422,
+        9059683181879984282
+      ]
+    ],
+    "branch_local_trajectory_seed_list_sha256": "2ba12c119a0333bc9ea9bee76449f7aa03b35ee17c968cbb4510ea00dd6ae6aa",
+    "seed_list_hash_definition": "sha256_json of the flattened 64-element branch_local_trajectory_seed integer list in trajectory_index order",
+    "uniqueness_claim": "The 64 listed integers are distinct, nonzero, lie in [0,2^63-1], and have no numeric intersection with the 52 known consumed DiT branch-local values or conservative legacy demo integers 0..29. This arithmetic claim does not replace the required pre-freeze materialization audit."
+  },
+  "statistical_readout_after_blind_lock": {
+    "analysis_denominators": {
+      "FPR": "FP / N_not_clear_bad among consensus non-uncertain rows",
+      "TPR": "TP / N_clear_bad among consensus non-uncertain rows",
+      "uncertain": "excluded from both denominators and reported separately"
+    },
+    "decision_order": [
+      "Always report N_clear_bad, N_not_clear_bad, N_uncertain, total crossings, clear-bad crossings TP, non-bad crossings FP, TPR, FPR, TPR-FPR, and the one-sided Fisher exact p-value before any interpretation.",
+      "First, if total crossings=0, assign the hard outcome frozen_threshold_failed_to_pass and do not enter any later decision branch. Also report event_limited=true when N_clear_bad<5, but the hard threshold failure remains the primary outcome.",
+      "Otherwise, if N_clear_bad<5, assign event_limited_inconclusive. Do not claim screen survival or candidate failure from quality enrichment, regardless of apparent TPR, FPR, Fisher p, AUC, or rank.",
+      "Otherwise, prospective_screen_survival requires N_clear_bad>=5, N_not_clear_bad>=1, TPR-FPR>=0.20, FPR<=0.20, TP>=3, and a one-sided Fisher exact p-value<=0.10 for enrichment in the direction TPR>FPR; every condition must hold simultaneously.",
+      "When N_clear_bad>=5 and total crossings>0 but either binary denominator is zero or any prospective_screen_survival condition fails, assign prospective_screen_failed_retire_fixed_candidate.",
+      "No outcome authorizes retuning or supplementation in this pool."
+    ],
+    "primary_analysis": [
+      "Construct the predeclared 2x2 table of consensus primary quality label by ever E_mix>=5 after excluding uncertain rows.",
+      "Report TPR, FPR, TPR-FPR, exact binomial intervals for both rates, and the raw 2x2 counts.",
+      "Report the exact one-sided Fisher enrichment p-value in the predeclared TPR>FPR direction; p<=0.10 is one necessary screen-survival condition and does not replace the effect-size or FPR conditions.",
+      "Report total crossing fraction and its exact interval separately."
+    ],
+    "prospective_screen_survival": {
+      "interpretation": "Survival means only that the unchanged fixed candidate may advance to a larger, fully independent confirmation pool. It is a phase-screen gate, not final validation, confirmation, a quality-improvement claim, or authorization for rollback deployment.",
+      "necessary_and_joint_conditions": [
+        "N_clear_bad >= 5",
+        "N_not_clear_bad >= 1",
+        "TPR - FPR >= 0.20",
+        "FPR <= 0.20",
+        "TP >= 3 clear-bad crossings",
+        "one-sided Fisher exact p-value <= 0.10 in the direction TPR > FPR"
+      ],
+      "next_step_if_survived": "Predeclare a larger independent confirmation pool with the same candidate and a new unseen seed slate; do not tune on these 64 trajectories."
+    },
+    "secondary_analysis": [
+      "Compute tie-aware AUC and rank summaries using the same fixed running-maximum log E_mix as a continuous score against the locked primary labels. AUC is secondary and cannot rescue a failed absolute-crossing gate.",
+      "Report hind-limb topology and tail-naturalness frequencies descriptively, including not-scorable and uncertain counts. They cannot replace or redefine the primary quality label.",
+      "Report crossing counts by the eight predeclared execution shards only as corruption/implementation QA, not as eight scientific replicates or a new selection axis."
+    ],
+    "secondary_trajectory_shape_panel": {
+      "fixed_log_E_mix_features": {
+        "log_E_mix_argmax_internal_timestep": "pseudo-t=61 for the initial value or internal t=60..0 for the first maximum",
+        "log_E_mix_argmax_positive_jump_internal_timestep": "destination t of the first largest positive increment, null if none",
+        "log_E_mix_max_positive_one_step_jump": "max(0, each consecutive increment of [initial 0, t60..0 path])",
+        "log_E_mix_peak_to_terminal_drawdown": "running_max minus terminal",
+        "log_E_mix_running_max": "max over the prepended initial 0 and the t60..0 path",
+        "log_E_mix_sum_positive_variation": "sum of max(increment,0) over [initial 0, t60..0 path]",
+        "log_E_mix_terminal": "post-transition path value at internal t=0"
+      },
+      "fixed_raw_K_reduction": {
+        "features_per_track": "running max including a prepended 0, and maximum positive one-step jump including the initial-to-t60 increment",
+        "global_raw_K_track": "the global base-component raw_K at each t60..0 step",
+        "max_tile_concentration_track": "max(tile raw_K)/sum(tile raw_K) at each step; define 0 when the sum is 0",
+        "mean_tiles_raw_K_track": "arithmetic mean of the sixteen tile raw_K values at each step",
+        "signed_pair_rule": "Require +theta/-theta raw_K equality for every base component, then use the fixed base order global,tile_00,...,tile_15 exactly once.",
+        "specific_tile_or_sign_identity_reported": false
+      },
+      "readout": {
+        "directional_scalars": "For every fixed scalar, report clear-bad and not-clear-bad aggregate group summaries plus tie-aware AUC; no p-values or multiplicity claim.",
+        "per_sample_values_emitted": false,
+        "timesteps": "Report only aggregate frequency distributions by the three primary-label groups; do not compute a timestep significance test."
+      },
+      "scope": "Secondary trajectory-shape diagnostics only. They cannot rescue or alter the primary absolute-crossing decision and cannot authorize same-pool tuning.",
+      "status": "FROZEN_BEFORE_GPU_HYPOTHESIS_GENERATING_ONLY",
+      "tie_and_zero_rule": "Argmax uses the first chronological occurrence (numpy argmax on the stated sampling-order axis). A maximum-positive-jump time is the destination internal timestep of the first maximum; it is null iff every increment is <=0.",
+      "time_axis": "Use post-transition fixed-mixture log E values at internal t=60..0 in sampling order and prepend initial log E=0 at pseudo-t=61."
+    },
+    "same_pool_prohibitions": [
+      "no alternate threshold, Delta-nu, K cap, start time, sign, tile, component subset, component weighting, aggregation rule, or feature/time/change-point scan beyond the single fixed-mixture scores and explicitly frozen hypothesis-generating trajectory-shape panel",
+      "no new quality definition, pose-specific endpoint, hind-limb promotion, tail promotion, relabeling, subset deletion, seed replacement, early stopping, or extra sample",
+      "no using any secondary AUC, trajectory-shape feature, favorable component, timestep, or shard to declare prospective screen survival",
+      "no adding trajectories to reach five clear bad cases or three clear-bad crossings"
+    ],
+    "terminal_outcomes_no_posthoc_branching": [
+      "frozen_threshold_failed_to_pass",
+      "event_limited_inconclusive",
+      "prospective_screen_survival",
+      "prospective_screen_failed_retire_fixed_candidate"
+    ],
+    "zero_crossing_semantics": "Zero total crossings is a hard failed-to-pass result for the frozen E_mix>=5 threshold and terminates the decision tree. It may coexist with the descriptive flag event_limited=true when fewer than five clear bad endpoints occur."
+  },
+  "ville_and_quality_semantics": {
+    "expected_total_alarm_bound": "Under the implemented baseline P and fixed valid 34-way mixture, linearity gives E_P[number of ever-crossings among 64 paths] <= 64*0.2 = 12.8; independence is unnecessary for this expectation statement.",
+    "not_FPR": "Ville's bound P_P(ever E_mix>=5)<=0.2 is an unconditional per-trajectory intervention/alarm budget under baseline P. It is not the conditional false-positive rate among visually not-clear-bad endpoints.",
+    "quality_conditioning": "TPR and FPR are empirical quality-conditioned rates defined only after the evidence-blind visual labels are locked. Ville calibration alone does not imply TPR>FPR or any quality-detection power.",
+    "ville_statement": "Because the 34 nonnegative component likelihood-ratio martingales and their uniform weights are fixed before sampling, their path mixture is a nonnegative martingale/e-process with initial value 1; therefore P_P(sup_k E_mix(k)>=5)<=0.2 for each trajectory."
+  },
+  "schema_version": 1
+}

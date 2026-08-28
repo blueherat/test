@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "evaluation_version": "dit_v22_branch_consensus_posthoc_evaluation_v1",
+  "scientific_role": "posthoc_discovery_prioritization_not_confirmation",
+  "feature_product_lock_identity_sha256": "838d0be5fc9b5e9e206bae5ea3bbd59bcb8b208c170928347466ea3c8b7bcc5e",
+  "feature_product_identity_sha256": "5c060c1f5c756df66993c153ec7a5e93224482efaa6743ac9ed7038323d38f5a",
+  "external_judge_result_identity_sha256": "f608e77afd72bbb6921720eaf92840c519528697ea0dd1712bac8dd147d6a358",
+  "primary_horizon": 10,
+  "secondary_horizons": [5, 20],
+  "eligible_path_definition": "protocol-conformance results path_has_baseline_opportunity, i.e. at least 4 of 8 comparisons have 2-of-3 baseline opportunity",
+  "primary_intervention_comparison": "fresh medoid selected by minimum h10 fresh-only mean pairwise distance versus uniform random fresh scout at identical four-branch compute budget",
+  "primary_detection_readout": "mean across rollback steps of attempt0_outlier_ratio_O versus path_has_baseline_opportunity",
+  "fresh_branch_quality_outcome": "protocol_literal_success",
+  "attempt0_quality_outcome": "path_has_baseline_opportunity",
+  "bootstrap": {
+    "unit": "original role-pair path cluster including both rollback steps",
+    "replicates": 100000,
+    "seed": 2026082801,
+    "interval": [0.025, 0.975]
+  },
+  "within_job_null": "condition on each eligible job's number of successful fresh branches and compute the exact Poisson-binomial upper tail for the internally selected medoid",
+  "prioritization_gate": {
+    "minimum_eligible_paths": 8,
+    "primary_medoid_minus_random_strictly_positive": true,
+    "primary_within_job_success_failure_concordance_strictly_above_half": true,
+    "both_rollback_step_medoid_minus_random_nonnegative": true,
+    "attempt0_detection_auc_minimum": 0.65,
+    "both_rollback_step_detection_auc_strictly_above_half": true,
+    "meaning": "only whether to spend new GPU budget; never a confirmatory method claim"
+  },
+  "multiplicity": "h10 is primary; h5 and h20 are direction-only sensitivity checks",
+  "external_metrics_boundary": {
+    "blind_visual_labels_are_evaluation_only": true,
+    "FID_Inception_DINO_CLIP_embeddings_are_not_read": true,
+    "no_external_score_is_a_feature_threshold_or_online_trigger": true
+  },
+  "attempt0_rank_boundary": "attempt0 rank is not evaluated as calibrated because its future participated in retrospective B/E selection"
+}

@@ -1,0 +1,16 @@
+desc: sd1_4_coco5k_pag_baseline_v1
+
+network_kwargs:
+  class_name: models.stable_diffusion.pipeline_sd.StableDiffusionSGPAGPipeline.from_pretrained
+  pretrained_model_name_or_path: CompVis/stable-diffusion-v1-4
+  revision: 133a221b8aa7292a167afc5127cb63fb5005638b
+  torch_dtype: float16
+
+infer_kwargs:
+  scheduler_type: euler
+  cfg_scale: 7.5
+  pag_scale: 0.3
+  sg_scale: 0
+  sg_shift_scale: 10
+  sg_type: sg_prev
+  sg_prev_max_t: 500

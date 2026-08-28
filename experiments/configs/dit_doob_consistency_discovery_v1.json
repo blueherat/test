@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "experiment": "dit_doob_consistency_discovery_v1",
+  "status": "FROZEN_BEFORE_SCORE_LABEL_ROW_JOIN_DISCOVERY_ONLY",
+  "scientific_role": "post_unseal_discovery_not_confirmation",
+  "model_scope": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "sampler": "official ancestral DDPM-250",
+    "cfg_scale": 4.0,
+    "backbone_frozen": true
+  },
+  "source_population": {
+    "global_seeds": "10..29",
+    "ordered_class_ids": [207, 340, 354, 366, 444, 602, 795, 981],
+    "trajectory_count": 160,
+    "existing_locked_label_counts": {
+      "clear_bad": 5,
+      "clean_good": 69,
+      "mild_or_disputed": 26,
+      "unlabeled": 60
+    },
+    "primary_comparison": "clear_bad versus clean_good only",
+    "excluded_from_primary": ["mild_or_disputed", "unlabeled"]
+  },
+  "probe_product": {
+    "root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_doob_consistency_discovery_probe_v1/shard_00_of_01",
+    "receipt_identity_sha256": "1c9d03669c497cd586adc30352f30c44a5306f99e63f5d8285b4e4fa7c64b55f",
+    "checkpoints_zero_based": [99, 149, 199],
+    "dyadic_horizons": [1, 2, 4, 8, 16],
+    "independent_probes_per_state": 4,
+    "probe_rng_namespace": "eqvae-dit-doob-consistency-discovery-probe-v1",
+    "labels_reviews_pngs_decoded_images_or_external_embeddings_used": false
+  },
+  "mathematical_object": {
+    "current_prediction": "U_ik is the frozen network pred_xstart at sample i and checkpoint k",
+    "probe_prediction": "U_ikmh is pred_xstart after h implemented-P transitions of independent probe m",
+    "update": "Delta_ikmh=U_ikmh-U_ik",
+    "horizon_cross_u_stat": "C_ikh=mean_{m!=n}<Delta_ikmh,Delta_iknh>/latent_dimension",
+    "horizon_energy": "V_ikh=mean_m||Delta_ikmh||^2/latent_dimension",
+    "checkpoint_coherence": "rho_ik=sum_h C_ikh / sum_h V_ikh",
+    "identity": "E[C_ikh|F_ik]=||E[U_ikh|F_ik]-U_ik||^2/latent_dimension",
+    "null_interpretation": "The exact operational posterior-mean denoiser is harmonic and has zero conditional cross moment.",
+    "boundary": "Positive rho is an implemented denoiser-kernel consistency defect, not a bad-image probability."
+  },
+  "frozen_primary_score": {
+    "reference": "For each class c and checkpoint k, compute mean mu_ck and sample standard deviation sd_ck of rho over all 20 label-free probe trajectories before opening the row join.",
+    "standardization": "z_ik=(rho_ik-mu_ck)/(sd_ck+1e-12)",
+    "path_score": "S_i=mean_{k in {99,149,199}} z_ik",
+    "quality_direction": "higher_S_is_more_likely_clear_bad",
+    "low_direction_rescue_forbidden": true,
+    "single_checkpoint_or_single_horizon_selection_after_join_forbidden": true
+  },
+  "frozen_simple_controls": {
+    "single_path_temporal_change": "At each checkpoint k use RMS(pred_xstart[k+1]-pred_xstart[k])/(RMS(pred_xstart[k])+1e-12), class/checkpoint z-standardize on the same 20 label-free paths, then mean over the three checkpoints; higher is worse.",
+    "probe_total_update_energy": "At each checkpoint use sum_h V_ikh, class/checkpoint z-standardize on the same 20 label-free paths, then mean over checkpoints; higher is worse.",
+    "purpose": "The consistency score is scientifically useful only if it adds information beyond ordinary temporal motion or generic rollout dispersion."
+  },
+  "frozen_readouts": {
+    "randomness": {
+      "class_stratified_permutation_replicates": 100000,
+      "class_stratified_permutation_seed": 2026082811,
+      "class_stratified_bootstrap_replicates": 100000,
+      "class_stratified_bootstrap_seed": 2026082812
+    },
+    "primary": [
+      "tie-aware ROC AUC for S on 5 clear_bad versus 69 clean_good",
+      "one-sided class-stratified permutation p-value for higher S",
+      "each clear_bad sample's within-class percentile and rank",
+      "count of clear_bad samples above their class median",
+      "class-stratified bootstrap interval, reported as unstable when a resample lacks a positive"
+    ],
+    "controls": [
+      "the same AUC and bad ranks for single_path_temporal_change",
+      "the same AUC and bad ranks for probe_total_update_energy",
+      "per-checkpoint consistency AUCs descriptive only"
+    ]
+  },
+  "decision_rule": {
+    "advance_to_new_pool_only_if": [
+      "primary higher-direction AUC is at least 0.65",
+      "at least 3 of 5 clear_bad samples are above their class-specific reference median",
+      "the higher-direction class-stratified permutation p-value is at most 0.10",
+      "primary AUC is not below either simple control AUC",
+      "no result depends solely on one class, checkpoint, or horizon"
+    ],
+    "strong_discovery_signal": "AUC at least 0.75 and at least 4 of 5 bad samples above their class median, while exceeding both simple controls by at least 0.03",
+    "failure_action": "STOP as a bad-case detector. Retain only the finding of global sampler-denoiser inconsistency; do not flip the sign, select a low tail, select one checkpoint/horizon, or redefine labels on this pool."
+  },
+  "prior_art_boundary": {
+    "known": "Consistent Diffusion Models (Daras et al., NeurIPS 2023) introduced the consistency property and the two-independent-rollout cross-product training loss.",
+    "tested_here": "Whether the frozen-model inference-time local consistency defect is enriched on visually bad generated samples and can justify selective correction.",
+    "forbidden_claim": "first invention of the martingale consistency identity or cross-product estimator"
+  }
+}

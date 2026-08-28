@@ -1,0 +1,154 @@
+{
+  "anchor_config_identity_sha256": "e2a6ebf5eeb0e43cba302c40f3f54151bf542debff2d25df4c540a5d9cbdb38a",
+  "anchor_config_name": "dit_imagenet256_class207_visual_anchors_v1",
+  "anchor_count": 7,
+  "anchor_status": "FROZEN_BEFORE_CROSS_PREFIX_POOL",
+  "freeze_and_selection_provenance": {
+    "current_pool_independence": "This configuration was frozen before any endpoint in the new 64-image cross-prefix pool was generated or viewed. No image, contact sheet, prevalence, quantile, majority impression, annotation, alarm, rank, or evidence value from that pool may add, remove, replace, reorder, or reinterpret an anchor or move the decision threshold.",
+    "selection_basis": "The seven images were selected during older evidence-free visual discovery by inspecting visible class-207 endpoints only. Selection did not use likelihood-ratio values, alarms, evidence ranks, private traces, or any association between visible quality and evidence.",
+    "selection_scope": "Five older same-model outputs represent the ordinary-quality band, while two older outputs visibly and conspicuously below that band calibrate topology/body-tail-attachment and global-subject-blur failure families.",
+    "status_semantics": "FROZEN_BEFORE_CROSS_PREFIX_POOL means the source bindings, opaque export IDs, categories, order, and written decision rule are immutable for the prospective 64-image pool. A change requires a new version and cannot be justified by looking at that pool."
+  },
+  "hash_conventions": {
+    "canonical_json": {
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "sort_keys": true
+    },
+    "canonical_self_hash": "Make a shallow copy of the complete parsed object, remove only the top-level anchor_config_identity_sha256 key, encode it as canonical_json, and SHA-256 the resulting bytes.",
+    "source_pixel_rgb_sha256": "SHA-256 of exactly width*height*3 bytes returned by decoding the bound PNG as mode RGB in top-to-bottom row-major interleaved R,G,B order; no filename, shape, mode, or metadata bytes are included.",
+    "source_png_sha256": "SHA-256 of the exact source PNG file bytes."
+  },
+  "image_contract": {
+    "class_id": 207,
+    "class_name": "golden retriever",
+    "height": 256,
+    "mode": "RGB",
+    "source_format": "PNG",
+    "width": 256
+  },
+  "ordered_anchors": [
+    {
+      "category": "ordinary",
+      "opaque_anchor_id": "ordinary_anchor_01",
+      "review_role": "ordinary_same_model_reference",
+      "selection_note": "An ordinary same-model class-207 output. Common mild model imperfections remain inside the ordinary band.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed1/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "7ceb432517bb90998149dc0502eca3c609618bc054d1db2af565cb250d459bd6",
+        "source_png_sha256": "24c64335e765a2f247565a1a7d9e9cb0ca303aa0ec1ca4a628e7aa2093fe35de"
+      }
+    },
+    {
+      "category": "ordinary",
+      "opaque_anchor_id": "ordinary_anchor_02",
+      "review_role": "ordinary_same_model_reference",
+      "selection_note": "An ordinary same-model class-207 output. Common mild model imperfections remain inside the ordinary band.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed3/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "eda05486cff70f4f47d92bc634f49b139c0188303f45db28452045b9a807d202",
+        "source_png_sha256": "54e5dc2c72a276537ead4d180cf08d3fa26bf84919eed6439bb31f2970b6deb7"
+      }
+    },
+    {
+      "category": "ordinary",
+      "opaque_anchor_id": "ordinary_anchor_03",
+      "review_role": "ordinary_same_model_reference",
+      "selection_note": "An ordinary same-model class-207 output. Common mild model imperfections remain inside the ordinary band.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed4/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "3033f3309859d42507a6197e32d4375b0b90ab655774845365e06ef4689eb1c4",
+        "source_png_sha256": "51594287a669fee9d7c6e718c644d357f25f06ce6e024eb5541ae5e679628a8a"
+      }
+    },
+    {
+      "category": "ordinary",
+      "opaque_anchor_id": "ordinary_anchor_04",
+      "review_role": "ordinary_same_model_reference",
+      "selection_note": "An ordinary same-model class-207 output. Common mild model imperfections remain inside the ordinary band.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed7/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "cdb87f794546dc6494bfaee5f2d4c2d4b5c65b0f5408f35b2e51375dc7a36cef",
+        "source_png_sha256": "aa3c0ce64e25b4bda3553a870b322fb7563afe0eb0aebffaa8f5403a616f49fb"
+      }
+    },
+    {
+      "category": "ordinary",
+      "opaque_anchor_id": "ordinary_anchor_05",
+      "review_role": "ordinary_same_model_reference",
+      "selection_note": "An ordinary same-model class-207 output. Common mild model imperfections remain inside the ordinary band.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed9/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "f913ca2af7d2a3bbffc1139b9d10553d32758fb421479d77e6d3f58c702c2429",
+        "source_png_sha256": "bb22f4ebe5700b12ec86c3487d799da0030c0c8de54bd6bbc18a2325072c4dd5"
+      }
+    },
+    {
+      "category": "clear_bad_topology",
+      "opaque_anchor_id": "clear_bad_topology_01",
+      "review_role": "clear_bad_topology_calibration",
+      "selection_note": "A conspicuous major topology/body-tail-attachment failure, used only to calibrate clear-bad severity.",
+      "source_lineage": {
+        "relative_png_path": "official_demo_seed2/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "0e6e3c3cd65e1c66fbd838f0e5829e86247c0b867840c86fe3d2804499c3065b",
+        "source_png_sha256": "857256abc77215eb5463abcc6c1b2f462afad6a68b2a38a363751dfe62c7a393"
+      }
+    },
+    {
+      "category": "clear_bad_blur",
+      "opaque_anchor_id": "clear_bad_blur_01",
+      "review_role": "clear_bad_blur_calibration",
+      "selection_note": "An obvious global subject blur, used only to calibrate clear-bad severity.",
+      "source_lineage": {
+        "relative_png_path": "targeted_scan_v1_seed26/images/00_class0207.png",
+        "source_pixel_rgb_sha256": "12ded78d11bc43f8dc4cc92e871c44a45a5b2e8ca458e130451fb139c2237274",
+        "source_png_sha256": "7968ede692e687bee86ae18d60af8670d806b342038609cb586a9a528bd3e12b"
+      }
+    }
+  ],
+  "reviewer_export_contract": {
+    "allowed_anchor_filenames": [
+      "ordinary_anchor_01.png",
+      "ordinary_anchor_02.png",
+      "ordinary_anchor_03.png",
+      "ordinary_anchor_04.png",
+      "ordinary_anchor_05.png",
+      "clear_bad_topology_01.png",
+      "clear_bad_blur_01.png"
+    ],
+    "closed_directory": "The reviewer receives only the builder's validated closed output directory. Source directories, this lineage-bearing repository configuration, generation manifests, evidence, and any reversible source mapping are excluded.",
+    "manifest_privacy": "The reviewer manifest binds only this configuration's canonical identity and exported file/pixel hashes. It must not contain source paths, source file hashes, source pixel hashes, legacy seed values, or another reversible lineage field.",
+    "png_export": "Decode each strictly verified source as 256x256 RGB and encode only its RGB pixels into a deterministic PNG containing IHDR, one IDAT, and IEND; exported RGB pixel bytes must equal source RGB pixel bytes.",
+    "sheet_order": {
+      "clear_bad_anchors_sheet.png": [
+        "clear_bad_topology_01",
+        "clear_bad_blur_01"
+      ],
+      "ordinary_anchors_sheet.png": [
+        "ordinary_anchor_01",
+        "ordinary_anchor_02",
+        "ordinary_anchor_03",
+        "ordinary_anchor_04",
+        "ordinary_anchor_05"
+      ]
+    }
+  },
+  "rubric_contract": {
+    "clear_bad_scope": "The two clear-bad anchors demonstrate only conspicuous severity clearly below the ordinary band: one major topology/body-tail-attachment failure and one obvious global subject blur. Their poses and exact defect shapes are examples, not an exhaustive list of eligible structural failures.",
+    "independent_per_image_rule": "Judge every new endpoint separately against this fixed written rubric and these seven fixed anchors. Never estimate, recalibrate, or move the threshold from the other 63 new images or from the current 64-image pool's empirical distribution, prevalence, quantiles, contact sheet, or majority appearance.",
+    "ordinary_band": "The five ordinary anchors define the ordinary same-model band and explicitly allow common mild imperfections, mild oddness, imperfect texture, stylization, unusual pose, and other ordinary model limitations. Those features alone are not clear overall structural badness.",
+    "primary_labels": [
+      "clear_overall_structural_bad",
+      "not_clear_overall_structural_bad",
+      "uncertain"
+    ],
+    "tail_rule": "Tail identity is not tail naturalness: recognizing a depicted part as a tail does not establish natural root attachment, taper, volume, distal tip, or hair/feather flow. A hidden or occluded tail is not automatically bad.",
+    "viewing_rule": "Inspect each image at native 256x256 resolution and an enlarged view. Use sheets only to locate the fixed anchors; never use a current-pool sheet to set quality thresholds."
+  },
+  "schema_version": 1,
+  "source_root": "/home/zhoushunyu/data/eqvae/cross_scale_evidence/dit_imagenet256"
+}

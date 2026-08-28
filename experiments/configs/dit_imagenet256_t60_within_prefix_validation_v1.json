@@ -1,0 +1,213 @@
+{
+  "blind_review": {
+    "reviewer_input_boundary": {
+      "allowed": "Only the separately built blind-review pack: 32 blind-ID PNGs, its contact sheet, rubric, and empty annotation template.",
+      "forbidden_until_annotation_lock": [
+        "all shard manifest.json files",
+        "all shard results.json files",
+        "all shard completion.json files",
+        "all shard trace_private.npz files",
+        "sampling logs and terminal output beyond the final blind-pack completion notice"
+      ],
+      "reason": "The review pack strips branch indices, stream seeds, execution metadata, private-trace records, evidence, alarms, and ranks. Procedural blinding assumes reviewers receive only that pack."
+    },
+    "annotation_lock": {
+      "must_happen_before": "any reviewer or analyst reads, exports, or summarizes evidence/alarm values from a shard trace_private.npz; the runner and fail-closed validator may parse the trace internally without exposing values",
+      "required_artifacts": [
+        "one completed annotation row for every one of the 32 blind IDs",
+        "reviewer identity and review timestamp",
+        "SHA-256 of the final annotation file",
+        "explicit statement that evidence and alarm values were unseen"
+      ]
+    },
+    "annotation_row_schema": {
+      "blind_id": "required string matching vp1_[0-9a-f]{12}",
+      "notes": "optional string that must not contain an inferred evidence score",
+      "overall_structural_secondary": "required enum: clear_structural_bad | not_clear_structural_bad | uncertain",
+      "primary_hind_limb_topology": "required enum: clear_failure | not_clear_failure | uncertain",
+      "tail_B_short_blunt": "required integer 0 or 1 when tail_scorable=yes; otherwise null",
+      "tail_D_distal_tip": "required integer 0, 1, or 2 when tail_scorable=yes; otherwise null",
+      "tail_F_feather_or_hair_flow": "required integer 0, 1, or 2 when tail_scorable=yes; otherwise null",
+      "tail_P_paddle_like": "required integer 0 or 1 when tail_scorable=yes; otherwise null",
+      "tail_R_root_attachment": "required integer 0, 1, or 2 when tail_scorable=yes; otherwise null",
+      "tail_S_abrupt_filament_transition": "required integer 0 or 1 when tail_scorable=yes; otherwise null",
+      "tail_T_taper_and_volume": "required integer 0, 1, or 2 when tail_scorable=yes; otherwise null",
+      "tail_confidence": "required enum: high | medium | low",
+      "tail_derived_label": "required enum: natural | odd | malformed | uncertain",
+      "tail_identity": "required enum: clear | plausible | unclear",
+      "tail_scorable": "required enum: yes | no"
+    },
+    "image_context": "Review native PNGs at 100% and enlarged scale; use the blind grids only as an average-quality reference.",
+    "overall_structural_secondary": {
+      "labels": [
+        "clear_structural_bad",
+        "not_clear_structural_bad",
+        "uncertain"
+      ],
+      "positive_definition": "An obvious blur, fusion, duplicated/floating part, broken limb/object attachment, or major topology error that is visibly below the pool's ordinary sampling level.",
+      "role": "secondary endpoint; broader than the frozen primary endpoint"
+    },
+    "primary_endpoint": {
+      "labels": [
+        "clear_failure",
+        "not_clear_failure",
+        "uncertain"
+      ],
+      "name": "clear_lower_left_hind_limb_topology_failure_under_shared_pose",
+      "negative_definition": "The visible hind-limb/lower-left body topology is plausible enough that no definite failure can be called, even if the image or tail is mildly odd.",
+      "positive_examples": [
+        "a U-shaped suspended or closed-loop hind limb",
+        "a visibly broken, disconnected, or fused hind leg",
+        "a limb ending without a physically plausible paw/foot or ground contact"
+      ],
+      "role": "primary blinded quality label",
+      "tail_exclusion": "Tail appearance alone never determines this label. A strange but plausible tail is not a primary hind-limb failure."
+    },
+    "tail_naturalness_separate": {
+      "confidence": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "defect_dimensions": {
+        "distal_tip": "0=natural; 1=mildly odd or uncertain; 2=clear defect",
+        "feather_or_hair_flow": "0=natural coherent fluffy/fur flow; 1=mildly odd or uncertain; 2=clear texture/flow defect",
+        "root_attachment": "0=natural anatomical attachment; 1=mildly odd or uncertain; 2=clear detached/fused/implausible root",
+        "taper_and_volume": "0=natural taper and volume; 1=mildly odd or uncertain; 2=clear paddle-like/constant-width/impossible volume"
+      },
+      "derived_categorical_label": {
+        "malformed": "identity is clear or plausible and at least one defect dimension equals 2",
+        "natural": "identity=clear and all four defect dimensions equal 0",
+        "odd": "identity is clear or plausible, no dimension equals 2, and at least one dimension equals 1",
+        "plausible_all_zero_resolution": "If identity=plausible and all four dimensions are 0, classify uncertain unless the reviewer can confidently promote identity to clear.",
+        "uncertain": "scorable=no, identity=unclear, identity=plausible with all four dimensions 0, or the decision depends on only 1-2 pixels"
+      },
+      "identity": [
+        "clear",
+        "plausible",
+        "unclear"
+      ],
+      "scorable": {
+        "allowed": [
+          "yes",
+          "no"
+        ],
+        "rule": "A missing or occluded tail is not automatically bad; mark scorable=no when its identity or geometry cannot be judged."
+      },
+      "shape_flags_binary": {
+        "B_short_blunt": "0=absent; 1=present",
+        "P_paddle_like": "0=absent; 1=present",
+        "S_abrupt_filament_transition": "0=absent; 1=present"
+      },
+      "role": "separate descriptive endpoint; never folded into the primary hind-limb label"
+    }
+  },
+  "candidate_semantics": {
+    "endpoint_is_not_defined_by_tile_location": true,
+    "tile_12_actual_nominal_image_region": "approximately y=192:256, x=0:64 after the 8x VAE scale; mostly lower-left snow/background",
+    "tile_12_interpretation": "posthoc discovery-selected black-box adjacent/background component; a signal could reflect VAE receptive-field spillover, correlated nearby structure, or chance",
+    "tile_12_is_hind_limb_detector": false,
+    "tile_12_is_tail_detector": false
+  },
+  "execution_gate": {
+    "draft_behavior": "The runner must refuse real GPU sampling until protocol_status is changed to FROZEN_BEFORE_GPU_EXECUTION and the canonical self-hash is recomputed.",
+    "required_before_freeze": [
+      "review the endpoint rubric without opening future evidence traces",
+      "retain all 32 outputs without replacement or selection",
+      "preassign four disjoint eight-branch shards",
+      "confirm the exact saved x60 observer bundle remains immutable"
+    ]
+  },
+  "frozen_input_binding": {
+    "alpha_bar_raw_sha256": "468a6428a0a9f392b09d2a04aecdf11925d846bf3fb74571f903558571f3b631",
+    "baseline_manifest_identity_sha256": "9bfb3436c47080eb22c160252a0a0fa2b09adcb707c6aefd9ced0c74e77059b8",
+    "observer_completion_file_sha256": "a4289ce02da09049587ce8621c28468481a1d7a8d93ea36ca805b2fa25cf9558",
+    "observer_manifest_file_sha256": "bd49e4bc1e6910894e37a80f628bd0cb138d8b9fbb932677375abb9abe16d678",
+    "observer_manifest_identity_sha256": "a9a596bf9db90a67d8260aebadfdcd7ccddadf1f170181cbba693cc113d37606",
+    "observer_results_file_sha256": "68daaf0a1fd4a2181cf4e043471c16cf65e40cdbf9d029f3542d67681890858b",
+    "observer_trace_sha256": "4a77936f13c1faa1ee2df11b04695f2138ec3988ee88cce5a90c4f91153e9f25",
+    "original_timestep_map_raw_sha256": "d802631b9565348c39ff401852126cabdfc0f575393a99b0354101a479392264",
+    "target_x60_raw_sha256": "89ea6bcfce0bcc142963d3153c3d9204ceb113a41179d5a29efa02766329ad82"
+  },
+  "frozen_primary_candidate": {
+    "alarm_log_e": 1.6094379124341003,
+    "alpha_e": 0.2,
+    "delta_nu": 0.25,
+    "selection_origin": "Selected posthoc on the original four t60 discovery suffixes, where the clear looped-hind-limb branch crossed and the visually strongest natural branch did not.",
+    "sign": "+theta",
+    "tile_index_row_major_4x4": 12,
+    "total_suffix_K_cap": 0.5
+  },
+  "frozen_secondary_evidence": {
+    "aggregation": "uniform fixed mixture over complete path likelihood ratios",
+    "components": "global plus 16 row-major 4x4 latent tiles, each with +theta and -theta",
+    "delta_nu": 0.25,
+    "forbidden_aggregation": "posthoc maximum over components",
+    "saved_values": [
+      "terminal fixed-mixture log-e",
+      "running maximum fixed-mixture log-e including the initial value log(1)=0"
+    ],
+    "total_suffix_K_cap_per_component": 0.5
+  },
+  "independence_and_cfg_caveats": [
+    "All 32 paths share the exact same x60; they are not independent full model samples and cannot estimate the unconditional class-207 artifact rate.",
+    "Conditional independence rests on separately seeded pseudorandom streams plus the pinned DiT having no cross-example normalization or attention; all branches are still coupled by the fixed prefix and frozen model.",
+    "Each shard must use eight evolving target branches in the CFG first half and the released 8-to-16 forward_with_cfg contract. Padding or mixing saved non-target trajectories is forbidden.",
+    "Every branch must have its own explicit torch.Generator. Global RNG, one shared generator, or an unrecorded batched random draw is forbidden.",
+    "The t=0 innovation must be drawn and recorded even though the sampler multiplies it by zero.",
+    "Different CUDA/PyTorch builds can compromise bitwise replay from seeds; therefore the actual innovation tensors and generator-state hashes are primary provenance, not seeds alone.",
+    "Four parallel processes must use disjoint shard indices and distinct output directories. CUDA_VISIBLE_DEVICES remapping changes the local device index, so commands must record both the visibility setup externally and --device-index internally."
+  ],
+  "pool": {
+    "branches_per_shard": 8,
+    "pool_seed": 20260827,
+    "prefix_seed": 2,
+    "rollback_internal_timestep": 60,
+    "shard_count": 4,
+    "target_batch_index": 0,
+    "target_class_id": 207,
+    "total_branches": 32
+  },
+  "protocol_identity_sha256": "326a83f8c30505cb0bb0eef7c0dad307376f8400963cc6944f619645071c2512",
+  "protocol_name": "dit_imagenet256_t60_within_prefix_validation_v1",
+  "protocol_status": "FROZEN_BEFORE_GPU_EXECUTION",
+  "scope": {
+    "candidate_configuration_selected_on_same_prefix_discovery": true,
+    "general_confirmation": false,
+    "held_out_unit": "new suffix innovation streams after the shared saved x60",
+    "valid_description": "prospective within-prefix conditional validation",
+    "invalid_descriptions": [
+      "new-seed validation",
+      "cross-prefix confirmation",
+      "class-level artifact detector confirmation",
+      "general ImageNet quality validation"
+    ]
+  },
+  "statistical_readout_after_blind_lock": {
+    "alpha_e_interpretation": "alpha_e=0.2 controls the baseline-P probability of any primary alarm on one path conditional on the fixed prefix; it is not the good-image false-positive rate.",
+    "conditional_alarm_budget": "For each new suffix, conditional Ville gives P(ever alarm | frozen x60) <= 0.2. Across all 32 retained paths, linearity gives expected alarm count <= 6.4; independence is not needed for this expectation bound.",
+    "decision_rules": [
+      "Generate and retain all four preassigned shards and all 32 branches before reviewing any image or evidence; do not stop early, replace outputs, or add branches based on intermediate images.",
+      "Lock and SHA-256 hash the complete 32-row blind annotation file before a one-time evidence unseal.",
+      "If fewer than three endpoints receive a non-uncertain primary clear_failure label, report event-limited/inconclusive and do not tune this pool.",
+      "If primary TPR is not strictly greater than primary FPR, retire the tile_12 quality interpretation.",
+      "A rollback experiment requires at least two blindly labeled primary clear failures to cross the predeclared log(5) boundary; relative ranking without useful absolute crossings remains diagnostic only.",
+      "Failure, no endpoint variation, or an inconclusive event count never authorizes searching another tile, sign, Delta-nu, K cap, threshold, label, or subset in this same pool. Any such search starts a separately declared discovery round."
+    ],
+    "primary_analysis": [
+      "Exclude primary-label uncertain images and report their count.",
+      "Cross-tabulate ever-alarm versus clear_failure/not_clear_failure.",
+      "Report alarm rate among clear failures (TPR), alarm rate among not-clear failures (FPR), TPR-FPR, and exact binomial confidence intervals.",
+      "Use a one-sided Fisher exact test for enrichment in the predeclared direction TPR>FPR, but emphasize effect sizes and the small conditional sample.",
+      "Report the total intervention/alarm fraction separately; never relabel alpha_e as FPR."
+    ],
+    "secondary_analysis": [
+      "Repeat a descriptive cross-tabulation for overall clear structural bad without promoting it to the primary endpoint.",
+      "For the frozen signed fixed-path mixture, report terminal and running-maximum rank association/AUC descriptively.",
+      "Summarize tail attachment, taper/volume, and fluffy hair-flow separately; do not use tail ratings to redefine the primary endpoint after unsealing."
+    ],
+    "success_boundary": "Evidence must be more enriched among blindly labeled primary clear failures than among not-clear failures. A calibrated martingale without endpoint enrichment is a negative quality-detection result.",
+    "multiplicity_warning": "The four original discovery branches selected this primary configuration. This pool tests that frozen choice only; searching other tiles, signs, scales, thresholds, labels, or subsets on these 32 paths creates a new discovery round."
+  },
+  "schema_version": 1
+}

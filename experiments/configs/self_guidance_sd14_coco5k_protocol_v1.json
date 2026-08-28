@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "SMOKE_BEFORE_FORMAL_5K",
+  "upstream": {
+    "repository": "https://github.com/maple-research-lab/Self-Guidance",
+    "commit": "843bda799bb531ccf8d98164d8ccf1a3b8ce3f6d",
+    "local_root": "/home/zhoushunyu/data/eqvae/baselines/Self-Guidance",
+    "official_sd14_config_sha256": "c2f16defba32d34198563fad953fb45a2ac59c5db1ee9c6df59abb39a35390a7",
+    "official_coco_prompt_file_sha256": "97b02328e93d2ced00df0fe9221ca05441eaa48356d62e496f6e053074876837"
+  },
+  "model": {
+    "pretrained_model_name_or_path": "CompVis/stable-diffusion-v1-4",
+    "torch_dtype": "float16",
+    "scheduler": "EulerDiscreteScheduler",
+    "num_inference_steps": 50,
+    "image_size": 512,
+    "images_per_prompt": 1
+  },
+  "paired_sampling": {
+    "seed": 0,
+    "official_seed_semantics": "The released script calls torch.manual_seed(0) separately for every prompt, so all arms preserve that exact behavior.",
+    "formal_prompt_count": 5000,
+    "smoke_prompt_count": 8,
+    "devices": [0, 1, 2, 3]
+  },
+  "arms": {
+    "pag_baseline": {
+      "cfg_scale": 7.5,
+      "pag_scale": 0.3,
+      "sg_scale": 0,
+      "sg_shift_scale": 10,
+      "sg_type": "sg_prev",
+      "sg_prev_max_t": 500
+    },
+    "official_sg_prev": {
+      "cfg_scale": 7.5,
+      "pag_scale": 0.3,
+      "sg_scale": 3,
+      "sg_shift_scale": 10,
+      "sg_type": "sg_prev",
+      "sg_prev_max_t": 500
+    }
+  },
+  "comparison_contract": "Only sg_scale differs between the two primary arms; CFG, PAG, scheduler, prompts, prompt order, seed semantics, model, precision and image size are identical.",
+  "evaluation": {
+    "primary": "The released repository's 5000-image COCO FID against T2IBenchmark packaged COCO reference statistics.",
+    "scope_warning": "Report as COCO-5K FID; do not compare directly with 30K or 50K generated-sample FID.",
+    "smoke_gate": "Both arms must complete all 8 prompts; baseline rerun must be pixel-identical; outputs must have identical dimensions and no missing indices before the 5K run."
+  },
+  "method_boundary": "This first stage reproduces the released Self-Guidance implementation. It does not yet add cross-scale path evidence or any new intervention."
+}

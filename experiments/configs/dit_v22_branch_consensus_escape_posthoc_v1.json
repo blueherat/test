@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "audit_version": "dit_v22_branch_consensus_escape_posthoc_v1",
+  "scientific_role": "explicitly_posthoc_reverse_direction_hypothesis_audit",
+  "source_evaluation_product_identity_sha256": "2275a66b85f929f2259ba803011b19b7add8f055da9642f0deca194d02726896",
+  "source_evaluation_results_identity_sha256": "00838715cf95869cf4ac788226b05d3a1cf2714f0caa12e17c83b1db7c49e703",
+  "primary_horizon": 10,
+  "secondary_horizons": [5, 20],
+  "escape_selector": "fresh branch with maximum mean pairwise nonconformity; deterministic lowest-attempt tie break",
+  "same_compute_control": "uniform random choice among the same four fresh branches",
+  "eligible_intervention_population": "paths with frozen path_has_baseline_opportunity",
+  "reverse_detector": "lower mean attempt0_outlier_ratio_O across step109/149 predicts path opportunity",
+  "safety_population": "paths without frozen path_has_baseline_opportunity",
+  "safety_outcomes": [
+    "fresh_failure_2of3_clear_bad",
+    "semantic_preservation_2of3_yes"
+  ],
+  "bootstrap": {
+    "unit": "original role-pair path cluster including both rollback steps",
+    "replicates": 100000,
+    "seed": 2026082811,
+    "interval": [0.025, 0.975]
+  },
+  "future_experiment_priority_checks": {
+    "primary_escape_minus_random_strictly_positive": true,
+    "both_rollback_steps_nonnegative": true,
+    "both_legacy_roles_nonnegative": true,
+    "leave_one_path_out_lower_bound_strictly_positive": true,
+    "low_O_auc_minimum": 0.65,
+    "both_rollback_step_low_O_auc_strictly_above_half": true,
+    "non_opportunity_clear_bad_not_above_random": true,
+    "non_opportunity_preservation_not_below_random": true
+  },
+  "claim_boundary": {
+    "direction_was_discovered_after_opening_same_labels": true,
+    "cannot_validate_or_confirm_method": true,
+    "cannot_define_online_threshold_from_this_pool": true,
+    "selected_B_E_population_not_representative_of_baseline": true,
+    "attempt0_not_exchangeable_with_fresh": true,
+    "external_blind_labels_are_evaluation_only": true,
+    "FID_Inception_DINO_CLIP_embeddings_are_not_read": true
+  }
+}

@@ -16,6 +16,15 @@ def main() -> None:
     parser.add_argument("--num-images", type=int, default=64)
     parser.add_argument("--cols", type=int, default=8)
     parser.add_argument("--thumb-size", type=int, default=128)
+    parser.add_argument(
+        "--resample",
+        choices=("thumbnail", "nearest", "smooth"),
+        default="thumbnail",
+        help=(
+            "thumbnail never enlarges; nearest/smooth also enlarge small images "
+            "to the requested tile while preserving aspect ratio"
+        ),
+    )
     args = parser.parse_args()
 
     sample_dir = Path(args.sample_dir).expanduser()
@@ -31,7 +40,20 @@ def main() -> None:
 
     for idx, path in enumerate(files):
         image = Image.open(path).convert("RGB")
-        image.thumbnail((thumb, thumb), Image.Resampling.LANCZOS)
+        if args.resample == "thumbnail":
+            image.thumbnail((thumb, thumb), Image.Resampling.LANCZOS)
+        else:
+            scale = min(thumb / image.width, thumb / image.height)
+            resized = (
+                max(1, round(image.width * scale)),
+                max(1, round(image.height * scale)),
+            )
+            method = (
+                Image.Resampling.NEAREST
+                if args.resample == "nearest"
+                else Image.Resampling.LANCZOS
+            )
+            image = image.resize(resized, method)
         tile = Image.new("RGB", (thumb, thumb), "white")
         x = (thumb - image.width) // 2
         y = (thumb - image.height) // 2

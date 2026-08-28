@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "experiment": "dit_ptcv_blur_historical_validation_v1",
+  "status": "FROZEN_AFTER_TARGETED100_PTCV_DISCOVERY_BEFORE_ANY_EXPANSION_PTCV_EXTRACTION_OR_SCORE_LABEL_JOIN",
+  "scientific_role": "historically_locked_disjoint_seed_validation_not_final_prospective_confirmation",
+  "frozen_at_local_date": "2026-08-28",
+  "hypothesis_origin": {
+    "discovery_pool": "targeted100 labels on seed 10..29, with 60 additional label-free class/seed paths in the score reference",
+    "formal_discovery_result_identity_sha256": "b01d27d88a7ff8822d5279fc2dc2dbade866f6e634539709639d3f6ae417110d",
+    "formal_discovery_result_file_sha256": "7240e5c017ccd012a221c58462986cb3dc9bbd6f55e64525c231a0cab94a58ac",
+    "discovery_decision": "STOP_AS_ARTIFACT_DETECTOR_NO_SIGN_AXIS_COMPONENT_RESCUE",
+    "narrow_descriptive_clue": "Three global_blur clear-bad paths were high under the unchanged full PTCV score; structural clear-bad paths were inverted.",
+    "allowed_new_hypothesis": "The unchanged full PTCV score is positively associated with global_blur clear-bad endpoints.",
+    "forbidden_claim": "This protocol does not reopen the failed generic-artifact endpoint and cannot validate structural, topology, or misalignment detection."
+  },
+  "model_scope": {
+    "model": "DiT-XL/2 ImageNet-256",
+    "sampler_states": "official CFG=4 ancestral DDPM-250 trajectory states",
+    "queried_mapping": "raw class-conditional unclipped pred_xstart",
+    "queried_mapping_precision": "float32 without autocast",
+    "backbone_frozen": true,
+    "cfg_prediction_used_as_cone_metric": false,
+    "baseline_trajectory_changed": false
+  },
+  "validation_population": {
+    "cohort": "expansion_seed130_249",
+    "global_seeds": "130..249",
+    "ordered_class_ids": [207, 602, 795],
+    "trajectory_count": 360,
+    "seed_overlap_with_discovery": 0,
+    "trace_root": "/data/users/zhoushunyu/eqvae/cross_scale_evidence/dit_bad_good_confirmation_expansion_v1_custom_traces_cfg_locked",
+    "trace_directory_pattern": "expansion_v1_seed{seed}",
+    "locked_visual_label_path": "experiments/annotations/dit_expansion_eval360_adjudicated_consensus_lock_v1/consensus_locked.json",
+    "locked_visual_label_file_sha256": "6aa24778d62780ec0eb373bda45fabee5a504a3de4fd01fa86d56bfa93e30347",
+    "locked_visual_label_identity_sha256": "fc478b7ae04b67869d0dfca3b63f169a5266bacc1c8701e1ae20368516e793fd",
+    "locked_counts": {
+      "clear_bad": 9,
+      "clean_good": 304,
+      "mild_or_disputed": 47
+    },
+    "primary_endpoint": "all 9 adjudicated clear_bad endpoints, each pre-existing majority_flags contains global_blur, versus all 304 clean_good endpoints",
+    "excluded_from_primary": ["mild_or_disputed"],
+    "independence_boundary": "Seeds and locked files are disjoint from PTCV discovery and labels predate PTCV, but researchers previously inspected this historical pool; this is stronger than same-pool discovery and weaker than a newly sampled prospective confirmation."
+  },
+  "unchanged_ptcv_object": {
+    "identity": "Jacobian_x m_t^c=(alpha_t/sigma_t^2) Cov(X_0|X_t=x,c), hence symmetric PSD",
+    "projection": "B=Q^T Jacobian_x mhat_t^c Q",
+    "cone_distance": "dist_F^2(B,S_+)=||skew(B)||_F^2+sum_{lambda(sym(B))<0}lambda^2",
+    "basis_kind": "normalized 4x4 Hadamard channel modes tensor four orthonormal 2-D DCT modes",
+    "basis_spatial_frequencies_vertical_horizontal": [[0, 1], [1, 0], [1, 1], [2, 2]],
+    "basis_dimension": 16,
+    "basis_raw_sha256": "698fa3fcf6a67265ccdb618f3d1c6642affd03aa41dbcb5ffce8d6f36529d179",
+    "checkpoints_zero_based": [99, 149, 199],
+    "internal_timesteps": [150, 100, 50],
+    "relative_l2_radii": [0.001953125, 0.00390625],
+    "absolute_radius": "relative_radius*sqrt(d)*max(RMS(state),sqrt(1-alpha_bar))",
+    "centered_difference": "[m(x+h*q)-m(x-h*q)]/(2h)",
+    "primary_matrix": "B_R=(4*B_small-B_large)/3",
+    "raw_path_score": "D_i=sum_k dist_F^2(B_R,ik,S_+)/[sum_k ||B_R,ik||_F^2+1e-30]",
+    "class_standardization": "Within each expansion class, use all 120 label-free paths: S_i=(D_i-mean_c)/(sample_sd_c+1e-12).",
+    "quality_direction": "higher_S_is_more_likely_global_blur_clear_bad"
+  },
+  "forbidden_rescues": {
+    "flip_to_low_direction": true,
+    "skew_only_or_negative_eigen_only": true,
+    "checkpoint_99_only_or_any_checkpoint_selection": true,
+    "class_selection_or_class_795_only": true,
+    "basis_frequency_or_radius_change": true,
+    "endpoint_redefinition_after_join": true,
+    "external_representation_or_image_feature_in_score": true,
+    "combine_with_handcrafted_blur_B_before_primary_decision": true
+  },
+  "fixed_simple_controls": {
+    "path_matrix_energy": "sum_k ||B_R,ik||_F^2, class-standardized; higher is worse",
+    "finite_difference_gap": "maximum_k ||B_small-B_large||_F/||B_R||_F, class-standardized; higher is worse",
+    "single_path_temporal_change": "mean frozen checkpoint CFG pred_xstart relative changes, class-standardized; higher is worse",
+    "raw_conditional_cfg_gap": "mean raw-conditional versus CFG pred_xstart relative gap, class-standardized; higher is worse"
+  },
+  "label_free_numerical_gates_before_any_join": {
+    "all_360_raw_conditional_checkpoint_replays_bitwise_exact": true,
+    "all_matrices_and_scores_finite": true,
+    "all_cone_scores_in_closed_unit_interval": true,
+    "spearman_small_vs_large_path_score_at_least": 0.8,
+    "spearman_small_vs_richardson_path_score_at_least": 0.8,
+    "spearman_large_vs_richardson_path_score_at_least": 0.8,
+    "median_per_path_maximum_small_large_relative_matrix_gap_at_most": 0.05,
+    "q95_per_path_maximum_small_large_relative_matrix_gap_at_most": 0.1,
+    "failure_action": "STOP as numerically unresolved before visual labels are opened."
+  },
+  "fixed_readouts": {
+    "primary": [
+      "tie-aware ROC AUC for the unchanged full S on 9 global-blur clear_bad versus 304 clean_good",
+      "exact one-sided class-stratified rank-sum randomization p-value computed by dynamic programming",
+      "class-stratified bootstrap AUC interval",
+      "each clear_bad within-class percentile and count above class median"
+    ],
+    "robustness": [
+      "leave-one-positive-class-out AUC without changing the score formula",
+      "class-specific AUC for all three classes",
+      "leave-one-checkpoint-out AUC, reported without selecting a replacement score"
+    ],
+    "descriptive_only": [
+      "checkpoint-specific and component-specific scores",
+      "negative-eigen and skew decomposition",
+      "all simple controls",
+      "comparison or correlation with prior handcrafted blur metric B"
+    ]
+  },
+  "decision_rule": {
+    "advance_narrow_blur_signal_only_if": [
+      "every label-free numerical gate passes before labels are opened",
+      "primary higher-direction AUC is at least 0.70",
+      "exact higher-direction class-stratified p-value is at most 0.05",
+      "at least 6 of 9 clear_bad paths are above their class-specific median",
+      "the 95% class-stratified bootstrap AUC lower bound exceeds 0.50",
+      "primary AUC is not below any fixed simple control AUC",
+      "every leave-one-positive-class-out AUC is at least 0.55",
+      "at least two positive-containing classes have class-specific AUC strictly above 0.5"
+    ],
+    "strong_historical_validation": "All advance gates plus AUC>=0.80, exact p<=0.01, at least 8/9 bad above class median, bootstrap lower bound>0.55, every class-LOO AUC>=0.60, and primary AUC exceeds every control by >=0.03.",
+    "checkpoint_leave_out_role": "Mechanistic robustness only; it cannot replace the unchanged full primary score and is not an advance gate for the explicitly early/mid blur hypothesis.",
+    "failure_action": "STOP the PTCV blur-specific hypothesis. Do not rescue it by sign, component, checkpoint, class, basis, radius, endpoint, or combination search on expansion.",
+    "success_boundary": "At most authorize a newly sampled, fully prospective blur confirmation. No rejection, guidance, rollback, or selective resampling is authorized by this historical validation."
+  },
+  "frozen_implementation_dependencies": {
+    "ptcv_numerical_core_sha256": "986f0fc8bbf22b84731ffb9b8b73bc9d73db263ae7f32d05e4ec812acf6900fe",
+    "strict_dit_helper_sha256": "4d7d360c2621586fe3e751d7d73537784c436d5cee78be83448ce676d6fae746",
+    "trace_runner_sha256": "6f4c94d3720717c3c7ce913ca6e928a30641aa5e4ddb0922bc2894e79aaf4e79",
+    "dit_checkpoint_sha256": "9ec1876e4c03471bca126663a30e2d1b20610b6d2f87850a39a36f25cc685521"
+  }
+}
