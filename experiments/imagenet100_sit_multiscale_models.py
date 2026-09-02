@@ -13,6 +13,7 @@ try:
     from experiments.imagenet100_sit_internal_v_head import (
         create_internal_velocity_head,
         embed_sit_inputs,
+        extract_internal_features,
         internal_velocity_from_features,
     )
     from experiments.imagenet100_sit_prediction_targets import prediction_to_velocity
@@ -36,6 +37,7 @@ except ModuleNotFoundError:
     from imagenet100_sit_internal_v_head import (
         create_internal_velocity_head,
         embed_sit_inputs,
+        extract_internal_features,
         internal_velocity_from_features,
     )
     from imagenet100_sit_prediction_targets import prediction_to_velocity
@@ -213,6 +215,38 @@ def internal_prediction_to_velocity(
             denominator_floor=spec.denominator_floor,
         ).float()
     raise ValueError(f"unsupported internal prediction target: {spec.prediction_target}")
+
+
+def evaluate_internal_head_only(
+    model: nn.Module,
+    state: torch.Tensor,
+    time_value: torch.Tensor,
+    labels: torch.Tensor,
+    *,
+    spec: InternalHeadSpec,
+) -> torch.Tensor:
+    """Evaluate one internal head without running the unused backbone suffix."""
+
+    features, conditioning = extract_internal_features(
+        model,
+        state,
+        time_value,
+        labels,
+        internal_depth=spec.depth,
+    )
+    prediction = internal_velocity_from_features(
+        model,
+        spec.module,
+        features,
+        conditioning,
+        latent_channels=LATENT_SHAPE[0],
+    )
+    return internal_prediction_to_velocity(
+        prediction,
+        state=state,
+        time_value=time_value,
+        spec=spec,
+    )
 
 
 def _source_output_from_tokens(
