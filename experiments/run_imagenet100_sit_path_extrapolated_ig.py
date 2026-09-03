@@ -57,12 +57,17 @@ if str(REPO_ROOT) not in sys.path:
 
 from experiments.internal_guidance_path_extrapolation import (  # noqa: E402
     PathEndpointPair,
+    affine_counterfactual_ratio_velocity,
+    align_linear_path_state_to_endpoint_coordinate,
     calibration_split_foresight_velocity,
+    counterfactual_telescoping_velocity,
+    decompose_cross_time_velocity_change,
     decompose_endpoint_posterior_change,
     decompose_material_change,
     decompose_future_weak_drift,
     decompose_euler_foresight_roundtrip,
     extrapolate_path_endpoints,
+    factorized_scale_space_guidance_velocity,
     finite_lie_bracket_change,
     forecast_weak_reference,
     foresight_weak_guidance,
@@ -75,6 +80,8 @@ from experiments.internal_guidance_path_extrapolation import (  # noqa: E402
     richardson_forward_change,
     sample_rms,
     split_internal_guidance,
+    telescoping_scale_space_guidance_velocity,
+    transported_internal_gap_velocity,
 )
 from experiments.run_imagenet100_sit_internal_early_two_segment_gamma_sweep import (  # noqa: E402
     atomic_json,
@@ -194,8 +201,28 @@ def _parse_fmd_decomposition_components(value: str) -> tuple[str, ...]:
         "weak_calibration_split",
         "weak_calibration_time_only",
         "weak_calibration_characteristic",
+        "weak_calibration_weak_characteristic",
+        "weak_calibration_strong_characteristic",
         "weak_calibration_projected",
         "weak_calibration_projected_coupled",
+        "weak_calibration_reference_geomean",
+        "weak_calibration_horizon_geomean",
+        "weak_calibration_depth8_response",
+        "weak_calibration_telescoping_depth8",
+        "weak_gap_transport_time_only",
+        "weak_gap_transport_projected",
+        "strong_gap_transport_projected",
+        "weak_gap_antitransport_projected",
+        "score_noisier_aligned",
+        "score_noisier_same_state",
+        "score_cleaner_aligned",
+        "velocity_noisier_aligned",
+        "marginal_score_weak_noisier",
+        "marginal_score_strong_noisier",
+        "marginal_score_weak_cleaner",
+        "velocity_parameterization_transport",
+        "velocity_score_evolution",
+        "velocity_change_recomposed",
         "weak_calibration_innovation",
         "weak_calibration_innovation_strong_axis",
         "weak_calibration_innovation_guided_axis",
@@ -361,8 +388,28 @@ class Condition:
             "fmd_weak_calibration_split_continuous",
             "fmd_weak_calibration_time_only_continuous",
             "fmd_weak_calibration_characteristic_continuous",
+            "fmd_weak_calibration_weak_characteristic_continuous",
+            "fmd_weak_calibration_strong_characteristic_continuous",
             "fmd_weak_calibration_projected_continuous",
             "fmd_weak_calibration_projected_coupled_continuous",
+            "fmd_weak_calibration_reference_geomean_continuous",
+            "fmd_weak_calibration_horizon_geomean_continuous",
+            "fmd_weak_calibration_depth8_response_continuous",
+            "fmd_weak_calibration_telescoping_depth8_continuous",
+            "fmd_weak_gap_transport_time_only_continuous",
+            "fmd_weak_gap_transport_projected_continuous",
+            "fmd_strong_gap_transport_projected_continuous",
+            "fmd_weak_gap_antitransport_projected_continuous",
+            "fmd_score_noisier_aligned_continuous",
+            "fmd_score_noisier_same_state_continuous",
+            "fmd_score_cleaner_aligned_continuous",
+            "fmd_velocity_noisier_aligned_continuous",
+            "fmd_marginal_score_weak_noisier_continuous",
+            "fmd_marginal_score_strong_noisier_continuous",
+            "fmd_marginal_score_weak_cleaner_continuous",
+            "fmd_velocity_parameterization_transport_continuous",
+            "fmd_velocity_score_evolution_continuous",
+            "fmd_velocity_change_recomposed_continuous",
             "fmd_weak_calibration_innovation_continuous",
             "fmd_weak_calibration_innovation_strong_axis_continuous",
             "fmd_weak_calibration_innovation_guided_axis_continuous",
@@ -625,8 +672,28 @@ class Condition:
             if component in {
                 "weak_calibration_time_only",
                 "weak_calibration_characteristic",
+                "weak_calibration_weak_characteristic",
+                "weak_calibration_strong_characteristic",
                 "weak_calibration_projected",
                 "weak_calibration_projected_coupled",
+                "weak_calibration_reference_geomean",
+                "weak_calibration_horizon_geomean",
+                "weak_calibration_depth8_response",
+                "weak_calibration_telescoping_depth8",
+                "weak_gap_transport_time_only",
+                "weak_gap_transport_projected",
+                "strong_gap_transport_projected",
+                "weak_gap_antitransport_projected",
+                "score_noisier_aligned",
+                "score_noisier_same_state",
+                "score_cleaner_aligned",
+                "velocity_noisier_aligned",
+                "marginal_score_weak_noisier",
+                "marginal_score_strong_noisier",
+                "marginal_score_weak_cleaner",
+                "velocity_parameterization_transport",
+                "velocity_score_evolution",
+                "velocity_change_recomposed",
             }:
                 return (
                     f"fmd_decomposition_{component}"
@@ -959,6 +1026,22 @@ class Condition:
                     "one frozen-Euler step along the deployed guided field"
                 )
                 material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "weak_calibration_weak_characteristic",
+                "weak_calibration_strong_characteristic",
+            }:
+                probe = "W" if "weak_characteristic" in component else "S"
+                foresight_formula = (
+                    f"beta=1+gamma; q=(z+h*{probe},t+h); "
+                    "G_new=W+beta*(S-W(q))"
+                )
+                material_derivative["query_geometry"] = (
+                    f"one frozen-Euler step along the {probe} field"
+                )
+                material_derivative["posterior_pressure_probe"] = (
+                    probe == "W"
+                )
+                material_derivative["extra_tuned_coefficients"] = 0
             elif component == "weak_calibration_projected":
                 foresight_formula = (
                     "beta=1+gamma; C=beta*(S-W); "
@@ -982,6 +1065,144 @@ class Condition:
                     "forward-ray coefficient"
                 )
                 material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "weak_gap_transport_time_only",
+                "weak_gap_transport_projected",
+                "strong_gap_transport_projected",
+                "weak_gap_antitransport_projected",
+            }:
+                time_only = component == "weak_gap_transport_time_only"
+                anchor = "strong" if component.startswith("strong_") else "weak"
+                sign = -1.0 if "antitransport" in component else 1.0
+                query = "q=(z,t+h)" if time_only else (
+                    "C=beta*(S-W); a*=argmin_{a>=0}||a*G-C||^2; "
+                    "q=(z+h*a*G,t+h)"
+                )
+                coefficient = "gamma" if anchor == "strong" else "beta"
+                base = "S" if anchor == "strong" else "W"
+                foresight_formula = (
+                    f"beta=1+gamma; {query}; gp=S-W; gq=S(q)-W(q); "
+                    f"G_new={base}+{coefficient}*(gp{'+(gq-gp)' if sign > 0 else '-(gq-gp)'})"
+                )
+                material_derivative["query_geometry"] = (
+                    "pure information-time intervention with fixed latent"
+                    if time_only
+                    else "projected deep-refinement intervention"
+                )
+                material_derivative["factorial_interaction"] = (
+                    "Omega=(S(q)-W(q))-(S-W)"
+                )
+                material_derivative["common_mode_invariant"] = True
+                material_derivative["diagonal_consistent"] = True
+                material_derivative["anchor"] = anchor
+                material_derivative["interaction_sign"] = sign
+                material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "score_noisier_aligned",
+                "score_noisier_same_state",
+                "score_cleaner_aligned",
+                "velocity_noisier_aligned",
+            }:
+                noisier = "cleaner" not in component
+                aligned = "same_state" not in component
+                score_space = component.startswith("score_")
+                direction = "t-H" if noisier else "t+H"
+                state_query = (
+                    "z_ref=(t_ref/t)*z"
+                    if aligned
+                    else "z_ref=z"
+                )
+                if score_space:
+                    foresight_formula = (
+                        f"t_ref={direction}; {state_query}; "
+                        "r=t*(t*v-z)/(1-t); "
+                        "r_new=r_S+gamma*(r_S-r_W_ref); "
+                        "convert r_new back to current-time velocity"
+                    )
+                else:
+                    foresight_formula = (
+                        f"t_ref={direction}; {state_query}; "
+                        "G_new=S+gamma*(S-W_ref) in raw velocity space"
+                    )
+                material_derivative["density_ratio_target"] = (
+                    "q_S,current * (q_S,current/q_W,reference)^gamma"
+                    if score_space
+                    else None
+                )
+                material_derivative["reference_noise"] = (
+                    "noisier" if noisier else "cleaner"
+                )
+                material_derivative["endpoint_coordinate_aligned"] = aligned
+                material_derivative["parameterization"] = (
+                    "endpoint_normalized_score" if score_space else "raw_velocity"
+                )
+                material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "marginal_score_weak_noisier",
+                "marginal_score_strong_noisier",
+                "marginal_score_weak_cleaner",
+            }:
+                temporal_branch = (
+                    "strong" if "strong" in component else "weak"
+                )
+                reference_noise = (
+                    "cleaner" if "cleaner" in component else "noisier"
+                )
+                direction = "t+H" if reference_noise == "cleaner" else "t-H"
+                foresight_formula = (
+                    f"t_ref={direction}; z_ref=z; "
+                    "s=(t*v-z)/(1-t); a(t)=min(1,t/H); "
+                    "s_new=s_IG+gamma*a(t)*(s_branch(t)-s_branch(t_ref)); "
+                    "convert s_new back to current-time velocity"
+                )
+                material_derivative["density_ratio_target"] = (
+                    "p_IG,current * "
+                    "(p_branch,current/p_branch,reference)^(gamma*a(t))"
+                )
+                material_derivative["temporal_branch"] = temporal_branch
+                material_derivative["reference_noise"] = reference_noise
+                material_derivative["coordinate_system"] = "path_marginal_z"
+                material_derivative["prior_boundary_taper"] = "min(1,t/H)"
+                material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "weak_calibration_reference_geomean",
+                "weak_calibration_horizon_geomean",
+            }:
+                foresight_formula = (
+                    "beta=1+gamma; C=beta*(S-W); "
+                    "a*=argmin_{a>=0}||a*G-C||^2; "
+                    "Qbar=sum_j pi_j*W(q_j); "
+                    "G_new=W+beta*(S-Qbar); sum_j pi_j=1"
+                )
+                material_derivative["density_ratio_target"] = (
+                    "p_W * (p_S / prod_j p_Qj^pi_j)^beta"
+                )
+                material_derivative["reference_ensemble"] = (
+                    "equal time-only/projected references"
+                    if component == "weak_calibration_reference_geomean"
+                    else "equal half/full-horizon projected references"
+                )
+                material_derivative["affine_coefficient_sum"] = 1.0
+                material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "velocity_parameterization_transport",
+                "velocity_score_evolution",
+                "velocity_change_recomposed",
+            }:
+                selected = component.removeprefix("velocity_")
+                foresight_formula = (
+                    "t_ref=t+H; s_t=(t*W_t-z)/(1-t); "
+                    "W_hold=V_(t_ref)(s_t); "
+                    "P=W_t-W_hold; E=W_hold-W_ref; "
+                    f"G_new=G+(1+gamma)*{selected}"
+                )
+                material_derivative["exact_decomposition"] = (
+                    "W_t-W_ref=parameterization_transport+score_evolution"
+                )
+                material_derivative["selected_component"] = selected
+                material_derivative["reference_noise"] = "cleaner"
+                material_derivative["coordinate_system"] = "path_marginal_z"
+                material_derivative["extra_tuned_coefficients"] = 0
             elif component == "weak_calibration_innovation":
                 foresight_formula = (
                     "beta=1+gamma; C=beta*(S-W); "
@@ -995,6 +1216,26 @@ class Condition:
                     "orthogonal innovation relative to the already calibrated "
                     "static strong-minus-weak axis"
                 )
+                material_derivative["extra_tuned_coefficients"] = 0
+            elif component in {
+                "weak_calibration_depth8_response",
+                "weak_calibration_telescoping_depth8",
+            }:
+                if component == "weak_calibration_depth8_response":
+                    foresight_formula = (
+                        "G_IG=W4+beta*(S-W4); q=(z+h*Proj_ray(beta*(S-W4)),t+h); "
+                        "G_new=G_IG+beta*(W8-W8(q))"
+                    )
+                    levels = "depth8 response only"
+                else:
+                    foresight_formula = (
+                        "q=(z+h*Proj_ray(beta*(S-W4)),t+h); "
+                        "G_new=W4+beta*[(W8-W4(q))+(S-W8(q))]"
+                    )
+                    levels = "depth4 -> depth8 -> full"
+                material_derivative["hierarchy_levels"] = levels
+                material_derivative["ordinary_ig_anchor"] = "exact when q=p"
+                material_derivative["affine_coefficient_sum"] = 1.0
                 material_derivative["extra_tuned_coefficients"] = 0
             elif component in {
                 "weak_calibration_innovation_strong_axis",
@@ -1673,6 +1914,26 @@ def worker(args: argparse.Namespace) -> None:
         device=device,
     )
     heads = {"depth4_v": head}
+    depth8_head = None
+    if "depth8" in condition.kind:
+        depth8_path = (
+            data
+            / "runs/sit-s-2_v800-ema_frozen-internal-v-depth8_seed0/"
+            "checkpoints/step_00050000.pt"
+        )
+        if not depth8_path.is_file():
+            raise FileNotFoundError(depth8_path)
+        depth8_head = modules["load_internal_head_for_source"](
+            checkpoint_path=depth8_path,
+            name="depth8_v",
+            head_weights="ema",
+            model=strong,
+            sit_module=sit_module,
+            source_checkpoint_path=paths["strong"],
+            source_metadata=source_metadata,
+            device=device,
+        )
+        heads["depth8_v"] = depth8_head
     vae = (
         AutoencoderKL.from_pretrained(
             "stabilityai/sd-vae-ft-mse", local_files_only=True
@@ -1682,12 +1943,16 @@ def worker(args: argparse.Namespace) -> None:
         .requires_grad_(False)
     )
 
-    def evaluate_pair(time: Any, latent: Any, labels: Any):
+    def evaluate_hierarchy(time: Any, latent: Any, labels: Any):
         times = time.expand(len(latent))
         full, trained, _ = modules["evaluate_source_with_heads"](
             strong, latent, times, labels, heads=heads
         )
-        return full, trained["depth4_v"]
+        return full, trained["depth4_v"], trained.get("depth8_v")
+
+    def evaluate_pair(time: Any, latent: Any, labels: Any):
+        full, weak, _ = evaluate_hierarchy(time, latent, labels)
+        return full, weak
 
     def evaluate_weak_only(time: Any, latent: Any, labels: Any):
         times = time.expand(len(latent))
@@ -1698,6 +1963,13 @@ def worker(args: argparse.Namespace) -> None:
             labels,
             spec=head,
         )
+
+    def evaluate_counterfactual_hierarchy(time: Any, latent: Any, labels: Any):
+        if depth8_head is None:
+            raise RuntimeError("depth-8 counterfactual hierarchy was not loaded")
+        _, weak4, weak8 = evaluate_hierarchy(time, latent, labels)
+        assert weak8 is not None
+        return weak4, weak8
 
     class StrongField:
         def __init__(self, labels: Any):
@@ -1877,7 +2149,16 @@ def worker(args: argparse.Namespace) -> None:
 
         def __call__(self, time: Any, latent: Any) -> Any:
             self.nfe += 1
-            full, weak = evaluate_pair(time, latent, self.labels)
+            middle = None
+            if self.component in {
+                "weak_calibration_depth8_response",
+                "weak_calibration_telescoping_depth8",
+            }:
+                full, weak, middle = evaluate_hierarchy(time, latent, self.labels)
+                if middle is None:
+                    raise RuntimeError("depth-8 hierarchy output is missing")
+            else:
+                full, weak = evaluate_pair(time, latent, self.labels)
             time_value = float(time.detach().float().item())
             gamma_multiplier = condition.local_multiplier
             if time_value < FIRST_END:
@@ -1906,8 +2187,28 @@ def worker(args: argparse.Namespace) -> None:
                     "weak_calibration_split",
                     "weak_calibration_time_only",
                     "weak_calibration_characteristic",
+                    "weak_calibration_weak_characteristic",
+                    "weak_calibration_strong_characteristic",
                     "weak_calibration_projected",
                     "weak_calibration_projected_coupled",
+                    "weak_calibration_reference_geomean",
+                    "weak_calibration_horizon_geomean",
+                    "weak_calibration_depth8_response",
+                    "weak_calibration_telescoping_depth8",
+                    "weak_gap_transport_time_only",
+                    "weak_gap_transport_projected",
+                    "strong_gap_transport_projected",
+                    "weak_gap_antitransport_projected",
+                    "score_noisier_aligned",
+                    "score_noisier_same_state",
+                    "score_cleaner_aligned",
+                    "velocity_noisier_aligned",
+                    "marginal_score_weak_noisier",
+                    "marginal_score_strong_noisier",
+                    "marginal_score_weak_cleaner",
+                    "velocity_parameterization_transport",
+                    "velocity_score_evolution",
+                    "velocity_change_recomposed",
                     "weak_calibration_innovation",
                     "weak_calibration_innovation_strong_axis",
                     "weak_calibration_innovation_guided_axis",
@@ -1962,8 +2263,14 @@ def worker(args: argparse.Namespace) -> None:
             if self.component in {
                 "weak_calibration_time_only",
                 "weak_calibration_characteristic",
+                "weak_calibration_weak_characteristic",
+                "weak_calibration_strong_characteristic",
                 "weak_calibration_projected",
                 "weak_calibration_projected_coupled",
+                "weak_calibration_reference_geomean",
+                "weak_calibration_horizon_geomean",
+                "weak_calibration_depth8_response",
+                "weak_calibration_telescoping_depth8",
             }:
                 weak_base, calibration = split_internal_guidance(
                     full,
@@ -1975,6 +2282,10 @@ def worker(args: argparse.Namespace) -> None:
                     future_state = latent
                 elif self.component == "weak_calibration_characteristic":
                     future_state = latent + horizon * guided
+                elif self.component == "weak_calibration_weak_characteristic":
+                    future_state = latent + horizon * weak
+                elif self.component == "weak_calibration_strong_characteristic":
+                    future_state = latent + horizon * full
                 else:
                     ray_projection = project_to_forward_ray(calibration, guided)
                     future_state = latent + horizon * ray_projection.parallel
@@ -1983,16 +2294,103 @@ def worker(args: argparse.Namespace) -> None:
                             len(latent), *([1] * (latent.ndim - 1))
                         ).to(dtype=time.dtype, device=time.device)
                         future_time = time + horizon * coefficient.flatten()
-                weak_future = evaluate_weak_only(
-                    future_time,
-                    future_state,
-                    self.labels,
-                )
-                self.future_nfe += 1
-                result = calibration_split_foresight_velocity(
+                if self.component == "weak_calibration_reference_geomean":
+                    weak_time_only = evaluate_weak_only(
+                        future_time,
+                        latent,
+                        self.labels,
+                    )
+                    weak_projected = evaluate_weak_only(
+                        future_time,
+                        future_state,
+                        self.labels,
+                    )
+                    self.future_nfe += 2
+                    weak_references = (weak_time_only, weak_projected)
+                    self._record_cosine(
+                        "counterfactual_reference_cosine",
+                        weak_time_only,
+                        weak_projected,
+                    )
+                elif self.component == "weak_calibration_horizon_geomean":
+                    half_horizon = 0.5 * horizon
+                    half_time = time + time.new_tensor(half_horizon)
+                    half_state = latent + half_horizon * ray_projection.parallel
+                    weak_half = evaluate_weak_only(
+                        half_time,
+                        half_state,
+                        self.labels,
+                    )
+                    weak_full = evaluate_weak_only(
+                        future_time,
+                        future_state,
+                        self.labels,
+                    )
+                    self.future_nfe += 2
+                    weak_references = (weak_half, weak_full)
+                    self._record_cosine(
+                        "counterfactual_reference_cosine",
+                        weak_half,
+                        weak_full,
+                    )
+                elif self.component in {
+                    "weak_calibration_depth8_response",
+                    "weak_calibration_telescoping_depth8",
+                }:
+                    if middle is None:
+                        raise RuntimeError("depth-8 current readout is missing")
+                    weak_future, middle_future = evaluate_counterfactual_hierarchy(
+                        future_time,
+                        future_state,
+                        self.labels,
+                    )
+                    self.future_nfe += 1
+                    beta = 1.0 + gamma
+                    if self.component == "weak_calibration_depth8_response":
+                        result = guided + beta * (middle - middle_future)
+                    else:
+                        result = counterfactual_telescoping_velocity(
+                            (weak_base, middle, full),
+                            (weak_future, middle_future),
+                            gamma=gamma,
+                        )
+                    self._record_rms(
+                        "calibration_depth4_response_rms",
+                        weak_base - weak_future,
+                    )
+                    self._record_rms(
+                        "calibration_depth8_response_rms",
+                        middle - middle_future,
+                    )
+                    self._record_cosine(
+                        "calibration_depth_responses_cosine",
+                        weak_base - weak_future,
+                        middle - middle_future,
+                    )
+                    self._record_rms(
+                        f"calibration_{self.component}_revision_rms",
+                        result - guided,
+                    )
+                    weak_references = ()
+                else:
+                    weak_future = evaluate_weak_only(
+                        future_time,
+                        future_state,
+                        self.labels,
+                    )
+                    self.future_nfe += 1
+                    weak_references = (weak_future,)
+                if not weak_references:
+                    if ray_projection is not None:
+                        self.diagnostics.setdefault(
+                            f"calibration_{self.component}_alpha", []
+                        ).extend(ray_projection.coefficient.detach().cpu().tolist())
+                    return result
+                result = affine_counterfactual_ratio_velocity(
                     full,
                     weak_base,
-                    weak_future,
+                    weak_references,
+                    (0.5, 0.5) if len(weak_references) == 2 else (1.0,),
                     gamma=gamma,
                 )
                 if ray_projection is not None:
@@ -2009,6 +2407,241 @@ def worker(args: argparse.Namespace) -> None:
                     )
                 self._record_rms(
                     f"calibration_{self.component}_revision_rms", result - guided
+                )
+                return result
+
+            if self.component in {
+                "weak_gap_transport_time_only",
+                "weak_gap_transport_projected",
+                "strong_gap_transport_projected",
+                "weak_gap_antitransport_projected",
+            }:
+                weak_base, calibration = split_internal_guidance(
+                    full,
+                    weak,
+                    gamma=gamma,
+                )
+                ray_projection = None
+                if self.component == "weak_gap_transport_time_only":
+                    query_state = latent
+                else:
+                    ray_projection = project_to_forward_ray(calibration, guided)
+                    query_state = latent + horizon * ray_projection.parallel
+                full_query, weak_query = evaluate_pair(
+                    future_time,
+                    query_state,
+                    self.labels,
+                )
+                self.future_nfe += 1
+                anchor = (
+                    "strong"
+                    if self.component == "strong_gap_transport_projected"
+                    else "weak"
+                )
+                interaction_sign = (
+                    -1.0
+                    if self.component == "weak_gap_antitransport_projected"
+                    else 1.0
+                )
+                result = transported_internal_gap_velocity(
+                    full,
+                    weak_base,
+                    full_query,
+                    weak_query,
+                    gamma=gamma,
+                    anchor=anchor,
+                    interaction_sign=interaction_sign,
+                )
+                gap_now = full - weak_base
+                gap_query = full_query - weak_query
+                interaction = gap_query - gap_now
+                self._record_rms("gap_transport_gap_now_rms", gap_now)
+                self._record_rms("gap_transport_gap_query_rms", gap_query)
+                self._record_rms("gap_transport_interaction_rms", interaction)
+                self._record_cosine(
+                    "gap_transport_gap_cosine",
+                    gap_now,
+                    gap_query,
+                )
+                self._record_cosine(
+                    "gap_transport_interaction_gap_cosine",
+                    interaction,
+                    gap_now,
+                )
+                if ray_projection is not None:
+                    self.diagnostics.setdefault(
+                        "gap_transport_query_alpha", []
+                    ).extend(ray_projection.coefficient.detach().cpu().tolist())
+                return result
+
+            if self.component in {
+                "score_noisier_aligned",
+                "score_noisier_same_state",
+                "score_cleaner_aligned",
+                "velocity_noisier_aligned",
+            }:
+                # Endpoint-normalized score coordinates are singular at t=0.
+                # Returning ordinary IG through the first complete reference
+                # interval avoids manufacturing a clamped pseudo-density.
+                reference_horizon = self.horizon
+                if time_value <= reference_horizon:
+                    return guided
+                cleaner_reference = self.component == "score_cleaner_aligned"
+                reference_time = (
+                    time + time.new_tensor(reference_horizon)
+                    if cleaner_reference
+                    else time - time.new_tensor(reference_horizon)
+                )
+                same_state = self.component == "score_noisier_same_state"
+                reference_state = (
+                    latent
+                    if same_state
+                    else align_linear_path_state_to_endpoint_coordinate(
+                        latent,
+                        time,
+                        reference_time,
+                    )
+                )
+                weak_reference = evaluate_weak_only(
+                    reference_time,
+                    reference_state,
+                    self.labels,
+                )
+                self.future_nfe += 1
+                if self.component == "velocity_noisier_aligned":
+                    result = full + gamma * (full - weak_reference)
+                else:
+                    result = telescoping_scale_space_guidance_velocity(
+                        full,
+                        weak_reference,
+                        latent,
+                        reference_state,
+                        time,
+                        reference_time,
+                        gamma=gamma,
+                    )
+                self._record_rms(
+                    "scale_space_reference_state_change_rms",
+                    reference_state - latent,
+                )
+                self._record_rms(
+                    "scale_space_raw_velocity_gap_rms",
+                    full - weak_reference,
+                )
+                self._record_rms(
+                    "scale_space_revision_rms",
+                    result - guided,
+                )
+                self._record_cosine(
+                    "scale_space_revision_ig_cosine",
+                    result - guided,
+                    guided,
+                )
+                return result
+
+            if self.component in {
+                "marginal_score_weak_noisier",
+                "marginal_score_strong_noisier",
+                "marginal_score_weak_cleaner",
+            }:
+                if time_value <= 1e-8:
+                    return guided
+                cleaner_reference = "cleaner" in self.component
+                reference_value = (
+                    time_value + self.horizon
+                    if cleaner_reference
+                    else max(0.0, time_value - self.horizon)
+                )
+                reference_time = time.new_tensor(reference_value)
+                strong_temporal = "strong" in self.component
+                if strong_temporal:
+                    full_reference, _ = evaluate_pair(
+                        reference_time,
+                        latent,
+                        self.labels,
+                    )
+                    temporal_now = full
+                    temporal_reference = full_reference
+                else:
+                    temporal_now = weak
+                    temporal_reference = evaluate_weak_only(
+                        reference_time,
+                        latent,
+                        self.labels,
+                    )
+                self.future_nfe += 1
+                boundary_weight = min(1.0, time_value / self.horizon)
+                result = factorized_scale_space_guidance_velocity(
+                    full,
+                    weak,
+                    temporal_now,
+                    temporal_reference,
+                    latent,
+                    latent,
+                    time,
+                    reference_time,
+                    gamma=gamma,
+                    temporal_weight=boundary_weight,
+                )
+                self._record_rms(
+                    "marginal_scale_space_raw_velocity_gap_rms",
+                    temporal_now - temporal_reference,
+                )
+                self._record_rms(
+                    "marginal_scale_space_revision_rms",
+                    result - guided,
+                )
+                self._record_cosine(
+                    "marginal_scale_space_revision_ig_cosine",
+                    result - guided,
+                    guided,
+                )
+                self.diagnostics.setdefault(
+                    "marginal_scale_space_boundary_weight", []
+                ).append(float(boundary_weight))
+                return result
+
+            if self.component in {
+                "velocity_parameterization_transport",
+                "velocity_score_evolution",
+                "velocity_change_recomposed",
+            }:
+                weak_reference = evaluate_weak_only(
+                    future_time,
+                    latent,
+                    self.labels,
+                )
+                self.future_nfe += 1
+                parts = decompose_cross_time_velocity_change(
+                    weak,
+                    weak_reference,
+                    latent,
+                    time,
+                    future_time,
+                )
+                if self.component == "velocity_parameterization_transport":
+                    selected = parts.parameterization_transport
+                elif self.component == "velocity_score_evolution":
+                    selected = parts.score_evolution
+                else:
+                    selected = parts.total
+                result = guided + (1.0 + gamma) * selected
+                self._record_rms(
+                    "velocity_time_parameterization_transport_rms",
+                    parts.parameterization_transport,
+                )
+                self._record_rms(
+                    "velocity_time_score_evolution_rms",
+                    parts.score_evolution,
+                )
+                self._record_cosine(
+                    "velocity_time_component_cosine",
+                    parts.parameterization_transport,
+                    parts.score_evolution,
+                )
+                self._record_rms(
+                    "velocity_time_selected_revision_rms",
+                    result - guided,
                 )
                 return result
 
@@ -3204,6 +3837,16 @@ def worker(args: argparse.Namespace) -> None:
             "checkpoint": head.checkpoint,
             "checkpoint_sha256": head.checkpoint_sha256,
         },
+        "auxiliary_head": (
+            None
+            if depth8_head is None
+            else {
+                "depth": depth8_head.depth,
+                "prediction_target": depth8_head.prediction_target,
+                "checkpoint": depth8_head.checkpoint,
+                "checkpoint_sha256": depth8_head.checkpoint_sha256,
+            }
+        ),
         "noise_sha256": noise_hash.hexdigest(),
         "label_sha256": label_hash.hexdigest(),
         "strong_nfe": total_strong_nfe,

@@ -325,6 +325,8 @@ def test_projected_calibration_condition_has_closed_form_query() -> None:
     [
         ("weak_calibration_time_only", "information-time"),
         ("weak_calibration_characteristic", "frozen-Euler"),
+        ("weak_calibration_weak_characteristic", "W field"),
+        ("weak_calibration_strong_characteristic", "S field"),
         ("weak_calibration_projected_coupled", "same projected"),
     ],
 )
@@ -345,6 +347,127 @@ def test_calibration_query_geometry_controls_are_explicit(
     assert condition_from_payload(payload) == condition
 
 
+@pytest.mark.parametrize(
+    ("component", "anchor", "sign"),
+    [
+        ("weak_gap_transport_time_only", "weak", 1.0),
+        ("weak_gap_transport_projected", "weak", 1.0),
+        ("strong_gap_transport_projected", "strong", 1.0),
+        ("weak_gap_antitransport_projected", "weak", -1.0),
+    ],
+)
+def test_gap_transport_conditions_register_factorial_interaction(
+    component: str,
+    anchor: str,
+    sign: float,
+) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    assert condition.name == f"fmd_decomposition_{component}_h0p03125"
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["factorial_interaction"] == "Omega=(S(q)-W(q))-(S-W)"
+    assert material["common_mode_invariant"] is True
+    assert material["diagonal_consistent"] is True
+    assert material["anchor"] == anchor
+    assert material["interaction_sign"] == pytest.approx(sign)
+    assert material["extra_tuned_coefficients"] == 0
+    assert condition_from_payload(payload) == condition
+
+
+@pytest.mark.parametrize(
+    ("component", "reference_noise", "aligned", "parameterization"),
+    [
+        ("score_noisier_aligned", "noisier", True, "endpoint_normalized_score"),
+        (
+            "score_noisier_same_state",
+            "noisier",
+            False,
+            "endpoint_normalized_score",
+        ),
+        ("score_cleaner_aligned", "cleaner", True, "endpoint_normalized_score"),
+        ("velocity_noisier_aligned", "noisier", True, "raw_velocity"),
+    ],
+)
+def test_scale_space_conditions_register_density_semantics(
+    component: str,
+    reference_noise: str,
+    aligned: bool,
+    parameterization: str,
+) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    assert condition.name == f"fmd_decomposition_{component}_h0p03125"
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["reference_noise"] == reference_noise
+    assert material["endpoint_coordinate_aligned"] is aligned
+    assert material["parameterization"] == parameterization
+    if parameterization == "endpoint_normalized_score":
+        assert material["density_ratio_target"].startswith("q_S,current")
+    else:
+        assert material["density_ratio_target"] is None
+    assert material["extra_tuned_coefficients"] == 0
+    assert condition_from_payload(payload) == condition
+
+
+@pytest.mark.parametrize(
+    ("component", "branch", "reference_noise"),
+    [
+        ("marginal_score_weak_noisier", "weak", "noisier"),
+        ("marginal_score_strong_noisier", "strong", "noisier"),
+        ("marginal_score_weak_cleaner", "weak", "cleaner"),
+    ],
+)
+def test_marginal_scale_space_conditions_are_prior_compatible(
+    component: str,
+    branch: str,
+    reference_noise: str,
+) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    assert condition.name == f"fmd_decomposition_{component}_h0p03125"
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["temporal_branch"] == branch
+    assert material["reference_noise"] == reference_noise
+    assert material["coordinate_system"] == "path_marginal_z"
+    assert material["prior_boundary_taper"] == "min(1,t/H)"
+    assert condition_from_payload(payload) == condition
+
+
+@pytest.mark.parametrize(
+    "component",
+    [
+        "velocity_parameterization_transport",
+        "velocity_score_evolution",
+        "velocity_change_recomposed",
+    ],
+)
+def test_cross_time_velocity_components_register_exact_split(component: str) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    assert condition.name == f"fmd_decomposition_{component}_h0p03125"
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["exact_decomposition"].startswith("W_t-W_ref=")
+    assert material["reference_noise"] == "cleaner"
+    assert material["extra_tuned_coefficients"] == 0
+    assert condition_from_payload(payload) == condition
+
+
 def test_calibration_innovation_condition_residualizes_static_gap() -> None:
     condition = Condition(
         "fmd_weak_calibration_innovation_continuous",
@@ -358,6 +481,62 @@ def test_calibration_innovation_condition_residualizes_static_gap() -> None:
     material = payload["foresight_material_derivative"]
     assert material["extra_tuned_coefficients"] == 0
     assert "Proj_perp" in payload["foresight_residual_formula"]
+    assert condition_from_payload(payload) == condition
+
+
+@pytest.mark.parametrize(
+    ("component", "levels"),
+    [
+        ("weak_calibration_depth8_response", "depth8 response only"),
+        ("weak_calibration_telescoping_depth8", "depth4 -> depth8 -> full"),
+    ],
+)
+def test_counterfactual_depth_hierarchy_conditions_are_affine_and_anchored(
+    component: str,
+    levels: str,
+) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    assert condition.name == f"fmd_decomposition_{component}_h0p03125"
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["hierarchy_levels"] == levels
+    assert material["ordinary_ig_anchor"] == "exact when q=p"
+    assert material["affine_coefficient_sum"] == 1.0
+    assert material["extra_tuned_coefficients"] == 0
+    assert condition_from_payload(payload) == condition
+
+
+@pytest.mark.parametrize(
+    ("component", "ensemble"),
+    [
+        (
+            "weak_calibration_reference_geomean",
+            "equal time-only/projected references",
+        ),
+        (
+            "weak_calibration_horizon_geomean",
+            "equal half/full-horizon projected references",
+        ),
+    ],
+)
+def test_counterfactual_geomean_conditions_preserve_affine_closure(
+    component: str,
+    ensemble: str,
+) -> None:
+    condition = Condition(
+        f"fmd_{component}_continuous",
+        rho_first=0.03125,
+        residual_strength=0.0,
+    )
+    payload = condition.payload()
+    material = payload["foresight_material_derivative"]
+    assert material["reference_ensemble"] == ensemble
+    assert material["affine_coefficient_sum"] == 1.0
+    assert material["extra_tuned_coefficients"] == 0
     assert condition_from_payload(payload) == condition
 
 

@@ -1,0 +1,41 @@
+{
+  "args": {
+    "batch_size": 32,
+    "cache_dir": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/imagenet100_cmc_sdvae",
+    "data_root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow",
+    "device": "cuda:0",
+    "horizon": 0.03125,
+    "official_sit_repo": "/data/users/zhoushunyu/research_repos/SiT",
+    "output_root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/conserved_velocity_revision_audit_v1/seed20260903",
+    "samples": 512,
+    "seed": 20260903,
+    "times": [
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.47
+    ]
+  },
+  "format": "eqvae_conserved_velocity_revision_audit_v1",
+  "head": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1/runs/depth4_v/checkpoints/step_00050000.pt",
+    "checkpoint_sha256": "f33fca87577ad2f5e70470f05c1834811a28e7912aedcc26a3fdb8ae8c4fc5ad",
+    "depth": 4,
+    "prediction_target": "velocity"
+  },
+  "interpretation": "teacher-path MSE audit only; not an unconditional generation metric",
+  "strong": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373",
+    "denominator_floor": 0.001,
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "weights": "ema"
+  },
+  "target": "U=X-E shared by every time on the linear conditional path"
+}

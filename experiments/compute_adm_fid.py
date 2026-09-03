@@ -32,12 +32,26 @@ def _npz_keys(path: str) -> set[str]:
 
 def _stats_or_activations(evalr: adm_evaluator.Evaluator, path: str):
     keys = _npz_keys(path)
+    saved_activations = None
+    if {"pool_3", "spatial"}.issubset(keys):
+        with np.load(path) as obj:
+            saved_activations = (
+                np.asarray(obj["pool_3"]),
+                np.asarray(obj["spatial"]),
+            )
     if {"mu", "sigma", "mu_s", "sigma_s"}.issubset(keys):
-        obj = np.load(path)
+        with np.load(path) as obj:
+            return (
+                adm_evaluator.FIDStatistics(obj["mu"], obj["sigma"]),
+                adm_evaluator.FIDStatistics(obj["mu_s"], obj["sigma_s"]),
+                saved_activations,
+            )
+
+    if saved_activations is not None:
         return (
-            adm_evaluator.FIDStatistics(obj["mu"], obj["sigma"]),
-            adm_evaluator.FIDStatistics(obj["mu_s"], obj["sigma_s"]),
-            None,
+            evalr.compute_statistics(saved_activations[0]),
+            evalr.compute_statistics(saved_activations[1]),
+            saved_activations,
         )
 
     acts = evalr.read_activations(path)
@@ -107,6 +121,14 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--reference-activations-output",
+        default=None,
+        help=(
+            "Optionally cache reference pool_3 and spatial activations. The "
+            "result can be passed directly as --reference for precision/recall."
+        ),
+    )
+    parser.add_argument(
         "--precision-recall",
         action="store_true",
         help="Also compute ADM precision/recall. This is expensive for 50k samples.",
@@ -139,6 +161,17 @@ def main() -> None:
             raise ValueError("reference statistics output must differ from --reference")
         _save_statistics(stats_path, ref_stats, ref_stats_spatial)
         print(f"Cached reference statistics: {stats_path}")
+    if args.reference_activations_output:
+        if ref_acts is None:
+            raise ValueError(
+                "reference activations cannot be recovered from a statistics-only NPZ; "
+                "pass the original image NPZ as --reference"
+            )
+        activation_path = Path(args.reference_activations_output).expanduser().resolve()
+        if activation_path == Path(args.reference).expanduser().resolve():
+            raise ValueError("reference activations output must differ from --reference")
+        _save_activations(activation_path, ref_acts)
+        print(f"Cached reference activations: {activation_path}")
 
     print("Sample activations/statistics...")
     sample_stats, sample_stats_spatial, sample_acts = _stats_or_activations(evalr, args.samples)
@@ -149,13 +182,23 @@ def main() -> None:
         _save_activations(activation_path, sample_acts)
         print(f"Saved sample activations: {activation_path}")
 
+    fid = float(sample_stats.frechet_distance(ref_stats))
+    sfid = float(sample_stats_spatial.frechet_distance(ref_stats_spatial))
+    fid_mean = float(np.square(sample_stats.mu - ref_stats.mu).sum())
+    sfid_mean = float(
+        np.square(sample_stats_spatial.mu - ref_stats_spatial.mu).sum()
+    )
     metrics: dict[str, Any] = {
         "reference": args.reference,
         "samples": args.samples,
         "batch_size": args.batch_size,
         "gpu_memory_fraction": args.gpu_memory_fraction,
-        "fid": float(sample_stats.frechet_distance(ref_stats)),
-        "sfid": float(sample_stats_spatial.frechet_distance(ref_stats_spatial)),
+        "fid": fid,
+        "fid_mean_component": fid_mean,
+        "fid_covariance_component": fid - fid_mean,
+        "sfid": sfid,
+        "sfid_mean_component": sfid_mean,
+        "sfid_covariance_component": sfid - sfid_mean,
         "inception_score": float(evalr.compute_inception_score(sample_acts[0])),
     }
 

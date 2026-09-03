@@ -1,0 +1,32 @@
+{
+  "best": {
+    "condition": "projected_temporal_orthogonal",
+    "fid": 62.02447020243699,
+    "inception_score": 37.55605697631836,
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "query_shift_rms_mean": 0.004068290066629196,
+    "sfid": 206.41111916802652,
+    "total_nfe": 9298,
+    "total_query_nfe": 8396,
+    "weak_revision_rms_mean": 0.06876541703618262
+  },
+  "format": "eqvae_pfr_query_controls_fid_v1",
+  "pairing": {
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "verified": true
+  },
+  "protocol": {
+    "batch_size": 8,
+    "conditions": [
+      "projected_temporal_parallel",
+      "projected_temporal_orthogonal"
+    ],
+    "horizon": 0.03125,
+    "intervention_time": 0.5,
+    "num_samples": 1000,
+    "seed": 0
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_query_controls_v1/response_split_fid1k_seed0/summary.csv"
+}

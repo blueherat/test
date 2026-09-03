@@ -7,16 +7,23 @@ import torch
 
 from experiments.internal_guidance_path_extrapolation import (
     PathEndpointPair,
+    affine_counterfactual_ratio_velocity,
+    align_linear_path_state_to_endpoint_coordinate,
     calibration_split_foresight_velocity,
+    counterfactual_telescoping_velocity,
+    decompose_cross_time_velocity_change,
     decompose_endpoint_posterior_change,
     decompose_material_change,
     decompose_future_weak_drift,
     decompose_euler_foresight_roundtrip,
     extrapolate_path_endpoints,
+    endpoint_score_to_linear_velocity,
+    factorized_scale_space_guidance_velocity,
     finite_lie_bracket_change,
     forecast_weak_reference,
     foresight_weak_guidance,
     match_sample_rms,
+    marginal_score_to_linear_velocity,
     mix_characteristic_velocity,
     mix_material_curvature,
     project_per_sample,
@@ -25,7 +32,112 @@ from experiments.internal_guidance_path_extrapolation import (
     richardson_forward_change,
     sample_rms,
     split_internal_guidance,
+    telescoping_scale_space_guidance_velocity,
+    transported_internal_gap_velocity,
+    linear_velocity_to_endpoint_score,
+    linear_velocity_to_marginal_score,
 )
+
+
+def test_counterfactual_telescoping_single_transition_is_pfr() -> None:
+    generator = torch.Generator().manual_seed(1901)
+    weak = torch.randn(2, 4, 2, 2, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(weak)
+    query = torch.randn_like(weak)
+    observed = counterfactual_telescoping_velocity(
+        (weak, strong), (query,), gamma=0.7
+    )
+    expected = calibration_split_foresight_velocity(
+        strong, weak, query, gamma=0.7
+    )
+    torch.testing.assert_close(observed, expected, rtol=0, atol=0)
+
+
+def test_counterfactual_telescoping_collapsed_query_is_ordinary_ig() -> None:
+    generator = torch.Generator().manual_seed(1902)
+    shallow = torch.randn(2, 4, 2, 2, generator=generator, dtype=torch.float64)
+    middle = torch.randn_like(shallow)
+    strong = torch.randn_like(shallow)
+    gamma = 0.6
+    observed = counterfactual_telescoping_velocity(
+        (shallow, middle, strong),
+        (shallow, middle),
+        gamma=gamma,
+    )
+    expected = strong + gamma * (strong - shallow)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=2e-15)
+
+
+def test_counterfactual_telescoping_has_affine_score_closure() -> None:
+    generator = torch.Generator().manual_seed(1903)
+    state = torch.randn(2, 4, 2, 2, generator=generator, dtype=torch.float64)
+    shallow = torch.randn_like(state)
+    middle = torch.randn_like(state)
+    strong = torch.randn_like(state)
+    shallow_query = torch.randn_like(state)
+    middle_query = torch.randn_like(state)
+    gamma = 0.7
+    beta = 1.0 + gamma
+    time = 0.35
+    observed = counterfactual_telescoping_velocity(
+        (shallow, middle, strong),
+        (shallow_query, middle_query),
+        gamma=gamma,
+    )
+    observed_score = linear_velocity_to_marginal_score(observed, state, time)
+    score = lambda value: linear_velocity_to_marginal_score(value, state, time)
+    expected_score = score(shallow) + beta * (
+        score(middle) - score(shallow_query) + score(strong) - score(middle_query)
+    )
+    torch.testing.assert_close(observed_score, expected_score, rtol=0, atol=5e-14)
+
+
+def test_affine_counterfactual_single_reference_is_historical_pfr() -> None:
+    generator = torch.Generator().manual_seed(1801)
+    strong = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    weak = torch.randn_like(strong)
+    reference = torch.randn_like(strong)
+    observed = affine_counterfactual_ratio_velocity(
+        strong, weak, (reference,), (1.0,), gamma=0.7
+    )
+    expected = calibration_split_foresight_velocity(
+        strong, weak, reference, gamma=0.7
+    )
+    torch.testing.assert_close(observed, expected, rtol=0, atol=0)
+
+
+def test_affine_counterfactual_geomean_has_exact_score_closure() -> None:
+    generator = torch.Generator().manual_seed(1802)
+    state = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(state)
+    weak = torch.randn_like(state)
+    first = torch.randn_like(state)
+    second = torch.randn_like(state)
+    gamma = 0.6
+    time = 0.3
+    observed = affine_counterfactual_ratio_velocity(
+        strong, weak, (first, second), (0.5, 0.5), gamma=gamma
+    )
+    observed_score = linear_velocity_to_marginal_score(observed, state, time)
+    beta = 1.0 + gamma
+    expected_score = (
+        linear_velocity_to_marginal_score(weak, state, time)
+        + beta
+        * (
+            linear_velocity_to_marginal_score(strong, state, time)
+            - 0.5 * linear_velocity_to_marginal_score(first, state, time)
+            - 0.5 * linear_velocity_to_marginal_score(second, state, time)
+        )
+    )
+    torch.testing.assert_close(observed_score, expected_score, rtol=0, atol=3e-14)
+
+
+def test_affine_counterfactual_rejects_non_barycentric_references() -> None:
+    value = torch.randn(2, 3)
+    with pytest.raises(ValueError, match="sum to one"):
+        affine_counterfactual_ratio_velocity(
+            value, value, (value, value), (0.6, 0.6), gamma=0.7
+        )
 
 
 def test_internal_guidance_split_is_exact() -> None:
@@ -59,6 +171,298 @@ def test_calibration_split_foresight_has_theory_fixed_strength() -> None:
     guided = strong + gamma * (strong - weak_now)
     expected = guided + (1.0 + gamma) * (weak_now - weak_query)
     torch.testing.assert_close(observed, expected, rtol=0, atol=1e-12)
+
+
+def test_endpoint_score_velocity_conversion_is_exact() -> None:
+    generator = torch.Generator().manual_seed(1701)
+    state = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    velocity = torch.randn_like(state)
+    time = torch.tensor([0.2, 0.4, 0.7], dtype=torch.float64)
+    score = linear_velocity_to_endpoint_score(velocity, state, time)
+    recovered = endpoint_score_to_linear_velocity(score, state, time)
+    torch.testing.assert_close(recovered, velocity, rtol=0, atol=2e-14)
+
+
+def test_endpoint_coordinate_alignment_holds_state_over_time_fixed() -> None:
+    state = torch.tensor(
+        [[[2.0, -1.0]], [[0.5, 3.0]]], dtype=torch.float64
+    )
+    time = torch.tensor([0.4, 0.5], dtype=torch.float64)
+    reference_time = torch.tensor([0.2, 0.25], dtype=torch.float64)
+    aligned = align_linear_path_state_to_endpoint_coordinate(
+        state, time, reference_time
+    )
+    current_y = state / time.reshape(2, 1, 1)
+    reference_y = aligned / reference_time.reshape(2, 1, 1)
+    torch.testing.assert_close(reference_y, current_y, rtol=0, atol=1e-12)
+
+
+def test_telescoping_score_guidance_recovers_internal_guidance_at_same_time() -> None:
+    generator = torch.Generator().manual_seed(1702)
+    state = torch.randn(2, 4, 3, 3, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(state)
+    weak = torch.randn_like(state)
+    time = torch.tensor([0.3, 0.6], dtype=torch.float64)
+    gamma = 0.7
+    observed = telescoping_scale_space_guidance_velocity(
+        strong,
+        weak,
+        state,
+        state,
+        time,
+        time,
+        gamma=gamma,
+    )
+    expected = strong + gamma * (strong - weak)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=2e-14)
+
+
+def test_telescoping_score_guidance_has_exact_zero_gamma_anchor() -> None:
+    state = torch.randn(2, 4, 3, 3)
+    strong = torch.randn_like(state)
+    weak = torch.randn_like(state)
+    observed = telescoping_scale_space_guidance_velocity(
+        strong,
+        weak,
+        state,
+        state * 0.5,
+        0.4,
+        0.2,
+        gamma=0.0,
+    )
+    assert observed is strong
+
+
+def test_endpoint_score_conversion_rejects_singular_times() -> None:
+    state = torch.randn(2, 3)
+    with pytest.raises(ValueError, match="time in \\(0, 1\\)"):
+        linear_velocity_to_endpoint_score(state, state, 0.0)
+    with pytest.raises(ValueError, match="time in \\(0, 1\\)"):
+        endpoint_score_to_linear_velocity(state, state, 1.0)
+
+
+def test_marginal_score_velocity_conversion_is_exact() -> None:
+    generator = torch.Generator().manual_seed(1703)
+    state = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    velocity = torch.randn_like(state)
+    time = torch.tensor([0.1, 0.4, 0.8], dtype=torch.float64)
+    score = linear_velocity_to_marginal_score(velocity, state, time)
+    recovered = marginal_score_to_linear_velocity(score, state, time)
+    torch.testing.assert_close(recovered, velocity, rtol=0, atol=3e-14)
+
+
+def test_factorized_scale_space_zero_temporal_weight_is_ordinary_ig() -> None:
+    generator = torch.Generator().manual_seed(1704)
+    state = torch.randn(2, 4, 2, 2, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(state)
+    weak = torch.randn_like(state)
+    reference = torch.randn_like(state)
+    observed = factorized_scale_space_guidance_velocity(
+        strong,
+        weak,
+        weak,
+        reference,
+        state,
+        state,
+        0.3,
+        0.2,
+        gamma=0.7,
+        temporal_weight=0.0,
+    )
+    expected = strong + 0.7 * (strong - weak)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=0)
+
+
+def test_factorized_weak_ratio_telescopes_at_unit_weight() -> None:
+    generator = torch.Generator().manual_seed(1705)
+    state = torch.randn(2, 4, 2, 2, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(state)
+    weak = torch.randn_like(state)
+    weak_reference = torch.randn_like(state)
+    gamma = 0.6
+    time = 0.4
+    reference_time = 0.2
+    observed = factorized_scale_space_guidance_velocity(
+        strong,
+        weak,
+        weak,
+        weak_reference,
+        state,
+        state,
+        time,
+        reference_time,
+        gamma=gamma,
+        temporal_weight=1.0,
+    )
+    strong_score = linear_velocity_to_marginal_score(strong, state, time)
+    reference_score = linear_velocity_to_marginal_score(
+        weak_reference, state, reference_time
+    )
+    expected_score = strong_score + gamma * (strong_score - reference_score)
+    expected = marginal_score_to_linear_velocity(expected_score, state, time)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=3e-14)
+
+
+def test_factorized_scale_space_accepts_gaussian_prior_reference_at_time_zero() -> None:
+    state = torch.randn(2, 4, 2, 2, dtype=torch.float64)
+    velocity = torch.randn_like(state)
+    prior_score = linear_velocity_to_marginal_score(
+        velocity, state, 0.0
+    )
+    torch.testing.assert_close(prior_score, -state, rtol=0, atol=0)
+
+
+def test_cross_time_velocity_decomposition_is_exact() -> None:
+    generator = torch.Generator().manual_seed(1706)
+    state = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    velocity_now = torch.randn_like(state)
+    velocity_reference = torch.randn_like(state)
+    parts = decompose_cross_time_velocity_change(
+        velocity_now,
+        velocity_reference,
+        state,
+        torch.tensor([0.1, 0.2, 0.4], dtype=torch.float64),
+        torch.tensor([0.15, 0.25, 0.45], dtype=torch.float64),
+    )
+    torch.testing.assert_close(
+        parts.total,
+        velocity_now - velocity_reference,
+        rtol=0,
+        atol=5e-14,
+    )
+
+
+def test_parameterization_transport_holds_marginal_score_fixed() -> None:
+    state = torch.randn(2, 4, 2, 2, dtype=torch.float64)
+    velocity_now = torch.randn_like(state)
+    velocity_reference = torch.randn_like(state)
+    time_now = 0.2
+    time_reference = 0.3
+    parts = decompose_cross_time_velocity_change(
+        velocity_now,
+        velocity_reference,
+        state,
+        time_now,
+        time_reference,
+    )
+    transported = velocity_now - parts.parameterization_transport
+    score_now = linear_velocity_to_marginal_score(
+        velocity_now, state, time_now
+    )
+    score_transported = linear_velocity_to_marginal_score(
+        transported, state, time_reference
+    )
+    torch.testing.assert_close(score_transported, score_now, rtol=0, atol=2e-14)
+
+
+def test_recomposed_cross_time_change_matches_time_only_reference_revision() -> None:
+    generator = torch.Generator().manual_seed(2109)
+    state = torch.randn(3, 4, 2, 2, generator=generator, dtype=torch.float64)
+    strong = torch.randn_like(state)
+    weak_now = torch.randn_like(state)
+    weak_reference = torch.randn_like(state)
+    gamma = 0.7
+    parts = decompose_cross_time_velocity_change(
+        weak_now,
+        weak_reference,
+        state,
+        0.2,
+        0.23125,
+    )
+    recomposed = (
+        strong
+        + gamma * (strong - weak_now)
+        + (1.0 + gamma) * parts.total
+    )
+    expected = calibration_split_foresight_velocity(
+        strong,
+        weak_now,
+        weak_reference,
+        gamma=gamma,
+    )
+    torch.testing.assert_close(recomposed, expected, rtol=0, atol=2e-14)
+
+
+def test_transported_gap_is_aligned_query_refinement() -> None:
+    generator = torch.Generator().manual_seed(1407)
+    strong_now = torch.randn(2, 4, 3, 3, generator=generator, dtype=torch.float64)
+    weak_now = torch.randn_like(strong_now)
+    strong_query = torch.randn_like(strong_now)
+    weak_query = torch.randn_like(strong_now)
+    gamma = 0.7
+    observed = transported_internal_gap_velocity(
+        strong_now,
+        weak_now,
+        strong_query,
+        weak_query,
+        gamma=gamma,
+    )
+    expected = weak_now + (1.0 + gamma) * (strong_query - weak_query)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=1e-12)
+
+
+def test_transported_gap_recovers_ordinary_ig_at_identical_query() -> None:
+    strong = torch.randn(2, 4, 3, 3, dtype=torch.float64)
+    weak = torch.randn_like(strong)
+    gamma = 0.6
+    observed = transported_internal_gap_velocity(
+        strong,
+        weak,
+        strong,
+        weak,
+        gamma=gamma,
+    )
+    expected = strong + gamma * (strong - weak)
+    torch.testing.assert_close(observed, expected, rtol=0, atol=1e-12)
+
+
+def test_transported_gap_has_diagonal_consistency() -> None:
+    field_now = torch.randn(2, 4, 3, 3, dtype=torch.float64)
+    field_query = torch.randn_like(field_now)
+    observed = transported_internal_gap_velocity(
+        field_now,
+        field_now,
+        field_query,
+        field_query,
+        gamma=0.7,
+    )
+    torch.testing.assert_close(observed, field_now, rtol=0, atol=0)
+
+
+def test_transported_gap_extra_correction_is_common_mode_invariant() -> None:
+    generator = torch.Generator().manual_seed(1408)
+    strong_now = torch.randn(2, 4, 3, 3, generator=generator, dtype=torch.float64)
+    weak_now = torch.randn_like(strong_now)
+    strong_query = torch.randn_like(strong_now)
+    weak_query = torch.randn_like(strong_now)
+    common_now = torch.randn_like(strong_now)
+    common_query = torch.randn_like(strong_now)
+    gamma = 0.6
+
+    ordinary = strong_now + gamma * (strong_now - weak_now)
+    transported = transported_internal_gap_velocity(
+        strong_now,
+        weak_now,
+        strong_query,
+        weak_query,
+        gamma=gamma,
+    )
+    shifted_ordinary = (strong_now + common_now) + gamma * (
+        strong_now + common_now - weak_now - common_now
+    )
+    shifted_transported = transported_internal_gap_velocity(
+        strong_now + common_now,
+        weak_now + common_now,
+        strong_query + common_query,
+        weak_query + common_query,
+        gamma=gamma,
+    )
+    torch.testing.assert_close(
+        transported - ordinary,
+        shifted_transported - shifted_ordinary,
+        rtol=0,
+        atol=1e-12,
+    )
 
 
 def test_forward_ray_projection_is_the_constrained_minimizer() -> None:

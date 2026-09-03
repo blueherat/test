@@ -1,0 +1,32 @@
+{
+  "best": {
+    "condition": "projected_temporal_parallel",
+    "fid": 63.11118823785006,
+    "inception_score": 36.984256744384766,
+    "label_sha256": "3154f0b298968dd52c83cd7e713b6c67761996f06c34aa7f289cf7870b568952",
+    "noise_sha256": "cd954139529720fbf5fdf062abef0468746d80dcc9a9959279b12bfa7c453318",
+    "query_shift_rms_mean": 0.0041859996885678106,
+    "sfid": 205.22877352593787,
+    "total_nfe": 9436,
+    "total_query_nfe": 8488,
+    "weak_revision_rms_mean": 0.06395246118019138
+  },
+  "format": "eqvae_pfr_query_controls_fid_v1",
+  "pairing": {
+    "label_sha256": "3154f0b298968dd52c83cd7e713b6c67761996f06c34aa7f289cf7870b568952",
+    "noise_sha256": "cd954139529720fbf5fdf062abef0468746d80dcc9a9959279b12bfa7c453318",
+    "verified": true
+  },
+  "protocol": {
+    "batch_size": 8,
+    "conditions": [
+      "projected_temporal_parallel",
+      "projected_temporal_orthogonal"
+    ],
+    "horizon": 0.03125,
+    "intervention_time": 0.5,
+    "num_samples": 1000,
+    "seed": 1000003
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_query_controls_v1/response_split_fid1k_seed1/summary.csv"
+}

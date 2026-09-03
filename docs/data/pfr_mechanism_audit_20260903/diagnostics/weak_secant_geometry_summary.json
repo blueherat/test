@@ -1,0 +1,44 @@
+{
+  "allocator": {
+    "allocator_fraction": 0.25514023057716967,
+    "allocator_limit_gib": 6.0,
+    "device_total_memory_bytes": 25250627584
+  },
+  "cycle_test": "C0=beta*(S-W); E(C)=W(q(C))-W; compare beta*E(C0) with C1+beta*E(C1)-C0, C1=C0-beta*E(C0)",
+  "format": "eqvae_pfr_query_controls_geometry_v1",
+  "max_memory_allocated_bytes": 847016448,
+  "max_memory_reserved_bytes": 1138753536,
+  "protocol": {
+    "anchor_horizon": 0.03125,
+    "clock_anchor_time": 0.25,
+    "conditions": [
+      "projected",
+      "time_only",
+      "state_only",
+      "anti_projected",
+      "orthogonal_projected",
+      "donor_projected"
+    ],
+    "intervention_time": 0.5,
+    "num_samples": 128,
+    "query_clock": "raw_t",
+    "seed": 20260903,
+    "strong": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "times": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.46875
+    ],
+    "weak": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1/runs/depth4_v/checkpoints/step_00050000.pt",
+    "weights": "ema"
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_weak_secant_geometry_v1/n128_seed20260903/per_sample_query_geometry.csv",
+  "summary_rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_weak_secant_geometry_v1/n128_seed20260903/query_geometry_summary.csv"
+}

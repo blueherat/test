@@ -1,0 +1,85 @@
+{
+  "best": {
+    "fid": 61.924444086644996,
+    "formula": "G+r_pfr",
+    "inception_score": 37.05344772338867,
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "mode": "pfr_full",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "sfid": 206.53154384403433,
+    "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/calibration_split_ig_v1/canonical_ablation_fid1k/fmd_decomposition_weak_calibration_projected_h0p03125/condition_result.json"
+  },
+  "format": "eqvae_path_evidence_pfr_bridge_summary_v1",
+  "protocol": {
+    "atol": 1e-06,
+    "batch_size": 8,
+    "horizon": 0.03125,
+    "num_samples": 1000,
+    "paired": true,
+    "rtol": 0.001,
+    "seed": 0
+  },
+  "rows": [
+    {
+      "fid": 61.924444086644996,
+      "formula": "G+r_pfr",
+      "inception_score": 37.05344772338867,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "pfr_full",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 206.53154384403433,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/calibration_split_ig_v1/canonical_ablation_fid1k/fmd_decomposition_weak_calibration_projected_h0p03125/condition_result.json"
+    },
+    {
+      "fid": 63.59916234806661,
+      "formula": "G+r_pfr-Proj_uPE(r_pfr)",
+      "inception_score": 37.386688232421875,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "pfr_evidence_orthogonal",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 206.20413964490695,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/path_evidence_pfr_bridge_v1/fid1k/pfr_evidence_orthogonal/condition_result.json"
+    },
+    {
+      "fid": 64.31396261041186,
+      "formula": "G+Proj_uPE(r_pfr)",
+      "inception_score": 36.109771728515625,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "pfr_evidence_parallel",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 209.0859910904701,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/path_evidence_pfr_bridge_v1/fid1k/pfr_evidence_parallel/condition_result.json"
+    },
+    {
+      "fid": 64.85087470050013,
+      "formula": "G",
+      "inception_score": 35.70750045776367,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "ordinary_ig",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 208.90692084029263,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/internal_guidance_path_endpoint_v1/fid1k_coarse/ig_depth4_best_global/condition_result.json"
+    },
+    {
+      "fid": 72.71858180125491,
+      "formula": "G+RMS_match(u_PE,r_pfr)",
+      "inception_score": 34.06593704223633,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "evidence_rms_matched",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 217.380381422744,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/path_evidence_pfr_bridge_v1/fid1k/evidence_rms_matched/condition_result.json"
+    },
+    {
+      "fid": 92.3527621036551,
+      "formula": "G-RMS_match(u_PE,r_pfr)",
+      "inception_score": 24.49012565612793,
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+      "mode": "evidence_rms_matched_negative",
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "sfid": 234.90912148468874,
+      "source": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/path_evidence_pfr_bridge_v1/fid1k/evidence_rms_matched_negative/condition_result.json"
+    }
+  ],
+  "warning": "FID-1K is a screening metric; the evidence field is a deterministic proxy."
+}

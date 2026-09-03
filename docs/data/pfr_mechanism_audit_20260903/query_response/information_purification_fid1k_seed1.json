@@ -1,0 +1,39 @@
+{
+  "best": {
+    "fid": 61.762712601883266,
+    "inception_score": 37.41552734375,
+    "label_sha256": "f9c69f04b9c6b796c4476a6aa098ea86f1d57a9a663dd4c8da04fe4ca437968c",
+    "lambda": 1.0,
+    "noise_sha256": "fbc0d5c3c0e381fafdd7f050448d8e4fb6e64c534f8d88ca67769d771f54b05f",
+    "sfid": 206.3704102903447,
+    "total_nfe": 9238,
+    "total_query_nfe": 4226,
+    "weak_revision_gap_cosine_mean": 0.0034869778185588197,
+    "weak_revision_gap_parallel_energy_fraction_mean": 0.026777211269876672
+  },
+  "format": "eqvae_information_purification_fid_sweep_v1",
+  "formula": "G_lambda=G_IG-beta*lambda*(W_q-W_p)",
+  "pairing": {
+    "label_sha256": "f9c69f04b9c6b796c4476a6aa098ea86f1d57a9a663dd4c8da04fe4ca437968c",
+    "noise_sha256": "fbc0d5c3c0e381fafdd7f050448d8e4fb6e64c534f8d88ca67769d771f54b05f",
+    "verified": true
+  },
+  "protocol": {
+    "batch_size": 8,
+    "horizon": 0.03125,
+    "intervention_time": 0.5,
+    "num_samples": 1000,
+    "residualizations": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      2.0
+    ],
+    "seed": 1
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/information_purification_audit_v1/fid1k_seed1/summary.csv"
+}

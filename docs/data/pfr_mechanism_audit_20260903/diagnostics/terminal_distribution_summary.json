@@ -1,0 +1,47 @@
+{
+  "format": "eqvae_pfr_terminal_distribution_audit_v1",
+  "root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_distribution_audit_v1/seed0",
+  "conditions": [
+    "ordinary_ig",
+    "time_only",
+    "projected_temporal_parallel",
+    "projected_temporal_orthogonal",
+    "projected"
+  ],
+  "baseline": "ordinary_ig",
+  "sample_count": 1000,
+  "reference_count": 5000,
+  "reference_has_class_labels": false,
+  "quality_scope": "FID terms and ADM precision/recall are reference-backed; the within/between-class split is descriptive for generated requested labels only.",
+  "best_fid": {
+    "condition": "projected",
+    "sample_count": 1000,
+    "fid": 61.859459005650876,
+    "fid_mean_component": 5.358695983886719,
+    "fid_covariance_component": 56.50076302176416,
+    "sfid": 206.51904601842307,
+    "inception_score": 37.04521560668945,
+    "precision": 0.455,
+    "recall": 0.7058,
+    "feature_covariance_trace": 187.52665668910916,
+    "reference_covariance_trace": 180.97863489917316,
+    "feature_covariance_trace_ratio": 1.036181186765963,
+    "feature_effective_rank": 109.03746252870064,
+    "reference_effective_rank": 135.0580887091798,
+    "requested_class_count": 100.0,
+    "requested_class_min_count": 3.0,
+    "requested_class_max_count": 16.0,
+    "within_class_trace": 143.96615485708344,
+    "between_class_trace_per_sample": 57.82741807908728,
+    "between_total_scatter_fraction": 0.30836905589890484,
+    "fid_improvement_vs_baseline": 2.993192830849466,
+    "fid_mean_improvement_vs_baseline": 2.195810317993164,
+    "fid_covariance_improvement_vs_baseline": 0.7973825128563021,
+    "precision_change_vs_baseline": 0.028000000000000025,
+    "recall_change_vs_baseline": -0.027000000000000024
+  },
+  "tables": {
+    "distribution": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_distribution_audit_v1/seed0/terminal_distribution_summary.csv",
+    "paired_response": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_distribution_audit_v1/seed0/paired_feature_response.csv"
+  }
+}

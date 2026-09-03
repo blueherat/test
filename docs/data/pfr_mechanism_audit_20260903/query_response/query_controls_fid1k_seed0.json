@@ -1,0 +1,37 @@
+{
+  "best": {
+    "condition": "projected",
+    "fid": 61.85920747125374,
+    "inception_score": 37.04326629638672,
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "query_shift_rms_mean": 0.004101554904959399,
+    "sfid": 206.51953445048025,
+    "total_nfe": 9280,
+    "total_query_nfe": 4231,
+    "weak_revision_rms_mean": 0.06447242957154763
+  },
+  "format": "eqvae_pfr_query_controls_fid_v1",
+  "pairing": {
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "verified": true
+  },
+  "protocol": {
+    "batch_size": 8,
+    "conditions": [
+      "ordinary_ig",
+      "projected",
+      "time_only",
+      "state_only",
+      "anti_projected",
+      "orthogonal_projected",
+      "donor_projected"
+    ],
+    "horizon": 0.03125,
+    "intervention_time": 0.5,
+    "num_samples": 1000,
+    "seed": 0
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_query_controls_v1/fid1k_seed0/summary.csv"
+}
