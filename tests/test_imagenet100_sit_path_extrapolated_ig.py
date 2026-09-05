@@ -1,10 +1,22 @@
 from __future__ import annotations
 
 import json
+import sys
 from argparse import Namespace
+from pathlib import Path
 
 import pytest
 
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from experiments.batch_seed_schema import (
+    DEFAULT_BATCH_SEED_SCHEMA,
+    LEGACY_BATCH_SEED_SCHEMA,
+    batch_rng_manifest,
+)
 from experiments.run_imagenet100_sit_path_extrapolated_ig import (
     BASE_GAMMA_FIRST,
     BASE_GAMMA_SECOND,
@@ -1113,6 +1125,7 @@ def test_reusable_requires_matching_solver_and_retained_sample_protocol(
         "condition": condition.payload(),
         "sample_retained": False,
         "sampling_manifest": {
+            "batch_rng": batch_rng_manifest(0),
             "sampling": {
                 "integrator": "dopri5",
                 "num_samples": 1000,
@@ -1132,6 +1145,7 @@ def test_reusable_requires_matching_solver_and_retained_sample_protocol(
         num_samples=1000,
         batch_size=8,
         seed=0,
+        batch_seed_schema=DEFAULT_BATCH_SEED_SCHEMA,
         atol=1e-6,
         rtol=1e-3,
         keep_samples=False,
@@ -1147,4 +1161,10 @@ def test_reusable_requires_matching_solver_and_retained_sample_protocol(
     sample_path.touch()
     payload["sample_retained"] = True
     result_path.write_text(json.dumps(payload), encoding="utf-8")
+    assert reusable(result_path, condition, args)
+
+    payload["sampling_manifest"].pop("batch_rng")
+    result_path.write_text(json.dumps(payload), encoding="utf-8")
+    assert not reusable(result_path, condition, args)
+    args.batch_seed_schema = LEGACY_BATCH_SEED_SCHEMA
     assert reusable(result_path, condition, args)

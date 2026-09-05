@@ -191,6 +191,8 @@ def main() -> None:
     metrics: dict[str, Any] = {
         "reference": args.reference,
         "samples": args.samples,
+        "sample_count": int(len(sample_acts[0])),
+        "metric_name": f"ADM-FID-{len(sample_acts[0])}",
         "batch_size": args.batch_size,
         "gpu_memory_fraction": args.gpu_memory_fraction,
         "fid": fid,

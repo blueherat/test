@@ -1,0 +1,53 @@
+{
+  "format": "eqvae_pfr_nonoverlapping_fid5k_confirmation_v2",
+  "protocol": {
+    "num_samples": 5000,
+    "batch_size": 8,
+    "seed": 1000003,
+    "batch_rng_schema": "legacy_additive_v1",
+    "integrator": "dopri5",
+    "atol": 1e-6,
+    "rtol": 1e-3,
+    "query_clock": "raw_t",
+    "anchor_horizon": 0.03125,
+    "intervention_time": 0.5
+  },
+  "pairing": {
+    "verified": true,
+    "noise_sha256": "4c0b6f6a61b977baa437b807a000c9fd957192a437cfa12f6d8bfe19ea9aa496",
+    "label_sha256": "e8b9f4737e951b6df34a0b60c703aeb7c6721a1b599d4a949ecc85387690713a"
+  },
+  "rng_nonoverlap_from_historical_seed0_seed1": {
+    "verified_by_disjoint_batch_rng_seed_namespaces": true,
+    "historical_batch_rng_seeds": "0..625",
+    "confirmation_batch_rng_seeds": "1000003..1000627",
+    "shared_batch_rng_seed_count": 0
+  },
+  "ordinary_ig": {
+    "fid": 40.79826887107487,
+    "fid_mean_component": 7.749852180480957,
+    "fid_covariance_component": 33.04841669059391,
+    "sfid": 69.84802790808578,
+    "inception_score": 37.58319854736328,
+    "total_nfe": 42662
+  },
+  "projected_pfr": {
+    "fid": 37.64589791578919,
+    "fid_mean_component": 5.827590465545654,
+    "fid_covariance_component": 31.818307450243537,
+    "sfid": 70.63962093465011,
+    "inception_score": 40.56025314331055,
+    "total_nfe": 47270,
+    "total_query_nfe": 21339
+  },
+  "paired_effect": {
+    "fid_improvement": 3.152370955285682,
+    "fid_mean_component_improvement": 1.9222617149353027,
+    "fid_covariance_component_improvement": 1.2301092403503745,
+    "sfid_change": 0.7915930265643276,
+    "inception_score_improvement": 2.9770545959472656
+  },
+  "implementation": "Algebraically equivalent projected query-control runner; not byte-identical to the historical main-runner anchor.",
+  "selection_status": "The first 1K samples of seed 1000003 had already been inspected in query-control work, so this is not a fully blind bank.",
+  "scope": "RNG-disjoint from historical seed0/1 FID-5K banks; confirms an ordinary-vs-projected paired difference, not the old-oblique ranking, compute-matched superiority, or cross-model generalization."
+}

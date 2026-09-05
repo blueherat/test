@@ -14,9 +14,17 @@ import argparse
 import csv
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
 import numpy as np
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from experiments.pfr_counterfactual_residual_theory import terminal_mean_witness
 
 
 DEFAULT_CONDITIONS = (
@@ -128,10 +136,16 @@ def sample_cosine(first: np.ndarray, second: np.ndarray) -> np.ndarray:
 
 def main(args: argparse.Namespace) -> None:
     root = args.root.expanduser().resolve()
+    output = (
+        args.output_dir.expanduser().resolve()
+        if args.output_dir is not None
+        else root
+    )
     with np.load(args.reference_stats, allow_pickle=False) as payload:
         reference_trace, reference_effective_rank = covariance_scatter(payload["sigma"])
     with np.load(args.reference_activations, allow_pickle=False) as payload:
-        reference_count = int(len(payload["pool_3"]))
+        reference_features = np.asarray(payload["pool_3"], dtype=np.float32)
+        reference_count = int(len(reference_features))
 
     activations: dict[str, np.ndarray] = {}
     labels_by_condition: dict[str, np.ndarray] = {}
@@ -220,11 +234,94 @@ def main(args: argparse.Namespace) -> None:
             }
         )
 
-    write_csv(root / "terminal_distribution_summary.csv", rows)
-    write_csv(root / "paired_feature_response.csv", pair_rows)
+    witness_rows: list[dict[str, Any]] = []
+    split_indices = {
+        "full": (
+            np.arange(args.num_samples),
+            np.arange(reference_count),
+        ),
+        "even_split_half": (
+            np.arange(0, args.num_samples, 2),
+            np.arange(0, reference_count, 2),
+        ),
+        "odd_split_half": (
+            np.arange(1, args.num_samples, 2),
+            np.arange(1, reference_count, 2),
+        ),
+    }
+    for split, (generated_indices, reference_indices) in split_indices.items():
+        for condition in args.conditions:
+            if condition == args.baseline:
+                continue
+            witness = terminal_mean_witness(
+                reference_features[reference_indices],
+                baseline_features[generated_indices],
+                activations[condition][generated_indices],
+            )
+            witness_rows.append(
+                {
+                    "split": split,
+                    "condition": condition,
+                    "generated_count": len(generated_indices),
+                    "reference_count": len(reference_indices),
+                    **witness,
+                }
+            )
+
+    full_witness = {
+        str(row["condition"]): row
+        for row in witness_rows
+        if row["split"] == "full"
+    }
+    for row in rows:
+        condition = str(row["condition"])
+        if condition == args.baseline:
+            continue
+        if not np.isclose(
+            float(row["fid_mean_improvement_vs_baseline"]),
+            float(full_witness[condition]["mean_error_improvement"]),
+            rtol=1e-5,
+            atol=1e-5,
+        ):
+            raise RuntimeError("feature-mean witness does not match the FID mean term")
+
+    row_by_condition = {str(row["condition"]): row for row in rows}
+    fid_component_comparisons: dict[str, Any] | None = None
+    if {args.baseline, "time_only", "projected"} <= set(row_by_condition):
+        ordinary = row_by_condition[args.baseline]
+        time_only = row_by_condition["time_only"]
+        projected = row_by_condition["projected"]
+
+        def improvement(first: dict[str, Any], second: dict[str, Any]) -> dict[str, float]:
+            total = float(first["fid"] - second["fid"])
+            mean = float(first["fid_mean_component"] - second["fid_mean_component"])
+            covariance = float(
+                first["fid_covariance_component"]
+                - second["fid_covariance_component"]
+            )
+            return {
+                "fid_improvement": total,
+                "mean_component_improvement": mean,
+                "covariance_component_improvement": covariance,
+                "mean_fraction": mean / total,
+                "covariance_fraction": covariance / total,
+            }
+
+        fid_component_comparisons = {
+            "time_query_vs_ordinary": improvement(ordinary, time_only),
+            "spatial_increment_projected_vs_time_only": improvement(
+                time_only, projected
+            ),
+            "full_projected_vs_ordinary": improvement(ordinary, projected),
+        }
+
+    write_csv(output / "terminal_distribution_summary.csv", rows)
+    write_csv(output / "paired_feature_response.csv", pair_rows)
+    write_csv(output / "terminal_mean_witness.csv", witness_rows)
     summary = {
-        "format": "eqvae_pfr_terminal_distribution_audit_v1",
-        "root": str(root),
+        "format": "eqvae_pfr_terminal_distribution_audit_v2",
+        "source_root": str(root),
+        "output_root": str(output),
         "conditions": list(args.conditions),
         "baseline": args.baseline,
         "sample_count": args.num_samples,
@@ -235,18 +332,33 @@ def main(args: argparse.Namespace) -> None:
             "within/between-class split is descriptive for generated requested labels only."
         ),
         "best_fid": min(rows, key=lambda row: float(row["fid"])),
+        "fid_component_comparisons": fid_component_comparisons,
+        "terminal_mean_witness": {
+            "identity": (
+                "||mu_ref-mu_base||^2-||mu_ref-mu_candidate||^2 "
+                "=2<mu_ref-mu_base,mu_candidate-mu_base>"
+                "-||mu_candidate-mu_base||^2"
+            ),
+            "positive_mean_witness_on_both_disjoint_halves": all(
+                float(row["mean_error_improvement"]) > 0.0
+                for row in witness_rows
+                if row["split"] != "full"
+            ),
+        },
         "tables": {
-            "distribution": str(root / "terminal_distribution_summary.csv"),
-            "paired_response": str(root / "paired_feature_response.csv"),
+            "distribution": str(output / "terminal_distribution_summary.csv"),
+            "paired_response": str(output / "paired_feature_response.csv"),
+            "terminal_mean_witness": str(output / "terminal_mean_witness.csv"),
         },
     }
-    atomic_json(root / "terminal_distribution_summary.json", summary)
+    atomic_json(output / "terminal_distribution_summary.json", summary)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--reference-stats", type=Path, required=True)
     parser.add_argument("--reference-activations", type=Path, required=True)
     parser.add_argument("--conditions", type=parse_conditions, default=DEFAULT_CONDITIONS)

@@ -1,0 +1,33 @@
+{
+  "protocol": "raev2_pfr_exponential_retiming_v1",
+  "config": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+  "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "checkpoint_step": 100080,
+  "state_key": "ema",
+  "conditions": [
+    {
+      "name": "ou_weak_polar",
+      "guidance_scale": 1.78,
+      "horizon": 0.03125,
+      "revision_scale": 0.05,
+      "method": "ou_weak_polar_retiming"
+    }
+  ],
+  "sample_count": 1000,
+  "per_rank_batch": 8,
+  "sampling_seed": 20260904,
+  "precision": "bf16",
+  "allow_tf32": true,
+  "horizon_coordinate": "raw_time",
+  "revision_composition": "additive",
+  "world_size": 2,
+  "sampler_steps": 100,
+  "time_shift": 8.0,
+  "ig_interval": [
+    0.1,
+    1.0
+  ],
+  "transport_prediction": "x",
+  "transport_t_eps": 0.05
+}

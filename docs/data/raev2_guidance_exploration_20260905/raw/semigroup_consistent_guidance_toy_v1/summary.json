@@ -1,0 +1,77 @@
+{
+  "beta": 2.0,
+  "grid_size": 8192,
+  "time_steps": 1000,
+  "sample_count": 20000,
+  "max_variance": 36.0,
+  "endpoint_metrics": [
+    {
+      "method": "static",
+      "w1": 0.10038801411890518,
+      "w2": 0.17527273662896592,
+      "mean_error": 0.07139233935914692,
+      "std_error": 0.006437567025978197
+    },
+    {
+      "method": "local-risk",
+      "w1": 0.05763095669702084,
+      "w2": 0.12274345366730613,
+      "mean_error": 0.048993384742074805,
+      "std_error": 0.0034063426264585583
+    },
+    {
+      "method": "exact-semigroup",
+      "w1": 0.0023921327431174135,
+      "w2": 0.002701427871765625,
+      "mean_error": 0.0020298602231991064,
+      "std_error": 3.605625085301156e-05
+    }
+  ],
+  "score_identity": [
+    {
+      "heat_variance": 0.0,
+      "max_score_identity_error": 1.489561462619804e-06,
+      "correction_rms_under_target": 7.488743144693413e-07,
+      "local_correction_rms_under_target": 0.0,
+      "local_exact_weighted_cosine": 0.0,
+      "delta_spatial_range_on_support": 1.0119551419052186e-08
+    },
+    {
+      "heat_variance": 0.25,
+      "max_score_identity_error": 7.196315338181547e-05,
+      "correction_rms_under_target": 0.20175706638440338,
+      "local_correction_rms_under_target": 0.26295653270753633,
+      "local_exact_weighted_cosine": 0.8313166258387128,
+      "delta_spatial_range_on_support": 2.987424253922458
+    },
+    {
+      "heat_variance": 1.0,
+      "max_score_identity_error": 5.270112190036702e-06,
+      "correction_rms_under_target": 0.11300701935709082,
+      "local_correction_rms_under_target": 0.12537945565720454,
+      "local_exact_weighted_cosine": 0.7979972629036046,
+      "delta_spatial_range_on_support": 3.3373150033114802
+    },
+    {
+      "heat_variance": 4.0,
+      "max_score_identity_error": 3.7822161506467777e-06,
+      "correction_rms_under_target": 0.02100498442531641,
+      "local_correction_rms_under_target": 0.017320379032183163,
+      "local_exact_weighted_cosine": 0.66549272403181,
+      "delta_spatial_range_on_support": 1.770355167770782
+    },
+    {
+      "heat_variance": 36.0,
+      "max_score_identity_error": 4.882903350544865e-07,
+      "correction_rms_under_target": 0.0046867186415677714,
+      "local_correction_rms_under_target": 0.002899892489840705,
+      "local_exact_weighted_cosine": 0.20741350634057762,
+      "delta_spatial_range_on_support": 0.1853256184973907
+    }
+  ],
+  "interpretation": {
+    "static": "heat first, then power-mix noisy marginals",
+    "exact_semigroup": "power-tilt endpoint first, then heat-noise",
+    "local_risk": "lowest-order squared-relative-score correction"
+  }
+}

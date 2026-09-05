@@ -1,0 +1,42 @@
+{
+  "best": {
+    "condition": "ig_depth4_semigroup_local_jensen",
+    "fid": 75.80410203708641,
+    "fid_delta_vs_global": null,
+    "fsg_base_fraction": 0.0,
+    "guided_nfe": 9532,
+    "inception_score": 31.86330795288086,
+    "kind": "semigroup_local_jensen",
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "local_multiplier": 1.0,
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "partition_count": 2,
+    "probe_multiplier": 1.0,
+    "residual_strength": 0.0,
+    "rho_first": 1.0,
+    "rho_second": 1.0,
+    "roundtrip_iterations": 1,
+    "roundtrip_multiplier": 1.0,
+    "sfid": 220.89625924117604,
+    "strong_nfe": 5530,
+    "total_nfe": 15062,
+    "weak_nfe": 0
+  },
+  "format": "eqvae_path_extrapolated_internal_guidance_summary_v1",
+  "global_anchor": null,
+  "historical_depth4_best_fid1k": 64.85428230760442,
+  "pairing": {
+    "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6",
+    "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+    "verified": true
+  },
+  "protocol": {
+    "atol": 1e-06,
+    "batch_size": 8,
+    "num_samples": 1000,
+    "rtol": 0.001,
+    "seed": 0
+  },
+  "rows": "/data/users/zhoushunyu/eqvae/experiments/semigroup_local_jensen_sit_fid1k/summary/all_conditions.csv",
+  "scientific_question": "Can path-foresight information, after removing the duplicated local IG contrast, improve the best depth4 IG controller?"
+}

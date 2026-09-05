@@ -1,0 +1,41 @@
+{
+  "protocol": "raev2_flow_pullback_sampling_v1",
+  "mode": "raw_future",
+  "samples": 248,
+  "global_sample_count": 1000,
+  "local_sample_count": 248,
+  "shard_index": 1,
+  "num_shards": 4,
+  "seed": 202609051,
+  "batch_size": 8,
+  "world_size": 1,
+  "noise_sha256": "1b5671d1759797211611b71c96d6ca82292a0579a0059adf05f0d54f579c3222",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "initial_generator_sha256": "e27de5b85996d6100842113e54382678ce8bd5abb48041ceb47d3b02303b063b",
+  "final_generator_sha256": "d252c1f17138ea055e7c67167fc3d6e62eb598aa81a6ca078c07157a184e1930",
+  "archive_sha256": "70bc410a64f6beb69421885b43385d51461995d0a3f5ca81183987a91ede4259",
+  "elapsed_seconds": 321.9405572768301,
+  "sample_ids_sha256": "c79bd3edf34f5fe99226239bfc39abf0c3273c128bd3602a082f07dfd5d7f1a5",
+  "correction_steps_per_batch": 20,
+  "model_cost": {
+    "forward_invocations_by_phase": {
+      "solver": 3100,
+      "raw_forecast": 2480,
+      "raw_future_query": 620
+    },
+    "forward_sample_invocations_by_phase": {
+      "solver": 24800,
+      "raw_forecast": 19840,
+      "raw_future_query": 4960
+    },
+    "total_model_forward_invocations": 6200,
+    "total_model_forward_sample_invocations": 49600,
+    "input_vjp_calls": 0,
+    "input_vjp_samples": 0,
+    "pullback_primal_forward_invocations": 0,
+    "pullback_checkpoint_recompute_forward_invocations": 0,
+    "cost_unit_note": "Actual forward entries and input-VJP requests; checkpoint recomputation may stop early. These are not equal FLOP units."
+  },
+  "max_memory_allocated_bytes": 5528815104,
+  "complete": true
+}

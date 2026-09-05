@@ -218,6 +218,7 @@ def condition_from_payload(payload: dict[str, Any]) -> Condition:
 def load_repo_modules(repo: Path) -> dict[str, Any]:
     sys.path.insert(0, str(repo))
     from experiments.imagenet100_sit_multiscale_models import (
+        evaluate_internal_heads_only,
         evaluate_source_with_heads,
         load_internal_head_for_source,
         load_sit_field_model,

@@ -1,0 +1,23 @@
+{
+  "completed": 8,
+  "total": 8,
+  "elapsed_seconds": 22.32745762798004,
+  "estimated_remaining_seconds": 0.0,
+  "model_cost": {
+    "forward_invocations_by_phase": {
+      "solver": 100,
+      "pullback": 180
+    },
+    "forward_sample_invocations_by_phase": {
+      "solver": 800,
+      "pullback": 1440
+    },
+    "total_model_forward_invocations": 280,
+    "total_model_forward_sample_invocations": 2240,
+    "input_vjp_calls": 20,
+    "input_vjp_samples": 160,
+    "pullback_primal_forward_invocations": 100,
+    "pullback_checkpoint_recompute_forward_invocations": 80,
+    "cost_unit_note": "Actual forward entries and input-VJP requests; checkpoint recomputation may stop early. These are not equal FLOP units."
+  }
+}

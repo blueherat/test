@@ -180,9 +180,19 @@ def load_runtime(
 ) -> tuple[Runtime, dict[str, Any]]:
     paths = runtime_paths(repo, data, adm_python)
     modules = load_repo_modules(repo)
-    allocator = modules["configure_cuda_allocator"](
-        device, limit_gib=allocator_limit_gib
-    )
+    if allocator_limit_gib > 0.0:
+        allocator = modules["configure_cuda_allocator"](
+            device, limit_gib=allocator_limit_gib
+        )
+    else:
+        torch.cuda.reset_peak_memory_stats(device)
+        allocator = {
+            "allocator_limit_gib": None,
+            "allocator_fraction": None,
+            "device_total_memory_bytes": int(
+                torch.cuda.get_device_properties(device).total_memory
+            ),
+        }
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
     if hasattr(torch, "set_float32_matmul_precision"):

@@ -1,0 +1,78 @@
+{
+  "format": "eqvae_pfr_counterfactual_residual_theory_v2",
+  "parameters": {
+    "horizon": 0.03125,
+    "gamma_first": 0.6,
+    "gamma_second": 0.7,
+    "schedule_break": 0.25,
+    "intervention_end": 0.5,
+    "horizon_rule": "min(H, intervention_end-t)",
+    "weak_field": "1+k*(t-schedule_break)*(t-intervention_end)",
+    "weak_scale_k": -176.39332495962688,
+    "unscaled_response_integral": -0.005669148763020829,
+    "unscaled_squared_response_integral": 0.00016170744101206338,
+    "initial_distribution": "N(0,1)",
+    "target_distribution": "N(0,1)"
+  },
+  "ordinary_guidance": {
+    "field": "1",
+    "integrated_local_velocity_mse": 1.0,
+    "terminal_distribution": "N(1,1)",
+    "terminal_squared_w2_and_gaussian_fid": 1.0
+  },
+  "pfr": {
+    "field": "1-beta(t)*k*(psi(t+delta(t))-psi(t)) for t<intervention_end; 1 otherwise",
+    "formula": "G(t)-beta(t)*(W(t+min(H,intervention_end-t))-W(t)) for t<intervention_end; strong(t)=1 otherwise",
+    "integrated_local_velocity_mse": 4.03146316725536,
+    "terminal_distribution": "N(0,1)",
+    "terminal_squared_w2_and_gaussian_fid": 0.0
+  },
+  "exact_conclusion": "Schedule- and clamp-matched PFR strictly worsens time-integrated local velocity MSE while eliminating terminal distribution error. This disproves any general monotone implication from integrated local MSE to terminal risk, and this instance contains no numerical quadrature error.",
+  "scope": "Logical, state-independent specialization of the deployed temporal schedule, look-ahead clamp, and late strong-only switch; it does not assert that the constructed strong and weak fields are Bayes predictors.",
+  "historical_sampling_seed_audit": {
+    "fid5k_run_seed_0_vs_1": {
+      "rng_scheme": "manual_seed(run_seed + batch_index)",
+      "first_run_seed": 0,
+      "second_run_seed": 1,
+      "num_samples_per_run": 5000,
+      "batch_size": 8,
+      "batch_count_per_run": 625,
+      "shared_batch_rng_seed_count": 624,
+      "overlapping_sample_count": 4992,
+      "overlapping_sample_fraction": 0.9984,
+      "batch_rng_seed_disjoint": false
+    },
+    "fid1k_run_seed_0_vs_1": {
+      "rng_scheme": "manual_seed(run_seed + batch_index)",
+      "first_run_seed": 0,
+      "second_run_seed": 1,
+      "num_samples_per_run": 1000,
+      "batch_size": 8,
+      "batch_count_per_run": 125,
+      "shared_batch_rng_seed_count": 124,
+      "overlapping_sample_count": 992,
+      "overlapping_sample_fraction": 0.992,
+      "batch_rng_seed_disjoint": false
+    },
+    "query_control_seed_0_vs_1000003": {
+      "rng_scheme": "manual_seed(run_seed + batch_index)",
+      "first_run_seed": 0,
+      "second_run_seed": 1000003,
+      "num_samples_per_run": 1000,
+      "batch_size": 8,
+      "batch_count_per_run": 125,
+      "shared_batch_rng_seed_count": 0,
+      "overlapping_sample_count": 0,
+      "overlapping_sample_fraction": 0.0,
+      "batch_rng_seed_disjoint": true
+    }
+  },
+  "dense_grid_check": {
+    "grid_size": 4096,
+    "quadrature": "uniform midpoint",
+    "ordinary_endpoint_mean": 1.0,
+    "pfr_endpoint_mean": 4.654574020657165e-08,
+    "ordinary_local_velocity_mse": 1.0,
+    "pfr_local_velocity_mse": 4.0314619198439825
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "pairing_validated": true,
+  "baseline": "ordinary",
+  "interpretation": "FID-1K screen only; an independent bank is required for candidate confirmation",
+  "noise_sha256": "1b5671d1759797211611b71c96d6ca82292a0579a0059adf05f0d54f579c3222",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "rows": [
+    {
+      "condition": "ordinary",
+      "mode": "ordinary",
+      "grouping": "token",
+      "seed": 202609051,
+      "samples": 1000,
+      "fid": 38.735079617949,
+      "delta_fid": 0.0,
+      "relative_improvement_percent": 0.0,
+      "inception_score": 57.28434410095215,
+      "elapsed_seconds": 640.7528491129633,
+      "time_mean_active_radius_ratio": 1.061944045248394,
+      "time_mean_active_radial_energy_fraction": 0.06865658131287694,
+      "archive_sha256": "4d50199a5cdbb29844a911f741c4e28730bc5fb44c1d84588d61a273e409c6c4",
+      "paired": true
+    },
+    {
+      "condition": "radial",
+      "mode": "radial",
+      "grouping": "token",
+      "seed": 202609051,
+      "samples": 1000,
+      "fid": 38.63679647306236,
+      "delta_fid": -0.09828314488663636,
+      "relative_improvement_percent": 0.25373161964818597,
+      "inception_score": 56.521524810791014,
+      "elapsed_seconds": 650.7558736531064,
+      "time_mean_active_radius_ratio": 1.0394181741847035,
+      "time_mean_active_radial_energy_fraction": 0.053758101057914724,
+      "archive_sha256": "e8ea9c9a81628b6f7f6c2301a0082641cdca2c0b6a2c8f747de485b03aa1a4d1",
+      "paired": true
+    },
+    {
+      "condition": "retracted",
+      "mode": "retracted",
+      "grouping": "token",
+      "seed": 202609051,
+      "samples": 1000,
+      "fid": 39.689399791853646,
+      "delta_fid": 0.9543201739046481,
+      "relative_improvement_percent": -2.463710371366932,
+      "inception_score": 54.33773612976074,
+      "elapsed_seconds": 633.2149722748436,
+      "time_mean_active_radius_ratio": 1.000000007310214,
+      "time_mean_active_radial_energy_fraction": 0.08155807979011151,
+      "archive_sha256": "25b487ce70a82f35a556abb96d462dc8cd036af4235239d372c6834d38e1fc43",
+      "paired": true
+    },
+    {
+      "condition": "tangent",
+      "mode": "tangent",
+      "grouping": "token",
+      "seed": 202609051,
+      "samples": 1000,
+      "fid": 39.449084207249825,
+      "delta_fid": 0.7140045893008278,
+      "relative_improvement_percent": -1.8433022375148895,
+      "inception_score": 54.77687759399414,
+      "elapsed_seconds": 647.2713964190334,
+      "time_mean_active_radius_ratio": 1.0171412919324425,
+      "time_mean_active_radial_energy_fraction": 0.07945071155977548,
+      "archive_sha256": "e284a08b97fac65a04b351b704a7883ce7ee32a233721a30b0cef45f15a5fae4",
+      "paired": true
+    }
+  ]
+}

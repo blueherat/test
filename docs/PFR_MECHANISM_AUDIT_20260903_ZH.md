@@ -1,5 +1,13 @@
 # PFR 机制审计与反例归档
 
+> **同日 RNG 勘误与理论续篇。** 历史 FID-5K 及 lambda sweep 的 nominal
+> `seed=0/1` 分别共享 99.84% 与 99.2% 样本，不是独立重复；within-bank paired
+> 对比仍有效。query-control 的第二个 bank 实际 seed 为 `1000003`，与 seed0 不重叠，
+> 因而 projected 相对 time-only 的两个 RNG-disjoint bank 增量符号复现成立。新的不重叠
+> FID-5K ordinary/PFR 为
+> `40.7983/37.6459`。推导、RNG 修复与完整口径见
+> [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)。
+
 ## 1. 范围与结论边界
 
 本报告只整理截至 2026-09-03 已经完成的 PFR/IG 实验，不提出新的扫参计划，也不把尚未
@@ -59,7 +67,7 @@ G_{\rm PFR}(p)
 `62.9425`、`63.4923`、`63.9850`、`63.3731` 和 `63.5838`。因此空间方向的作用不是
 seed 0 的单次偶然，但它明显小于时间推进本身的作用。
 
-## 3. 反事实修订强度的可重复性
+## 3. 反事实修订强度的历史 bank 内响应曲线
 
 定义
 
@@ -67,7 +75,7 @@ seed 0 的单次偶然，但它明显小于时间推进本身的作用。
 G_\lambda=G_{\rm IG}-\beta\lambda[W(q)-W(p)].
 \]
 
-两次独立采样 seed 都显示从 `lambda=0` 到 `lambda=1` 的 FID 基本单调改善，超过 1 后
+两个高度重叠的历史采样 bank 都显示从 `lambda=0` 到 `lambda=1` 的 FID 基本单调改善，超过 1 后
 开始回升：
 
 | lambda | seed 0 FID-1K | seed 1 FID-1K |
@@ -81,12 +89,13 @@ G_\lambda=G_{\rm IG}-\beta\lambda[W(q)-W(p)].
 | 1.50 | 62.5468 | 62.4491 |
 | 2.00 | 65.7795 | 65.7901 |
 
-这证明 canonical 系数不是只靠单个 seed 的离散搜索挑出，但不能单独证明某种概率解释。
+这说明 `lambda=1` 在两个高度重叠历史 bank 的响应曲线上都处于谷底；它只提供邻近
+样本扰动下的稳定性线索，不是独立 sampling-seed 复现，也不能单独证明某种概率解释。
 
 ## 4. 时间响应与空间响应
 
 把 projected query 的弱头修订拆为纯时间响应以及空间增量，并将空间增量相对时间响应
-分成平行、正交部分。两个 seed 的 FID-1K 均值为：
+分成平行、正交部分。两个高度重叠历史 nominal bank 的 FID-1K 均值为：
 
 | 条件 | 平均 FID-1K |
 |---|---:|

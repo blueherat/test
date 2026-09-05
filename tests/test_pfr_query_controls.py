@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import sys
+from argparse import Namespace
 from pathlib import Path
 
 import pytest
@@ -11,6 +13,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from experiments.batch_seed_schema import (
+    DEFAULT_BATCH_SEED_SCHEMA,
+    LEGACY_BATCH_SEED_SCHEMA,
+    batch_rng_manifest,
+)
 from experiments.information_purification_ig import projected_information_query
 from experiments.pfr_query_controls import (
     controlled_information_query,
@@ -19,7 +26,10 @@ from experiments.pfr_query_controls import (
     response_odd_even,
     split_spatial_response,
 )
-from experiments.run_imagenet100_sit_pfr_query_controls import QueryControlledField
+from experiments.run_imagenet100_sit_pfr_query_controls import (
+    QueryControlledField,
+    result_reusable,
+)
 
 
 def _inputs(batch: int = 4):
@@ -204,3 +214,33 @@ def test_parallel_and_orthogonal_response_fields_exactly_recompose_pfr():
         atol=2e-6,
         rtol=2e-6,
     )
+
+
+def test_result_reuse_requires_the_requested_batch_rng_schema(tmp_path: Path) -> None:
+    result_path = tmp_path / "condition_result.json"
+    manifest = {
+        "sampling": {"num_samples": 1000, "batch_size": 8, "seed": 0},
+        "batch_rng": batch_rng_manifest(0),
+        "query": {"clock": "raw_t", "clock_anchor_time": 0.25},
+    }
+    result = {
+        "condition": "projected",
+        "sampling_manifest": manifest,
+        "metrics": {"fid": 1.0, "sfid": 2.0, "inception_score": 3.0},
+    }
+    args = Namespace(
+        num_samples=1000,
+        batch_size=8,
+        seed=0,
+        batch_seed_schema=DEFAULT_BATCH_SEED_SCHEMA,
+        query_clock="raw_t",
+        clock_anchor_time=0.25,
+    )
+    result_path.write_text(json.dumps(result), encoding="utf-8")
+    assert result_reusable(result_path, "projected", args)
+
+    manifest.pop("batch_rng")
+    result_path.write_text(json.dumps(result), encoding="utf-8")
+    assert not result_reusable(result_path, "projected", args)
+    args.batch_seed_schema = LEGACY_BATCH_SEED_SCHEMA
+    assert result_reusable(result_path, "projected", args)

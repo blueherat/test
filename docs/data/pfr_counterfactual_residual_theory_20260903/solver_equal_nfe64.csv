@@ -1,0 +1,16 @@
+condition,method,steps,corrections,nominal_nfe_per_batch,measured_total_nfe,fid,fid_delta_vs_dopri5
+depth4_ig_dopri5,dopri5,0,1,,8572,64.85239388469853,0.0
+depth4_ig_euler_n64,euler,64,1,64,8000,65.73873769424813,0.8863438095496008
+depth4_ig_heun_n32,heun,32,1,64,8000,65.60022653317986,0.7478326484813351
+depth4_ig_implicit_midpoint_n16_k3_r1,implicit_midpoint,16,3,64,8000,65.8490929223666,0.9966990376680656
+depth4_ig_implicit_midpoint_n32_k1_r1,implicit_midpoint,32,1,64,8000,64.99784009469846,0.14544620999993185
+depth4_ig_implicit_midpoint_n32_k2_r1,implicit_midpoint,32,2,96,12000,65.25746319115768,0.4050693064591542
+depth4_ig_implicit_midpoint_n32_k3_r1,implicit_midpoint,32,3,128,16000,65.33425579098787,0.481861906289339
+depth4_ig_implicit_trapezoid_n16_k3_r1,implicit_trapezoid,16,3,64,8000,65.74486113867488,0.8924672539763492
+depth4_ig_implicit_trapezoid_n32_k1_r1,implicit_trapezoid,32,1,64,8000,65.59959557796515,0.7472016932666179
+depth4_ig_implicit_trapezoid_n32_k2_r1,implicit_trapezoid,32,2,96,12000,65.32397516345742,0.4715812787588902
+depth4_ig_implicit_trapezoid_n32_k3_r1,implicit_trapezoid,32,3,128,16000,65.37752181912504,0.5251279344265072
+depth4_ig_backward_euler_n16_k3_r1,backward_euler,16,3,64,8000,78.29320563844021,13.440811753741684
+depth4_ig_backward_euler_n32_k1_r1,backward_euler,32,1,64,8000,68.18289586433104,3.3305019796325155
+depth4_ig_backward_euler_n32_k2_r1,backward_euler,32,2,96,12000,69.24090722265794,4.3885133379594095
+depth4_ig_backward_euler_n32_k3_r1,backward_euler,32,3,128,16000,69.71154141148008,4.859147526781555

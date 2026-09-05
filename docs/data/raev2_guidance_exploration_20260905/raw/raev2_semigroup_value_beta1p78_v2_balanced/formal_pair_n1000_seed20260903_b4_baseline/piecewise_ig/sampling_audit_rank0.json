@@ -1,0 +1,31 @@
+{
+  "protocol": "raev2_pfr_exponential_retiming_v1",
+  "condition": {
+    "name": "piecewise_ig",
+    "guidance_scale": 1.78,
+    "horizon": 0.0,
+    "revision_scale": 0.0,
+    "method": "retiming",
+    "mid_guidance_scale": null,
+    "guidance_min_time": 0.5,
+    "guidance_max_time": 1.0
+  },
+  "rank": 0,
+  "world_size": 1,
+  "sampling_seed": 20260903,
+  "sample_count": 1000,
+  "per_rank_batch": 4,
+  "precision": "bf16",
+  "allow_tf32": true,
+  "horizon_coordinate": "raw_time",
+  "revision_composition": "additive",
+  "initial_generator_sha256": "f31f1f22dd331f2696fc77d3e5b2e4a5174cc9a9e0709a4d0d7a3454e39ad353",
+  "final_generator_sha256": "2373cb3af548b6c465c64bdb318d4798bfbbbd7d0f885ff3f0ac29d6fd72c213",
+  "first_noise_sha256": "afa5474ba571a8bcf982b9ce21318b5d262642239928a15458d33caaa6bbd1ba",
+  "first_label_sha256": "a1e03200f1f82ad2c1cec8795c271aaecf98f5aa2d151d2229ec5fa0c177cf77",
+  "full_model_calls": 25000,
+  "base_prefix_calls": 0,
+  "elapsed_seconds": 823.1168874609284,
+  "max_memory_allocated_bytes": 5388036096,
+  "max_memory_reserved_bytes": 5844762624
+}

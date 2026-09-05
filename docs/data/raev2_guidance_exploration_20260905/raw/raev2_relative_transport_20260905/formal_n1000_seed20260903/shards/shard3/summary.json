@@ -1,0 +1,84 @@
+{
+  "protocol": "raev2_relative_transport_iteration_v1",
+  "samples": 248,
+  "global_sample_count": 1000,
+  "local_sample_count": 248,
+  "shard_index": 3,
+  "num_shards": 4,
+  "sample_ids_sha256": "cd4a1dd0aea6e3fda24830b5aaec9f452f3214a40bb87a456d240baac25dba1a",
+  "seed": 20260903,
+  "branches": {
+    "full": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/full/samples.npz",
+      "archive_sha256": "7be04aa46b048de9567a03b385b604cca488509bf093ee7b8cf70de6d8e7e426",
+      "samples": 248
+    },
+    "piecewise_ig": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/piecewise_ig/samples.npz",
+      "archive_sha256": "58c41d7e9c36b481e6bbd15ff144416cc90fb5d296a0893f480f5453a5e2f798",
+      "samples": 248
+    },
+    "local_double": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/local_double/samples.npz",
+      "archive_sha256": "75032ea923a7f8cf604f59704d3838ff98be3314810ba97115ff3e8042b0a0a5",
+      "samples": 248
+    },
+    "switch_linear": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/switch_linear/samples.npz",
+      "archive_sha256": "c3039867bcbc3bce9ef743d16c8367c81705008b0a31c37ce3d1daa329eae04b",
+      "samples": 248
+    },
+    "relative_iterate": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/relative_iterate/samples.npz",
+      "archive_sha256": "0409920a0d334688eb36d746067806177ff989498b2532c995c9d5feeaf911e8",
+      "samples": 248
+    },
+    "cycle_null": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/cycle_null/samples.npz",
+      "archive_sha256": "a2e6cec3a82c75f67ed58821124df766a4ecf15c0684095148c51e94fb85b13e",
+      "samples": 248
+    },
+    "cycle_guided": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3/cycle_guided/samples.npz",
+      "archive_sha256": "fb9676e882c61d199d5db26d9ae87c0d2e23c77235d156e9f8c0aa2e72c822eb",
+      "samples": 248
+    }
+  },
+  "initial_generator_sha256": "f31f1f22dd331f2696fc77d3e5b2e4a5174cc9a9e0709a4d0d7a3454e39ad353",
+  "final_generator_sha256": "ca9c8829e724dc5e1717d4870126effab08103ad27614ef3823618ddbdf05c5d",
+  "noise_sha256": "dd51673a5f594ecab78ea3433786fbb36a71bbb006d5873f4348e3718b03a8c6",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "effective_switch_time": 0.4971751570701599,
+  "call_counter": {
+    "prefix": 2759,
+    "prefix_sample_evaluations": 66216,
+    "inverse": 5676,
+    "inverse_sample_evaluations": 90816,
+    "reapply": 2759,
+    "reapply_sample_evaluations": 66216,
+    "suffix": 1364,
+    "suffix_sample_evaluations": 19096
+  },
+  "telemetry_mean": {
+    "inverse_maximum_iterations": 3.0,
+    "inverse_maximum_relative_residual": 0.0009617210072915881,
+    "signal_rms": 0.23054032171926192,
+    "second_increment_rms": 0.1457643263762997,
+    "inverse_noise_shift_rms": 0.11555013709491299,
+    "inverse_noise_shift_to_noise": 0.11556697925252299,
+    "null_noise_cycle_rms": 0.0020356142382708287,
+    "null_switch_cycle_rms": 0.033346775829071,
+    "guided_switch_cycle_rms": 0.012337663165864444,
+    "guided_cycle_to_signal": 0.04945950883050119,
+    "guided_cycle_to_second_increment": 0.06265841983258724
+  },
+  "last_batch_relative_noise": {
+    "mean": -2.017774386331439e-05,
+    "rms": 0.9929172396659851,
+    "sample_rms_mean": 0.9929159283638,
+    "sample_rms_max": 0.9950804114341736
+  },
+  "elapsed_seconds": 1585.5525259301066,
+  "max_memory_allocated_bytes": 6187227648,
+  "complete": true
+}

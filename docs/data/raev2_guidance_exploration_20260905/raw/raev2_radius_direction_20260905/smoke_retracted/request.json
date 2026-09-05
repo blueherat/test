@@ -1,0 +1,37 @@
+{
+  "protocol": "raev2_radius_direction_v1",
+  "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_radius_direction_20260905/smoke_retracted",
+  "mode": "retracted",
+  "grouping": "token",
+  "sample_count": 8,
+  "batch_size": 8,
+  "seed": 202609051,
+  "guidance_scale": 1.78,
+  "guidance_min_time": 0.1,
+  "guidance_max_time": 1.0,
+  "num_steps": 4,
+  "precision": "bf16",
+  "config": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+  "checkpoint": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+  "checkpoint_step": 100080,
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+  "state_key": "ema",
+  "world_size": 1,
+  "guidance_arithmetic": "fp32_clean_full_plus_beta_minus_one_gap",
+  "forward_layout": "single_conditional_batch",
+  "tf32": true,
+  "time_grid": [
+    1.0,
+    0.9599999785423279,
+    0.8888888955116272,
+    0.7272727489471436,
+    0.0
+  ],
+  "torch_version": "2.11.0+cu130",
+  "source_sha256": {
+    "sample_raev2_radius_guidance.py": "6e2f240c978a6ff42159d7a8a7ba7101dc4209dbd277db9692ca3d10289b88b0",
+    "raev2_radius_guidance.py": "4b257e5b619a1fd32c39f7e74e8a73a178c4ed51a975de54a9674104d92a284f",
+    "raev2_pfr_retiming.py": "be4339468cb183aa468ebbc817dcde0b33980086f6937a720dbfa1e8a86c0577"
+  }
+}

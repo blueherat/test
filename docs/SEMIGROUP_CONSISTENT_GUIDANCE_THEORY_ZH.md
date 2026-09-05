@@ -297,17 +297,19 @@ J_{g_v}(z,t)^{\mathsf T}g_v(z,t).
 
 ## 9. 已完成的解析 toy 证据
 
-在一维 Gaussian-mixture 解析实验中，目标是端点 power tilt 的真实分布。相同初始样本、
-相同 probability-flow 数值积分下：
+在一维 Gaussian-mixture 解析实验中，目标是端点 power tilt 的真实分布。稳定后的 v2
+使用相同初始样本与相同 probability-flow 数值积分：
 
 | 路径 | W1 | W2 |
 |---|---:|---:|
-| 普通 static score extrapolation | 0.100388 | 0.175273 |
-| 理论最低阶 local-risk 修正 | 0.057631 | 0.122743 |
-| 精确 semigroup-consistent score | **0.002392** | **0.002701** |
+| 普通 static score extrapolation | 0.037459 | 0.043640 |
+| 理论最低阶 local-risk 修正 | 0.016156 | 0.019532 |
+| learned soft-Bellman value | 0.002139 | 0.003977 |
+| 精确 semigroup-consistent score | **0.002110** | **0.002198** |
 
-精确 score 恒等式在有效密度区域的最大误差为 `1.5e-6` 到 `7.2e-5`。最低阶修正与
-精确修正的加权 cosine 随噪声增大从 `0.831`、`0.798`、`0.666` 降至 `0.207`。
+精确 score identity 的误差约为 `1e-6`。learned soft-Bellman 已接近 exact path，说明
+目标对象与跨时间聚合在可解分布中确实成立；它不证明 finite neural weak/strong gap
+满足同一个 semigroup 假设。
 
 这同时给出正、负两条预测：
 
@@ -315,7 +317,27 @@ J_{g_v}(z,t)^{\mathsf T}g_v(z,t).
 2. 只用局部项在高噪声区不够，若真实 SiT 首轮失败，正确升级不是扫一个增益，而是
    近似完整 Bellman/Feynman--Kac value。
 
-## 10. 与相邻工作的边界
+## 10. RAEv2 finite-model 检验
+
+RAEv2 上使用独立、均衡覆盖 1000 类的 switch bank 训练 4000 step。训练 loss 从约
+`4.5e-6` 降到 `4e-8--2e-7`，但 held-out Bellman 审计显示高噪声区失配迅速增大：
+`t=.80/.90/.99` 的 residual/target 分别约为 `2.49/6.59/51.34`；真实标签与
+permuted-label correction-gradient cosine 约为 `0.978`。这说明 value network 虽能拟合
+训练对象，其 correction 已主要退化为 class-agnostic plug-in signal。
+
+同 seed、同 batch size 的配对 1K 正式采样为：
+
+| condition | FID-1K | IS |
+|---|---:|---:|
+| piecewise IG | **39.370218** | **57.111010** |
+| semigroup value | 40.667069 | 55.720657 |
+
+两路 generator 与首批 noise/label 哈希完全一致。semigroup correction 平均 RMS 为
+`0.193813`，相对 ordinary clean RMS 的均值约 `0.2881`，并非数值上消失；但 FID
+恶化 `1.296851`，IS 同时下降。于是“exact-density 下的合法 semigroup correction”
+没有穿过当前 finite internal-head 近似，按预注册规则停止，不扫额外 scale，也不做 5K。
+
+## 11. 与相邻工作的边界
 
 - **AutoGuidance** 给出 local density-ratio force，但不要求各噪声层对应同一个合法端点
   noising path。
@@ -329,7 +351,7 @@ J_{g_v}(z,t)^{\mathsf T}g_v(z,t).
   不能任意宣称存在全局 density ratio potential。本推导的严格部分针对合法 score 模型；
   SiT 内部弱头实验是对 finite-model 近似是否仍有用的实证检验，不能把假设偷换成定理。
 
-## 11. 清晰的停止标准
+## 12. 停止标准与实际裁决
 
 首轮 SiT 只检验零新增自由参数的 local correction：
 
@@ -338,12 +360,12 @@ v_{\rm SCG-local}
 =S+\gamma(S-W)+\Delta v_{\rm local}.
 \]
 
-若它在配对 1K 上改善，说明 conditional-Jensen 方向已能穿过 finite-model 误差，随后训练
-或蒸馏完整 scalar value。若它主要在高噪声区失效且与 toy 的误差随 \(\tau\) 增长一致，
-则直接进入完整 value approximation。若修正方向与解析预测、模型尺度变化均不一致，
-则该 score-consistent 理论不适合当前 internal head，停止把它包装为 IG 解释。
+local correction 的早期检验推动了完整 scalar value approximation；完整 value 随后在
+held-out Bellman 审计和配对 1K 质量上同时失败。实际裁决因此是：保留 exact-density
+恒等式和解析 toy 作为理论边界，但停止把当前 finite internal-head gap 包装为该
+posterior Rényi value 的可靠估计，不再继续扩参。
 
-## 12. 参考
+## 13. 参考
 
 - Karras et al., *Guiding a Diffusion Model with a Bad Version of Itself*,
   <https://arxiv.org/abs/2406.02507>.

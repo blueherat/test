@@ -1,0 +1,21 @@
+{
+  "protocol": "raev2_pfr_exponential_retiming_v1",
+  "condition": {
+    "name": "piecewise_ig",
+    "guidance_scale": 1.78,
+    "horizon": 0.0,
+    "revision_scale": 0.0,
+    "method": "retiming",
+    "mid_guidance_scale": null,
+    "guidance_min_time": 0.5,
+    "guidance_max_time": 1.0
+  },
+  "samples": 1000,
+  "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_semigroup_value_beta1p78_v2_balanced/formal_pair_n1000_seed20260903_b4_baseline/piecewise_ig/samples.npz",
+  "archive_sha256": "93e2a455e9c6d0bc9cf5722352564f96b036f9e4e6248f07e60e956055dbc5b9",
+  "checkpoint_step": 100080,
+  "state_key": "ema",
+  "total_full_model_calls": 25000,
+  "total_base_prefix_calls": 0,
+  "max_rank_elapsed_seconds": 823.1168874609284
+}

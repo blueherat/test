@@ -1,0 +1,96 @@
+{
+  "protocol": "raev2_pfr_rotation_grid_v1",
+  "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "checkpoint_step": 100080,
+  "samples": 32,
+  "batch_size": 2,
+  "seed": 20260906,
+  "precision": "bf16",
+  "guidance_scale": 1.78,
+  "horizon_coordinate": "log_odds",
+  "horizons": [
+    0.6931471805599453
+  ],
+  "rows": [
+    {
+      "requested_time": 0.95,
+      "actual_time": 0.9491525292396545,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.9032257826655765,
+      "revision_to_depth_rms": 1.4847244527190924,
+      "revision_depth_cosine": 0.018895415450970177,
+      "revision_parallel_coefficient": 0.025801249168580398,
+      "revision_orthogonal_energy_fraction": 0.9970346931368113,
+      "additive_norm_ratio": 1.8088224492967129,
+      "additive_rotation_degrees": 54.963589906692505,
+      "orthogonal_rotation_degrees": 55.6060266494751
+    },
+    {
+      "requested_time": 0.8,
+      "actual_time": 0.7975830435752869,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.6633165303546897,
+      "revision_to_depth_rms": 1.4496153928339481,
+      "revision_depth_cosine": 0.010867910736124031,
+      "revision_parallel_coefficient": 0.0155523363246175,
+      "revision_orthogonal_energy_fraction": 0.9992988519370556,
+      "additive_norm_ratio": 1.7709446363151073,
+      "additive_rotation_degrees": 54.88232886791229,
+      "orthogonal_rotation_degrees": 55.286757946014404
+    },
+    {
+      "requested_time": 0.6,
+      "actual_time": 0.6037735939025879,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.43243244166266237,
+      "revision_to_depth_rms": 1.1419763136655092,
+      "revision_depth_cosine": -0.024464527043164708,
+      "revision_parallel_coefficient": -0.027773711386544164,
+      "revision_orthogonal_energy_fraction": 0.9991140514612198,
+      "additive_norm_ratio": 1.5006571896374226,
+      "additive_rotation_degrees": 49.47589457035065,
+      "orthogonal_rotation_degrees": 48.67590582370758
+    },
+    {
+      "requested_time": 0.4,
+      "actual_time": 0.41025641560554504,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.2580645203621405,
+      "revision_to_depth_rms": 1.0036004707217216,
+      "revision_depth_cosine": -0.025127449887804687,
+      "revision_parallel_coefficient": -0.025214033405063674,
+      "revision_orthogonal_energy_fraction": 0.9992029964923859,
+      "additive_norm_ratio": 1.3992604427039623,
+      "additive_rotation_degrees": 45.79007375240326,
+      "orthogonal_rotation_degrees": 45.05729925632477
+    },
+    {
+      "requested_time": 0.2,
+      "actual_time": 0.1983470916748047,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.11009173340673417,
+      "revision_to_depth_rms": 1.0231202095746994,
+      "revision_depth_cosine": 0.4733515586704016,
+      "revision_parallel_coefficient": 0.48369250632822514,
+      "revision_orthogonal_energy_fraction": 0.7739329133182764,
+      "additive_norm_ratio": 1.7361441776156425,
+      "additive_rotation_degrees": 31.254868805408478,
+      "orthogonal_rotation_degrees": 41.96514940261841
+    },
+    {
+      "requested_time": 0.14,
+      "actual_time": 0.14035087823867798,
+      "horizon": 0.6931471805599453,
+      "future_time": 0.1,
+      "revision_to_depth_rms": 0.5580765530467033,
+      "revision_depth_cosine": 0.558423351496458,
+      "revision_parallel_coefficient": 0.3112969323992729,
+      "revision_orthogonal_energy_fraction": 0.6873245015740395,
+      "additive_norm_ratio": 1.390754897147417,
+      "additive_rotation_degrees": 19.439471304416656,
+      "orthogonal_rotation_degrees": 24.825275599956512
+    }
+  ],
+  "max_memory_allocated_bytes": 3682542592
+}

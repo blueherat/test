@@ -1,0 +1,76 @@
+{
+  "format": "eqvae_pfr_terminal_distribution_audit_v2",
+  "source_root": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/pfr_distribution_audit_v1/seed0",
+  "output_root": "/home/zhoushunyu/eqvae/docs/data/pfr_counterfactual_residual_theory_20260903/terminal_observable_audit",
+  "conditions": [
+    "ordinary_ig",
+    "time_only",
+    "projected_temporal_parallel",
+    "projected_temporal_orthogonal",
+    "projected"
+  ],
+  "baseline": "ordinary_ig",
+  "sample_count": 1000,
+  "reference_count": 5000,
+  "reference_has_class_labels": false,
+  "quality_scope": "FID terms and ADM precision/recall are reference-backed; the within/between-class split is descriptive for generated requested labels only.",
+  "best_fid": {
+    "condition": "projected",
+    "sample_count": 1000,
+    "fid": 61.859459005650876,
+    "fid_mean_component": 5.358695983886719,
+    "fid_covariance_component": 56.50076302176416,
+    "sfid": 206.51904601842307,
+    "inception_score": 37.04521560668945,
+    "precision": 0.455,
+    "recall": 0.7058,
+    "feature_covariance_trace": 187.52665668910916,
+    "reference_covariance_trace": 180.97863489917316,
+    "feature_covariance_trace_ratio": 1.036181186765963,
+    "feature_effective_rank": 109.03746252870064,
+    "reference_effective_rank": 135.0580887091798,
+    "requested_class_count": 100.0,
+    "requested_class_min_count": 3.0,
+    "requested_class_max_count": 16.0,
+    "within_class_trace": 143.96615485708344,
+    "between_class_trace_per_sample": 57.82741807908728,
+    "between_total_scatter_fraction": 0.30836905589890484,
+    "fid_improvement_vs_baseline": 2.993192830849466,
+    "fid_mean_improvement_vs_baseline": 2.195810317993164,
+    "fid_covariance_improvement_vs_baseline": 0.7973825128563021,
+    "precision_change_vs_baseline": 0.028000000000000025,
+    "recall_change_vs_baseline": -0.027000000000000024
+  },
+  "fid_component_comparisons": {
+    "time_query_vs_ordinary": {
+      "fid_improvement": 2.3450924028120994,
+      "mean_component_improvement": 2.1321725845336914,
+      "covariance_component_improvement": 0.212919818278408,
+      "mean_fraction": 0.9092062137836928,
+      "covariance_fraction": 0.09079378621630724
+    },
+    "spatial_increment_projected_vs_time_only": {
+      "fid_improvement": 0.6481004280373668,
+      "mean_component_improvement": 0.06363773345947266,
+      "covariance_component_improvement": 0.5844626945778941,
+      "mean_fraction": 0.09819116097822353,
+      "covariance_fraction": 0.9018088390217764
+    },
+    "full_projected_vs_ordinary": {
+      "fid_improvement": 2.993192830849466,
+      "mean_component_improvement": 2.195810317993164,
+      "covariance_component_improvement": 0.7973825128563021,
+      "mean_fraction": 0.7336013555030447,
+      "covariance_fraction": 0.2663986444969553
+    }
+  },
+  "terminal_mean_witness": {
+    "identity": "||mu_ref-mu_base||^2-||mu_ref-mu_candidate||^2 =2<mu_ref-mu_base,mu_candidate-mu_base>-||mu_candidate-mu_base||^2",
+    "positive_mean_witness_on_both_disjoint_halves": true
+  },
+  "tables": {
+    "distribution": "/home/zhoushunyu/eqvae/docs/data/pfr_counterfactual_residual_theory_20260903/terminal_observable_audit/terminal_distribution_summary.csv",
+    "paired_response": "/home/zhoushunyu/eqvae/docs/data/pfr_counterfactual_residual_theory_20260903/terminal_observable_audit/paired_feature_response.csv",
+    "terminal_mean_witness": "/home/zhoushunyu/eqvae/docs/data/pfr_counterfactual_residual_theory_20260903/terminal_observable_audit/terminal_mean_witness.csv"
+  }
+}

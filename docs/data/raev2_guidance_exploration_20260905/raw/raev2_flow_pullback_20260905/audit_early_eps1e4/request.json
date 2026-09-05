@@ -1,0 +1,30 @@
+{
+  "protocol": "raev2_flow_pullback_audit_v1",
+  "seed": 202609053,
+  "samples": 8,
+  "horizon": 0.03125,
+  "epsilon": 0.0001,
+  "precision": "fp32_no_tf32",
+  "current_trajectory": "ordinary_ig_beta1.78",
+  "future_flow": "full",
+  "indices": [
+    4,
+    11,
+    20
+  ],
+  "requested_times": [
+    0.995,
+    0.985,
+    0.97
+  ],
+  "substeps": [
+    4,
+    8
+  ],
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "source_sha256": {
+    "audit_raev2_flow_pullback.py": "6fd118d9e3a6a88282ae901e2c3dacb4270fcaa51aff4404ff708b53bb16b6ee",
+    "raev2_flow_pullback.py": "ced04ad37f39f135305c66d57fb9089f4916771e0dedfb90fdcbac927ce85578"
+  },
+  "provisional_gate": "median pullback/raw cosine < .99; K4/K8 cosine > .99; finite-work relative error < .05"
+}

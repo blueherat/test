@@ -249,6 +249,52 @@ def evaluate_internal_head_only(
     )
 
 
+def evaluate_internal_heads_only(
+    model: nn.Module,
+    state: torch.Tensor,
+    time_value: torch.Tensor,
+    labels: torch.Tensor,
+    *,
+    heads: dict[str, InternalHeadSpec],
+) -> dict[str, torch.Tensor]:
+    """Evaluate multiple internal heads in one shared prefix traversal."""
+
+    if not heads:
+        raise ValueError("at least one internal head is required")
+    block_count = len(model.blocks)
+    required_depths = {spec.depth for spec in heads.values()}
+    if any(depth < 1 or depth > block_count for depth in required_depths):
+        raise ValueError("requested readout depth lies outside the source backbone")
+
+    tokens, conditioning = embed_sit_inputs(model, state, time_value, labels)
+    heads_by_depth: dict[int, list[InternalHeadSpec]] = {}
+    for spec in heads.values():
+        heads_by_depth.setdefault(spec.depth, []).append(spec)
+    trained: dict[str, torch.Tensor] = {}
+    final_depth = max(required_depths)
+    for depth, block in enumerate(model.blocks, start=1):
+        tokens = block(tokens, conditioning)
+        for spec in heads_by_depth.get(depth, []):
+            prediction = internal_velocity_from_features(
+                model,
+                spec.module,
+                tokens,
+                conditioning,
+                latent_channels=LATENT_SHAPE[0],
+            )
+            trained[spec.name] = internal_prediction_to_velocity(
+                prediction,
+                state=state,
+                time_value=time_value,
+                spec=spec,
+            )
+        if depth == final_depth:
+            break
+    if set(trained) != set(heads):
+        raise RuntimeError("not all trained heads were evaluated")
+    return trained
+
+
 def _source_output_from_tokens(
     model: nn.Module,
     tokens: torch.Tensor,

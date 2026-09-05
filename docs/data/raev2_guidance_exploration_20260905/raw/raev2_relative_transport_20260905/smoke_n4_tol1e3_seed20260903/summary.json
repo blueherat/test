@@ -1,0 +1,79 @@
+{
+  "protocol": "raev2_relative_transport_iteration_v1",
+  "samples": 4,
+  "seed": 20260903,
+  "branches": {
+    "full": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/full/samples.npz",
+      "archive_sha256": "4ad1c1a509cec30cc70a04e6befa6be3d2d2890002d527c2143ce689419fac00",
+      "samples": 4
+    },
+    "piecewise_ig": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/piecewise_ig/samples.npz",
+      "archive_sha256": "5d3dba042366f731329a0f5ce2604754c7ca26cbde23b2b6ff216396e6a7aa87",
+      "samples": 4
+    },
+    "local_double": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/local_double/samples.npz",
+      "archive_sha256": "eb73f3f0b4e8e8ddbc585e6b4aae3dc9d855dae15fc65cd8a207b77714b21802",
+      "samples": 4
+    },
+    "switch_linear": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/switch_linear/samples.npz",
+      "archive_sha256": "25f29f1bac396028f0520af6784cb114201b7622ef7834599a8f149bca40a15c",
+      "samples": 4
+    },
+    "relative_iterate": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/relative_iterate/samples.npz",
+      "archive_sha256": "7394312a5f867d2c86139b33d39ed545b4f6d576ae2905264d1783618a5188bf",
+      "samples": 4
+    },
+    "cycle_null": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/cycle_null/samples.npz",
+      "archive_sha256": "bad87ca4bbcd6f19da87b3bd7055e97b4b7aedb2ab8487b6a4064a02b4f2190c",
+      "samples": 4
+    },
+    "cycle_guided": {
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/smoke_n4_tol1e3_seed20260903/cycle_guided/samples.npz",
+      "archive_sha256": "c9fdfb18d7e12f4b7ef858e3bd11fe3029987e5a4e88590da535bc27103b6984",
+      "samples": 4
+    }
+  },
+  "initial_generator_sha256": "f31f1f22dd331f2696fc77d3e5b2e4a5174cc9a9e0709a4d0d7a3454e39ad353",
+  "final_generator_sha256": "60c5b402dd9a765e576ae7797deb537c89af1c66ad518b926bc089bc0ffa5bb4",
+  "noise_sha256": "afa5474ba571a8bcf982b9ce21318b5d262642239928a15458d33caaa6bbd1ba",
+  "labels_sha256": "a1e03200f1f82ad2c1cec8795c271aaecf98f5aa2d151d2229ec5fa0c177cf77",
+  "effective_switch_time": 0.4971751570701599,
+  "call_counter": {
+    "prefix": 89,
+    "prefix_sample_evaluations": 1068,
+    "inverse": 183,
+    "inverse_sample_evaluations": 1464,
+    "reapply": 89,
+    "reapply_sample_evaluations": 1068,
+    "suffix": 44,
+    "suffix_sample_evaluations": 308
+  },
+  "telemetry_mean": {
+    "inverse_maximum_iterations": 3.0,
+    "inverse_maximum_relative_residual": 0.0009738542139530182,
+    "signal_rms": 0.21809619665145874,
+    "second_increment_rms": 0.11988284438848495,
+    "inverse_noise_shift_rms": 0.1146760806441307,
+    "inverse_noise_shift_to_noise": 0.11468057334423065,
+    "null_noise_cycle_rms": 0.0020817918702960014,
+    "null_switch_cycle_rms": 0.021160881966352463,
+    "guided_switch_cycle_rms": 0.0020167839247733355,
+    "guided_cycle_to_signal": 0.0102291414514184,
+    "guided_cycle_to_second_increment": 0.01735355705022812
+  },
+  "last_batch_relative_noise": {
+    "mean": 0.0008345682872459292,
+    "rms": 0.9940562844276428,
+    "sample_rms_mean": 0.9940558671951294,
+    "sample_rms_max": 0.9955140948295593
+  },
+  "elapsed_seconds": 56.86995957093313,
+  "max_memory_allocated_bytes": 5652595200,
+  "complete": true
+}

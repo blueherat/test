@@ -1,5 +1,13 @@
 # Projected Future-Reference Internal Guidance
 
+> **2026-09-03 理论与 RNG 勘误。** “reference staleness / 更匹配未来状态”现已被
+> characteristic-query 与 teacher-MSE 实验否定，不再是推荐解释；推荐主线是
+> counterfactual weak-reference residualization 的 terminal-risk analysis，包括
+> boundary、schedule-jump 与 cross-Jacobian 分解，见
+> [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)。
+> 本文历史 FID-5K `seed=0/1` 又共享 4992/5000 个样本，故 paired 方法差有效，但
+> “两个独立 seed”无效；新的不重叠 bank 得到 ordinary/PFR `40.7983/37.6459`。
+
 ## 1. 研究目标
 
 这条方法不再从经验式
@@ -324,8 +332,9 @@ hierarchy 修正 weak reference lag，不要求两个头相等。
 | 1 | 36.496253 | 36.440152 | **36.343097** |
 | 均值 | 36.500336 | 36.440849 | **36.347029** |
 
-PFR-IG 相对旧最优降低 `0.153307` FID，并且两个 sampling seed 的结果只差
-`0.007864`。相对 depth-4 IG 的 `39.946776`，均值降低 `3.599747`。
+PFR-IG 相对旧最优降低 `0.153307` FID；两个高度重叠的历史 nominal bank 数值只差
+`0.007864`，但这不是独立重复。相对 depth-4 IG 的 `39.946776`，均值降低
+`3.599747`。
 
 其他 ADM 指标并非全线同向：
 

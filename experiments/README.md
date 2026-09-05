@@ -1,5 +1,28 @@
 # Research experiments
 
+## Active mainline: Projected Future Reference
+
+The active inference-time guidance line is PFR.  Its current interpretation is
+counterfactual reference residualization / weak-response precompensation, not
+a higher-order ODE solver or a more accurate future posterior.  Start with
+[`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](../docs/PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)
+and the falsification ledger in
+[`PFR_MECHANISM_AUDIT_20260903_ZH.md`](../docs/PFR_MECHANISM_AUDIT_20260903_ZH.md).
+
+The smallest new reproducible checks are:
+
+```bash
+pytest -q tests/test_pfr_counterfactual_residual_theory.py \
+  tests/test_analyze_pfr_terminal_distribution.py
+python experiments/pfr_counterfactual_residual_theory.py \
+  --output-dir docs/data/pfr_counterfactual_residual_theory_20260903
+```
+
+Historical adjacent run seeds used an overlapping per-batch RNG namespace.
+Do not describe seed `0/1` FID banks as independent; use the versioned
+namespaced RNG scheme for new runs and explicit legacy mode only for exact
+historical reproduction.
+
 ## Paused mainline snapshot: model-relative bad/good trajectory metrics
 
 > Paused on 2026-08-28 by user request. No command in this section is currently
@@ -576,3 +599,31 @@ semantic reweighting audits instead localize most of the 256d decoded gap to
 fine-mode/covariance mismatch. Exact evidence and interpretation boundaries are
 recorded in
 [`IMAGENETTE_DECODER_AMPLIFICATION_RESULTS_ZH.md`](../docs/IMAGENETTE_DECODER_AMPLIFICATION_RESULTS_ZH.md).
+
+## RAEv2 guidance theory archive
+
+The 2026-09-05 RAEv2 archive keeps the complete chain of PFR transfer and
+theory-driven controls in
+[`RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md`](../docs/RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md).
+The main executable families are:
+
+- `sample_raev2_pfr_retiming.py` and `raev2_pfr_retiming.py`: raw PFR and
+  retiming variants;
+- `sample_raev2_depth_condition_guidance.py`: calibrated piecewise IG and
+  depth/condition controls;
+- `train_raev2_semigroup_value.py`, `sample_raev2_semigroup_value.py`, and
+  `audit_raev2_semigroup_value.py`: balanced semigroup-value training,
+  held-out audit, and paired sampling;
+- `sample_raev2_radius_guidance.py` and `summarize_raev2_radius_screen.py`:
+  radial, tangential, and norm-retraction controls;
+- `sample_raev2_flow_pullback.py` and `audit_raev2_flow_pullback.py`: future
+  query and Jacobian-transpose pullback;
+- `sample_raev2_relative_transport.py`, `raev2_relative_transport.py`, and
+  `merge_raev2_relative_transport_shards.py`: finite relative flow-map
+  iteration, first-order controls, inverse-cycle telemetry, and shard merge;
+- `evaluate_raev2_official_samples.py`: common `nanogen-evals` FID/IS wrapper.
+
+The compact evidence bundle is
+[`docs/data/raev2_guidance_exploration_20260905/`](../docs/data/raev2_guidance_exploration_20260905/).
+Generated samples, feature banks, checkpoints, and evaluator caches are not
+stored in Git.

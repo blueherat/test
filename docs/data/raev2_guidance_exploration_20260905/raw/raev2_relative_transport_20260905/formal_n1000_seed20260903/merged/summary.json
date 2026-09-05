@@ -1,0 +1,53 @@
+{
+  "protocol": "raev2_relative_transport_iteration_merge_v1",
+  "source_protocol": "raev2_relative_transport_iteration_v1",
+  "shard_root": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards",
+  "shards": [
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard0",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard1",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard2",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/shards/shard3"
+  ],
+  "samples": 1000,
+  "seed": 20260903,
+  "noise_sha256": "dd51673a5f594ecab78ea3433786fbb36a71bbb006d5873f4348e3718b03a8c6",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "branches": {
+    "full": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/full/samples.npz",
+      "archive_sha256": "8e0c6c10522277da9222846e2de81feedf1d35fe26fc2a056b56722d4f68a1f2"
+    },
+    "piecewise_ig": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/piecewise_ig/samples.npz",
+      "archive_sha256": "15cd6cc1cd4ea74da785c910beda5c89515beb83d1c70b2c893a33c7fb25e7b4"
+    },
+    "local_double": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/local_double/samples.npz",
+      "archive_sha256": "a62b6cf7b92094345dfd0e9d7df32a96390e79395ba25f0e52040331d28b029d"
+    },
+    "switch_linear": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/switch_linear/samples.npz",
+      "archive_sha256": "05835587faf85a2317de3c080f9dba02e5560a69857c2c72a336d3005692fd2d"
+    },
+    "relative_iterate": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/relative_iterate/samples.npz",
+      "archive_sha256": "fd14cfc6859323a8f81e6aafb9e30e3f45def1b78117fce5d17ac45bb850e0ec"
+    },
+    "cycle_null": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/cycle_null/samples.npz",
+      "archive_sha256": "4ca827382d541f13892311986364a8b94a94b2ed0427b390a57d878035f97d7b"
+    },
+    "cycle_guided": {
+      "samples": 1000,
+      "archive": "/data/users/zhoushunyu/eqvae/experiments/raev2_relative_transport_20260905/formal_n1000_seed20260903/merged/cycle_guided/samples.npz",
+      "archive_sha256": "7b09ad173159e60d4475848a540b5191212a45936a9ceb8744b85e8baa88f71d"
+    }
+  },
+  "complete": true
+}

@@ -1,0 +1,29 @@
+{
+  "completed": 248,
+  "total": 248,
+  "global_sample_count": 1000,
+  "shard_index": 3,
+  "num_shards": 4,
+  "global_rng_samples_consumed": 992,
+  "elapsed_seconds": 319.62853102595545,
+  "estimated_remaining_seconds": 0.0,
+  "model_cost": {
+    "forward_invocations_by_phase": {
+      "solver": 3100,
+      "raw_forecast": 2480,
+      "raw_future_query": 620
+    },
+    "forward_sample_invocations_by_phase": {
+      "solver": 24800,
+      "raw_forecast": 19840,
+      "raw_future_query": 4960
+    },
+    "total_model_forward_invocations": 6200,
+    "total_model_forward_sample_invocations": 49600,
+    "input_vjp_calls": 0,
+    "input_vjp_samples": 0,
+    "pullback_primal_forward_invocations": 0,
+    "pullback_checkpoint_recompute_forward_invocations": 0,
+    "cost_unit_note": "Actual forward entries and input-VJP requests; checkpoint recomputation may stop early. These are not equal FLOP units."
+  }
+}

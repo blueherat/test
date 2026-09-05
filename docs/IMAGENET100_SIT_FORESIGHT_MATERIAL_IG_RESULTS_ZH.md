@@ -1,5 +1,11 @@
 # ImageNet-100 SiT 前瞻物质导数 Internal Guidance
 
+> **2026-09-03 RNG 勘误。** 本文历史 FID-5K `seed=0/1` 使用
+> `manual_seed(run_seed + batch_index)`，实际共享 4992/5000 个样本，不能称为两个
+> 独立 sampling seeds；同一 bank 内的方法配对仍有效。一个与历史 bank 不重叠的 5K
+> 确认得到 ordinary/PFR `40.7983/37.6459`。新理论、完整影响范围与修复见
+> [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)。
+
 ## 一、结论
 
 本轮只研究 Internal Guidance（IG）。我们没有把 Foresight Fixed Point
@@ -46,12 +52,13 @@ G(z,t)=S(z,t)+\gamma(t)\left[S(z,t)-W_4(z,t)\right].
 | 1 | 39.939969 | **37.929577** | **-2.010392** |
 | 均值 | 39.946776 | **37.937009** | **-2.009767（-5.03%）** |
 
-两套独立采样 bank 上，FID 改善几乎相同；sFID 均值从 `69.925170` 降到
-`68.040809`，IS 均值从 `36.852156` 升到 `37.793234`。这超过了本轮严格配对的
-depth4 最优解，也低于仓库此前所有已登记的 IG FID-5K 结果。
+两套历史 nominal 采样 bank 上，FID 改善几乎相同；但它们共享 4992/5000 个样本，
+不能当作独立重复。sFID 均值从 `69.925170` 降到 `68.040809`，IS 均值从
+`36.852156` 升到 `37.793234`。这超过了本轮严格配对的 depth4 最优解，也低于仓库
+此前所有已登记的 IG FID-5K 结果。
 
-这仍然是一个训练 seed、两个 sampling seed、FID-5K 的内部研究结论，不等同于
-ImageNet-1K FID-50K 或多训练 seed 结论。
+这仍然是一个训练 seed、两个高度重叠的 nominal sampling bank、FID-5K 的内部研究
+结论，不等同于独立采样复现、ImageNet-1K FID-50K 或多训练 seed 结论。
 
 ## 二、为什么不能直接照搬 FSG
 
@@ -284,8 +291,9 @@ future query 为约 `1.999 ms`，即 future query 约为完整 forward 的 `39.1
    往返中包含一个重复放大 local gap 的项。
 2. 删除重复局部项后，弱头沿预测 IG 路径的有限变化是稳定有效的新信息。
 3. 最优超参数在短 horizon 下近似服从 `kappa=eta*H`，与物质导数展开一致。
-4. 该方法在两个独立 sampling seed 上同时改善 FID、sFID 和 IS，并超过既有 depth4
-   配对最优解。
+4. 该方法在两个高度重叠的历史 sampling bank 上同时改善 FID、sFID 和 IS，并超过既有
+   depth4 配对最优解；这只支持 paired 排序，不构成两次独立复现。新的不重叠 5K bank
+   单独确认了 ordinary→PFR 的 FID/IS 改善，但没有确认本文 FMD 的跨 bank 排名。
 
 当前证据不支持：
 
@@ -293,7 +301,8 @@ future query 为约 `1.999 ms`，即 future query 约为完整 forward 的 `39.1
 2. 不能声称 `-D_GW4` 是真实误差或 Bayes correction；它只是可计算的路径前瞻量。
 3. 不能由一个训练 seed、ImageNet-100 和 FID-5K 推广到其他模型、数据集或正式
    FID-50K。
-4. 两个 sampling seed 不是两个训练 seed，也不是统计置信区间。
+4. 两个高度重叠的 nominal sampling bank 不是独立重复，更不是两个训练 seed 或统计
+   置信区间。
 
 ## 八、代码与数据
 

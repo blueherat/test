@@ -1,5 +1,36 @@
 # Research Status
 
+> **RAEv2 guidance theory archive closed — 2026-09-05.** The SiT PFR/OU
+> certificate remains a strong within-model result, but it did not transfer to
+> RAEv2 at formal 5K.  The follow-up RAEv2 mechanisms are now fully archived:
+> semigroup value, future-flow pullback, radial/tangential decomposition, and
+> relative flow-map iteration all failed their paired 1K release gates.  The
+> strongest reproducible lightweight RAEv2 result in this phase is still the
+> piecewise internal-guidance schedule; its two 1K banks improve only about
+> 0.5%, not the requested 5%.  See
+> [`RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md`](RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md)
+> and its compact machine-readable bundle under
+> [`data/raev2_guidance_exploration_20260905/`](data/raev2_guidance_exploration_20260905/).
+
+> **Active PFR mainline — 2026-09-03.** The current inference-time guidance
+> result is Projected Future Reference (PFR), not the paused DiT bad/good line
+> below.  The new theory treats PFR as counterfactual weak-reference
+> residualization with a boundary/schedule-jump/cross-Jacobian terminal-risk
+> decomposition, rather than
+> as a numerical-integration or more-accurate-posterior method.  Derivation,
+> exact counterexample, terminal ADM audit, non-overlapping FID-5K confirmation,
+> and claim limits are in
+> [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md).
+> The previous mechanism ledger remains
+> [`PFR_MECHANISM_AUDIT_20260903_ZH.md`](PFR_MECHANISM_AUDIT_20260903_ZH.md).
+>
+> A repository-wide RNG audit also found that historical adjacent run seeds
+> `0/1` shared 99.84% of the FID-5K sample bank under the legacy
+> `seed + batch_index` scheme.  Their within-bank paired method comparisons
+> remain valid, but they are not independent replications.  A disjoint
+> `seed=1000003` FID-5K bank confirms ordinary IG `40.7983` versus PFR
+> `37.6459`; future sampling uses a versioned namespaced RNG schema.
+
 > **Pause notice — 2026-08-28.** The DiT model-relative bad/good line is
 > paused by user request. No sampling, model download, metric search, or
 > intervention experiment is active. Statements such as “current”, “now”, or

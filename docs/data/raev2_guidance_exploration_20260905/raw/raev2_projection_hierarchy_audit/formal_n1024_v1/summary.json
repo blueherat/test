@@ -1,0 +1,44 @@
+{
+  "hypothesis": "base/full approximately form nested L2 projections; this audit tests normal-equation geometry only and does not imply that extrapolation improves generation",
+  "active_min_time": 0.5,
+  "times": 100,
+  "active_times": 89,
+  "active_correlation": {
+    "base_gap_correlation": {
+      "min": -0.054214933262379035,
+      "mean": -0.00824029540661596,
+      "max": 0.04162290355385985
+    },
+    "residual_gap_correlation": {
+      "min": -0.021073979849625217,
+      "mean": -0.011044891046076026,
+      "max": -0.006270583777156805
+    },
+    "residual_full_correlation": {
+      "min": -7.740138393702745e-05,
+      "mean": 0.0009217117292299669,
+      "max": 0.00779853335705722
+    }
+  },
+  "active_scale_ranges": {
+    "mse_optimal_scale_from_base": {
+      "min": 0.7690949703028294,
+      "mean": 0.9576193262026682,
+      "max": 0.9802211973204399
+    },
+    "target_second_moment_scale_from_base": {
+      "min": 2.043728732770529,
+      "mean": 3.7043998889091974,
+      "max": 11.252542373689602
+    }
+  },
+  "interpretation_boundary": [
+    "Near-zero cross terms support projection-like geometry, not literal nested sigma-fields.",
+    "The MSE-optimal scale should remain near one for an accurate posterior mean.",
+    "The target-second-moment scale folds irreducible posterior variance into the estimate and must not be used as a sampler scale without an approximation-tail model."
+  ],
+  "protocol": "raev2_projection_hierarchy_audit_v1",
+  "source": "/data/users/zhoushunyu/eqvae/experiments/spectral_ig_mechanism_v3_formal_1k/02_teacher_forced/teacher_forced_merged.npz",
+  "samples": 1024,
+  "bands": 3
+}

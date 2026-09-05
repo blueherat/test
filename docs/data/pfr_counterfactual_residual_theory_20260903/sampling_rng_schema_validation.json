@@ -1,0 +1,50 @@
+{
+  "format": "eqvae_pfr_sampling_rng_schema_validation_v1",
+  "legacy_schema": {
+    "name": "legacy_additive_v1",
+    "formula": "batch_seed=run_seed+batch_index",
+    "fid5k_seed0_seed1": {
+      "shared_batches": 624,
+      "batches_per_run": 625,
+      "overlapping_samples": 4992,
+      "samples_per_run": 5000,
+      "overlap_fraction": 0.9984,
+      "retained_pfr_labels_shift_exact": true
+    },
+    "fid1k_seed0_seed1": {
+      "shared_batches": 124,
+      "batches_per_run": 125,
+      "overlapping_samples": 992,
+      "samples_per_run": 1000,
+      "overlap_fraction": 0.992
+    }
+  },
+  "fixed_schema": {
+    "name": "namespaced_v2",
+    "formula": "batch_seed=(uint64(run_seed)<<32)|uint64(batch_index)",
+    "distinct_uint32_run_namespaces_are_disjoint": true,
+    "default_for_new_runs": true,
+    "explicit_legacy_replay_available": true
+  },
+  "cuda_stream_validation_n1000_b8": {
+    "namespaced_v2_seed0": {
+      "noise_sha256": "ab8419c7fdfd5b15dacbf4d37a3d567158e4332f25fd94580d3df73bac87e2c2",
+      "label_sha256": "7c3ae6894e7ebab5c9b6524606f03b6a56b38dccbe472ff40edde26e48654fe6"
+    },
+    "namespaced_v2_seed1": {
+      "noise_sha256": "79ad35f9b9b5f79274b65daf56a61db6247f304a0cba1cfe615443af6ce5cbaa",
+      "label_sha256": "be920736c68d7328b053477b3c67b6b09d07d8aaf49ad1ac0d90328a7a39b13c"
+    },
+    "seed0_batch1_equals_seed1_batch0": false,
+    "legacy_seed1_exactly_reproduces_historical_hashes": true
+  },
+  "implementation": [
+    "experiments/batch_seed_schema.py",
+    "experiments/run_imagenet100_sit_path_extrapolated_ig.py",
+    "experiments/run_imagenet100_sit_pfr_query_controls.py"
+  ],
+  "tests": {
+    "command": "pytest -q tests/test_batch_seed_schema.py tests/test_pfr_query_controls.py tests/test_imagenet100_sit_path_extrapolated_ig.py",
+    "passed": 102
+  }
+}

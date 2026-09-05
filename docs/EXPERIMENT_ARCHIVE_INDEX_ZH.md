@@ -1,6 +1,22 @@
 # 实验归档索引
 
-更新时间：2026-08-22
+更新时间：2026-09-03
+
+## 当前主线：PFR 反事实参考残差化
+
+- 新理论与全轨迹判断：`docs/PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`
+- 既有机制反例总表：`docs/PFR_MECHANISM_AUDIT_20260903_ZH.md`
+- 精确反例与恒等式：`experiments/pfr_counterfactual_residual_theory.py`
+- terminal mean/covariance 审计：`experiments/analyze_pfr_terminal_distribution.py`
+- 紧凑产物：`docs/data/pfr_counterfactual_residual_theory_20260903/`
+
+当前判断：PFR 不是更高阶或更准确的积分。它首先把 weak reference 推到
+nominally later time coordinate，projected spatial query 是在此基础上的较小增量。
+一个 paired 1K bank 显示 temporal gain 主要落在 FID mean 项、spatial increment 主要
+落在 covariance 项，但这仍是待 adjoint 实验检验的经验假说。一个与历史
+bank RNG 不重叠、但前 1K 已被查看过的 FID-5K bank 给出 ordinary/PFR
+`40.7983/37.6459`。这是 ImageNet-100 SiT-S/2 内部协议结果，不是 compute-matched
+或公开 ImageNet-1K FID-50K SOTA。
 
 ## 归档目的
 
@@ -200,6 +216,24 @@ frozen 与 closed endpoint response。tangent 在 `gamma<=0.1` 时可以定量�
 平行投影分别保留约 `93.4%` 和 `87.1%` 的数值 FID 收益；正交余量单独使用时均使
 FID 恶化。该实验说明 tangent 方向承载主要有益 endpoint 作用，但投影系数依赖 exact
 frozen endpoint，因此当前属于机制 oracle，而不是可部署方法。
+
+## G. RAEv2 guidance 理论探索收束
+
+- `docs/RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md`
+- `docs/RAEV2_PFR_TRANSFER_RESULTS_ZH.md`
+- `docs/SEMIGROUP_CONSISTENT_GUIDANCE_THEORY_ZH.md`
+- `docs/RAEV2_RADIUS_DIRECTION_PLAN_20260905_ZH.md`
+- `docs/RAEV2_FLOW_PULLBACK_20260905_ZH.md`
+- `docs/RAEV2_RELATIVE_TRANSPORT_ITERATION_20260905_ZH.md`
+- `docs/data/raev2_guidance_exploration_20260905/`
+
+该归档把 SiT PFR/OU 正结果、RAEv2 正式迁移反例、piecewise IG 基线校准，以及
+posterior projection、consensus、characteristic、Feynman--Kac、semigroup value、
+radius、flow pullback 和 relative flow-map iteration 串成一条证据链。最后四个理论
+驱动候选均未通过配对 1K：semigroup value 和 pullback 明确恶化，radial 在独立 bank
+符号翻转，relative iteration 也同时落后 strongest baseline 与两个一阶加倍对照。
+归档只包含源码、测试、报告和小型 CSV/JSON；样本、checkpoint、bank 与 evaluator
+cache 均留在外部实验目录。
 
 ## 验证状态
 

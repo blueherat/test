@@ -1,0 +1,45 @@
+{
+  "protocol": "raev2_relative_transport_iteration_result_summary_v1",
+  "samples": 1000,
+  "seed": 20260903,
+  "noise_sha256": "dd51673a5f594ecab78ea3433786fbb36a71bbb006d5873f4348e3718b03a8c6",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "effective_switch_time": 0.4971751570701599,
+  "maximum_shard_elapsed_seconds": 1631.337815050967,
+  "maximum_memory_allocated_bytes": 6187227648,
+  "telemetry_weighted_mean": {
+    "inverse_maximum_iterations": 3.0,
+    "inverse_maximum_relative_residual": 0.0009555191560648382,
+    "signal_rms": 0.22767443215847016,
+    "second_increment_rms": 0.14324985021352768,
+    "inverse_noise_shift_rms": 0.11538015758991241,
+    "inverse_noise_shift_to_noise": 0.11537720084190368,
+    "null_noise_cycle_rms": 0.002033336840569973,
+    "null_switch_cycle_rms": 0.03390796332061291,
+    "guided_switch_cycle_rms": 0.01020897163078189,
+    "guided_cycle_to_signal": 0.04231900166720152,
+    "guided_cycle_to_second_increment": 0.05970827696472406,
+    "inverse_maximum_relative_residual_max": 0.0009617210072915881,
+    "inverse_maximum_iterations_max": 3
+  },
+  "call_counter_sum": {
+    "prefix": 11125,
+    "prefix_sample_evaluations": 267000,
+    "inverse": 22898,
+    "inverse_sample_evaluations": 366368,
+    "reapply": 11125,
+    "reapply_sample_evaluations": 267000,
+    "suffix": 5500,
+    "suffix_sample_evaluations": 77000
+  },
+  "cycle_fid_drift": {
+    "cycle_null_minus_full": -0.06530722627729801,
+    "cycle_guided_minus_piecewise_ig": -0.039337005340136955
+  },
+  "candidate_delta_fid": {
+    "local_double": 0.5115479764582531,
+    "switch_linear": 0.5788583059083976,
+    "relative_iterate": 0.7014656411690794
+  },
+  "verdict": "negative_screen_no_5k"
+}

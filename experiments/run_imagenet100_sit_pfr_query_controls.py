@@ -34,6 +34,13 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from experiments.batch_seed_schema import (  # noqa: E402
+    BATCH_SEED_SCHEMAS,
+    DEFAULT_BATCH_SEED_SCHEMA,
+    batch_rng_manifest,
+    batch_seed,
+    manifest_uses_batch_rng,
+)
 from experiments.information_purification_ig import (  # noqa: E402
     lambda_residualized_guidance,
 )
@@ -627,6 +634,11 @@ def result_reusable(path: Path, condition: str, args: argparse.Namespace) -> boo
             and int(manifest["sampling"]["num_samples"]) == args.num_samples
             and int(manifest["sampling"]["batch_size"]) == args.batch_size
             and int(manifest["sampling"]["seed"]) == args.seed
+            and manifest_uses_batch_rng(
+                manifest,
+                args.seed,
+                schema=args.batch_seed_schema,
+            )
             and query.get("clock", "raw_t") == args.query_clock
             and math.isclose(
                 float(query.get("clock_anchor_time", 0.25)),
@@ -684,7 +696,13 @@ def fid_worker(args: argparse.Namespace) -> None:
         while cursor < args.num_samples:
             current_batch = min(args.batch_size, args.num_samples - cursor)
             batch_index = cursor // args.batch_size
-            generator = torch.Generator(device=device).manual_seed(args.seed + batch_index)
+            generator = torch.Generator(device=device).manual_seed(
+                batch_seed(
+                    args.seed,
+                    batch_index,
+                    schema=args.batch_seed_schema,
+                )
+            )
             noise = torch.randn(
                 current_batch,
                 *runtime.modules["LATENT_SHAPE"],
@@ -767,6 +785,10 @@ def fid_worker(args: argparse.Namespace) -> None:
             "atol": args.atol,
             "rtol": args.rtol,
         },
+        "batch_rng": batch_rng_manifest(
+            args.seed,
+            schema=args.batch_seed_schema,
+        ),
         "query": {
             "kind": args.condition,
             "anchor_horizon": HORIZON,
@@ -872,6 +894,8 @@ def run_one_condition(
         str(args.vae_decode_batch_size),
         "--seed",
         str(args.seed),
+        "--batch-seed-schema",
+        args.batch_seed_schema,
         "--atol",
         str(args.atol),
         "--rtol",
@@ -1000,6 +1024,10 @@ def fid(args: argparse.Namespace) -> None:
             "num_samples": args.num_samples,
             "batch_size": args.batch_size,
             "seed": args.seed,
+            "batch_rng": batch_rng_manifest(
+                args.seed,
+                schema=args.batch_seed_schema,
+            ),
             "conditions": list(args.conditions),
             "anchor_horizon": HORIZON,
             "query_clock": args.query_clock,
@@ -1023,6 +1051,15 @@ def add_sampling_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--vae-decode-batch-size", type=int, default=2)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument(
+        "--batch-seed-schema",
+        choices=BATCH_SEED_SCHEMAS,
+        default=DEFAULT_BATCH_SEED_SCHEMA,
+        help=(
+            "batch RNG derivation; use legacy_additive_v1 only to reproduce "
+            "historical overlapping seed banks"
+        ),
+    )
     parser.add_argument("--atol", type=float, default=1e-6)
     parser.add_argument("--rtol", type=float, default=1e-3)
     parser.add_argument("--cuda-allocator-limit-gib", type=float, default=6.0)
@@ -1081,6 +1118,12 @@ def main() -> None:
         raise ValueError("sample count must be positive")
     if hasattr(args, "batch_size") and args.batch_size <= 0:
         raise ValueError("batch size must be positive")
+    if hasattr(args, "batch_size"):
+        batch_seed(
+            args.seed,
+            (args.num_samples - 1) // args.batch_size,
+            schema=args.batch_seed_schema,
+        )
     if args.command == "geometry":
         geometry(args)
     elif args.command == "fid":

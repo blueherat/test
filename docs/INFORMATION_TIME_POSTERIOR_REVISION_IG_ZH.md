@@ -1,5 +1,12 @@
 # Information-Time Posterior Revision for Internal Guidance
 
+> **2026-09-03 解释与 RNG 勘误。** 后续 held-out \(U=X-E\) 审计显示 future weak
+> query 的 posterior MSE 并未改善；本页的 information/posterior 语言只能描述构造，
+> 不能作为质量机制。推荐解释见
+> [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)。
+> 本文表中的 historical `seed=0/1` 使用 additive per-batch seeds，1K bank 共享
+> 992/1000 个样本；paired 排序有效，跨 seed 独立性无效。
+
 ## 1. 一句话直觉
 
 普通 IG 只问：
@@ -263,7 +270,7 @@ ImageNet-100、SiT-S/2、同一 depth-4 head、EMA、FID-5K：
 | 旧三参数 oblique 方法 | 36.5003 | **69.0649** | 40.0216 |
 | ITPR-IG / 当前 PFR 实现 | **36.3470** | 70.2208 | **40.6690** |
 
-两个 sampling seeds 的 FID 为 `36.35096/36.34310`。这是当前协议的 FID/IS 最优，
+两个高度重叠的历史 nominal bank 的 FID 为 `36.35096/36.34310`。这是当前协议的 FID/IS 最优，
 不是 sFID 最优，也不是跨模型 benchmark SOTA。
 
 ## 8. 预注册的语义判别实验
@@ -281,7 +288,7 @@ probe，则 1 应保留显著收益，2 应在加入最小 calibration-aware spa
 
 该实验在查看结果前写入本报告。
 
-### 8.1 两个 sampling seeds 的结果
+### 8.1 两个高度重叠的历史 nominal bank
 
 | query | seed 0 FID | seed 1 FID | mean FID |
 |---|---:|---:|---:|
@@ -290,10 +297,10 @@ probe，则 1 应保留显著收益，2 应在加入最小 calibration-aware spa
 | `spacetime-coupled` | 64.4475 | 64.3128 | 64.3802 |
 | `characteristic` | 64.8948 | 64.9809 | 64.9379 |
 
-两个 seeds 的排序完全一致。`time-only` 相对普通 depth-4 IG 保留显著收益，加入
-refinement-aligned 的小空间 intervention 后再改善约 `0.63 FID`；反过来，把 time advance
-也乘以很小的 `a*`，收益大部分消失。最接近真实 Euler future 的 characteristic query
-甚至略差于普通 IG。
+每个 bank 内的 paired 排序都一致；但两个 bank 共享 992/1000 个样本，这不构成独立
+复现。`time-only` 相对普通 depth-4 IG 保留显著收益，加入 refinement-aligned 的小空间
+intervention 后再改善约 `0.63 FID`；反过来，把 time advance 也乘以很小的 `a*`，收益
+大部分消失。最接近真实 Euler future 的 characteristic query 甚至略差于普通 IG。
 
 该结果直接否定“更准确预测未来状态/隐式积分”是主要机制，并支持预注册的
 information-time interpretation。三项 ADM 指标并非完全同序：例如 coupled query 的
@@ -373,7 +380,7 @@ information radius `h`，但它是可证伪的设计原则，不是假装成数�
 > **越像真实数值未来的 query，效果反而越差。真正有用的是在时间上进入更有信息的
 > channel，同时只在空间上写入最小量的 deep-refinement evidence。**
 
-如果方法来自隐式积分误差修正，characteristic query 应最好；实际它在两个 sampling seeds
+如果方法来自隐式积分误差修正，characteristic query 应最好；实际它在两个历史 nominal banks
 都最差。若空间和时间共享同一个很小的投影系数，主要收益也消失；纯 time-only 已保留大部
 分收益，而加入最小 refinement-aware 空间 intervention 后达到最优。该排序正是
 information-time hypothesis 在看结果前给出的预测。

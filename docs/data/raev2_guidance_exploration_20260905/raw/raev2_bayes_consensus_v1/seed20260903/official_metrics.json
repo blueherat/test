@@ -1,0 +1,52 @@
+[
+  {
+    "branch": "full",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_depth_condition_guidance_v1/formal_n1000_seed20260903_v1/full_conditional_run/full_conditional/samples.npz",
+    "sample_sha256": "04eb4eff6ad0c8f8c82f4ddaa63761bfd6e843e8598d0055c5a4b4c26a117126",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 53.80879669189453,
+    "fid": 39.36431376560938
+  },
+  {
+    "branch": "ordinary",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_depth_condition_guidance_v1/formal_n1000_seed20260903_v1/conditional_ig_s1p78_t0p5_1p0_run/conditional_ig_s1p78_t0p5_1p0/samples.npz",
+    "sample_sha256": "8c1ce6176366e11420478213afaa5fbe4a6ee2a7f2b9a7dfe14fadbe1c55e3f2",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 57.05760536193848,
+    "fid": 39.35466832312727
+  },
+  {
+    "branch": "marginal",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_depth_condition_guidance_v1/formal_n1000_seed20260903_v1/marginal_ig_s1p78_t0p5_1p0_run/marginal_ig_s1p78_t0p5_1p0/samples.npz",
+    "sample_sha256": "18926d08152774c5b078c74a5ef71d6ad539b9f2fca1c9d47cfc2aa26177add6",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 55.3869743347168,
+    "fid": 39.318547241224906
+  },
+  {
+    "branch": "consensus",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_bayes_consensus_v1/seed20260903/consensus_run/consensus/samples.npz",
+    "sample_sha256": "c069c6ba1121f822add2261790034730d437b5d9dde6d639d71a66f1988227ff",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 56.131465148925784,
+    "fid": 39.50564356815744
+  },
+  {
+    "branch": "midpoint",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_bayes_consensus_v1/seed20260903/midpoint_run/midpoint/samples.npz",
+    "sample_sha256": "d9332ea9382f1f903acd8599559f6d4f200d7eea693f8d93d0d4711c32bb0e7a",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 56.162404251098636,
+    "fid": 39.69576462521178
+  }
+]

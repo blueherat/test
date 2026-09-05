@@ -1,0 +1,43 @@
+{
+  "protocol": "raev2_flow_pullback_shard_merge_v1",
+  "sampling_protocol": "raev2_flow_pullback_sampling_v1",
+  "complete": true,
+  "mode": "pullback",
+  "samples": 1000,
+  "global_sample_count": 1000,
+  "seed": 202609051,
+  "batch_size": 8,
+  "num_shards": 4,
+  "local_sample_counts": [
+    256,
+    248,
+    248,
+    248
+  ],
+  "noise_sha256": "1b5671d1759797211611b71c96d6ca82292a0579a0059adf05f0d54f579c3222",
+  "labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+  "initial_generator_sha256": "e27de5b85996d6100842113e54382678ce8bd5abb48041ceb47d3b02303b063b",
+  "final_generator_sha256": "d252c1f17138ea055e7c67167fc3d6e62eb598aa81a6ca078c07157a184e1930",
+  "archive_sha256": "c53d68f9d12a9c7501514df0a29f1a7cf7f66ee1a0f8ff9f861edc95a4056ce2",
+  "sample_ids_sha256": "6e4b27e656d5e4eb5f601d9dec147a60cbf00b78ea8b1d4d999fdb776daafb76",
+  "model_cost": {
+    "input_vjp_samples": 20000,
+    "cost_unit_note": "Actual forward entries and input-VJP requests; checkpoint recomputation may stop early. These are not equal FLOP units.",
+    "forward_sample_invocations_by_phase": {
+      "pullback": 180000,
+      "solver": 100000
+    },
+    "forward_invocations_by_phase": {
+      "pullback": 22500,
+      "solver": 12500
+    },
+    "input_vjp_calls": 2500,
+    "total_model_forward_sample_invocations": 280000,
+    "total_model_forward_invocations": 35000,
+    "pullback_checkpoint_recompute_forward_invocations": 10000,
+    "pullback_primal_forward_invocations": 12500
+  },
+  "sum_shard_elapsed_seconds": 3454.9582499039825,
+  "max_shard_elapsed_seconds": 1197.8897210760042,
+  "max_memory_allocated_bytes": 11430167552
+}
