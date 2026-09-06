@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "previous_audit_sha256": "0294db454cc2545f3a95b4d4a05382d3f1d280a89af678b98ef0a057ecaf7987",
+  "previous_count": 9,
+  "new_count": 5,
+  "previous_rows_not_recomputed": true,
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "new_max_abs_error": 2.565527812947721e-05,
+  "formula": "independent N-by-N Gram eigenvalues; Bessel sample covariance",
+  "decomposition_is_descriptive_not_causal": true,
+  "new_rows": [
+    {
+      "study": "critic_screen1k",
+      "mode": "critic_isotropic",
+      "fid": 38.53548656730492,
+      "official_fid": 38.53546091202679,
+      "feature_sha256": "f45d7610e53ad4e0b8f20e92e47192ece5a72cf7ca10c8d3cb190956adae0fd1",
+      "mean_term": 0.12802639499050542,
+      "covariance_term": 38.407460172314416,
+      "sample_covariance_trace": 176.8757346797967,
+      "decomposition": {
+        "mean_change": 0.0019395899442530562,
+        "trace_effect_at_baseline_shape": 0.030612205335885434,
+        "shape_effect_at_new_trace": 0.016135448147676774
+      }
+    },
+    {
+      "study": "critic_screen1k",
+      "mode": "critic_exchangeable",
+      "fid": 38.43424291930047,
+      "official_fid": 38.43421777861914,
+      "feature_sha256": "522113abd82bc2578d4f8c250e533f9958016107b027d5bd4c6920f398fa3d2f",
+      "mean_term": 0.13316407803104344,
+      "covariance_term": 38.30107884126943,
+      "sample_covariance_trace": 175.67591935062953,
+      "decomposition": {
+        "mean_change": 0.007077272984791078,
+        "trace_effect_at_baseline_shape": -0.0850530059311363,
+        "shape_effect_at_new_trace": 0.025419328369804713
+      }
+    },
+    {
+      "study": "two_mode_screen1k",
+      "mode": "two_mode",
+      "fid": 38.518155899733,
+      "official_fid": 38.51813039098761,
+      "feature_sha256": "e95eee085865e72866fb62d5f3f7ba6b05f069e8617b068c936e04b709049666",
+      "mean_term": 0.13271325417120494,
+      "covariance_term": 38.385442645561795,
+      "sample_covariance_trace": 176.61260678124023,
+      "decomposition": {
+        "mean_change": 0.0066264491249525825,
+        "trace_effect_at_baseline_shape": 0.004930463542054224,
+        "shape_effect_at_new_trace": 0.019799663188906563
+      }
+    },
+    {
+      "study": "semantic_complement_screen1k",
+      "mode": "semantic_add",
+      "fid": 37.746568801457784,
+      "official_fid": 37.74654580265707,
+      "feature_sha256": "4cfd76406cf9711d20decda9d3a6e2f117fe5a7596cf8675eead33a5b8819442",
+      "mean_term": 0.4059761259756023,
+      "covariance_term": 37.340592675482185,
+      "sample_covariance_trace": 171.02510661115596,
+      "decomposition": {
+        "mean_change": 0.2798893209293499,
+        "trace_effect_at_baseline_shape": -0.4980036122215896,
+        "shape_effect_at_new_trace": -0.522116231127085
+      }
+    },
+    {
+      "study": "semantic_complement_screen1k",
+      "mode": "semantic_orthogonal",
+      "fid": 37.70481535450702,
+      "official_fid": 37.70479177040414,
+      "feature_sha256": "1d6124a895adf8fb5bdc9dec55f033257bfd4d45bd003c3d35e02a6191ce51ba",
+      "mean_term": 0.3465113695978904,
+      "covariance_term": 37.35830398490913,
+      "sample_covariance_trace": 171.84886092745504,
+      "decomposition": {
+        "mean_change": 0.22042456455163806,
+        "trace_effect_at_baseline_shape": -0.4290225890896675,
+        "shape_effect_at_new_trace": -0.5733859448320311
+      }
+    }
+  ]
+}

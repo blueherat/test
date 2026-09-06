@@ -30,7 +30,7 @@ def main():
     jobs=[]
     began=time.perf_counter()
     frozen={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (
-        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',Path(__file__).resolve())}
+        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',ROOT/'experiments/raev2_semantic_complement.py',ROOT/'experiments/raev2_semantic_quality_guidance.py',Path(__file__).resolve())}
     state={'complete':False,'pid':os.getpid(),'args':{k:str(v) if isinstance(v,Path) else v for k,v in vars(a).items()},'sources':frozen,'jobs':[]}
     def save():
         (out/'execution.json').write_text(json.dumps(state,indent=2)+'\n')
@@ -85,6 +85,7 @@ def main():
             'sample_model_calls':sum(s['sample_model_calls'] for s in summaries),
             'extra_sample_weak_continuations':sum(s.get('extra_sample_weak_continuations',0) for s in summaries),
             'sample_critic_backward_calls':sum(s.get('sample_critic_backward_calls',0) for s in summaries),
+            'extra_sample_unconditional_calls':sum(s.get('extra_sample_unconditional_calls',0) for s in summaries),
             'paired_noise_labels_sha256':hashlib.sha256(json.dumps(records,sort_keys=True).encode()).hexdigest(),
             'sample_sha256':hashlib.sha256((folder/'samples.npz').read_bytes()).hexdigest()}
         (folder/'summary.json').write_text(json.dumps(result,indent=2)+'\n')

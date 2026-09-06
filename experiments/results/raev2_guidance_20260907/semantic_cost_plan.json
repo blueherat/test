@@ -1,0 +1,20 @@
+{
+  "fixed_before_semantic_5k_fid": true,
+  "candidate_1k_gpu_seconds": 1262.964256711537,
+  "official_1k_gpu_seconds": 632.3276812776458,
+  "cost_ratio": 1.9973255862524673,
+  "solver": "explicit Heun with final Euler, original native IG",
+  "steps": 101,
+  "native_model_calls_per_image": 201,
+  "candidate_model_calls_per_image": 199,
+  "seed": 202609072,
+  "samples": 5000,
+  "step_choice": "ceil((100 * measured_candidate_cost / measured_official_cost + 1)/2)",
+  "reason": "cost-matched higher-order evaluation of the original IG field; at 101 steps its positive time grid avoids the native .05 denominator floor",
+  "primary_control_retained": "original Euler100 5K; neither a worse cost control nor a changed baseline may manufacture success",
+  "run_condition": "candidate improves at least 3 percent over the best original paired 5K control",
+  "sources": {
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_screen1k/official/summary.json": "f9a2933345449a1853e154028c610ac56463fd5e6c1d79a4a654a5f39e9cb94b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/semantic_orthogonal/summary.json": "f93a6715fb30c3f302d78783f94209450bb8980f07a49a7b522bc9d00b5d020e"
+  }
+}

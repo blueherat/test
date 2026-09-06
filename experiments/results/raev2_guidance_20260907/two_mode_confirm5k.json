@@ -1,0 +1,307 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "rows": [
+    {
+      "branch": "official",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+      "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.57569732666016,
+      "fid": 6.9497684777115865,
+      "complete": true,
+      "mode": "official",
+      "count": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "trajectory_seconds_sum": 3156.1662609786727,
+      "decode_seconds_sum": 17.23202082910575,
+      "sample_model_calls": 500000,
+      "extra_sample_weak_continuations": 0,
+      "sample_critic_backward_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "execution_sha256": "eb341e0bf82ec41d4ecab47b9fec8cbe7ae14ef05871541368e1ac8dcc25d3c6",
+      "inference_gpu_seconds": 3173.3982818077784,
+      "relative_fid_improvement_percent": 0.0,
+      "inference_cost_ratio": 1.0
+    },
+    {
+      "branch": "piecewise",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/piecewise/samples.npz",
+      "sample_sha256": "84f96dc7a54c67346178e72d1204a05dc890bed37cb78ddad9b41a43ac449a09",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 161.09173431396485,
+      "fid": 7.011576542127955,
+      "complete": true,
+      "mode": "piecewise",
+      "count": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "trajectory_seconds_sum": 3160.292423476465,
+      "decode_seconds_sum": 17.25650659087114,
+      "sample_model_calls": 500000,
+      "extra_sample_weak_continuations": 0,
+      "sample_critic_backward_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "execution_sha256": "eb341e0bf82ec41d4ecab47b9fec8cbe7ae14ef05871541368e1ac8dcc25d3c6",
+      "inference_gpu_seconds": 3177.548930067336,
+      "relative_fid_improvement_percent": -0.8893542945292543,
+      "inference_cost_ratio": 1.0013079506229496
+    },
+    {
+      "branch": "two_mode",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k/two_mode/samples.npz",
+      "sample_sha256": "21a4e97eaab27087d2daa0fbb5308eb5edb1bbb36cd9461af6f0af829f838851",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.19293212890625,
+      "fid": 6.933352026006844,
+      "complete": true,
+      "mode": "two_mode",
+      "count": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "trajectory_seconds_sum": 3166.051458168542,
+      "decode_seconds_sum": 17.29532749974169,
+      "sample_model_calls": 500000,
+      "extra_sample_weak_continuations": 0,
+      "sample_critic_backward_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "execution_sha256": "96f38ab96af1d3d347358a30d0da32f6751627977f95beff3edf8398f5e8d228",
+      "inference_gpu_seconds": 3183.3467856682837,
+      "relative_fid_improvement_percent": 0.23621580715086354,
+      "inference_cost_ratio": 1.0031349685658864
+    }
+  ],
+  "three_percent_quality_passed": false,
+  "conclusion": "A small 5K gain, insufficient for the requested 3%; no parameter revision.",
+  "queue_decision_sha256": "a5318e1d4336a597da0b33cbdd5db7b93b32116c560b18e1980bafc4abe40f3c",
+  "queue_decision": {
+    "pid": 1737803,
+    "complete": true,
+    "stage": "5k_complete_requires_quality_and_cost_review",
+    "created_unix": 1788723956.1242464,
+    "decision_before_candidate_1k_fid": true,
+    "decision": "run unchanged 5K regardless of finite-1K ranking; no parameter revision",
+    "prerequisite_identities": {
+      "1729774": "208628284",
+      "1729778": "208628296",
+      "1729779": "208628296",
+      "1729780": "208628297",
+      "1729781": "208628297"
+    },
+    "frozen_sources": {
+      "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "c3151e56678f5ea529e4d0acb0127beeebbaa77d80947993c22641976ad588fa",
+      "/home/zhoushunyu/eqvae/experiments/raev2_ancestral_guidance.py": "1debe7bbe0533840a1a690a3094133bf5fc63a302fb49bcd32aad419fdd55e08",
+      "/home/zhoushunyu/eqvae/experiments/raev2_transport_projection.py": "523297284b8ed28170d42363d286945978d391dcee8954ea17e9335b812cef6c",
+      "/home/zhoushunyu/eqvae/experiments/raev2_stochastic_weak.py": "61de607385ba7c04e60febe5cd7673ea5480c46a61956cb98d7e47a65aeb3d42",
+      "/home/zhoushunyu/eqvae/experiments/raev2_image_critic_guidance.py": "5181c7a55fa3332af23be97a60d0eb60cc9d10ecb41c3e21165fb547150654d7",
+      "/home/zhoushunyu/eqvae/experiments/raev2_two_mode_ratio.py": "79a3bcb17f053c6e1da3ae19df6b2bd56292cbded6c5f4770759ef41861c07a2",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py": "6bbb9812b65805661a44bff9c025b3663921b3997918614784c1f0f39c3feccc",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/two_mode_ratio/finite_euler_calibration.json": "9f180acfe483f629500d4e18478873aeca269722cee0e6de2f5e446af9877c39"
+    },
+    "samples": 5000,
+    "seed": 202609072,
+    "existing_control_study": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k",
+    "expected_input_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+    "child_pid": 1743653,
+    "command": [
+      "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py",
+      "--output",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+      "--samples",
+      "5000",
+      "--seed",
+      "202609072",
+      "--modes",
+      "two_mode"
+    ],
+    "exit_code": 0,
+    "metrics": [
+      {
+        "branch": "two_mode",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k/two_mode/samples.npz",
+        "sample_sha256": "21a4e97eaab27087d2daa0fbb5308eb5edb1bbb36cd9461af6f0af829f838851",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 157.19293212890625,
+        "fid": 6.933352026006844
+      }
+    ],
+    "paired_controls": [
+      {
+        "branch": "official",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+        "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 157.57569732666016,
+        "fid": 6.9497684777115865
+      },
+      {
+        "branch": "piecewise",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/piecewise/samples.npz",
+        "sample_sha256": "84f96dc7a54c67346178e72d1204a05dc890bed37cb78ddad9b41a43ac449a09",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 161.09173431396485,
+        "fid": 7.011576542127955
+      },
+      {
+        "branch": "stochastic_weak",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/stochastic_weak/samples.npz",
+        "sample_sha256": "95a1e5095321f62fcbf347e4e16aee05abab491b9f229ba2da3bd04fc662685f",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 161.2629821777344,
+        "fid": 7.0273202343015555
+      }
+    ],
+    "improvement_vs_best_control": 0.0023621580715086354
+  },
+  "candidate_execution": {
+    "complete": true,
+    "pid": 1743653,
+    "args": {
+      "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+      "samples": 5000,
+      "seed": 202609072,
+      "modes": [
+        "two_mode"
+      ],
+      "steps": 100
+    },
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "c3151e56678f5ea529e4d0acb0127beeebbaa77d80947993c22641976ad588fa",
+      "/home/zhoushunyu/eqvae/experiments/raev2_ancestral_guidance.py": "1debe7bbe0533840a1a690a3094133bf5fc63a302fb49bcd32aad419fdd55e08",
+      "/home/zhoushunyu/eqvae/experiments/raev2_transport_projection.py": "523297284b8ed28170d42363d286945978d391dcee8954ea17e9335b812cef6c",
+      "/home/zhoushunyu/eqvae/experiments/raev2_stochastic_weak.py": "61de607385ba7c04e60febe5cd7673ea5480c46a61956cb98d7e47a65aeb3d42",
+      "/home/zhoushunyu/eqvae/experiments/raev2_image_critic_guidance.py": "5181c7a55fa3332af23be97a60d0eb60cc9d10ecb41c3e21165fb547150654d7",
+      "/home/zhoushunyu/eqvae/experiments/raev2_two_mode_ratio.py": "79a3bcb17f053c6e1da3ae19df6b2bd56292cbded6c5f4770759ef41861c07a2",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py": "6bbb9812b65805661a44bff9c025b3663921b3997918614784c1f0f39c3feccc"
+    },
+    "jobs": [
+      {
+        "rank": 0,
+        "pid": 1743657,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py",
+          "--output",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+          "--samples",
+          "5000",
+          "--seed",
+          "202609072",
+          "--shard",
+          "0",
+          "--shards",
+          "4",
+          "--steps",
+          "100",
+          "--parity",
+          "--modes",
+          "two_mode"
+        ]
+      },
+      {
+        "rank": 1,
+        "pid": 1743658,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py",
+          "--output",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+          "--samples",
+          "5000",
+          "--seed",
+          "202609072",
+          "--shard",
+          "1",
+          "--shards",
+          "4",
+          "--steps",
+          "100",
+          "--parity",
+          "--modes",
+          "two_mode"
+        ]
+      },
+      {
+        "rank": 2,
+        "pid": 1743659,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py",
+          "--output",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+          "--samples",
+          "5000",
+          "--seed",
+          "202609072",
+          "--shard",
+          "2",
+          "--shards",
+          "4",
+          "--steps",
+          "100",
+          "--parity",
+          "--modes",
+          "two_mode"
+        ]
+      },
+      {
+        "rank": 3,
+        "pid": 1743660,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py",
+          "--output",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/two_mode_confirm5k",
+          "--samples",
+          "5000",
+          "--seed",
+          "202609072",
+          "--shard",
+          "3",
+          "--shards",
+          "4",
+          "--steps",
+          "100",
+          "--parity",
+          "--modes",
+          "two_mode"
+        ]
+      }
+    ],
+    "sampling_seconds": 843.7528899789322,
+    "sampling_complete": true,
+    "merged": {
+      "two_mode": {
+        "complete": true,
+        "mode": "two_mode",
+        "count": 5000,
+        "seed": 202609072,
+        "steps": 100,
+        "trajectory_seconds_sum": 3166.051458168542,
+        "decode_seconds_sum": 17.29532749974169,
+        "sample_model_calls": 500000,
+        "extra_sample_weak_continuations": 0,
+        "sample_critic_backward_calls": 0,
+        "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+        "sample_sha256": "21a4e97eaab27087d2daa0fbb5308eb5edb1bbb36cd9461af6f0af829f838851"
+      }
+    },
+    "total_seconds": 856.8413848539349
+  }
+}

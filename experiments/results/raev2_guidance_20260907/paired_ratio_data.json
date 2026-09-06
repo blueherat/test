@@ -1,0 +1,54 @@
+{
+  "complete": true,
+  "cuda_used": false,
+  "splits": {
+    "train": {
+      "real_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/latents.npy",
+      "real_lookup": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/train_real_lookup.npy",
+      "fake_paths": [
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank00.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank01.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank02.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank03.npy"
+      ],
+      "fake_global_id_rule": "rank = id % 4; row = id // 4; label = id % 1000",
+      "real_per_class": 5,
+      "fake_per_class": 5,
+      "sources": {
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/latents.npy": "b0283d24ab47214983d4904a2c08b62cfc81efb19b6d1459d68e9cea79702f11",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/metadata.npz": "96c29e0bc34fbaa74a344430474818cc67ba9a3ef5bdbd8747a1c9e05ef04769",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank00.npy": "9a1a61dd49b949e1ca3c023757e65c7108cd32c73aa215c7671fb1fbd352ef37",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank01.npy": "5ad2b1dc47e0122d89f4be51612077ede7281686c7a91cd2244e2df8c237d865",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank02.npy": "d5e66385b5ba6d02cbe1ebc725a359eac8109d96a88b6ab5242ccdf3d052f212",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank03.npy": "05d921b6f69623a75b2409189e2dcd66a40b533f208f6de51dfde0ba68545c55"
+      }
+    },
+    "validation": {
+      "real_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/validation/latents.npy",
+      "real_lookup": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/validation_real_lookup.npy",
+      "fake_paths": [
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank00.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank01.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank02.npy",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank03.npy"
+      ],
+      "fake_global_id_rule": "rank = id % 4; row = id // 4; label = id % 1000",
+      "real_per_class": 1,
+      "fake_per_class": 5,
+      "sources": {
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/validation/latents.npy": "41ff1e73b2ce9ce580aee921a0129d6d32bb8b085c07f79752e3106afc834ad0",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/validation/metadata.npz": "cad448afe0390da17c109e23c755aa1f426aea4851f9896e96e69b71a4ef943d",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank00.npy": "43255747c958208d3cb64401210cbf33de90d9d52015859ae286dab4c9bd21c9",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank01.npy": "ebbc3dcef9d1c1efe81a17820734329473320d3217ee4a07b8ece7001ca06c96",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank02.npy": "566887454069d18dd650271ee65e23ba5a8c0556768a51c17fc1275c3cb0f6e2",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank03.npy": "d6ca9fea363f37e964b9d5ae496b09d34af79c31d2c2adbe774d6ec4962caee2"
+      }
+    }
+  },
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "class_features_sha256": "8f9af1fcc29743448612c59422d13efe4d2a323c1dc46e6499d1905b594300aa",
+  "real_source_rows_disjoint": true,
+  "validation_limit": "held out from this fit; historical banks were used in earlier research",
+  "no_fid_fitting": true,
+  "fake_protocol_limit": "historical native IG EMA, 100 steps, B4, FP16 endpoints; current rollout is B8"
+}
