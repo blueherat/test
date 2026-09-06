@@ -1,0 +1,22 @@
+{
+  "plan": {
+    "train": {
+      "samples": 5000,
+      "seed": 202609090,
+      "time_seed": 202609092
+    },
+    "validation": {
+      "samples": 1000,
+      "seed": 202609091,
+      "time_seed": 202609093
+    }
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_actual_ratio_bank.py": "f8a95032a829e0f0e25d835d656c33d3011bcf30b86f73ae15ea8ca5d517fd6e",
+    "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py": "785f95716109e3fd8633396eda636ee0287d69b0c9066550e26c9e020ed9db4c",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "b2b759a8cc654b33d46149ed8547dcc562b399a2bdc7f9a8a2eab2c5ee38f26f"
+  },
+  "purpose": "actual native marginals, shared-noise ratio fit; no quality evaluation",
+  "started_unix": 1788729602.5684042,
+  "is_preparation_plan_not_a_completion_record": true
+}

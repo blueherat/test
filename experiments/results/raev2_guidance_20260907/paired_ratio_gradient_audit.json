@@ -1,0 +1,65 @@
+{
+  "complete": true,
+  "checkpoint_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+  "rows": [
+    {
+      "time": 1.0,
+      "fp32_finite_difference_relative_error": 0.0015383235877379775,
+      "fp32_gradient_vs_fp64_relative_error": 1.4958717399942752e-06,
+      "fp64_finite_difference_relative_errors": {
+        "0.01": 0.0015239088136661375,
+        "0.001": 0.00022158073653402572
+      },
+      "mean_gradient_norm": 5.452539920806885,
+      "correction_rms": 0.014956396073102951
+    },
+    {
+      "time": 0.9987389445304871,
+      "fp32_finite_difference_relative_error": 0.0017483363626524806,
+      "fp32_gradient_vs_fp64_relative_error": 1.517000973581053e-06,
+      "fp64_finite_difference_relative_errors": {
+        "0.01": 0.0017542374971716821,
+        "0.001": 0.00022206886191479208
+      },
+      "mean_gradient_norm": 5.397101879119873,
+      "correction_rms": 0.014689630828797817
+    },
+    {
+      "time": 0.9,
+      "fp32_finite_difference_relative_error": 0.0011280464241281152,
+      "fp32_gradient_vs_fp64_relative_error": 1.3195064408945908e-06,
+      "fp64_finite_difference_relative_errors": {
+        "0.01": 0.001266096838477847,
+        "0.001": 0.00023758693392066492
+      },
+      "mean_gradient_norm": 6.440781593322754,
+      "correction_rms": 0.01298914197832346
+    },
+    {
+      "time": 0.5,
+      "fp32_finite_difference_relative_error": 0.0324665792286396,
+      "fp32_gradient_vs_fp64_relative_error": 4.3461868783016546e-05,
+      "fp64_finite_difference_relative_errors": {
+        "0.01": 0.0012454876486224756,
+        "0.001": 0.00024173172937993795
+      },
+      "mean_gradient_norm": 0.5339482426643372,
+      "correction_rms": 0.0006213365704752505
+    },
+    {
+      "time": 0.07476635277271271,
+      "fp32_finite_difference_relative_error": 0.07425268739461899,
+      "fp32_gradient_vs_fp64_relative_error": 1.8701805401088245e-05,
+      "fp64_finite_difference_relative_errors": {
+        "0.01": 0.00024435640279602314,
+        "0.001": 0.00025392912810861135
+      },
+      "mean_gradient_norm": 0.0079893097281456,
+      "correction_rms": 1.4582371932192473e-07
+    }
+  ],
+  "original_fp32_only_preflight_failed_at_t_half": true,
+  "zero_head_gives_exact_zero_correction": true,
+  "includes_pure_noise_endpoint": true,
+  "fid_used": false
+}

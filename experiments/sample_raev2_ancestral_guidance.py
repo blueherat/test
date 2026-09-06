@@ -23,7 +23,8 @@ from experiments.raev2_transport_projection import projected_guidance
 from experiments.raev2_stochastic_weak import SharedPrefixWeak
 from experiments.raev2_two_mode_ratio import two_mode_correction
 from experiments.raev2_semantic_complement import semantic_correction
-from experiments.raev2_image_critic_guidance import ImageCritic, ExchangeablePosterior, PROBE, COVARIANCE
+from experiments.raev2_paired_ratio_model import PairedRatioCritic
+from experiments.raev2_image_critic_guidance import ImageCritic, ExchangeablePosterior, PROBE, COVARIANCE, exact_fp32
 from experiments.raev2_stage1_compat import install_raev2_decoder_config_compat
 from experiments.sample_raev2_pfr_retiming import DEFAULT_CONFIG, DEFAULT_CHECKPOINT, load_config, shifted_time_grid
 from experiments.raev2_training_core import file_sha256
@@ -47,7 +48,7 @@ def seed_for(seed, batch, namespace):
 def get_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal'])
+    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated'])
     p.add_argument('--variance-calibration', type=Path, default=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json'))
     p.add_argument('--samples', type=int, default=1000)
     p.add_argument('--seed', type=int, default=202609071)
@@ -89,6 +90,23 @@ def main():
     ckpt = torch.load(args.checkpoint, map_location='cpu', mmap=True, weights_only=False)
     model.load_state_dict(ckpt['ema'], strict=True)
     del ckpt
+    paired_ratio = None
+    paired_temperature = None
+    if any(m.startswith('paired_ratio') for m in args.modes):
+        paired_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit/critic.pt')
+        paired_checkpoint = torch.load(paired_path, map_location='cpu', weights_only=False)
+        if args.steps != 100 or not paired_checkpoint['validation']['entry_condition_passed']:
+            raise ValueError('paired ratio requires the fixed 100-step protocol and held-out entry condition')
+        paired_ratio = PairedRatioCritic(paired_checkpoint['state_dict']['class_features'])
+        paired_ratio.load_state_dict(paired_checkpoint['state_dict'], strict=True)
+        paired_ratio = paired_ratio.cuda().eval().requires_grad_(False)
+        if 'paired_ratio_calibrated' in args.modes:
+            temperature_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_calibration.json')
+            paired_temperature = json.loads(temperature_path.read_text())
+            if not paired_temperature['entry_condition_passed'] or paired_temperature['fid_used_for_parameter_fit']:
+                raise ValueError('temperature requires held-out probability calibration')
+            if paired_temperature['checkpoint_sha256'] != file_sha256(paired_path):
+                raise ValueError('temperature and critic mismatch')
     weak_model = SharedPrefixWeak(model) if any(m in args.modes for m in ('stochastic_weak','mean_weak')) else None
     shift = math.sqrt((cfg.misc.time_dist_shift_dim or math.prod(cfg.misc.latent_size))/cfg.misc.time_dist_shift_base)
     grid = shifted_time_grid(args.steps,shift,torch.device('cuda')).cpu().tolist()
@@ -111,7 +129,7 @@ def main():
     request.update(protocol='raev2_gaussian_channel_guidance_v1', checkpoint_sha256=file_sha256(args.checkpoint),
                    config_sha256=file_sha256(args.config), state_key='ema', time_grid=grid,
                    torch_version=torch.__version__, gpu=torch.cuda.get_device_name(),
-                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py']},
+                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py','experiments/raev2_paired_ratio_model.py']},
                    decoder_sha256=file_sha256(Path(cfg.stage_1.params['pretrained_decoder_path'])),
                    stats_sha256=file_sha256(Path(cfg.stage_1.params['normalization_stat_path'])))
     if calibration is not None:
@@ -135,6 +153,15 @@ def main():
             'activity':'same original IG interval [.1,1]','conditional_layout':'original B8; null in a separate B8 forward',
             'base_anchor':'unchanged native BF16 IG; correction computed in FP32',
             'model_calls_note':'sample_model_calls includes conditional and null; extra_sample_unconditional_calls is a subset'}
+    if paired_ratio is not None:
+        request['paired_ratio']={'checkpoint_sha256':file_sha256(paired_path),
+            'training_plan':paired_checkpoint['plan'], 'held_out_validation':paired_checkpoint['validation'],
+            'strength':1., 'all_100_times':True, 'formula':'native G + t^2 grad_z f',
+            'gradient_precision':'FP32 model and input, TF32 off',
+            'trainable_critic_parameters':sum(p.numel() for p in paired_ratio.parameters())}
+        if paired_temperature is not None:
+            request['paired_ratio']['temperature_calibration'] = paired_temperature
+            request['paired_ratio']['temperature_sha256'] = file_sha256(temperature_path)
     put(out/'request.json',request)
     batch_ids = list(range(args.shard,args.samples//args.batch,args.shards))
     # Shared model/decoder warmup; excluded from per-image timings and disclosed.
@@ -165,6 +192,7 @@ def main():
         weak_calls=0
         semantic_calls=0
         critic_calls=0
+        ratio_calls=0
         critic_records=[]
         started=time.perf_counter()
         for batch_id in batch_ids:
@@ -193,6 +221,16 @@ def main():
                         semantic_calls+=1
                 if mode=='two_mode':
                     clean=clean+two_mode_correction(state,t,ratio_calibration)
+                if mode.startswith('paired_ratio'):
+                    with exact_fp32():
+                        correction=paired_ratio.clean_correction(state,times,labels)
+                        if mode=='paired_ratio_calibrated':
+                            correction=paired_temperature['alpha']*correction
+                    clean=clean+correction
+                    ratio_calls+=1
+                    if batch_id==batch_ids[0]:
+                        critic_records.append({'step':step,'time':t,
+                            'correction_rms':float(correction.square().mean().sqrt())})
                 if mode in ('velocity_projection','noise_projection'):
                     clean=projected_guidance(state,full,base,clean,t,coordinate=mode.split('_')[0])
                 if mode.startswith('critic_'):
@@ -238,6 +276,7 @@ def main():
             'extra_unconditional_calls':semantic_calls,'extra_sample_unconditional_calls':semantic_calls*args.batch,
             'extra_weak_continuations':weak_calls,'extra_sample_weak_continuations':weak_calls*args.batch,
             'critic_backward_calls':critic_calls,'sample_critic_backward_calls':critic_calls*args.batch,'critic_first_batch':critic_records,
+            'ratio_backward_calls':ratio_calls,'sample_ratio_backward_calls':ratio_calls*args.batch,
             'initial_noise':records,'max_memory_allocated':torch.cuda.max_memory_allocated()})
 
 

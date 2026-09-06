@@ -1,0 +1,70 @@
+{
+  "complete": true,
+  "pid": 1898294,
+  "started_unix": 1788727922.1677387,
+  "plan": {
+    "protocol": "one fixed boundary-consistent noisy density-ratio fit, no FID tuning",
+    "updates": 2048,
+    "world_size": 4,
+    "global_batch": 64,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "optimizer": "AdamW beta1=.9 beta2=.999, constant learning rate",
+    "model_seed": 202609073,
+    "train_pair_seed": 202609074,
+    "train_noise_seed": 202609078,
+    "validation_time_seed": 202609082,
+    "validation_noise_seed": 202609083,
+    "data_manifest_sha256": "e21ab6ef61eee5692ad9f066a1da10f94c8f3f5b53cdbaa68b609aaf23d1b905",
+    "lookup_sha256": {
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/train_real_lookup.npy": "51d0ffa6eb9927e0950351792693bc25fbb4fe351526df0eb24d98bfc471b395",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/validation_real_lookup.npy": "c294a5563861be2fb6e8d813397d8dfde3426d3ac57059c03ad6ab31cdb66515"
+    },
+    "precision": "FP32 model and inputs, TF32 disabled; FP64 scalar loss",
+    "time_distribution": "uniform over indices 1..99 of original shifted Euler100 grid; positive signal only",
+    "coupling": "same label/time/noise, independent uniform real and fake endpoint within class",
+    "checkpoint_choice": "final update 2048 only; no early stop or validation checkpoint selection",
+    "validation": "all 5000 fake validation endpoints, one heldout real per class, fixed balanced shuffled native times",
+    "entry_condition": "heldout mean scaled loss plus two standard errors of 1000 class-cluster means < 0",
+    "sampling_if_entry_passed": {
+      "strength": 1.0,
+      "correction": "native original BF16 G plus t^2 grad_z f(z,t,c)",
+      "time_window": "all original 100 query times including finite t=1 extension",
+      "seed": 202609071,
+      "samples": 1000,
+      "no_strength_window_search": true
+    },
+    "limitations": [
+      "finite data and input-gradient generalization",
+      "re-noised endpoints need not equal native trajectory marginals",
+      "historical B4 bank versus current B8 rollout"
+    ],
+    "training_hyperparameters_are_conventional_not_theoretically_unique": true
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_paired_ratio.py": "934923875617227b3122c844d8d983839d68835ed4a633c0c4903497507d3b96",
+    "/home/zhoushunyu/eqvae/experiments/raev2_paired_ratio_model.py": "fb58ca15f6bbd63c62f887c40de8de9b5f198f4e21d16d06eaa49e502a09e9e7",
+    "/home/zhoushunyu/eqvae/experiments/raev2_paired_ratio_loss.py": "50b304159f1e497e0d62af91af999d19ee1046061f4bbfe42678ddca9c6f5d0a",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit_plan.json": "1e5f40912f0f194b7c8411f8d9f6d1949b91363acd2e91be477c15951685c3dd"
+  },
+  "data_manifest_sha256": "e21ab6ef61eee5692ad9f066a1da10f94c8f3f5b53cdbaa68b609aaf23d1b905",
+  "torch_version": "2.11.0+cu130",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "all_data_sources_verified": true,
+  "stage": "fit_and_validation_complete",
+  "training_gpu_seconds": 308.09844315284863,
+  "elapsed_seconds": 87.35237908363342,
+  "validation": {
+    "samples": 5000,
+    "mean_scaled_logistic": -10.149505917628694,
+    "class_cluster_standard_error": 0.34695879715938993,
+    "upper_two_standard_errors": -9.455588323309915,
+    "zero_critic_loss": 0.0,
+    "entry_condition_passed": true,
+    "entry_is_not_a_fid_or_gradient_generalization_claim": true
+  },
+  "checkpoint_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+  "validation_sha256": "c27240e19e7a1dfb7f5be42affd7b14d2346d0ecab6ff6f0e0710d7f9e5940e9",
+  "trainable_parameters": 762753
+}
