@@ -1,6 +1,6 @@
 # 从图像密度信号到轨迹内的 Gaussian posterior tilt
 
-2026-09-07，固定设计，尚无新图像质量结果。本方向不再只从 Full/Base 的共享错误猜测质量方向，而使用已有独立验证的图像判别器。旧判别器是最终 DINOv3 CLS 的单位 L2 特征上的线性 logistic 回归：1000 真图、1000 官方生成图训练；独立真图及独立生成 seed 上 AUC≈.827。它没有用 Inception/FID 训练。冻结权重 SHA `d0c1e7d9968f4ea4186ee8edd42c08e7407afb352450981fefa5ae781a11967b`。旧 acceptance 实验不恢复，所有生成图均计入新评估。
+2026-09-07，固定设计，两个正式1K已经完成，结果见文末。本方向不再只从 Full/Base 的共享错误猜测质量方向，而使用已有独立验证的图像判别器。旧判别器是最终 DINOv3 CLS 的单位 L2 特征上的线性 logistic 回归：1000 真图、1000 官方生成图训练；独立真图及独立生成 seed 上 AUC≈.827。它没有用 Inception/FID 训练。冻结权重 SHA `d0c1e7d9968f4ea4186ee8edd42c08e7407afb352450981fefa5ae781a11967b`。旧 acceptance 实验不恢复，所有生成图均计入新评估。
 
 相关一手工作：[Universal Guidance](https://arxiv.org/abs/2302.07121) 使用 clean 预测承载任意可微约束；[Discriminator Guidance](https://proceedings.mlr.press/v202/kim23i.html) 利用真实/生成判别器。下述 Gaussian 近似与固定协方差设计是本次推导，不宣称复现这些论文的完整算法，也不使用旧 acceptance certificate 证明轨迹改动改善 FID。
 
@@ -20,3 +20,9 @@
 结构的动机有数据依据：constant-mode eigenvalue 最大约 3709，而 residual-mode 最大约 11.77；空间平均方向承载强相关。把所有 latent 元素当独立、只看平均 MSE，可能严重错估图像级语义梯度的自然步长。此观察不等价于证明质量受益。
 
 先在旧 8 图/10 时刻状态缓存上检查梯度有限、中心差分和实际代理函数变化；只作数值诊断，不按时刻选择窗口。然后新 8 图全轨迹、固定 paired 1K，所有 100 时刻使用同一公式。判别器使用可微 FP32 decoder/DINO、FP64 CLS 归一化，量化输出仍由原生 BF16 decoder 生成；这是明确的连续像素 surrogate 差异。完整 encoder/decoder 前后向成本计入，成功候选补充独立 seed 与成本匹配官方采样。验证失败不通过修改几十个时刻系数修补。
+
+## 固定 1K 结果
+
+原生official38.486774，historical interval38.335024；critic_isotropic38.535461（−0.1265%），critic_exchangeable38.434218（+0.1366%）。后者仍弱于interval，实测推理与解码总GPU秒3516.9/3521.1，对照632.3秒。全部1000图计入，目标未达成，不调强度/窗口或宣称判别器AUC已保证FID。完整身份和成本在 [本轮ledger](../experiments/results/raev2_guidance_20260907/screen_ledger.json)。
+
+另有 [固定CPU Jacobian检查](RAEV2_CRITIC_JACOBIAN_AUDIT_20260907_ZH.md)，明确保留球形近似的方向误差与纯噪声端点失配，没有在读取本次FID后偷偷修改这两个候选。

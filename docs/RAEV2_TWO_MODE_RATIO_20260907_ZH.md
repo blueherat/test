@@ -49,3 +49,9 @@
 ## 有限数值与质量代理检查
 
 CPU独立执行了固定缓存 id=0、class=0 在10个已保存时刻的decoder/DINO检查，没有使用GPU或生成新FID样本。修正RMS约0–0.01555，所有数值有限；代理logit变化在三个时刻为小幅负值、六个为小幅正值、纯噪声端为0。原生IG相对Full的局部logit变化同样正负不一，因此这个单图诊断既不支持按时刻截断，也不能作为人口层面的FID预测器或成功证据。保留完整冻结公式进入后续实际采样。输入ID、源SHA、所有正负结果见 [CPU诊断](../experiments/results/raev2_guidance_20260907/two_mode_critic_cpu.json)。
+
+## 在首次1K分数前固定的5K确认
+
+两个critic 1K已完成但未达标，冻结two_mode补丁已应用，original official8逐像素一致，two_mode8全轨迹通过，正式1K正在运行。状态时间1788723956.1242464、首次候选FID文件尚不存在时，`continue_raev2_two_mode_5k.py` 固定：不论1K排序，都用相同公式/参数再完成独立seed202609072的5K。二阶矩会影响有限N的FID偏差，本轮已经观察到同一5K的全部五个1K块与合并分数可反转排序，故不依赖单个1K的正负来选择是否评估5K。
+
+已有同seed、B8、100step、SHA初始噪声的official/piecewise 5K复用，候选输入汇总必须匹配 `b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8`。只有一个新增5K候选，不新增系数/子空间/窗口，不选择图像或分块。后续仍需核对实际FID、样本身份和实测成本；本节不是成功声明。

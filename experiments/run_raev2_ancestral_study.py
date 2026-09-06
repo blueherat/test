@@ -30,7 +30,7 @@ def main():
     jobs=[]
     began=time.perf_counter()
     frozen={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (
-        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',Path(__file__).resolve())}
+        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',Path(__file__).resolve())}
     state={'complete':False,'pid':os.getpid(),'args':{k:str(v) if isinstance(v,Path) else v for k,v in vars(a).items()},'sources':frozen,'jobs':[]}
     def save():
         (out/'execution.json').write_text(json.dumps(state,indent=2)+'\n')
