@@ -82,3 +82,10 @@ RAEv2 RMSNorm.forward内部强制`.float()`；普通`model.double()`不会构成
 [后续执行器](../experiments/continue_raev2_prefix_ratio64k_quality.py)已经启动，等待现有特征/拟合父进程的PID+starttime消失；它不启动第二个拟合或重建bank。拟合未过门槛则结束且不应用采样补丁；通过后才核验并应用已准备的唯一补丁，顺序执行梯度→original8/candidate8→paired1K→独立5K。任何阶段失败保留原目录并停止，不自动重跑。若出现3%质量结果，独立FID复算与适当成本对照仍由后续审查完成，队列不会自行改goal状态。
 
 另有一项新增CPU数值fixture检查通过：实际DDT模块的小尺寸、未训练架构的FP32输入梯度与独立FP64副本相符，FP64中心差分也通过。它专门检验参考实现的RMS精度与mask，不是已训练RAEv2梯度或质量结果。连同之前四项解析测试共五项通过。环境版本和GPU型号已实际读取并记录于 [复现环境](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_environment.json)。
+
+
+## 待执行的质量复核
+
+[质量审计器](../experiments/audit_raev2_prefix_ratio64k_quality.py)已准备好，当前尚无候选图像，未运行其正式入口。它仅使用最终全量图像和固定官方Inception特征：核验global ids、每批noise/labels、模型/config/decoder/stats、head与源码快照；比较合并图像与四分片的全部像素。1K用N×N Gram特征值，5K用对称参考协方差根形式，均使用FP64和Bessel协方差，独立于官方scipy.sqrtm路径。两条数学路径已在具有已知对角Gaussian闭式FID的确定性点集上通过检查，包含低秩情形；这不是实际候选FID。
+
+已完成基线的独立复算不重复运行，而是校验先前审计及其样本/特征哈希。输出同时保留official与历史interval的原FID、两种相对改善、分开的数据准备/拟合/推理成本；不把曾经并发的native/real worker秒相加冒充独占GPU计算。满足质量门槛后，成本对照仍须完成。
