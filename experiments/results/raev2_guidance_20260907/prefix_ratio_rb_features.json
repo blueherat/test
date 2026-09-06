@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "pid": 2048094,
+  "started_unix": 1788732281.1311095,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_prefix_ratio_rb.py": "d31d0428c4ef701e122c1d77104f1888117eeacda49988a91b5c1ba104f7d9ad",
+    "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_rb.py": "2415e566c264a78362798ef7c038b0b6f910343033d6be98e069837be92dfd3e",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+    "/home/zhoushunyu/eqvae/experiments/raev2_actual_ratio_data.py": "a0998a7023a61640d41411da4b3d261385abb570b9a182a9ece360946266e381",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320"
+  },
+  "independent_generated_states": 5000,
+  "real_alternatives_per_state": 5,
+  "purpose": "exact conditional average under the same empirical real distribution, not more independent states",
+  "planned_head": "same feature family, global normalization, unit-predictive-variance Gaussian prior and dim/5000 ridge; no temperature or time/layer search",
+  "jobs": [
+    {
+      "rank": 0,
+      "pid": 2048098,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_rb.py",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "rank": 1,
+      "pid": 2048099,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_rb.py",
+        "--shard",
+        "1"
+      ]
+    },
+    {
+      "rank": 2,
+      "pid": 2048100,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_rb.py",
+        "--shard",
+        "2"
+      ]
+    },
+    {
+      "rank": 3,
+      "pid": 2048101,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_rb.py",
+        "--shard",
+        "3"
+      ]
+    }
+  ],
+  "stage": "conditional_features_complete_no_head_fit_yet",
+  "worker_seconds": 138.50023171724752,
+  "features_sha256": "8e17ecc95901ad383228ffe7241d2d6fc32a48bfd28784219ca254d1a209519d",
+  "source_file_sha256": "cd62920a8bb6a08196c4b2defdf83e2090eda09b0fcce73f0bf7e08763a22950"
+}

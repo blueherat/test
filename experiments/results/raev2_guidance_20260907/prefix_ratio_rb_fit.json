@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "plan": {
+    "feature_execution_sha256": "cd62920a8bb6a08196c4b2defdf83e2090eda09b0fcce73f0bf7e08763a22950",
+    "source_sha256": "492ea47ab8d9672094d43264e394d1ceb4b774ea344aa34d3459e345f5989c3b",
+    "independent_states": 5000,
+    "real_alternatives": 5,
+    "parameters_including_bias": 2881,
+    "ridge": 0.5762,
+    "ridge_rule": "dim/5000, unchanged from the prior head",
+    "normalization": "one empirical mixture mean and one global RMS scale, averaging the five positive choices",
+    "prior": "unchanged N(0,I/dim), unit expected f^2 on the feature mixture",
+    "objective": "conditional average of the same paired scaled logistic risk",
+    "optimizer": "one L-BFGS-B from zero, maxiter500 gtol1e-8 ftol1e-13",
+    "validation_entry": "same original independent 1000 pairs; mean risk + 2 class SE < 0",
+    "sampling_if_entry_passed": {
+      "strength": 1.0,
+      "times": "all original 100",
+      "seed": 202609071,
+      "samples": 1000
+    },
+    "no_layer_temperature_time_or_regularizer_search": true
+  },
+  "validation": {
+    "samples": 1000,
+    "mean_scaled_logistic": 0.9378310507535567,
+    "class_standard_error": 0.6243911133272649,
+    "upper_two_standard_errors": 2.1866132774080866,
+    "entry_condition_passed": false
+  },
+  "old_single_pair_head_on_full_conditional_training_risk": -2.944207614986555,
+  "training_conditional_risk": -3.3667457726531027,
+  "regularized_objective": -2.0337731819129736,
+  "gradient_max_abs": 1.2697784065984763e-06,
+  "iterations": 82,
+  "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "coefficient_norm": 2.150992918080997,
+  "cpu_elapsed_seconds": 45.770995812956244,
+  "checkpoint_sha256": "239172ccdb5ab0504e8562750949ff7cd3f173cf7c598418db9bca70a2c4503d",
+  "validation_input_sha256": "e51cd31b0cbb7fa0298c84398d3332451db12cd09cf8736943c38b385f8e68b2",
+  "no_fid_evaluated": true
+}

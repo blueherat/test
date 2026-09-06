@@ -1,5 +1,6 @@
 """Freeze and build the one actual-trajectory training/validation data bank."""
 import json
+import argparse
 import os
 from pathlib import Path
 import subprocess
@@ -13,10 +14,20 @@ from experiments.summarize_raev2_guidance_20260907 import DATA, sha
 
 
 def main():
-    out = DATA / 'actual_ratio_bank'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--bank-name', default='actual_ratio_bank')
+    parser.add_argument('--train-count', type=int, default=5000)
+    parser.add_argument('--validation-count', type=int, default=1000)
+    parser.add_argument('--train-seed', type=int, default=202609090)
+    parser.add_argument('--validation-seed', type=int, default=202609091)
+    parser.add_argument('--train-time-seed', type=int, default=202609092)
+    parser.add_argument('--validation-time-seed', type=int, default=202609093)
+    args = parser.parse_args()
+    assert all(n > 0 and n % 1000 == 0 and n % 8 == 0 for n in (args.train_count, args.validation_count))
+    out = DATA / args.bank_name
     out.mkdir(exist_ok=False)
-    plan = {'train': {'samples': 5000, 'seed': 202609090, 'time_seed': 202609092},
-            'validation': {'samples': 1000, 'seed': 202609091, 'time_seed': 202609093}}
+    plan = {'train': {'samples': args.train_count, 'seed': args.train_seed, 'time_seed': args.train_time_seed},
+            'validation': {'samples': args.validation_count, 'seed': args.validation_seed, 'time_seed': args.validation_time_seed}}
     frozen = {str(path): sha(path) for path in (Path(__file__).resolve(),
               ROOT / 'experiments/cache_raev2_actual_ratio_states.py',
               ROOT / 'experiments/sample_raev2_ancestral_guidance.py')}

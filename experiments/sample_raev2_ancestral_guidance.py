@@ -48,7 +48,7 @@ def seed_for(seed, batch, namespace):
 def get_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated'])
+    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated','actual_ratio'])
     p.add_argument('--variance-calibration', type=Path, default=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json'))
     p.add_argument('--samples', type=int, default=1000)
     p.add_argument('--seed', type=int, default=202609071)
@@ -92,8 +92,10 @@ def main():
     del ckpt
     paired_ratio = None
     paired_temperature = None
-    if any(m.startswith('paired_ratio') for m in args.modes):
-        paired_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit/critic.pt')
+    if any(m.startswith('paired_ratio') or m=='actual_ratio' for m in args.modes):
+        if 'actual_ratio' in args.modes and any(m.startswith('paired_ratio') for m in args.modes):
+            raise ValueError('run the two different ratio checkpoints in separate processes')
+        paired_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907') / ('actual_ratio_fit' if 'actual_ratio' in args.modes else 'paired_ratio_fit') / 'critic.pt'
         paired_checkpoint = torch.load(paired_path, map_location='cpu', weights_only=False)
         if args.steps != 100 or not paired_checkpoint['validation']['entry_condition_passed']:
             raise ValueError('paired ratio requires the fixed 100-step protocol and held-out entry condition')
@@ -155,6 +157,7 @@ def main():
             'model_calls_note':'sample_model_calls includes conditional and null; extra_sample_unconditional_calls is a subset'}
     if paired_ratio is not None:
         request['paired_ratio']={'checkpoint_sha256':file_sha256(paired_path),
+            'source_law':'actual_native' if 'actual_ratio' in args.modes else 'renoised_endpoints',
             'training_plan':paired_checkpoint['plan'], 'held_out_validation':paired_checkpoint['validation'],
             'strength':1., 'all_100_times':True, 'formula':'native G + t^2 grad_z f',
             'gradient_precision':'FP32 model and input, TF32 off',
@@ -221,7 +224,7 @@ def main():
                         semantic_calls+=1
                 if mode=='two_mode':
                     clean=clean+two_mode_correction(state,t,ratio_calibration)
-                if mode.startswith('paired_ratio'):
+                if mode.startswith('paired_ratio') or mode=='actual_ratio':
                     with exact_fp32():
                         correction=paired_ratio.clean_correction(state,times,labels)
                         if mode=='paired_ratio_calibrated':

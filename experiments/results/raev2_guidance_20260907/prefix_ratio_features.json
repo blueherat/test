@@ -1,0 +1,78 @@
+{
+  "complete": true,
+  "pid": 2016280,
+  "started_unix": 1788731206.657351,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_prefix_ratio_features.py": "e64d7214344ba4f411ebfa7ce257392294718c49e2329ae25ec05f3d9cb4a5b4",
+    "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_features.py": "b942cbfeb1daebb25bd3d32deb4572964ad2707a3a10d1237228b36b30a53bb3",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+    "/home/zhoushunyu/eqvae/experiments/raev2_actual_ratio_data.py": "a0998a7023a61640d41411da4b3d261385abb570b9a182a9ece360946266e381",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320"
+  },
+  "actual_bank_execution_sha256": "d28342e3eda0347318b61eeb9bd7614ac94703fd7e702415b481e5480958b2b7",
+  "splits": {
+    "train": {
+      "count": 5000,
+      "features_sha256": "c44faaba47bf03737a29f44176333298301375dd4f223cc8e882c7aa80985329",
+      "worker_seconds": 44.03988549299538
+    },
+    "validation": {
+      "count": 1000,
+      "features_sha256": "e51cd31b0cbb7fa0298c84398d3332451db12cd09cf8736943c38b385f8e68b2",
+      "worker_seconds": 10.404818975832313
+    }
+  },
+  "feature_choice": "pretrained native base depth 8; channel-wise first and second raw moments of RMS-normalized patch tokens; no layer search",
+  "stage": "features_complete_no_head_fit_yet",
+  "jobs": [
+    {
+      "rank": 0,
+      "pid": 2016869,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_features.py",
+        "--shard",
+        "0",
+        "--split",
+        "validation"
+      ]
+    },
+    {
+      "rank": 1,
+      "pid": 2016870,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_features.py",
+        "--shard",
+        "1",
+        "--split",
+        "validation"
+      ]
+    },
+    {
+      "rank": 2,
+      "pid": 2016871,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_features.py",
+        "--shard",
+        "2",
+        "--split",
+        "validation"
+      ]
+    },
+    {
+      "rank": 3,
+      "pid": 2016872,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio_features.py",
+        "--shard",
+        "3",
+        "--split",
+        "validation"
+      ]
+    }
+  ],
+  "execution_file_sha256": "4792336df8a77f9ef491f7650864481808e48785aeb9b23a2dffc42477f02f8a"
+}

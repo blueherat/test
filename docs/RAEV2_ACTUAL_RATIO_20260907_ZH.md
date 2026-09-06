@@ -1,6 +1,6 @@
-# 实际轨迹密度比：已有诊断与固定数据准备
+# 实际轨迹密度比：分布诊断与小样本负结果
 
-2026-09-07。当前3%目标仍未达成。此前单次共享噪声判别器与一次分类概率校准的1K均失败；这里围绕同一条Discriminator Guidance路线定位一个具体分布假设，不追加温度/时间窗搜索。实际轨迹数据正在准备，尚未训练这个新目标的判别器，也没有它的FID。
+2026-09-07。当前3%目标仍未达成。此前单次共享噪声判别器与一次分类概率校准的1K均失败；这里围绕同一条Discriminator Guidance路线定位一个具体分布假设，不追加温度/时间窗搜索。原5000/1000实际轨迹数据和一次固定判别器拟合已完成，但独立分类验证未通过；没有生成这个新判别器的FID图像。随后固定预训练特征的两次凸拟合也未通过，当前只扩充同一路线的数据，详见文末。
 
 ## 已经观察到的分布迁移失败
 
@@ -48,7 +48,7 @@
 
 这沿用 [Discriminator Guidance](https://proceedings.mlr.press/v202/kim23i.html) 的密度比思想，并用本地连续性方程明确当前迁移的边界。上述共享噪声/初始速度展开为本次局部推导，不归为该论文原公式，不作新颖性声明。
 
-## 已固定、正在执行的数据准备
+## 已完成的固定数据准备
 
 - 训练5000条，seed202609090，query时间排列seed202609092；验证1000条，seed202609091，时间排列seed202609093。类别为global id mod1000，仍B8。
 - 每个全局batch在原100步shift8网格的索引1..99中取得一个预先平衡后shuffle的停止点；保存每个id的这个实际query状态和原始Gaussian epsilon。它是训练数据采样，未定义任何分时guidance参数。
@@ -57,3 +57,13 @@
 - 每个分片保存source/checkpoint/config SHA、每batch noise/state SHA、准确query index、global ids。合并检查覆盖且无重复；源文件在运行期间冻结。
 
 实现：[状态缓存](../experiments/cache_raev2_actual_ratio_states.py)、[固定执行器](../experiments/prepare_raev2_actual_ratio_bank.py)。数据目录为 `/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/actual_ratio_bank`。该准备本身不是质量突破；下一步是否有效仍需独立分类验证、实际采样与固定FID评测。
+
+## 实际轨迹拟合完成，但没有通过采样准入
+
+数据生成283976次逐样本主模型调用，四worker记录时间总和1883.187秒；端到端548.628秒。额外审计了每个split/rank首尾共16个B8的初始noise再生成，全部逐位相同；global id、类别、rank和预定query映射检查通过，拟合前全部文件SHA重检通过。见 [数据审计](../experiments/results/raev2_guidance_20260907/actual_ratio_bank_audit.json) 与 [完整bank身份](../experiments/results/raev2_guidance_20260907/actual_ratio_bank.json)。
+
+762753参数小Transformer保留前次架构，零初始化输出头，固定2048次更新、global64、AdamW1e−4、weight decay .01、clip1，只检查最终checkpoint；配对真实样本在类内独立抽取。训练437.095 GPU秒。最后128次训练损失均值−1.086087，但1000独立验证pair的scaled logistic仅−0.029079，类标准误.144497，两倍SE上界+.259915，未过事先规定的低于零门槛。旧终点噪声判别器在这组相同验证pair上为+3.728247；新拟合改善了这个错误来源上的风险，仍没有证明相对零判别器可靠。固定clip在rank0的1985/2048步触发；不隐去这一训练局限，也没有增加学习率或clip搜索。见 [固定计划](../experiments/results/raev2_guidance_20260907/actual_ratio_fit_plan.json) 与 [完整结果](../experiments/results/raev2_guidance_20260907/actual_ratio_fit.json)。
+
+没有运行该checkpoint的FID，也没有把已写好但未执行的输入梯度审计当作通过。固定8层预训练特征后，单配对与全部五个real条件平均两个凸头的验证风险仍分别为+1.321792、+.937831，均未通过。详见 [该方向推导、全部失败与64K/8K固定扩容](RAEV2_PREFIX_RATIO_20260907_ZH.md)。
+
+query分配在1000图时含125个B8，因此99个时刻并非完全等权：26个时刻出现两批，其余各一批。保留原始门槛，另将所有99时刻等权作描述性审计，actual小网络风险−.040072、prefix单配对+.973494，仍未给出通过证据；所有固定时间区间均报告，不选窗口。完整定义和batch cluster SE见 [时间权重审计](../experiments/results/raev2_guidance_20260907/actual_ratio_small_time_audit.json)。真实bank的存储索引与PackedImageNet类别/行号也重新核对，未发现配对错行。

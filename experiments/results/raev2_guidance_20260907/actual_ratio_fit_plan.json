@@ -1,0 +1,38 @@
+{
+  "protocol": "one fixed actual-native-law paired ratio fit; final checkpoint only",
+  "updates": 2048,
+  "world_size": 4,
+  "global_batch": 64,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.01,
+  "gradient_clip": 1.0,
+  "optimizer": "AdamW betas(.9,.999), constant learning rate",
+  "model_seed": 202609094,
+  "train_pair_seed": 202609095,
+  "actual_bank_execution_sha256": "d28342e3eda0347318b61eeb9bd7614ac94703fd7e702415b481e5480958b2b7",
+  "real_manifest_sha256": "e21ab6ef61eee5692ad9f066a1da10f94c8f3f5b53cdbaa68b609aaf23d1b905",
+  "old_critic_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+  "lookup_sha256": {
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/train_real_lookup.npy": "51d0ffa6eb9927e0950351792693bc25fbb4fe351526df0eb24d98bfc471b395",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_data/validation_real_lookup.npy": "c294a5563861be2fb6e8d813397d8dfde3426d3ac57059c03ad6ab31cdb66515"
+  },
+  "precision": "FP32 states/noise/model, TF32 disabled; FP64 scalar loss",
+  "data_pairing": "uniform actual generated id; independent real endpoint within same class; stored actual initial noise shared with real noising; time fixed by actual record",
+  "initialization": "same 762753 parameter architecture, new zero output head; no warm start",
+  "checkpoint_choice": "update 2048 only, no checkpoint selection or temperature calibration",
+  "validation": "all 1000 actual heldout ids, one real endpoint per class; compare zero and frozen old endpoint critic",
+  "entry_condition": "mean loss + 2 class SE < 0 and paired change versus old critic + 2 class SE < 0",
+  "sampling_if_entry_passed": {
+    "strength": 1.0,
+    "formula": "native BF16 G + t^2 grad_z f",
+    "times": "all original 100 including finite pure-noise extension",
+    "seed": 202609071,
+    "samples": 1000
+  },
+  "known_limits": [
+    "frozen native law differs from guided law",
+    "KL advective mismatch term remains",
+    "classification risk does not prove gradient or FID generalization"
+  ],
+  "fid_used_for_fit": false
+}

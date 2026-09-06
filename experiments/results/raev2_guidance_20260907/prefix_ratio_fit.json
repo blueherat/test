@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "plan": {
+    "feature_execution_sha256": "4792336df8a77f9ef491f7650864481808e48785aeb9b23a2dffc42477f02f8a",
+    "source_sha256": "cff50aa1bacb12f894bfef7acc35ba7c91b536e86b0c56780a113f1aec5f40c2",
+    "feature_dim": 2880,
+    "train_pairs": 5000,
+    "parameters_including_bias": 2881,
+    "normalization": "training feature mean and one global RMS scale; no per-channel or time fitting",
+    "prior": "generalized Bayes N(0,I/dim); unit expected f^2 before observing labels",
+    "ridge": 0.5762,
+    "ridge_rule": "dim/n in averaged paired scaled logistic loss",
+    "prior_scale_is_a_fixed_modeling_assumption_not_a_unique_theorem": true,
+    "optimizer": "one L-BFGS-B solve from zero; maxiter500, gtol1e-8, ftol1e-13",
+    "validation_entry": "unregularized held-out loss mean + two class SE < 0",
+    "sampling_if_entry_passed": {
+      "strength": 1.0,
+      "formula": "native G + t^2 grad_z f(prefix(z,t,c))",
+      "time_window": "all original 100 queries",
+      "seed": 202609071,
+      "samples": 1000
+    },
+    "no_fid_fitting_no_layer_or_regularizer_search": true
+  },
+  "validation": {
+    "samples": 1000,
+    "mean_scaled_logistic": 1.3217923877072462,
+    "class_standard_error": 0.6856601808226166,
+    "upper_two_standard_errors": 2.6931127493524794,
+    "entry_condition_passed": false
+  },
+  "training_unregularized_loss": -4.186329897924484,
+  "regularized_objective": -2.5062898364403043,
+  "gradient_max_abs": 2.7491082777442166e-06,
+  "iterations": 60,
+  "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "coefficient_norm": 2.4148390479501853,
+  "cpu_elapsed_seconds": 7.513310960959643,
+  "checkpoint_sha256": "efbc8c6d7ea8e4c660f2a4f9b2b1685a78b27307202df12e346e9cf8cf3c7b45",
+  "validation_records_sha256": "491cda918c01d9d50ae998393607f895ee181221b8950ce889c28782ab7b92d5",
+  "no_fid_evaluated": true
+}

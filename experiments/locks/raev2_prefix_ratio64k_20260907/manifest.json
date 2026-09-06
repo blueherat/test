@@ -1,0 +1,17 @@
+{
+  "applied": false,
+  "purpose": "one fixed prefix_ratio64k sampling integration, prepared without modifying live native/feature source files",
+  "required_before_application": "native bank and feature extraction and fixed head fit complete; fit entry passed; no live process reads frozen sampler",
+  "files": {
+    "experiments/sample_raev2_ancestral_guidance.py": {
+      "before_sha256": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320",
+      "after_sha256": "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347"
+    },
+    "experiments/run_raev2_ancestral_study.py": {
+      "before_sha256": "ce6d913a501214ee7b2a1ac0572136e54769b1ce94fb10e64a8675068fe19163",
+      "after_sha256": "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9"
+    }
+  },
+  "patch_sha256": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+  "no_images_generated": true
+}

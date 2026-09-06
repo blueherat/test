@@ -1,0 +1,45 @@
+{
+  "name": "prefix_ratio64k",
+  "train": {
+    "count": 64000,
+    "real_per_class": 64,
+    "positive_choices": 5,
+    "pairing": "(global_id//1000 + k) mod64, k=0..4"
+  },
+  "validation": {
+    "count": 8000,
+    "real_per_class": 8,
+    "positive_choices": 8,
+    "pairing": "all eight held-out real choices for every held-out noise state"
+  },
+  "feature": "unchanged native base_model_depth8; token RMS then pooled first and second moments",
+  "feature_dimension": 2880,
+  "parameters_including_bias": 2881,
+  "normalization": "one training mixture mean and one global RMS; positive/negative sides each weight one half",
+  "prior": "unchanged generalized Bayes N(0,I/dim), unit expected f^2 on the normalized training mixture",
+  "ridge_rule": "dim/N independent generated states, including regularized bias; N=64000",
+  "ridge": 0.045015625,
+  "objective": "average paired scaled logistic over states and five balanced positive choices, plus one prior",
+  "optimizer": {
+    "method": "L-BFGS-B",
+    "initialization": "zero",
+    "maxiter": 500,
+    "gtol": 1e-08,
+    "ftol": 1e-13,
+    "maxls": 30
+  },
+  "validation_entry": "mean conditional risk + 2 SE of 1000 class means < 0; optimizer gradient maxabs <1e-5",
+  "validation_uncertainty_limit": "descriptive class-cluster SE under fixed balanced classes; not a formal guarantee",
+  "sampling_if_entry_passed": {
+    "formula": "native G + t^2 grad_z f",
+    "strength": 1.0,
+    "times": "all original100 including pure noise",
+    "seed": 202609071,
+    "samples": 1000,
+    "requires": "input gradient audit, finite whole trajectory and original official8 pixel parity"
+  },
+  "no_fid_layer_temperature_window_or_regularizer_search": true,
+  "data_expansion_count_is_one_engineering_budget_not_a_unique_theorem": true,
+  "train_conditional_average_is_five_balanced_choices_not_exact_all64": true,
+  "fid_used_for_fitting": false
+}

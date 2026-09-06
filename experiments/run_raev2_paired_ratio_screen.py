@@ -16,17 +16,21 @@ from experiments.summarize_raev2_guidance_20260907 import DATA, sha
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--continuation-name', default='paired_ratio_screen_continuation')
-    parser.add_argument('--mode', choices=['paired_ratio', 'paired_ratio_calibrated'], default='paired_ratio')
+    parser.add_argument('--mode', choices=['paired_ratio', 'paired_ratio_calibrated', 'actual_ratio'], default='paired_ratio')
     args = parser.parse_args()
     out = DATA / args.continuation_name
     out.mkdir(exist_ok=False)
-    training = json.loads((DATA / 'paired_ratio_fit/execution.json').read_text())
+    fit_name = 'actual_ratio_fit' if args.mode == 'actual_ratio' else 'paired_ratio_fit'
+    training = json.loads((DATA / fit_name / 'execution.json').read_text())
     assert training['complete'] and training['validation']['entry_condition_passed']
     sources = [ROOT / 'experiments' / name for name in
                ('sample_raev2_ancestral_guidance.py', 'run_raev2_ancestral_study.py',
                 'raev2_paired_ratio_model.py', 'audit_raev2_paired_ratio_gradient.py',
                 'run_raev2_paired_ratio_screen.py')]
-    sources.extend((DATA / 'paired_ratio_fit/critic.pt', DATA / 'paired_ratio_fit_plan.json'))
+    sources.extend((DATA / fit_name / 'critic.pt', DATA / (fit_name + '_plan.json')))
+    if args.mode == 'actual_ratio':
+        sources.extend((ROOT / 'experiments/audit_raev2_actual_ratio_gradient.py',
+                        ROOT / 'experiments/raev2_actual_ratio_data.py'))
     if args.mode == 'paired_ratio_calibrated':
         sources.append(DATA / 'paired_ratio_calibration.json')
     frozen = {str(p): sha(p) for p in sources}
@@ -53,7 +57,9 @@ def main():
         for path, digest in frozen.items():
             assert sha(Path(path)) == digest, 'frozen input changed: ' + path
     save()
-    if args.mode == 'paired_ratio':
+    if args.mode == 'actual_ratio':
+        run([sys.executable, '-m', 'experiments.audit_raev2_actual_ratio_gradient'], 'gradient.log')
+    elif args.mode == 'paired_ratio':
         run([sys.executable, '-m', 'experiments.audit_raev2_paired_ratio_gradient'], 'gradient.log')
     else:
         audit = ROOT / 'experiments/results/raev2_guidance_20260907/paired_ratio_gradient_audit.json'

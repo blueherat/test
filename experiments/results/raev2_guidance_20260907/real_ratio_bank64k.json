@@ -1,0 +1,92 @@
+{
+  "complete": true,
+  "pid": 2079093,
+  "started_unix": 1788733365.9985592,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_ratio_real64k.py": "7b89a48c515cf3db7cb694d8938bfa81a4a066ab0140d696d4ffc1b2fe27814c",
+    "/home/zhoushunyu/eqvae/experiments/encode_raev2_ratio_real64k.py": "5380203e66549a90bbcf961f68c529ba755bc400b763f64b908f0d65c97a5219",
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_potential_clean_bank.py": "f2a0fffa664c3fdd9ab307d01220e5802896b013a5b0653cd2cd5d3e0f9f6d82",
+    "/home/zhoushunyu/eqvae/experiments/raev2_training_core.py": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0"
+  },
+  "selection_sha256": "643efac748a3205792d0ce960012659aad5b6f9a6f5e7abed2641f36f9ec3d95",
+  "splits": {
+    "train": {
+      "count": 64000,
+      "real_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/real_ratio_bank64k/train/latents.npy",
+      "real_lookup": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/real_ratio_bank64k/train/real_lookup.npy",
+      "worker_seconds_inclusive": 1513.4385148598813,
+      "files": {
+        "latents.npy": "f3d6eea7a2b99d90f1bea7f534de9158d7cc942f770c982f34f982059a8f3f72",
+        "real_lookup.npy": "7d64da739e85a8284d4b0e1ab41b74de04804baed6c1689f77e92726c4e73556",
+        "metadata.npz": "e6f43f91c56428d31f86aa402045939af81231f4e299447a130fc6fb43318ce6",
+        "image_hashes.npy": "a2b296c6e925d80bf2fc5f1e96499a1319e069aeb5a7f9da16a20d689571ac07"
+      }
+    },
+    "validation": {
+      "count": 8000,
+      "real_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/real_ratio_bank64k/validation/latents.npy",
+      "real_lookup": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/real_ratio_bank64k/validation/real_lookup.npy",
+      "worker_seconds_inclusive": 191.23170363297686,
+      "files": {
+        "latents.npy": "f217bddf95c7036b05633b16574b9da751a124c4e3bdbeceb5fbcf62f50063fb",
+        "real_lookup.npy": "0b364f82fc4ecd2e84e48501c00f5461980049513c54ab6053608a3cd0889e48",
+        "metadata.npz": "46df7a94d3e29a60307c78429bf15c0d0c6c5d384a7f1fbc76dac8b4e2d5bd60",
+        "image_hashes.npy": "89d2a7a768f82e9c5f8fbab7804a7a68cf78ba13048b77fe49e533451d289d87"
+      }
+    }
+  },
+  "concurrency_note": "may share the four GPUs with native-state data preparation; worker time is inclusive, not exclusive compute time",
+  "stage": "real_bank_complete",
+  "jobs": [
+    {
+      "rank": 0,
+      "pid": 2090334,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/encode_raev2_ratio_real64k.py",
+        "--split",
+        "validation",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "rank": 1,
+      "pid": 2090335,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/encode_raev2_ratio_real64k.py",
+        "--split",
+        "validation",
+        "--shard",
+        "1"
+      ]
+    },
+    {
+      "rank": 2,
+      "pid": 2090336,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/encode_raev2_ratio_real64k.py",
+        "--split",
+        "validation",
+        "--shard",
+        "2"
+      ]
+    },
+    {
+      "rank": 3,
+      "pid": 2090337,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/encode_raev2_ratio_real64k.py",
+        "--split",
+        "validation",
+        "--shard",
+        "3"
+      ]
+    }
+  ],
+  "elapsed_seconds": 526.7361490726471,
+  "source_file_sha256": "8559b41a8026663b4985739d016439ad985cc84607db0dc3c42cfbc8b62a251a"
+}

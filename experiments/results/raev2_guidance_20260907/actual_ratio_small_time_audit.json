@@ -1,0 +1,93 @@
+{
+  "complete": true,
+  "source_sha256": "91d4868f880a9b5a68f43c41925f3422c8fd91f3c323023f2277ae9196937426",
+  "purpose": "descriptive time-distribution audit, not a changed fit entry gate",
+  "independent_heldout_ids": 1000,
+  "validation_query_allocation": "125 native B8 batches: first26 indices twice, remaining73 once, shuffled before generation",
+  "weight": "w_i=N/(99*n_time_i); estimate=mean(w_i*loss_i)",
+  "cluster_se": "sqrt(B/(B-1)*sum_b [sum_i_in_b w_i*(loss_i-estimate)/N]^2), B=125 native batches",
+  "uncertainty_limit": "descriptive weighted cluster sandwich under this fixed time/class design, not an exact confidence interval",
+  "models": {
+    "actual_ratio_fit": {
+      "validation_records_sha256": "3d63797cbe44ab173e0b39f6d5a40ed78d7a60fb9fca620c11cccbbc0dc4b0a7",
+      "original_unweighted_loss": -0.02907853774411963,
+      "uniform99_time_loss": -0.04007221183674947,
+      "native_batch_cluster_se": 0.14709772663035536,
+      "all_fixed_time_bins": [
+        {
+          "t_min": 0,
+          "t_max_exclusive": 0.5,
+          "n": 88,
+          "mean_loss": 0.3054697057675037
+        },
+        {
+          "t_min": 0.5,
+          "t_max_exclusive": 0.9,
+          "n": 328,
+          "mean_loss": 0.054960395420755745
+        },
+        {
+          "t_min": 0.9,
+          "t_max_exclusive": 1.0,
+          "n": 584,
+          "mean_loss": -0.12668986566723944
+        }
+      ],
+      "gate_changed": false
+    },
+    "prefix_ratio_fit": {
+      "validation_records_sha256": "491cda918c01d9d50ae998393607f895ee181221b8950ce889c28782ab7b92d5",
+      "original_unweighted_loss": 1.3217923877072462,
+      "uniform99_time_loss": 0.9734938627351668,
+      "native_batch_cluster_se": 0.46743918816887586,
+      "all_fixed_time_bins": [
+        {
+          "t_min": 0,
+          "t_max_exclusive": 0.5,
+          "n": 88,
+          "mean_loss": 0.11078234951529482
+        },
+        {
+          "t_min": 0.5,
+          "t_max_exclusive": 0.9,
+          "n": 328,
+          "mean_loss": 0.5319884527966455
+        },
+        {
+          "t_min": 0.9,
+          "t_max_exclusive": 1.0,
+          "n": 584,
+          "mean_loss": 1.9478618637544534
+        }
+      ],
+      "gate_changed": false
+    },
+    "prefix_ratio_rb_fit": {
+      "validation_records_sha256": "6ef8a55b7f683e932097cfa7cefa34ab13fc09a70520e375265bea0b5bc0dab8",
+      "original_unweighted_loss": 0.9378310507535567,
+      "uniform99_time_loss": 0.6333339927384172,
+      "native_batch_cluster_se": 0.4580170442719031,
+      "all_fixed_time_bins": [
+        {
+          "t_min": 0,
+          "t_max_exclusive": 0.5,
+          "n": 88,
+          "mean_loss": 0.06254354830476822
+        },
+        {
+          "t_min": 0.5,
+          "t_max_exclusive": 0.9,
+          "n": 328,
+          "mean_loss": 0.2595523208156611
+        },
+        {
+          "t_min": 0.9,
+          "t_max_exclusive": 1.0,
+          "n": 584,
+          "mean_loss": 1.4506747556082198
+        }
+      ],
+      "gate_changed": false
+    }
+  }
+}

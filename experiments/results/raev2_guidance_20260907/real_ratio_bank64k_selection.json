@@ -1,0 +1,119 @@
+{
+  "seed": 202609105,
+  "packed_path": "/data/shared/imagenet-1k/random_access_v1",
+  "train_count": 64000,
+  "validation_count": 8000,
+  "identity": {
+    "config": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "dino_weights": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/encoders/dinov3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
+      "sha256": "8aa4cbddda325040fc78db2c272754af6ebe8ff2c55f6ec4f1964d8890f66035",
+      "size_bytes": 1213050671
+    },
+    "normalization_stats": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+      "size_bytes": 2098901
+    },
+    "packed_manifest": {
+      "path": "/data/shared/imagenet-1k/random_access_v1/manifest.json",
+      "sha256": "a3ef360766c3cb0c6ed00639f1a1d23da8a93e37ad04f03217af1830f9756a38",
+      "size_bytes": 136967
+    },
+    "identity_reference": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/heldout_clean_c_current_fp32/request.json",
+      "sha256": "9ab6512c1872c186aa7b6ed815d64889769d75add873550af3a2778149344944",
+      "size_bytes": 203569
+    },
+    "official_identity_matches_prior_audited_fp32_bank": true,
+    "stage_1_params": {
+      "encoder_name": "dinov3mls-vit-l16[layers=11.13.15.17.19.21.23]",
+      "resolution": 256,
+      "decoder_config_path": "/home/zhoushunyu/eqvae/external/RAEv2/configs/decoder/ViTXL",
+      "pretrained_decoder_path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "noise_tau": 0.0,
+      "normalization_stat_path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt"
+    },
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/prepare_raev2_potential_clean_bank.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/prepare_raev2_potential_clean_bank.py",
+        "sha256": "f2a0fffa664c3fdd9ab307d01220e5802896b013a5b0653cd2cd5d3e0f9f6d82",
+        "size_bytes": 22620
+      },
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_calibration_cache.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_calibration_cache.py",
+        "sha256": "342c10d8bf4d9903662c1fc3651bcd8b89bce5095d324fa37202d6819f933f4a",
+        "size_bytes": 9871
+      },
+      "/home/zhoushunyu/eqvae/experiments/extract_raev2_decoder_audit_real_blocks.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/extract_raev2_decoder_audit_real_blocks.py",
+        "sha256": "2c39f68fabd75c0401c491f51c93ae8eab0956cfd8fa49e0af1ff18aa440af62",
+        "size_bytes": 12417
+      },
+      "/home/zhoushunyu/eqvae/experiments/raev2_training_core.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/raev2_training_core.py",
+        "sha256": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0",
+        "size_bytes": 25067
+      },
+      "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py",
+        "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+        "size_bytes": 2517
+      },
+      "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py",
+        "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+        "size_bytes": 35236
+      },
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_scale_response_study.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_scale_response_study.py",
+        "sha256": "f59958d2cddaf1dea1911bcef54c80e1f0ebf4e52085958fdcdcad914d41cc02",
+        "size_bytes": 48618
+      },
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_distribution_auc.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_distribution_auc.py",
+        "sha256": "dfa3c08a48e55333867f3723bc4a026377a28640d5f6b4826bd3983f0677916d",
+        "size_bytes": 45621
+      },
+      "/home/zhoushunyu/eqvae/experiments/build_imagenet_random_access.py": {
+        "path": "/home/zhoushunyu/eqvae/experiments/build_imagenet_random_access.py",
+        "sha256": "b94c7c633a3c77fad56a553f3085488fc1caa960d55d354ad01f9f53224770ff",
+        "size_bytes": 7529
+      },
+      "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py": {
+        "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+        "sha256": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+        "size_bytes": 34988
+      },
+      "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/models/dinov3_loader.py": {
+        "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/models/dinov3_loader.py",
+        "sha256": "d5a159b089a075f155bd66aef2e8dc96be0973a622f6a3c22e2a6dde9973c214",
+        "size_bytes": 2306
+      },
+      "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py": {
+        "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+        "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+        "size_bytes": 4341
+      },
+      "/data/users/zhoushunyu/eqvae/models/RAEv2/dinov3_repo/dinov3/models/vision_transformer.py": {
+        "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/dinov3_repo/dinov3/models/vision_transformer.py",
+        "sha256": "a0e79d4506a9b166845446268bafeb802cace6e5c008a0b4a1da183befe46e7f",
+        "size_bytes": 14877
+      }
+    },
+    "decoder_weights_instantiated_but_not_used": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+      "size_bytes": 1662766063
+    }
+  },
+  "excluded_current_bank_rows": 6000,
+  "train_validation_rows_disjoint": true,
+  "limits": "new fit holdout, not a claim that no older repository research ever used these public images",
+  "preprocessing": "original packed bytes, deterministic ADM crop256, FP32/255, no flip, official K7 normalization",
+  "source_file_sha256": "643efac748a3205792d0ce960012659aad5b6f9a6f5e7abed2641f36f9ec3d95"
+}

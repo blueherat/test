@@ -1,0 +1,26 @@
+{
+  "pid": 2072122,
+  "started_unix": 1788733093.6616333,
+  "plan": {
+    "train": {
+      "samples": 64000,
+      "seed": 202609101,
+      "time_seed": 202609103
+    },
+    "validation": {
+      "samples": 8000,
+      "seed": 202609102,
+      "time_seed": 202609104
+    }
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_actual_ratio_bank.py": "642a3b9a07fab0f813b6026ae957157dd355aaeb41c362500c407a1bd5707411",
+    "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py": "785f95716109e3fd8633396eda636ee0287d69b0c9066550e26c9e020ed9db4c",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320"
+  },
+  "purpose": "actual native marginals, shared-noise ratio fit; no quality evaluation",
+  "complete": false,
+  "snapshot_unix": 1788735072.067771,
+  "snapshot_stage": "train",
+  "concurrency_note": "native states shared GPUs with the completed real encoder during part of preparation; worker seconds include contention, exact model calls remain explicit"
+}
