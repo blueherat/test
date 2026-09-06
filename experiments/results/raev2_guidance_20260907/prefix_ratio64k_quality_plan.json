@@ -1,0 +1,40 @@
+{
+  "created_unix": 1788736191.0231855,
+  "decision_before_new_head_and_any_fid": true,
+  "primary_requested_sample_counts": [
+    1000,
+    5000
+  ],
+  "screen1k": {
+    "seed": 202609071,
+    "samples": 1000
+  },
+  "independent5k": {
+    "seed": 202609072,
+    "samples": 5000,
+    "run_regardless_of_1k_fid_if_entry_gradient_parity_and_whole1k_pass": true
+  },
+  "rationale": "User goal permits either1K or5K; existing all-block evidence shows finite-N ranking changes; compare both unchanged, report both",
+  "head_formula_strength_and_time_schedule_unchanged": true,
+  "prerequisites": "one fixed64K fit passes original entry, numerical gradient audit and original official8 parity, finite complete1K",
+  "no_new_seed_coefficient_window_layer_or_temperature_selection": true,
+  "baseline5k": {
+    "study": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k",
+    "official_fid": 6.9497684777115865,
+    "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+    "noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+    "summary_sha256": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+    "metrics_sha256": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520"
+  },
+  "cost_policy": "reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control",
+  "no_automatic_goal_completion": true,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+  }
+}
