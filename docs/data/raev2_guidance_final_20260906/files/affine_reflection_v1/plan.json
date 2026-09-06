@@ -1,0 +1,52 @@
+{
+  "protocol": "raev2_affine_reflection_fixed_1k_v1",
+  "protocol_document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+    "sha256": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db",
+    "size_bytes": 8651
+  },
+  "cohort": {
+    "seed": 202609131,
+    "n": 1000,
+    "batch_size": 8
+  },
+  "gpu_uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "arms": [
+    "official100",
+    "reflection100",
+    "officialK_from_pre_FID_cost_rule"
+  ],
+  "source_freeze_complete": true,
+  "frozen_files": {
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py": "37426ed1865537a14f05777ed909d90113aeee224fc0f4f0cf8f4e71d557b069",
+    "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py": "3872d9260f13a8f9be5f0444b7d737e4442eff954e865ed62e183edee8e6f9b0",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+    "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py": "7ea49251f08f9ea4cfae3c9934cf390ba335236c679c94db7d25c217a08a2279",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+    "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac"
+  },
+  "pre_gpu_cpu_tests": {
+    "passed": 16,
+    "pytest_wall_seconds": 7.01,
+    "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 python -m pytest -q tests/test_raev2_affine_reflection.py",
+    "prior_test_failure": "incorrect assertion that every BF16 pixel product differs from FP32; test corrected, sampler arithmetic unchanged"
+  },
+  "freeze_wall_seconds": 10.992665803991258
+}

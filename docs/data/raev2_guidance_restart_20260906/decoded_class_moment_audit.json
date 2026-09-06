@@ -1,0 +1,2997 @@
+{
+  "protocol": "archived_raev2_decoded_class_moment_audit_v1",
+  "status": "complete",
+  "goal_status": "active",
+  "goal_achieved": false,
+  "scope": "Retrospective CPU mechanism diagnostic. No new guidance, training, sampling or FID.",
+  "findings": [
+    "Decoded Inception IG-minus-Full within trace is negative and corrected-between contribution positive in all six old bank/split summaries; raw-latent signs are opposite.",
+    "Pooled positive change is supplied by the between term, while within contraction also repairs Full excess variance; all three trace errors move toward source and reconstruction references.",
+    "Centroid risk changes are descriptively negative for both references; this is not a population confidence certificate or FID attribution.",
+    "An anisotropic linear map can reverse trace signs, so these observations do not establish decoder nonlinearity, Jensen bias or a usable control direction."
+  ],
+  "files": {
+    "summary.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/summary.json",
+      "sha256": "2bd7b6ee83f62c40bb206286f96d9af63eadf6afd9ef6e8de94aa38d9169fb34",
+      "bytes": 71885
+    },
+    "request.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/request.json",
+      "sha256": "d71862318e209f6087cd300b46ed68478fc9d19d313c697fb3b5a442dae305a5",
+      "bytes": 15702
+    },
+    "runner_source.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/runner_source.py",
+      "sha256": "01e8a1b155e4a7aa66191165f975d1b2bea451242cc16d47889c4f888248e0bd",
+      "bytes": 16885
+    },
+    "independent_audit.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/independent_audit.json",
+      "sha256": "19637ab829b5f97cc68d9e70370552beeb9a848679839ec7caeb2ac63a138c3d",
+      "bytes": 25125
+    },
+    "independent_auditor_source.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/independent_auditor_source.py",
+      "sha256": "3cf35007df4d48dd3fbf6bbcbbae89bbf4adce797106807a94922fc47c6aae83",
+      "bytes": 14810
+    },
+    "seed20260801_analysis.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260801_analysis.json",
+      "sha256": "4068eeea2b32860a8c1c3387d435399c0c69a71deac6e7e42260c50566525869",
+      "bytes": 32158
+    },
+    "seed20260802_analysis.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260802_analysis.json",
+      "sha256": "75e09ec4148f3ed6c3cdefa7b4a3f1490f074f18586808eb710f5fcc834d01a8",
+      "bytes": 32122
+    }
+  },
+  "summary": {
+    "protocol": "raev2_decoded_inception_class_moments_v1",
+    "status": "complete",
+    "outputs": [
+      {
+        "seed": 20260801,
+        "splits": {
+          "train": {
+            "classes": 800,
+            "samples": 4000,
+            "branches": {
+              "source": {
+                "pooled_trace": 180.71667419401257,
+                "within_trace": 102.10226824456147,
+                "centroid_scatter_observed": 99.11357239530908,
+                "centroid_scatter_corrected": 78.69311874639678,
+                "uniform_class_between_trace_corrected": 78.59475234796378,
+                "anova_absolute_error": 5.684341886080802e-14
+              },
+              "reconstruction": {
+                "pooled_trace": 178.00301504896493,
+                "within_trace": 100.73451646715121,
+                "centroid_scatter_observed": 97.492767080332,
+                "centroid_scatter_corrected": 77.34586378690176,
+                "uniform_class_between_trace_corrected": 77.24918145716813,
+                "anova_absolute_error": 1.2789769243681803e-13
+              },
+              "full": {
+                "pooled_trace": 172.68038952740233,
+                "within_trace": 105.33151967945443,
+                "centroid_scatter_observed": 88.48260694513826,
+                "centroid_scatter_corrected": 67.41630300924737,
+                "uniform_class_between_trace_corrected": 67.33203263048581,
+                "anova_absolute_error": 9.947598300641403e-14
+              },
+              "ig": {
+                "pooled_trace": 173.80266890399892,
+                "within_trace": 101.8903266037993,
+                "centroid_scatter_observed": 92.3624099661911,
+                "centroid_scatter_corrected": 71.98434464543124,
+                "uniform_class_between_trace_corrected": 71.89436421462445,
+                "anova_absolute_error": 1.2789769243681803e-13
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9849839028017175,
+                  "within_trace": 0.9866040999781304,
+                  "centroid_scatter_corrected": 0.9828796344463511
+                },
+                "full": {
+                  "pooled_trace": 0.9555310283212566,
+                  "within_trace": 1.0316276170002223,
+                  "centroid_scatter_corrected": 0.856698833178908
+                },
+                "ig": {
+                  "pooled_trace": 0.9617411878519248,
+                  "within_trace": 0.9979242220138095,
+                  "centroid_scatter_corrected": 0.9147476398465562
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.0152450178683836,
+                  "within_trace": 1.0135777866949536,
+                  "centroid_scatter_corrected": 1.0174185779760232
+                },
+                "full": {
+                  "pooled_trace": 0.9700981159218092,
+                  "within_trace": 1.0456348367324746,
+                  "centroid_scatter_corrected": 0.8716213086066029
+                },
+                "ig": {
+                  "pooled_trace": 0.9764029494454879,
+                  "within_trace": 1.0114738242380406,
+                  "centroid_scatter_corrected": 0.9306812429396066
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.196239821813246,
+                  "descriptive_class_sem": 0.06614233439528465,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.08932837381931354,
+                  "descriptive_class_sem": 0.02187867045602429,
+                  "negative_classes": 370,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 4.106911447993932,
+                "global_mean_squared_distance": 0.019491482592607474,
+                "global_mean_squared_distance_corrected": 0.014357843282615058,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 44.4446387979458,
+                  "descriptive_class_sem": 0.807478875779519,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.957881213142613,
+                  "descriptive_class_sem": 0.5170478871532637,
+                  "negative_classes": 400,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 41.486757584803186,
+                "global_mean_squared_distance": 0.21362535409511843,
+                "global_mean_squared_distance_corrected": 0.16176690711411446,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.431577515499505,
+                  "descriptive_class_sem": 0.7416265043268189,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.6330585458273341,
+                  "descriptive_class_sem": 0.4545963563754887,
+                  "negative_classes": 439,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 40.798518969672166,
+                "global_mean_squared_distance": 0.09481285478063231,
+                "global_mean_squared_distance_corrected": 0.043814706068542104,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 44.13468908532972,
+                  "descriptive_class_sem": 0.7993795511672651,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.921481856008586,
+                  "descriptive_class_sem": 0.5100874208855278,
+                  "negative_classes": 410,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 41.21320722932113,
+                "global_mean_squared_distance": 0.21881049444636735,
+                "global_mean_squared_distance_corrected": 0.16729398540971593,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.078150925411975,
+                  "descriptive_class_sem": 0.7334103885732137,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.553182311221856,
+                  "descriptive_class_sem": 0.44822001550907653,
+                  "negative_classes": 435,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 40.524968614190115,
+                "global_mean_squared_distance": 0.07812031952100579,
+                "global_mean_squared_distance_corrected": 0.02746410875326815,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 17.326561084973346,
+                  "descriptive_class_sem": 0.33862501892549346,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.9772653962422502,
+                  "descriptive_class_sem": 0.13274754123789959,
+                  "negative_classes": 345,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 16.349295688731097,
+                "global_mean_squared_distance": 0.17243056394277756,
+                "global_mean_squared_distance_corrected": 0.1519939443318637,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 1.1222793765965946,
+              "within_ig_minus_full": -3.4411930756551357,
+              "between_corrected_contribution_ig_minus_full": 4.563472452251697,
+              "between_multiplier": 0.9989997499374844,
+              "within_change_by_class": {
+                "mean": -3.4411930756551015,
+                "descriptive_class_sem": 0.7866514377928037,
+                "negative_classes": 443,
+                "classes": 800
+              },
+              "within_full_ig_pair_alignment": 0.6055957653118108,
+              "centroid_full_ig_alignment_corrected": 0.9946066063154656,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -1.3248226673152788,
+                "descriptive_class_sem": 0.32824947050799813,
+                "negative_classes": 441,
+                "classes": 800
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 8.036284666610243,
+                "ig": 6.914005290013648
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 3.2292514348929586,
+                "ig": 0.21194164076217703
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 11.276815737149406,
+                "ig": 6.708774100965542
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -2.3020880635575294,
+                  "descriptive_class_sem": 0.3889751481116602,
+                  "negative_classes": 444,
+                  "classes": 800
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9772653962422502,
+                  "descriptive_class_sem": 0.13274754123789959,
+                  "negative_classes": 345,
+                  "classes": 800
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -1.36829954478673,
+                "descriptive_class_sem": 0.325983309470443,
+                "negative_classes": 432,
+                "classes": 800
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 5.3226255215626,
+                "ig": 4.200346144966005
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 4.597003212303221,
+                "ig": 1.1558101366480855
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 9.929560777654387,
+                "ig": 5.361519141470524
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -2.345564941028981,
+                  "descriptive_class_sem": 0.3852035369346469,
+                  "negative_classes": 436,
+                  "classes": 800
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9772653962422502,
+                  "descriptive_class_sem": 0.13274754123789959,
+                  "negative_classes": 345,
+                  "classes": 800
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.04347687747145159,
+                "descriptive_class_sem": 0.07075472699625629,
+                "negative_classes": 369,
+                "classes": 800
+              }
+            }
+          },
+          "heldout": {
+            "classes": 200,
+            "samples": 1000,
+            "branches": {
+              "source": {
+                "pooled_trace": 183.09116063746183,
+                "within_trace": 100.32919730264295,
+                "centroid_scatter_observed": 103.16051420573869,
+                "centroid_scatter_corrected": 83.0946747452101,
+                "uniform_class_between_trace_corrected": 82.67920137148406,
+                "anova_absolute_error": 0.0
+              },
+              "reconstruction": {
+                "pooled_trace": 180.2289019209698,
+                "within_trace": 99.55554681269848,
+                "centroid_scatter_observed": 100.90877946622119,
+                "centroid_scatter_corrected": 80.99767010368149,
+                "uniform_class_between_trace_corrected": 80.59268175316308,
+                "anova_absolute_error": 2.842170943040401e-14
+              },
+              "full": {
+                "pooled_trace": 172.24895832731198,
+                "within_trace": 103.50270029661482,
+                "centroid_scatter_observed": 89.72316495647516,
+                "centroid_scatter_corrected": 69.0226248971522,
+                "uniform_class_between_trace_corrected": 68.67751177266643,
+                "anova_absolute_error": 2.842170943040401e-14
+              },
+              "ig": {
+                "pooled_trace": 174.50860356627942,
+                "within_trace": 99.53127885515568,
+                "centroid_scatter_observed": 95.18499686290318,
+                "centroid_scatter_corrected": 75.27874109187204,
+                "uniform_class_between_trace_corrected": 74.90234738641267,
+                "anova_absolute_error": 5.684341886080802e-14
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9843670294812343,
+                  "within_trace": 0.9922888798999283,
+                  "centroid_scatter_corrected": 0.97476366989872
+                },
+                "full": {
+                  "pooled_trace": 0.9407824917794997,
+                  "within_trace": 1.0316309018639809,
+                  "centroid_scatter_corrected": 0.8306504009889145
+                },
+                "ig": {
+                  "pooled_trace": 0.9531241320372822,
+                  "within_trace": 0.9920469965978064,
+                  "centroid_scatter_corrected": 0.9059394157651648
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.0158812414989196,
+                  "within_trace": 1.00777104355019,
+                  "centroid_scatter_corrected": 1.0258896908867172
+                },
+                "full": {
+                  "pooled_trace": 0.9557232857294052,
+                  "within_trace": 1.0396477505300876,
+                  "centroid_scatter_corrected": 0.8521556831054453
+                },
+                "ig": {
+                  "pooled_trace": 0.9682609265566144,
+                  "within_trace": 0.9997562370122033,
+                  "centroid_scatter_corrected": 0.9293939072014182
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.065077263334303,
+                  "descriptive_class_sem": 0.12426922519211983,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": -0.02354946347594904,
+                  "descriptive_class_sem": 0.044624711903125926,
+                  "negative_classes": 101,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 4.0886267268102525,
+                "global_mean_squared_distance": 0.03205662824705447,
+                "global_mean_squared_distance_corrected": 0.01161349461300321,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.58359193026119,
+                  "descriptive_class_sem": 1.3602223266047375,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.8172124104096177,
+                  "descriptive_class_sem": 0.8169537529836154,
+                  "negative_classes": 108,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 40.766379519851576,
+                "global_mean_squared_distance": 0.37570478247334516,
+                "global_mean_squared_distance_corrected": 0.17187288487408728,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 40.80038497672491,
+                  "descriptive_class_sem": 1.2911339970616165,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.8282897451651797,
+                  "descriptive_class_sem": 0.8665434254581587,
+                  "negative_classes": 116,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 39.97209523155973,
+                "global_mean_squared_distance": 0.2954807011535685,
+                "global_mean_squared_distance_corrected": 0.09562022499576986,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.133009346651505,
+                  "descriptive_class_sem": 1.316447638218906,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.5213599247888374,
+                  "descriptive_class_sem": 0.7969470327388114,
+                  "negative_classes": 104,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 40.61164942186267,
+                "global_mean_squared_distance": 0.3580188575189478,
+                "global_mean_squared_distance_corrected": 0.15496061040963444,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 40.2986401670935,
+                  "descriptive_class_sem": 1.2650552706074638,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.48127503352266987,
+                  "descriptive_class_sem": 0.8586304514990011,
+                  "negative_classes": 117,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 39.81736513357084,
+                "global_mean_squared_distance": 0.24523663729969092,
+                "global_mean_squared_distance_corrected": 0.046149811631836735,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 16.465631874053237,
+                  "descriptive_class_sem": 0.6734082320324932,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.7793298337575497,
+                  "descriptive_class_sem": 0.24828992538624364,
+                  "negative_classes": 87,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 15.686302040295686,
+                "global_mean_squared_distance": 0.24429844314828913,
+                "global_mean_squared_distance_corrected": 0.1658669329468107,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 2.259645238967437,
+              "within_ig_minus_full": -3.9714214414591424,
+              "between_corrected_contribution_ig_minus_full": 6.231066680426665,
+              "between_multiplier": 0.995995995995996,
+              "within_change_by_class": {
+                "mean": -3.9714214414591815,
+                "descriptive_class_sem": 1.3545917890980588,
+                "negative_classes": 109,
+                "classes": 200
+              },
+              "within_full_ig_pair_alignment": 0.6138199787489532,
+              "centroid_full_ig_alignment_corrected": 0.9966644879096613,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -0.9889226652444382,
+                "descriptive_class_sem": 0.5896878479991803,
+                "negative_classes": 115,
+                "classes": 200
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 10.842202310149844,
+                "ig": 8.582557071182407
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 3.1735029939718657,
+                "ig": 0.7979184474872767
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 14.072049848057901,
+                "ig": 7.815933653338064
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.7682524990019883,
+                  "descriptive_class_sem": 0.6983122651479832,
+                  "negative_classes": 109,
+                  "classes": 200
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.7793298337575497,
+                  "descriptive_class_sem": 0.24828992538624364,
+                  "negative_classes": 87,
+                  "classes": 200
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -1.0400848912661678,
+                "descriptive_class_sem": 0.5768316327822935,
+                "negative_classes": 110,
+                "classes": 200
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 7.979943593657822,
+                "ig": 5.720298354690385
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 3.9471534839163382,
+                "ig": 0.024267957542804197
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 11.975045206529288,
+                "ig": 5.7189290118094505
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.8194147250237174,
+                  "descriptive_class_sem": 0.6750322499628961,
+                  "negative_classes": 116,
+                  "classes": 200
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.7793298337575497,
+                  "descriptive_class_sem": 0.24828992538624364,
+                  "negative_classes": 87,
+                  "classes": 200
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.05116222602172916,
+                "descriptive_class_sem": 0.13372412764283248,
+                "negative_classes": 88,
+                "classes": 200
+              }
+            }
+          },
+          "all": {
+            "classes": 1000,
+            "samples": 5000,
+            "branches": {
+              "source": {
+                "pooled_trace": 181.25994307124398,
+                "within_trace": 101.74765405617782,
+                "centroid_scatter_observed": 99.92549333101869,
+                "centroid_scatter_corrected": 79.57596251978312,
+                "uniform_class_between_trace_corrected": 79.49638655726334,
+                "anova_absolute_error": 1.8474111129762605e-13
+              },
+              "reconstruction": {
+                "pooled_trace": 178.5162471857272,
+                "within_trace": 100.49872253626064,
+                "centroid_scatter_observed": 98.17974565293447,
+                "centroid_scatter_corrected": 78.08000114568235,
+                "uniform_class_between_trace_corrected": 78.00192114453667,
+                "anova_absolute_error": 0.0
+              },
+              "full": {
+                "pooled_trace": 172.6584407952034,
+                "within_trace": 104.96575580288655,
+                "centroid_scatter_observed": 88.74004450924444,
+                "centroid_scatter_corrected": 67.74689334866713,
+                "uniform_class_between_trace_corrected": 67.67914645531846,
+                "anova_absolute_error": 7.105427357601002e-14
+              },
+              "ig": {
+                "pooled_trace": 174.00898248018746,
+                "within_trace": 101.41851705407048,
+                "centroid_scatter_observed": 92.93229933977473,
+                "centroid_scatter_corrected": 72.64859592896063,
+                "uniform_class_between_trace_corrected": 72.57594733303166,
+                "anova_absolute_error": 8.526512829121202e-14
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9848631979077783,
+                  "within_trace": 0.9877252057405903,
+                  "centroid_scatter_corrected": 0.9812008384601208
+                },
+                "full": {
+                  "pooled_trace": 0.9525460389631715,
+                  "within_trace": 1.031628264814164,
+                  "centroid_scatter_corrected": 0.8513487139011959
+                },
+                "ig": {
+                  "pooled_trace": 0.9599968946905906,
+                  "within_trace": 0.996765163726275,
+                  "centroid_scatter_corrected": 0.9129464932441088
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.0153694463600407,
+                  "within_trace": 1.0124273372675614,
+                  "centroid_scatter_corrected": 1.01915934108799
+                },
+                "full": {
+                  "pooled_trace": 0.967186144214485,
+                  "within_trace": 1.0444486571957585,
+                  "centroid_scatter_corrected": 0.8676599942956505
+                },
+                "ig": {
+                  "pooled_trace": 0.9747515154693432,
+                  "within_trace": 1.0091523005924574,
+                  "centroid_scatter_corrected": 0.930437946503257
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.170007310117458,
+                  "descriptive_class_sem": 0.05845658495788076,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.06675280636026101,
+                  "descriptive_class_sem": 0.01968889131858165,
+                  "negative_classes": 471,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 4.103254503757197,
+                "global_mean_squared_distance": 0.017968174458010366,
+                "global_mean_squared_distance_corrected": 0.01386491995425317,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 44.07242942440888,
+                  "descriptive_class_sem": 0.7010394527592275,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.7297474525960137,
+                  "descriptive_class_sem": 0.4448054260770891,
+                  "negative_classes": 508,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 41.342681971812866,
+                "global_mean_squared_distance": 0.20269068648165448,
+                "global_mean_squared_distance_corrected": 0.1613480045098416,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.10533900774458,
+                  "descriptive_class_sem": 0.6471154992669343,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.4721047856949028,
+                  "descriptive_class_sem": 0.4027993154363617,
+                  "negative_classes": 555,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 40.63323422204968,
+                "global_mean_squared_distance": 0.09488672240479644,
+                "global_mean_squared_distance_corrected": 0.05425348818274676,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 43.73435313759408,
+                  "descriptive_class_sem": 0.6917717056233886,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.641457469764636,
+                  "descriptive_class_sem": 0.43828829686342474,
+                  "negative_classes": 514,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 41.092895667829445,
+                "global_mean_squared_distance": 0.20296485259650296,
+                "global_mean_squared_distance_corrected": 0.1618719569286735,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 41.72224877374828,
+                  "descriptive_class_sem": 0.6390848249210027,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.3388008556820183,
+                  "descriptive_class_sem": 0.39761837806589134,
+                  "negative_classes": 552,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 40.38344791806626,
+                "global_mean_squared_distance": 0.07236924103136912,
+                "global_mean_squared_distance_corrected": 0.03198579311330286,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 17.154375242789328,
+                  "descriptive_class_sem": 0.3025783871446292,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.9376782837453101,
+                  "descriptive_class_sem": 0.11720715277805178,
+                  "negative_classes": 432,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 16.21669695904401,
+                "global_mean_squared_distance": 0.17067956855423738,
+                "global_mean_squared_distance_corrected": 0.15446287159519337,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 1.3505416849840515,
+              "within_ig_minus_full": -3.5472387488160706,
+              "between_corrected_contribution_ig_minus_full": 4.897780433799968,
+              "between_multiplier": 0.9991998399679936,
+              "within_change_by_class": {
+                "mean": -3.5472387488159174,
+                "descriptive_class_sem": 0.6849043022258907,
+                "negative_classes": 552,
+                "classes": 1000
+              },
+              "within_full_ig_pair_alignment": 0.607213418375918,
+              "centroid_full_ig_alignment_corrected": 0.9950224077901344,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -1.2576426669011107,
+                "descriptive_class_sem": 0.2877723559814236,
+                "negative_classes": 556,
+                "classes": 1000
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 8.601502276040577,
+                "ig": 7.250960591056526
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 3.218101746708726,
+                "ig": 0.32913700210734476
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 11.82906917111599,
+                "ig": 6.927366590822487
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -2.195320950646421,
+                  "descriptive_class_sem": 0.34100143171942665,
+                  "negative_classes": 553,
+                  "classes": 1000
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9376782837453101,
+                  "descriptive_class_sem": 0.11720715277805178,
+                  "negative_classes": 432,
+                  "classes": 1000
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -1.302656614082618,
+                "descriptive_class_sem": 0.28507193443321294,
+                "negative_classes": 542,
+                "classes": 1000
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 5.857806390523791,
+                "ig": 4.50726470553974
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 4.467033266625904,
+                "ig": 0.9197945178098337
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 10.333107797015217,
+                "ig": 5.431405216721714
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -2.2403348978279283,
+                  "descriptive_class_sem": 0.33636091337561513,
+                  "negative_classes": 552,
+                  "classes": 1000
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9376782837453101,
+                  "descriptive_class_sem": 0.11720715277805178,
+                  "negative_classes": 432,
+                  "classes": 1000
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.04501394718150713,
+                "descriptive_class_sem": 0.06257489462899074,
+                "negative_classes": 457,
+                "classes": 1000
+              }
+            }
+          }
+        },
+        "class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260801_class_statistics.npz",
+          "bytes": 42202064,
+          "mtime_ns": 1788648734508395961,
+          "sha256": "35720def3f13ad7ce0b7c97c2a67642cd0fc0d559e3ce8f4ecdff923ccaaf59b"
+        }
+      },
+      {
+        "seed": 20260802,
+        "splits": {
+          "train": {
+            "classes": 800,
+            "samples": 4000,
+            "branches": {
+              "source": {
+                "pooled_trace": 180.81603479128046,
+                "within_trace": 101.42282340582679,
+                "centroid_scatter_observed": 99.75726864372585,
+                "centroid_scatter_corrected": 79.4727039625605,
+                "uniform_class_between_trace_corrected": 79.3733630826073,
+                "anova_absolute_error": 0.0
+              },
+              "reconstruction": {
+                "pooled_trace": 179.4636851998519,
+                "within_trace": 100.81025891725291,
+                "centroid_scatter_observed": 98.89422993216485,
+                "centroid_scatter_corrected": 78.73217814871427,
+                "uniform_class_between_trace_corrected": 78.63376292602838,
+                "anova_absolute_error": 2.842170943040401e-14
+              },
+              "full": {
+                "pooled_trace": 171.77008961377683,
+                "within_trace": 104.26770051583689,
+                "centroid_scatter_observed": 88.42351607379605,
+                "centroid_scatter_corrected": 67.56997597062868,
+                "uniform_class_between_trace_corrected": 67.48551350066539,
+                "anova_absolute_error": 5.684341886080802e-14
+              },
+              "ig": {
+                "pooled_trace": 174.20426996824355,
+                "within_trace": 101.48759967970292,
+                "centroid_scatter_observed": 93.0869979043696,
+                "centroid_scatter_corrected": 72.78947796842901,
+                "uniform_class_between_trace_corrected": 72.69849112096848,
+                "anova_absolute_error": 1.4210854715202004e-14
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9925208536234654,
+                  "within_trace": 0.9939602895284939,
+                  "centroid_scatter_corrected": 0.9906820105907672
+                },
+                "full": {
+                  "pooled_trace": 0.9499715543040995,
+                  "within_trace": 1.028049673776353,
+                  "centroid_scatter_corrected": 0.8502287276202507
+                },
+                "ig": {
+                  "pooled_trace": 0.963433747285361,
+                  "within_trace": 1.00063867551406,
+                  "centroid_scatter_corrected": 0.9159053906448188
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.00753550552538,
+                  "within_trace": 1.0060764102300013,
+                  "centroid_scatter_corrected": 1.009405630979083
+                },
+                "full": {
+                  "pooled_trace": 0.9571300702005119,
+                  "within_trace": 1.0342965253310372,
+                  "centroid_scatter_corrected": 0.8582256652800622
+                },
+                "ig": {
+                  "pooled_trace": 0.9706937076113675,
+                  "within_trace": 1.0067189665984886,
+                  "centroid_scatter_corrected": 0.9245200587609769
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.178497454457797,
+                  "descriptive_class_sem": 0.06751698407867102,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.04103044601859279,
+                  "descriptive_class_sem": 0.021051182976490793,
+                  "negative_classes": 396,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 4.137467008439204,
+                "global_mean_squared_distance": 0.0157167557153742,
+                "global_mean_squared_distance_corrected": 0.010544921954825195,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 43.23675182029738,
+                  "descriptive_class_sem": 0.754676487111858,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.0986470359646394,
+                  "descriptive_class_sem": 0.451898032600166,
+                  "negative_classes": 397,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 41.13810478433273,
+                "global_mean_squared_distance": 0.2161703102264229,
+                "global_mean_squared_distance_corrected": 0.164747679246007,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.09316008762579,
+                  "descriptive_class_sem": 0.7753594145339021,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.5110754705198346,
+                  "descriptive_class_sem": 0.4883666459929151,
+                  "negative_classes": 423,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 40.58208461710596,
+                "global_mean_squared_distance": 0.09029776674754009,
+                "global_mean_squared_distance_corrected": 0.039570160976157634,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 43.11524509888143,
+                  "descriptive_class_sem": 0.7504605391323584,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 2.099653212263478,
+                  "descriptive_class_sem": 0.45802079647087474,
+                  "negative_classes": 394,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 41.015591886617955,
+                "global_mean_squared_distance": 0.21844540952596736,
+                "global_mean_squared_distance_corrected": 0.1671759196676949,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 41.93090440569026,
+                  "descriptive_class_sem": 0.7797857605090427,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.4713326862990765,
+                  "descriptive_class_sem": 0.5066056099219498,
+                  "negative_classes": 434,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 40.459571719391185,
+                "global_mean_squared_distance": 0.07397616216354379,
+                "global_mean_squared_distance_corrected": 0.023401697514304806,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 17.13294901159526,
+                  "descriptive_class_sem": 0.36072672698540825,
+                  "negative_classes": 0,
+                  "classes": 800
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.9096983096649844,
+                  "descriptive_class_sem": 0.1433942503547541,
+                  "negative_classes": 351,
+                  "classes": 800
+                },
+                "finite_m_noise_subtraction_mean": 16.223250701930276,
+                "global_mean_squared_distance": 0.15626527602621015,
+                "global_mean_squared_distance_corrected": 0.13598621264879732,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 2.4341803544667187,
+              "within_ig_minus_full": -2.7801008361339683,
+              "between_corrected_contribution_ig_minus_full": 5.214281190600736,
+              "between_multiplier": 0.9989997499374844,
+              "within_change_by_class": {
+                "mean": -2.780100836133881,
+                "descriptive_class_sem": 0.7770312915177124,
+                "negative_classes": 436,
+                "classes": 800
+              },
+              "within_full_ig_pair_alignment": 0.605818783423372,
+              "centroid_full_ig_alignment_corrected": 0.9951690614615599,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -0.5875715654448046,
+                "descriptive_class_sem": 0.3691308874175662,
+                "negative_classes": 438,
+                "classes": 800
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 9.045945177503626,
+                "ig": 6.611764823036907
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 2.8448771100101027,
+                "ig": 0.06477627387613438
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 11.902727991931826,
+                "ig": 6.68322599413149
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.4972698751097897,
+                  "descriptive_class_sem": 0.3608529031333918,
+                  "negative_classes": 437,
+                  "classes": 800
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9096983096649844,
+                  "descriptive_class_sem": 0.1433942503547541,
+                  "negative_classes": 351,
+                  "classes": 800
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -0.6283205259644015,
+                "descriptive_class_sem": 0.385171297004507,
+                "negative_classes": 442,
+                "classes": 800
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 7.693595586075077,
+                "ig": 5.259415231608358
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 3.4574415985839835,
+                "ig": 0.6773407624500152
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 11.162202178085593,
+                "ig": 5.942700180285257
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.5380188356293865,
+                  "descriptive_class_sem": 0.37245876994046695,
+                  "negative_classes": 438,
+                  "classes": 800
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9096983096649844,
+                  "descriptive_class_sem": 0.1433942503547541,
+                  "negative_classes": 351,
+                  "classes": 800
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.04074896051959689,
+                "descriptive_class_sem": 0.07031358958982668,
+                "negative_classes": 406,
+                "classes": 800
+              }
+            }
+          },
+          "heldout": {
+            "classes": 200,
+            "samples": 1000,
+            "branches": {
+              "source": {
+                "pooled_trace": 177.26342781242388,
+                "within_trace": 100.33943125215025,
+                "centroid_scatter_observed": 97.30112500793098,
+                "centroid_scatter_corrected": 77.23323875750093,
+                "uniform_class_between_trace_corrected": 76.84707256371343,
+                "anova_absolute_error": 5.684341886080802e-14
+              },
+              "reconstruction": {
+                "pooled_trace": 175.25813707077944,
+                "within_trace": 98.88829746499299,
+                "centroid_scatter_observed": 96.45451352936105,
+                "centroid_scatter_corrected": 76.67685403636246,
+                "uniform_class_between_trace_corrected": 76.29346976618065,
+                "anova_absolute_error": 2.842170943040401e-14
+              },
+              "full": {
+                "pooled_trace": 171.70790970549774,
+                "within_trace": 105.31653746970305,
+                "centroid_scatter_observed": 87.72157971862295,
+                "centroid_scatter_corrected": 66.65827222468234,
+                "uniform_class_between_trace_corrected": 66.32498086355892,
+                "anova_absolute_error": 2.842170943040401e-14
+              },
+              "ig": {
+                "pooled_trace": 176.20886040877045,
+                "within_trace": 103.8642887139489,
+                "centroid_scatter_observed": 93.40826188663567,
+                "centroid_scatter_corrected": 72.63540414384589,
+                "uniform_class_between_trace_corrected": 72.27222712312665,
+                "anova_absolute_error": 7.105427357601002e-14
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9886875100724871,
+                  "within_trace": 0.9855377515195337,
+                  "centroid_scatter_corrected": 0.9927960457169818
+                },
+                "full": {
+                  "pooled_trace": 0.9686595358360955,
+                  "within_trace": 1.0496026951263604,
+                  "centroid_scatter_corrected": 0.8630775207288385
+                },
+                "ig": {
+                  "pooled_trace": 0.9940508461521496,
+                  "within_trace": 1.0351293346774189,
+                  "centroid_scatter_corrected": 0.9404681884688088
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.0114419266070058,
+                  "within_trace": 1.0146744743752008,
+                  "centroid_scatter_corrected": 1.0072562278164754
+                },
+                "full": {
+                  "pooled_trace": 0.9797428671523085,
+                  "within_trace": 1.0650050629801338,
+                  "centroid_scatter_corrected": 0.8693402078425256
+                },
+                "ig": {
+                  "pooled_trace": 1.0054247029774546,
+                  "within_trace": 1.050319313574161,
+                  "centroid_scatter_corrected": 0.9472924398984863
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.079286407272068,
+                  "descriptive_class_sem": 0.13436580419664815,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.10844022509749647,
+                  "descriptive_class_sem": 0.04685533872348543,
+                  "negative_classes": 97,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 3.970846182174572,
+                "global_mean_squared_distance": 0.03317686478209837,
+                "global_mean_squared_distance_corrected": 0.013322633871225512,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.337194892791686,
+                  "descriptive_class_sem": 1.47491640229729,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.2060011484210256,
+                  "descriptive_class_sem": 0.810259573372466,
+                  "negative_classes": 106,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 41.131193744370655,
+                "global_mean_squared_distance": 0.3377747507939208,
+                "global_mean_squared_distance_corrected": 0.1321187820720675,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 41.67839766980997,
+                  "descriptive_class_sem": 1.531417000960456,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.8376536765901278,
+                  "descriptive_class_sem": 0.7733668775937503,
+                  "negative_classes": 116,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 40.84074399321983,
+                "global_mean_squared_distance": 0.21977759551530845,
+                "global_mean_squared_distance_corrected": 0.015573875549209304,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.27937771985171,
+                  "descriptive_class_sem": 1.4402324004709366,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.4384107329124916,
+                  "descriptive_class_sem": 0.7979832410646094,
+                  "negative_classes": 104,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 40.84096698693922,
+                "global_mean_squared_distance": 0.36066716866285586,
+                "global_mean_squared_distance_corrected": 0.15646233372815976,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 41.59231619823134,
+                  "descriptive_class_sem": 1.5246580155143061,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.0417989624429458,
+                  "descriptive_class_sem": 0.7870263742949795,
+                  "negative_classes": 118,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 40.550517235788384,
+                "global_mean_squared_distance": 0.2196191062965069,
+                "global_mean_squared_distance_corrected": 0.01686652011756498,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 17.49605005534967,
+                  "descriptive_class_sem": 0.7135351553336506,
+                  "negative_classes": 0,
+                  "classes": 200
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.2087305011929135,
+                  "descriptive_class_sem": 0.2950259644127388,
+                  "negative_classes": 80,
+                  "classes": 200
+                },
+                "finite_m_noise_subtraction_mean": 16.28731955415676,
+                "global_mean_squared_distance": 0.23592758391164603,
+                "global_mean_squared_distance_corrected": 0.15449098614086224,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 4.500950703272707,
+              "within_ig_minus_full": -1.4522487557541552,
+              "between_corrected_contribution_ig_minus_full": 5.953199459026763,
+              "between_multiplier": 0.995995995995996,
+              "within_change_by_class": {
+                "mean": -1.4522487557541368,
+                "descriptive_class_sem": 1.5066536587908914,
+                "negative_classes": 101,
+                "classes": 200
+              },
+              "within_full_ig_pair_alignment": 0.6107027562163421,
+              "centroid_full_ig_alignment_corrected": 0.9933084082753261,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -0.3683474718308976,
+                "descriptive_class_sem": 0.55058564023061,
+                "negative_classes": 109,
+                "classes": 200
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 5.555518106926144,
+                "ig": 1.0545674036534365
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 4.977106217552802,
+                "ig": 3.5248574617986463
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 10.574966532818593,
+                "ig": 4.5978346136550385
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.5770779730238116,
+                  "descriptive_class_sem": 0.5976550420052772,
+                  "negative_classes": 116,
+                  "classes": 200
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 1.2087305011929135,
+                  "descriptive_class_sem": 0.2950259644127388,
+                  "negative_classes": 80,
+                  "classes": 200
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -0.3966117704695458,
+                "descriptive_class_sem": 0.5806041018462896,
+                "negative_classes": 111,
+                "classes": 200
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 3.5502273652816996,
+                "ig": 0.9507233379910076
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 6.428240004710062,
+                "ig": 4.975991248955907
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 10.018581811680122,
+                "ig": 4.041449892516567
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.605342271662459,
+                  "descriptive_class_sem": 0.605212978936249,
+                  "negative_classes": 111,
+                  "classes": 200
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 1.2087305011929135,
+                  "descriptive_class_sem": 0.2950259644127388,
+                  "negative_classes": 80,
+                  "classes": 200
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.028264298638647434,
+                "descriptive_class_sem": 0.13419471038935038,
+                "negative_classes": 104,
+                "classes": 200
+              }
+            }
+          },
+          "all": {
+            "classes": 1000,
+            "samples": 5000,
+            "branches": {
+              "source": {
+                "pooled_trace": 180.16333920445197,
+                "within_trace": 101.20614497509155,
+                "centroid_scatter_observed": 99.26165220874645,
+                "centroid_scatter_corrected": 79.02042321372815,
+                "uniform_class_between_trace_corrected": 78.94140279051442,
+                "anova_absolute_error": 1.2789769243681803e-13
+              },
+              "reconstruction": {
+                "pooled_trace": 178.68045116080344,
+                "within_trace": 100.42586662680102,
+                "centroid_scatter_observed": 98.40242419332378,
+                "centroid_scatter_corrected": 78.31725086796358,
+                "uniform_class_between_trace_corrected": 78.23893361709561,
+                "anova_absolute_error": 0.0
+              },
+              "full": {
+                "pooled_trace": 171.8014561569971,
+                "within_trace": 104.47746790661016,
+                "centroid_scatter_observed": 88.27339493541298,
+                "centroid_scatter_corrected": 67.37790135409095,
+                "uniform_class_between_trace_corrected": 67.31052345273686,
+                "anova_absolute_error": 0.0
+              },
+              "ig": {
+                "pooled_trace": 174.65629667344027,
+                "within_trace": 101.96293748655205,
+                "centroid_scatter_observed": 93.14415958444827,
+                "centroid_scatter_corrected": 72.75157208713787,
+                "uniform_class_between_trace_corrected": 72.67882051505073,
+                "anova_absolute_error": 9.947598300641403e-14
+              }
+            },
+            "ratios": {
+              "source": {
+                "reconstruction": {
+                  "pooled_trace": 0.9917692020463401,
+                  "within_trace": 0.9922902077884445,
+                  "centroid_scatter_corrected": 0.9911013847159147
+                },
+                "full": {
+                  "pooled_trace": 0.9535872110032014,
+                  "within_trace": 1.032323362700197,
+                  "centroid_scatter_corrected": 0.852664395024215
+                },
+                "ig": {
+                  "pooled_trace": 0.9694330569397238,
+                  "within_trace": 1.007477732815994,
+                  "centroid_scatter_corrected": 0.9206679631462515
+                }
+              },
+              "reconstruction": {
+                "source": {
+                  "pooled_trace": 1.0082991062201538,
+                  "within_trace": 1.0077696949451296,
+                  "centroid_scatter_corrected": 1.008978511604679
+                },
+                "full": {
+                  "pooled_trace": 0.9615011325574973,
+                  "within_trace": 1.040344200313108,
+                  "centroid_scatter_corrected": 0.8603200521898365
+                },
+                "ig": {
+                  "pooled_trace": 0.9774784848525951,
+                  "within_trace": 1.0153055274639853,
+                  "centroid_scatter_corrected": 0.9289341911374165
+                }
+              }
+            },
+            "distances": {
+              "reconstruction_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 4.158655245020651,
+                  "descriptive_class_sem": 0.060312429534768376,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.05451240183437353,
+                  "descriptive_class_sem": 0.019280549042872984,
+                  "negative_classes": 493,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 4.104142843186278,
+                "global_mean_squared_distance": 0.015218353248319591,
+                "global_mean_squared_distance_corrected": 0.011114210405133313,
+                "noise_correction": "paired within-difference trace / m"
+              },
+              "full_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 43.056840434796236,
+                  "descriptive_class_sem": 0.6717205787243684,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.9201178584559166,
+                  "descriptive_class_sem": 0.3961643076956362,
+                  "negative_classes": 503,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 41.13672257634032,
+                "global_mean_squared_distance": 0.20011494233673316,
+                "global_mean_squared_distance_corrected": 0.15897821976039284,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_source": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.01020760406263,
+                  "descriptive_class_sem": 0.6914635174728152,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.3763911117338934,
+                  "descriptive_class_sem": 0.4201235095792922,
+                  "negative_classes": 539,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 40.633816492328734,
+                "global_mean_squared_distance": 0.07677942013873354,
+                "global_mean_squared_distance_corrected": 0.0361456036464048,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "full_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 42.948071623075485,
+                  "descriptive_class_sem": 0.6656594562604774,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.9674047163932809,
+                  "descriptive_class_sem": 0.39958313975228055,
+                  "negative_classes": 498,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 40.9806669066822,
+                "global_mean_squared_distance": 0.2046507814609458,
+                "global_mean_squared_distance_corrected": 0.1636701145542636,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_reconstruction": {
+                "centroid_squared_distance_observed": {
+                  "mean": 41.863186764198474,
+                  "descriptive_class_sem": 0.6940418452502225,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 1.3854259415278505,
+                  "descriptive_class_sem": 0.4346506370290213,
+                  "negative_classes": 552,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 40.477760822670625,
+                "global_mean_squared_distance": 0.06115287352021462,
+                "global_mean_squared_distance_corrected": 0.02067511269754399,
+                "noise_correction": "sum of independent branch within traces / m"
+              },
+              "ig_minus_full": {
+                "centroid_squared_distance_observed": {
+                  "mean": 17.205569220346142,
+                  "descriptive_class_sem": 0.3218124345583804,
+                  "negative_classes": 0,
+                  "classes": 1000
+                },
+                "centroid_squared_distance_corrected": {
+                  "mean": 0.9695047479705703,
+                  "descriptive_class_sem": 0.1289896267949031,
+                  "negative_classes": 431,
+                  "classes": 1000
+                },
+                "finite_m_noise_subtraction_mean": 16.23606447237557,
+                "global_mean_squared_distance": 0.1558996659223325,
+                "global_mean_squared_distance_corrected": 0.13966360144995693,
+                "noise_correction": "paired within-difference trace / m"
+              }
+            },
+            "ig_minus_full": {
+              "pooled_ig_minus_full": 2.8548405164431756,
+              "within_ig_minus_full": -2.514530420058108,
+              "between_corrected_contribution_ig_minus_full": 5.369370936501174,
+              "between_multiplier": 0.9991998399679936,
+              "within_change_by_class": {
+                "mean": -2.5145304200579317,
+                "descriptive_class_sem": 0.6906808374867366,
+                "negative_classes": 537,
+                "classes": 1000
+              },
+              "within_full_ig_pair_alignment": 0.6068064814221418,
+              "centroid_full_ig_alignment_corrected": 0.9948038411526241,
+              "centroid_risk_ig_minus_full_relative_to_source": {
+                "mean": -0.5437267467220233,
+                "descriptive_class_sem": 0.31506820856418094,
+                "negative_classes": 547,
+                "classes": 1000
+              },
+              "pooled_absolute_error_relative_to_source": {
+                "full": 8.361883047454882,
+                "ig": 5.507042531011706
+              },
+              "within_absolute_error_relative_to_source": {
+                "full": 3.271322931518611,
+                "ig": 0.7567925114605032
+              },
+              "between_corrected_absolute_error_relative_to_source": {
+                "full": 11.642521859637199,
+                "ig": 6.2688511265902775
+              },
+              "centroid_risk_decomposition_relative_to_source": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.513231494692594,
+                  "descriptive_class_sem": 0.3123269157929944,
+                  "negative_classes": 553,
+                  "classes": 1000
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9695047479705703,
+                  "descriptive_class_sem": 0.1289896267949031,
+                  "negative_classes": 431,
+                  "classes": 1000
+                }
+              },
+              "centroid_risk_ig_minus_full_relative_to_reconstruction": {
+                "mean": -0.5819787748654304,
+                "descriptive_class_sem": 0.32918585427923164,
+                "negative_classes": 553,
+                "classes": 1000
+              },
+              "pooled_absolute_error_relative_to_reconstruction": {
+                "full": 6.878995003806352,
+                "ig": 4.024154487363177
+              },
+              "within_absolute_error_relative_to_reconstruction": {
+                "full": 4.051601279809134,
+                "ig": 1.5370708597510259
+              },
+              "between_corrected_absolute_error_relative_to_reconstruction": {
+                "full": 10.939349513872628,
+                "ig": 5.565678780825706
+              },
+              "centroid_risk_decomposition_relative_to_reconstruction": {
+                "twice_error_shift_cross_corrected": {
+                  "mean": -1.551483522836001,
+                  "descriptive_class_sem": 0.32148949640659286,
+                  "negative_classes": 549,
+                  "classes": 1000
+                },
+                "shift_norm_squared_corrected": {
+                  "mean": 0.9695047479705703,
+                  "descriptive_class_sem": 0.1289896267949031,
+                  "negative_classes": 431,
+                  "classes": 1000
+                }
+              },
+              "centroid_risk_reference_effect_source_minus_reconstruction": {
+                "mean": 0.03825202814340702,
+                "descriptive_class_sem": 0.06229637475754488,
+                "negative_classes": 510,
+                "classes": 1000
+              }
+            }
+          }
+        },
+        "class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260802_class_statistics.npz",
+          "bytes": 42186258,
+          "mtime_ns": 1788648740528443413,
+          "sha256": "a15e53b86532bba16c2c92dc8d18a801431043b9e693c90ec3116a0b932a59de"
+        }
+      }
+    ],
+    "request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/request.json",
+      "bytes": 15702,
+      "mtime_ns": 1788648735785863087,
+      "sha256": "d71862318e209f6087cd300b46ed68478fc9d19d313c697fb3b5a442dae305a5"
+    },
+    "runner": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/runner_source.py",
+      "bytes": 16885,
+      "mtime_ns": 1788648727985048593,
+      "sha256": "01e8a1b155e4a7aa66191165f975d1b2bea451242cc16d47889c4f888248e0bd"
+    },
+    "cost": {
+      "cpu_only": true,
+      "model_calls": 0,
+      "new_images": 0,
+      "new_fid": false,
+      "feature_payload_bytes": 327680000,
+      "wall_seconds_from_script_start": 12.914152150973678,
+      "cpu_seconds_from_script_start": 12.902712809,
+      "max_rss_kib": 1123368,
+      "timing_excludes": "interpreter startup before time import and final summary serialization/exit"
+    },
+    "goal_achieved": false
+  },
+  "request": {
+    "protocol": "raev2_decoded_inception_class_moments_v1",
+    "seeds": [
+      20260801,
+      20260802
+    ],
+    "branches": {
+      "source": "source",
+      "reconstruction": "real",
+      "full": "scale_s1p000000",
+      "ig": "scale_s1p780000"
+    },
+    "dimension": 2048,
+    "images_per_class": 5,
+    "fit_or_hyperparameter_search": false,
+    "question": "Does IG decoded pooled trace calibration arise from increased between-class structure rather than within-class recovery? Compare the full paired change to previously audited raw-latent results.",
+    "reference": "source=original RGB crop Inception; reconstruction=Inception of D(E(source)); generated Full/IG have common noise, not source-image noise",
+    "arithmetic": "all original float32 cache entries promoted to float64; no whitening, clipping corrected statistics, covariance regularization or fitted transformation",
+    "splits": "all 1000 fixed classes plus original train800/heldout200, five images/class; retrospective reuse",
+    "identity": "global_id = rank + 4*local_row; original manifest and sample_protocol are authoritative",
+    "anova": "T=W+[m(C-1)/(mC-1)]*(B-W/m); exact sample identity, no PSD claim for corrected B",
+    "estimation": "W/m removes independent class-mean sampling noise; paired Full/IG and source/reconstruction differences retain their cross covariance. Fixed-label superpopulation sampling assumption, not a finite-ImageNet-population risk certificate.",
+    "sem": "descriptive heterogeneity across fixed classes; no exact conditional sampling CI or multiple-testing claim",
+    "limits": [
+      "traces do not determine covariance orientation, FID, density, semantic modes, causal suffix effects, or a usable guidance direction",
+      "decoder effect includes clamp, uint8 conversion and Inception; raw encoder latent is a different geometry",
+      "historical decode uses float() before clamp/multiply255; do not treat these banks as current native-BF16 sampling baselines"
+    ],
+    "source_records": [
+      {
+        "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_decoded_class_moments.py",
+        "bytes": 16885,
+        "mtime_ns": 1788648719968281284,
+        "sha256": "01e8a1b155e4a7aa66191165f975d1b2bea451242cc16d47889c4f888248e0bd"
+      },
+      {
+        "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_scale_response_study.py",
+        "bytes": 48618,
+        "mtime_ns": 1785741362590824080,
+        "sha256": "f59958d2cddaf1dea1911bcef54c80e1f0ebf4e52085958fdcdcad914d41cc02"
+      }
+    ],
+    "device": "cpu",
+    "cuda_visible_devices": "",
+    "model_calls": 0,
+    "new_fid": false,
+    "banks": [
+      {
+        "seed": 20260801,
+        "manifest": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/manifest.json",
+          "bytes": 1374,
+          "mtime_ns": 1785667263543658706,
+          "sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252"
+        },
+        "sample_protocol": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/sample_protocol.npz",
+          "bytes": 28236,
+          "mtime_ns": 1785659317241988790,
+          "sha256": "7ef3603d021ad34f5a807f29c15caf1ef57c59eb1eb286870e931b9ae6e4a537"
+        },
+        "features": [
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666740908994700,
+            "sha256": "3daad90ead4b140ada231c17ce6e235ccdb90330eadd89c25c631839045e90c9"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666743453200998,
+            "sha256": "62bc141f8c19f633542fd8d8c4e7e1c2189bf1612a4581773a863e97a5aae8a1"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666742838613190,
+            "sha256": "1df7abb50e366e6fcb36ce877d14b76a4d9fcc808db64c3c5d75b3be6fde0875"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666743143793121,
+            "sha256": "c8f5ca4b0df3d7791499f8eb6fcd7cb42a50d04c33a16505c0d53491cf38c03d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666755927823337,
+            "sha256": "3bed39bcb4c8f119b772fe35556688d39464f5b990e9dff6ac421a28115c703e"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666757662218465,
+            "sha256": "686d43ec25ba271b3327b2f0dbf038a4a1049b74433e5823e3c131a54e9f51a3"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666755911480270,
+            "sha256": "dadaea243235017ba06577301da4dc3e7029285d694ae059a45b52ee22a83a06"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666755989464843,
+            "sha256": "d68b2e530b8a10356b4e602a32f8290f06d743b66368f36127f10cb9a8bfa85f"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666770088556422,
+            "sha256": "9a0ff82d763eefd0e4d169bc5c7c969aba854c0adaa8a77010db33e5bf20808d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666770177688280,
+            "sha256": "4043841661a09b514c7bcaf38ee28bc5b297624eb91abeb0bcf9bfd73ca0f41d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666770086560905,
+            "sha256": "ee9497e0e0c39e0cb30f44a3eb469b10596be494fa8ef1d8d2a4901f4f8f9443"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666770102357182,
+            "sha256": "05b4aa4393474a53135c5765cef2c6e57718b854a9d8aa43a013b41d0c38ff08"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666819963538290,
+            "sha256": "c2690dad5ea9890143a52c99f7e65125543ea555ad92e28b6edaf5e08448726c"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666820004581321,
+            "sha256": "82f20270ea4a881788a9b70fd75e2a3b9341b82570f06bd921ea0a4c8f4106a1"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666819921411537,
+            "sha256": "b578d78c146d5af3daf442f6c78999c721034d84df6efefe14aa325c490d9744"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785666819988712280,
+            "sha256": "07a906b2590cd207e60ba3626c5b25557aacdde108a63e84dea22f59b05cc5fd"
+          }
+        ],
+        "prior_raw_class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260801_class_statistics.npz",
+          "bytes": 143477,
+          "mtime_ns": 1788643644409974525,
+          "sha256": "582f8d5c29ebb5ebbe2e343a620630369ff043732eee68daa9098861a340b753"
+        }
+      },
+      {
+        "seed": 20260802,
+        "manifest": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/manifest.json",
+          "bytes": 1374,
+          "mtime_ns": 1785675009841953077,
+          "sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff"
+        },
+        "sample_protocol": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/sample_protocol.npz",
+          "bytes": 28331,
+          "mtime_ns": 1785667284511714067,
+          "sha256": "3fb107ad2c7055cbe78a5a9241a9263916e134d206e423e85a3d6caf22d8918c"
+        },
+        "features": [
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674450692136448,
+            "sha256": "89e175c224dd8ba3fe72c532fd0664cdeef043063e1b34ddd84cc14f4d3552fe"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674452159157759,
+            "sha256": "50dbf1dce1139e4dbe3e07fd1df0a85031648ec6400f2135fb91fa00e1f21720"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674453258052444,
+            "sha256": "142d4a4565e1f49479702ed661fe1b4dfe53114bacb699e384e4d770b786c1fc"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674452395439063,
+            "sha256": "a98aef8b325e37eff92ae1cd6fe42c3fec296cc64166b4bd55af1e4d8d165257"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674465664912127,
+            "sha256": "1ba8edeed3ecf6176a82837720602e9a7cb5a06117694966fa87c6ecce86d8bf"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674465913896543,
+            "sha256": "031e000511ff1a455a1477d85a29a9a7c4986c00485fd13977446513dd9863b8"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674466288518050,
+            "sha256": "fd515cf2171b0f011ac5e220bcef5415a96ff17a52546843b8017156d907f29d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674465662832152,
+            "sha256": "4783439c24b61683f48b3639388f6528de82f1d0516b9d8e032a270a3efb9aef"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674478651752037,
+            "sha256": "f557e6780d8ecfa01b816873767b07fa0ea24c1b58d60b9d169521eee52a1406"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674478854968739,
+            "sha256": "05440f83088193a21645e3fa2fabea4e85eeaf91a4daaf80b0a4613fe308f212"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674479828155689,
+            "sha256": "78e6d97b37d41691f7adb027e0bf6837992d0977cb25e7dcb4e2c42cec204516"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674478657952182,
+            "sha256": "ee9d65c84d35cf675cd3a2d64270d536e1f55be83b8a8307e5bbb97f036e6c7d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank00.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674531466959641,
+            "sha256": "0e05df9231911201398399e80d7baddf2c13c7ee7a82aa408a27bcac682c6b49"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank01.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674531701479997,
+            "sha256": "95c0546bc5f5914af7f9a9169773489723be1d67550ee2d928abe03ede4246e6"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank02.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674532019154001,
+            "sha256": "ebc61c61232d63c86dffe8ba2cf5b8bb74d14cd1f574366d76f04d0b75428c6d"
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank03.npy",
+            "bytes": 10240128,
+            "mtime_ns": 1785674531450247864,
+            "sha256": "08a28b6a460bb41c84da86bd475eec138ea55ab64e7837b3b03a01059622f2cf"
+          }
+        ],
+        "prior_raw_class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260802_class_statistics.npz",
+          "bytes": 143503,
+          "mtime_ns": 1788643708207115376,
+          "sha256": "63ce2e17be65b4ea5f42bcdb27a16dccba7d3078b87e2536864c74d96be200db"
+        }
+      }
+    ],
+    "prior_raw_identity_audit": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/request.json",
+      "bytes": 11773,
+      "mtime_ns": 1788643644903775397,
+      "sha256": "5e7d879edde751ed158013b08dc4ea161e2a633e409962182a58f0c489a43edd"
+    },
+    "source_identity_scope": "Recheck hashes of original manifest/protocol against completed raw audit; reuse its 10000 source-label checks rather than reread packed RGB. Compare IDs, labels, split and source rows against its saved class tables."
+  },
+  "independent_audit": {
+    "protocol": "independent_raev2_decoded_class_moment_audit_v1",
+    "complete": true,
+    "producer_summary": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/summary.json",
+      "sha256": "2bd7b6ee83f62c40bb206286f96d9af63eadf6afd9ef6e8de94aa38d9169fb34"
+    },
+    "auditor_source": {
+      "path": "/tmp/independent_raev2_decoded_class_audit.py",
+      "sha256": "3cf35007df4d48dd3fbf6bbcbbae89bbf4adce797106807a94922fc47c6aae83"
+    },
+    "numeric_checks": 1030,
+    "numeric_values_compared": 16526948,
+    "maximum_absolute_difference": 5.684341886080801e-13,
+    "maximum_difference_at": "20260802/train/error/reconstruction/pooled/full",
+    "maximum_direct_ANOVA_absolute_error": 5.115907697472721e-13,
+    "input_hash_records": [
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/request.json",
+        "sha256": "d71862318e209f6087cd300b46ed68478fc9d19d313c697fb3b5a442dae305a5",
+        "bytes": 15702
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/runner_source.py",
+        "sha256": "01e8a1b155e4a7aa66191165f975d1b2bea451242cc16d47889c4f888248e0bd",
+        "bytes": 16885
+      },
+      {
+        "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_decoded_class_moments.py",
+        "sha256": "01e8a1b155e4a7aa66191165f975d1b2bea451242cc16d47889c4f888248e0bd",
+        "bytes": 16885
+      },
+      {
+        "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_scale_response_study.py",
+        "sha256": "f59958d2cddaf1dea1911bcef54c80e1f0ebf4e52085958fdcdcad914d41cc02",
+        "bytes": 48618
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/request.json",
+        "sha256": "5e7d879edde751ed158013b08dc4ea161e2a633e409962182a58f0c489a43edd",
+        "bytes": 11773
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/manifest.json",
+        "sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252",
+        "bytes": 1374
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/sample_protocol.npz",
+        "sha256": "7ef3603d021ad34f5a807f29c15caf1ef57c59eb1eb286870e931b9ae6e4a537",
+        "bytes": 28236
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260801_class_statistics.npz",
+        "sha256": "582f8d5c29ebb5ebbe2e343a620630369ff043732eee68daa9098861a340b753",
+        "bytes": 143477
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank00.npy",
+        "sha256": "3daad90ead4b140ada231c17ce6e235ccdb90330eadd89c25c631839045e90c9",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank01.npy",
+        "sha256": "62bc141f8c19f633542fd8d8c4e7e1c2189bf1612a4581773a863e97a5aae8a1",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank02.npy",
+        "sha256": "1df7abb50e366e6fcb36ce877d14b76a4d9fcc808db64c3c5d75b3be6fde0875",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank03.npy",
+        "sha256": "c8f5ca4b0df3d7791499f8eb6fcd7cb42a50d04c33a16505c0d53491cf38c03d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank00.npy",
+        "sha256": "3bed39bcb4c8f119b772fe35556688d39464f5b990e9dff6ac421a28115c703e",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank01.npy",
+        "sha256": "686d43ec25ba271b3327b2f0dbf038a4a1049b74433e5823e3c131a54e9f51a3",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank02.npy",
+        "sha256": "dadaea243235017ba06577301da4dc3e7029285d694ae059a45b52ee22a83a06",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank03.npy",
+        "sha256": "d68b2e530b8a10356b4e602a32f8290f06d743b66368f36127f10cb9a8bfa85f",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank00.npy",
+        "sha256": "9a0ff82d763eefd0e4d169bc5c7c969aba854c0adaa8a77010db33e5bf20808d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank01.npy",
+        "sha256": "4043841661a09b514c7bcaf38ee28bc5b297624eb91abeb0bcf9bfd73ca0f41d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank02.npy",
+        "sha256": "ee9497e0e0c39e0cb30f44a3eb469b10596be494fa8ef1d8d2a4901f4f8f9443",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank03.npy",
+        "sha256": "05b4aa4393474a53135c5765cef2c6e57718b854a9d8aa43a013b41d0c38ff08",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank00.npy",
+        "sha256": "c2690dad5ea9890143a52c99f7e65125543ea555ad92e28b6edaf5e08448726c",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank01.npy",
+        "sha256": "82f20270ea4a881788a9b70fd75e2a3b9341b82570f06bd921ea0a4c8f4106a1",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank02.npy",
+        "sha256": "b578d78c146d5af3daf442f6c78999c721034d84df6efefe14aa325c490d9744",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank03.npy",
+        "sha256": "07a906b2590cd207e60ba3626c5b25557aacdde108a63e84dea22f59b05cc5fd",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260801_class_statistics.npz",
+        "sha256": "35720def3f13ad7ce0b7c97c2a67642cd0fc0d559e3ce8f4ecdff923ccaaf59b",
+        "bytes": 42202064
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/manifest.json",
+        "sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff",
+        "bytes": 1374
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/sample_protocol.npz",
+        "sha256": "3fb107ad2c7055cbe78a5a9241a9263916e134d206e423e85a3d6caf22d8918c",
+        "bytes": 28331
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260802_class_statistics.npz",
+        "sha256": "63ce2e17be65b4ea5f42bcdb27a16dccba7d3078b87e2536864c74d96be200db",
+        "bytes": 143503
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank00.npy",
+        "sha256": "89e175c224dd8ba3fe72c532fd0664cdeef043063e1b34ddd84cc14f4d3552fe",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank01.npy",
+        "sha256": "50dbf1dce1139e4dbe3e07fd1df0a85031648ec6400f2135fb91fa00e1f21720",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank02.npy",
+        "sha256": "142d4a4565e1f49479702ed661fe1b4dfe53114bacb699e384e4d770b786c1fc",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank03.npy",
+        "sha256": "a98aef8b325e37eff92ae1cd6fe42c3fec296cc64166b4bd55af1e4d8d165257",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank00.npy",
+        "sha256": "1ba8edeed3ecf6176a82837720602e9a7cb5a06117694966fa87c6ecce86d8bf",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank01.npy",
+        "sha256": "031e000511ff1a455a1477d85a29a9a7c4986c00485fd13977446513dd9863b8",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank02.npy",
+        "sha256": "fd515cf2171b0f011ac5e220bcef5415a96ff17a52546843b8017156d907f29d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank03.npy",
+        "sha256": "4783439c24b61683f48b3639388f6528de82f1d0516b9d8e032a270a3efb9aef",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank00.npy",
+        "sha256": "f557e6780d8ecfa01b816873767b07fa0ea24c1b58d60b9d169521eee52a1406",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank01.npy",
+        "sha256": "05440f83088193a21645e3fa2fabea4e85eeaf91a4daaf80b0a4613fe308f212",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank02.npy",
+        "sha256": "78e6d97b37d41691f7adb027e0bf6837992d0977cb25e7dcb4e2c42cec204516",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank03.npy",
+        "sha256": "ee9d65c84d35cf675cd3a2d64270d536e1f55be83b8a8307e5bbb97f036e6c7d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank00.npy",
+        "sha256": "0e05df9231911201398399e80d7baddf2c13c7ee7a82aa408a27bcac682c6b49",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank01.npy",
+        "sha256": "95c0546bc5f5914af7f9a9169773489723be1d67550ee2d928abe03ede4246e6",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank02.npy",
+        "sha256": "ebc61c61232d63c86dffe8ba2cf5b8bb74d14cd1f574366d76f04d0b75428c6d",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank03.npy",
+        "sha256": "08a28b6a460bb41c84da86bd475eec138ea55ab64e7837b3b03a01059622f2cf",
+        "bytes": 10240128
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoded_class_moments_v1/seed20260802_class_statistics.npz",
+        "sha256": "a15e53b86532bba16c2c92dc8d18a801431043b9e693c90ec3116a0b932a59de",
+        "bytes": 42186258
+      }
+    ],
+    "results": [
+      {
+        "seed": 20260801,
+        "split": "train",
+        "classes": 800,
+        "trace_source_recon_full_ig": [
+          180.71667419401237,
+          178.0030150489652,
+          172.68038952740233,
+          173.8026689039987
+        ],
+        "within_source_recon_full_ig": [
+          102.10226824456146,
+          100.73451646715121,
+          105.33151967945443,
+          101.89032660379931
+        ],
+        "corrected_between_source_recon_full_ig": [
+          78.69311874639678,
+          77.34586378690176,
+          67.41630300924737,
+          71.98434464543124
+        ],
+        "delta_T": 1.1222793765963672,
+        "delta_W": -3.4411930756551214,
+        "delta_between_contribution": 4.563472452251697,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9555310283212577,
+            "within": 1.0316276170002225,
+            "between_corrected": 0.856698833178908
+          },
+          "ig": {
+            "pooled": 0.9617411878519245,
+            "within": 0.9979242220138098,
+            "between_corrected": 0.9147476398465562
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 2.957881213142605,
+            "ig": 1.6330585458273277,
+            "change": -1.3248226673152774,
+            "descriptive_class_sem": 0.32824947050799813,
+            "negative_classes": 441
+          },
+          "reconstruction": {
+            "full": 2.9214818560085796,
+            "ig": 1.5531823112218501,
+            "change": -1.3682995447867297,
+            "descriptive_class_sem": 0.32598330947044313,
+            "negative_classes": 432
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.04347687747145159
+      },
+      {
+        "seed": 20260801,
+        "split": "heldout",
+        "classes": 200,
+        "trace_source_recon_full_ig": [
+          183.09116063746168,
+          180.22890192096983,
+          172.24895832731218,
+          174.5086035662793
+        ],
+        "within_source_recon_full_ig": [
+          100.32919730264295,
+          99.55554681269847,
+          103.50270029661482,
+          99.53127885515568
+        ],
+        "corrected_between_source_recon_full_ig": [
+          83.0946747452101,
+          80.9976701036815,
+          69.0226248971522,
+          75.27874109187204
+        ],
+        "delta_T": 2.259645238967124,
+        "delta_W": -3.9714214414591424,
+        "delta_between_contribution": 6.231066680426665,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9407824917795015,
+            "within": 1.0316309018639809,
+            "between_corrected": 0.8306504009889145
+          },
+          "ig": {
+            "pooled": 0.9531241320372824,
+            "within": 0.9920469965978064,
+            "between_corrected": 0.9059394157651648
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 1.8172124104096197,
+            "ig": 0.8282897451651823,
+            "change": -0.9889226652444374,
+            "descriptive_class_sem": 0.5896878479991802,
+            "negative_classes": 115
+          },
+          "reconstruction": {
+            "full": 1.5213599247888383,
+            "ig": 0.48127503352266854,
+            "change": -1.0400848912661695,
+            "descriptive_class_sem": 0.5768316327822935,
+            "negative_classes": 110
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.05116222602172916
+      },
+      {
+        "seed": 20260801,
+        "split": "all",
+        "classes": 1000,
+        "trace_source_recon_full_ig": [
+          181.25994307124427,
+          178.51624718572694,
+          172.65844079520355,
+          174.00898248018768
+        ],
+        "within_source_recon_full_ig": [
+          101.74765405617782,
+          100.49872253626063,
+          104.96575580288655,
+          101.41851705407048
+        ],
+        "corrected_between_source_recon_full_ig": [
+          79.57596251978312,
+          78.08000114568235,
+          67.74689334866713,
+          72.64859592896063
+        ],
+        "delta_T": 1.3505416849841367,
+        "delta_W": -3.5472387488160706,
+        "delta_between_contribution": 4.897780433799968,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9525460389631707,
+            "within": 1.031628264814164,
+            "between_corrected": 0.8513487139011959
+          },
+          "ig": {
+            "pooled": 0.9599968946905904,
+            "within": 0.996765163726275,
+            "between_corrected": 0.9129464932441088
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 2.729747452596008,
+            "ig": 1.4721047856948983,
+            "change": -1.2576426669011094,
+            "descriptive_class_sem": 0.2877723559814236,
+            "negative_classes": 556
+          },
+          "reconstruction": {
+            "full": 2.641457469764631,
+            "ig": 1.338800855682014,
+            "change": -1.3026566140826177,
+            "descriptive_class_sem": 0.285071934433213,
+            "negative_classes": 542
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.04501394718150713
+      },
+      {
+        "seed": 20260802,
+        "split": "train",
+        "classes": 800,
+        "trace_source_recon_full_ig": [
+          180.81603479128043,
+          179.4636851998514,
+          171.7700896137769,
+          174.20426996824355
+        ],
+        "within_source_recon_full_ig": [
+          101.42282340582676,
+          100.81025891725288,
+          104.26770051583689,
+          101.48759967970292
+        ],
+        "corrected_between_source_recon_full_ig": [
+          79.4727039625605,
+          78.73217814871427,
+          67.56997597062868,
+          72.78947796842901
+        ],
+        "delta_T": 2.434180354466662,
+        "delta_W": -2.7801008361339683,
+        "delta_between_contribution": 5.214281190600736,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9499715543041,
+            "within": 1.0280496737763534,
+            "between_corrected": 0.8502287276202507
+          },
+          "ig": {
+            "pooled": 0.9634337472853612,
+            "within": 1.0006386755140604,
+            "between_corrected": 0.9159053906448188
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 2.0986470359646363,
+            "ig": 1.5110754705198317,
+            "change": -0.5875715654448045,
+            "descriptive_class_sem": 0.3691308874175659,
+            "negative_classes": 438
+          },
+          "reconstruction": {
+            "full": 2.099653212263474,
+            "ig": 1.4713326862990705,
+            "change": -0.6283205259644032,
+            "descriptive_class_sem": 0.38517129700450675,
+            "negative_classes": 442
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.04074896051959689
+      },
+      {
+        "seed": 20260802,
+        "split": "heldout",
+        "classes": 200,
+        "trace_source_recon_full_ig": [
+          177.26342781242388,
+          175.25813707077918,
+          171.70790970549737,
+          176.20886040877036
+        ],
+        "within_source_recon_full_ig": [
+          100.3394312521502,
+          98.88829746499299,
+          105.31653746970304,
+          103.8642887139489
+        ],
+        "corrected_between_source_recon_full_ig": [
+          77.23323875750094,
+          76.67685403636246,
+          66.65827222468235,
+          72.63540414384589
+        ],
+        "delta_T": 4.500950703272991,
+        "delta_W": -1.452248755754141,
+        "delta_between_contribution": 5.953199459026749,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9686595358360934,
+            "within": 1.0496026951263606,
+            "between_corrected": 0.8630775207288385
+          },
+          "ig": {
+            "pooled": 0.9940508461521491,
+            "within": 1.0351293346774193,
+            "between_corrected": 0.9404681884688086
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 1.206001148421023,
+            "ig": 0.8376536765901221,
+            "change": -0.3683474718309009,
+            "descriptive_class_sem": 0.5505856402306099,
+            "negative_classes": 109
+          },
+          "reconstruction": {
+            "full": 1.4384107329124793,
+            "ig": 1.041798962442941,
+            "change": -0.3966117704695384,
+            "descriptive_class_sem": 0.5806041018462899,
+            "negative_classes": 111
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.028264298638647434
+      },
+      {
+        "seed": 20260802,
+        "split": "all",
+        "classes": 1000,
+        "trace_source_recon_full_ig": [
+          180.16333920445155,
+          178.68045116080307,
+          171.80145615699718,
+          174.65629667344018
+        ],
+        "within_source_recon_full_ig": [
+          101.20614497509156,
+          100.42586662680102,
+          104.47746790661014,
+          101.96293748655205
+        ],
+        "corrected_between_source_recon_full_ig": [
+          79.02042321372815,
+          78.31725086796358,
+          67.37790135409095,
+          72.75157208713787
+        ],
+        "delta_T": 2.854840516443005,
+        "delta_W": -2.514530420058094,
+        "delta_between_contribution": 5.369370936501174,
+        "ratios_to_source": {
+          "full": {
+            "pooled": 0.9535872110032041,
+            "within": 1.0323233627001969,
+            "between_corrected": 0.852664395024215
+          },
+          "ig": {
+            "pooled": 0.9694330569397256,
+            "within": 1.007477732815994,
+            "between_corrected": 0.9206679631462515
+          }
+        },
+        "centroid_risk": {
+          "source": {
+            "full": 1.9201178584559133,
+            "ig": 1.3763911117338898,
+            "change": -0.5437267467220237,
+            "descriptive_class_sem": 0.31506820856418066,
+            "negative_classes": 547
+          },
+          "reconstruction": {
+            "full": 1.9674047163932749,
+            "ig": 1.3854259415278445,
+            "change": -0.5819787748654303,
+            "descriptive_class_sem": 0.32918585427923136,
+            "negative_classes": 553
+          }
+        },
+        "all_three_trace_errors_closer_to_source": true,
+        "all_three_trace_errors_closer_to_reconstruction": true,
+        "source_minus_recon_risk_change": 0.03825202814340702
+      }
+    ],
+    "findings": [
+      "No numerical or identity mismatch found in the six seed/split combinations.",
+      "All six have positive pooled change, negative within change, and positive corrected-between contribution. All three trace errors also get closer to both original-source and reconstruction references.",
+      "Therefore pooled positive change comes from between-class expansion, but saying not within-class recovery is incorrect: Full is within-overdispersed in decoded Inception, and the within contraction also repairs that error.",
+      "Both reference choices give negative corrected centroid-risk change in all six combinations; descriptive per-class heterogeneity is retained, not a formal confidence interval."
+    ],
+    "boundaries": [
+      "Read actual FP32 feature caches and independently reconstruct class statistics using pairwise/U-statistic identities; no producer functions imported.",
+      "Original source rows/labels/splits align to the prior raw audit and its manifest/protocol hashes. Raw latents and original RGB/parquet metadata were not reread; prior 10000 source-label checks are reused.",
+      "Source/reconstruction share actual source images; Full/IG share generation noise. Cross-family centroid risks use independent conditional sampling assumptions.",
+      "Current feature content hashes are verified against this audit request; original manifests do not contain per-feature content hashes, so this does not independently reconstruct their historical extraction.",
+      "Original stored uint8-image Inception pipeline includes decoder, clamp/quantization and Inception; conclusions are not decoder-only or a FID decomposition.",
+      "Old banks and splits are retrospective. No new FID, guidance direction, semantic-mode or quality guarantee."
+    ],
+    "cost": {
+      "cpu_only": true,
+      "cuda_visible_devices": "",
+      "gpu_calls": 0,
+      "raw_latents_read": false,
+      "feature_payload_bytes": 327680000,
+      "file_bytes_hashed": 412615271,
+      "wall_seconds_from_script_start": 7.929850921034813,
+      "cpu_seconds_from_script_start": 7.892992019999999,
+      "peak_rss_kib": 1192192,
+      "timing_excludes": "interpreter startup before first time import and final audit JSON serialization/exit"
+    }
+  },
+  "raw_comparison": {
+    "source": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/summary.json",
+      "sha256": "4a9f032d3d6a765cfa6e5e355fea0c68f73c10d973f10d9157e7291889ccf302",
+      "bytes": 45624
+    },
+    "outputs": [
+      {
+        "seed": 20260801,
+        "splits": {
+          "train": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9669650675898974,
+                "within_trace": 0.9329955926796112,
+                "centroid_scatter_observed": 1.0247360976111173,
+                "centroid_scatter_corrected": 1.092443703079467
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.997481978803254,
+                "within_trace": 1.008384707911106,
+                "centroid_scatter_observed": 0.9789399821351731,
+                "centroid_scatter_corrected": 0.9572087754293777
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8037.072457422881,
+              "within_trace_ig_minus_full": 15624.86833868589,
+              "between_corrected_contribution_ig_minus_full": -7587.795881263349,
+              "between_contribution_multiplier": 0.9989997499374844,
+              "within_fraction_of_total_change": 1.9440994742127864,
+              "centroid_corrected_fraction_of_total_change": -0.9440994742128287
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 20.426464326300636,
+                "global_mean_difference_rms_per_coordinate": 0.03989543813730593,
+                "global_mean_difference_squared_finite_m_corrected": 317.0840710319435,
+                "mean_class_centroid_squared_distance_observed": 81295.02781808648,
+                "rms_class_centroid_distance_observed": 285.1228293526958,
+                "finite_m_noise_subtraction": 80125.0990733512,
+                "mean_class_centroid_squared_distance_corrected": 1169.9287447352835,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 34.20422115375942,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 27.123216675594342,
+                "global_mean_difference_rms_per_coordinate": 0.0529750325695202,
+                "global_mean_difference_squared_finite_m_corrected": 631.6062919048785,
+                "mean_class_centroid_squared_distance_observed": 84946.26660773045,
+                "rms_class_centroid_distance_observed": 291.45542816652164,
+                "finite_m_noise_subtraction": 83250.07274108837,
+                "mean_class_centroid_squared_distance_corrected": 1696.1938666420756,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 41.18487424579654,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.348235914769056,
+                "global_mean_difference_rms_per_coordinate": 0.04364889827103331,
+                "global_mean_difference_squared_finite_m_corrected": 479.7372596753021,
+                "mean_class_centroid_squared_distance_observed": 16923.338580849628,
+                "rms_class_centroid_distance_observed": 130.0897328033601,
+                "finite_m_noise_subtraction": 15765.11106149714,
+                "mean_class_centroid_squared_distance_corrected": 1158.2275193524874,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 34.032741872386474,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          },
+          "heldout": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9721322789174284,
+                "within_trace": 0.9342842180394736,
+                "centroid_scatter_observed": 1.0369996612666463,
+                "centroid_scatter_corrected": 1.113333901148357
+              },
+              "ig_to_real": {
+                "pooled_trace": 1.0053302456414925,
+                "within_trace": 1.010758058272349,
+                "centroid_scatter_observed": 0.9960275762555747,
+                "centroid_scatter_corrected": 0.9850804380988052
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8595.71443430765,
+              "within_trace_ig_minus_full": 15615.270888703322,
+              "between_corrected_contribution_ig_minus_full": -7019.556454395764,
+              "between_contribution_multiplier": 0.995995995995996,
+              "within_fraction_of_total_change": 1.816634441272137,
+              "centroid_corrected_fraction_of_total_change": -0.8166344412721478
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 25.6228741483402,
+                "global_mean_difference_rms_per_coordinate": 0.05004467607097695,
+                "global_mean_difference_squared_finite_m_corrected": 261.56822612630543,
+                "mean_class_centroid_squared_distance_observed": 79856.28757701135,
+                "rms_class_centroid_distance_observed": 282.5885482057108,
+                "finite_m_noise_subtraction": 78992.69069907501,
+                "mean_class_centroid_squared_distance_corrected": 863.596877936332,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 29.38701886779828,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 31.591467098364294,
+                "global_mean_difference_rms_per_coordinate": 0.06170208417649276,
+                "global_mean_difference_squared_finite_m_corrected": 587.4420690429554,
+                "mean_class_centroid_squared_distance_observed": 83881.56700183908,
+                "rms_class_centroid_distance_observed": 289.62314652292395,
+                "finite_m_noise_subtraction": 82115.74487681568,
+                "mean_class_centroid_squared_distance_corrected": 1765.8221250234055,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 42.02168636577316,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 23.33681883381377,
+                "global_mean_difference_rms_per_coordinate": 0.04557972428479252,
+                "global_mean_difference_squared_finite_m_corrected": 467.31934975399616,
+                "mean_class_centroid_squared_distance_observed": 16585.82308719948,
+                "rms_class_centroid_distance_observed": 128.78595842404357,
+                "finite_m_noise_subtraction": 15457.552705649763,
+                "mean_class_centroid_squared_distance_corrected": 1128.2703815497152,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.58973625305378,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          },
+          "all": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9679785884933886,
+                "within_trace": 0.9332502593448594,
+                "centroid_scatter_observed": 1.0270717187037606,
+                "centroid_scatter_corrected": 1.0964095938624958
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9989910343620921,
+                "within_trace": 1.0088537451043722,
+                "centroid_scatter_observed": 0.9822088146466451,
+                "centroid_scatter_corrected": 0.9625171271125206
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8141.403014014853,
+              "within_trace_ig_minus_full": 15622.94884868912,
+              "between_corrected_contribution_ig_minus_full": -7481.545834674774,
+              "between_contribution_multiplier": 0.9991998399679936,
+              "within_fraction_of_total_change": 1.9189504341936288,
+              "centroid_corrected_fraction_of_total_change": -0.9189504341936909
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 19.72510373499264,
+                "global_mean_difference_rms_per_coordinate": 0.0385255932324075,
+                "global_mean_difference_squared_finite_m_corrected": 309.18109995772465,
+                "mean_class_centroid_squared_distance_observed": 81007.27976987144,
+                "rms_class_centroid_distance_observed": 284.6177783798325,
+                "finite_m_noise_subtraction": 79898.61739849598,
+                "mean_class_centroid_squared_distance_corrected": 1108.662371375467,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.29658197736619,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.612952357880786,
+                "global_mean_difference_rms_per_coordinate": 0.05197842257398591,
+                "global_mean_difference_squared_finite_m_corrected": 625.2260260345988,
+                "mean_class_centroid_squared_distance_observed": 84733.32668655217,
+                "rms_class_centroid_distance_observed": 291.08989451121823,
+                "finite_m_noise_subtraction": 83023.20716823378,
+                "mean_class_centroid_squared_distance_corrected": 1710.1195183183881,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 41.35359135937758,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.18567089047979,
+                "global_mean_difference_rms_per_coordinate": 0.04333138845796834,
+                "global_mean_difference_squared_finite_m_corrected": 476.50039347035477,
+                "mean_class_centroid_squared_distance_observed": 16855.835482119597,
+                "rms_class_centroid_distance_observed": 129.8300253489908,
+                "finite_m_noise_subtraction": 15703.599390327665,
+                "mean_class_centroid_squared_distance_corrected": 1152.2360917919323,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.944603279342246,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          }
+        }
+      },
+      {
+        "seed": 20260802,
+        "splits": {
+          "train": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9659612804466206,
+                "within_trace": 0.9289581754723748,
+                "centroid_scatter_observed": 1.0292162353371161,
+                "centroid_scatter_corrected": 1.1038761902419956
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9958566740648032,
+                "within_trace": 1.0019900376229451,
+                "centroid_scatter_observed": 0.9853719962122964,
+                "centroid_scatter_corrected": 0.9729969091220386
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7839.167546256649,
+              "within_trace_ig_minus_full": 15099.227376378374,
+              "between_corrected_contribution_ig_minus_full": -7260.059830121763,
+              "between_contribution_multiplier": 0.9989997499374844,
+              "within_fraction_of_total_change": 1.9261263759553833,
+              "centroid_corrected_fraction_of_total_change": -0.9261263759553882
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 20.08971778704289,
+                "global_mean_difference_rms_per_coordinate": 0.039237730052818144,
+                "global_mean_difference_squared_finite_m_corrected": 303.8944622274495,
+                "mean_class_centroid_squared_distance_observed": 81317.75228126535,
+                "rms_class_centroid_distance_observed": 285.1626768728077,
+                "finite_m_noise_subtraction": 79761.83882846238,
+                "mean_class_centroid_squared_distance_corrected": 1555.913452802968,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 39.445068802107166,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.959502718816896,
+                "global_mean_difference_rms_per_coordinate": 0.05265527874768925,
+                "global_mean_difference_squared_finite_m_corrected": 623.3376814662231,
+                "mean_class_centroid_squared_distance_observed": 84974.26073902479,
+                "rms_class_centroid_distance_observed": 291.5034489316118,
+                "finite_m_noise_subtraction": 82781.68430373805,
+                "mean_class_centroid_squared_distance_corrected": 2192.576435286741,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 46.824955261983334,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.130424015963108,
+                "global_mean_difference_rms_per_coordinate": 0.043223484406177945,
+                "global_mean_difference_squared_finite_m_corrected": 470.0923742228682,
+                "mean_class_centroid_squared_distance_observed": 16873.589044767716,
+                "rms_class_centroid_distance_observed": 129.89837968492031,
+                "finite_m_noise_subtraction": 15730.634322758799,
+                "mean_class_centroid_squared_distance_corrected": 1142.954722008917,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.80761337345358,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          },
+          "heldout": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9607822118593948,
+                "within_trace": 0.9241122085164,
+                "centroid_scatter_observed": 1.0219656325240842,
+                "centroid_scatter_corrected": 1.091393347187308
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9877125762458134,
+                "within_trace": 0.9955467661599731,
+                "centroid_scatter_observed": 0.9746413329028037,
+                "centroid_scatter_corrected": 0.9598087762517882
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7168.295431407634,
+              "within_trace_ig_minus_full": 14846.198205659311,
+              "between_corrected_contribution_ig_minus_full": -7677.902774252085,
+              "between_contribution_multiplier": 0.995995995995996,
+              "within_fraction_of_total_change": 2.0710918443192528,
+              "centroid_corrected_fraction_of_total_change": -1.0710918443193098
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 27.166294287096783,
+                "global_mean_difference_rms_per_coordinate": 0.0530591685294859,
+                "global_mean_difference_squared_finite_m_corrected": 338.1205415813888,
+                "mean_class_centroid_squared_distance_observed": 81239.29737567418,
+                "rms_class_centroid_distance_observed": 285.02508201152085,
+                "finite_m_noise_subtraction": 79977.4007423517,
+                "mean_class_centroid_squared_distance_corrected": 1261.8966333224816,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 35.523184447941624,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 32.0769094524632,
+                "global_mean_difference_rms_per_coordinate": 0.06265021377434218,
+                "global_mean_difference_squared_finite_m_corrected": 614.194918104105,
+                "mean_class_centroid_squared_distance_observed": 84812.81740108132,
+                "rms_class_centroid_distance_observed": 291.2264023076914,
+                "finite_m_noise_subtraction": 82946.64038348357,
+                "mean_class_centroid_squared_distance_corrected": 1866.177017597758,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 43.19927103086067,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 23.631791166883364,
+                "global_mean_difference_rms_per_coordinate": 0.04615584212281907,
+                "global_mean_difference_squared_finite_m_corrected": 480.3576902322063,
+                "mean_class_centroid_squared_distance_observed": 16772.568522687652,
+                "rms_class_centroid_distance_observed": 129.50895151566803,
+                "finite_m_noise_subtraction": 15620.772704596038,
+                "mean_class_centroid_squared_distance_corrected": 1151.795818091614,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.93811748007856,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          },
+          "all": {
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9649610174447388,
+                "within_trace": 0.927984932820271,
+                "centroid_scatter_observed": 1.027802062660595,
+                "centroid_scatter_corrected": 1.1014144756565205
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9942234914850586,
+                "within_trace": 1.0006959993713804,
+                "centroid_scatter_observed": 0.9832234311791832,
+                "centroid_scatter_corrected": 0.9703378883077242
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7697.430550536956,
+              "within_trace_ig_minus_full": 15048.621542234469,
+              "between_corrected_contribution_ig_minus_full": -7351.190991697703,
+              "between_contribution_multiplier": 0.9991998399679936,
+              "within_fraction_of_total_change": 1.9550188135422293,
+              "centroid_corrected_fraction_of_total_change": -0.955018813542254
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 19.745304131751563,
+                "global_mean_difference_rms_per_coordinate": 0.03856504713232727,
+                "global_mean_difference_squared_finite_m_corrected": 310.0720840441252,
+                "mean_class_centroid_squared_distance_observed": 81302.06130014712,
+                "rms_class_centroid_distance_observed": 285.1351632123739,
+                "finite_m_noise_subtraction": 79804.95121124019,
+                "mean_class_centroid_squared_distance_corrected": 1497.1100889069348,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 38.69250688320589,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.545386537054206,
+                "global_mean_difference_rms_per_coordinate": 0.051846458080183996,
+                "global_mean_difference_squared_finite_m_corrected": 621.8428708819317,
+                "mean_class_centroid_squared_distance_observed": 84941.97207143609,
+                "rms_class_centroid_distance_observed": 291.4480606753733,
+                "finite_m_noise_subtraction": 82814.67551968708,
+                "mean_class_centroid_squared_distance_corrected": 2127.2965517490084,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 46.12262516107478,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.077077408052656,
+                "global_mean_difference_rms_per_coordinate": 0.04311929181260284,
+                "global_mean_difference_squared_finite_m_corrected": 471.68868488202276,
+                "mean_class_centroid_squared_distance_observed": 16853.3849403517,
+                "rms_class_centroid_distance_observed": 129.82058750580242,
+                "finite_m_noise_subtraction": 15708.661999126247,
+                "mean_class_centroid_squared_distance_corrected": 1144.7229412254546,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.8337544654071,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "validation": {
+    "compile_passed": true,
+    "independent_direct_cache_recalculation_passed": true,
+    "numeric_checks": 1030,
+    "maximum_absolute_difference": 5.684341886080801e-13
+  }
+}

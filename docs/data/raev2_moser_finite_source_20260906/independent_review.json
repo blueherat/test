@@ -1,0 +1,146 @@
+{
+  "complete": true,
+  "round": 4,
+  "created_utc": "2026-09-06T16:58:33.655114+00:00",
+  "sources": {
+    "request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/moser_finite_source_v1/request.json",
+      "size_bytes": 777,
+      "sha256": "b2a44930924825f01c034b068720c9148744ae015c53bf657abfbe15af0d4736"
+    },
+    "summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/moser_finite_source_v1/summary.json",
+      "size_bytes": 2637,
+      "sha256": "0de4947f6d0686b7b85441e582947fc8c37175db8d883112bcf0bd02285a491f"
+    },
+    "trajectories.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/moser_finite_source_v1/trajectories.npz",
+      "size_bytes": 91152,
+      "sha256": "54d1738f3d24cd9071e0afda80befec0790f7f2759dff13fa05d275e9234e051"
+    },
+    "audited_script": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_moser_finite_source.py",
+      "size_bytes": 5690,
+      "sha256": "ca80d11db2c881cce6c1a2d62ee0c78b47fec55433e230bd5b8a63f0b0eeee80"
+    },
+    "audited_protocol": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_MOSER_FINITE_SOURCE_PROTOCOL_20260906_ZH.md",
+      "size_bytes": 2987,
+      "sha256": "cdd8e6eede4cf6e5467eb356f3dca5d80a6bed2ce5474e37282901646e124269"
+    },
+    "review_script": {
+      "path": "/home/zhoushunyu/eqvae/experiments/review_raev2_moser_finite_source.py",
+      "size_bytes": 9273,
+      "sha256": "2fc832180a97206f110b44cd8704b3d00be6f6d773682e07d62cbfa8187a21e4"
+    }
+  },
+  "scope": "Independent verification of the same completed Round 4; no new experiment round.",
+  "all_1024_trajectories_checked_at_all_5_times": true,
+  "independent_cdf_inverse_max_abs_difference": 3.0772140391377434e-10,
+  "independent_tangent_half_map_max_abs_difference": 7.584932681936607e-11,
+  "quadrature": [
+    {
+      "time": 0.0,
+      "quadrature_fourier_moments": [
+        7.629712339393882e-17,
+        5.449794528138487e-17
+      ],
+      "quadrature_error_estimates": [
+        7.116990625963435e-15,
+        7.11699062591589e-15
+      ],
+      "gradient_gram": 0.5,
+      "gram_quadrature_error_estimate": 5.551115123125783e-15
+    },
+    {
+      "time": 0.25,
+      "quadrature_fourier_moments": [
+        0.06241874674751241,
+        0.0038960999455301022
+      ],
+      "quadrature_error_estimates": [
+        1.3150113661289549e-14,
+        7.071762684902026e-15
+      ],
+      "gradient_gram": 0.5,
+      "gram_quadrature_error_estimate": 5.551115123125783e-15
+    },
+    {
+      "time": 0.5,
+      "quadrature_fourier_moments": [
+        0.12435300177159624,
+        0.015463669049606547
+      ],
+      "quadrature_error_estimates": [
+        9.822176281374776e-13,
+        7.079656129751859e-15
+      ],
+      "gradient_gram": 0.5,
+      "gram_quadrature_error_estimate": 5.551115123125783e-15
+    },
+    {
+      "time": 0.75,
+      "quadrature_fourier_moments": [
+        0.18533319990813943,
+        0.034348394988190395
+      ],
+      "quadrature_error_estimates": [
+        7.229380812465084e-15,
+        1.324624185353115e-14
+      ],
+      "gradient_gram": 0.5,
+      "gram_quadrature_error_estimate": 5.551115123125783e-15
+    },
+    {
+      "time": 1.0,
+      "quadrature_fourier_moments": [
+        0.2449186624037091,
+        0.05998515119362201
+      ],
+      "quadrature_error_estimates": [
+        7.350691119602973e-15,
+        3.1502720265284953e-13
+      ],
+      "gradient_gram": 0.5,
+      "gram_quadrature_error_estimate": 5.551115123125783e-15
+    }
+  ],
+  "finite_source": 0.25,
+  "finite_source_quadrature_error_estimate": 2.7755575615628914e-15,
+  "scalar_first_variation_checks": [
+    {
+      "k": 0.0,
+      "finite_difference": -0.25,
+      "analytic_first_variation": -0.25
+    },
+    {
+      "k": 0.5,
+      "finite_difference": 0.0,
+      "analytic_first_variation": 0.0
+    },
+    {
+      "k": 1.0,
+      "finite_difference": 0.25000000000025,
+      "analytic_first_variation": 0.25
+    }
+  ],
+  "mathematical_review": {
+    "weak_sign": "delta J(phi)=integral rho grad(u).grad(phi)-integral(p-q)phi; periodic integration by parts yields -div(rho grad u)=p-q.",
+    "exact_moser": "rho*v=-a*sin(x)/(2*pi); -partial_x(rho*v)=a*cos(x)/(2*pi)=p-q.",
+    "projected_map": "tan(x_t/2)=exp(-a*t)*tan(x_0/2). Its pushforward of uniform has Fourier moments tanh(a*t/2)^n; it is not the density mixture.",
+    "finite_projection": "The cos test residual vanishes under prescribed rho, but the actual projected trajectory law differs; finite projection cannot inherit exact full-path transport.",
+    "empirical_nullspace": "Exact sin(0)=sin(pi)=0 gives Gram=0, source=cos(pi)-cos(0)=-2, J(k)=2*k with no lower bound. FP64 sin(pi) residual is not an exact nullspace.",
+    "issues_found": []
+  },
+  "limitations": [
+    "The smooth positive S1 population obeys Moser assumptions; the empirical Dirac example deliberately does not and only tests transfer to finite empirical loss.",
+    "Quadrature and FP64 ODE error checks are numerical verification, not interval-certified bounds.",
+    "This provides no theorem or measured quality gain for RAEv2 and no FID measurement."
+  ],
+  "new_gpu_calls": 0,
+  "model_calls": 0,
+  "trained_parameters": 0,
+  "raev2_fid_measured": false,
+  "wall_seconds_before_review_write": 0.01607805793173611,
+  "cpu_seconds_before_review_write": 0.012234276000000044
+}

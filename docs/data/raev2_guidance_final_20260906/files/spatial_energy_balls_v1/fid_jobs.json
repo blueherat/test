@@ -1,0 +1,83 @@
+{
+  "cwd": "/home/zhoushunyu/eqvae",
+  "fixed_files": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/cost_match_before_fid.json",
+      "sha256": "a5cb1aa678de4ab3b259a94576f133e387a91eb6730eeb060e226affc067c897"
+    },
+    {
+      "path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+      "sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver.py",
+      "sha256": "73db913072b676f1b92517ccc7c5cf8ac8bf5f2db35991c9976f0d23e727659a"
+    },
+    {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac"
+    },
+    {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+      "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+      "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/samples.npz",
+      "sha256": "ee38f4baa683cb96b9dbde1e7e8da41b75ca7bee3fcba7a2d84f72da0750e216"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/summary.json",
+      "sha256": "30ff15fa4ddc1a567ed8a4bbd12876a70256af95ea5a30efd44dcda7b4fe9d05"
+    }
+  ],
+  "jobs": [
+    {
+      "name": "fid_all_three",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+        "--branch",
+        "official100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+        "--branch",
+        "global100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+        "--branch",
+        "spatial100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/samples.npz",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_results.csv",
+        "--batch-size",
+        "64",
+        "--device",
+        "cuda",
+        "--seed",
+        "2020",
+        "--fid-reference",
+        "imagenet_256_fid_stats",
+        "--feature-cache-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "3",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      }
+    }
+  ]
+}

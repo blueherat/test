@@ -1,0 +1,62 @@
+{
+  "created_utc": "2026-09-06T07:12:28.999151+00:00",
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "-u",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+    "--batch-size",
+    "64",
+    "--seed",
+    "2020",
+    "--output",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/metrics.csv",
+    "--branch",
+    "official100_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+    "--branch",
+    "potential100_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+    "--branch",
+    "official105_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/samples.npz"
+  ],
+  "all_625_batch_noises_match_across_three_arms": true,
+  "full_common_protocol_matches_except_mode_and_steps": true,
+  "input_archives": {
+    "official100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+      "sha256": "289b422e5cc8e02030af51650efc2dead7385992a33c6e8ec137161d05b9dc5b",
+      "size_bytes": 983120746
+    },
+    "potential100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+      "sha256": "89e3e2c3e83ca3af4d6ec0f463580fe909a06c5211ecd75d971e4a73663ceb1a",
+      "size_bytes": 983120746
+    },
+    "official105": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/samples.npz",
+      "sha256": "7bb79fbbf8e910ec1893b1c70a42dd3bda68c41424fac234e41045c02fb9e892",
+      "size_bytes": 983120746
+    }
+  },
+  "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+  "fid_protocol": {
+    "evaluator": "official nanogen-evals",
+    "batch_size": 64,
+    "seed": 2020,
+    "fid_reference": "imagenet_256_fid_stats"
+  },
+  "evaluator_assets": {
+    "reference": {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "size_bytes": 33563124
+    },
+    "inception": {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+      "size_bytes": 95628359
+    }
+  },
+  "evaluator_environment": {
+    "NANOGEN_EVALS_STATS_DIR": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419",
+    "TORCH_HOME": "/home/zhoushunyu/.cache/torch"
+  }
+}

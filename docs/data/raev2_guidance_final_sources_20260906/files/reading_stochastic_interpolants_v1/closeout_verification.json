@@ -1,0 +1,140 @@
+{
+  "closeout_started_utc": "2026-09-06T15:10:42.198672+00:00",
+  "closeout_finished_utc": "2026-09-06T15:15:26.791537+00:00",
+  "preexisting_source_or_derived_files_preserved": 24,
+  "preexisting_files_all_sha_and_bytes_unchanged": true,
+  "pdf_pages": 80,
+  "pdftotext_layout_exact_byte_parity": true,
+  "equation_locations_one_based_pdf_pages": {
+    "(2.24)": [
+      15
+    ],
+    "(2.35)": [
+      17
+    ],
+    "(2.45)": [
+      19,
+      66
+    ],
+    "(B.23)": [
+      60
+    ],
+    "(B.30)": [
+      61
+    ],
+    "(B.44)": [
+      66
+    ],
+    "(B.45)": [
+      66
+    ],
+    "(B.48)": [
+      66
+    ]
+  },
+  "rendered_pages": [
+    {
+      "file": "page_17.png",
+      "pdf_page_one_based": 17,
+      "size_pixels": [
+        1082,
+        1400
+      ],
+      "visual_page_number_and_content_checked_during_closeout": true
+    },
+    {
+      "file": "page_19.png",
+      "pdf_page_one_based": 19,
+      "size_pixels": [
+        1082,
+        1400
+      ],
+      "visual_page_number_and_content_checked_during_closeout": true
+    },
+    {
+      "file": "page_52.png",
+      "pdf_page_one_based": 52,
+      "size_pixels": [
+        1082,
+        1400
+      ],
+      "visual_page_number_and_content_checked_during_closeout": true
+    },
+    {
+      "file": "page_66.png",
+      "pdf_page_one_based": 66,
+      "size_pixels": [
+        1082,
+        1400
+      ],
+      "visual_page_number_and_content_checked_during_closeout": true
+    },
+    {
+      "file": "page_74.png",
+      "pdf_page_one_based": 74,
+      "size_pixels": [
+        1082,
+        1400
+      ],
+      "visual_page_number_and_content_checked_during_closeout": true
+    }
+  ],
+  "source_code_blob_checks": [
+    {
+      "path": "code/malbergo/stochastic-interpolants/README.md",
+      "git_blob_sha1": "a6fa1ca4a6e58b32810b4e46abdbb84b41a34399",
+      "commit": "c9bc956ec5a51c907bcbfb114f96d3539acb70bb",
+      "matches_archived_tree": true
+    },
+    {
+      "path": "code/malbergo/stochastic-interpolants/interflow/stochastic_interpolant.py",
+      "git_blob_sha1": "74653868eb712d9f55e09b8594a3482b0c65f8eb",
+      "commit": "c9bc956ec5a51c907bcbfb114f96d3539acb70bb",
+      "matches_archived_tree": true
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/README.md",
+      "git_blob_sha1": "6ad81c6ea917e5923648096622d73b291d473be3",
+      "commit": "8e6bf907d11be49da1780b5a3aa7212277365257",
+      "matches_archived_tree": true
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/interpolant.py",
+      "git_blob_sha1": "d49aee046861f1ec3f9e2e4c5326621fe283adf6",
+      "commit": "8e6bf907d11be49da1780b5a3aa7212277365257",
+      "matches_archived_tree": true
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/losses.py",
+      "git_blob_sha1": "e8e2c0d6db018ac3eed769d18b98d3e13867b19e",
+      "commit": "8e6bf907d11be49da1780b5a3aa7212277365257",
+      "matches_archived_tree": true
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/samplers.py",
+      "git_blob_sha1": "14fb9c43198c312e7e6a80985779ebfd3699c9c4",
+      "commit": "8e6bf907d11be49da1780b5a3aa7212277365257",
+      "matches_archived_tree": true
+    }
+  ],
+  "independent_scalar_checks": {
+    "decimal_precision": 80,
+    "terminal_mean": "1.2642411176571153568089524596770782651083777379364643309843263966050770085102004",
+    "KL_target_to_learned": "0.79915280178745609740590390929912533703201856769208042490497053851830076522337615",
+    "printed_2_45_bound": "0.5",
+    "corrected_excess_risk_and_Lemma22_bound": "1",
+    "original_analytic_json_KL_agrees_within": 1e-15,
+    "counterexample_conditions": "Independent standard Gaussian endpoints and added noise; I=(1-t)Y+tW and gamma^2=2t(1-t) meet Definition 1 and Assumption 5. rho=N(0,1), b=0, s=-x, bhat=1, shat=-x+1. Both approximate fields smooth and OU nonexplosive.",
+    "reverse_time_correct_variance_derivative_at_zero": 0,
+    "reverse_time_printed_variance_derivative_at_zero": -2
+  },
+  "scope": "Existing note and 24 archive files preceded this closeout. Five existing PNGs visually checked; definitions/proofs at pp.9,12-15,17,19,60-61,63-66 independently consulted. Earlier full reading scope is retained as a historical record, not claimed repeated. No new paper, downloads, GPU, training or generated samples. These are local mathematical checks, not author-confirmed errata.",
+  "calls": {
+    "network_download": 0,
+    "GPU": 0,
+    "model_forward": 0,
+    "training": 0,
+    "samples_generated": 0
+  },
+  "closeout_script_wall_seconds_before_report_write": 0.7144435658119619
+}

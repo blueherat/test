@@ -1,0 +1,120 @@
+{
+  "protocol": "raev2_paired_bridge_fixed_mechanism_pilot_v1",
+  "mode": "rollout",
+  "created_utc": "2026-09-06T14:32:48.846015+00:00",
+  "sources": {
+    "experiments/run_raev2_paired_bridge_pilot.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/run_raev2_paired_bridge_pilot.py",
+      "sha256": "08ce50fbbf48793411bd37f885d208f5ec07114cdb5bbc59f72dc34012787df7",
+      "size_bytes": 26097
+    },
+    "experiments/raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/raev2_paired_bridge.py",
+      "sha256": "cdb22b7e8e4c622f0ce70c8a59f88d35308d31e0b47c007be898470d881b6a6a",
+      "size_bytes": 9746
+    },
+    "tests/test_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/test_raev2_paired_bridge.py",
+      "sha256": "773eec5d2ee17f3889d87378b1bb6989d9f506bbc91e48ca2fbd3fcf94fa4333",
+      "size_bytes": 9707
+    },
+    "docs/RAEV2_PAIRED_BRIDGE_PILOT_PROTOCOL_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/RAEV2_PAIRED_BRIDGE_PILOT_PROTOCOL_20260906_ZH.md",
+      "sha256": "1d8ecd75e867ec61fc187c2670ea425fd1df7de5953952cd69efdd4bf9510dbf",
+      "size_bytes": 10126
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout/sources/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    }
+  },
+  "bank": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/summary.json",
+    "sha256": "d17d6e22ea47f7d2603f7c6843145abd6c90caf961b90a146fcc864ddc61333b",
+    "size_bytes": 469118
+  },
+  "config": {
+    "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+    "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "size_bytes": 1772
+  },
+  "baseline_checkpoint": {
+    "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+    "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "size_bytes": 10520885445
+  },
+  "seeds": {
+    "model": 202609141,
+    "data": 202609142,
+    "noise": 202609143,
+    "tau": 202609144,
+    "validation": 202609145,
+    "rollout": 202609146
+  },
+  "architecture": {
+    "parameters_each": 3652224,
+    "full_channels": 1024,
+    "blocks": 2,
+    "input": "current U,t,s,tau,class only",
+    "output": "normalized vector field, full zero-initialized readout"
+  },
+  "training": {
+    "batch_size": 32,
+    "baseline_microbatch_size": 8,
+    "updates": 2048,
+    "optimizer": "Adam",
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "ema": false,
+    "lr_schedule": null,
+    "time_sampling": "uniform100 query indices",
+    "aux_time": "candidate independent Uniform[0,1]; control0",
+    "target": "(W - actual_native_Euler(Z_t))/beta",
+    "beta": "(t-s)/max(t,.05)",
+    "loss": ".5*prediction**2-target*prediction, mean coordinates then mean samples",
+    "final_checkpoint_only": true,
+    "matched_initialization": true,
+    "shared_teacher_batches": true
+  },
+  "finite_solver": "two-stage explicit midpoint; control locks both tau inputs to0, keeps current midpoint state",
+  "baseline_batch_policy": "all native forwards B8; pad validation remainder with repeated rows, score original rows only; charge actual padded calls",
+  "interpolation_arithmetic": "FP32 (1-tau)*Y+tau*W in training and teacher validation",
+  "precision": "native BF16 baseline heads/IG; FP32 state, auxiliary nets, training and Euler; TF32 off",
+  "cuda_visible_devices": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "inherited_data_cost": {
+    "encoded_images": 6000,
+    "reported_encoder_forward_calls": 750,
+    "reported_bank_elapsed_seconds": 113.86073904205114,
+    "boundary": "existing bank creation summary; earlier source selection/history costs not fully timed; no total-cost success claim"
+  },
+  "images_decoded": 0,
+  "fid": false,
+  "prior_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/summary.json",
+    "sha256": "6caaf81f64a4e2ef59ae906ad727a923d202335ee6c18d813bbad5ec80c16785",
+    "size_bytes": 2980
+  },
+  "baseline_checkpoint_step": 100080,
+  "cuda_device": "NVIDIA GeForce RTX 4090"
+}

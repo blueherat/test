@@ -1,0 +1,64 @@
+{
+  "pid": 680883,
+  "created_utc": "2026-09-06T14:30:34.008907+00:00",
+  "complete": true,
+  "driver_sha256": "4d7aff13a02a29aab3b3866d28abc5583d85cc3b9ec2e1c33d57d82fa1059e54",
+  "stages": [
+    {
+      "mode": "validate",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/run_raev2_paired_bridge_pilot.py",
+        "--mode",
+        "validate",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate",
+        "--prior-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train"
+      ],
+      "started_utc": "2026-09-06T14:30:34.009888+00:00",
+      "complete": true,
+      "pid": 680912,
+      "returncode": 0,
+      "outer_child_wall_seconds": 116.95864419289865,
+      "finished_utc": "2026-09-06T14:32:30.968600+00:00",
+      "summary_sha256": "1d7b80268c91c1a86f5a1cbbeb7b420bcf035402da9699ca697befe23088b10f"
+    },
+    {
+      "mode": "rollout",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/run_raev2_paired_bridge_pilot.py",
+        "--mode",
+        "rollout",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/rollout",
+        "--prior-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train"
+      ],
+      "started_utc": "2026-09-06T14:32:30.971833+00:00",
+      "complete": true,
+      "pid": 688412,
+      "returncode": 0,
+      "outer_child_wall_seconds": 89.05950006400235,
+      "finished_utc": "2026-09-06T14:34:00.031482+00:00",
+      "summary_sha256": "01d7572df695c337e3f3ea401da1e2b255de17f80a968a5aa7796e85b2d5a4f3"
+    }
+  ],
+  "recovery": {
+    "original_driver_pid": 614895,
+    "original_train_pid": 615756,
+    "missing_processes_confirmed_utc": "2026-09-06T14:29:00+00:00",
+    "original_session_missing": true,
+    "train_restarted": false,
+    "original_outer_returncode": "not captured",
+    "original_outer_wall": "not captured",
+    "training_summary_sha256": "6caaf81f64a4e2ef59ae906ad727a923d202335ee6c18d813bbad5ec80c16785",
+    "training_final_checkpoint_sha256": "5013cbf075ddffa5c2ae021fc916be0615ca41d9817d3af91e6b3e46c86e1983",
+    "reason": "parent absent; fixed final training artifacts complete; continue unstarted stages only"
+  },
+  "finished_utc": "2026-09-06T14:34:00.033039+00:00",
+  "resumed_outer_children_wall_seconds": 206.018144256901
+}

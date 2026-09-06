@@ -1,0 +1,56 @@
+{
+  "paper": "Diffusion Model for Manifold Data: Score Decomposition, Curvature, and Statistical Complexity",
+  "authors": [
+    "Zixuan Zhang",
+    "Kaixuan Huang",
+    "Tuo Zhao",
+    "Mengdi Wang",
+    "Minshuo Chen"
+  ],
+  "version": "arXiv:2603.20645v1",
+  "submitted_utc": "2026-03-21 04:40:19",
+  "pdf_title_date": "2026-03-24 (TeX uses today macro)",
+  "later_version_observed_not_read": "v2 2026-04-28",
+  "formal_acceptance_verified": false,
+  "pdf_pages": 86,
+  "scope_read": {
+    "main": "sections 1–6",
+    "target_proofs": [
+      "A.2 Lemma3.2",
+      "B.1–B.3 approximation construction/error aggregation for Theorem4.4",
+      "C.1 Theorem5.1 and LemmaC.1"
+    ],
+    "other_read": [
+      "A.1",
+      "D cross-term statement/proof and related localization arguments",
+      "E.1 projection Jacobian and E.2 Gaussian tail"
+    ],
+    "not_full_line_audit": [
+      "all D–F helper lemmas",
+      "all external cited proofs"
+    ],
+    "independent_agent_scope": "particle_related_screen reread Theorem5.1/C.1 and network restrictions"
+  },
+  "confirmed_core": [
+    "Gaussian convolution score identity and additive Lemma3.2 decomposition",
+    "s_M need not be tangent or orthogonal to s_perp",
+    "cross term sign from squared-distance expansion"
+  ],
+  "own_derivations": [
+    "second fundamental form and posterior second moment coupling under additional local concentration assumptions",
+    "uniform circle finite-noise posterior mean and score",
+    "fixed off-manifold circle Jacobian limit R/r",
+    "common-support target score difference cancellation",
+    "RAE fixed-time bridge conversion and pure-noise parameterization boundary"
+  ],
+  "v1_proof_boundaries": [
+    "A.2 g exponent E2 sign differs from correct preceding density factorization",
+    "B.2.3 p47 positive denominator lower bound assumes a possibly empty local integration domain",
+    "C.1 ERM class restriction and conditional-to-marginal expectation comparison lack sufficient argument"
+  ],
+  "experiments_in_paper": "No image/FID or costmatched guidance experiment",
+  "new_gpu_calls": 0,
+  "model_queries": 0,
+  "new_sampling_or_fid": 0,
+  "no_other_paper_full_read": true
+}

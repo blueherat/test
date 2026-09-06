@@ -1,0 +1,1120 @@
+{
+  "protocol": "raev2_class_moment_audit_archive_v1",
+  "date_label": "20260906",
+  "status": "completed_cpu_diagnostic_no_guidance_candidate_no_new_fid",
+  "source_records": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/summary.json",
+      "bytes": 45624,
+      "sha256": "4a9f032d3d6a765cfa6e5e355fea0c68f73c10d973f10d9157e7291889ccf302"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/request.json",
+      "bytes": 11773,
+      "sha256": "5e7d879edde751ed158013b08dc4ea161e2a633e409962182a58f0c489a43edd"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/runner_source.py",
+      "bytes": 20313,
+      "sha256": "d1a157564ad8f62f28afdabb126ebcfd60c49be1b5626d5e72a652ef8cc5fe69"
+    },
+    {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_raw_latent_class_moments.py",
+      "bytes": 20313,
+      "sha256": "d1a157564ad8f62f28afdabb126ebcfd60c49be1b5626d5e72a652ef8cc5fe69"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260801_class_statistics.npz",
+      "bytes": 143477,
+      "sha256": "582f8d5c29ebb5ebbe2e343a620630369ff043732eee68daa9098861a340b753"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260802_class_statistics.npz",
+      "bytes": 143503,
+      "sha256": "63ce2e17be65b4ea5f42bcdb27a16dccba7d3078b87e2536864c74d96be200db"
+    }
+  ],
+  "source_request": {
+    "protocol": "raev2_raw_latent_within_between_class_moments_v1",
+    "seeds": [
+      20260801,
+      20260802
+    ],
+    "dimension": 262144,
+    "branches": {
+      "real": "real",
+      "full": "scale_s1p000000",
+      "ig": "scale_s1p780000"
+    },
+    "images_per_class": 5,
+    "splits": "original 800 train / 200 heldout classes, five images per class; all-classes summary also retained",
+    "real": "saved raw normalized encoder-clean latent, not reconstruction or pixels",
+    "arithmetic": "stored FP16 promoted to FP64; classwise two-pass centering; no covariance matrix",
+    "pooled_trace": "T=sum_i ||x_i-global_mean||^2/(m*C-1)",
+    "within_trace": "W=mean_c[sum_i ||x_ci-class_mean_c||^2/(m-1)]",
+    "centroid_scatter": "B=sum_c ||class_mean_c-global_mean||^2/(C-1); corrected B*=B-W/m, never clipped",
+    "anova": "T=W+m*(C-1)/(m*C-1)*B*; reports contributions to IG-minus-Full trace",
+    "finite_sample_assumption": "Within each fixed class the five real images and five generated noises estimate class-conditional moments. Real/generated draws are independent; Full/IG are paired by common noise. Class means themselves may differ arbitrarily across labels.",
+    "pair_geometry": "Pairwise squared distances and cross products are recovered exactly from class moments. No fitted scale, whitening, clustering, or feature selection.",
+    "limits": [
+      "Classes are not identified semantic modes; traces do not establish isotropic or Gaussian heat flow.",
+      "Exact positive scalar scaling about each unchanged Full class center requires unchanged centroids and collinear within-class pair differences.",
+      "Exact contraction of class centroids about a common global center requires collinear centroid-pair differences and reduced centroid-pair scale; preserving class shapes additionally requires unchanged within-class pair differences.",
+      "These are retrospective finite-bank necessary-condition diagnostics, not quality/FID or population guarantees."
+    ],
+    "source_sha256": {
+      "experiments/audit_raev2_raw_latent_class_moments.py": "d1a157564ad8f62f28afdabb126ebcfd60c49be1b5626d5e72a652ef8cc5fe69",
+      "experiments/audit_raev2_fullbank_block_means.py": "19476cb29806fca2834728bd45b7cc848e8a4849abb0ce12cd6d6f0096a97d07",
+      "experiments/extract_raev2_decoder_audit_real_blocks.py": "2c39f68fabd75c0401c491f51c93ae8eab0956cfd8fa49e0af1ff18aa440af62",
+      "experiments/raev2_training_core.py": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0",
+      "experiments/run_raev2_scale_response_study.py": "f59958d2cddaf1dea1911bcef54c80e1f0ebf4e52085958fdcdcad914d41cc02"
+    },
+    "device": "cpu",
+    "cuda_visible_devices": "",
+    "model_calls": 0,
+    "fitted_parameters": 0,
+    "input_latent_bytes_expected": 15728640000,
+    "banks": [
+      {
+        "seed": 20260801,
+        "bank": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1",
+        "source_identity": {
+          "packed_manifest": "/data/shared/imagenet-1k/random_access_v1/manifest.json",
+          "packed_manifest_sha256": "a3ef360766c3cb0c6ed00639f1a1d23da8a93e37ad04f03217af1830f9756a38",
+          "source_root": "/data/shared/imagenet-1k/data",
+          "shards_checked": 294,
+          "total_rows": 1281167,
+          "sorted_source_names_sizes_and_parquet_row_counts_match": true,
+          "index_map": null,
+          "original_runner": "run_raev2_scale_response_study.py: source_rows selected with seed+31, saved unchanged as real_source_rows, and directly indexed into DeterministicImageNetPacked for collect_real_latents and source-image Inception",
+          "original_selector": "run_raev2_distribution_auc.py: concatenated labels from sorted train-*.parquet files; selected rows are global indices in that concatenation",
+          "original_packer": "build_imagenet_random_access.py: sorted train-*.parquet, then original row-group and row order; unchanged encoded image bytes; manifest records restored to sorted source order",
+          "identity_limit": "Source order, file sizes, row counts, and selected labels are checked; the full 146 GB packed payload is not rehashed against parquet in this extraction."
+        },
+        "source_labels_checked": 5000,
+        "manifest_sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252",
+        "protocol_sha256": "7ef3603d021ad34f5a807f29c15caf1ef57c59eb1eb286870e931b9ae6e4a537",
+        "files": [
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/real_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785659344706614161
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/real_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785659347337578938
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/real_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785659346015596621
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/real_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785659346295592874
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p000000_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785660520016027133
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p000000_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785660517267924020
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p000000_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785660512535745297
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p000000_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785660520174851686
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785664685179811506
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785664691556858784
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785664669690696195
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785664676620747872
+          }
+        ]
+      },
+      {
+        "seed": 20260802,
+        "bank": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1",
+        "source_identity": {
+          "packed_manifest": "/data/shared/imagenet-1k/random_access_v1/manifest.json",
+          "packed_manifest_sha256": "a3ef360766c3cb0c6ed00639f1a1d23da8a93e37ad04f03217af1830f9756a38",
+          "source_root": "/data/shared/imagenet-1k/data",
+          "shards_checked": 294,
+          "total_rows": 1281167,
+          "sorted_source_names_sizes_and_parquet_row_counts_match": true,
+          "index_map": null,
+          "original_runner": "run_raev2_scale_response_study.py: source_rows selected with seed+31, saved unchanged as real_source_rows, and directly indexed into DeterministicImageNetPacked for collect_real_latents and source-image Inception",
+          "original_selector": "run_raev2_distribution_auc.py: concatenated labels from sorted train-*.parquet files; selected rows are global indices in that concatenation",
+          "original_packer": "build_imagenet_random_access.py: sorted train-*.parquet, then original row-group and row order; unchanged encoded image bytes; manifest records restored to sorted source order",
+          "identity_limit": "Source order, file sizes, row counts, and selected labels are checked; the full 146 GB packed payload is not rehashed against parquet in this extraction."
+        },
+        "source_labels_checked": 5000,
+        "manifest_sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff",
+        "protocol_sha256": "3fb107ad2c7055cbe78a5a9241a9263916e134d206e423e85a3d6caf22d8918c",
+        "files": [
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/real_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785667312893504965
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/real_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785667315681581871
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/real_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785667314737555846
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/real_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785667314226541752
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p000000_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785668319533134587
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p000000_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785668329372328996
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p000000_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785668304398835083
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p000000_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785668310605957990
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank00.npy",
+            "size": 655360128,
+            "mtime_ns": 1785672364007869546
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank01.npy",
+            "size": 655360128,
+            "mtime_ns": 1785672367465321087
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank02.npy",
+            "size": 655360128,
+            "mtime_ns": 1785672392387394204
+          },
+          {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank03.npy",
+            "size": 655360128,
+            "mtime_ns": 1785672354651624426
+          }
+        ]
+      }
+    ]
+  },
+  "source_summary": {
+    "protocol": "raev2_raw_latent_within_between_class_moments_v1",
+    "complete": true,
+    "outputs": [
+      {
+        "seed": 20260801,
+        "splits": {
+          "train": {
+            "classes": 800,
+            "images_per_class": 5,
+            "samples": 4000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 263364.5456852537,
+                "unbiased_within_class_covariance_trace": 207256.29012500215,
+                "class_centroid_scatter_trace_observed": 97615.69206391061,
+                "class_centroid_scatter_trace_finite_m_corrected": 56164.43403891018,
+                "uniform_class_between_covariance_trace_corrected": 56094.22849636154,
+                "mean_squared_within_class_pair_distance": 414512.5802500043,
+                "mean_squared_class_centroid_pair_distance_observed": 195231.38412782122,
+                "mean_squared_class_centroid_pair_distance_corrected": 112328.86807782036,
+                "global_mean_norm": 8.061691054918173,
+                "anova_absolute_error": 5.820766091346741e-11
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 254664.31571932396,
+                "unbiased_within_class_covariance_trace": 193369.20524175384,
+                "class_centroid_scatter_trace_observed": 100030.32335118027,
+                "class_centroid_scatter_trace_finite_m_corrected": 61356.4823028295,
+                "uniform_class_between_covariance_trace_corrected": 61279.786699950964,
+                "mean_squared_within_class_pair_distance": 386738.4104835077,
+                "mean_squared_class_centroid_pair_distance_observed": 200060.64670236054,
+                "mean_squared_class_centroid_pair_distance_corrected": 122712.964605659,
+                "global_mean_norm": 19.308489104129322,
+                "anova_absolute_error": 2.3283064365386963e-10
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 262701.38817674684,
+                "unbiased_within_class_covariance_trace": 208994.07358043973,
+                "class_centroid_scatter_trace_observed": 95559.90384515721,
+                "class_centroid_scatter_trace_finite_m_corrected": 53761.08912906927,
+                "uniform_class_between_covariance_trace_corrected": 53693.88776765793,
+                "mean_squared_within_class_pair_distance": 417988.14716087945,
+                "mean_squared_class_centroid_pair_distance_observed": 191119.80769031442,
+                "mean_squared_class_centroid_pair_distance_corrected": 107522.17825813853,
+                "global_mean_norm": 26.17849697417585,
+                "anova_absolute_error": 1.1641532182693481e-10
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9669650675898974,
+                "within_trace": 0.9329955926796112,
+                "centroid_scatter_observed": 1.0247360976111173,
+                "centroid_scatter_corrected": 1.092443703079467
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.997481978803254,
+                "within_trace": 1.008384707911106,
+                "centroid_scatter_observed": 0.9789399821351731,
+                "centroid_scatter_corrected": 0.9572087754293777
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8037.072457422881,
+              "within_trace_ig_minus_full": 15624.86833868589,
+              "between_corrected_contribution_ig_minus_full": -7587.795881263349,
+              "between_contribution_multiplier": 0.9989997499374844,
+              "within_fraction_of_total_change": 1.9440994742127864,
+              "centroid_corrected_fraction_of_total_change": -0.9440994742128287
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 20.426464326300636,
+                "global_mean_difference_rms_per_coordinate": 0.03989543813730593,
+                "global_mean_difference_squared_finite_m_corrected": 317.0840710319435,
+                "mean_class_centroid_squared_distance_observed": 81295.02781808648,
+                "rms_class_centroid_distance_observed": 285.1228293526958,
+                "finite_m_noise_subtraction": 80125.0990733512,
+                "mean_class_centroid_squared_distance_corrected": 1169.9287447352835,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 34.20422115375942,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 27.123216675594342,
+                "global_mean_difference_rms_per_coordinate": 0.0529750325695202,
+                "global_mean_difference_squared_finite_m_corrected": 631.6062919048785,
+                "mean_class_centroid_squared_distance_observed": 84946.26660773045,
+                "rms_class_centroid_distance_observed": 291.45542816652164,
+                "finite_m_noise_subtraction": 83250.07274108837,
+                "mean_class_centroid_squared_distance_corrected": 1696.1938666420756,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 41.18487424579654,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.348235914769056,
+                "global_mean_difference_rms_per_coordinate": 0.04364889827103331,
+                "global_mean_difference_squared_finite_m_corrected": 479.7372596753021,
+                "mean_class_centroid_squared_distance_observed": 16923.338580849628,
+                "rms_class_centroid_distance_observed": 130.0897328033601,
+                "finite_m_noise_subtraction": 15765.11106149714,
+                "mean_class_centroid_squared_distance_corrected": 1158.2275193524874,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 34.032741872386474,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 161768.86175735408,
+              "within_delta_covariance_trace": 78825.5553074857,
+              "within_pair_difference_alignment": 0.8047005312763248,
+              "within_pair_distance_rms_ratio_ig_full": 1.039616896705634,
+              "mean_squared_change_of_within_class_pair_differences": 157651.1106149714,
+              "class_centroid_pair_difference_alignment_observed": 0.9161632991048575,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9773992820953472,
+              "class_centroid_cross_scatter_corrected": 57219.115998964524,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9962696227054524,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.9360602492324646,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32888.90099093357,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1358.678867939292,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          },
+          "heldout": {
+            "classes": 200,
+            "images_per_class": 5,
+            "samples": 1000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 258922.91855563765,
+                "unbiased_within_class_covariance_trace": 204191.0127849241,
+                "class_centroid_scatter_trace_observed": 95790.1360895907,
+                "class_centroid_scatter_trace_finite_m_corrected": 54951.93353260588,
+                "uniform_class_between_covariance_trace_corrected": 54677.17386494285,
+                "mean_squared_within_class_pair_distance": 408382.0255698482,
+                "mean_squared_class_centroid_pair_distance_observed": 191580.2721791814,
+                "mean_squared_class_centroid_pair_distance_corrected": 109903.86706521176,
+                "global_mean_norm": 20.699907098560193,
+                "anova_absolute_error": 0.0
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 251707.32687944372,
+                "unbiased_within_class_covariance_trace": 190772.44071045096,
+                "class_centroid_scatter_trace_observed": 99334.33867759151,
+                "class_centroid_scatter_trace_finite_m_corrected": 61179.85053550132,
+                "uniform_class_between_covariance_trace_corrected": 60873.951282823815,
+                "mean_squared_within_class_pair_distance": 381544.8814209019,
+                "mean_squared_class_centroid_pair_distance_observed": 198668.67735518303,
+                "mean_squared_class_centroid_pair_distance_corrected": 122359.70107100264,
+                "global_mean_norm": 26.48549907200134,
+                "anova_absolute_error": 5.820766091346741e-11
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 260303.04131375137,
+                "unbiased_within_class_covariance_trace": 206387.71159915428,
+                "class_centroid_scatter_trace_observed": 95409.61707850668,
+                "class_centroid_scatter_trace_finite_m_corrected": 54132.07475867582,
+                "uniform_class_between_covariance_trace_corrected": 53861.414384882446,
+                "mean_squared_within_class_pair_distance": 412775.42319830856,
+                "mean_squared_class_centroid_pair_distance_observed": 190819.23415701336,
+                "mean_squared_class_centroid_pair_distance_corrected": 108264.14951735165,
+                "global_mean_norm": 31.801141343316637,
+                "anova_absolute_error": 5.820766091346741e-11
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9721322789174284,
+                "within_trace": 0.9342842180394736,
+                "centroid_scatter_observed": 1.0369996612666463,
+                "centroid_scatter_corrected": 1.113333901148357
+              },
+              "ig_to_real": {
+                "pooled_trace": 1.0053302456414925,
+                "within_trace": 1.010758058272349,
+                "centroid_scatter_observed": 0.9960275762555747,
+                "centroid_scatter_corrected": 0.9850804380988052
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8595.71443430765,
+              "within_trace_ig_minus_full": 15615.270888703322,
+              "between_corrected_contribution_ig_minus_full": -7019.556454395764,
+              "between_contribution_multiplier": 0.995995995995996,
+              "within_fraction_of_total_change": 1.816634441272137,
+              "centroid_corrected_fraction_of_total_change": -0.8166344412721478
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 25.6228741483402,
+                "global_mean_difference_rms_per_coordinate": 0.05004467607097695,
+                "global_mean_difference_squared_finite_m_corrected": 261.56822612630543,
+                "mean_class_centroid_squared_distance_observed": 79856.28757701135,
+                "rms_class_centroid_distance_observed": 282.5885482057108,
+                "finite_m_noise_subtraction": 78992.69069907501,
+                "mean_class_centroid_squared_distance_corrected": 863.596877936332,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 29.38701886779828,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 31.591467098364294,
+                "global_mean_difference_rms_per_coordinate": 0.06170208417649276,
+                "global_mean_difference_squared_finite_m_corrected": 587.4420690429554,
+                "mean_class_centroid_squared_distance_observed": 83881.56700183908,
+                "rms_class_centroid_distance_observed": 289.62314652292395,
+                "finite_m_noise_subtraction": 82115.74487681568,
+                "mean_class_centroid_squared_distance_corrected": 1765.8221250234055,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 42.02168636577316,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 23.33681883381377,
+                "global_mean_difference_rms_per_coordinate": 0.04557972428479252,
+                "global_mean_difference_squared_finite_m_corrected": 467.31934975399616,
+                "mean_class_centroid_squared_distance_observed": 16585.82308719948,
+                "rms_class_centroid_distance_observed": 128.78595842404357,
+                "finite_m_noise_subtraction": 15457.552705649763,
+                "mean_class_centroid_squared_distance_corrected": 1128.2703815497152,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.58973625305378,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 159936.19439067823,
+              "within_delta_covariance_trace": 77287.76352824882,
+              "within_pair_difference_alignment": 0.8060222343649163,
+              "within_pair_distance_rms_ratio_ig_full": 1.0401215627418232,
+              "mean_squared_change_of_within_class_pair_differences": 154575.52705649764,
+              "class_centroid_pair_difference_alignment_observed": 0.9174015952350058,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9800458049267797,
+              "class_centroid_cross_scatter_corrected": 57323.826450206296,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9961015828280002,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.9406393237848234,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32243.650198828607,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1328.544787529081,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          },
+          "all": {
+            "classes": 1000,
+            "images_per_class": 5,
+            "samples": 5000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 262520.5070403946,
+                "unbiased_within_class_covariance_trace": 206643.23465698652,
+                "class_centroid_scatter_trace_observed": 97250.66587927662,
+                "class_centroid_scatter_trace_finite_m_corrected": 55922.01894787932,
+                "uniform_class_between_covariance_trace_corrected": 55866.09692893144,
+                "mean_squared_within_class_pair_distance": 413286.46931397304,
+                "mean_squared_class_centroid_pair_distance_observed": 194501.33175855325,
+                "mean_squared_class_centroid_pair_distance_corrected": 111844.03789575864,
+                "global_mean_norm": 6.438147901804481,
+                "anova_absolute_error": 5.820766091346741e-11
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 254114.22985552982,
+                "unbiased_within_class_covariance_trace": 192849.8523354933,
+                "class_centroid_scatter_trace_observed": 99883.40854971381,
+                "class_centroid_scatter_trace_finite_m_corrected": 61313.438082615154,
+                "uniform_class_between_covariance_trace_corrected": 61252.12464453254,
+                "mean_squared_within_class_pair_distance": 385699.7046709866,
+                "mean_squared_class_centroid_pair_distance_observed": 199766.81709942763,
+                "mean_squared_class_centroid_pair_distance_corrected": 122626.87616523031,
+                "global_mean_norm": 18.622221851211194,
+                "anova_absolute_error": 2.9103830456733704e-11
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 262255.6328695447,
+                "unbiased_within_class_covariance_trace": 208472.80118418243,
+                "class_centroid_scatter_trace_observed": 95520.46125688123,
+                "class_centroid_scatter_trace_finite_m_corrected": 53825.901020044745,
+                "uniform_class_between_covariance_trace_corrected": 53772.0751190247,
+                "mean_squared_within_class_pair_distance": 416945.60236836487,
+                "mean_squared_class_centroid_pair_distance_observed": 191040.92251376246,
+                "mean_squared_class_centroid_pair_distance_corrected": 107651.80204008949,
+                "global_mean_norm": 25.776921004810394,
+                "anova_absolute_error": 4.656612873077393e-10
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9679785884933886,
+                "within_trace": 0.9332502593448594,
+                "centroid_scatter_observed": 1.0270717187037606,
+                "centroid_scatter_corrected": 1.0964095938624958
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9989910343620921,
+                "within_trace": 1.0088537451043722,
+                "centroid_scatter_observed": 0.9822088146466451,
+                "centroid_scatter_corrected": 0.9625171271125206
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 8141.403014014853,
+              "within_trace_ig_minus_full": 15622.94884868912,
+              "between_corrected_contribution_ig_minus_full": -7481.545834674774,
+              "between_contribution_multiplier": 0.9991998399679936,
+              "within_fraction_of_total_change": 1.9189504341936288,
+              "centroid_corrected_fraction_of_total_change": -0.9189504341936909
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 19.72510373499264,
+                "global_mean_difference_rms_per_coordinate": 0.0385255932324075,
+                "global_mean_difference_squared_finite_m_corrected": 309.18109995772465,
+                "mean_class_centroid_squared_distance_observed": 81007.27976987144,
+                "rms_class_centroid_distance_observed": 284.6177783798325,
+                "finite_m_noise_subtraction": 79898.61739849598,
+                "mean_class_centroid_squared_distance_corrected": 1108.662371375467,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.29658197736619,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.612952357880786,
+                "global_mean_difference_rms_per_coordinate": 0.05197842257398591,
+                "global_mean_difference_squared_finite_m_corrected": 625.2260260345988,
+                "mean_class_centroid_squared_distance_observed": 84733.32668655217,
+                "rms_class_centroid_distance_observed": 291.08989451121823,
+                "finite_m_noise_subtraction": 83023.20716823378,
+                "mean_class_centroid_squared_distance_corrected": 1710.1195183183881,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 41.35359135937758,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.18567089047979,
+                "global_mean_difference_rms_per_coordinate": 0.04333138845796834,
+                "global_mean_difference_squared_finite_m_corrected": 476.50039347035477,
+                "mean_class_centroid_squared_distance_observed": 16855.835482119597,
+                "rms_class_centroid_distance_observed": 129.8300253489908,
+                "finite_m_noise_subtraction": 15703.599390327665,
+                "mean_class_centroid_squared_distance_corrected": 1152.2360917919323,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.944603279342246,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 161402.32828401893,
+              "within_delta_covariance_trace": 78517.99695163833,
+              "within_pair_difference_alignment": 0.8049621111365907,
+              "within_pair_distance_rms_ratio_ig_full": 1.0397167620808974,
+              "mean_squared_change_of_within_class_pair_differences": 157035.99390327666,
+              "class_centroid_pair_difference_alignment_observed": 0.9164020128924679,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9779159470318463,
+              "class_centroid_cross_scatter_corrected": 57231.46349611382,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9962340074095372,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.9369530289797576,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32760.02300151935,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1352.8242208640186,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          }
+        },
+        "class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260801_class_statistics.npz",
+          "sha256": "582f8d5c29ebb5ebbe2e343a620630369ff043732eee68daa9098861a340b753"
+        },
+        "latent_content_sha256": {
+          "real": "74e57dda83e840caa3bd179052585fb5874bb509316652ebb240af64a84a317e",
+          "full": "19b34f383b562128a92b77b353413c34262a3904d87d96964919372ce52c3aab",
+          "ig": "434de27fb40d3318208960bad5cc2ca43a16434a234fbc052228d7d61acae525"
+        },
+        "content_hash_order": "ascending class, then ascending original global sample ID within class; original FP16 CHW row bytes",
+        "source_label_checks": 5000,
+        "latent_rows_read": 15000,
+        "finite_and_serialization_checks_passed": true,
+        "wall_seconds": 64.66470519709401
+      },
+      {
+        "seed": 20260802,
+        "splits": {
+          "train": {
+            "classes": 800,
+            "images_per_class": 5,
+            "samples": 4000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 262219.91409033723,
+                "unbiased_within_class_covariance_trace": 206748.4921204417,
+                "class_centroid_scatter_trace_observed": 96876.66124201422,
+                "class_centroid_scatter_trace_finite_m_corrected": 55526.96281792588,
+                "uniform_class_between_covariance_trace_corrected": 55457.55411440347,
+                "mean_squared_within_class_pair_distance": 413496.9842408834,
+                "mean_squared_class_centroid_pair_distance_observed": 193753.32248402844,
+                "mean_squared_class_centroid_pair_distance_corrected": 111053.92563585176,
+                "global_mean_norm": 8.157726483096166,
+                "anova_absolute_error": 4.0745362639427185e-10
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 253294.283973305,
+                "unbiased_within_class_covariance_trace": 192060.70202187018,
+                "class_centroid_scatter_trace_observed": 99707.03257553499,
+                "class_centroid_scatter_trace_finite_m_corrected": 61294.89217116096,
+                "uniform_class_between_covariance_trace_corrected": 61218.27355594701,
+                "mean_squared_within_class_pair_distance": 384121.40404374036,
+                "mean_squared_class_centroid_pair_distance_observed": 199414.06515106998,
+                "mean_squared_class_centroid_pair_distance_corrected": 122589.78434232192,
+                "global_mean_norm": 19.188019568829585,
+                "anova_absolute_error": 5.820766091346741e-11
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 261133.45151956164,
+                "unbiased_within_class_covariance_trace": 207159.92939824855,
+                "class_centroid_scatter_trace_observed": 95459.54907442596,
+                "class_centroid_scatter_trace_finite_m_corrected": 54027.563194776245,
+                "uniform_class_between_covariance_trace_corrected": 53960.02874078278,
+                "mean_squared_within_class_pair_distance": 414319.8587964971,
+                "mean_squared_class_centroid_pair_distance_observed": 190919.09814885192,
+                "mean_squared_class_centroid_pair_distance_corrected": 108055.12638955249,
+                "global_mean_norm": 26.438233124744983,
+                "anova_absolute_error": 2.9103830456733704e-11
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9659612804466206,
+                "within_trace": 0.9289581754723748,
+                "centroid_scatter_observed": 1.0292162353371161,
+                "centroid_scatter_corrected": 1.1038761902419956
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9958566740648032,
+                "within_trace": 1.0019900376229451,
+                "centroid_scatter_observed": 0.9853719962122964,
+                "centroid_scatter_corrected": 0.9729969091220386
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7839.167546256649,
+              "within_trace_ig_minus_full": 15099.227376378374,
+              "between_corrected_contribution_ig_minus_full": -7260.059830121763,
+              "between_contribution_multiplier": 0.9989997499374844,
+              "within_fraction_of_total_change": 1.9261263759553833,
+              "centroid_corrected_fraction_of_total_change": -0.9261263759553882
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 20.08971778704289,
+                "global_mean_difference_rms_per_coordinate": 0.039237730052818144,
+                "global_mean_difference_squared_finite_m_corrected": 303.8944622274495,
+                "mean_class_centroid_squared_distance_observed": 81317.75228126535,
+                "rms_class_centroid_distance_observed": 285.1626768728077,
+                "finite_m_noise_subtraction": 79761.83882846238,
+                "mean_class_centroid_squared_distance_corrected": 1555.913452802968,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 39.445068802107166,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.959502718816896,
+                "global_mean_difference_rms_per_coordinate": 0.05265527874768925,
+                "global_mean_difference_squared_finite_m_corrected": 623.3376814662231,
+                "mean_class_centroid_squared_distance_observed": 84974.26073902479,
+                "rms_class_centroid_distance_observed": 291.5034489316118,
+                "finite_m_noise_subtraction": 82781.68430373805,
+                "mean_class_centroid_squared_distance_corrected": 2192.576435286741,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 46.824955261983334,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.130424015963108,
+                "global_mean_difference_rms_per_coordinate": 0.043223484406177945,
+                "global_mean_difference_squared_finite_m_corrected": 470.0923742228682,
+                "mean_class_centroid_squared_distance_observed": 16873.589044767716,
+                "rms_class_centroid_distance_observed": 129.89837968492031,
+                "finite_m_noise_subtraction": 15730.634322758799,
+                "mean_class_centroid_squared_distance_corrected": 1142.954722008917,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.80761337345358,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 160283.72990316237,
+              "within_delta_covariance_trace": 78653.171613794,
+              "within_pair_difference_alignment": 0.8035581440752846,
+              "within_pair_distance_rms_ratio_ig_full": 1.03856485305524,
+              "mean_squared_change_of_within_class_pair_differences": 157306.343227588,
+              "class_centroid_pair_difference_alignment_observed": 0.9161639828787448,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9784683755372036,
+              "class_centroid_cross_scatter_corrected": 57324.37544377659,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9961379804132213,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.9388485660917032,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32808.67760228566,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1347.4089567680603,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          },
+          "heldout": {
+            "classes": 200,
+            "images_per_class": 5,
+            "samples": 1000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 266178.9245979422,
+                "unbiased_within_class_covariance_trace": 207829.35732219805,
+                "class_centroid_scatter_trace_observed": 100150.00986491064,
+                "class_centroid_scatter_trace_finite_m_corrected": 58584.13840047103,
+                "uniform_class_between_covariance_trace_corrected": 58291.21770846867,
+                "mean_squared_within_class_pair_distance": 415658.7146443961,
+                "mean_squared_class_centroid_pair_distance_observed": 200300.01972982127,
+                "mean_squared_class_centroid_pair_distance_corrected": 117168.27680094205,
+                "global_mean_norm": 19.808438880332044,
+                "anova_absolute_error": 2.3283064365386963e-10
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 255739.975925566,
+                "unbiased_within_class_covariance_trace": 192057.64638956048,
+                "class_centroid_scatter_trace_observed": 102349.86817888668,
+                "class_centroid_scatter_trace_finite_m_corrected": 63938.33890097459,
+                "uniform_class_between_covariance_trace_corrected": 63618.647206469715,
+                "mean_squared_within_class_pair_distance": 384115.29277912097,
+                "mean_squared_class_centroid_pair_distance_observed": 204699.73635777336,
+                "mean_squared_class_centroid_pair_distance_corrected": 127876.67780194918,
+                "global_mean_norm": 27.985127972369813,
+                "anova_absolute_error": 2.0372681319713593e-10
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 262908.2713569736,
+                "unbiased_within_class_covariance_trace": 206903.8445952198,
+                "class_centroid_scatter_trace_observed": 97610.33910496545,
+                "class_centroid_scatter_trace_finite_m_corrected": 56229.57018592149,
+                "uniform_class_between_covariance_trace_corrected": 55948.42233499188,
+                "mean_squared_within_class_pair_distance": 413807.6891904396,
+                "mean_squared_class_centroid_pair_distance_observed": 195220.6782099309,
+                "mean_squared_class_centroid_pair_distance_corrected": 112459.14037184298,
+                "global_mean_norm": 32.50960965076212,
+                "anova_absolute_error": 1.7462298274040222e-10
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9607822118593948,
+                "within_trace": 0.9241122085164,
+                "centroid_scatter_observed": 1.0219656325240842,
+                "centroid_scatter_corrected": 1.091393347187308
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9877125762458134,
+                "within_trace": 0.9955467661599731,
+                "centroid_scatter_observed": 0.9746413329028037,
+                "centroid_scatter_corrected": 0.9598087762517882
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7168.295431407634,
+              "within_trace_ig_minus_full": 14846.198205659311,
+              "between_corrected_contribution_ig_minus_full": -7677.902774252085,
+              "between_contribution_multiplier": 0.995995995995996,
+              "within_fraction_of_total_change": 2.0710918443192528,
+              "centroid_corrected_fraction_of_total_change": -1.0710918443193098
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 27.166294287096783,
+                "global_mean_difference_rms_per_coordinate": 0.0530591685294859,
+                "global_mean_difference_squared_finite_m_corrected": 338.1205415813888,
+                "mean_class_centroid_squared_distance_observed": 81239.29737567418,
+                "rms_class_centroid_distance_observed": 285.02508201152085,
+                "finite_m_noise_subtraction": 79977.4007423517,
+                "mean_class_centroid_squared_distance_corrected": 1261.8966333224816,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 35.523184447941624,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 32.0769094524632,
+                "global_mean_difference_rms_per_coordinate": 0.06265021377434218,
+                "global_mean_difference_squared_finite_m_corrected": 614.194918104105,
+                "mean_class_centroid_squared_distance_observed": 84812.81740108132,
+                "rms_class_centroid_distance_observed": 291.2264023076914,
+                "finite_m_noise_subtraction": 82946.64038348357,
+                "mean_class_centroid_squared_distance_corrected": 1866.177017597758,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 43.19927103086067,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 23.631791166883364,
+                "global_mean_difference_rms_per_coordinate": 0.04615584212281907,
+                "global_mean_difference_squared_finite_m_corrected": 480.3576902322063,
+                "mean_class_centroid_squared_distance_observed": 16772.568522687652,
+                "rms_class_centroid_distance_observed": 129.50895151566803,
+                "finite_m_noise_subtraction": 15620.772704596038,
+                "mean_class_centroid_squared_distance_corrected": 1151.795818091614,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.93811748007856,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 160428.8137309001,
+              "within_delta_covariance_trace": 78103.86352298019,
+              "within_pair_difference_alignment": 0.804789479831531,
+              "within_pair_distance_rms_ratio_ig_full": 1.0379309900417142,
+              "mean_squared_change_of_within_class_pair_differences": 156207.72704596038,
+              "class_centroid_pair_difference_alignment_observed": 0.9187639791135878,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9765719972793899,
+              "class_centroid_cross_scatter_corrected": 59746.54844904634,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9964368145231777,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.93778159998398,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32591.169786798928,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1349.6243776068513,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          },
+          "all": {
+            "classes": 1000,
+            "images_per_class": 5,
+            "samples": 5000,
+            "branches": {
+              "real": {
+                "pooled_covariance_trace_ddof1": 263047.8386732073,
+                "unbiased_within_class_covariance_trace": 206964.66516079276,
+                "class_centroid_scatter_trace_observed": 97521.01799483325,
+                "class_centroid_scatter_trace_finite_m_corrected": 56128.0849626747,
+                "uniform_class_between_covariance_trace_corrected": 56071.95687771202,
+                "mean_squared_within_class_pair_distance": 413929.3303215855,
+                "mean_squared_class_centroid_pair_distance_observed": 195042.0359896665,
+                "mean_squared_class_centroid_pair_distance_corrected": 112256.1699253494,
+                "global_mean_norm": 6.520810526438724,
+                "anova_absolute_error": 5.820766091346741e-11
+              },
+              "full": {
+                "pooled_covariance_trace_ddof1": 253830.91004273767,
+                "unbiased_within_class_covariance_trace": 192060.09089540815,
+                "class_centroid_scatter_trace_observed": 100232.30344785062,
+                "class_centroid_scatter_trace_finite_m_corrected": 61820.28526876899,
+                "uniform_class_between_covariance_trace_corrected": 61758.46498350022,
+                "mean_squared_within_class_pair_distance": 384120.1817908163,
+                "mean_squared_class_centroid_pair_distance_observed": 200464.60689570123,
+                "mean_squared_class_centroid_pair_distance_corrected": 123640.57053753798,
+                "global_mean_norm": 18.778956428754597,
+                "anova_absolute_error": 1.7462298274040222e-10
+              },
+              "ig": {
+                "pooled_covariance_trace_ddof1": 261528.34059327462,
+                "unbiased_within_class_covariance_trace": 207108.71243764262,
+                "class_centroid_scatter_trace_observed": 95884.94992496682,
+                "class_centroid_scatter_trace_finite_m_corrected": 54463.207437438294,
+                "uniform_class_between_covariance_trace_corrected": 54408.744230000855,
+                "mean_squared_within_class_pair_distance": 414217.42487528524,
+                "mean_squared_class_centroid_pair_distance_observed": 191769.89984993363,
+                "mean_squared_class_centroid_pair_distance_corrected": 108926.41487487659,
+                "global_mean_norm": 26.040954242273827,
+                "anova_absolute_error": 2.9103830456733704e-11
+              }
+            },
+            "ratios_to_real": {
+              "full_to_real": {
+                "pooled_trace": 0.9649610174447388,
+                "within_trace": 0.927984932820271,
+                "centroid_scatter_observed": 1.027802062660595,
+                "centroid_scatter_corrected": 1.1014144756565205
+              },
+              "ig_to_real": {
+                "pooled_trace": 0.9942234914850586,
+                "within_trace": 1.0006959993713804,
+                "centroid_scatter_observed": 0.9832234311791832,
+                "centroid_scatter_corrected": 0.9703378883077242
+              }
+            },
+            "variance_change_decomposition": {
+              "pooled_trace_ig_minus_full": 7697.430550536956,
+              "within_trace_ig_minus_full": 15048.621542234469,
+              "between_corrected_contribution_ig_minus_full": -7351.190991697703,
+              "between_contribution_multiplier": 0.9991998399679936,
+              "within_fraction_of_total_change": 1.9550188135422293,
+              "centroid_corrected_fraction_of_total_change": -0.955018813542254
+            },
+            "centroid_distances": {
+              "full_minus_real": {
+                "global_mean_difference_norm": 19.745304131751563,
+                "global_mean_difference_rms_per_coordinate": 0.03856504713232727,
+                "global_mean_difference_squared_finite_m_corrected": 310.0720840441252,
+                "mean_class_centroid_squared_distance_observed": 81302.06130014712,
+                "rms_class_centroid_distance_observed": 285.1351632123739,
+                "finite_m_noise_subtraction": 79804.95121124019,
+                "mean_class_centroid_squared_distance_corrected": 1497.1100889069348,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 38.69250688320589,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_real": {
+                "global_mean_difference_norm": 26.545386537054206,
+                "global_mean_difference_rms_per_coordinate": 0.051846458080183996,
+                "global_mean_difference_squared_finite_m_corrected": 621.8428708819317,
+                "mean_class_centroid_squared_distance_observed": 84941.97207143609,
+                "rms_class_centroid_distance_observed": 291.4480606753733,
+                "finite_m_noise_subtraction": 82814.67551968708,
+                "mean_class_centroid_squared_distance_corrected": 2127.2965517490084,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 46.12262516107478,
+                "correction": "(within_generated + within_real) / m; independent real images and generated noise conditional on class"
+              },
+              "ig_minus_full": {
+                "global_mean_difference_norm": 22.077077408052656,
+                "global_mean_difference_rms_per_coordinate": 0.04311929181260284,
+                "global_mean_difference_squared_finite_m_corrected": 471.68868488202276,
+                "mean_class_centroid_squared_distance_observed": 16853.3849403517,
+                "rms_class_centroid_distance_observed": 129.82058750580242,
+                "finite_m_noise_subtraction": 15708.661999126247,
+                "mean_class_centroid_squared_distance_corrected": 1144.7229412254546,
+                "rms_class_centroid_distance_corrected_if_nonnegative": 33.8337544654071,
+                "correction": "paired Full/IG delta within trace / m"
+              }
+            },
+            "paired_full_ig_geometry": {
+              "within_full_ig_covariance_cross_trace": 160312.74666870994,
+              "within_delta_covariance_trace": 78543.30999563124,
+              "within_pair_difference_alignment": 0.8038042638771483,
+              "within_pair_distance_rms_ratio_ig_full": 1.0384381130185958,
+              "mean_squared_change_of_within_class_pair_differences": 157086.61999126247,
+              "class_centroid_pair_difference_alignment_observed": 0.9166917022694379,
+              "class_centroid_pair_distance_rms_ratio_ig_full_observed": 0.9780732187477936,
+              "class_centroid_cross_scatter_corrected": 57804.89237094982,
+              "class_centroid_pair_alignment_noise_corrected_estimate": 0.9962021792251298,
+              "class_centroid_pair_distance_rms_ratio_ig_full_corrected": 0.9386120051671123,
+              "mean_squared_change_of_class_centroid_pair_differences_observed": 32764.739926867973,
+              "mean_squared_change_of_class_centroid_pair_differences_corrected": 1347.415928615479,
+              "finite_sample_boundary": "Corrected scatter/distance/alignment estimates are not clipped; they may be negative or outside cosine bounds because of estimation noise."
+            }
+          }
+        },
+        "class_statistics": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/raw_latent_class_moments_v1/seed20260802_class_statistics.npz",
+          "sha256": "63ce2e17be65b4ea5f42bcdb27a16dccba7d3078b87e2536864c74d96be200db"
+        },
+        "latent_content_sha256": {
+          "real": "7e4f794d88d7d88f5d7b2edb6ffd612904aff1586bef5bd3bc8bfae2ecd94b6d",
+          "full": "56bb3a3b420b995c9df47609b756a1d46e098b9c9c943dda2f00a15b285a1899",
+          "ig": "f5fd0c0f8744503fb3cda3755f0389c9fe8edd27298b2f6262ffad5b8a061466"
+        },
+        "content_hash_order": "ascending class, then ascending original global sample ID within class; original FP16 CHW row bytes",
+        "source_label_checks": 5000,
+        "latent_rows_read": 15000,
+        "finite_and_serialization_checks_passed": true,
+        "wall_seconds": 63.49812216009013
+      }
+    ],
+    "request_sha256": "5e7d879edde751ed158013b08dc4ea161e2a633e409962182a58f0c489a43edd",
+    "runner_sha256": "d1a157564ad8f62f28afdabb126ebcfd60c49be1b5626d5e72a652ef8cc5fe69",
+    "total_wall_seconds": 128.6353245449718,
+    "cpu_seconds": 114.53296811599999,
+    "max_resident_memory_kib": 8199920,
+    "input_latent_bytes_read": 15728640000,
+    "model_calls": 0,
+    "covariance_matrices_built": 0,
+    "fitted_scales": 0,
+    "fid": false,
+    "boundary": "Conditional moment diagnostic only; five images per class, retrospective banks, no semantic mode identity or heat-flow/quality guarantee."
+  },
+  "additional_algebra": {
+    "definitions": "B_F*,B_I* are finite-m-corrected centroid scatter; C_FI*=observed centroid cross-scatter-W_FI/m; B_delta*=B_F*+B_I*-2C_FI*. Corrected corr(centroid Full, centroid delta)=(C_FI*-B_F*)/sqrt(B_F* B_delta*). Within corr(Full,delta)=(W_FI-W_F)/sqrt(W_F W_delta). No scale was fitted.",
+    "results": [
+      {
+        "seed": 20260801,
+        "split": "train",
+        "centroid_full_delta_alignment_noise_corrected": -0.6408410661137102,
+        "within_full_delta_alignment": -0.2559555951931701,
+        "centroid_full_ig_alignment_noise_corrected": 0.9962696227054524,
+        "within_full_ig_pair_alignment": 0.8047005312763248
+      },
+      {
+        "seed": 20260801,
+        "split": "heldout",
+        "centroid_full_delta_alignment_noise_corrected": -0.6048705360182155,
+        "within_full_delta_alignment": -0.2539500589498951,
+        "centroid_full_ig_alignment_noise_corrected": 0.9961015828280002,
+        "within_full_ig_pair_alignment": 0.8060222343649163
+      },
+      {
+        "seed": 20260801,
+        "split": "all",
+        "centroid_full_delta_alignment_noise_corrected": -0.6338504085414308,
+        "within_full_delta_alignment": -0.2555595982068294,
+        "centroid_full_ig_alignment_noise_corrected": 0.9962340074095372,
+        "within_full_ig_pair_alignment": 0.8049621111365907
+      },
+      {
+        "seed": 20260802,
+        "split": "train",
+        "centroid_full_delta_alignment_noise_corrected": -0.6178743550798147,
+        "within_full_delta_alignment": -0.2585444009024228,
+        "centroid_full_ig_alignment_noise_corrected": 0.9961379804132213,
+        "within_full_ig_pair_alignment": 0.8035581440752846
+      },
+      {
+        "seed": 20260802,
+        "split": "heldout",
+        "centroid_full_delta_alignment_noise_corrected": -0.6381568425326578,
+        "within_full_delta_alignment": -0.25824451351464156,
+        "centroid_full_ig_alignment_noise_corrected": 0.9964368145231777,
+        "within_full_ig_pair_alignment": 0.804789479831531
+      },
+      {
+        "seed": 20260802,
+        "split": "all",
+        "centroid_full_delta_alignment_noise_corrected": -0.6221952673723272,
+        "within_full_delta_alignment": -0.25848433952709043,
+        "centroid_full_ig_alignment_noise_corrected": 0.9962021792251298,
+        "within_full_ig_pair_alignment": 0.8038042638771483
+      }
+    ],
+    "boundary": "Noise-corrected ratios are finite-bank estimators, not necessarily bounded correlations. Full/IG alignment near one can coexist with a strongly nonradial small displacement."
+  },
+  "validation": {
+    "numeric_consistency_checks": 276,
+    "maximum_absolute_recomputation_difference": 4.802132025361061e-10,
+    "basis": "Class-level sufficient-statistic NPZ plus global-mean norms saved in the source summary; pooled means themselves were not independently recomputed from the full raw arrays during archiving.",
+    "source_summary_request_runner_and_all_dependency_hashes_checked": true,
+    "class_statistics_npz_hashes_checked": true,
+    "source_protocol_manifest_hashes_checked": true,
+    "cache_file_sizes_and_mtimes_checked": 24,
+    "class_labels_sample_ids_source_rows_and_original_split_match_protocol": true,
+    "raw_latent_content_hash_boundary": "The original CPU run hashed every consumed FP16 row; archiving preserves these hashes and checks metadata, but does not reread 14.65 GiB of latent content."
+  },
+  "statistical_boundary": {
+    "sampling": "Fixed uniform class coverage; five real observations and five independent generated noises per class. Full and IG are paired through common noise. Real/generated draws are treated as independent conditional on class; no identical class means or independence across coordinates is assumed.",
+    "unbiasedness_scope": "W and the finite-m subtractions have the stated expectation under the class-conditional sampling model. Real source rows were selected without replacement from ImageNet; this is not an exact finite-population mean-risk certificate conditional on the complete realized ImageNet dataset.",
+    "negative_estimates": "Finite-m-corrected scatter and squared distances are never clamped. A negative corrected squared distance has no reported real-valued square root.",
+    "uncertainty": "No new confidence interval or fitted scale. These banks and class splits were reused previously; two-bank agreement is retrospective mechanism evidence, not independent confirmation of a selected guidance method."
+  },
+  "decision": {
+    "supported": "Across both banks and original train/heldout splits, pooled variance repair combines increased within-class trace with decreased noise-corrected between-class centroid scatter.",
+    "simple_scaling_boundary": "Within-class paired-difference alignment is about 0.805. Corrected centroid Full/IG alignment about 0.996 does not establish pure centroid contraction: the centered centroid displacement-versus-Full alignment is about -0.634/-0.622 on the complete banks, rather than -1 required by a single contracting scalar plus common translation.",
+    "heat_boundary": "The hypothesis that Full differs from the real raw encoder-latent law only by independent additive zero-mean noise is unsupported by the observed Full pooled and within-class underdispersion: such a convolution adds a nonnegative covariance trace. This does not test a Base-only endpoint distribution and does not rule out other class-conditional blur or temperature mechanisms.",
+    "quality_boundary": "Improved traces do not imply improved centroid accuracy, complete distribution matching or FID. No new FID, guidance candidate, model training, model calls or GPU work was performed."
+  },
+  "legacy_metric_reconciliation": {
+    "old_definition": "mean(candidate coordinate variance) / mean(reference coordinate variance), i.e. ratio of traces, not a mean of coordinate-wise ratios.",
+    "old_cohort": "Original train mask only, 4000 images / 800 classes. New all-cohort values use all 5000 images; new train values reproduce the old CSV.",
+    "source_code": "experiments/run_raev2_scale_response_study.py:785-820; source SHA preserved in source_request.source_sha256.",
+    "variance_denominator": "Old per-coordinate moments use divisor N; new pooled covariance trace uses N-1. Equal N in candidate/reference makes the common factor cancel in their ratio.",
+    "psd_heat_condition": "Use covariance trace, not the mean of coordinate-wise variance ratios, for the necessary nonnegative trace increase under independent additive noise.",
+    "source_csv_records": [
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/scale_response_metrics.csv",
+        "bytes": 5316,
+        "sha256": "0d8ba922a0d109b5f05c9a6b3fc73d05fc165c54886ceb2068b347eb94b98fb8"
+      },
+      {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/scale_response_metrics.csv",
+        "bytes": 5320,
+        "sha256": "21fbe1b5093e1de66601a53f121904d061467a18f1e0b2db92818618dd82f5c1"
+      }
+    ],
+    "comparisons": [
+      {
+        "seed": 20260801,
+        "scale": 1.0,
+        "old_train_mean_variance_ratio": 0.9669650675898991,
+        "new_train_pooled_trace_ratio": 0.9669650675898974,
+        "new_all_pooled_trace_ratio": 0.9679785884933886,
+        "absolute_old_vs_new_train_difference": 1.6653345369377348e-15
+      },
+      {
+        "seed": 20260801,
+        "scale": 1.78,
+        "old_train_mean_variance_ratio": 0.9974819788032546,
+        "new_train_pooled_trace_ratio": 0.997481978803254,
+        "new_all_pooled_trace_ratio": 0.9989910343620921,
+        "absolute_old_vs_new_train_difference": 6.661338147750939e-16
+      },
+      {
+        "seed": 20260802,
+        "scale": 1.0,
+        "old_train_mean_variance_ratio": 0.9659612804466197,
+        "new_train_pooled_trace_ratio": 0.9659612804466206,
+        "new_all_pooled_trace_ratio": 0.9649610174447388,
+        "absolute_old_vs_new_train_difference": 8.881784197001252e-16
+      },
+      {
+        "seed": 20260802,
+        "scale": 1.78,
+        "old_train_mean_variance_ratio": 0.9958566740648023,
+        "new_train_pooled_trace_ratio": 0.9958566740648032,
+        "new_all_pooled_trace_ratio": 0.9942234914850586,
+        "absolute_old_vs_new_train_difference": 8.881784197001252e-16
+      }
+    ],
+    "maximum_absolute_difference": 1.6653345369377348e-15
+  }
+}

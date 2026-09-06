@@ -1,0 +1,147 @@
+{
+  "arm": "official100",
+  "sampling_phase_elapsed_seconds": 842.9172080869321,
+  "sampling_child_cpu_seconds": 3388.259271,
+  "workers": [
+    {
+      "rank": 2,
+      "returncode": 0,
+      "pid": 2941166,
+      "started_utc": "2026-09-06T06:21:41.415365+00:00",
+      "exit_observed_utc": "2026-09-06T06:35:23.297212+00:00",
+      "outer_elapsed_seconds_including_poll_lag": 821.8819024520926,
+      "poll_interval_seconds": 1,
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard2",
+        "--potential-checkpoint",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "5000",
+        "--seed",
+        "202609101",
+        "--shard-index",
+        "2",
+        "--num-shards",
+        "4"
+      ],
+      "log": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard2.log",
+        "sha256": "5dca86032ec045c28ad396862f8c4d1c3c76865fa63a940ee26baa2716742c76",
+        "size_bytes": 13000
+      }
+    },
+    {
+      "rank": 1,
+      "returncode": 0,
+      "pid": 2941165,
+      "started_utc": "2026-09-06T06:21:41.413467+00:00",
+      "exit_observed_utc": "2026-09-06T06:35:29.305588+00:00",
+      "outer_elapsed_seconds_including_poll_lag": 827.8921610070392,
+      "poll_interval_seconds": 1,
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard1",
+        "--potential-checkpoint",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "5000",
+        "--seed",
+        "202609101",
+        "--shard-index",
+        "1",
+        "--num-shards",
+        "4"
+      ],
+      "log": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard1.log",
+        "sha256": "576a45171bf69f8eccc9ead00bf757785d17f0522f33f957063fa5b218149bb9",
+        "size_bytes": 12992
+      }
+    },
+    {
+      "rank": 0,
+      "returncode": 0,
+      "pid": 2941164,
+      "started_utc": "2026-09-06T06:21:41.411332+00:00",
+      "exit_observed_utc": "2026-09-06T06:35:44.323416+00:00",
+      "outer_elapsed_seconds_including_poll_lag": 842.9121320750564,
+      "poll_interval_seconds": 1,
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard0",
+        "--potential-checkpoint",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "5000",
+        "--seed",
+        "202609101",
+        "--shard-index",
+        "0",
+        "--num-shards",
+        "4"
+      ],
+      "log": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard0.log",
+        "sha256": "7fc72fde226776c9f8e40abb368c79e9e8a07fd2beecb241a7bf443d8adac7c6",
+        "size_bytes": 13027
+      }
+    },
+    {
+      "rank": 3,
+      "returncode": 0,
+      "pid": 2941167,
+      "started_utc": "2026-09-06T06:21:41.416932+00:00",
+      "exit_observed_utc": "2026-09-06T06:35:44.325293+00:00",
+      "outer_elapsed_seconds_including_poll_lag": 842.9083933208603,
+      "poll_interval_seconds": 1,
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-u",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard3",
+        "--potential-checkpoint",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "5000",
+        "--seed",
+        "202609101",
+        "--shard-index",
+        "3",
+        "--num-shards",
+        "4"
+      ],
+      "log": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/shard3.log",
+        "sha256": "b34b1acddd4bca41c93ec5d736624645c48b2aca8e7b7a2a184380a995c9546f",
+        "size_bytes": 13001
+      }
+    }
+  ]
+}

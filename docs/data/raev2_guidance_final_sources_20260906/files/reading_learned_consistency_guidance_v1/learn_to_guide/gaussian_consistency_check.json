@@ -1,0 +1,29 @@
+{
+  "scope": "One fixed scalar Gaussian identity; not an experimental guidance parameter choice.",
+  "assumptions": "X~N(0,tau2), Z_u=(1-u)X+u epsilon; input-independent kernel randomness; original X absent from guided kernel.",
+  "tau2": 1.0,
+  "t": 0.6,
+  "s": 0.4,
+  "variance_t": 0.52,
+  "variance_s": 0.52,
+  "posterior_mean_coefficient": 0.7692307692307693,
+  "posterior_variance": 0.6923076923076923,
+  "mean_update_coefficient": 0.9230769230769231,
+  "mean_update_variance": 0.44307692307692315,
+  "missing_variance": 0.07692307692307689,
+  "variance_identity_residual": -1.3877787807814457e-17,
+  "mutual_information_input_nats": 0.1838623900626587,
+  "mutual_information_self_consistency_target_nats": 0.589327498170823,
+  "interpretation": "Exact marginal consistency is feasible here by the identity map because variances coincide, but exact recovery of the original cleaner conditional joint is impossible by data processing. Posterior-mean substitution loses the displayed variance in a finite step.",
+  "literature_FID_relative_decrease_only": {
+    "Learn_ImageNet_LIG_to_self_consistency": 0.05687203791469189,
+    "Learn_CelebA_LIG_to_self_consistency": 0.11392405063291139,
+    "Learn_T2I_best_tabulated_LIG_FID_to_self_consistency": 0.04658549497088401
+  },
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "random_draws": 0,
+  "wall_seconds": 1.85470562428236e-05,
+  "process_cpu_seconds": 1.2966000000003142e-05,
+  "cost_boundary": "Algebra and assertions only, excluding Python startup, import, and output serialization."
+}

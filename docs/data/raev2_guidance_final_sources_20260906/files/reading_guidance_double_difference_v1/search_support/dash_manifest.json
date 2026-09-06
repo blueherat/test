@@ -1,0 +1,118 @@
+{
+  "created_at_utc": "2026-09-06T11:28:14.922190+00:00",
+  "paper_version": "arXiv:2606.00798v2, revised 2026-08-29",
+  "code_commit": "682e2fdad149109b053fafa34c797820252c6345",
+  "code_commit_date": "2026-08-21T17:56:08Z",
+  "read_scope": "main mechanism, Table1/A1/A2/A3/A6, Appendix C.1 including Remark C.5; pinned source loss/training/sampling/calibration; no execution",
+  "files": [
+    {
+      "path": "dash_2606.00798v2.html",
+      "bytes": 668030,
+      "sha256": "4ba33e8efd7eda372b048401b78ba6b94ceebc05119348f863cc95de86264f89",
+      "url": "https://arxiv.org/html/2606.00798v2"
+    },
+    {
+      "path": "dash_2606.00798v2.pdf",
+      "bytes": 8341250,
+      "sha256": "15417c6b843f3338936bbc5e5125d4ab8f05d393035c48deef3e11d73a98870a",
+      "url": "https://arxiv.org/pdf/2606.00798v2"
+    },
+    {
+      "path": "dash_2606.00798v2.txt",
+      "bytes": 127720,
+      "sha256": "f037686313a206fddfc002be5a0f50a349993febcb180ea85c15bd3a9dd599c6",
+      "derived_from": "dash_2606.00798v2.pdf",
+      "conversion": "pdftotext -layout; font-mismatch warning; equations cross-checked in official arXiv HTML"
+    },
+    {
+      "path": "dash_2606.00798v2_abs.html",
+      "bytes": 43349,
+      "sha256": "a3d6c8e62e005d342f1034af384b0784d06f817c1bd3386c9c16a42362269f5d",
+      "url": "https://arxiv.org/abs/2606.00798v2"
+    },
+    {
+      "path": "dash_github_commit.json",
+      "bytes": 56069,
+      "sha256": "b9c4c36b9defa3feb4459cd398d20bb3c3d551d9ce1cb35d4ef1e4101a03c6b0",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/commits/main"
+    },
+    {
+      "path": "dash_github_repo.json",
+      "bytes": 6437,
+      "sha256": "97625ef9593b055a335abe01de20302e95d2d0b6a22978754ae8219490b0bdd3",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation"
+    },
+    {
+      "path": "dash_github_tree.json",
+      "bytes": 8948,
+      "sha256": "e003fe51fc3d94d702d9fd99a2a6d1e82b939ebfa3873331bc919231fc4f9c90",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/git/trees/682e2fdad149109b053fafa34c797820252c6345?recursive=1"
+    },
+    {
+      "path": "dash_short_review_ZH.md",
+      "bytes": 2952,
+      "sha256": "8189f638b005f80e7ae894cde2537a0af9754a4238febf7da2fdb3f7b979c29f",
+      "type": "local analytical/search-support artifact"
+    },
+    {
+      "path": "dash_source/README.md",
+      "bytes": 8739,
+      "sha256": "f0e8baba3c0f20e34eb600ebae14d009e5b561e61f288ebe822fadfb034e71c1",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/README.md"
+    },
+    {
+      "path": "dash_source/configs/student_cifar10.yaml",
+      "bytes": 1680,
+      "sha256": "701fa438dcf90e619b5685ed820f5865a261bbae620aa6628de2eb79311196fd",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/configs/student_cifar10.yaml"
+    },
+    {
+      "path": "dash_source/diffusion/cfg.py",
+      "bytes": 1949,
+      "sha256": "7afa0a000fe9d31cfebbd8283275bd7a5d952d4716ae9561a78e65e0a624cf2f",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/diffusion/cfg.py"
+    },
+    {
+      "path": "dash_source/diffusion/ddim.py",
+      "bytes": 4250,
+      "sha256": "1941708f087273914d0527eeb957d30ec571d668ff4b297cfde6682fbe0a4a74",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/diffusion/ddim.py"
+    },
+    {
+      "path": "dash_source/evaluate.py",
+      "bytes": 13876,
+      "sha256": "fa2bc64907632e3aa9c22ed50f2fd9d67225767e2340b16cadad65e88284dfa0",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/evaluate.py"
+    },
+    {
+      "path": "dash_source/imagenet64_TPU/losses.py",
+      "bytes": 2433,
+      "sha256": "8cab8948935b45c31691122e4a3a3cfc43c696fc292eb8cf2326e82c543d88ec",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/imagenet64_TPU/losses.py"
+    },
+    {
+      "path": "dash_source/imagenet64_TPU/train_student.py",
+      "bytes": 5422,
+      "sha256": "67188cf703c1044e22920d64851ac52844a8b6ac1953c761b1a737269dd4ad62",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/imagenet64_TPU/train_student.py"
+    },
+    {
+      "path": "dash_source/train_student.py",
+      "bytes": 18902,
+      "sha256": "dca6b71a6dc52a8b4eb16a0a51c7b7bd7e541b8e46ed3e6566633a1156752b2d",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/train_student.py"
+    },
+    {
+      "path": "dash_source/training/losses.py",
+      "bytes": 3752,
+      "sha256": "063514e348be90761dc8389484247e0846a5322dcb2015f9a77b300b21699fbb",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/training/losses.py"
+    },
+    {
+      "path": "search_status.json",
+      "bytes": 13354,
+      "sha256": "bbc439a9575aa205b74140aacec13066e6929880924907bceb0166c8e947bb3a",
+      "type": "local analytical/search-support artifact"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "raev2_affine_reflection_additional_evaluator_identity_v1",
+  "frozen_utc": "2026-09-06T11:42:51.593138+00:00",
+  "frozen_before_fid": true,
+  "execution_fid_started_at_freeze": false,
+  "execution_snapshot_sha256": "2b2c5110e63effd0164ea7c019271dd2e8f3e463a84a2ce8148ba9156aaa4338",
+  "pre_result_review": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/pre_result_review.json",
+    "sha256": "7036e3a67c6acc675482d1dd424c44ec8f433ad941d9775649827b797df9a055"
+  },
+  "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+  "git_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+  "tracked_and_untracked_worktree_clean": true,
+  "core_sources": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/api.py",
+      "sha256": "f3f71b6c22a09b94c09033379467914f402b27658cd918bdb84776f7a39c8800",
+      "bytes": 11596
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+      "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+      "bytes": 2357
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/stats.py",
+      "sha256": "6e4aa7310888a14d594e2ed821627597e92aec0997c0bb9eaece87cc45cf02a4",
+      "bytes": 2557
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/catalogue.yaml",
+      "sha256": "7be4f5be46f1f48d3e9e77eabf1cafb286a0480240623b09bb8e70b5eda01589",
+      "bytes": 2507
+    }
+  ],
+  "scope": "Supplemental evaluator code identity before FID; original plan and pre_result_review unchanged. The final reviewer checks these exact hashes, current commit and clean worktree.",
+  "freeze_wall_seconds": 0.011987679870799184
+}

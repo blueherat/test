@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "sample_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "t": 1.0,
+  "s": 0.9987389445304871,
+  "responses": {
+    "candidate": {
+      "rms_change": 3.5896997406386015e-05,
+      "max_abs_change": 0.0001920461654663086,
+      "endpoint_sha256": "0c4b212afe7f0ce3c71c91d5af90849a6028869883748f69492594a5eef8e49e"
+    },
+    "control": {
+      "rms_change": 3.610433239262359e-05,
+      "max_abs_change": 0.0001913309097290039,
+      "endpoint_sha256": "0f041e2436d0aa5598cda86e0171b31a6f1ad7264fe3ed9dffa52684cf0ced6a"
+    }
+  },
+  "forward_counts": {
+    "observed": {
+      "stage2_forward_calls": 1,
+      "stage2_sample_forwards": 8,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0,
+      "candidate_forward_calls": 2,
+      "candidate_sample_forwards": 16,
+      "control_forward_calls": 2,
+      "control_sample_forwards": 16,
+      "zero_candidate_forward_calls": 0,
+      "zero_candidate_sample_forwards": 0,
+      "zero_control_forward_calls": 0,
+      "zero_control_sample_forwards": 0
+    },
+    "expected": {
+      "stage2_forward_calls": 1,
+      "stage2_sample_forwards": 8,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0,
+      "candidate_forward_calls": 2,
+      "candidate_sample_forwards": 16,
+      "control_forward_calls": 2,
+      "control_sample_forwards": 16,
+      "zero_candidate_forward_calls": 0,
+      "zero_candidate_sample_forwards": 0,
+      "zero_control_forward_calls": 0,
+      "zero_control_sample_forwards": 0
+    }
+  },
+  "wall_seconds": 0.07961983093991876,
+  "scope": "fixed first B8 response only, no fitted threshold or quality evaluation"
+}

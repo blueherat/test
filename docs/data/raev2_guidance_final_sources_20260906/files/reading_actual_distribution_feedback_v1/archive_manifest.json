@@ -1,0 +1,525 @@
+{
+  "created_utc": "2026-09-06T13:23:52.335727+00:00",
+  "main_note": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_ACTUAL_DISTRIBUTION_FEEDBACK_20260906_ZH.md",
+  "main_note_sha256": "e28809b52124da6b1edbb5bf8a675da28bdbc8e6afd0398f3d372bbd4741e22a",
+  "scope": "Two new papers; read-only literature, code inspection, and CPU archival. No model code execution, GPU, training, sampling, or new FID.",
+  "original_source_hashes_verified": [
+    "sobolev/paper_arxiv_v1.pdf",
+    "sobolev/paper_arxiv_v1.html",
+    "particle/paper_official.pdf"
+  ],
+  "git_internal_files_excluded": true,
+  "full_reading_cpu_and_wall": "not measured",
+  "files": [
+    {
+      "path": "README_ZH.md",
+      "bytes": 1824,
+      "sha256": "b5e0f67361eb7e9ed22138038f9a7332efb76bab63dc82c735523159b3202279"
+    },
+    {
+      "path": "REVIEW_ZH.md",
+      "bytes": 16448,
+      "sha256": "e28809b52124da6b1edbb5bf8a675da28bdbc8e6afd0398f3d372bbd4741e22a"
+    },
+    {
+      "path": "finalize_archive.py",
+      "bytes": 3134,
+      "sha256": "8eef42ee1c4c01c9930777b869f0421fb6618ae12460b195fb6452fb28898890"
+    },
+    {
+      "path": "particle/README_ZH.md",
+      "bytes": 7488,
+      "sha256": "453c56407f1d7c9df0b5765e5ff8cc3ead3f3bb4d572335cb4df4ae363c69088"
+    },
+    {
+      "path": "particle/SHA256SUMS",
+      "bytes": 1285,
+      "sha256": "12b051f095ab833e0b54b7d87fd264f9a2c80e65d5a93b7c4badeb2e8f198429"
+    },
+    {
+      "path": "particle/SOURCES.json",
+      "bytes": 1147,
+      "sha256": "67b8846b50026d862d3359d2edb93ed7bfb0e7af97f591b29d718720ccd41a8b"
+    },
+    {
+      "path": "particle/official_code/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "particle/official_code/README.md",
+      "bytes": 9136,
+      "sha256": "b9b1b205969e66b58e2bf2dfba0e49ec5143ca7670f1f9857a2f630e61772bf8"
+    },
+    {
+      "path": "particle/official_code/config/discr_flow/celeba/config.yaml",
+      "bytes": 2095,
+      "sha256": "2ecffbdcbb958aba690454ccca6a8e78d55ffb599980f9f77d4e980425178576"
+    },
+    {
+      "path": "particle/official_code/config/discr_flow/gaussians/config.yaml",
+      "bytes": 1957,
+      "sha256": "80e468a9dbf70343b4aa207c3ef0fa2737cb7d83c5e0e5cdff8eab6716d094f9"
+    },
+    {
+      "path": "particle/official_code/config/discr_flow/mnist/config.yaml",
+      "bytes": 1645,
+      "sha256": "b1db10893d8b1c016a9de98047b9631d97e9950bfa60b1636d10182d876f2b6d"
+    },
+    {
+      "path": "particle/official_code/config/discr_flow/mnist/config2.yaml",
+      "bytes": 1648,
+      "sha256": "aedc537426a3854e0cd2d394320d377b5c9fcf0bbd491654fa65a8839b15fd20"
+    },
+    {
+      "path": "particle/official_code/config/edm/celeba/config.yaml",
+      "bytes": 1816,
+      "sha256": "7078f4509c1e80b026d6e9a59a832f8386b7297578290c67065b0057c931f3e8"
+    },
+    {
+      "path": "particle/official_code/config/edm/gaussians/config.yaml",
+      "bytes": 2147,
+      "sha256": "49f139549e4ea439eb0a360292167f56a0760f969aac310b8eaaa20c7b10db8b"
+    },
+    {
+      "path": "particle/official_code/config/edm/mnist/config.yaml",
+      "bytes": 1798,
+      "sha256": "9487565faed7c5dd5514518fe20f66ddea74a20d3a7418fab752909c1d3a4ed1"
+    },
+    {
+      "path": "particle/official_code/config/gan/celeba/config.yaml",
+      "bytes": 1716,
+      "sha256": "b30596160593f933439807811cee1644a0a9c1cab90905578fe061a5bf47d3ec"
+    },
+    {
+      "path": "particle/official_code/config/gan/gaussians/config.yaml",
+      "bytes": 1722,
+      "sha256": "1bfb58faec2fee07a9df922b7b5e7c5c387626093fb1262af596bb7c674e0438"
+    },
+    {
+      "path": "particle/official_code/config/gan/mnist/config.yaml",
+      "bytes": 1745,
+      "sha256": "302bb6deb30bcc4b26ef392466b32516b421d7d7e4a708be5a98270acef4547d"
+    },
+    {
+      "path": "particle/official_code/config/score_gan/celeba/config.yaml",
+      "bytes": 2317,
+      "sha256": "2d93a3e058e4e0d09fe5e838c30ca112be778f1d2d7d157d6f854b6b80555279"
+    },
+    {
+      "path": "particle/official_code/config/score_gan/gaussians/config.yaml",
+      "bytes": 2034,
+      "sha256": "0158eaaf28bc66a9efe52904baae58753e628b151cb9d168397b304bf62cec5d"
+    },
+    {
+      "path": "particle/official_code/config/score_gan/mnist/config.yaml",
+      "bytes": 2309,
+      "sha256": "d79a0563739dcc182509c794aa88d3eabb518e4159d98998b56575b694ed1b56"
+    },
+    {
+      "path": "particle/official_code/config/score_gan/mnist/config2.yaml",
+      "bytes": 2326,
+      "sha256": "1df4117c5b645877217ac620abfb757187eef1ccf0aa6ebb0334692d36dbcc85"
+    },
+    {
+      "path": "particle/official_code/gpm/data/base.py",
+      "bytes": 2267,
+      "sha256": "cc1748aa18d67989ac0a463bd80df9445cbc305876ce8fd6ccadc8936d6a8a4e"
+    },
+    {
+      "path": "particle/official_code/gpm/data/collate.py",
+      "bytes": 1164,
+      "sha256": "7c411cf2029561403e7f81f357b90de896ec1b70a7c0ce63921b87b97f86a433"
+    },
+    {
+      "path": "particle/official_code/gpm/data/datasets.py",
+      "bytes": 873,
+      "sha256": "5ddc1b468a6ebe5cd37f8373caa34e439286119333b1eae61956798dce767d8a"
+    },
+    {
+      "path": "particle/official_code/gpm/data/factory.py",
+      "bytes": 4777,
+      "sha256": "7a9d15739e3d5fde655c821f1a808445a7ca32dd9111bbae4ae4598a996ff959"
+    },
+    {
+      "path": "particle/official_code/gpm/data/image/base.py",
+      "bytes": 1298,
+      "sha256": "227024d75718c8c5a0ebf1d3c04b191883707476661cbbee0a72bfe69ea2f1df"
+    },
+    {
+      "path": "particle/official_code/gpm/data/image/celeba.py",
+      "bytes": 2621,
+      "sha256": "04cd759867a314e65f51af9c0013d0dd761957caa7574227370358ff1da7f324"
+    },
+    {
+      "path": "particle/official_code/gpm/data/image/mnist.py",
+      "bytes": 3129,
+      "sha256": "767aca413c9dec2becd051a67c121e43550722a36a9cbcada70bad811dcebfec"
+    },
+    {
+      "path": "particle/official_code/gpm/data/lowd/base.py",
+      "bytes": 2104,
+      "sha256": "92b70c2b1402c64080a5001e51363581e7167cf435d640f6cc1a434659b12882"
+    },
+    {
+      "path": "particle/official_code/gpm/data/lowd/gaussians.py",
+      "bytes": 2584,
+      "sha256": "8bcb786a6c5ece2f55e96946103d970239afe4c08b354bf850b63263e42400e6"
+    },
+    {
+      "path": "particle/official_code/gpm/eval/interpolate.py",
+      "bytes": 4635,
+      "sha256": "bfe396eb56fe59b037235e6378ede40a1fb435bf38e3b6d3a3de85109bf0ce8e"
+    },
+    {
+      "path": "particle/official_code/gpm/eval/metrics.py",
+      "bytes": 1710,
+      "sha256": "6a301c27455d5f3c6d50f65043f34b28bb618764425971bb6ffc2ce0c0e7ab22"
+    },
+    {
+      "path": "particle/official_code/gpm/eval/quali.py",
+      "bytes": 4108,
+      "sha256": "14b1a6847f9770c18c09a2ed7aba1fc74bd4f60bae4f375bf8320d2f12445b31"
+    },
+    {
+      "path": "particle/official_code/gpm/eval/tests.py",
+      "bytes": 1063,
+      "sha256": "5455b3d63ab3a7d14b332b882fe00b84bbc6b7d839dba0309fb69b90144a919a"
+    },
+    {
+      "path": "particle/official_code/gpm/eval/utils.py",
+      "bytes": 1803,
+      "sha256": "69c7897c5e88170659cf3adeaabd6edb1abd2b18d663db78459853a1473f2313"
+    },
+    {
+      "path": "particle/official_code/gpm/models/base.py",
+      "bytes": 6403,
+      "sha256": "726a5a91b51fcf0aa6f10b79b6afbb70a97913659ec28c6cdf52267f40661872"
+    },
+    {
+      "path": "particle/official_code/gpm/models/discr_flow/base.py",
+      "bytes": 18754,
+      "sha256": "0e2fdb865e83c3e9ecaf7ce48ab3f9a811529784b08bea97334345a6f4b5187e"
+    },
+    {
+      "path": "particle/official_code/gpm/models/discr_flow/models.py",
+      "bytes": 2061,
+      "sha256": "6250f3573fc62a915746719933f56dda9bc5cf0d4b981aed98036e2266213491"
+    },
+    {
+      "path": "particle/official_code/gpm/models/edm/edm.py",
+      "bytes": 19243,
+      "sha256": "d49033e96933c39afa67101b331ce78cac229282dce57d7b2c49cc824006c3d0"
+    },
+    {
+      "path": "particle/official_code/gpm/models/factory.py",
+      "bytes": 2989,
+      "sha256": "9d5dfa18849f12a373d277bc3afc7056bcff0873cceb93f510bfdfc7aebd3baa"
+    },
+    {
+      "path": "particle/official_code/gpm/models/gan/base.py",
+      "bytes": 16316,
+      "sha256": "6fc7ab0d4f209f43b3f2e0870df91aabaf120dff65e77ccf2907a5542787561a"
+    },
+    {
+      "path": "particle/official_code/gpm/models/gan/losses.py",
+      "bytes": 3633,
+      "sha256": "dc4e203948bc5e18da7c5088f7f98db69f7932856705abd1ffde8eeda06a456d"
+    },
+    {
+      "path": "particle/official_code/gpm/models/gan/models.py",
+      "bytes": 1991,
+      "sha256": "3adaae7e2b2ff2aa052ae75ecf33566530fd4af59ee23aab1e0bd7e55746b552"
+    },
+    {
+      "path": "particle/official_code/gpm/models/models.py",
+      "bytes": 843,
+      "sha256": "fee3a439117b07108e7812edea87fb02906f0d1f88075372ded2b90fa1dd480d"
+    },
+    {
+      "path": "particle/official_code/gpm/models/score_gan/score_gan.py",
+      "bytes": 16803,
+      "sha256": "90206e8b34e014438d02d605578148c0dd47623be9e8196691087537eeaf6624"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/activations.py",
+      "bytes": 4539,
+      "sha256": "6f17bc543c2fc7408cda861ffc0b443d9978a5d6d2b12f7a575c8855bd77ff48"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/conv/dcgan.py",
+      "bytes": 7672,
+      "sha256": "6601a40f3bf1ebb62f3821d43edbac0b981f300184d92136e15d981f1da3438d"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/conv/fastgan/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/conv/fastgan/fastgan.py",
+      "bytes": 17710,
+      "sha256": "83ffe6c6e945c470c466aa827cdcf686d8495b234f854b5e38f957de40425997"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/conv/resnet.py",
+      "bytes": 19916,
+      "sha256": "fc85a665837d76de4572f941d914b75d6ed88d17b0aeb47921d3398ea8515dbb"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/conv/utils.py",
+      "bytes": 2974,
+      "sha256": "f8c9d2815a04b3b1c3ff2b5db69f416e70d59a324876cf071e1f70352ef775ea"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/factory.py",
+      "bytes": 6451,
+      "sha256": "87a82b73f588900fca3b56ccb5ecbfda2685ab66d3f354d997b5aad21ace4069"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/init.py",
+      "bytes": 4720,
+      "sha256": "4755ac92c2f58777937bf3241cc87f84c376583602a40ecfdaa04f7f6fe7a1e8"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/mlp.py",
+      "bytes": 4521,
+      "sha256": "b07b069bfccbcd76e144807a6c9ce01e3d682e5ddb1200a4d78cfd354d685099"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/score/LICENSE",
+      "bytes": 20849,
+      "sha256": "1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/score/ddpm.py",
+      "bytes": 16681,
+      "sha256": "686393705ac037fe17c0c0f973ac554263d851e7ce88ebc0b60716c346939a81"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/score/edm.py",
+      "bytes": 2309,
+      "sha256": "1374a74783dd002b945c5eb1339ae775d566f8a55fe77f2c3b8d304b6701a413"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/score/scalar_emb.py",
+      "bytes": 3331,
+      "sha256": "168646cf33a8b94df255c1d514206479c21f99e70f28c5f2361fe20e714d009c"
+    },
+    {
+      "path": "particle/official_code/gpm/networks/utils.py",
+      "bytes": 4040,
+      "sha256": "e1f6840b2109be97f3f79912f7adca08e88f3f379776ee22bbe4c0d4193c256e"
+    },
+    {
+      "path": "particle/official_code/gpm/train.py",
+      "bytes": 17356,
+      "sha256": "cf3fcff5909ff5b4c74256e68153aaf0bad678033c48097f7cb6fbb46d7e9afc"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/args.py",
+      "bytes": 5132,
+      "sha256": "a9a706d1986f35f666127e8ad7f4503f60c809ebb5c0117abe537913dd886355"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/config.py",
+      "bytes": 6316,
+      "sha256": "cdb79574832608e137827ae3fce496a6b78a3fabcaeeb773a3d79056c1fcfdb3"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/helper.py",
+      "bytes": 1017,
+      "sha256": "a4bb65072767e1f28e0a5b9466421f67a2190a720526e47bd61cda82d6ddd6d8"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/load.py",
+      "bytes": 2160,
+      "sha256": "fc06c3cce71c79800ca8f0c2a243fff776a412a35e9563e1ca31fd68f2246e35"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/logger.py",
+      "bytes": 15208,
+      "sha256": "0c118a3dedb7843745d42a4e1c28c20becf78016112ebcd512b8583844b8fab0"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/optimizer.py",
+      "bytes": 2896,
+      "sha256": "68998c4b08aa3a73e0f2ba1666974b1a3f9916cfd40271b2a49190278282ccda"
+    },
+    {
+      "path": "particle/official_code/gpm/utils/types.py",
+      "bytes": 1654,
+      "sha256": "4f079639dc2112315d99a425e4b1356c5695725335cfc6dac8a3ea9423925fc7"
+    },
+    {
+      "path": "particle/official_code/launch.sh",
+      "bytes": 152,
+      "sha256": "c8c32045292421e925e9983b19981ee0532160d16f8498ccb2cf379b716d669c"
+    },
+    {
+      "path": "particle/official_code/process_args.py",
+      "bytes": 1350,
+      "sha256": "6c3595c05a03448c2dce6ca4ba9e6ca0edda9f277cddb9ad89450e421c8a2f6e"
+    },
+    {
+      "path": "particle/official_code/requirements.txt",
+      "bytes": 151,
+      "sha256": "027e285c7e185efcfc7bd23e7a5627480099fa4785b3c0f7c8d0f0ff10751c78"
+    },
+    {
+      "path": "particle/paper_official.pdf",
+      "bytes": 2629010,
+      "sha256": "023b2a70b763187f0975204689eed9d268154a6984997eebfb9cce3534f99042"
+    },
+    {
+      "path": "particle/paper_official.txt",
+      "bytes": 132639,
+      "sha256": "653a13aa82b658615056c3f6517274a1538de5c2d65ac728cde42eea5a46ea95"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/config/discr_flow/celeba/config.yaml",
+      "bytes": 2095,
+      "sha256": "2ecffbdcbb958aba690454ccca6a8e78d55ffb599980f9f77d4e980425178576"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/config/discr_flow/gaussians/config.yaml",
+      "bytes": 1957,
+      "sha256": "80e468a9dbf70343b4aa207c3ef0fa2737cb7d83c5e0e5cdff8eab6716d094f9"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/config/discr_flow/mnist/config.yaml",
+      "bytes": 1645,
+      "sha256": "b1db10893d8b1c016a9de98047b9631d97e9950bfa60b1636d10182d876f2b6d"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/config/discr_flow/mnist/config2.yaml",
+      "bytes": 1648,
+      "sha256": "aedc537426a3854e0cd2d394320d377b5c9fcf0bbd491654fa65a8839b15fd20"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/gpm/eval/metrics.py",
+      "bytes": 1710,
+      "sha256": "6a301c27455d5f3c6d50f65043f34b28bb618764425971bb6ffc2ce0c0e7ab22"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/gpm/models/discr_flow/base.py",
+      "bytes": 18754,
+      "sha256": "0e2fdb865e83c3e9ecaf7ce48ab3f9a811529784b08bea97334345a6f4b5187e"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/gpm/models/discr_flow/models.py",
+      "bytes": 2061,
+      "sha256": "6250f3573fc62a915746719933f56dda9bc5cf0d4b981aed98036e2266213491"
+    },
+    {
+      "path": "particle/supplement_core/Diffusion_GANs_Framework_Supplementary/code/gpm/models/gan/losses.py",
+      "bytes": 3633,
+      "sha256": "dc4e203948bc5e18da7c5088f7f98db69f7932856705abd1ffde8eeda06a456d"
+    },
+    {
+      "path": "particle/supplement_official.zip",
+      "bytes": 42506462,
+      "sha256": "1fc6bbc07ee6619d212a5310b6f6799c3ba45c4871af4d52a6aeb8ca46b80139"
+    },
+    {
+      "path": "sobolev/code/README.md",
+      "bytes": 5090,
+      "sha256": "6c69665af167a879bc01d326b511e7cea5b026e11512d128101beefb1dfb9ecc"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/density_ratio_guidance.py",
+      "bytes": 37098,
+      "sha256": "cd23e9344b1bc2b47ad7c44f6200c111ca7472c5f58f542e55a27709671533e9"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/evaluate_fid_coverage.py",
+      "bytes": 14238,
+      "sha256": "25da535f45215c5ca6a59be836ab8779dd05894c3cb1b82977433758bb317be9"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/inference_guided_ptbxl.py",
+      "bytes": 28894,
+      "sha256": "d7c6c677c3aaccfc87ffbd9faab2fbc18fae5e6d43a792447f465eb1fba3169e"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/train_DRE.py",
+      "bytes": 6500,
+      "sha256": "33ab01c280e47ba7c9590e22f1438791fe3a673428d732867158c79daa2a6aa9"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/train_density_ratio_net.py",
+      "bytes": 12240,
+      "sha256": "39b56636015d306dcda4c79b86bb3154e86a8972b5bbbf64c8e65e9165c36bd6"
+    },
+    {
+      "path": "sobolev/code/SSSD-ECG-main/src/sssd/utils/util_generation.py",
+      "bytes": 12061,
+      "sha256": "6fccb43606af8d160de99443cc170837b226c6747921735b320c8bc84d5603d3"
+    },
+    {
+      "path": "sobolev/code/gradest2/classif.py",
+      "bytes": 6220,
+      "sha256": "cefe4f8aee9bae6cc874c133f802b7ba0b86e26de7db666910150bdde3b6fbe5"
+    },
+    {
+      "path": "sobolev/code/gradest2/core/nn.py",
+      "bytes": 8025,
+      "sha256": "308eae053add4ea19f11b6c9cda1ff5509a16f7686c87650f68054b356a0f7aa"
+    },
+    {
+      "path": "sobolev/code/gradest2/demo_caltechoffice.py",
+      "bytes": 25492,
+      "sha256": "6ddc43ad320fd064b003968c444b895fa82a4ae403ea5badc2d07d4501400ada"
+    },
+    {
+      "path": "sobolev/code/gradest2/wgf.py",
+      "bytes": 9324,
+      "sha256": "8b8c3476e49d962d5d72959d038be25f54c621bd29798dc1ed91a5ccc6aa2ff7"
+    },
+    {
+      "path": "sobolev/code/gradest2/wgf_da.py",
+      "bytes": 15727,
+      "sha256": "c964f348e71290439f86d84abe6153ae2dab7056a1a2f6c9e0c7eb412cd3da16"
+    },
+    {
+      "path": "sobolev/code/sim_score_diff_eval.py",
+      "bytes": 42853,
+      "sha256": "3e115fdc78b186546f82f88f27a45563948110b5e1a2e87a333739a6c98dfd70"
+    },
+    {
+      "path": "sobolev/code_commit.json",
+      "bytes": 895544,
+      "sha256": "2952a12af6e509a672956ea2dda4c19763fbe5f906e39462afa24149516b395e"
+    },
+    {
+      "path": "sobolev/code_sources.json",
+      "bytes": 4476,
+      "sha256": "32ebfb8d94985b664688d35826fe7b6de91c72e305d12f8436dd11d6289b2550"
+    },
+    {
+      "path": "sobolev/code_tree.json",
+      "bytes": 39941,
+      "sha256": "f8660fc6a1570f014797e890e303abd9bce0df89255d206d9130b3c7cb49a9bb"
+    },
+    {
+      "path": "sobolev/paper_arxiv_v1.html",
+      "bytes": 1829783,
+      "sha256": "fd2779011e2a7a95732b1fc8fb3536a83803d4c3f2d3e491e06e885e3f52f0d0"
+    },
+    {
+      "path": "sobolev/paper_arxiv_v1.pdf",
+      "bytes": 2648429,
+      "sha256": "c31bc96cd0e8ca00b25a5159b0960ee7d4a18a8796a0431aa51d1779a769b12a"
+    },
+    {
+      "path": "sobolev/paper_arxiv_v1.txt",
+      "bytes": 230729,
+      "sha256": "9d7a07b5a75eef012b9668eb88cc89a05da283205b47b8e29d1d83c3185901d8"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 873,
+      "sha256": "19d14875755420aa6ad92bda3c090cfa5e6b19a4a44191fedb194a421eed2af4"
+    }
+  ]
+}

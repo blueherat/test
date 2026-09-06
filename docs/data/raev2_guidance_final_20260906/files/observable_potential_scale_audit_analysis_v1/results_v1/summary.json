@@ -1,0 +1,188 @@
+{
+  "complete": true,
+  "protocol": "raev2_fixed_three_arm_fid_influence_v1",
+  "arms": {
+    "official100": {
+      "official_fid": 6.974897847697434,
+      "cpu_spd_fid": 6.9748978476987356,
+      "cpu_minus_official_fid": 1.3011813848606835e-12,
+      "stratified_first_order_se": 0.12079025597709364,
+      "mean_influence": 0.0,
+      "alpha_N_over_N_minus_1": 1.0002000400080016,
+      "audit": {
+        "mean_term": 0.06202266429175421,
+        "covariance_term": 6.912875183406982,
+        "sample_spd": {
+          "minimum_eigenvalue": 0.0005578057370535796,
+          "maximum_eigenvalue": 9.159652351454866,
+          "condition_number": 16420.864367293238,
+          "numerical_rank_tolerance": 4.165327641865072e-12
+        },
+        "reference_spd": {
+          "minimum_eigenvalue": 0.00111250058485235,
+          "maximum_eigenvalue": 9.100634517621685,
+          "condition_number": 8180.341333330188,
+          "numerical_rank_tolerance": 4.138489438274376e-12
+        },
+        "middle_spd": {
+          "minimum_eigenvalue": 6.786110642626272e-07,
+          "maximum_eigenvalue": 82.8836008730371,
+          "condition_number": 122137119.82886352,
+          "numerical_rank_tolerance": 3.7691097928944644e-11
+        },
+        "transport_relative_residual": 1.7441664437063694e-12
+      }
+    },
+    "potential100": {
+      "official_fid": 6.974647429255924,
+      "cpu_spd_fid": 6.974647429256533,
+      "cpu_minus_official_fid": 6.084022174945858e-13,
+      "stratified_first_order_se": 0.11054891064724222,
+      "mean_influence": -6.366462912410498e-16,
+      "alpha_N_over_N_minus_1": 1.0002000400080016,
+      "audit": {
+        "mean_term": 0.06585053146492871,
+        "covariance_term": 6.908796897791603,
+        "sample_spd": {
+          "minimum_eigenvalue": 0.0005430003630667707,
+          "maximum_eigenvalue": 9.22292266757705,
+          "condition_number": 16985.113261228045,
+          "numerical_rank_tolerance": 4.1940996505113845e-12
+        },
+        "reference_spd": {
+          "minimum_eigenvalue": 0.00111250058485235,
+          "maximum_eigenvalue": 9.100634517621685,
+          "condition_number": 8180.341333330188,
+          "numerical_rank_tolerance": 4.138489438274376e-12
+        },
+        "middle_spd": {
+          "minimum_eigenvalue": 6.708926263390301e-07,
+          "maximum_eigenvalue": 83.4556672912028,
+          "condition_number": 124394968.7547008,
+          "numerical_rank_tolerance": 3.7951243617136606e-11
+        },
+        "transport_relative_residual": 9.300425960470168e-13
+      }
+    },
+    "official105": {
+      "official_fid": 6.960417033373517,
+      "cpu_spd_fid": 6.960417033377307,
+      "cpu_minus_official_fid": 3.789857316860434e-12,
+      "stratified_first_order_se": 0.12127553031182177,
+      "mean_influence": -4.774847184307873e-16,
+      "alpha_N_over_N_minus_1": 1.0002000400080016,
+      "audit": {
+        "mean_term": 0.06077152844305112,
+        "covariance_term": 6.899645504934256,
+        "sample_spd": {
+          "minimum_eigenvalue": 0.0005394512838812005,
+          "maximum_eigenvalue": 9.287888307791178,
+          "condition_number": 17217.288354506138,
+          "numerical_rank_tolerance": 4.223642603297402e-12
+        },
+        "reference_spd": {
+          "minimum_eigenvalue": 0.00111250058485235,
+          "maximum_eigenvalue": 9.100634517621685,
+          "condition_number": 8180.341333330188,
+          "numerical_rank_tolerance": 4.138489438274376e-12
+        },
+        "middle_spd": {
+          "minimum_eigenvalue": 6.621482715461483e-07,
+          "maximum_eigenvalue": 84.05090847289841,
+          "condition_number": 126936687.87601827,
+          "numerical_rank_tolerance": 3.8221927967651215e-11
+        },
+        "transport_relative_residual": 1.316799445312869e-12
+      }
+    }
+  },
+  "contrasts": {
+    "potential100_vs_official100": {
+      "fid_difference_candidate_minus_baseline": {
+        "estimate": -0.00025041844220297094,
+        "stratified_first_order_se": 0.03448095218401771,
+        "local_normal_95_interval": [
+          -0.06783308472287769,
+          0.06733224783847175
+        ]
+      },
+      "relative_improvement_one_minus_candidate_over_baseline": {
+        "estimate": 3.590281143484031e-05,
+        "stratified_first_order_se": 0.004943312535522455,
+        "local_normal_95_interval": [
+          -0.009652989758189172,
+          0.009724795381058852
+        ]
+      }
+    },
+    "potential100_vs_official105": {
+      "fid_difference_candidate_minus_baseline": {
+        "estimate": 0.01423039587922581,
+        "stratified_first_order_se": 0.03278065172171266,
+        "local_normal_95_interval": [
+          -0.05001968149533101,
+          0.07848047325378263
+        ]
+      },
+      "relative_improvement_one_minus_candidate_over_baseline": {
+        "estimate": -0.00204447460705115,
+        "stratified_first_order_se": 0.004725644116591333,
+        "local_normal_95_interval": [
+          -0.011306737075570162,
+          0.007217787861467862
+        ]
+      }
+    }
+  },
+  "paired_arm_order": [
+    "official100",
+    "potential100",
+    "official105"
+  ],
+  "arm_estimator_stratified_covariance": [
+    [
+      0.014590285939011807,
+      0.012811205760393641,
+      0.014382548970703237
+    ],
+    [
+      0.012811205760393641,
+      0.012221061645291945,
+      0.012927122385202659
+    ],
+    [
+      0.014382548970703237,
+      0.012927122385202659,
+      0.014707754252413602
+    ]
+  ],
+  "influences": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/results_v1/influences.npz",
+    "sha256": "12b22e305cba92c94467fd181b29e4e0330b3c1f3b19c1ba333a5f2d1087071a",
+    "size_bytes": 412176
+  },
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/results_v1/request.json",
+    "sha256": "6f00ff4cde13a3224d5cf689e4e6e0908a60d9d1aa5fcb1a81f28ec22a988298",
+    "size_bytes": 8419
+  },
+  "limits": [
+    "Local first-order influence/delta-method approximation, not calibrated finite-N confidence coverage.",
+    "Reference moments, trained candidate, class allocation and evaluation protocol are held fixed.",
+    "SE describes within-class noise variability; it excludes reference estimation, training, and method-selection uncertainty.",
+    "Does not remove model-dependent finite-sample FID bias or extrapolate 5K FID to 50K/population FID.",
+    "High feature dimension (2048) relative to N=5000 can make first-order normal intervals inaccurate.",
+    "Cannot replace independent-noise confirmation, appropriately sized evaluation or full preparation-cost matching.",
+    "Feature-to-ID order is bound by evaluator source order, cache key and sample archive identity; caches contain no independent IDs."
+  ],
+  "goal_achieved": false,
+  "full_cost_comparison_complete": false,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "feature_extraction_calls": 0,
+  "wall_seconds_excluding_imports_and_final_summary_write": 14.414375064894557,
+  "cpu_seconds_excluding_imports_and_final_summary_write": 45.657494725,
+  "maximum_resident_set_kib": 1142196,
+  "torch_version": "2.11.0+cu130",
+  "numpy_version": "2.2.6"
+}

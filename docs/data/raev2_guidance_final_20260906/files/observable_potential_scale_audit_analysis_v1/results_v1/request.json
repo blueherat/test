@@ -1,0 +1,147 @@
+{
+  "protocol": "raev2_fixed_three_arm_fid_influence_v1",
+  "created_utc": "2026-09-06T07:14:30.721562+00:00",
+  "inputs": {
+    "official100": {
+      "features": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/official_feature_cache/official100_seed202609101-289b422e5cc8e020-inception.features.pt",
+        "sha256": "10f13d062441df3d99a2bddb824a42d0817d6075a404aac5c2d952ac52b1f4fc",
+        "size_bytes": 40962211
+      },
+      "sample_archive": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+        "sha256": "289b422e5cc8e02030af51650efc2dead7385992a33c6e8ec137161d05b9dc5b",
+        "size_bytes": 983120746
+      },
+      "merge_summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/summary.json",
+        "sha256": "a3e0a24b0f42514c2ce47c8d8a89da4d8b54d7063319cc0b41638c97581ea4f4",
+        "size_bytes": 2330
+      },
+      "official_metrics": {
+        "branch": "official100_seed202609101",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+        "sample_sha256": "289b422e5cc8e02030af51650efc2dead7385992a33c6e8ec137161d05b9dc5b",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 160.2887924194336,
+        "fid": 6.974897847697434
+      }
+    },
+    "potential100": {
+      "features": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/official_feature_cache/potential100_seed202609101-89e3e2c3e83ca3af-inception.features.pt",
+        "sha256": "1dd7e1c2c7901352be9b135df2a076af8def71a7f18d570a1b07b73361cd7a8a",
+        "size_bytes": 40962218
+      },
+      "sample_archive": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+        "sha256": "89e3e2c3e83ca3af4d6ec0f463580fe909a06c5211ecd75d971e4a73663ceb1a",
+        "size_bytes": 983120746
+      },
+      "merge_summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/summary.json",
+        "sha256": "6a5862b3fe45629e1181cae8ad189b65d86ee43c1b2076455b28bab6a5ad726e",
+        "size_bytes": 2346
+      },
+      "official_metrics": {
+        "branch": "potential100_seed202609101",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+        "sample_sha256": "89e3e2c3e83ca3af4d6ec0f463580fe909a06c5211ecd75d971e4a73663ceb1a",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 160.1660919189453,
+        "fid": 6.974647429255924
+      }
+    },
+    "official105": {
+      "features": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/official_feature_cache/official105_seed202609101-7bb79fbbf8e910ec-inception.features.pt",
+        "sha256": "5524a5715244c26a2aa0a16de4885d040ba928a962b8ad533f4d3bc66e8364f4",
+        "size_bytes": 40962211
+      },
+      "sample_archive": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/samples.npz",
+        "sha256": "7bb79fbbf8e910ec1893b1c70a42dd3bda68c41424fac234e41045c02fb9e892",
+        "size_bytes": 983120746
+      },
+      "merge_summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/summary.json",
+        "sha256": "f4085439b12f452c9f5207fd6e02af42e96d50299234c1c2af6b7ee2fcb4f70e",
+        "size_bytes": 2330
+      },
+      "official_metrics": {
+        "branch": "official105_seed202609101",
+        "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/samples.npz",
+        "sample_sha256": "7bb79fbbf8e910ec1893b1c70a42dd3bda68c41424fac234e41045c02fb9e892",
+        "fid_reference": "imagenet_256_fid_stats",
+        "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+        "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+        "inception_score": 160.81580963134766,
+        "fid": 6.960417033373517
+      }
+    }
+  },
+  "reference": {
+    "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "size_bytes": 33563124
+  },
+  "metrics": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/metrics.json",
+    "sha256": "37a32708c9d26b4d277a6b902ae5af8ee0a289c1e97c0e84a57df6f78e0ad4f3",
+    "size_bytes": 1728
+  },
+  "evaluation_request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/request.json",
+    "sha256": "555f029fa91a20b9fa8143fbdf7ed6ba9ad1b9eea2e3642219a6021852b110e9",
+    "size_bytes": 3104
+  },
+  "execution_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/execution_summary.json",
+    "sha256": "e43c235a77115d29b4c131e1659d5551a6eec8cbc178b86437d649809d9a8fbe",
+    "size_bytes": 25163
+  },
+  "source_records": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/run_scale_analysis.py",
+      "sha256": "1491788699cfe69c71e8b90ee57202e6bf9dee2371eb105b3c7bcf0ac2b9102b",
+      "size_bytes": 12482
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/fid_influence.py",
+      "sha256": "20cb21a34e37d9a3894b0a700050abf64b52c626308ed7cb93f9817d5f0c8b29",
+      "size_bytes": 6936
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/validate_toy.py",
+      "sha256": "52bf1ac74242fd3b1c43af95a64e3facb0ab41a8c753ceac1864b053de1b4a06",
+      "size_bytes": 6887
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/toy_validation.json",
+      "sha256": "c95fc1b0824f2b3e6bc61e71203632a3d2576069624b09bf69a65c625f86650a",
+      "size_bytes": 24255
+    }
+  ],
+  "feature_dimension": 2048,
+  "samples": 5000,
+  "classes": 1000,
+  "noise_replicates_per_class": 5,
+  "seed": 202609101,
+  "limits": [
+    "Local first-order influence/delta-method approximation, not calibrated finite-N confidence coverage.",
+    "Reference moments, trained candidate, class allocation and evaluation protocol are held fixed.",
+    "SE describes within-class noise variability; it excludes reference estimation, training, and method-selection uncertainty.",
+    "Does not remove model-dependent finite-sample FID bias or extrapolate 5K FID to 50K/population FID.",
+    "High feature dimension (2048) relative to N=5000 can make first-order normal intervals inaccurate.",
+    "Cannot replace independent-noise confirmation, appropriately sized evaluation or full preparation-cost matching.",
+    "Feature-to-ID order is bound by evaluator source order, cache key and sample archive identity; caches contain no independent IDs."
+  ],
+  "cpu_threads": 4,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "source_toy_checks_repeated": false
+}

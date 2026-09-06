@@ -1,0 +1,51 @@
+{
+  "protocol": "raev2_proximal_calibration_heldout_v1",
+  "all_official_steps_retained": true,
+  "steps": 100,
+  "samples": 1000,
+  "step_risk_gain_positive_count": 39,
+  "step_J_positive_count": 39,
+  "step_gain_ci_positive_count": 39,
+  "step_gain_ci_negative_count": 0,
+  "step_gain_bonferroni_positive_count": 39,
+  "step_gain_bonferroni_negative_count": 0,
+  "simultaneous_intervals": "95% Bonferroni normal approximation across all steps; not a distribution-free finite-sample guarantee",
+  "minimum_nonexpansive_slack": 0.0,
+  "unweighted_local_rms_source_sum": {
+    "before": 0.8373043220279383,
+    "after": 0.8373035853181628,
+    "gain": 7.367097754062968e-07,
+    "gain_relative": 8.798590381356172e-07,
+    "gain_se": 1.4178346493699765e-08,
+    "gain_ci95": [
+      7.089202162786452e-07,
+      7.644993345339484e-07
+    ],
+    "interpretation": "sum_k sqrt(E coupling step error); not the full W2 bound without baseline map Lipschitz factors"
+  },
+  "statistical_units": "independent images, one per class, with all times kept together; pooled between-image SE and asymptotic delta-method CI; within-class variance not separately identifiable",
+  "all_step_mean_risk_nonincreasing": true,
+  "no_fid_evaluated": true,
+  "claim_limit": "Finite-sample teacher-coupling evidence, not proof of endpoint FID improvement or population per-step positivity.",
+  "shards": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/shard_00_of_03",
+      "request_sha256": "97b7eebb538e867b427f82f8ddfd3848b129138abc8dc6e916dd439cb1899489",
+      "calibration_sha256": "b876b1c4972db41e35435d4440dbffcb8345ccec1901f1f9c6b9c095c8c98433",
+      "heldout_csv_sha256": "623a6c6b9d2f08f413ac3763322eecbad1b15f27da54ef521ccdc807ee471ca4"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/shard_01_of_03",
+      "request_sha256": "c0117459bbb4f72164d571f7b88cdf2f75d5ad2b0491c7cb0ffe5719421e00e8",
+      "calibration_sha256": "f170f73879a0b13397b445fc2b07f14d6f1c17f289bbf9fdd59cb14f282db9c2",
+      "heldout_csv_sha256": "4aaf9821f82570a998ef673c0c9843cbfa822d00acf2c745c3b11c877982d7f7"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/shard_02_of_03",
+      "request_sha256": "f6031051c5ccc9feb442cee8cd5b4e2348049db029e5bf8c449539be1f25868b",
+      "calibration_sha256": "ef7f021182b02a399c44a1ababdb796329831a3f9f05985bf1fe385766ddcd2a",
+      "heldout_csv_sha256": "92f49d6b970d6354d2abc4bd4f17ba61306c4baf770b3c548bcd5a15710d6cd7"
+    }
+  ],
+  "calibration_sha256": "0f22bcb10df43e6a0b4656fb36a64a2e63d8ee6d4237d055769831476b48a654"
+}

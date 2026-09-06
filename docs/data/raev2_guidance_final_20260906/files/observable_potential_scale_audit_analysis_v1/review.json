@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-09-06T07:04:49.944522+00:00",
+  "status": "mathematical_source_and_existing_validation_reviewed_cli_ready",
+  "existing_toy_passed": true,
+  "existing_toy_checks": 96,
+  "existing_toy_maximum_scaled_absolute_error": 4.424856106580879e-07,
+  "source_checks": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/validate_toy.py",
+      "sha256_matches_successful_test": true
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/fid_influence.py",
+      "sha256_matches_successful_test": true
+    }
+  ],
+  "successful_toy_tests_repeated": false,
+  "cli_help_passed": true,
+  "cli_syntax_valid": true,
+  "new_5k_features_read": false,
+  "new_5k_fid_read": false,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "source_records": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/fid_influence.py",
+      "sha256": "20cb21a34e37d9a3894b0a700050abf64b52c626308ed7cb93f9817d5f0c8b29",
+      "size_bytes": 6936
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/validate_toy.py",
+      "sha256": "52bf1ac74242fd3b1c43af95a64e3facb0ab41a8c753ceac1864b053de1b4a06",
+      "size_bytes": 6887
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/toy_validation.json",
+      "sha256": "c95fc1b0824f2b3e6bc61e71203632a3d2576069624b09bf69a65c625f86650a",
+      "size_bytes": 24255
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/run_scale_analysis.py",
+      "sha256": "1491788699cfe69c71e8b90ee57202e6bf9dee2371eb105b3c7bcf0ac2b9102b",
+      "size_bytes": 12482
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/README_ZH.md",
+      "sha256": "4e42cf97c574748eb5c1ec4fc59cd9b5b75c2594c3d39819653c4bd7b1712ea9",
+      "size_bytes": 4247
+    }
+  ],
+  "review_findings": [
+    "N/(N-1) matches derivative of fixed-N unbiased sample covariance functional.",
+    "Pair before fixed-class stratified covariance; ratio uses derivative of 1-F_candidate/F_baseline.",
+    "SPDs and transport residual are audited without ridge/truncation.",
+    "Numerical low-dimensional verification does not establish high-dimensional finite-N interval coverage.",
+    "CLI refuses incomplete common evaluation before opening feature inputs."
+  ]
+}

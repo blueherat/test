@@ -1,0 +1,653 @@
+{
+  "prepare": {
+    "process_wall_seconds_since_initial_time_import": 25.22765512112528,
+    "process_cpu_seconds_since_initial_time_import": 19.196967856,
+    "host_peak_rss_bytes": 855797760,
+    "excludes": "final JSON write, interpreter exit, parent shell startup"
+  },
+  "driver": {
+    "complete": true,
+    "finished_at_utc": "2026-09-06T07:36:16.601118+00:00",
+    "driver_wall_seconds": 132.2663716499228,
+    "processes": [
+      {
+        "tag": "collect_rank0",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "collect",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "0,142"
+        ],
+        "pid": 3178999,
+        "started_at_utc": "2026-09-06T07:34:04.336158+00:00",
+        "finished_at_utc": "2026-09-06T07:35:15.628528+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 71.29243023414165,
+        "child_user_cpu_seconds": 60.411981,
+        "child_system_cpu_seconds": 9.160439,
+        "child_max_rss_bytes": 4815900672,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "collect_rank1",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "collect",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "285,428"
+        ],
+        "pid": 3179001,
+        "started_at_utc": "2026-09-06T07:34:04.339245+00:00",
+        "finished_at_utc": "2026-09-06T07:35:15.471892+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 71.13267978606746,
+        "child_user_cpu_seconds": 59.971876,
+        "child_system_cpu_seconds": 8.868193,
+        "child_max_rss_bytes": 4814348288,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "collect_rank2",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "collect",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "570,713"
+        ],
+        "pid": 3179003,
+        "started_at_utc": "2026-09-06T07:34:04.342181+00:00",
+        "finished_at_utc": "2026-09-06T07:35:14.360880+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 70.0187384521123,
+        "child_user_cpu_seconds": 58.999544,
+        "child_system_cpu_seconds": 8.856335,
+        "child_max_rss_bytes": 4796538880,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "collect_rank3",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "collect",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "856,999"
+        ],
+        "pid": 3179004,
+        "started_at_utc": "2026-09-06T07:34:04.343498+00:00",
+        "finished_at_utc": "2026-09-06T07:35:14.502010+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 70.15856643300503,
+        "child_user_cpu_seconds": 58.812583,
+        "child_system_cpu_seconds": 8.638492,
+        "child_max_rss_bytes": 4773539840,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "finalize",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "finalize",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1"
+        ],
+        "pid": 3183999,
+        "started_at_utc": "2026-09-06T07:35:15.630803+00:00",
+        "finished_at_utc": "2026-09-06T07:35:20.054624+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 4.423859914997593,
+        "child_user_cpu_seconds": 3.8238820000000002,
+        "child_system_cpu_seconds": 0.900914,
+        "child_max_rss_bytes": 632401920,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "replay_rank0",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "replay",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "0,142"
+        ],
+        "pid": 3185513,
+        "started_at_utc": "2026-09-06T07:35:20.056138+00:00",
+        "finished_at_utc": "2026-09-06T07:36:07.822983+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 47.766885087126866,
+        "child_user_cpu_seconds": 41.750745,
+        "child_system_cpu_seconds": 7.7102450000000005,
+        "child_max_rss_bytes": 4814196736,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "replay_rank1",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "replay",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "285,428"
+        ],
+        "pid": 3185516,
+        "started_at_utc": "2026-09-06T07:35:20.058233+00:00",
+        "finished_at_utc": "2026-09-06T07:36:09.343911+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 49.285716341109946,
+        "child_user_cpu_seconds": 42.756369,
+        "child_system_cpu_seconds": 7.837917,
+        "child_max_rss_bytes": 4792000512,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "replay_rank2",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "replay",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "570,713"
+        ],
+        "pid": 3185517,
+        "started_at_utc": "2026-09-06T07:35:20.059218+00:00",
+        "finished_at_utc": "2026-09-06T07:36:12.988207+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 52.929028681945056,
+        "child_user_cpu_seconds": 46.02245,
+        "child_system_cpu_seconds": 8.218318,
+        "child_max_rss_bytes": 4818391040,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "replay_rank3",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "replay",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+          "--ids",
+          "856,999"
+        ],
+        "pid": 3185518,
+        "started_at_utc": "2026-09-06T07:35:20.060207+00:00",
+        "finished_at_utc": "2026-09-06T07:36:09.412731+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 49.35256450204179,
+        "child_user_cpu_seconds": 42.896049,
+        "child_system_cpu_seconds": 7.792005,
+        "child_max_rss_bytes": 4774551552,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      },
+      {
+        "tag": "summarize",
+        "command": [
+          "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+          "--phase",
+          "summarize",
+          "--output-root",
+          "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1"
+        ],
+        "pid": 3187898,
+        "started_at_utc": "2026-09-06T07:36:12.990207+00:00",
+        "finished_at_utc": "2026-09-06T07:36:16.600481+00:00",
+        "exit_code": 0,
+        "outer_wall_seconds": 3.6103092841804028,
+        "child_user_cpu_seconds": 3.1790950000000002,
+        "child_system_cpu_seconds": 0.733406,
+        "child_max_rss_bytes": 628084736,
+        "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+      }
+    ],
+    "excludes": "CPU prepare executed before driver; final summary write and driver exit."
+  },
+  "workers": [
+    {
+      "worker": "workers/collect_0000_0142/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.83058651490137,
+          "cpu_seconds": 13.960040162
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.67348704719916,
+            "cpu_seconds": 6.479775574000001,
+            "cuda_stream_elapsed_seconds": 5.673423828125,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.265457886038348,
+            "cpu_seconds": 5.435715169999998,
+            "cuda_stream_elapsed_seconds": 5.26540087890625,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.19552067387849092,
+            "cpu_seconds": 0.31086302399999965,
+            "cuda_stream_elapsed_seconds": 0.19549183654785157,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.016819956013932824,
+          "cpu_seconds": 0.016305111000001205,
+          "cuda_stream_elapsed_seconds": 0.016793920516967775,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 38.71480056690052,
+          "cpu_seconds": 35.93923594099999,
+          "cuda_stream_elapsed_seconds": 38.71461328125,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 69.8550638530869,
+        "process_cpu_seconds_since_initial_time_import": 68.197683263,
+        "host_peak_rss_bytes": 4815900672,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 6267868160,
+      "peak_reserved_bytes": 6385827840
+    },
+    {
+      "worker": "workers/collect_0285_0428/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.84357232390903,
+          "cpu_seconds": 13.968481091000001
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.307636387879029,
+            "cpu_seconds": 6.017653662999997,
+            "cuda_stream_elapsed_seconds": 5.30753955078125,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.273015961050987,
+            "cpu_seconds": 5.421094845999999,
+            "cuda_stream_elapsed_seconds": 5.27292919921875,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.1909060140606016,
+            "cpu_seconds": 0.2984728539999999,
+            "cuda_stream_elapsed_seconds": 0.1908667449951172,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.016035630833357573,
+          "cpu_seconds": 0.016081023000001693,
+          "cuda_stream_elapsed_seconds": 0.016008319854736327,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 38.781087652081624,
+          "cpu_seconds": 35.61273485700001,
+          "cuda_stream_elapsed_seconds": 38.78073046875,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 69.55037259706296,
+        "process_cpu_seconds_since_initial_time_import": 67.267805725,
+        "host_peak_rss_bytes": 4814348288,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 6267868160,
+      "peak_reserved_bytes": 6385827840
+    },
+    {
+      "worker": "workers/collect_0570_0713/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.477557874051854,
+          "cpu_seconds": 13.599317737
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.524491109885275,
+            "cpu_seconds": 6.309492335999998,
+            "cuda_stream_elapsed_seconds": 5.52446044921875,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.344970178091899,
+            "cpu_seconds": 5.5013105630000005,
+            "cuda_stream_elapsed_seconds": 5.3449482421875,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.20321043184958398,
+            "cpu_seconds": 0.31744045399999976,
+            "cuda_stream_elapsed_seconds": 0.20317388916015625,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.015895017189905047,
+          "cpu_seconds": 0.0158952850000027,
+          "cuda_stream_elapsed_seconds": 0.015865920066833496,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 37.92121104989201,
+          "cpu_seconds": 34.625731654000006,
+          "cuda_stream_elapsed_seconds": 37.9213046875,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 68.68795938510448,
+        "process_cpu_seconds_since_initial_time_import": 66.531632483,
+        "host_peak_rss_bytes": 4796538880,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 6267868160,
+      "peak_reserved_bytes": 6385827840
+    },
+    {
+      "worker": "workers/collect_0856_0999/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.21118073607795,
+          "cpu_seconds": 13.321641819
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.5045389730948955,
+            "cpu_seconds": 6.2662126869999994,
+            "cuda_stream_elapsed_seconds": 5.5044658203125,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.222002760041505,
+            "cpu_seconds": 5.376195536000001,
+            "cuda_stream_elapsed_seconds": 5.22192578125,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.2223476110957563,
+            "cpu_seconds": 0.33430373099999855,
+            "cuda_stream_elapsed_seconds": 0.22230613708496094,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.01654523704200983,
+          "cpu_seconds": 0.016545151999999064,
+          "cuda_stream_elapsed_seconds": 0.016513599395751952,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 38.318902421044186,
+          "cpu_seconds": 34.693141111,
+          "cuda_stream_elapsed_seconds": 38.318609375,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 68.73485669493675,
+        "process_cpu_seconds_since_initial_time_import": 66.08961328000001,
+        "host_peak_rss_bytes": 4773539840,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 6267868160,
+      "peak_reserved_bytes": 6385827840
+    },
+    {
+      "worker": "workers/replay_0000_0142/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 12.25106667703949,
+          "cpu_seconds": 12.367105908
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.507843338884413,
+            "cpu_seconds": 6.245937869000002,
+            "cuda_stream_elapsed_seconds": 5.50778759765625,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.041876590112224,
+            "cpu_seconds": 5.199261692,
+            "cuda_stream_elapsed_seconds": 5.041810546875,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.19213015912100673,
+            "cpu_seconds": 0.30258689400000094,
+            "cuda_stream_elapsed_seconds": 0.19210035705566406,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.01650733593851328,
+          "cpu_seconds": 0.01655073899999948,
+          "cuda_stream_elapsed_seconds": 0.016481407165527345,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 18.99847759003751,
+          "cpu_seconds": 19.000850962999998,
+          "cuda_stream_elapsed_seconds": 18.998388671875,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 46.860926202032715,
+        "process_cpu_seconds_since_initial_time_import": 48.559637378000005,
+        "host_peak_rss_bytes": 4814196736,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 5606250496,
+      "peak_reserved_bytes": 5970591744
+    },
+    {
+      "worker": "workers/replay_0285_0428/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.291789823910221,
+          "cpu_seconds": 13.420328428000001
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.53953179391101,
+            "cpu_seconds": 6.265275290000002,
+            "cuda_stream_elapsed_seconds": 5.5394521484375,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.050498053897172,
+            "cpu_seconds": 5.208623252000002,
+            "cuda_stream_elapsed_seconds": 5.050408203125,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.1984318511094898,
+            "cpu_seconds": 0.315318603999998,
+            "cuda_stream_elapsed_seconds": 0.19839897155761718,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.017126568825915456,
+          "cpu_seconds": 0.016582688999999817,
+          "cuda_stream_elapsed_seconds": 0.017095903396606445,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 18.61301304679364,
+          "cpu_seconds": 18.611326803999997,
+          "cuda_stream_elapsed_seconds": 18.61283984375,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 48.27949129906483,
+        "process_cpu_seconds_since_initial_time_import": 49.593535822,
+        "host_peak_rss_bytes": 4792000512,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 5606250496,
+      "peak_reserved_bytes": 5970591744
+    },
+    {
+      "worker": "workers/replay_0570_0713/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 15.342978578060865,
+          "cpu_seconds": 15.467401362000002
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.407109738793224,
+            "cpu_seconds": 6.178795319999999,
+            "cuda_stream_elapsed_seconds": 5.40704052734375,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.156692660879344,
+            "cpu_seconds": 5.301398437000003,
+            "cuda_stream_elapsed_seconds": 5.15666015625,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.1992672251071781,
+            "cpu_seconds": 0.3128078639999998,
+            "cuda_stream_elapsed_seconds": 0.19922840881347656,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.017818993888795376,
+          "cpu_seconds": 0.01671820000000679,
+          "cuda_stream_elapsed_seconds": 0.0177891845703125,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 20.187435566913337,
+          "cpu_seconds": 20.184413005000003,
+          "cuda_stream_elapsed_seconds": 20.18743359375,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 51.92420831602067,
+        "process_cpu_seconds_since_initial_time_import": 53.254169854,
+        "host_peak_rss_bytes": 4818391040,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 5606250496,
+      "peak_reserved_bytes": 5970591744
+    },
+    {
+      "worker": "workers/replay_0856_0999/summary.json",
+      "timing": {
+        "source_and_weight_verification": {
+          "wall_seconds": 13.483418912161142,
+          "cpu_seconds": 13.589598382999998
+        },
+        "model_loads": {
+          "decoder_load_including_unused_encoder_construction": {
+            "wall_seconds": 5.598241495899856,
+            "cpu_seconds": 6.358667729,
+            "cuda_stream_elapsed_seconds": 5.598162109375,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "stage2_load": {
+            "wall_seconds": 5.074618208920583,
+            "cpu_seconds": 5.235651977,
+            "cuda_stream_elapsed_seconds": 5.0745458984375,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          },
+          "inception_load": {
+            "wall_seconds": 0.20425479300320148,
+            "cpu_seconds": 0.31784690699999985,
+            "cuda_stream_elapsed_seconds": 0.2042238006591797,
+            "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+          }
+        },
+        "full_noise_draw_copy_and_save": {
+          "wall_seconds": 0.01669533411040902,
+          "cpu_seconds": 0.016695765999998002,
+          "cuda_stream_elapsed_seconds": 0.016666847229003905,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        },
+        "phase": {
+          "wall_seconds": 18.229416677029803,
+          "cpu_seconds": 18.235219102000002,
+          "cuda_stream_elapsed_seconds": 18.22927734375,
+          "cuda_timing_scope": "CUDA event span; includes stream idle gaps, not summed kernel busy time"
+        }
+      },
+      "process_cost": {
+        "process_wall_seconds_since_initial_time_import": 48.24805033300072,
+        "process_cpu_seconds_since_initial_time_import": 49.608162126,
+        "host_peak_rss_bytes": 4774551552,
+        "excludes": "final JSON write, interpreter exit, parent shell startup"
+      },
+      "peak_allocated_bytes": 5606250496,
+      "peak_reserved_bytes": 5970591744
+    }
+  ],
+  "phase_sums": {
+    "collect": {
+      "worker_outer_wall_sum_seconds": 282.60241490532644,
+      "worker_outer_wall_min_seconds": 70.0187384521123,
+      "worker_outer_wall_max_seconds": 71.29243023414165,
+      "child_user_cpu_sum_seconds": 238.19598399999998,
+      "child_system_cpu_sum_seconds": 35.523459,
+      "source_weight_verification_wall_sum_seconds": 54.3628974489402,
+      "model_load_wall_sum_seconds": 43.92758503416553,
+      "phase_inner_wall_sum_seconds": 153.73600168991834,
+      "phase_cuda_event_span_sum_seconds": 153.7352578125
+    },
+    "replay": {
+      "worker_outer_wall_sum_seconds": 199.33419461222365,
+      "worker_outer_wall_min_seconds": 47.766885087126866,
+      "worker_outer_wall_max_seconds": 52.929028681945056,
+      "child_user_cpu_sum_seconds": 173.425613,
+      "child_system_cpu_sum_seconds": 31.558485,
+      "source_weight_verification_wall_sum_seconds": 54.36925399117172,
+      "model_load_wall_sum_seconds": 43.1704959096387,
+      "phase_inner_wall_sum_seconds": 76.02834288077429,
+      "phase_cuda_event_span_sum_seconds": 76.027939453125
+    }
+  },
+  "max_gpu_allocated_bytes": 6267868160,
+  "max_gpu_reserved_bytes": 6385827840,
+  "cost_boundary": "Parallel worker wall sums are resource occupation sums, not elapsed latency. Nested components must not be summed again into outer times. CUDA spans include idle, not kernel busy time. No fair production baseline benchmark or complete trained-method cost comparison exists."
+}

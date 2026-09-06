@@ -1,0 +1,130 @@
+{
+  "complete": true,
+  "round": 2,
+  "created_utc": "2026-09-06T16:51:42.939373+00:00",
+  "scope": "Independent CPU review; neither another round nor a new quality experiment.",
+  "sources": {
+    "review_script": {
+      "path": "/home/zhoushunyu/eqvae/experiments/review_raev2_pressure_innovation.py",
+      "sha256": "38c1698da832890796bcf51810e082a1449afcfc0b24ab33a5f912bd183a13e5",
+      "bytes": 7942
+    },
+    "audit_request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/request.json",
+      "sha256": "f5cfbf698d6df7027e237b17ca0ad6cad8ee151ae4c711c574994919f7c5c364",
+      "bytes": 2543
+    },
+    "audit_summary": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/summary.json",
+      "sha256": "4a22c14c0458c4d0c2a0c1a0ef7917f8db3b6bddf360c3c9e5627be28f879109",
+      "bytes": 4947
+    },
+    "protocol": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_PRESSURE_INNOVATION_PROTOCOL_20260906_ZH.md",
+      "sha256": "8df7ee69e2ce7ae5d4cd04cd2debef9ae69d369bb6c3dff5aa817cbb37335fb3",
+      "bytes": 4409
+    },
+    "mechanism_review": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_REMAINING_MECHANISM_REVIEW_20260906_ZH.md",
+      "sha256": "614b0c207ff5f1986355062d652039d2065444da0f58b11d731eefb3598f3d7f",
+      "bytes": 20190
+    },
+    "script": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_pressure_innovation.py",
+      "sha256": "ec3f4d48c35ef39da3154fc0f56f3f00bed1eac5e233afc4e00bf3065c6e08e5",
+      "bytes": 16213
+    },
+    "teacher_csv": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/teacher_regression.csv",
+      "sha256": "8c37b1fe8f20d40a74f25872ef41d0fe176438b5ab5a11b60600de51bad07dbb",
+      "bytes": 3741403
+    },
+    "moments_npz": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/moments.npz",
+      "sha256": "1661d37ad2cb28848f6f6edecffb96f9f93c57ad50fcec8fdc7d36521ca75f07",
+      "bytes": 6558938
+    },
+    "producer_request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/request.json",
+      "sha256": "78dad3848bfe488dd77dbf73b65b3d2a288eea4afbfd29a93417cbef38b9345f",
+      "bytes": 5677
+    },
+    "archived_producer": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/sources/run_raev2_paired_bridge_pilot.py",
+      "sha256": "08ce50fbbf48793411bd37f885d208f5ec07114cdb5bbc59f72dc34012787df7",
+      "bytes": 26097
+    },
+    "archived_bridge": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/sources/raev2_paired_bridge.py",
+      "sha256": "cdb22b7e8e4c622f0ce70c8a59f88d35308d31e0b47c007be898470d881b6a6a",
+      "bytes": 9746
+    },
+    "per_time.csv": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/per_time.csv",
+      "sha256": "4e38f6134c48ba0195aea48821673444bbc0bd2ece054b464492f43446acf183",
+      "bytes": 23016
+    },
+    "channel_moments.npz": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/channel_moments.npz",
+      "sha256": "eadd5a80473e22fd7d67bcaba00589381e6c16d6c07cd730b4315e8fe043a499",
+      "bytes": 1362599
+    },
+    "gaussian_counterexample.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/gaussian_counterexample.json",
+      "sha256": "c846281a9626f49b7f7e1e4f9def17223bebba2e681769d5d8307e847530ca6c",
+      "bytes": 904
+    }
+  },
+  "rows": 10000,
+  "times": 100,
+  "channels_per_time": 1024,
+  "decimal_precision": 50,
+  "comparison_tolerance": {
+    "rtol": 2e-14,
+    "atol": 1e-18
+  },
+  "maximum_per_time_absolute_errors": {
+    "d2_W2_minus_Y2": 0.0,
+    "e2_R2_reconstructed": 8.673617379884035e-19,
+    "cross_twice_d2_minus_e2": 1.734723475976807e-18,
+    "channel_spatial_mean_residual_squared_mean": 0.0,
+    "Y_second_moment": 0.0,
+    "W_second_moment": 0.0
+  },
+  "equal_time_means": {
+    "d2_W2_minus_Y2": 3.078791506658254e-05,
+    "e2_R2_reconstructed": 0.0003369613020098068,
+    "cross_twice_d2_minus_e2": -0.00030617338694322434,
+    "channel_spatial_mean_residual_squared_mean": 1.8022721635233321e-06,
+    "Y_second_moment": 0.7800994902622768,
+    "W_second_moment": 0.7801302781773433
+  },
+  "channel_second_moment_arrays_bitwise_equal": true,
+  "channel_spatial_mean_arrays_bitwise_equal": true,
+  "gaussian_fid_decimal": "0.050510257216821901802715925294108608034052519343314",
+  "checks": {
+    "all_source_identities": true,
+    "full_time_coverage": true,
+    "all_four_teacher_labels_equal": true,
+    "source_moment_reconstruction": true,
+    "per_time_values": true,
+    "aggregate_values": true,
+    "all_sign_counts": true,
+    "fixed_gaussian_counterexample": true
+  },
+  "limitations": [
+    "Source FP32 residual tensors are absent; this independently checks stored scalars and moments, not the original CUDA residual arithmetic.",
+    "Source moments are aggregate statistics; original W/Y states are absent.",
+    "No population test, conditional mean/covariance estimate or FID claim."
+  ],
+  "calls": {
+    "GPU": 0,
+    "main_model": 0,
+    "auxiliary_model": 0,
+    "decoder": 0,
+    "training": 0,
+    "FID": 0
+  },
+  "wall_seconds_before_write": 0.21697810594923794,
+  "cpu_seconds_before_write": 0.36191492599999997
+}

@@ -1,0 +1,76 @@
+{
+  "protocol": "raev2_guidance_discrepancy_counterexample_check_v1",
+  "provenance": "Script body and stdout transcribed verbatim from the completed 90-digit CPU calculation in this agent turn; archival operation does not rerun it.",
+  "arithmetic": {
+    "package": "mpmath",
+    "decimal_digits": 90,
+    "package_version_at_execution": null,
+    "package_version_note": "Not recorded in the original execution."
+  },
+  "ve_example": {
+    "initial_conditional": "Uniform[0.9,1.1]",
+    "initial_unconditional": "0.5 Uniform[0.9,1.1] + 0.5 Uniform[-1.1,-0.9]",
+    "same_forward_kernel": "X_sigma=X_0+sigma*Normal(0,1)",
+    "query_x": "1",
+    "bound": "2.2/sigma^2",
+    "sigmas": [
+      ".2",
+      ".5",
+      "1",
+      "2",
+      "4"
+    ],
+    "score_gaps": [
+      "1.315855571594069691128228757767e-19",
+      "0.0029386578112107327952222494284073",
+      "0.23900940575495596561460270880205",
+      "0.18866200484900453478803108396691",
+      "0.058587431774956581593359939915661"
+    ],
+    "all_five_below_bound": true,
+    "implication": "The actual pointwise gap need not be monotone even when its valid bound decreases; this does not refute the bound or the paper-specific empirical average curves."
+  },
+  "projection_example": {
+    "direction": [
+      1,
+      0
+    ],
+    "correction": [
+      -2,
+      3
+    ],
+    "signed_coefficient": -2,
+    "norm_ratio": 2,
+    "orthogonal_component": [
+      0,
+      3
+    ],
+    "reconstruction_using_norm_ratio": [
+      2,
+      3
+    ]
+  },
+  "discrete_time_averaging_example": {
+    "update": "x <- x+0.5*omega*x",
+    "initial_state": 1,
+    "varying_omega": [
+      0,
+      2
+    ],
+    "varying_endpoint": "2.0",
+    "mean_constant_omega": 1,
+    "constant_endpoint": "2.25"
+  },
+  "original_execution_cost": {
+    "python_executable": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "python_wall_seconds": null,
+    "python_cpu_seconds": null,
+    "observed_exec_command_wall_seconds": 3.611110912,
+    "observed_wall_scope": "Tool-reported exec_command elapsed wall, including command startup. Not an isolated numerical-kernel measurement.",
+    "measurement_note": "Original inline calculation did not instrument Python CPU or internal wall time; these are unmeasured and not reconstructed by rerunning.",
+    "gpu_calls": 0,
+    "model_calls": 0
+  },
+  "reviewed_doc": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_DISCREPANCY_EVALUATION_20260906_ZH.md",
+  "doc_review": "Core bounds/counterexample/projection/trajectory distinctions agree with primary texts. C2FG Table 1 values 1.80->1.51 and interval 1.42->1.41 verified; Guidance Matters Table 8 CFG13.56/Z-Sampling17.32/e-CFG14.21 verified. This agent verifies the 90-digit component, not the parent's separately performed float64 run."
+}

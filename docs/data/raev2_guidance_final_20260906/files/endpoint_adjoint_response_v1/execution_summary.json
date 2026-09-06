@@ -1,0 +1,224 @@
+{
+  "complete": true,
+  "finished_at_utc": "2026-09-06T07:36:16.601118+00:00",
+  "driver_wall_seconds": 132.2663716499228,
+  "processes": [
+    {
+      "tag": "collect_rank0",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "collect",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "0,142"
+      ],
+      "pid": 3178999,
+      "started_at_utc": "2026-09-06T07:34:04.336158+00:00",
+      "finished_at_utc": "2026-09-06T07:35:15.628528+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 71.29243023414165,
+      "child_user_cpu_seconds": 60.411981,
+      "child_system_cpu_seconds": 9.160439,
+      "child_max_rss_bytes": 4815900672,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "collect_rank1",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "collect",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "285,428"
+      ],
+      "pid": 3179001,
+      "started_at_utc": "2026-09-06T07:34:04.339245+00:00",
+      "finished_at_utc": "2026-09-06T07:35:15.471892+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 71.13267978606746,
+      "child_user_cpu_seconds": 59.971876,
+      "child_system_cpu_seconds": 8.868193,
+      "child_max_rss_bytes": 4814348288,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "collect_rank2",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "collect",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "570,713"
+      ],
+      "pid": 3179003,
+      "started_at_utc": "2026-09-06T07:34:04.342181+00:00",
+      "finished_at_utc": "2026-09-06T07:35:14.360880+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 70.0187384521123,
+      "child_user_cpu_seconds": 58.999544,
+      "child_system_cpu_seconds": 8.856335,
+      "child_max_rss_bytes": 4796538880,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "collect_rank3",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "collect",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "856,999"
+      ],
+      "pid": 3179004,
+      "started_at_utc": "2026-09-06T07:34:04.343498+00:00",
+      "finished_at_utc": "2026-09-06T07:35:14.502010+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 70.15856643300503,
+      "child_user_cpu_seconds": 58.812583,
+      "child_system_cpu_seconds": 8.638492,
+      "child_max_rss_bytes": 4773539840,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "finalize",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "finalize",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1"
+      ],
+      "pid": 3183999,
+      "started_at_utc": "2026-09-06T07:35:15.630803+00:00",
+      "finished_at_utc": "2026-09-06T07:35:20.054624+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 4.423859914997593,
+      "child_user_cpu_seconds": 3.8238820000000002,
+      "child_system_cpu_seconds": 0.900914,
+      "child_max_rss_bytes": 632401920,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "replay_rank0",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "replay",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "0,142"
+      ],
+      "pid": 3185513,
+      "started_at_utc": "2026-09-06T07:35:20.056138+00:00",
+      "finished_at_utc": "2026-09-06T07:36:07.822983+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 47.766885087126866,
+      "child_user_cpu_seconds": 41.750745,
+      "child_system_cpu_seconds": 7.7102450000000005,
+      "child_max_rss_bytes": 4814196736,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "replay_rank1",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "replay",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "285,428"
+      ],
+      "pid": 3185516,
+      "started_at_utc": "2026-09-06T07:35:20.058233+00:00",
+      "finished_at_utc": "2026-09-06T07:36:09.343911+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 49.285716341109946,
+      "child_user_cpu_seconds": 42.756369,
+      "child_system_cpu_seconds": 7.837917,
+      "child_max_rss_bytes": 4792000512,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "replay_rank2",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "replay",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "570,713"
+      ],
+      "pid": 3185517,
+      "started_at_utc": "2026-09-06T07:35:20.059218+00:00",
+      "finished_at_utc": "2026-09-06T07:36:12.988207+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 52.929028681945056,
+      "child_user_cpu_seconds": 46.02245,
+      "child_system_cpu_seconds": 8.218318,
+      "child_max_rss_bytes": 4818391040,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "replay_rank3",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "replay",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1",
+        "--ids",
+        "856,999"
+      ],
+      "pid": 3185518,
+      "started_at_utc": "2026-09-06T07:35:20.060207+00:00",
+      "finished_at_utc": "2026-09-06T07:36:09.412731+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 49.35256450204179,
+      "child_user_cpu_seconds": 42.896049,
+      "child_system_cpu_seconds": 7.792005,
+      "child_max_rss_bytes": 4774551552,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    },
+    {
+      "tag": "summarize",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/audit_raev2_endpoint_adjoint_response.py",
+        "--phase",
+        "summarize",
+        "--output-root",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1"
+      ],
+      "pid": 3187898,
+      "started_at_utc": "2026-09-06T07:36:12.990207+00:00",
+      "finished_at_utc": "2026-09-06T07:36:16.600481+00:00",
+      "exit_code": 0,
+      "outer_wall_seconds": 3.6103092841804028,
+      "child_user_cpu_seconds": 3.1790950000000002,
+      "child_system_cpu_seconds": 0.733406,
+      "child_max_rss_bytes": 628084736,
+      "timing_scope": "Immediately before Popen through wait4; includes imports and interpreter exit."
+    }
+  ],
+  "excludes": "CPU prepare executed before driver; final summary write and driver exit."
+}

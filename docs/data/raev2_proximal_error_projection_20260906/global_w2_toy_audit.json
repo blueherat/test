@@ -1,0 +1,1917 @@
+{
+  "status": "passed",
+  "scope": "CPU population scalar proximal theorem; no strength/window search",
+  "non_gaussian_discrete": {
+    "target_mean": [
+      2.3,
+      1.2000000000000002
+    ],
+    "target_energy": 13.3,
+    "coupling_cross": 37.658,
+    "optimal_cross": 41.60000000000001,
+    "gain": 0.35317860746720486,
+    "optimal_ray_gain": 0.31719405261151357,
+    "w2_squared_before": 61.25,
+    "w2_squared_after": 0.2745519972385171,
+    "coupling_is_optimal": false
+  },
+  "gaussian_bridge": {
+    "oracle": false,
+    "results": [
+      {
+        "condition": "ordinary",
+        "w2_squared": 0.9176232381825464,
+        "w2_bound": 3.495205935397338,
+        "mean": [
+          1.3967681395366822,
+          -1.3519501699697556
+        ],
+        "variance": [
+          1.4807600525827742,
+          4.111932384539252
+        ]
+      },
+      {
+        "condition": "global_proximal",
+        "w2_squared": 0.028955062577940893,
+        "w2_bound": 2.7121084939228406,
+        "mean": [
+          1.115549753556764,
+          -1.0279865095581164
+        ],
+        "variance": [
+          0.6502212489149231,
+          1.8056036870155696
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "time": 1.0,
+        "next_time": 0.9987389659520808,
+        "gain": 0.999370679646067,
+        "teacher_risk_before": 5.0091516401451486e-06,
+        "teacher_risk_after": 4.21275429296486e-06,
+        "true_input_w2_squared_before": 1.0314285399104506e-06,
+        "true_input_w2_squared_after": 2.3753445432816989e-07
+      },
+      {
+        "time": 0.9987389659520808,
+        "next_time": 0.9974554707379135,
+        "gain": 0.9993590990427283,
+        "teacher_risk_before": 5.197421464764318e-06,
+        "teacher_risk_after": 4.3734168766462744e-06,
+        "true_input_w2_squared_before": 1.066294409213242e-06,
+        "true_input_w2_squared_after": 2.44937464977113e-07
+      },
+      {
+        "time": 0.9974554707379135,
+        "next_time": 0.9961489088575096,
+        "gain": 0.9993471972135671,
+        "teacher_risk_before": 5.394625784305163e-06,
+        "teacher_risk_after": 4.541805385116504e-06,
+        "true_input_w2_squared_before": 1.1026452564344424e-06,
+        "true_input_w2_squared_after": 2.526266742464145e-07
+      },
+      {
+        "time": 0.9961489088575096,
+        "next_time": 0.9948186528497409,
+        "gain": 0.9993349622429208,
+        "teacher_risk_before": 5.601278322497905e-06,
+        "teacher_risk_after": 4.718369388090338e-06,
+        "true_input_w2_squared_before": 1.1405575937040169e-06,
+        "true_input_w2_squared_after": 2.606152071926715e-07
+      },
+      {
+        "time": 0.9948186528497409,
+        "next_time": 0.9934640522875817,
+        "gain": 0.9993223816622832,
+        "teacher_risk_before": 5.817927583251503e-06,
+        "teacher_risk_after": 4.903589221783022e-06,
+        "true_input_w2_squared_before": 1.1801125716637273e-06,
+        "true_input_w2_squared_after": 2.689168776548456e-07
+      },
+      {
+        "time": 0.9934640522875817,
+        "next_time": 0.992084432717678,
+        "gain": 0.9993094424195963,
+        "teacher_risk_before": 6.045159567147351e-06,
+        "teacher_risk_after": 5.097978410972814e-06,
+        "true_input_w2_squared_before": 1.221396302319988e-06,
+        "true_input_w2_squared_after": 2.775462326631839e-07
+      },
+      {
+        "time": 0.992084432717678,
+        "next_time": 0.9906790945406124,
+        "gain": 0.9992961308465659,
+        "teacher_risk_before": 6.283600726408878e-06,
+        "teacher_risk_after": 5.302086317549026e-06,
+        "true_input_w2_squared_before": 1.2645002094302527e-06,
+        "true_input_w2_squared_after": 2.865185901868017e-07
+      },
+      {
+        "time": 0.9906790945406124,
+        "next_time": 0.989247311827957,
+        "gain": 0.9992824326238495,
+        "teacher_risk_before": 6.533921180107427e-06,
+        "teacher_risk_after": 5.51650100533152e-06,
+        "true_input_w2_squared_before": 1.309521404202485e-06,
+        "true_input_w2_squared_after": 2.95850088427585e-07
+      },
+      {
+        "time": 0.989247311827957,
+        "next_time": 0.9877883310719132,
+        "gain": 0.9992683327439753,
+        "teacher_risk_before": 6.79683823179289e-06,
+        "teacher_risk_after": 5.741852398433167e-06,
+        "true_input_w2_squared_before": 1.356563096965857e-06,
+        "true_input_w2_squared_after": 3.0555773467000336e-07
+      },
+      {
+        "time": 0.9877883310719132,
+        "next_time": 0.9863013698630138,
+        "gain": 0.999253815471809,
+        "teacher_risk_before": 7.07312019354589e-06,
+        "teacher_risk_after": 5.978815699858586e-06,
+        "true_input_w2_squared_before": 1.4057350341545316e-06,
+        "true_input_w2_squared_after": 3.1565945546319085e-07
+      },
+      {
+        "time": 0.9863013698630138,
+        "next_time": 0.9847856154910096,
+        "gain": 0.9992388643023968,
+        "teacher_risk_before": 7.3635905732949425e-06,
+        "teacher_risk_after": 6.228115145390234e-06,
+        "true_input_w2_squared_before": 1.4571539797003652e-06,
+        "true_input_w2_squared_after": 3.261741516880079e-07
+      },
+      {
+        "time": 0.9847856154910096,
+        "next_time": 0.9832402234636871,
+        "gain": 0.9992234619159832,
+        "teacher_risk_before": 7.669132642718068e-06,
+        "teacher_risk_after": 6.490528103864079e-06,
+        "true_input_w2_squared_before": 1.5109442297323028e-06,
+        "true_input_w2_squared_after": 3.3712175850908466e-07
+      },
+      {
+        "time": 0.9832402234636871,
+        "next_time": 0.9816643159379408,
+        "gain": 0.9992075901299927,
+        "teacher_risk_before": 7.990694444348634e-06,
+        "teacher_risk_after": 6.7668895660233375e-06,
+        "true_input_w2_squared_before": 1.5672381747933173e-06,
+        "true_input_w2_squared_after": 3.485233071032212e-07
+      },
+      {
+        "time": 0.9816643159379408,
+        "next_time": 0.98005698005698,
+        "gain": 0.9991912298477443,
+        "teacher_risk_before": 8.329294262754416e-06,
+        "teacher_risk_after": 7.058097064138735e-06,
+        "true_input_w2_squared_before": 1.6261769077985377e-06,
+        "true_input_w2_squared_after": 3.604009903845906e-07
+      },
+      {
+        "time": 0.98005698005698,
+        "next_time": 0.9784172661870503,
+        "gain": 0.9991743610036502,
+        "teacher_risk_before": 8.6860266295119e-06,
+        "teacher_risk_after": 7.3651160663601445e-06,
+        "true_input_w2_squared_before": 1.6879108803991016e-06,
+        "true_input_w2_squared_after": 3.7277823494719087e-07
+      },
+      {
+        "time": 0.9784172661870503,
+        "next_time": 0.9767441860465116,
+        "gain": 0.9991569625046274,
+        "teacher_risk_before": 9.06206890816108e-06,
+        "teacher_risk_after": 7.688985900422551e-06,
+        "true_input_w2_squared_before": 1.7526006255152993e-06,
+        "true_input_w2_squared_after": 3.856797743395646e-07
+      },
+      {
+        "time": 0.9767441860465116,
+        "next_time": 0.9750367107195301,
+        "gain": 0.9991390121674283,
+        "teacher_risk_before": 9.458688520425085e-06,
+        "teacher_risk_after": 8.030826261773427e-06,
+        "true_input_w2_squared_before": 1.8204175313840665e-06,
+        "true_input_w2_squared_after": 3.9913173122130274e-07
+      },
+      {
+        "time": 0.9750367107195301,
+        "next_time": 0.9732937685459941,
+        "gain": 0.9991204866515768,
+        "teacher_risk_before": 9.877250890522049e-06,
+        "teacher_risk_after": 8.391844365629453e-06,
+        "true_input_w2_squared_before": 1.8915446915457323e-06,
+        "true_input_w2_squared_after": 4.131617021840839e-07
+      },
+      {
+        "time": 0.9732937685459941,
+        "next_time": 0.9715142428785608,
+        "gain": 0.9991013613875612,
+        "teacher_risk_before": 1.031922818883757e-05,
+        "teacher_risk_after": 8.773342836221332e-06,
+        "true_input_w2_squared_before": 1.966177824996862e-06,
+        "true_input_w2_squared_after": 4.277988452372483e-07
+      },
+      {
+        "time": 0.9715142428785608,
+        "next_time": 0.9696969696969697,
+        "gain": 0.9990816104999115,
+        "teacher_risk_before": 1.0786208950452902e-05,
+        "teacher_risk_after": 9.17672837852379e-06,
+        "true_input_w2_squared_before": 2.0445262833845845e-06,
+        "true_input_w2_squared_after": 4.430739815042273e-07
+      },
+      {
+        "time": 0.9696969696969697,
+        "next_time": 0.9678407350689128,
+        "gain": 0.9990612067247582,
+        "teacher_risk_before": 1.1279908685324358e-05,
+        "teacher_risk_after": 9.603521367917978e-06,
+        "true_input_w2_squared_before": 2.1268141479069413e-06,
+        "true_input_w2_squared_after": 4.5901969336625825e-07
+      },
+      {
+        "time": 0.9678407350689128,
+        "next_time": 0.9659442724458205,
+        "gain": 0.9990401213214288,
+        "teacher_risk_before": 1.1802181583586702e-05,
+        "teacher_risk_after": 1.005536641685012e-05,
+        "true_input_w2_squared_before": 2.2132814199160578e-06,
+        "true_input_w2_squared_after": 4.7567043459650904e-07
+      },
+      {
+        "time": 0.9659442724458205,
+        "next_time": 0.9640062597809076,
+        "gain": 0.9990183239776083,
+        "teacher_risk_before": 1.2355033441657781e-05,
+        "teacher_risk_after": 1.053404407436176e-05,
+        "true_input_w2_squared_before": 2.304185338974918e-06,
+        "true_input_w2_squared_after": 4.930626475996291e-07
+      },
+      {
+        "time": 0.9640062597809076,
+        "next_time": 0.9620253164556962,
+        "gain": 0.9989957827075447,
+        "teacher_risk_before": 1.2940635961022906e-05,
+        "teacher_risk_after": 1.1041483761520254e-05,
+        "true_input_w2_squared_before": 2.3998017986137654e-06,
+        "true_input_w2_squared_after": 5.112348864244609e-07
+      },
+      {
+        "time": 0.9620253164556962,
+        "next_time": 0.96,
+        "gain": 0.998972463742734,
+        "teacher_risk_before": 1.356134256802477e-05,
+        "teacher_risk_after": 1.1579778105730298e-05,
+        "true_input_w2_squared_before": 2.5004269179618177e-06,
+        "true_input_w2_squared_after": 5.30227946882178e-07
+      },
+      {
+        "time": 0.96,
+        "next_time": 0.9579288025889968,
+        "gain": 0.99894833141448,
+        "teacher_risk_before": 1.4219705954943151e-05,
+        "teacher_risk_after": 1.2151198836463095e-05,
+        "true_input_w2_squared_before": 2.606378751046634e-06,
+        "true_input_w2_squared_after": 5.500850046580297e-07
+      },
+      {
+        "time": 0.9579288025889968,
+        "next_time": 0.9558101472995091,
+        "gain": 0.9989233480276624,
+        "teacher_risk_before": 1.4918497532434571e-05,
+        "teacher_risk_after": 1.275821443869063e-05,
+        "true_input_w2_squared_before": 2.7179991688441874e-06,
+        "true_input_w2_squared_after": 5.708517658575829e-07
+      },
+      {
+        "time": 0.9558101472995091,
+        "next_time": 0.9536423841059603,
+        "gain": 0.9988974737249918,
+        "teacher_risk_before": 1.5660729038469157e-05,
+        "teacher_risk_after": 1.3403509766529709e-05,
+        "true_input_w2_squared_before": 2.8356559131914594e-06,
+        "true_input_w2_squared_after": 5.925766215497674e-07
+      },
+      {
+        "time": 0.9536423841059603,
+        "next_time": 0.9514237855946398,
+        "gain": 0.9988706663409822,
+        "teacher_risk_before": 1.6449676568885963e-05,
+        "teacher_risk_after": 1.409000788621384e-05,
+        "true_input_w2_squared_before": 2.9597448647500357e-06,
+        "true_input_w2_squared_after": 6.153108147444186e-07
+      },
+      {
+        "time": 0.9514237855946398,
+        "next_time": 0.9491525423728814,
+        "gain": 0.9988428812447799,
+        "teacher_risk_before": 1.7288907335544224e-05,
+        "teacher_risk_after": 1.4820894401079698e-05,
+        "true_input_w2_squared_before": 3.09069253034977e-06,
+        "true_input_w2_squared_after": 6.391086166956939e-07
+      },
+      {
+        "time": 0.9491525423728814,
+        "next_time": 0.9468267581475128,
+        "gain": 0.9988140711709448,
+        "teacher_risk_before": 1.8182309480252457e-05,
+        "teacher_risk_after": 1.5599644597852347e-05,
+        "true_input_w2_squared_before": 3.2289587834632982e-06,
+        "true_input_w2_squared_after": 6.640275107550053e-07
+      },
+      {
+        "time": 0.9468267581475128,
+        "next_time": 0.9444444444444444,
+        "gain": 0.9987841860371859,
+        "teacher_risk_before": 1.9134125371689237e-05,
+        "teacher_risk_after": 1.643005376639195e-05,
+        "true_input_w2_squared_before": 3.3750398831244866e-06,
+        "true_input_w2_squared_after": 6.901283944316106e-07
+      },
+      {
+        "time": 0.9444444444444444,
+        "next_time": 0.9420035149384886,
+        "gain": 0.9987531727479748,
+        "teacher_risk_before": 2.0148988802759504e-05,
+        "teacher_risk_after": 1.731627111389855e-05,
+        "true_input_w2_squared_before": 3.5294718037093276e-06,
+        "true_input_w2_squared_after": 7.174757818972921e-07
+      },
+      {
+        "time": 0.9420035149384886,
+        "next_time": 0.9395017793594306,
+        "gain": 0.9987209749828773,
+        "teacher_risk_before": 2.1231966615076203e-05,
+        "teacher_risk_after": 1.82628377434213e-05,
+        "true_input_w2_squared_before": 3.6928339097741514e-06,
+        "true_input_w2_squared_after": 7.461380278073193e-07
+      },
+      {
+        "time": 0.9395017793594306,
+        "next_time": 0.936936936936937,
+        "gain": 0.998687532968348,
+        "teacher_risk_before": 2.238860534786724e-05,
+        "teacher_risk_after": 1.9274729243790034e-05,
+        "true_input_w2_squared_before": 3.865753026133234e-06,
+        "true_input_w2_squared_after": 7.761875551182129e-07
+      },
+      {
+        "time": 0.936936936936937,
+        "next_time": 0.9343065693430657,
+        "gain": 0.9986527832316326,
+        "teacher_risk_before": 2.3624983569892066e-05,
+        "teacher_risk_after": 2.0357403519799533e-05,
+        "true_input_w2_squared_before": 4.048907936038404e-06,
+        "true_input_w2_squared_after": 8.077011042217919e-07
+      },
+      {
+        "time": 0.9343065693430657,
+        "next_time": 0.9316081330868762,
+        "gain": 0.9986166583353261,
+        "teacher_risk_before": 2.494777068484666e-05,
+        "teacher_risk_after": 2.1516854572745103e-05,
+        "true_input_w2_squared_before": 4.243034366968601e-06,
+        "true_input_w2_squared_after": 8.407599794146847e-07
+      },
+      {
+        "time": 0.9316081330868762,
+        "next_time": 0.9288389513108615,
+        "gain": 0.9985790865910151,
+        "teacher_risk_before": 2.6364293098435354e-05,
+        "teacher_risk_after": 2.2759673065753105e-05,
+        "true_input_w2_squared_before": 4.448930524425521e-06,
+        "true_input_w2_squared_after": 8.754503251218182e-07
+      },
+      {
+        "time": 0.9288389513108615,
+        "next_time": 0.9259962049335864,
+        "gain": 0.9985399917503391,
+        "teacher_risk_before": 2.7882608767182404e-05,
+        "teacher_risk_after": 2.4093114625145517e-05,
+        "true_input_w2_squared_before": 4.667463239460545e-06,
+        "true_input_w2_squared_after": 9.118634012317273e-07
+      },
+      {
+        "time": 0.9259962049335864,
+        "next_time": 0.923076923076923,
+        "gain": 0.9984992926716727,
+        "teacher_risk_before": 2.951159133157688e-05,
+        "teacher_risk_after": 2.552517697118617e-05,
+        "true_input_w2_squared_before": 4.8995748027635955e-06,
+        "true_input_w2_squared_after": 9.500958766395229e-07
+      },
+      {
+        "time": 0.923076923076923,
+        "next_time": 0.9200779727095516,
+        "gain": 0.9984569029605349,
+        "teacher_risk_before": 3.126102519646068e-05,
+        "teacher_risk_after": 2.7064687169620072e-05,
+        "true_input_w2_squared_before": 5.146290586566238e-06,
+        "true_input_w2_squared_after": 9.90250129895287e-07
+      },
+      {
+        "time": 0.9200779727095516,
+        "next_time": 0.9169960474308301,
+        "gain": 0.9984127305817114,
+        "teacher_risk_before": 3.3141713149831276e-05,
+        "teacher_risk_after": 2.872140046683569e-05,
+        "true_input_w2_squared_before": 5.4087275307423965e-06,
+        "true_input_w2_squared_after": 1.0324345680601255e-06
+      },
+      {
+        "time": 0.9169960474308301,
+        "next_time": 0.9138276553106213,
+        "gain": 0.9983666774409687,
+        "teacher_risk_before": 3.516559836791444e-05,
+        "teacher_risk_after": 3.0506112423722698e-05,
+        "true_input_w2_squared_before": 5.6881036347711245e-06,
+        "true_input_w2_squared_after": 1.0767639482267555e-06
+      },
+      {
+        "time": 0.9138276553106213,
+        "next_time": 0.910569105691057,
+        "gain": 0.9983186389341594,
+        "teacher_risk_before": 3.734590294079965e-05,
+        "teacher_risk_after": 3.243078634174168e-05,
+        "true_input_w2_squared_before": 5.985748568804183e-06,
+        "true_input_w2_squared_after": 1.1233597123627703e-06
+      },
+      {
+        "time": 0.910569105691057,
+        "next_time": 0.9072164948453608,
+        "gain": 0.9982685034614202,
+        "teacher_risk_before": 3.9697285425521756e-05,
+        "teacher_risk_after": 3.450869830823322e-05,
+        "true_input_w2_squared_before": 6.30311555704921e-06,
+        "true_input_w2_squared_after": 1.17235032970342e-06
+      },
+      {
+        "time": 0.9072164948453608,
+        "next_time": 0.9037656903765691,
+        "gain": 0.9982161519041365,
+        "teacher_risk_before": 4.223602032338292e-05,
+        "teacher_risk_after": 3.6754602560140626e-05,
+        "true_input_w2_squared_before": 6.641794717765492e-06,
+        "true_input_w2_squared_after": 1.2238716458057297e-06
+      },
+      {
+        "time": 0.9037656903765691,
+        "next_time": 0.9002123142250531,
+        "gain": 0.998161457062309,
+        "teacher_risk_before": 4.4980202885014364e-05,
+        "teacher_risk_after": 3.918492033028187e-05,
+        "true_input_w2_squared_before": 7.003528043281193e-06,
+        "true_input_w2_squared_after": 1.2780672351553335e-06
+      },
+      {
+        "time": 0.9002123142250531,
+        "next_time": 0.8965517241379309,
+        "gain": 0.9981042830500066,
+        "teacher_risk_before": 4.794998321600019e-05,
+        "teacher_risk_after": 4.181795588520387e-05,
+        "true_input_w2_squared_before": 7.390226271386524e-06,
+        "true_input_w2_squared_after": 1.3350887595464656e-06
+      },
+      {
+        "time": 0.8965517241379309,
+        "next_time": 0.8927789934354485,
+        "gain": 0.9980444846466829,
+        "teacher_risk_before": 5.116783433978256e-05,
+        "teacher_risk_after": 4.467414409781156e-05,
+        "true_input_w2_squared_before": 7.803987899013265e-06,
+        "true_input_w2_squared_after": 1.395096324241507e-06
+      },
+      {
+        "time": 0.8927789934354485,
+        "next_time": 0.8888888888888888,
+        "gain": 0.9979819066023158,
+        "teacher_risk_before": 5.465885970457052e-05,
+        "teacher_risk_after": 4.777633465691267e-05,
+        "true_input_w2_squared_before": 8.247120657944862e-06,
+        "true_input_w2_squared_after": 1.4582588341305325e-06
+      },
+      {
+        "time": 0.8888888888888888,
+        "next_time": 0.8848758465011287,
+        "gain": 0.9979163828946357,
+        "teacher_risk_before": 5.845114655578243e-05,
+        "teacher_risk_after": 5.1150118931975186e-05,
+        "true_input_w2_squared_before": 8.722165814489813e-06,
+        "true_input_w2_squared_after": 1.5247543454499635e-06
+      },
+      {
+        "time": 0.8848758465011287,
+        "next_time": 0.8807339449541285,
+        "gain": 0.9978477359371478,
+        "teacher_risk_before": 6.257617277860561e-05,
+        "teacher_risk_after": 5.482420656965914e-05,
+        "true_input_w2_squared_before": 9.2319257185558e-06,
+        "true_input_w2_squared_after": 1.5947704161689558e-06
+      },
+      {
+        "time": 0.8807339449541285,
+        "next_time": 0.8764568764568764,
+        "gain": 0.9977757757372953,
+        "teacher_risk_before": 6.706927617194935e-05,
+        "teacher_risk_after": 5.883086020430639e-05,
+        "true_input_w2_squared_before": 9.77949509239906e-06,
+        "true_input_w2_squared_after": 1.6685044457176446e-06
+      },
+      {
+        "time": 0.8764568764568764,
+        "next_time": 0.8720379146919431,
+        "gain": 0.997700299004973,
+        "teacher_risk_before": 7.197019675642125e-05,
+        "teacher_risk_after": 6.320639818113705e-05,
+        "true_input_w2_squared_before": 1.0368296640361763e-05,
+        "true_input_w2_squared_after": 1.7461640160476577e-06
+      },
+      {
+        "time": 0.8720379146919431,
+        "next_time": 0.8674698795180723,
+        "gain": 0.9976210882128004,
+        "teacher_risk_before": 7.732370470048266e-05,
+        "teacher_risk_after": 6.799177706007242e-05,
+        "true_input_w2_squared_before": 1.1002121671488396e-05,
+        "true_input_w2_squared_after": 1.8279672269194691e-06
+      },
+      {
+        "time": 0.8674698795180723,
+        "next_time": 0.8627450980392156,
+        "gain": 0.9975379106110895,
+        "teacher_risk_before": 8.318032878662507e-05,
+        "teacher_risk_after": 7.323326784103301e-05,
+        "true_input_w2_squared_before": 1.168517652594403e-05,
+        "true_input_w2_squared_after": 1.9141430360747336e-06
+      },
+      {
+        "time": 0.8627450980392156,
+        "next_time": 0.85785536159601,
+        "gain": 0.997450517202494,
+        "teacher_risk_before": 8.959720318602038e-05,
+        "teacher_risk_after": 7.898324252231248e-05,
+        "true_input_w2_squared_before": 1.2422135784007082e-05,
+        "true_input_w2_squared_after": 2.0049316269421524e-06
+      },
+      {
+        "time": 0.85785536159601,
+        "next_time": 0.8527918781725888,
+        "gain": 0.9973586416839125,
+        "teacher_risk_before": 9.663905372558901e-05,
+        "teacher_risk_after": 8.530109080417958e-05,
+        "true_input_w2_squared_before": 1.3218203368303705e-05,
+        "true_input_w2_squared_after": 2.1005848038768704e-06
+      },
+      {
+        "time": 0.8527918781725888,
+        "next_time": 0.8475452196382429,
+        "gain": 0.9972619993665397,
+        "teacher_risk_before": 0.00010437934891971423,
+        "teacher_risk_after": 9.225429056280987e-05,
+        "true_input_w2_squared_before": 1.4079182912407617e-05,
+        "true_input_w2_squared_after": 2.20136646733593e-06
+      },
+      {
+        "time": 0.8475452196382429,
+        "next_time": 0.8421052631578947,
+        "gain": 0.997160286089102,
+        "teacher_risk_before": 0.00011290164601973629,
+        "teacher_risk_after": 9.991966036970723e-05,
+        "true_input_w2_squared_before": 1.501155901273421e-05,
+        "true_input_w2_squared_after": 2.3075532049610104e-06
+      },
+      {
+        "time": 0.8421052631578947,
+        "next_time": 0.8364611260053619,
+        "gain": 0.9970531771445058,
+        "teacher_risk_before": 0.00012230116833000793,
+        "teacher_risk_after": 0.0001083848279517241,
+        "true_input_w2_squared_before": 1.602259130351058e-05,
+        "true_input_w2_squared_after": 2.4194350651818297e-06
+      },
+      {
+        "time": 0.8364611260053619,
+        "next_time": 0.8306010928961748,
+        "gain": 0.9969403262464536,
+        "teacher_risk_before": 0.00013268665729082585,
+        "teacher_risk_after": 0.00011774995521829368,
+        "true_input_w2_squared_before": 1.7120423732475132e-05,
+        "true_input_w2_squared_after": 2.5373166319120344e-06
+      },
+      {
+        "time": 0.8306010928961748,
+        "next_time": 0.8245125348189415,
+        "gain": 0.9968213645703088,
+        "teacher_risk_before": 0.00014418255163217708,
+        "teacher_risk_after": 0.00012812976871412474,
+        "true_input_w2_squared_before": 1.8314211865266827e-05,
+        "true_input_w2_squared_after": 2.6615185113598727e-06
+      },
+      {
+        "time": 0.8245125348189415,
+        "next_time": 0.8181818181818181,
+        "gain": 0.9966958999116843,
+        "teacher_risk_before": 0.0001569315566003482,
+        "teacher_risk_after": 0.00013965595427389843,
+        "true_input_w2_squared_before": 1.961427172147978e-05,
+        "true_input_w2_squared_after": 2.7923794485573694e-06
+      },
+      {
+        "time": 0.8181818181818181,
+        "next_time": 0.8115942028985508,
+        "gain": 0.9965635160170345,
+        "teacher_risk_before": 0.00017109767920775454,
+        "teacher_risk_after": 0.00015247998669964957,
+        "true_input_w2_squared_before": 2.1032254405639605e-05,
+        "true_input_w2_squared_after": 2.930259326738849e-06
+      },
+      {
+        "time": 0.8115942028985508,
+        "next_time": 0.8047337278106509,
+        "gain": 0.9964237721529143,
+        "teacher_risk_before": 0.00018686982128190976,
+        "teacher_risk_after": 0.00016677647991336642,
+        "true_input_w2_squared_before": 2.2581351778239167e-05,
+        "true_input_w2_squared_after": 3.075543408392889e-06
+      },
+      {
+        "time": 0.8047337278106509,
+        "next_time": 0.797583081570997,
+        "gain": 0.9962762029943015,
+        "teacher_risk_before": 0.00020446604128565582,
+        "teacher_risk_after": 0.00018274716076049913,
+        "true_input_w2_squared_before": 2.4276539709155998e-05,
+        "true_input_w2_squared_after": 3.228648310038551e-06
+      },
+      {
+        "time": 0.797583081570997,
+        "next_time": 0.7901234567901234,
+        "gain": 0.996120318926959,
+        "teacher_risk_before": 0.0002241386193242434,
+        "teacher_risk_after": 0.00020062559120770374,
+        "true_input_w2_squared_before": 2.6134867034954823e-05,
+        "true_input_w2_squared_after": 3.3900303280098854e-06
+      },
+      {
+        "time": 0.7901234567901234,
+        "next_time": 0.7823343848580442,
+        "gain": 0.9959556068731492,
+        "teacher_risk_before": 0.0002461800883448717,
+        "teacher_risk_after": 0.00022068278983278233,
+        "true_input_w2_squared_before": 2.8175800444341093e-05,
+        "true_input_w2_squared_after": 3.5601969754495144e-06
+      },
+      {
+        "time": 0.7823343848580442,
+        "next_time": 0.7741935483870966,
+        "gain": 0.9957815317622976,
+        "teacher_risk_before": 0.00027093042944814627,
+        "teacher_risk_after": 0.0002432339353086732,
+        "true_input_w2_squared_before": 3.0421638227640102e-05,
+        "true_input_w2_squared_after": 3.739722784779076e-06
+      },
+      {
+        "time": 0.7741935483870966,
+        "next_time": 0.7656765676567657,
+        "gain": 0.9955975387754056,
+        "teacher_risk_before": 0.00029878567193497574,
+        "teacher_risk_after": 0.00026864637318269047,
+        "true_input_w2_squared_before": 3.2898009393989014e-05,
+        "true_input_w2_squared_after": 3.9292707652016645e-06
+      },
+      {
+        "time": 0.7656765676567657,
+        "next_time": 0.7567567567567568,
+        "gain": 0.9954030564894291,
+        "teacher_risk_before": 0.0003302081910332433,
+        "teacher_risk_after": 0.0002973491941937745,
+        "true_input_w2_squared_before": 3.5634479351731585e-05,
+        "true_input_w2_squared_after": 4.12962122453564e-06
+      },
+      {
+        "time": 0.7567567567567568,
+        "next_time": 0.7474048442906575,
+        "gain": 0.9951975010283302,
+        "teacher_risk_before": 0.0003657390604390187,
+        "teacher_risk_after": 0.0003298447093578183,
+        "true_input_w2_squared_before": 3.866528967577665e-05,
+        "true_input_w2_squared_after": 4.341710042155e-06
+      },
+      {
+        "time": 0.7474048442906575,
+        "next_time": 0.7375886524822695,
+        "gain": 0.9949802812806299,
+        "teacher_risk_before": 0.00040601289590380674,
+        "teacher_risk_after": 0.0003667222164227546,
+        "true_input_w2_squared_before": 4.2030267951798095e-05,
+        "true_input_w2_squared_after": 4.5666788817122494e-06
+      },
+      {
+        "time": 0.7375886524822695,
+        "next_time": 0.7272727272727273,
+        "gain": 0.9947508051541549,
+        "teacher_risk_before": 0.0004517757238207132,
+        "teacher_risk_after": 0.0004086745367799516,
+        "true_input_w2_squared_before": 4.5775955305416005e-05,
+        "true_input_w2_squared_after": 4.805940156948907e-06
+      },
+      {
+        "time": 0.7272727272727273,
+        "next_time": 0.7164179104477613,
+        "gain": 0.9945084866866454,
+        "teacher_risk_before": 0.0005039065302754331,
+        "teacher_risk_after": 0.00045651790509326773,
+        "true_input_w2_squared_before": 4.995701510779327e-05,
+        "true_input_w2_squared_after": 5.061259731320433e-06
+      },
+      {
+        "time": 0.7164179104477613,
+        "next_time": 0.7049808429118773,
+        "gain": 0.9942527535884286,
+        "teacher_risk_before": 0.0005634432981524995,
+        "teacher_risk_after": 0.0005112159203868316,
+        "true_input_w2_squared_before": 5.4638008625929047e-05,
+        "true_input_w2_squared_after": 5.334860234462724e-06
+      },
+      {
+        "time": 0.7049808429118773,
+        "next_time": 0.6929133858267715,
+        "gain": 0.9939830544248777,
+        "teacher_risk_before": 0.000631614532178304,
+        "teacher_risk_after": 0.0005739084233682412,
+        "true_input_w2_squared_before": 5.98956545649898e-05,
+        "true_input_w2_squared_after": 5.6295471262401975e-06
+      },
+      {
+        "time": 0.6929133858267715,
+        "next_time": 0.680161943319838,
+        "gain": 0.9936988641081334,
+        "teacher_risk_before": 0.0007098775173850491,
+        "teacher_risk_after": 0.0006459463583605718,
+        "true_input_w2_squared_before": 6.58217340614442e-05,
+        "true_input_w2_squared_after": 5.9488580501643185e-06
+      },
+      {
+        "time": 0.680161943319838,
+        "next_time": 0.6666666666666666,
+        "gain": 0.9933996856092268,
+        "teacher_risk_before": 0.0007999648742100796,
+        "teacher_risk_after": 0.0007289339206884016,
+        "true_input_w2_squared_before": 7.252686694148025e-05,
+        "true_input_w2_squared_after": 6.297232967966693e-06
+      },
+      {
+        "time": 0.6666666666666666,
+        "next_time": 0.6523605150214592,
+        "gain": 0.9930850447701827,
+        "teacher_risk_before": 0.0009039413891227532,
+        "teacher_risk_after": 0.000824779595836489,
+        "true_input_w2_squared_before": 8.014547911283643e-05,
+        "true_input_w2_squared_after": 6.680197662589649e-06
+      },
+      {
+        "time": 0.6523605150214592,
+        "next_time": 0.6371681415929202,
+        "gain": 0.9927544737432691,
+        "teacher_risk_before": 0.0010242736488375037,
+        "teacher_risk_after": 0.0009357580828441847,
+        "true_input_w2_squared_before": 8.88424204528171e-05,
+        "true_input_w2_squared_after": 7.104545985736621e-06
+      },
+      {
+        "time": 0.6371681415929202,
+        "next_time": 0.6210045662100455,
+        "gain": 0.9924074768809923,
+        "teacher_risk_before": 0.0011639157338652062,
+        "teacher_risk_after": 0.001064585578699706,
+        "true_input_w2_squared_before": 9.882190258769796e-05,
+        "true_input_w2_squared_after": 7.5784969593151175e-06
+      },
+      {
+        "time": 0.6210045662100455,
+        "next_time": 0.6037735849056605,
+        "gain": 0.9920434708484022,
+        "teacher_risk_before": 0.0013264151848115802,
+        "teacher_risk_after": 0.0012145114909900556,
+        "true_input_w2_squared_before": 0.00011033974727725493,
+        "true_input_w2_squared_after": 8.111793126097666e-06
+      },
+      {
+        "time": 0.6037735849056605,
+        "next_time": 0.5853658536585366,
+        "gain": 0.991661688378219,
+        "teacher_risk_before": 0.0015160446841537834,
+        "teacher_risk_after": 0.0013894303163586308,
+        "true_input_w2_squared_before": 0.00012372043592590032,
+        "true_input_w2_squared_after": 8.715701590666924e-06
+      },
+      {
+        "time": 0.5853658536585366,
+        "next_time": 0.5656565656565657,
+        "gain": 0.9912610325375828,
+        "teacher_risk_before": 0.0017379663896783804,
+        "teacher_risk_after": 0.0015940180552522776,
+        "true_input_w2_squared_before": 0.00013938124167278687,
+        "true_input_w2_squared_after": 9.402890841059275e-06
+      },
+      {
+        "time": 0.5656565656565657,
+        "next_time": 0.5445026178010471,
+        "gain": 0.9908398657438638,
+        "teacher_risk_before": 0.0019984374674408834,
+        "teacher_risk_after": 0.001833897805222584,
+        "true_input_w2_squared_before": 0.00015786699946396254,
+        "true_input_w2_squared_after": 1.0187209840140099e-05
+      },
+      {
+        "time": 0.5445026178010471,
+        "next_time": 0.5217391304347826,
+        "gain": 0.9903957151284438,
+        "teacher_risk_before": 0.0023050666477013593,
+        "teacher_risk_after": 0.0021158383358867994,
+        "true_input_w2_squared_before": 0.00017990115723520717,
+        "true_input_w2_squared_after": 1.1083540190526264e-05
+      },
+      {
+        "time": 0.5217391304347826,
+        "next_time": 0.49717514124293777,
+        "gain": 0.9899248731106682,
+        "teacher_risk_before": 0.002667131517801291,
+        "teacher_risk_after": 0.002447985950237541,
+        "true_input_w2_squared_before": 0.0002064622303072916,
+        "true_input_w2_squared_after": 1.2108218047313102e-05
+      },
+      {
+        "time": 0.49717514124293777,
+        "next_time": 0.47058823529411764,
+        "gain": 0.9894218688608347,
+        "teacher_risk_before": 0.0030959627513795773,
+        "teacher_risk_after": 0.002840120897003917,
+        "true_input_w2_squared_before": 0.0002389006673224614,
+        "true_input_w2_squared_after": 1.3281190345715288e-05
+      },
+      {
+        "time": 0.47058823529411764,
+        "next_time": 0.44171779141104284,
+        "gain": 0.9888787822171659,
+        "teacher_risk_before": 0.0036053913432967377,
+        "teacher_risk_after": 0.0033039102894876216,
+        "true_input_w2_squared_before": 0.0002791212308141944,
+        "true_input_w2_squared_after": 1.4632351331478333e-05
+      },
+      {
+        "time": 0.44171779141104284,
+        "next_time": 0.41025641025641013,
+        "gain": 0.9882843666831738,
+        "teacher_risk_before": 0.004212234596025599,
+        "teacher_risk_after": 0.0038530936114469228,
+        "true_input_w2_squared_before": 0.0003298735150325527,
+        "true_input_w2_squared_after": 1.621684928165834e-05
+      },
+      {
+        "time": 0.41025641025641013,
+        "next_time": 0.37583892617449643,
+        "gain": 0.9876229448761252,
+        "teacher_risk_before": 0.004936766342458654,
+        "teacher_risk_after": 0.004503479754120576,
+        "true_input_w2_squared_before": 0.0003952239843565408,
+        "true_input_w2_squared_after": 1.8148316131672004e-05
+      },
+      {
+        "time": 0.37583892617449643,
+        "next_time": 0.3380281690140843,
+        "gain": 0.9868730459760701,
+        "teacher_risk_before": 0.005803093181668828,
+        "teacher_risk_after": 0.005272563428665222,
+        "true_input_w2_squared_before": 0.00048133769946767657,
+        "true_input_w2_squared_after": 2.0666386006062964e-05
+      },
+      {
+        "time": 0.3380281690140843,
+        "next_time": 0.296296296296296,
+        "gain": 0.986005784799879,
+        "teacher_risk_before": 0.006839401495718711,
+        "teacher_risk_after": 0.006178526402322859,
+        "true_input_w2_squared_before": 0.0005977975363857801,
+        "true_input_w2_squared_after": 2.4268791988912852e-05
+      },
+      {
+        "time": 0.296296296296296,
+        "next_time": 0.25000000000000017,
+        "gain": 0.9849830495070563,
+        "teacher_risk_before": 0.008078297339848994,
+        "teacher_risk_after": 0.007238488528967579,
+        "true_input_w2_squared_before": 0.0007598755054001316,
+        "true_input_w2_squared_after": 2.9967072893377633e-05
+      },
+      {
+        "time": 0.25000000000000017,
+        "next_time": 0.19834710743801667,
+        "gain": 0.9837556513821815,
+        "teacher_risk_before": 0.009558202300211427,
+        "teacher_risk_after": 0.008466313403671322,
+        "true_input_w2_squared_before": 0.0009925340432466179,
+        "true_input_w2_squared_after": 3.9788848018140754e-05
+      },
+      {
+        "time": 0.19834710743801667,
+        "next_time": 0.14035087719298256,
+        "gain": 0.9822615893169225,
+        "teacher_risk_before": 0.011328333803254154,
+        "teacher_risk_after": 0.009871240954423044,
+        "true_input_w2_squared_before": 0.0013376664193183174,
+        "true_input_w2_squared_after": 5.779213154211149e-05
+      },
+      {
+        "time": 0.14035087719298256,
+        "next_time": 0.07476635514018698,
+        "gain": 0.9804242718966468,
+        "teacher_risk_before": 0.013462418930315856,
+        "teacher_risk_after": 0.011459999884825933,
+        "true_input_w2_squared_before": 0.0018676017765146824,
+        "true_input_w2_squared_after": 9.21597190366441e-05
+      },
+      {
+        "time": 0.07476635514018698,
+        "next_time": 0.0,
+        "gain": 0.9781497221068909,
+        "teacher_risk_before": 0.016090093732088917,
+        "teacher_risk_after": 0.013246173763491242,
+        "true_input_w2_squared_before": 0.0027111551633858255,
+        "true_input_w2_squared_after": 0.0001595687204272167
+      }
+    ]
+  },
+  "gaussian_oracle": {
+    "oracle": true,
+    "results": [
+      {
+        "condition": "ordinary",
+        "w2_squared": 0.002696917304334079,
+        "w2_bound": 2.6549645096166077,
+        "mean": [
+          1.0,
+          -1.0
+        ],
+        "variance": [
+          0.45257873308488705,
+          1.8913950697794577
+        ]
+      },
+      {
+        "condition": "global_proximal",
+        "w2_squared": 0.002696917304334079,
+        "w2_bound": 2.6549645096166077,
+        "mean": [
+          1.0,
+          -1.0
+        ],
+        "variance": [
+          0.45257873308488705,
+          1.8913950697794577
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "time": 1.0,
+        "next_time": 0.9987389659520808,
+        "gain": 1.0,
+        "teacher_risk_before": 3.975517175014431e-06,
+        "teacher_risk_after": 3.975517175014431e-06,
+        "true_input_w2_squared_before": 2.6934010577406298e-12,
+        "true_input_w2_squared_after": 2.6934010577406298e-12
+      },
+      {
+        "time": 0.9987389659520808,
+        "next_time": 0.9974554707379135,
+        "gain": 1.0,
+        "teacher_risk_before": 4.1287952874391465e-06,
+        "teacher_risk_after": 4.1287952874391465e-06,
+        "true_input_w2_squared_before": 2.9127811274065607e-12,
+        "true_input_w2_squared_after": 2.9127811274065607e-12
+      },
+      {
+        "time": 0.9974554707379135,
+        "next_time": 0.9961489088575096,
+        "gain": 1.0,
+        "teacher_risk_before": 4.289514471622624e-06,
+        "teacher_risk_after": 4.289514471622624e-06,
+        "true_input_w2_squared_before": 3.1521452115157444e-12,
+        "true_input_w2_squared_after": 3.1521452115157444e-12
+      },
+      {
+        "time": 0.9961489088575096,
+        "next_time": 0.9948186528497409,
+        "gain": 1.0,
+        "teacher_risk_before": 4.4581112832453584e-06,
+        "teacher_risk_after": 4.4581112832453584e-06,
+        "true_input_w2_squared_before": 3.4137137561174313e-12,
+        "true_input_w2_squared_after": 3.4137137561174313e-12
+      },
+      {
+        "time": 0.9948186528497409,
+        "next_time": 0.9934640522875817,
+        "gain": 1.0,
+        "teacher_risk_before": 4.635052367252257e-06,
+        "teacher_risk_after": 4.635052367252257e-06,
+        "true_input_w2_squared_before": 3.700151296470722e-12,
+        "true_input_w2_squared_after": 3.700151296470722e-12
+      },
+      {
+        "time": 0.9934640522875817,
+        "next_time": 0.992084432717678,
+        "gain": 1.0,
+        "teacher_risk_before": 4.82083683550627e-06,
+        "teacher_risk_after": 4.82083683550627e-06,
+        "true_input_w2_squared_before": 4.013678278624866e-12,
+        "true_input_w2_squared_after": 4.013678278624866e-12
+      },
+      {
+        "time": 0.992084432717678,
+        "next_time": 0.9906790945406124,
+        "gain": 1.0,
+        "teacher_risk_before": 5.015998874924321e-06,
+        "teacher_risk_after": 5.015998874924321e-06,
+        "true_input_w2_squared_before": 4.357403327048814e-12,
+        "true_input_w2_squared_after": 4.357403327048814e-12
+      },
+      {
+        "time": 0.9906790945406124,
+        "next_time": 0.989247311827957,
+        "gain": 1.0,
+        "teacher_risk_before": 5.221110574549215e-06,
+        "teacher_risk_after": 5.221110574549215e-06,
+        "true_input_w2_squared_before": 4.7335468877918174e-12,
+        "true_input_w2_squared_after": 4.7335468877918174e-12
+      },
+      {
+        "time": 0.989247311827957,
+        "next_time": 0.9877883310719132,
+        "gain": 1.0,
+        "teacher_risk_before": 5.436785023960056e-06,
+        "teacher_risk_after": 5.436785023960056e-06,
+        "true_input_w2_squared_before": 5.148770299001626e-12,
+        "true_input_w2_squared_after": 5.148770299001626e-12
+      },
+      {
+        "time": 0.9877883310719132,
+        "next_time": 0.9863013698630138,
+        "gain": 1.0,
+        "teacher_risk_before": 5.663679693679313e-06,
+        "teacher_risk_after": 5.663679693679313e-06,
+        "true_input_w2_squared_before": 5.60351764988809e-12,
+        "true_input_w2_squared_after": 5.60351764988809e-12
+      },
+      {
+        "time": 0.9863013698630138,
+        "next_time": 0.9847856154910096,
+        "gain": 1.0,
+        "teacher_risk_before": 5.902500129106869e-06,
+        "teacher_risk_after": 5.902500129106869e-06,
+        "true_input_w2_squared_before": 6.104006189389111e-12,
+        "true_input_w2_squared_after": 6.104006189389111e-12
+      },
+      {
+        "time": 0.9847856154910096,
+        "next_time": 0.9832402234636871,
+        "gain": 1.0,
+        "teacher_risk_before": 6.154003997060897e-06,
+        "teacher_risk_after": 6.154003997060897e-06,
+        "true_input_w2_squared_before": 6.655120898813038e-12,
+        "true_input_w2_squared_after": 6.655120898813038e-12
+      },
+      {
+        "time": 0.9832402234636871,
+        "next_time": 0.9816643159379408,
+        "gain": 1.0,
+        "teacher_risk_before": 6.419005513347287e-06,
+        "teacher_risk_after": 6.419005513347287e-06,
+        "true_input_w2_squared_before": 7.262634937887924e-12,
+        "true_input_w2_squared_after": 7.262634937887924e-12
+      },
+      {
+        "time": 0.9816643159379408,
+        "next_time": 0.98005698005698,
+        "gain": 1.0,
+        "teacher_risk_before": 6.698380298875151e-06,
+        "teacher_risk_after": 6.698380298875151e-06,
+        "true_input_w2_squared_before": 7.933209644761519e-12,
+        "true_input_w2_squared_after": 7.933209644761519e-12
+      },
+      {
+        "time": 0.98005698005698,
+        "next_time": 0.9784172661870503,
+        "gain": 1.0,
+        "teacher_risk_before": 6.9930707060628094e-06,
+        "teacher_risk_after": 6.9930707060628094e-06,
+        "true_input_w2_squared_before": 8.674838625211123e-12,
+        "true_input_w2_squared_after": 8.674838625211123e-12
+      },
+      {
+        "time": 0.9784172661870503,
+        "next_time": 0.9767441860465116,
+        "gain": 1.0,
+        "teacher_risk_before": 7.304091672377666e-06,
+        "teacher_risk_after": 7.304091672377666e-06,
+        "true_input_w2_squared_before": 9.494183217384489e-12,
+        "true_input_w2_squared_after": 9.494183217384489e-12
+      },
+      {
+        "time": 0.9767441860465116,
+        "next_time": 0.9750367107195301,
+        "gain": 1.0,
+        "teacher_risk_before": 7.63253714719525e-06,
+        "teacher_risk_after": 7.63253714719525e-06,
+        "true_input_w2_squared_before": 1.0401457473108167e-11,
+        "true_input_w2_squared_after": 1.0401457473108167e-11
+      },
+      {
+        "time": 0.9750367107195301,
+        "next_time": 0.9732937685459941,
+        "gain": 1.0,
+        "teacher_risk_before": 7.97958717368985e-06,
+        "teacher_risk_after": 7.97958717368985e-06,
+        "true_input_w2_squared_before": 1.1407319533418558e-11,
+        "true_input_w2_squared_after": 1.1407319533418558e-11
+      },
+      {
+        "time": 0.9732937685459941,
+        "next_time": 0.9715142428785608,
+        "gain": 1.0,
+        "teacher_risk_before": 8.346515675938804e-06,
+        "teacher_risk_after": 8.346515675938804e-06,
+        "true_input_w2_squared_before": 1.2523315717771766e-11,
+        "true_input_w2_squared_after": 1.2523315717771766e-11
+      },
+      {
+        "time": 0.9715142428785608,
+        "next_time": 0.9696969696969697,
+        "gain": 1.0,
+        "teacher_risk_before": 8.734699056045514e-06,
+        "teacher_risk_after": 8.734699056045514e-06,
+        "true_input_w2_squared_before": 1.376232461325344e-11,
+        "true_input_w2_squared_after": 1.376232461325344e-11
+      },
+      {
+        "time": 0.9696969696969697,
+        "next_time": 0.9678407350689128,
+        "gain": 1.0,
+        "teacher_risk_before": 9.145625674999991e-06,
+        "teacher_risk_after": 9.145625674999991e-06,
+        "true_input_w2_squared_before": 1.5141665699047735e-11,
+        "true_input_w2_squared_after": 1.5141665699047735e-11
+      },
+      {
+        "time": 0.9678407350689128,
+        "next_time": 0.9659442724458205,
+        "gain": 1.0,
+        "teacher_risk_before": 9.580906324302418e-06,
+        "teacher_risk_after": 9.580906324302418e-06,
+        "true_input_w2_squared_before": 1.667732618670925e-11,
+        "true_input_w2_squared_after": 1.667732618670925e-11
+      },
+      {
+        "time": 0.9659442724458205,
+        "next_time": 0.9640062597809076,
+        "gain": 1.0,
+        "teacher_risk_before": 1.0042285814471086e-05,
+        "teacher_risk_after": 1.0042285814471086e-05,
+        "true_input_w2_squared_before": 1.8389734179891093e-11,
+        "true_input_w2_squared_after": 1.8389734179891093e-11
+      },
+      {
+        "time": 0.9640062597809076,
+        "next_time": 0.9620253164556962,
+        "gain": 1.0,
+        "teacher_risk_before": 1.0531655794565609e-05,
+        "teacher_risk_after": 1.0531655794565609e-05,
+        "true_input_w2_squared_before": 2.0301538228295612e-11,
+        "true_input_w2_squared_after": 2.0301538228295612e-11
+      },
+      {
+        "time": 0.9620253164556962,
+        "next_time": 0.96,
+        "gain": 1.0,
+        "teacher_risk_before": 1.1051068969258893e-05,
+        "teacher_risk_after": 1.1051068969258893e-05,
+        "true_input_w2_squared_before": 2.2438495506094114e-11,
+        "true_input_w2_squared_after": 2.2438495506094114e-11
+      },
+      {
+        "time": 0.96,
+        "next_time": 0.9579288025889968,
+        "gain": 1.0,
+        "teacher_risk_before": 1.1602754863115905e-05,
+        "teacher_risk_after": 1.1602754863115905e-05,
+        "true_input_w2_squared_before": 2.48308040795564e-11,
+        "true_input_w2_squared_after": 2.48308040795564e-11
+      },
+      {
+        "time": 0.9579288025889968,
+        "next_time": 0.9558101472995091,
+        "gain": 1.0,
+        "teacher_risk_before": 1.2189137339024825e-05,
+        "teacher_risk_after": 1.2189137339024825e-05,
+        "true_input_w2_squared_before": 2.751221472863108e-11,
+        "true_input_w2_squared_after": 2.751221472863108e-11
+      },
+      {
+        "time": 0.9558101472995091,
+        "next_time": 0.9536423841059603,
+        "gain": 1.0,
+        "teacher_risk_before": 1.2812854073285251e-05,
+        "teacher_risk_after": 1.2812854073285251e-05,
+        "true_input_w2_squared_before": 3.0523139571414504e-11,
+        "true_input_w2_squared_after": 3.0523139571414504e-11
+      },
+      {
+        "time": 0.9536423841059603,
+        "next_time": 0.9514237855946398,
+        "gain": 1.0,
+        "teacher_risk_before": 1.3476778246257481e-05,
+        "teacher_risk_after": 1.3476778246257481e-05,
+        "true_input_w2_squared_before": 3.390665526126213e-11,
+        "true_input_w2_squared_after": 3.390665526126213e-11
+      },
+      {
+        "time": 0.9514237855946398,
+        "next_time": 0.9491525423728814,
+        "gain": 1.0,
+        "teacher_risk_before": 1.4184042711029576e-05,
+        "teacher_risk_after": 1.4184042711029576e-05,
+        "true_input_w2_squared_before": 3.771605250335597e-11,
+        "true_input_w2_squared_after": 3.771605250335597e-11
+      },
+      {
+        "time": 0.9491525423728814,
+        "next_time": 0.9468267581475128,
+        "gain": 1.0,
+        "teacher_risk_before": 1.4938066973169128e-05,
+        "teacher_risk_after": 1.4938066973169128e-05,
+        "true_input_w2_squared_before": 4.2010839251815923e-11,
+        "true_input_w2_squared_after": 4.2010839251815923e-11
+      },
+      {
+        "time": 0.9468267581475128,
+        "next_time": 0.9444444444444444,
+        "gain": 1.0,
+        "teacher_risk_before": 1.5742587340827896e-05,
+        "teacher_risk_after": 1.5742587340827896e-05,
+        "true_input_w2_squared_before": 4.686118160179831e-11,
+        "true_input_w2_squared_after": 4.686118160179831e-11
+      },
+      {
+        "time": 0.9444444444444444,
+        "next_time": 0.9420035149384886,
+        "gain": 1.0,
+        "teacher_risk_before": 1.6601690657758184e-05,
+        "teacher_risk_after": 1.6601690657758184e-05,
+        "true_input_w2_squared_before": 5.234657152186628e-11,
+        "true_input_w2_squared_after": 5.234657152186628e-11
+      },
+      {
+        "time": 0.9420035149384886,
+        "next_time": 0.9395017793594306,
+        "gain": 1.0,
+        "teacher_risk_before": 1.751985209486051e-05,
+        "teacher_risk_after": 1.751985209486051e-05,
+        "true_input_w2_squared_before": 5.855982365687851e-11,
+        "true_input_w2_squared_after": 5.855982365687851e-11
+      },
+      {
+        "time": 0.9395017793594306,
+        "next_time": 0.936936936936937,
+        "gain": 1.0,
+        "teacher_risk_before": 1.8501977547824566e-05,
+        "teacher_risk_after": 1.8501977547824566e-05,
+        "true_input_w2_squared_before": 6.56092957740384e-11,
+        "true_input_w2_squared_after": 6.56092957740384e-11
+      },
+      {
+        "time": 0.936936936936937,
+        "next_time": 0.9343065693430657,
+        "gain": 1.0,
+        "teacher_risk_before": 1.9553451264364696e-05,
+        "teacher_risk_after": 1.9553451264364696e-05,
+        "true_input_w2_squared_before": 7.362199738736308e-11,
+        "true_input_w2_squared_after": 7.362199738736308e-11
+      },
+      {
+        "time": 0.9343065693430657,
+        "next_time": 0.9316081330868762,
+        "gain": 1.0,
+        "teacher_risk_before": 2.0680189420918538e-05,
+        "teacher_risk_after": 2.0680189420918538e-05,
+        "true_input_w2_squared_before": 8.274492202531292e-11,
+        "true_input_w2_squared_after": 8.274492202531292e-11
+      },
+      {
+        "time": 0.9316081330868762,
+        "next_time": 0.9288389513108615,
+        "gain": 1.0,
+        "teacher_risk_before": 2.1888700476146994e-05,
+        "teacher_risk_after": 2.1888700476146994e-05,
+        "true_input_w2_squared_before": 9.315037630130973e-11,
+        "true_input_w2_squared_after": 9.315037630130973e-11
+      },
+      {
+        "time": 0.9288389513108615,
+        "next_time": 0.9259962049335864,
+        "gain": 1.0,
+        "teacher_risk_before": 2.31861532582478e-05,
+        "teacher_risk_after": 2.31861532582478e-05,
+        "true_input_w2_squared_before": 1.0503997671662546e-10,
+        "true_input_w2_squared_after": 1.0503997671662546e-10
+      },
+      {
+        "time": 0.9259962049335864,
+        "next_time": 0.923076923076923,
+        "gain": 1.0,
+        "teacher_risk_before": 2.45804538838712e-05,
+        "teacher_risk_after": 2.45804538838712e-05,
+        "true_input_w2_squared_before": 1.1865086690932003e-10,
+        "true_input_w2_squared_after": 1.1865086690932003e-10
+      },
+      {
+        "time": 0.923076923076923,
+        "next_time": 0.9200779727095516,
+        "gain": 1.0,
+        "teacher_risk_before": 2.6080332788946947e-05,
+        "teacher_risk_after": 2.6080332788946947e-05,
+        "true_input_w2_squared_before": 1.3426193490317928e-10,
+        "true_input_w2_squared_after": 1.3426193490317928e-10
+      },
+      {
+        "time": 0.9200779727095516,
+        "next_time": 0.9169960474308301,
+        "gain": 1.0,
+        "teacher_risk_before": 2.7695443356456906e-05,
+        "teacher_risk_after": 2.7695443356456906e-05,
+        "true_input_w2_squared_before": 1.5220180671349226e-10,
+        "true_input_w2_squared_after": 1.5220180671349226e-10
+      },
+      {
+        "time": 0.9169960474308301,
+        "next_time": 0.9138276553106213,
+        "gain": 1.0,
+        "teacher_risk_before": 2.9436473838906352e-05,
+        "teacher_risk_after": 2.9436473838906352e-05,
+        "true_input_w2_squared_before": 1.7285950448808762e-10,
+        "true_input_w2_squared_after": 1.7285950448808762e-10
+      },
+      {
+        "time": 0.9138276553106213,
+        "next_time": 0.910569105691057,
+        "gain": 1.0,
+        "teacher_risk_before": 3.131527459565575e-05,
+        "teacher_risk_after": 3.131527459565575e-05,
+        "true_input_w2_squared_before": 1.9669732509441928e-10,
+        "true_input_w2_squared_after": 1.9669732509441928e-10
+      },
+      {
+        "time": 0.910569105691057,
+        "next_time": 0.9072164948453608,
+        "gain": 1.0,
+        "teacher_risk_before": 3.334500294993603e-05,
+        "teacher_risk_after": 3.334500294993603e-05,
+        "true_input_w2_squared_before": 2.2426194234981267e-10,
+        "true_input_w2_squared_after": 2.2426194234981267e-10
+      },
+      {
+        "time": 0.9072164948453608,
+        "next_time": 0.9037656903765691,
+        "gain": 1.0,
+        "teacher_risk_before": 3.554028838914647e-05,
+        "teacher_risk_after": 3.554028838914647e-05,
+        "true_input_w2_squared_before": 2.562057233035375e-10,
+        "true_input_w2_squared_after": 2.562057233035375e-10
+      },
+      {
+        "time": 0.9037656903765691,
+        "next_time": 0.9002123142250531,
+        "gain": 1.0,
+        "teacher_risk_before": 3.79174212810085e-05,
+        "teacher_risk_after": 3.79174212810085e-05,
+        "true_input_w2_squared_before": 2.933053799836216e-10,
+        "true_input_w2_squared_after": 2.933053799836216e-10
+      },
+      {
+        "time": 0.9002123142250531,
+        "next_time": 0.8965517241379309,
+        "gain": 1.0,
+        "teacher_risk_before": 4.049456879995361e-05,
+        "teacher_risk_after": 4.049456879995361e-05,
+        "true_input_w2_squared_before": 3.364948319983796e-10,
+        "true_input_w2_squared_after": 3.364948319983796e-10
+      },
+      {
+        "time": 0.8965517241379309,
+        "next_time": 0.8927789934354485,
+        "gain": 1.0,
+        "teacher_risk_before": 4.329202244024444e-05,
+        "teacher_risk_after": 4.329202244024444e-05,
+        "true_input_w2_squared_before": 3.8688874326453515e-10,
+        "true_input_w2_squared_after": 3.8688874326453515e-10
+      },
+      {
+        "time": 0.8927789934354485,
+        "next_time": 0.8888888888888888,
+        "gain": 1.0,
+        "teacher_risk_before": 4.633248221352915e-05,
+        "teacher_risk_after": 4.633248221352915e-05,
+        "true_input_w2_squared_before": 4.4583359226635366e-10,
+        "true_input_w2_squared_after": 4.4583359226635366e-10
+      },
+      {
+        "time": 0.8888888888888888,
+        "next_time": 0.8848758465011287,
+        "gain": 1.0,
+        "teacher_risk_before": 4.964138355711967e-05,
+        "teacher_risk_after": 4.964138355711967e-05,
+        "true_input_w2_squared_before": 5.149489723521583e-10,
+        "true_input_w2_squared_after": 5.149489723521583e-10
+      },
+      {
+        "time": 0.8848758465011287,
+        "next_time": 0.8807339449541285,
+        "gain": 1.0,
+        "teacher_risk_before": 5.3247274050427507e-05,
+        "teacher_risk_after": 5.3247274050427507e-05,
+        "true_input_w2_squared_before": 5.96195981472647e-10,
+        "true_input_w2_squared_after": 5.96195981472647e-10
+      },
+      {
+        "time": 0.8807339449541285,
+        "next_time": 0.8764568764568764,
+        "gain": 1.0,
+        "teacher_risk_before": 5.7182248327070084e-05,
+        "teacher_risk_after": 5.7182248327070084e-05,
+        "true_input_w2_squared_before": 6.91954937792616e-10,
+        "true_input_w2_squared_after": 6.91954937792616e-10
+      },
+      {
+        "time": 0.8764568764568764,
+        "next_time": 0.8720379146919431,
+        "gain": 1.0,
+        "teacher_risk_before": 6.14824510916101e-05,
+        "teacher_risk_after": 6.14824510916101e-05,
+        "true_input_w2_squared_before": 8.051177502466089e-10,
+        "true_input_w2_squared_after": 8.051177502466089e-10
+      },
+      {
+        "time": 0.8720379146919431,
+        "next_time": 0.8674698795180723,
+        "gain": 1.0,
+        "teacher_risk_before": 6.618866002217061e-05,
+        "teacher_risk_after": 6.618866002217061e-05,
+        "true_input_w2_squared_before": 9.392158162313535e-10,
+        "true_input_w2_squared_after": 9.392158162313535e-10
+      },
+      {
+        "time": 0.8674698795180723,
+        "next_time": 0.8627450980392156,
+        "gain": 1.0,
+        "teacher_risk_before": 7.134696250465922e-05,
+        "teacher_risk_after": 7.134696250465922e-05,
+        "true_input_w2_squared_before": 1.098570123758691e-09,
+        "true_input_w2_squared_after": 1.098570123758691e-09
+      },
+      {
+        "time": 0.8627450980392156,
+        "next_time": 0.85785536159601,
+        "gain": 1.0,
+        "teacher_risk_before": 7.700954281997241e-05,
+        "teacher_risk_after": 7.700954281997241e-05,
+        "true_input_w2_squared_before": 1.28848531844028e-09,
+        "true_input_w2_squared_after": 1.28848531844028e-09
+      },
+      {
+        "time": 0.85785536159601,
+        "next_time": 0.8527918781725888,
+        "gain": 1.0,
+        "teacher_risk_before": 8.323559958123283e-05,
+        "teacher_risk_after": 8.323559958123283e-05,
+        "true_input_w2_squared_before": 1.515491732106966e-09,
+        "true_input_w2_squared_after": 1.515491732106966e-09
+      },
+      {
+        "time": 0.8527918781725888,
+        "next_time": 0.8475452196382429,
+        "gain": 1.0,
+        "teacher_risk_before": 9.009241704616144e-05,
+        "teacher_risk_after": 9.009241704616144e-05,
+        "true_input_w2_squared_before": 1.7876566893448853e-09,
+        "true_input_w2_squared_after": 1.7876566893448853e-09
+      },
+      {
+        "time": 0.8475452196382429,
+        "next_time": 0.8421052631578947,
+        "gain": 1.0,
+        "teacher_risk_before": 9.765661853311514e-05,
+        "teacher_risk_after": 9.765661853311514e-05,
+        "true_input_w2_squared_before": 2.114981079159861e-09,
+        "true_input_w2_squared_after": 2.114981079159861e-09
+      },
+      {
+        "time": 0.8421052631578947,
+        "next_time": 0.8364611260053619,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00010601563578571671,
+        "teacher_risk_after": 0.00010601563578571671,
+        "true_input_w2_squared_before": 2.5098931821787573e-09,
+        "true_input_w2_squared_after": 2.5098931821787573e-09
+      },
+      {
+        "time": 0.8364611260053619,
+        "next_time": 0.8306010928961748,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00011526943480610896,
+        "teacher_risk_after": 0.00011526943480610896,
+        "true_input_w2_squared_before": 2.9879019258771677e-09,
+        "true_input_w2_squared_after": 2.9879019258771677e-09
+      },
+      {
+        "time": 0.8306010928961748,
+        "next_time": 0.8245125348189415,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00012553254687253101,
+        "teacher_risk_after": 0.00012553254687253101,
+        "true_input_w2_squared_before": 3.5684153409931696e-09,
+        "true_input_w2_squared_after": 3.5684153409931696e-09
+      },
+      {
+        "time": 0.8245125348189415,
+        "next_time": 0.8181818181818181,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0001369364632801684,
+        "teacher_risk_after": 0.0001369364632801684,
+        "true_input_w2_squared_before": 4.275809040166223e-09,
+        "true_input_w2_squared_after": 4.275809040166223e-09
+      },
+      {
+        "time": 0.8181818181818181,
+        "next_time": 0.8115942028985508,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00014963246428223442,
+        "teacher_risk_after": 0.00014963246428223442,
+        "true_input_w2_squared_before": 5.140796677238768e-09,
+        "true_input_w2_squared_after": 5.140796677238768e-09
+      },
+      {
+        "time": 0.8115942028985508,
+        "next_time": 0.8047337278106509,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00016379496718865738,
+        "teacher_risk_after": 0.00016379496718865738,
+        "true_input_w2_squared_before": 6.202214297701403e-09,
+        "true_input_w2_squared_after": 6.202214297701403e-09
+      },
+      {
+        "time": 0.8047337278106509,
+        "next_time": 0.797583081570997,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00017962549608618872,
+        "teacher_risk_after": 0.00017962549608618872,
+        "true_input_w2_squared_before": 7.509332711208572e-09,
+        "true_input_w2_squared_after": 7.509332711208572e-09
+      },
+      {
+        "time": 0.797583081570997,
+        "next_time": 0.7901234567901234,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00019735739691206788,
+        "teacher_risk_after": 0.00019735739691206788,
+        "true_input_w2_squared_before": 9.1248706368674e-09,
+        "true_input_w2_squared_after": 9.1248706368674e-09
+      },
+      {
+        "time": 0.7901234567901234,
+        "next_time": 0.7823343848580442,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00021726144735412234,
+        "teacher_risk_after": 0.00021726144735412234,
+        "true_input_w2_squared_before": 1.1128936883153528e-08,
+        "true_input_w2_squared_after": 1.1128936883153528e-08
+      },
+      {
+        "time": 0.7823343848580442,
+        "next_time": 0.7741935483870966,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00023965254232649613,
+        "teacher_risk_after": 0.00023965254232649613,
+        "true_input_w2_squared_before": 1.36241871118159e-08,
+        "true_input_w2_squared_after": 1.36241871118159e-08
+      },
+      {
+        "time": 0.7741935483870966,
+        "next_time": 0.7656765676567657,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0002648976735653008,
+        "teacher_risk_after": 0.0002648976735653008,
+        "true_input_w2_squared_before": 1.6742592645613286e-08,
+        "true_input_w2_squared_after": 1.6742592645613286e-08
+      },
+      {
+        "time": 0.7656765676567657,
+        "next_time": 0.7567567567567568,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0002934254678703674,
+        "teacher_risk_after": 0.0002934254678703674,
+        "true_input_w2_squared_before": 2.0654347121507044e-08,
+        "true_input_w2_squared_after": 2.0654347121507044e-08
+      },
+      {
+        "time": 0.7567567567567568,
+        "next_time": 0.7474048442906575,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00032573760409082553,
+        "teacher_risk_after": 0.00032573760409082553,
+        "true_input_w2_squared_before": 2.5579597551228517e-08,
+        "true_input_w2_squared_after": 2.5579597551228517e-08
+      },
+      {
+        "time": 0.7474048442906575,
+        "next_time": 0.7375886524822695,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00036242249656925907,
+        "teacher_risk_after": 0.00036242249656925907,
+        "true_input_w2_squared_before": 3.180393104429413e-08,
+        "true_input_w2_squared_after": 3.180393104429413e-08
+      },
+      {
+        "time": 0.7375886524822695,
+        "next_time": 0.7272727272727273,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00040417171480289227,
+        "teacher_risk_after": 0.00040417171480289227,
+        "true_input_w2_squared_before": 3.969884199150897e-08,
+        "true_input_w2_squared_after": 3.969884199150897e-08
+      },
+      {
+        "time": 0.7272727272727273,
+        "next_time": 0.7164179104477613,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00045179970916198187,
+        "teacher_risk_after": 0.00045179970916198187,
+        "true_input_w2_squared_before": 4.974881528951869e-08,
+        "true_input_w2_squared_after": 4.974881528951869e-08
+      },
+      {
+        "time": 0.7164179104477613,
+        "next_time": 0.7049808429118773,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0005062675349329915,
+        "teacher_risk_after": 0.0005062675349329915,
+        "true_input_w2_squared_before": 6.25872313975151e-08,
+        "true_input_w2_squared_after": 6.25872313975151e-08
+      },
+      {
+        "time": 0.7049808429118773,
+        "next_time": 0.6929133858267715,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0005687114177348462,
+        "teacher_risk_after": 0.0005687114177348462,
+        "true_input_w2_squared_before": 7.904401488900703e-08,
+        "true_input_w2_squared_after": 7.904401488900703e-08
+      },
+      {
+        "time": 0.6929133858267715,
+        "next_time": 0.680161943319838,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0006404771903487649,
+        "teacher_risk_after": 0.0006404771903487649,
+        "true_input_w2_squared_before": 1.0020902552199118e-07,
+        "true_input_w2_squared_after": 1.0020902552199118e-07
+      },
+      {
+        "time": 0.680161943319838,
+        "next_time": 0.6666666666666666,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0007231618649630178,
+        "teacher_risk_after": 0.0007231618649630178,
+        "true_input_w2_squared_before": 1.275166647829451e-07,
+        "true_input_w2_squared_after": 1.275166647829451e-07
+      },
+      {
+        "time": 0.6666666666666666,
+        "next_time": 0.6523605150214592,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0008186638995826279,
+        "teacher_risk_after": 0.0008186638995826279,
+        "true_input_w2_squared_before": 1.6285938864157856e-07,
+        "true_input_w2_squared_after": 1.6285938864157856e-07
+      },
+      {
+        "time": 0.6523605150214592,
+        "next_time": 0.6371681415929202,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0009292440896273568,
+        "teacher_risk_after": 0.0009292440896273568,
+        "true_input_w2_squared_before": 2.0874121187119954e-07,
+        "true_input_w2_squared_after": 2.0874121187119954e-07
+      },
+      {
+        "time": 0.6371681415929202,
+        "next_time": 0.6210045662100455,
+        "gain": 1.0,
+        "teacher_risk_before": 0.001057599481682825,
+        "teacher_risk_after": 0.001057599481682825,
+        "true_input_w2_squared_before": 2.684877484782078e-07,
+        "true_input_w2_squared_after": 2.684877484782078e-07
+      },
+      {
+        "time": 0.6210045662100455,
+        "next_time": 0.6037735849056605,
+        "gain": 1.0,
+        "teacher_risk_before": 0.001206953271386979,
+        "teacher_risk_after": 0.001206953271386979,
+        "true_input_w2_squared_before": 3.465383571210623e-07,
+        "true_input_w2_squared_after": 3.465383571210623e-07
+      },
+      {
+        "time": 0.6037735849056605,
+        "next_time": 0.5853658536585366,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0013811642798913226,
+        "teacher_risk_after": 0.0013811642798913226,
+        "true_input_w2_squared_before": 4.4886109362707316e-07,
+        "true_input_w2_squared_after": 4.4886109362707316e-07
+      },
+      {
+        "time": 0.5853658536585366,
+        "next_time": 0.5656565656565657,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0015848601761003778,
+        "teacher_risk_after": 0.0015848601761003778,
+        "true_input_w2_squared_before": 5.835564831357942e-07,
+        "true_input_w2_squared_after": 5.835564831357942e-07
+      },
+      {
+        "time": 0.5656565656565657,
+        "next_time": 0.5445026178010471,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0018235987821402233,
+        "teacher_risk_after": 0.0018235987821402233,
+        "true_input_w2_squared_before": 7.617572359563951e-07,
+        "true_input_w2_squared_after": 7.617572359563951e-07
+      },
+      {
+        "time": 0.5445026178010471,
+        "next_time": 0.5217391304347826,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0021040607818898494,
+        "teacher_risk_after": 0.0021040607818898494,
+        "true_input_w2_squared_before": 9.989936233800734e-07,
+        "true_input_w2_squared_after": 9.989936233800734e-07
+      },
+      {
+        "time": 0.5217391304347826,
+        "next_time": 0.49717514124293777,
+        "gain": 1.0,
+        "teacher_risk_before": 0.002434273333116188,
+        "teacher_risk_after": 0.002434273333116188,
+        "true_input_w2_squared_before": 1.317277628753999e-06,
+        "true_input_w2_squared_after": 1.317277628753999e-06
+      },
+      {
+        "time": 0.49717514124293777,
+        "next_time": 0.47058823529411764,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0028238544600580617,
+        "teacher_risk_after": 0.0028238544600580617,
+        "true_input_w2_squared_before": 1.7482377123734238e-06,
+        "true_input_w2_squared_after": 1.7482377123734238e-06
+      },
+      {
+        "time": 0.47058823529411764,
+        "next_time": 0.44171779141104284,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0032842477214414245,
+        "teacher_risk_after": 0.0032842477214414245,
+        "true_input_w2_squared_before": 2.3376158457821816e-06,
+        "true_input_w2_squared_after": 2.3376158457821816e-06
+      },
+      {
+        "time": 0.44171779141104284,
+        "next_time": 0.41025641025641013,
+        "gain": 1.0,
+        "teacher_risk_before": 0.003828878772300648,
+        "teacher_risk_after": 0.003828878772300648,
+        "true_input_w2_squared_before": 3.1510728053518733e-06,
+        "true_input_w2_squared_after": 3.1510728053518733e-06
+      },
+      {
+        "time": 0.41025641025641013,
+        "next_time": 0.37583892617449643,
+        "gain": 1.0,
+        "teacher_risk_before": 0.004473104470408273,
+        "teacher_risk_after": 0.004473104470408273,
+        "true_input_w2_squared_before": 4.280028102154887e-06,
+        "true_input_w2_squared_after": 4.280028102154887e-06
+      },
+      {
+        "time": 0.37583892617449643,
+        "next_time": 0.3380281690140843,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00523374649871311,
+        "teacher_risk_after": 0.00523374649871311,
+        "true_input_w2_squared_before": 5.843434388363988e-06,
+        "true_input_w2_squared_after": 5.843434388363988e-06
+      },
+      {
+        "time": 0.3380281690140843,
+        "next_time": 0.296296296296296,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00612794358139368,
+        "teacher_risk_after": 0.00612794358139368,
+        "true_input_w2_squared_before": 7.976593595859782e-06,
+        "true_input_w2_squared_after": 7.976593595859782e-06
+      },
+      {
+        "time": 0.296296296296296,
+        "next_time": 0.25000000000000017,
+        "gain": 1.0,
+        "teacher_risk_before": 0.0071711234955280645,
+        "teacher_risk_after": 0.0071711234955280645,
+        "true_input_w2_squared_before": 1.0793523311125597e-05,
+        "true_input_w2_squared_after": 1.0793523311125597e-05
+      },
+      {
+        "time": 0.25000000000000017,
+        "next_time": 0.19834710743801667,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00837426784389006,
+        "teacher_risk_after": 0.00837426784389006,
+        "true_input_w2_squared_before": 1.4313048308789433e-05,
+        "true_input_w2_squared_after": 1.4313048308789433e-05
+      },
+      {
+        "time": 0.19834710743801667,
+        "next_time": 0.14035087719298256,
+        "gain": 1.0,
+        "teacher_risk_before": 0.00974146781239238,
+        "teacher_risk_after": 0.00974146781239238,
+        "true_input_w2_squared_before": 1.8363659573417124e-05,
+        "true_input_w2_squared_after": 1.8363659573417124e-05
+      },
+      {
+        "time": 0.14035087719298256,
+        "next_time": 0.07476635514018698,
+        "gain": 1.0,
+        "teacher_risk_before": 0.011269852938965208,
+        "teacher_risk_after": 0.011269852938965208,
+        "true_input_w2_squared_before": 2.252814418124416e-05,
+        "true_input_w2_squared_after": 2.252814418124416e-05
+      },
+      {
+        "time": 0.07476635514018698,
+        "next_time": 0.0,
+        "gain": 1.0,
+        "teacher_risk_before": 0.012954460141017421,
+        "teacher_risk_after": 0.012954460141017421,
+        "true_input_w2_squared_before": 2.621295869786877e-05,
+        "true_input_w2_squared_after": 2.621295869786877e-05
+      }
+    ]
+  },
+  "boundaries": {
+    "nonzero_mean": {
+      "gain": 0.6666666666666666,
+      "mean_error_squared_before": 0.0,
+      "mean_error_squared_after": 0.11111111111111113,
+      "w2_squared_before": 1,
+      "w2_squared_after": 0.2222222222222222
+    },
+    "two_step_cancellation": {
+      "base_maps": [
+        2.0,
+        0.5
+      ],
+      "gains": [
+        0.5,
+        1.0
+      ],
+      "w2_squared_before": 0.0,
+      "w2_squared_after": 0.5,
+      "w2_bound_before": 1.4142135623730951,
+      "w2_bound_after": 0.7071067811865476
+    },
+    "q_mismatch": "For the second comparison, incoming q=N(0,I/4) makes T=2I exact; calibrated gain 1/2 then worsens W2\u00b2 from 0 to 1/2.",
+    "zero_target_energy_returns_identity": true
+  },
+  "finite_fit_certificate_boundary": {
+    "frozen_inaccurate_gain": 0.25,
+    "optimal_ray_gain": 0.3333333333333333,
+    "H_stay": -0.4375,
+    "H_sec": 10.0625,
+    "w2_squared_before": 4,
+    "w2_squared_after": 0.0625
+  }
+}

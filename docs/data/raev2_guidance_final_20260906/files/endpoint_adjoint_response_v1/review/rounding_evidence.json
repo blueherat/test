@@ -1,0 +1,77 @@
+{
+  "files": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/rounding_diagnostic.py",
+      "sha256": "df4571ed8f2547889cc4eab41644a3292c4507ace62532c9157fca38acd054b1",
+      "bytes": 3640
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/rounding_diagnostic.json",
+      "sha256": "156e4e0145866abffe1e45352d75fc58b8df663e94a542d043e28fb77bf77ff5",
+      "bytes": 312739
+    }
+  ],
+  "request_sha256": "eec577a37763439471e2f4530d1e7810dfc3825e30cdf4ad54f7ee4f98d7b4bd",
+  "frozen_control_sha256": "11aa47b831fa666c93be54849daa0437f7d0e3a280fed016e4f5c181b8827e56",
+  "per_image": [
+    {
+      "global_id": 0,
+      "fp32_add_unchanged_fraction": 0.8719779205322266,
+      "raw_bf16_cast_unchanged_fraction": 0.9999847030639648,
+      "aggregate_rounding_error_over_intended_energy": 0.18427766110083874
+    },
+    {
+      "global_id": 142,
+      "fp32_add_unchanged_fraction": 0.9944762420654297,
+      "raw_bf16_cast_unchanged_fraction": 0.9999992370605468,
+      "aggregate_rounding_error_over_intended_energy": 0.9362689691707371
+    },
+    {
+      "global_id": 285,
+      "fp32_add_unchanged_fraction": 0.9986483383178711,
+      "raw_bf16_cast_unchanged_fraction": 0.9999994659423828,
+      "aggregate_rounding_error_over_intended_energy": 0.9451669865982395
+    },
+    {
+      "global_id": 428,
+      "fp32_add_unchanged_fraction": 0.9846885681152344,
+      "raw_bf16_cast_unchanged_fraction": 0.9999983596801758,
+      "aggregate_rounding_error_over_intended_energy": 0.8596665311323437
+    },
+    {
+      "global_id": 570,
+      "fp32_add_unchanged_fraction": 0.9364059066772461,
+      "raw_bf16_cast_unchanged_fraction": 0.9999931335449219,
+      "aggregate_rounding_error_over_intended_energy": 0.5511741346529538
+    },
+    {
+      "global_id": 713,
+      "fp32_add_unchanged_fraction": 0.9975814056396485,
+      "raw_bf16_cast_unchanged_fraction": 0.9999992370605468,
+      "aggregate_rounding_error_over_intended_energy": 0.97876836969195
+    },
+    {
+      "global_id": 856,
+      "fp32_add_unchanged_fraction": 0.9973268508911133,
+      "raw_bf16_cast_unchanged_fraction": 0.9999991226196289,
+      "aggregate_rounding_error_over_intended_energy": 0.9600720360902512
+    },
+    {
+      "global_id": 999,
+      "fp32_add_unchanged_fraction": 0.9894886779785156,
+      "raw_bf16_cast_unchanged_fraction": 0.9999991607666016,
+      "aggregate_rounding_error_over_intended_energy": 0.8973985707286328
+    }
+  ],
+  "original_diagnostic_timing": {
+    "wall_seconds": 5.6223984870593995,
+    "cpu_seconds": 10.979609285,
+    "scope": "After import time, includes subsequent imports and reads; excludes final result write/exit."
+  },
+  "review_scope": "Read archived diagnostic source and metadata; verified own-source/request/control SHA links, no numerical rerun.",
+  "metadata_append_cost": {
+    "wall_seconds_after_imports": 0.005187419010326266,
+    "cpu_seconds_after_imports": 0.005186368999999996,
+    "excludes": "This JSON serialization, updated document identity write, process imports/exit, human reading."
+  }
+}

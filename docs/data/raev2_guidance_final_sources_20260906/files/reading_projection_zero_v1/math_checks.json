@@ -1,0 +1,57 @@
+{
+  "scope": "Independent finite-dimensional algebra only, no saved RAE banks, GPU, models or FID.",
+  "cfgzero_printed_bound_counterexample": {
+    "c": [
+      1.0
+    ],
+    "u": [
+      1.0
+    ],
+    "target": [
+      0.0
+    ],
+    "alpha": 1.0,
+    "scale": 0.1,
+    "lhs": 3.61,
+    "printed_rhs": 1.81
+  },
+  "upper_bound_argmin_not_true_error_argmin": {
+    "c": [
+      2.0,
+      1.0
+    ],
+    "u": [
+      1.0,
+      0.0
+    ],
+    "target": [
+      3.0,
+      2.0
+    ],
+    "alpha": 1.0,
+    "scale_star": 2.0,
+    "ordinary_true_error_squared": 0.0,
+    "optimized_scale_true_error_squared": 1.0,
+    "ordinary_surrogate": 2.0,
+    "optimized_surrogate": 1.0
+  },
+  "raev2_affine_velocity_conversion": {
+    "time": 0.3,
+    "alpha": 0.78,
+    "scale_star": 1.0455502509674504,
+    "max_clean_identity_error": 9.992007221626409e-16,
+    "max_velocity_projection_identity_error": 1.7763568394002505e-15,
+    "naive_clean_projection_difference_norm": 0.23923110376236187
+  },
+  "apg_not_norm_preserving": {
+    "before_norm_squared": 1.0,
+    "after_norm_squared": 2.0
+  },
+  "passed": true,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "fid_calls": 0,
+  "script_sha256": "7fc23b546735b35a9f45374fe0e7e7a043fae888b4ee4d840943d8c929a5278f",
+  "wall_seconds": 0.12399707012809813,
+  "cpu_seconds": 0.434874892
+}

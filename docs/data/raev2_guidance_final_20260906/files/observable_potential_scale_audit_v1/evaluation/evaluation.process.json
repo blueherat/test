@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "-u",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+    "--batch-size",
+    "64",
+    "--seed",
+    "2020",
+    "--output",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/metrics.csv",
+    "--branch",
+    "official100_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+    "--branch",
+    "potential100_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+    "--branch",
+    "official105_seed202609101=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/merged/samples.npz"
+  ],
+  "started_utc": "2026-09-06T07:12:32.156226+00:00",
+  "finished_utc": "2026-09-06T07:12:59.770952+00:00",
+  "returncode": 0,
+  "wall_seconds": 27.614766883198172,
+  "child_cpu_seconds": 68.52022399999998,
+  "includes_imports_and_exit": true,
+  "log": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/evaluation/evaluation.log",
+    "sha256": "23f5b8f40eb8b24e75c46777f920b945a163e9cedab4dbc2af7d7288fbca1095",
+    "size_bytes": 5592
+  }
+}

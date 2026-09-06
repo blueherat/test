@@ -1,0 +1,61 @@
+{
+  "schema": "raev2_final_sources_supplement_v1",
+  "created_utc": "2026-09-06T17:01:06.255456+00:00",
+  "base_manifest_sha256": "fc64d9acb633bfaaf40e0136d959300fdb6b8033777ae2ded5f1cdb014ec2c8d",
+  "source_scope": [
+    "reading_moser_v1/manifest.json",
+    "reading_moser_v1/sources.json",
+    "reading_fp_diffusion_v1/manifest.json",
+    "temporal_score_pde_v1/root_independent_review.json"
+  ],
+  "copied_files": [
+    {
+      "source_relative_path": "reading_moser_v1/manifest.json",
+      "source_logical_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_moser_v1/manifest.json",
+      "source_resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_moser_v1/manifest.json",
+      "package_relative_path": "supplement/files/reading_moser_v1/manifest.json",
+      "size_bytes": 1607,
+      "sha256": "d39d0cd2b40c4f5b82425b1117c3b5b26e95259604ce029d5ab4fe964a5b7806"
+    },
+    {
+      "source_relative_path": "temporal_score_pde_v1/root_independent_review.json",
+      "source_logical_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/temporal_score_pde_v1/root_independent_review.json",
+      "source_resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/temporal_score_pde_v1/root_independent_review.json",
+      "package_relative_path": "supplement/files/temporal_score_pde_v1/root_independent_review.json",
+      "size_bytes": 702,
+      "sha256": "ec8c0b515e28e0b7b507f868008ee12929339abe76f71168b73b3222ba83b95b"
+    }
+  ],
+  "already_in_base": [
+    {
+      "source_relative_path": "reading_moser_v1/sources.json",
+      "package_relative_path": "files/reading_moser_v1/sources.json",
+      "kind": "reading_provenance_or_analytic_result",
+      "size_bytes": 1175,
+      "sha256": "d26b607bc2e74e09ad472c2ee9cbe1bdc373493b06f53dc636e6fc1aa9e12a6c",
+      "source_logical_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_moser_v1/sources.json",
+      "source_resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_moser_v1/sources.json"
+    },
+    {
+      "source_relative_path": "reading_fp_diffusion_v1/manifest.json",
+      "package_relative_path": "files/reading_fp_diffusion_v1/manifest.json",
+      "kind": "reading_provenance_or_analytic_result",
+      "size_bytes": 2011,
+      "sha256": "f4327be81df433e30f5a9299e3e69363de073a07f40f0ee3c32479c313ab534d",
+      "source_logical_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_fp_diffusion_v1/manifest.json",
+      "source_resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_fp_diffusion_v1/manifest.json"
+    }
+  ],
+  "copied_file_count": 2,
+  "copied_total_bytes": 2309,
+  "repository_reading_note_identity_verified": [
+    {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_MOSER_20260906_ZH.md",
+      "sha256": "e40b54f262fa09de30fe427c186ce95845c1f606764f5252679bbabc98fd29a1",
+      "size_bytes": 6400,
+      "verified_this_supplement": true
+    }
+  ],
+  "large_assets_reopened": false,
+  "purpose": "Final round 3/4 additions after base package froze; preserves original base manifest and copies."
+}

@@ -1,0 +1,18 @@
+{
+  "selected_utc": "2026-09-06T12:23:28.813737+00:00",
+  "selected_steps": 201,
+  "candidate": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+    "sha256": "4c51fc630473ad5d2c33903f2b6a2a61c3f172e51487db2dd937850c70c0c9ff"
+  },
+  "previous_official": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+    "sha256": "92035b6a816dde51f2e652af388200bace572e3bb6ed4d252da7eb7a565a5893"
+  },
+  "candidate_T_W": [
+    1258.4689764077775,
+    1297.776199799031
+  ],
+  "fid_started": false,
+  "rule": "K>=200; initial ceil100*cost ratios; subsequent monotone ceilK*ratios; both trajectory+decode and total wall"
+}

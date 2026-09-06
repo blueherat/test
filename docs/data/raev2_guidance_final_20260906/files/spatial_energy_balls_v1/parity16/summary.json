@@ -1,0 +1,67 @@
+{
+  "complete": true,
+  "samples_per_loop": 16,
+  "endpoint_bitwise": true,
+  "pixel_bitwise": true,
+  "max_endpoint_abs_difference": 0.0,
+  "pixel_mismatches": 0,
+  "time_major_endpoint_sha256": "2e7fc546187fe157523e0498995039dbed844f346555236cf5e57ab50679c137",
+  "direct_batch_major_endpoint_sha256": "2e7fc546187fe157523e0498995039dbed844f346555236cf5e57ab50679c137",
+  "time_major_pixels_sha256": "6512bd7ca6e1db7e83dd261c8ee9058c6ec9d1de430280b1dc15bc75ea0a5b99",
+  "direct_pixels_sha256": "6512bd7ca6e1db7e83dd261c8ee9058c6ec9d1de430280b1dc15bc75ea0a5b99",
+  "time_major_cost": {
+    "trajectory_wall_seconds": 10.424505371134728,
+    "trajectory_cuda_event_span_seconds": 10.4243818359375,
+    "stage2_forward_calls": 200,
+    "stage2_sample_forwards": 1600
+  },
+  "direct_batch_major_trajectory_wall_seconds": 10.056751256110147,
+  "direct_batch_major_trajectory_cuda_span_seconds": 10.05659912109375,
+  "stage2_forward_calls": 400,
+  "stage2_sample_forwards": 3200,
+  "decoder_forward_calls": 4,
+  "decoder_sample_forwards": 32,
+  "decode_and_uint8_wall_seconds": 0.16306734108366072,
+  "parity_is_not_quality_or_cost_comparison": true,
+  "protocol": "raev2_fixed_cohort_spatial_energy_balls_v1",
+  "command": "parity",
+  "mode": "parity",
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16/request.json",
+    "sha256": "daedf135937a85323f0e82d989756eb1f849579d87e5f490f125b489ec8ff24f",
+    "size_bytes": 11945
+  },
+  "sampling_input": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16/sampling_input.json",
+    "sha256": "d1cd08375fa5459763d49d1c7415a1f731da9b37ad16851fbb68de7036d5fe60",
+    "size_bytes": 996
+  },
+  "seed": 202609121,
+  "num_steps": 100,
+  "global_noise_sha256": "927ca6001645b1499ba057a3f70a30dfd1c0336db3c5158287c303523daf036a",
+  "noise_rng_state_sha256": "8aa2eafa909e2b53a744a4eaefd0e5e66e4053974e0a6358ad685486e3471c72",
+  "global_labels_sha256": "f23d672bb9b341f9afa8498423b75deb80e726145969391d4b9392464c2298ee",
+  "preprocessing_sources_calibration_weight_hash_wall_seconds": 11.065388757036999,
+  "loading": {
+    "decoder_load_wall_seconds": 6.498925514984876,
+    "backbone_load_wall_seconds": 4.9949155249632895,
+    "checkpoint_step": 100080
+  },
+  "noise_generation_wall_seconds": 0.006588798016309738,
+  "noise_identity_and_audit_save_wall_seconds": 0.01803575991652906,
+  "peak_loading": {
+    "allocated_bytes": 5264607232,
+    "reserved_bytes": 5618270208
+  },
+  "peak_loading_and_noise_preparation": {
+    "allocated_bytes": 5281384448,
+    "reserved_bytes": 5635047424
+  },
+  "peak_sampling": {
+    "allocated_bytes": 5496506368,
+    "reserved_bytes": 5960105984
+  },
+  "total_wall_seconds_before_summary": 43.85172131401487,
+  "cpu_seconds_before_summary": 45.012692713,
+  "cost_not_yet_matched": "No automated official step selection; compare complete recorded costs before calling any run cost matched."
+}

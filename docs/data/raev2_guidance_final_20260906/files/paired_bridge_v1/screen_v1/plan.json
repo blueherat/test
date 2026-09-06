@@ -1,0 +1,214 @@
+{
+  "protocol": "raev2_paired_bridge_fixed_1k_v1",
+  "created_utc": "2026-09-06T14:58:46.883259+00:00",
+  "source_freeze_complete": true,
+  "protocol_document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_BRIDGE_SCREEN_PROTOCOL_20260906_ZH.md",
+    "sha256": "9b8d182dda29e48cbf4fdcabbcbc3a03729e564ae7bbb9aff5d3198e7f1d0fd9",
+    "size_bytes": 7457
+  },
+  "cohort": {
+    "seed": 202609151,
+    "n": 1000,
+    "batch_size": 8
+  },
+  "gpu_uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "arms": [
+    "official100",
+    "candidate100",
+    "control100",
+    "officialK_from_pre_FID_cost_rule"
+  ],
+  "frozen_files": {
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py": "93820293074739d4b794c28a8be16d2f4e1a42e1b7e7a1465f3603363895194e",
+    "/home/zhoushunyu/eqvae/tests/test_sample_raev2_paired_bridge.py": "08be2dea3d24fc748a015af3f1333f5f60efb549ed3a3d3486b47748f173744e",
+    "/home/zhoushunyu/eqvae/experiments/raev2_paired_bridge.py": "cdb22b7e8e4c622f0ce70c8a59f88d35308d31e0b47c007be898470d881b6a6a",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_paired_bridge_pilot.py": "08ce50fbbf48793411bd37f885d208f5ec07114cdb5bbc59f72dc34012787df7",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+    "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_paired_bridge_screen.py": "eb47b436367b165f83435fab123d11f55de983c994848f75b9c84e9e47029619",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/experiments/raev2_training_core.py": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0",
+    "/home/zhoushunyu/eqvae/tests/test_raev2_paired_bridge.py": "773eec5d2ee17f3889d87378b1bb6989d9f506bbc91e48ca2fbd3fcf94fa4333",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_BRIDGE_SCREEN_PROTOCOL_20260906_ZH.md": "9b8d182dda29e48cbf4fdcabbcbc3a03729e564ae7bbb9aff5d3198e7f1d0fd9",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_BRIDGE_PILOT_PROTOCOL_20260906_ZH.md": "1d8ecd75e867ec61fc187c2670ea425fd1df7de5953952cd69efdd4bf9510dbf",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_BRIDGE_PILOT_RESULTS_20260906_ZH.md": "5a72a86d47701e7d4da6e18288060fa85bd5de8598650080378f6f86f396ace7",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_ACTUAL_ROLLOUT_FINITE_TRANSPORT_20260906_ZH.md": "9da15bcb211f113e5289ef8e606ea054183863c97d894ab77b83cfd79d2b9073",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_FLOW_MATCHING_20260906_ZH.md": "11358f4eb9f3f8e07414db57678b5c9110b1f4ddf7ea5cba6bbba9adfa7b4a14",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/__init__.py": "ffcc40af9f28e0b885d522c4ee96bcc85c97ace3cdfc171a989807762b22093f",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/decoders/__init__.py": "a254452d3f02ee5187fc8dcb1439bb142248231c0f0884dd2f02ccc65fc900e3",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/decoders/decoder.py": "8652679e3e1ca2fa01b84a639b6f47764b8ca03d4ca3dca1419a8da403b87362",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/decoders/utils.py": "1103265d6c30cba37ad5b4564588add0d44de3dfe036ae15e368987101f25286",
+    "/home/zhoushunyu/eqvae/external/RAEv2/configs/decoder/ViTXL/config.json": "0c9845cd65131b4074fbac77f7d36fdcdca71f455e75ae9ba169b34b8e1e3614",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/final.pt": "5013cbf075ddffa5c2ae021fc916be0615ca41d9817d3af91e6b3e46c86e1983",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/request.json": "7fd9e5b70d4735033eb0110c6a38fccc3e5075225aa21238154887974d59e2e2",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/summary.json": "6caaf81f64a4e2ef59ae906ad727a923d202335ee6c18d813bbad5ec80c16785",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/supplemental_source_environment.json": "d6f09508be2aedd12949ec4e9aa6166dbaa96a47c3f9f0fd2a5d77c6f3a7e5c9",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/prepare_screen_plan.py": "3180b349905cfab1d9d3b2dcb8cca797ddf24ad880fea525380623a9bc001b68",
+    "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+    "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/cli.py": "9496faf1d5db157b90038780381b6675d0336f72ec9ba09e72b0c6ec4ba26baa",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/format.py": "0755520180dfabf9fe00c85e89039bf289ef189a1dcff2b1ea3a8a78a426510c",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/api.py": "f3f71b6c22a09b94c09033379467914f402b27658cd918bdb84776f7a39c8800",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/extractors.py": "ccf3d5cf5610565a9fef9cdd1e687d35af83ca3fcc50243f6299239a15e15a1a",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/__init__.py": "385630034f09db270034d2320530b72c61b26edaee71c21897abb222a6e3daee",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/stats.py": "6e4aa7310888a14d594e2ed821627597e92aec0997c0bb9eaece87cc45cf02a4",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/mind.py": "ed259c295797204eda71d8ae62773310cbd5697ebdb732588f3356d70242c015",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f"
+  },
+  "source_archives": {
+    "experiments/sample_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/sample_raev2_paired_bridge.py",
+      "sha256": "93820293074739d4b794c28a8be16d2f4e1a42e1b7e7a1465f3603363895194e"
+    },
+    "tests/test_sample_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/tests/test_sample_raev2_paired_bridge.py",
+      "sha256": "08be2dea3d24fc748a015af3f1333f5f60efb549ed3a3d3486b47748f173744e"
+    },
+    "experiments/raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/raev2_paired_bridge.py",
+      "sha256": "cdb22b7e8e4c622f0ce70c8a59f88d35308d31e0b47c007be898470d881b6a6a"
+    },
+    "experiments/run_raev2_paired_bridge_pilot.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/run_raev2_paired_bridge_pilot.py",
+      "sha256": "08ce50fbbf48793411bd37f885d208f5ec07114cdb5bbc59f72dc34012787df7"
+    },
+    "experiments/sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b"
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590"
+    },
+    "experiments/raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75"
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa"
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0"
+    },
+    "experiments/raev2_stage1_compat.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f"
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577"
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e"
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2"
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5"
+    },
+    "external/RAEv2/src/stage1/rae.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e"
+    },
+    "experiments/run_raev2_paired_bridge_screen.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/run_raev2_paired_bridge_screen.py",
+      "sha256": "eb47b436367b165f83435fab123d11f55de983c994848f75b9c84e9e47029619"
+    },
+    "experiments/evaluate_raev2_official_samples.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/evaluate_raev2_official_samples.py",
+      "sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2"
+    },
+    "experiments/raev2_training_core.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/raev2_training_core.py",
+      "sha256": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0"
+    },
+    "tests/test_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/tests/test_raev2_paired_bridge.py",
+      "sha256": "773eec5d2ee17f3889d87378b1bb6989d9f506bbc91e48ca2fbd3fcf94fa4333"
+    },
+    "docs/RAEV2_PAIRED_BRIDGE_SCREEN_PROTOCOL_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/docs/RAEV2_PAIRED_BRIDGE_SCREEN_PROTOCOL_20260906_ZH.md",
+      "sha256": "9b8d182dda29e48cbf4fdcabbcbc3a03729e564ae7bbb9aff5d3198e7f1d0fd9"
+    },
+    "docs/RAEV2_PAIRED_BRIDGE_PILOT_PROTOCOL_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/docs/RAEV2_PAIRED_BRIDGE_PILOT_PROTOCOL_20260906_ZH.md",
+      "sha256": "1d8ecd75e867ec61fc187c2670ea425fd1df7de5953952cd69efdd4bf9510dbf"
+    },
+    "docs/RAEV2_PAIRED_BRIDGE_PILOT_RESULTS_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/docs/RAEV2_PAIRED_BRIDGE_PILOT_RESULTS_20260906_ZH.md",
+      "sha256": "5a72a86d47701e7d4da6e18288060fa85bd5de8598650080378f6f86f396ace7"
+    },
+    "docs/RAEV2_ACTUAL_ROLLOUT_FINITE_TRANSPORT_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/docs/RAEV2_ACTUAL_ROLLOUT_FINITE_TRANSPORT_20260906_ZH.md",
+      "sha256": "9da15bcb211f113e5289ef8e606ea054183863c97d894ab77b83cfd79d2b9073"
+    },
+    "docs/RAEV2_GUIDANCE_READING_FLOW_MATCHING_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/docs/RAEV2_GUIDANCE_READING_FLOW_MATCHING_20260906_ZH.md",
+      "sha256": "11358f4eb9f3f8e07414db57678b5c9110b1f4ddf7ea5cba6bbba9adfa7b4a14"
+    },
+    "external/RAEv2/src/stage1/__init__.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage1/__init__.py",
+      "sha256": "ffcc40af9f28e0b885d522c4ee96bcc85c97ace3cdfc171a989807762b22093f"
+    },
+    "external/RAEv2/src/stage1/decoders/__init__.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage1/decoders/__init__.py",
+      "sha256": "a254452d3f02ee5187fc8dcb1439bb142248231c0f0884dd2f02ccc65fc900e3"
+    },
+    "external/RAEv2/src/stage1/decoders/decoder.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage1/decoders/decoder.py",
+      "sha256": "8652679e3e1ca2fa01b84a639b6f47764b8ca03d4ca3dca1419a8da403b87362"
+    },
+    "external/RAEv2/src/stage1/decoders/utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/src/stage1/decoders/utils.py",
+      "sha256": "1103265d6c30cba37ad5b4564588add0d44de3dfe036ae15e368987101f25286"
+    },
+    "external/RAEv2/configs/decoder/ViTXL/config.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/external/RAEv2/configs/decoder/ViTXL/config.json",
+      "sha256": "0c9845cd65131b4074fbac77f7d36fdcdca71f455e75ae9ba169b34b8e1e3614"
+    },
+    "experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/sources/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+    }
+  },
+  "evaluator": {
+    "root": "/home/zhoushunyu/data/eqvae/external_sources/nanogen-evals",
+    "commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "clean": true
+  },
+  "pre_gpu_checks": {
+    "module_and_sampling_tests_passed": 27,
+    "pytest_wall_seconds": 8.03,
+    "independent_static_review": "paired inputs/native arithmetic/current midpoint/hooks and corrected official auxiliary loading reviewed; no remaining implementation blocker"
+  },
+  "environment": {
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "cudnn": 91900,
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+    "python_executable": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python"
+  },
+  "full_total_cost_closed": false,
+  "cost_scope": "Inference-matched 1K screen; all training/preparation/diagnostics disclosed separately. Goal cannot be completed from this screen alone.",
+  "freeze_wall_seconds": 11.1211372630205
+}

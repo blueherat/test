@@ -1,0 +1,57 @@
+{
+  "protocol": "raev2_proximal_calibration_heldout_v1",
+  "all_official_steps_retained": true,
+  "steps": 100,
+  "samples": 1000,
+  "step_risk_gain_positive_count": 23,
+  "step_J_positive_count": 19,
+  "step_gain_ci_positive_count": 23,
+  "step_gain_ci_negative_count": 76,
+  "step_gain_bonferroni_positive_count": 22,
+  "step_gain_bonferroni_negative_count": 74,
+  "simultaneous_intervals": "95% Bonferroni normal approximation across all steps; not a distribution-free finite-sample guarantee",
+  "minimum_nonexpansive_slack": 3.2559362727266056e-11,
+  "unweighted_local_rms_source_sum": {
+    "before": 0.8381526633490026,
+    "after": 0.8365084261617836,
+    "gain": 0.0016442371872190664,
+    "gain_relative": 0.001961739500593121,
+    "gain_se": 1.3506294442764898e-05,
+    "gain_ci95": [
+      0.0016177648501112473,
+      0.0016707095243268856
+    ],
+    "interpretation": "sum_k sqrt(E coupling step error); not the full W2 bound without baseline map Lipschitz factors"
+  },
+  "statistical_units": "independent images, one per class, with all times kept together; pooled between-image SE and asymptotic delta-method CI; within-class variance not separately identifiable",
+  "all_step_mean_risk_nonincreasing": false,
+  "no_fid_evaluated": true,
+  "claim_limit": "Finite-sample teacher-coupling evidence, not proof of endpoint FID improvement or population per-step positivity.",
+  "shards": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/shard_00_of_04",
+      "request_sha256": "f36409a91b700648aea507680e06250b79e22179d47ce8e417a8d79b27ccba17",
+      "calibration_sha256": "8b284d3f0b7fc15661259568f3511ad077f4586db77ffca5ffa19e22184f757f",
+      "heldout_csv_sha256": "524b5c48803c6a624caab44f5435714e326553184b8cf5104fffa6933b9b3c91"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/shard_01_of_04",
+      "request_sha256": "2f53ea922d8fdff10d55e049c88dcc77dcb4e81b89c1137941fb9bc2881b75b7",
+      "calibration_sha256": "916758837b580b8c47b35b0e4dff3e7cd6d3a53a5f0cbe464fe70ff5dad15ec6",
+      "heldout_csv_sha256": "062f5eee0d6e2c366ae71a49bc781262dbc695ddec0925ed006a32463ceb503c"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/shard_02_of_04",
+      "request_sha256": "dc0e9f1e38473773e8292dc6c68ac0a6b3854e042b6b5b4189ab6c39b270350c",
+      "calibration_sha256": "575de93f284cf185cf5eba347d84260ee84bba8ea19fdc5c0a21da13487afbb7",
+      "heldout_csv_sha256": "ccd3af3c7fde0f810e4a430547e621caee2f6307857fbb8d34e038f86847415b"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/shard_03_of_04",
+      "request_sha256": "d694db9757e5ed93b048b1a3401e640dbeac50ffd34f593499476a4f8df19464",
+      "calibration_sha256": "6a261c64ab6d06b890b72d11908beb95a1cf315b8f5d7d72c51c0c2a80301f3b",
+      "heldout_csv_sha256": "39f0f17ab61e4f5d0930b4cbe2bcf49f386588503c784fd9883bb09a1e8e9c78"
+    }
+  ],
+  "calibration_sha256": "1c800eea183493f280582105857f6762b05178e7e4893c8f5054b68821967361"
+}

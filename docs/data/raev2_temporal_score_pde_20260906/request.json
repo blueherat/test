@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-09-06T16:54:28.903167+00:00",
+  "round": 3,
+  "kind": "analytic_target_identifiability_no_quality_experiment",
+  "protocol": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_TEMPORAL_SCORE_PDE_PROTOCOL_20260906_ZH.md",
+    "sha256": "2cd1cfe1e8c6d1cae28886b8c23377639ded4b1761d7386bb4092ccc564d6322",
+    "size_bytes": 2253
+  },
+  "script": {
+    "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_temporal_score_pde.py",
+    "sha256": "2f6aa71af8161acbb39b7595c1c075cec77e2bcfaa8dcd87b4932504d34533f3",
+    "size_bytes": 6133
+  },
+  "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+  "sympy": "1.14.0",
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "cases": [
+    {
+      "name": "reference",
+      "mu": 0,
+      "variance": 1
+    },
+    {
+      "name": "wrong_mean",
+      "mu": 1,
+      "variance": 1
+    },
+    {
+      "name": "wrong_variance",
+      "mu": 0,
+      "variance": 4
+    }
+  ],
+  "times": [
+    "1/100",
+    "1/4",
+    "1/2",
+    "3/4",
+    "99/100"
+  ],
+  "positions": [
+    -2,
+    -1,
+    0,
+    1,
+    2
+  ],
+  "case_selection": "analytic derivation before execution; not blinded",
+  "gpu_model_decoder_training_and_real_fid_calls": 0
+}

@@ -1,0 +1,144 @@
+{
+  "complete": true,
+  "driver_pid": 4065567,
+  "started_utc": "2026-09-06T11:28:07.743841+00:00",
+  "plan_sha256": "1f7e448c3d336661e39cad671097be9afcc85d7d0354b7776ab833ec7ae6ce1c",
+  "gpu_uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "jobs": [
+    {
+      "name": "official100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16",
+        "--num-steps",
+        "100"
+      ],
+      "started_utc": "2026-09-06T11:28:19.830736+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_logs/official100.log",
+      "gpu_before": "0, GPU-9788ab52-30a0-cb65-0d18-3069b199620e, NVIDIA GeForce RTX 4090, 40 MiB, 0 %, 23.25 W, 39\n1, GPU-b247e08a-7e70-2142-8e39-391d0732bafc, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 21.01 W, 39\n2, GPU-b2e881de-f004-31a3-9724-18a26885fa51, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 35.03 W, 42\n3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 22.29 W, 42\n",
+      "exit_code": 0,
+      "pid": 4067222,
+      "outer_wall_seconds": 675.7114363200963,
+      "finished_utc": "2026-09-06T11:39:35.542348+00:00"
+    },
+    {
+      "name": "reflection100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+        "--mode",
+        "reflection",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16",
+        "--num-steps",
+        "100"
+      ],
+      "started_utc": "2026-09-06T11:39:47.173655+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_logs/reflection100.log",
+      "gpu_before": "0, GPU-9788ab52-30a0-cb65-0d18-3069b199620e, NVIDIA GeForce RTX 4090, 40 MiB, 0 %, 23.32 W, 35\n1, GPU-b247e08a-7e70-2142-8e39-391d0732bafc, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 19.69 W, 36\n2, GPU-b2e881de-f004-31a3-9724-18a26885fa51, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 30.48 W, 38\n3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 40.39 W, 53\n",
+      "exit_code": 0,
+      "pid": 4118101,
+      "outer_wall_seconds": 1304.3810944820289,
+      "finished_utc": "2026-09-06T12:01:31.554923+00:00"
+    },
+    {
+      "name": "official200",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16",
+        "--num-steps",
+        "200"
+      ],
+      "started_utc": "2026-09-06T12:01:43.431730+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_logs/official200.log",
+      "gpu_before": "0, GPU-9788ab52-30a0-cb65-0d18-3069b199620e, NVIDIA GeForce RTX 4090, 40 MiB, 0 %, 23.22 W, 35\n1, GPU-b247e08a-7e70-2142-8e39-391d0732bafc, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 19.91 W, 35\n2, GPU-b2e881de-f004-31a3-9724-18a26885fa51, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 30.07 W, 38\n3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 37.69 W, 52\n",
+      "exit_code": 0,
+      "pid": 2616,
+      "outer_wall_seconds": 1305.3797976940405,
+      "finished_utc": "2026-09-06T12:23:28.811704+00:00"
+    },
+    {
+      "name": "official201",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16",
+        "--num-steps",
+        "201"
+      ],
+      "started_utc": "2026-09-06T12:23:40.593085+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_logs/official201.log",
+      "gpu_before": "0, GPU-9788ab52-30a0-cb65-0d18-3069b199620e, NVIDIA GeForce RTX 4090, 40 MiB, 0 %, 23.16 W, 35\n1, GPU-b247e08a-7e70-2142-8e39-391d0732bafc, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 19.99 W, 35\n2, GPU-b2e881de-f004-31a3-9724-18a26885fa51, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 29.84 W, 37\n3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 37.34 W, 52\n",
+      "exit_code": 0,
+      "pid": 89007,
+      "outer_wall_seconds": 1309.386470287107,
+      "finished_utc": "2026-09-06T12:45:29.979739+00:00"
+    },
+    {
+      "name": "evaluation",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+        "--branch",
+        "official100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+        "--branch",
+        "reflection100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+        "--branch",
+        "official201=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_evaluation.csv",
+        "--batch-size",
+        "64",
+        "--device",
+        "cuda",
+        "--seed",
+        "2020",
+        "--feature-cache-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache"
+      ],
+      "started_utc": "2026-09-06T12:45:44.456607+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_logs/evaluation.log",
+      "gpu_before": "0, GPU-9788ab52-30a0-cb65-0d18-3069b199620e, NVIDIA GeForce RTX 4090, 40 MiB, 0 %, 23.15 W, 34\n1, GPU-b247e08a-7e70-2142-8e39-391d0732bafc, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 19.74 W, 35\n2, GPU-b2e881de-f004-31a3-9724-18a26885fa51, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 29.50 W, 37\n3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 32.36 W, 51\n",
+      "exit_code": 0,
+      "pid": 173978,
+      "outer_wall_seconds": 22.02555603114888,
+      "finished_utc": "2026-09-06T12:46:06.482368+00:00"
+    }
+  ],
+  "cost_selections": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/cost_selection_00.json",
+      "sha256": "91d59517a1e1e823736da0e607f990e577a596b0c97ec557b6663135f521ca0a"
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/cost_selection_01.json",
+      "sha256": "495120078ff189167fd911674f67a3e03058af82758629deebbebb37823c654a"
+    }
+  ],
+  "fid_started": true,
+  "no_automatic_restart": true,
+  "cost_match_sha256": "1ae7329263f9a3ef4cfac2912ae736e11d3d7d7279bb3035ba26ca3fcff3aa94",
+  "finished_utc": "2026-09-06T12:46:06.483784+00:00",
+  "driver_wall_seconds": 4678.739771869034,
+  "evaluation_sha256": "2c3caf2526d7f4ea4d4a3688cfd202788e17de07df97b1ebe969cff349d3adde",
+  "goal_complete": false
+}

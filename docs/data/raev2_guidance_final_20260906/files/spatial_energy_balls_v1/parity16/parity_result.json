@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "samples_per_loop": 16,
+  "endpoint_bitwise": true,
+  "pixel_bitwise": true,
+  "max_endpoint_abs_difference": 0.0,
+  "pixel_mismatches": 0,
+  "time_major_endpoint_sha256": "2e7fc546187fe157523e0498995039dbed844f346555236cf5e57ab50679c137",
+  "direct_batch_major_endpoint_sha256": "2e7fc546187fe157523e0498995039dbed844f346555236cf5e57ab50679c137",
+  "time_major_pixels_sha256": "6512bd7ca6e1db7e83dd261c8ee9058c6ec9d1de430280b1dc15bc75ea0a5b99",
+  "direct_pixels_sha256": "6512bd7ca6e1db7e83dd261c8ee9058c6ec9d1de430280b1dc15bc75ea0a5b99",
+  "time_major_cost": {
+    "trajectory_wall_seconds": 10.424505371134728,
+    "trajectory_cuda_event_span_seconds": 10.4243818359375,
+    "stage2_forward_calls": 200,
+    "stage2_sample_forwards": 1600
+  },
+  "direct_batch_major_trajectory_wall_seconds": 10.056751256110147,
+  "direct_batch_major_trajectory_cuda_span_seconds": 10.05659912109375,
+  "stage2_forward_calls": 400,
+  "stage2_sample_forwards": 3200,
+  "decoder_forward_calls": 4,
+  "decoder_sample_forwards": 32,
+  "decode_and_uint8_wall_seconds": 0.16306734108366072,
+  "parity_is_not_quality_or_cost_comparison": true
+}

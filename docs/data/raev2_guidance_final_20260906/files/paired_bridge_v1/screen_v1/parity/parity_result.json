@@ -1,0 +1,115 @@
+{
+  "complete": true,
+  "samples_per_loop": 16,
+  "stepwise_bitwise": true,
+  "endpoint_bitwise": true,
+  "pixel_bitwise": true,
+  "endpoint_sha256": {
+    "production": "aa278e78bfbcfe088a26683e4e587e08210ebf1c0322aa0f45648322ef5f4a1b",
+    "official": "aa278e78bfbcfe088a26683e4e587e08210ebf1c0322aa0f45648322ef5f4a1b",
+    "zero_candidate": "aa278e78bfbcfe088a26683e4e587e08210ebf1c0322aa0f45648322ef5f4a1b",
+    "zero_control": "aa278e78bfbcfe088a26683e4e587e08210ebf1c0322aa0f45648322ef5f4a1b"
+  },
+  "pixels_sha256": {
+    "production": "329ecf5f7c1d2a746938faafa76ee8a33d153a49cfcec65b7bb2dc1e82424a72",
+    "official": "329ecf5f7c1d2a746938faafa76ee8a33d153a49cfcec65b7bb2dc1e82424a72",
+    "zero_candidate": "329ecf5f7c1d2a746938faafa76ee8a33d153a49cfcec65b7bb2dc1e82424a72",
+    "zero_control": "329ecf5f7c1d2a746938faafa76ee8a33d153a49cfcec65b7bb2dc1e82424a72"
+  },
+  "batches": [
+    {
+      "start": 0,
+      "steps_compared": 100,
+      "stepwise_bitwise": true,
+      "pixel_bitwise": true,
+      "complete_loop_wall_seconds": 21.08330158283934,
+      "forward_counts": {
+        "observed": {
+          "stage2_forward_calls": 400,
+          "stage2_sample_forwards": 3200,
+          "decoder_forward_calls": 4,
+          "decoder_sample_forwards": 32,
+          "candidate_forward_calls": 0,
+          "candidate_sample_forwards": 0,
+          "control_forward_calls": 0,
+          "control_sample_forwards": 0,
+          "zero_candidate_forward_calls": 200,
+          "zero_candidate_sample_forwards": 1600,
+          "zero_control_forward_calls": 200,
+          "zero_control_sample_forwards": 1600
+        },
+        "expected": {
+          "stage2_forward_calls": 400,
+          "stage2_sample_forwards": 3200,
+          "decoder_forward_calls": 4,
+          "decoder_sample_forwards": 32,
+          "candidate_forward_calls": 0,
+          "candidate_sample_forwards": 0,
+          "control_forward_calls": 0,
+          "control_sample_forwards": 0,
+          "zero_candidate_forward_calls": 200,
+          "zero_candidate_sample_forwards": 1600,
+          "zero_control_forward_calls": 200,
+          "zero_control_sample_forwards": 1600
+        }
+      }
+    },
+    {
+      "start": 8,
+      "steps_compared": 100,
+      "stepwise_bitwise": true,
+      "pixel_bitwise": true,
+      "complete_loop_wall_seconds": 20.968954463023692,
+      "forward_counts": {
+        "observed": {
+          "stage2_forward_calls": 400,
+          "stage2_sample_forwards": 3200,
+          "decoder_forward_calls": 4,
+          "decoder_sample_forwards": 32,
+          "candidate_forward_calls": 0,
+          "candidate_sample_forwards": 0,
+          "control_forward_calls": 0,
+          "control_sample_forwards": 0,
+          "zero_candidate_forward_calls": 200,
+          "zero_candidate_sample_forwards": 1600,
+          "zero_control_forward_calls": 200,
+          "zero_control_sample_forwards": 1600
+        },
+        "expected": {
+          "stage2_forward_calls": 400,
+          "stage2_sample_forwards": 3200,
+          "decoder_forward_calls": 4,
+          "decoder_sample_forwards": 32,
+          "candidate_forward_calls": 0,
+          "candidate_sample_forwards": 0,
+          "control_forward_calls": 0,
+          "control_sample_forwards": 0,
+          "zero_candidate_forward_calls": 200,
+          "zero_candidate_sample_forwards": 1600,
+          "zero_control_forward_calls": 200,
+          "zero_control_sample_forwards": 1600
+        }
+      }
+    }
+  ],
+  "forward_counts_observed": {
+    "stage2_forward_calls": 801,
+    "stage2_sample_forwards": 6408,
+    "decoder_forward_calls": 8,
+    "decoder_sample_forwards": 64,
+    "candidate_forward_calls": 2,
+    "candidate_sample_forwards": 16,
+    "control_forward_calls": 2,
+    "control_sample_forwards": 16,
+    "zero_candidate_forward_calls": 400,
+    "zero_candidate_sample_forwards": 3200,
+    "zero_control_forward_calls": 400,
+    "zero_control_sample_forwards": 3200
+  },
+  "finite_response": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity/finite_response.json",
+    "sha256": "2dcd103fae1104f6ef68b98c56908d105d54fec1ca2481c0f1437c42ab6554f8",
+    "size_bytes": 1671
+  },
+  "parity_is_not_quality_or_cost_comparison": true
+}

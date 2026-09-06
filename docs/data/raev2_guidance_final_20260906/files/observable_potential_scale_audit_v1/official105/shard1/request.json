@@ -1,0 +1,263 @@
+{
+  "protocol": "raev2_observable_potential_sampling_v1",
+  "mode": "official",
+  "seed": 202609101,
+  "num_steps": 105,
+  "batch_size": 8,
+  "sample_count": 5000,
+  "shard_index": 1,
+  "num_shards": 4,
+  "config": {
+    "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+    "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "size_bytes": 1772
+  },
+  "baseline_checkpoint": {
+    "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+    "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "size_bytes": 10520885445
+  },
+  "potential_checkpoint": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+    "sha256": "495b3313e945f4b845307ae0d520c3c8d8fa70e60e3983002297cd3f7ccc632e",
+    "size_bytes": 2438557
+  },
+  "decoder_checkpoint": {
+    "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+    "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+    "size_bytes": 1662766063
+  },
+  "normalization_stats": {
+    "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+    "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+    "size_bytes": 2098901
+  },
+  "training_chain": {
+    "training_request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/request.json",
+      "sha256": "4753995cd54afb320772d8473b73f144fdb54ae8b2cad41c7812ee6a2da20443",
+      "size_bytes": 8439
+    },
+    "training_summary": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/summary.json",
+      "sha256": "45e3c0ded8d0ffd7165dc346bc935c30485d89dfa4ee7cf7e81840aeff726521",
+      "size_bytes": 2490
+    },
+    "training_bank": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/summary.json",
+      "sha256": "d17d6e22ea47f7d2603f7c6843145abd6c90caf961b90a146fcc864ddc61333b",
+      "size_bytes": 469118
+    },
+    "training_bank_request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/request.json",
+      "sha256": "2e09052c91262816e3eeb13070bb3ee095ecbcb690791d3c7e364ea1f4e25e60",
+      "size_bytes": 12379
+    },
+    "training_cost": {
+      "stage2_forward_calls": 2048,
+      "stage2_sample_forwards": 65536,
+      "potential_forward_input_gradient_calls": 2048,
+      "potential_parameter_backward_calls": 2048,
+      "total_wall_seconds_excluding_imports_and_final_summary_write": 564.0549605630804,
+      "total_cpu_seconds_excluding_imports_and_final_summary_write": 706.830304508
+    }
+  },
+  "sources": {
+    "experiments/sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "experiments/raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "experiments/raev2_stage1_compat.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "external/RAEv2/src/stage1/rae.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/sources/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    }
+  },
+  "time_grid": [
+    1.0,
+    0.9987995028495789,
+    0.9975786805152893,
+    0.9963369965553284,
+    0.9950738549232483,
+    0.9937888383865356,
+    0.9924812316894531,
+    0.991150438785553,
+    0.9897959232330322,
+    0.9884169697761536,
+    0.9870129823684692,
+    0.9855831861495972,
+    0.9841270446777344,
+    0.9826435446739197,
+    0.9811320900917053,
+    0.9795918464660645,
+    0.9780219793319702,
+    0.9764216542243958,
+    0.9747899174690247,
+    0.9731258749961853,
+    0.9714285135269165,
+    0.9696969985961914,
+    0.9679300785064697,
+    0.9661266803741455,
+    0.9642857313156128,
+    0.9624059796333313,
+    0.9604862928390503,
+    0.9585253000259399,
+    0.9565218091011047,
+    0.954474151134491,
+    0.9523809552192688,
+    0.9502407908439636,
+    0.948051929473877,
+    0.9458128213882446,
+    0.9435215592384338,
+    0.9411764144897461,
+    0.9387754797935486,
+    0.936316728591919,
+    0.9337979555130005,
+    0.9312169551849365,
+    0.9285714030265808,
+    0.9258589148521423,
+    0.9230769276618958,
+    0.9202225804328918,
+    0.9172931909561157,
+    0.9142856597900391,
+    0.9111968278884888,
+    0.908023476600647,
+    0.9047619104385376,
+    0.9014084339141846,
+    0.8979591727256775,
+    0.8944098949432373,
+    0.890756368637085,
+    0.8869935274124146,
+    0.8831169009208679,
+    0.8791208863258362,
+    0.875,
+    0.8707482814788818,
+    0.8663594722747803,
+    0.8618267178535461,
+    0.8571428656578064,
+    0.852300226688385,
+    0.8472906351089478,
+    0.8421052694320679,
+    0.8367347121238708,
+    0.8311688303947449,
+    0.8253968358039856,
+    0.819407045841217,
+    0.8131868243217468,
+    0.8067227005958557,
+    0.800000011920929,
+    0.7930029630661011,
+    0.785714328289032,
+    0.7781155109405518,
+    0.7701863050460815,
+    0.761904776096344,
+    0.7532467842102051,
+    0.7441860437393188,
+    0.7346938848495483,
+    0.7247386574745178,
+    0.7142857313156128,
+    0.7032967209815979,
+    0.6917293667793274,
+    0.6795367002487183,
+    0.6666666269302368,
+    0.6530612111091614,
+    0.6386554837226868,
+    0.6233766078948975,
+    0.6071429252624512,
+    0.5898618102073669,
+    0.5714285969734192,
+    0.5517241358757019,
+    0.5306122303009033,
+    0.5079365372657776,
+    0.48351648449897766,
+    0.45714282989501953,
+    0.4285714328289032,
+    0.39751556515693665,
+    0.3636363744735718,
+    0.3265306055545807,
+    0.2857142686843872,
+    0.24060150980949402,
+    0.190476194024086,
+    0.13445378839969635,
+    0.0714285671710968,
+    0.0
+  ],
+  "time_shift": 8,
+  "transport_t_eps": 0.05,
+  "denominator": "max(original noise time t, 0.05), including baseline K > 100",
+  "precision": "native BF16 heads and B+1.78*(F-B) then FP32; FP32 state, potential and Euler; TF32 false",
+  "baseline_interval": [
+    0.1,
+    1.0
+  ],
+  "cfg_scale": 1.0,
+  "ig_scale": 1.78,
+  "correction": "c=grad_z Phi, Gnew=G+c, all 100 queries, coefficient 1, no added window",
+  "pixel_arithmetic": "native BF16 decoder -> clamp(0,1) -> BF16 multiply255 -> uint8 NHWC",
+  "noise_schema": "one CUDA Generator(seed), one randn([5000,1024,16,16]); CPU cohort sliced by global IDs; no rank/batch seed offsets",
+  "label_schema": "global_id % 1000",
+  "partition": "complete global B8 batches assigned modulo num_shards",
+  "all_modes_resident": [
+    "same frozen stage2",
+    "same frozen final potential",
+    "same frozen decoder"
+  ],
+  "torch_version": "2.11.0+cu130",
+  "fid_performed": false,
+  "benchmark": null,
+  "cuda_device": "NVIDIA GeForce RTX 4090",
+  "cuda_visible_devices": "1",
+  "baseline_checkpoint_step": 100080,
+  "global_noise_sha256": "7e51efbf0bb4b906413238c16b337fa63e34162c483f3e14a9ef7a0dd71eb303",
+  "global_labels_sha256": "7880f6745ab864b6483071752367154af08721122db79ee5065bed00f95bcdb6",
+  "paired_noise_audit": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official105/shard1/paired_noise_audit.npz",
+    "sha256": "77858c699e5403ff04e4a1c4b89f40c87421fc40972b831a6470f5b20048324a",
+    "size_bytes": 1049118
+  }
+}

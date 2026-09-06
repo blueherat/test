@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-06T15:15:26.819156+00:00",
+  "paper": "Stochastic Interpolants: A Unifying Framework for Flows and Diffusions",
+  "paper_identity": "JMLR 26(209):1-80, 2025; arXiv 2303.08797 metadata v4",
+  "archive_root": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_stochastic_interpolants_v1",
+  "closeout_started_utc": "2026-09-06T15:10:42.198672+00:00",
+  "preexisting_file_count": 24,
+  "file_count_excluding_manifest": 28,
+  "total_bytes_excluding_manifest": 16308534,
+  "manifest_self_excluded": true,
+  "note_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_STOCHASTIC_INTERPOLANTS_20260906_ZH.md",
+  "note_sha256": "92445ac3dbf352a15f3bd846d79658b9f090cb9c18d9a2dcbd27021e0e541bb9",
+  "note_bytes": 16784,
+  "source_boundary": "No earlier HTTP acquisition log claimed; files existed before closeout and retain their original bytes. URLs are recovered from archived canonical/API metadata and the earlier note. Derived materials are explicitly distinguished. This manifest itself is excluded to avoid self-reference.",
+  "files": [
+    {
+      "path": "analytic_checks.json",
+      "bytes": 1133,
+      "sha256": "9a682a2430afa83361d5c96b9cc9ef9d6b04b59c82185df70a38462fd115f0b1",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf",
+        "analytic_checks.py"
+      ],
+      "derivation": "Earlier deterministic local scalar checks, preserved unchanged; not experimental quality evidence."
+    },
+    {
+      "path": "analytic_checks.py",
+      "bytes": 2369,
+      "sha256": "ee2063f0f13d1ddcfcce45505ce2f9d1c1553bc477fc5afd78ff22e0d92e723a",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Earlier deterministic local scalar checks, preserved unchanged; not experimental quality evidence."
+    },
+    {
+      "path": "arxiv_metadata.html",
+      "bytes": 45084,
+      "sha256": "f68f559be5b9a437f53760f643d907745a84b1da9350cbcb42bf38e9f3a50bcb",
+      "present_before_closeout": true,
+      "source_kind": "primary_source_archive",
+      "source_url": "https://arxiv.org/abs/2303.08797",
+      "provenance_note": "URL recovered from canonical metadata, formal paper link, or the existing reading note; original HTTP acquisition log is not available in this closeout."
+    },
+    {
+      "path": "author_publications.html",
+      "bytes": 73021,
+      "sha256": "fc5e59f9fa37b096ef0eb4904a4934f55301faddb7f4834304d46bea2e35912f",
+      "present_before_closeout": true,
+      "source_kind": "primary_source_archive",
+      "source_url": "https://nmboffi.github.io/publications/",
+      "provenance_note": "URL recovered from canonical metadata, formal paper link, or the existing reading note; original HTTP acquisition log is not available in this closeout."
+    },
+    {
+      "path": "closeout_recovery.json",
+      "bytes": 6043,
+      "sha256": "1ac2ee8edef8ebecb580581ef84c503e493077653a51cd45e96d8123c6a46ccc",
+      "present_before_closeout": false,
+      "source_kind": "derived",
+      "derived_from": [
+        "analytic_checks.json",
+        "analytic_checks.py",
+        "arxiv_metadata.html",
+        "author_publications.html",
+        "code/malbergo/stochastic-interpolants/README.md",
+        "code/malbergo/stochastic-interpolants/interflow/stochastic_interpolant.py",
+        "code/nmboffi/jax-interpolants/README.md",
+        "code/nmboffi/jax-interpolants/py/common/interpolant.py",
+        "code/nmboffi/jax-interpolants/py/common/losses.py",
+        "code/nmboffi/jax-interpolants/py/common/samplers.py",
+        "jax-interpolants_commit.json",
+        "jax-interpolants_repo.json",
+        "jax-interpolants_tree.json",
+        "jmlr_23_1605.pdf",
+        "jmlr_23_1605.txt",
+        "jmlr_landing.html",
+        "page_17.png",
+        "page_19.png",
+        "page_52.png",
+        "page_66.png",
+        "page_74.png",
+        "stochastic-interpolants_commit.json",
+        "stochastic-interpolants_repo.json",
+        "stochastic-interpolants_tree.json"
+      ],
+      "derivation": "Observation at closeout start of preexisting bytes, hashes and mtimes; observed mtimes do not certify acquisition times."
+    },
+    {
+      "path": "closeout_verification.json",
+      "bytes": 4569,
+      "sha256": "9cba3394c806120ae59677daec8c5eb6f37421ec248132222a6fc44fdb9e1a4a",
+      "present_before_closeout": false,
+      "source_kind": "derived",
+      "derived_from": [
+        "finalize_closeout.py",
+        "closeout_recovery.json",
+        "analytic_checks.json",
+        "jmlr_23_1605.pdf",
+        "jmlr_23_1605.txt"
+      ],
+      "derivation": "Independent inventory, source blob, equation location, PDF text, and deterministic Decimal checks."
+    },
+    {
+      "path": "code/malbergo/stochastic-interpolants/README.md",
+      "bytes": 3581,
+      "sha256": "b977bb465bec292d0320b7a0f7100d1ffd041c51ea56436d6168819a7f99bcc8",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/malbergo/stochastic-interpolants/c9bc956ec5a51c907bcbfb114f96d3539acb70bb/README.md",
+      "derived_from": [
+        "stochastic-interpolants_commit.json",
+        "stochastic-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "code/malbergo/stochastic-interpolants/interflow/stochastic_interpolant.py",
+      "bytes": 24252,
+      "sha256": "e646123fe6ec7fd4009a008d1bb7d61cfe8325e3fe7f8a997e245dbde0505d6e",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/malbergo/stochastic-interpolants/c9bc956ec5a51c907bcbfb114f96d3539acb70bb/interflow/stochastic_interpolant.py",
+      "derived_from": [
+        "stochastic-interpolants_commit.json",
+        "stochastic-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/README.md",
+      "bytes": 2963,
+      "sha256": "7dcfa4cfa33d5bb7ee0aaa93aa2d69e72e2f3227d886003d6f616c65fb0567e8",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/nmboffi/jax-interpolants/8e6bf907d11be49da1780b5a3aa7212277365257/README.md",
+      "derived_from": [
+        "jax-interpolants_commit.json",
+        "jax-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/interpolant.py",
+      "bytes": 4209,
+      "sha256": "7beb26ea52c5d1c09faa49aeb293d35489c7a127ba3eb1085e2dc13350b90e53",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/nmboffi/jax-interpolants/8e6bf907d11be49da1780b5a3aa7212277365257/py/common/interpolant.py",
+      "derived_from": [
+        "jax-interpolants_commit.json",
+        "jax-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/losses.py",
+      "bytes": 2074,
+      "sha256": "674336707345efaefdf9ae3af2c2066fb0f7fd6a9e0e5979325f716bb0c92647",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/nmboffi/jax-interpolants/8e6bf907d11be49da1780b5a3aa7212277365257/py/common/losses.py",
+      "derived_from": [
+        "jax-interpolants_commit.json",
+        "jax-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "code/nmboffi/jax-interpolants/py/common/samplers.py",
+      "bytes": 1770,
+      "sha256": "39de1f52eba7e699347a61ffee3287fa4c8cc3d5c34a1c3633cf38f8fe04cbcd",
+      "present_before_closeout": true,
+      "source_kind": "primary_author_code",
+      "source_url": "https://raw.githubusercontent.com/nmboffi/jax-interpolants/8e6bf907d11be49da1780b5a3aa7212277365257/py/common/samplers.py",
+      "derived_from": [
+        "jax-interpolants_commit.json",
+        "jax-interpolants_tree.json"
+      ],
+      "provenance_note": "Pinned raw URL reconstructed; every code file independently matches its Git blob SHA in the archived commit tree."
+    },
+    {
+      "path": "finalize_closeout.py",
+      "bytes": 9089,
+      "sha256": "13d2b1b2e6dd74fcc63d6c95561986e4126787a9c2483723797fb956e34dfa63",
+      "present_before_closeout": false,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf",
+        "analytic_checks.py",
+        "closeout_recovery.json"
+      ],
+      "derivation": "Local one-time closeout verifier and manifest generator; no network or model execution."
+    },
+    {
+      "path": "jax-interpolants_commit.json",
+      "bytes": 6594,
+      "sha256": "991330c0779649dc5461154effdfeecdaece24bda0d02d76abf6f40f961488a0",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/nmboffi/jax-interpolants/commits/8e6bf907d11be49da1780b5a3aa7212277365257",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    },
+    {
+      "path": "jax-interpolants_repo.json",
+      "bytes": 5970,
+      "sha256": "fc2ebaa76999ba22c1e763e676a366fbf88b9dd204458837e762a2dec90f8094",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/nmboffi/jax-interpolants",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    },
+    {
+      "path": "jax-interpolants_tree.json",
+      "bytes": 9169,
+      "sha256": "50b596963d640ae4b3154d2cd01b63f744f7896d7c7ce85091c16d2ceaac6471",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/nmboffi/jax-interpolants/git/trees/8e6bf907d11be49da1780b5a3aa7212277365257?recursive=1",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    },
+    {
+      "path": "jmlr_23_1605.pdf",
+      "bytes": 13670338,
+      "sha256": "5b9e56d46b89ed4880d94a778b7334508015a0fe6ce020e738768f5907e3478b",
+      "present_before_closeout": true,
+      "source_kind": "primary_source_archive",
+      "source_url": "https://jmlr.org/papers/volume26/23-1605/23-1605.pdf",
+      "provenance_note": "URL recovered from canonical metadata, formal paper link, or the existing reading note; original HTTP acquisition log is not available in this closeout."
+    },
+    {
+      "path": "jmlr_23_1605.txt",
+      "bytes": 307460,
+      "sha256": "760782fad59a043481f2a264652e23fb801f7fe22251497cafa87198c5612fbb",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "pdftotext -layout; exact byte parity reverified in closeout."
+    },
+    {
+      "path": "jmlr_landing.html",
+      "bytes": 6753,
+      "sha256": "d9c01cc8d233187c8e66ccc834bae55201a4276204735f14eff456d921dba019",
+      "present_before_closeout": true,
+      "source_kind": "primary_source_archive",
+      "source_url": "https://jmlr.org/papers/v26/23-1605.html",
+      "provenance_note": "URL recovered from canonical metadata, formal paper link, or the existing reading note; original HTTP acquisition log is not available in this closeout."
+    },
+    {
+      "path": "note_snapshot.md",
+      "bytes": 16784,
+      "sha256": "92445ac3dbf352a15f3bd846d79658b9f090cb9c18d9a2dcbd27021e0e541bb9",
+      "present_before_closeout": false,
+      "source_kind": "derived",
+      "derived_from": [
+        "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_STOCHASTIC_INTERPOLANTS_20260906_ZH.md",
+        "jmlr_23_1605.pdf",
+        "closeout_verification.json"
+      ],
+      "derivation": "Exact copy of finalized closeout note, preserving earlier reading and marking independent closeout scope."
+    },
+    {
+      "path": "page_17.png",
+      "bytes": 275867,
+      "sha256": "5ac203e07e2c2ea443240c0a9ba2ea04e9e3f172082156de4eb3e27fc62f907c",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Preexisting selected PDF page rendering; filename is one-based PDF page. Render command not preserved; page and visible content independently checked."
+    },
+    {
+      "path": "page_19.png",
+      "bytes": 257245,
+      "sha256": "b6e9e943b50216eae0afe1aec926e6423279bf8e6d9eb5dbc85695282206881f",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Preexisting selected PDF page rendering; filename is one-based PDF page. Render command not preserved; page and visible content independently checked."
+    },
+    {
+      "path": "page_52.png",
+      "bytes": 1097548,
+      "sha256": "60b56d7c71f0035ff25066679f33ddde36155a0a2644ab664bd30898adf4b45a",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Preexisting selected PDF page rendering; filename is one-based PDF page. Render command not preserved; page and visible content independently checked."
+    },
+    {
+      "path": "page_66.png",
+      "bytes": 206922,
+      "sha256": "a884e7da60701d3a9195f027a1485ded7386a1872a36c7dc9968e456b367b74e",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Preexisting selected PDF page rendering; filename is one-based PDF page. Render command not preserved; page and visible content independently checked."
+    },
+    {
+      "path": "page_74.png",
+      "bytes": 239619,
+      "sha256": "bc3a89bcea95cf326ed0703e3e2d966d3734d0bd537f66d3e4c8dd4ebb7bebce",
+      "present_before_closeout": true,
+      "source_kind": "derived",
+      "derived_from": [
+        "jmlr_23_1605.pdf"
+      ],
+      "derivation": "Preexisting selected PDF page rendering; filename is one-based PDF page. Render command not preserved; page and visible content independently checked."
+    },
+    {
+      "path": "stochastic-interpolants_commit.json",
+      "bytes": 6316,
+      "sha256": "7ab4a8bbdde9284a90c16861233609135cf800ea25b8c9ca26691d769090b599",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/malbergo/stochastic-interpolants/commits/c9bc956ec5a51c907bcbfb114f96d3539acb70bb",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    },
+    {
+      "path": "stochastic-interpolants_repo.json",
+      "bytes": 6104,
+      "sha256": "8d039dbac0125d2de5da5db0c4cfaa708b1931d32e800b4d8a7fad5dcc126ead",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/malbergo/stochastic-interpolants",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    },
+    {
+      "path": "stochastic-interpolants_tree.json",
+      "bytes": 15688,
+      "sha256": "4c8b14e4017905320d4c1b0e5cd300cf1f7fe9baa4b97696180b20b461108797",
+      "present_before_closeout": true,
+      "source_kind": "primary_GitHub_API_archive",
+      "source_url": "https://api.github.com/repos/malbergo/stochastic-interpolants/git/trees/c9bc956ec5a51c907bcbfb114f96d3539acb70bb?recursive=1",
+      "provenance_note": "Resource URL recorded in archived GitHub JSON; recursive query inferred from complete file tree."
+    }
+  ]
+}

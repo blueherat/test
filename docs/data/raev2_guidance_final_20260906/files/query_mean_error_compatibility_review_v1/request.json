@@ -1,0 +1,23 @@
+{
+  "review": "independent_cpu_teacher_query_mean_error_reconstruction_v1",
+  "created_utc": "2026-09-06T10:36:20.142590+00:00",
+  "source_request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/request.json",
+    "sha256": "1f18f4374530e9c235d3c4a62bfe9349b729d20467d36194077797f229524ead",
+    "bytes": 14621
+  },
+  "source_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/summary.json",
+    "sha256": "b3e49faf465b5b0a66a3ff2670505063e2ccf936219b822e47dce7d3fe754273",
+    "bytes": 23684
+  },
+  "review_source": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_review_v1/review_cpu.py",
+    "sha256": "f912639b6fc4007a0c59fad4f5aa1315277485727c0d85e1b4f0c1fc3ec6d96d",
+    "bytes": 20497
+  },
+  "scope": "all80 saved heads/targets and rows; all registered producer sources/outputs SHA; no producer imports or GPU",
+  "arithmetic": "independent FP64 vector subtraction, 256-coordinate einsum and math.fsum; all80/per-time means and ratios",
+  "no_gain_selection": true,
+  "no_fid": true
+}

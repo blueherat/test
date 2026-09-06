@@ -1,0 +1,59 @@
+{
+  "recorded_at_utc": "2026-09-06T12:59:17.321722+00:00",
+  "paper_pages": 34,
+  "read_scope": [
+    "main sections 1-8",
+    "Appendix A",
+    "B.1-B.6",
+    "C.1-C.4",
+    "D.1-D.3"
+  ],
+  "proof_focus": [
+    "B.2 uniform Laplace expansion",
+    "B.5 Eq20 integral-ratio proof",
+    "B.1/B.3 dependencies",
+    "B.4 WKB argument read conditional on its assumptions"
+  ],
+  "not_claimed": [
+    "independent proofs of all externally cited theorems",
+    "unconditional WKB existence",
+    "global non-gradient mixing certification",
+    "FID or RAE performance theorem",
+    "official source-code audit"
+  ],
+  "independent_derivations": [
+    "Tweedie posterior mean vs projection error bound",
+    "scaled Gaussian observation version",
+    "uniform circle finite-noise posterior-mean example",
+    "affine Gaussian normal factor",
+    "power-law error-margin counterexample"
+  ],
+  "gpu_calls": 0,
+  "model_queries": 0,
+  "sampling_runs": 0,
+  "training_runs": 0,
+  "fid_evaluations": 0,
+  "local_changes": [
+    "new reading note",
+    "new reading_score_geometry_v1 archive"
+  ],
+  "reading_total_wall_seconds": null,
+  "reading_total_cpu_seconds": null,
+  "cost_note": "Total reading/CPU cost was not measured; sources.json records actual individual request wall time. Validation costs below cover only this CPU hash/text validation block.",
+  "validation": {
+    "control_characters": [],
+    "inline_math_pairs": 113,
+    "display_math_pairs": 16,
+    "source_hashes_verified": true,
+    "wall_seconds": 0.01127783302217722,
+    "cpu_seconds": 0.011141667000000001
+  },
+  "final_note_validation": {
+    "control_characters": [],
+    "inline_math_pairs": 120,
+    "display_math_pairs": 16,
+    "wall_seconds": 0.0013632969930768013,
+    "cpu_seconds": 0.0013614140000000052
+  },
+  "final_correction": "C.1 actual time scaling documented: drift sigma^2 s, standard noise sqrt(2 sigma^2), TS noise sqrt(2 sigma^(2-alpha)); equal invariant measure is not equal finite-time or wall-clock mixing."
+}

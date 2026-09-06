@@ -1,0 +1,30 @@
+{
+  "protocol": "raev2_guidance_discrepancy_counterexample_check_v1",
+  "archive_time_utc": "2026-09-06T07:38:40.206622+00:00",
+  "files": [
+    {
+      "file": "check.py",
+      "sha256": "991c62d74761d9843da9666a969739c3ce45be0ac23531884365d10191b0b765",
+      "bytes": 1088
+    },
+    {
+      "file": "stdout.txt",
+      "sha256": "eeff9023274c3bf063ff409b666b7fb0114842e6bdb6edd9e2e800ddf1f72a61",
+      "bytes": 536
+    },
+    {
+      "file": "results.json",
+      "sha256": "e35e4ee1e0b6b3f07e57d84adb93be7f4b0e014da604b08c5d28dd6c71d6dab2",
+      "bytes": 2789
+    }
+  ],
+  "reviewed_doc_sha256": "69ae4d80858531c89d2aaa82edf99a10f4b2bdf3f2aabd6a284f9cc9c6168f95",
+  "archive_only_cost": {
+    "wall_seconds": 0.0006635419558733702,
+    "cpu_seconds": 0.000661417999999997,
+    "scope": "Archival writes and hashes since timer started after imports; excludes final manifest write, interpreter exit, shell startup. Does not measure the previous numerical calculation.",
+    "numerical_calculation_rerun": false,
+    "gpu_calls": 0,
+    "model_calls": 0
+  }
+}

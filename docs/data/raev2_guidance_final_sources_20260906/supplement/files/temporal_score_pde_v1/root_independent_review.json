@@ -1,0 +1,27 @@
+{
+  "independent_root_review": true,
+  "source_identity_verified": true,
+  "method": "Independent SciPy integration of the explicit probability-flow drift, plus manual FPE mean/variance and score-PDE derivation; no import of audit producer",
+  "cases": [
+    {
+      "mu": 0,
+      "variance": 1,
+      "endpoint_max_error": 5.990763440877345e-13,
+      "rhs_calls": 242
+    },
+    {
+      "mu": 1,
+      "variance": 1,
+      "endpoint_max_error": 4.845013279464183e-13,
+      "rhs_calls": 266
+    },
+    {
+      "mu": 0,
+      "variance": 4,
+      "endpoint_max_error": 2.0821566693030036e-11,
+      "rhs_calls": 194
+    }
+  ],
+  "wall_seconds": 0.007206782000139356,
+  "new_gpu_model_fid_calls": 0
+}

@@ -1,0 +1,48 @@
+{
+  "protocol": "raev2_observable_potential_merge_v1",
+  "complete": true,
+  "mode": "potential",
+  "seed": 202609101,
+  "num_steps": 100,
+  "samples": 5000,
+  "classes": 1000,
+  "samples_per_class": 5,
+  "shards": 4,
+  "sample_archive": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/samples.npz",
+    "sha256": "89e3e2c3e83ca3af4d6ec0f463580fe909a06c5211ecd75d971e4a73663ceb1a",
+    "size_bytes": 983120746
+  },
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged/request.json",
+    "sha256": "e92dc9759cdf923718ffc3123b083012653bca5d9a08b9a44850f4edfc419c38",
+    "size_bytes": 19801
+  },
+  "global_noise_sha256": "7e51efbf0bb4b906413238c16b337fa63e34162c483f3e14a9ef7a0dd71eb303",
+  "counters_sum": {
+    "stage2_forward_calls": 62500,
+    "stage2_sample_forwards": 500000,
+    "potential_forward_input_gradient_calls": 62500,
+    "potential_sample_input_gradients": 500000,
+    "potential_parameter_backward_calls": 0,
+    "decoder_forward_calls": 625,
+    "decoder_sample_forwards": 5000
+  },
+  "worker_timings_seconds_sum": {
+    "trajectory_wall_seconds": 3295.046909769997,
+    "decode_and_uint8_wall_seconds": 17.415603110333905,
+    "sampling_wall_including_output_seconds": 3332.429219598882,
+    "potential_checkpoint_load_seconds": 0.06275969510897994,
+    "common_backbone_and_decoder_load_seconds": 52.04695326904766,
+    "noise_generation_copy_and_audit_wall_seconds": 25.889316361630335,
+    "total_wall_seconds_excluding_imports_and_final_summary_write": 3459.0223583579063,
+    "total_cpu_seconds_excluding_imports_and_final_summary_write": 3495.7425345869997
+  },
+  "worker_total_wall_seconds_max_not_makespan": 876.3940813681111,
+  "worker_peak_gpu_memory_allocated_bytes_max": 10496353792,
+  "cost_boundary": "Worker wall/CPU sums measure aggregate process cost, not elapsed makespan or CUDA kernel time. Shared training/validation/preparation/benchmark costs are not multiplied by shard count and are not included here.",
+  "merge_wall_seconds_excluding_final_summary_write": 17.29531723400578,
+  "merge_cpu_seconds_excluding_final_summary_write": 17.404863056,
+  "fid_performed": false,
+  "gpu_used_for_merge": false
+}

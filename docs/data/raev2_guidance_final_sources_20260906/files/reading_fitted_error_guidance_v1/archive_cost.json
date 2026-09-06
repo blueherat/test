@@ -1,0 +1,28 @@
+{
+  "measured_scope": "This final CPU-only copy, source-identity validation and hashing block, excluding following manifest serialization and checksum verification.",
+  "wall_seconds": 0.032074796967208385,
+  "process_cpu_seconds": 0.032073830000000005,
+  "reading_and_search_total_wall_seconds": null,
+  "reading_and_search_total_cpu_seconds": null,
+  "unmeasured_reason": "Reading/search/downloads were not under a single timer; only individual download/conversion logs and this final archival block were measured.",
+  "upstream_hashes_validated": 30,
+  "model_forward_calls": 0,
+  "gpu_calls": 0,
+  "training_runs": 0,
+  "sampling_runs": 0,
+  "author_tests_run": 0,
+  "download_cost_sources": [
+    "terminal_fitted/download_manifest.json",
+    "terminal_fitted/source_download.json",
+    "terminal_fitted/author_snapshot_download.json",
+    "terminal_fitted/code/fetch_manifest.json",
+    "erk_guid/sources.json"
+  ],
+  "cost_boundary": "Per-request download times may overlap; do not sum them as elapsed total. Text-conversion parent CPU is not child subprocess CPU.",
+  "authorized_index_update_archive": {
+    "measured_scope": "CPU copy/update/hashing through this record, excluding final serialization and following checksum verification.",
+    "wall_seconds": 0.019565179012715816,
+    "process_cpu_seconds": 0.019564306000000004,
+    "index_rows_counted": 37
+  }
+}

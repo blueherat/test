@@ -1,0 +1,105 @@
+{
+  "completed_utc": "2026-09-06T11:40:41.574971+00:00",
+  "review_kind": "pre_result_read_only_code_identity_and_tiny_CPU_Bures",
+  "production_run_complete": false,
+  "fid_read_or_computed": false,
+  "production_features_or_sample_pixels_read": false,
+  "gpu_or_model_calls": 0,
+  "driver_pid_observed_alive": 4065567,
+  "execution_snapshot_sha256": "2b2c5110e63effd0164ea7c019271dd2e8f3e463a84a2ce8148ba9156aaa4338",
+  "plan_sha256": "1f7e448c3d336661e39cad671097be9afcc85d7d0354b7776ab833ec7ae6ce1c",
+  "all_frozen_files_verified": true,
+  "frozen_file_count": 23,
+  "review_script_sha256": "84a4fd852f35bbd5ba502789d9c1f2fbd6a916aa4931a14d5fd4ab6e8563afb2",
+  "review_script_not_in_production_plan": true,
+  "source_hashes": {
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py": "37426ed1865537a14f05777ed909d90113aeee224fc0f4f0cf8f4e71d557b069",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py": "7ea49251f08f9ea4cfae3c9934cf390ba335236c679c94db7d25c217a08a2279",
+    "/home/zhoushunyu/eqvae/experiments/review_raev2_affine_reflection_screen.py": "84a4fd852f35bbd5ba502789d9c1f2fbd6a916aa4931a14d5fd4ab6e8563afb2",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db"
+  },
+  "checks": [
+    "Two separate B8 stage2 calls per candidate step; each Full/Base shared in one model call. BF16 B+1.78*(F-B) or Full, then FP32 average and affine projection; FP32 Euler, TF32 off, native BF16 decoder clamp/multiply255 preserved.",
+    "Exact global N1000 CUDA FP32 noise draw and ascending labels independent of step count. Actual official100 identity checked; other arms are not yet available, so full three-arm pairing is pending.",
+    "T is synchronized trajectory plus decode/uint8 including reflection/projection. W covers runner main through pre-summary wall. Driver selects K>=200 from both ratios; retries only monotonically before FID, without dummy work. Runtime overhead outside main is logged separately.",
+    "Native official16 endpoints and pixels bitwise match; 400 off-branch stage2 calls, four B8 decodes, four extra candidate-check stage2 calls preserved.",
+    "Low-rank Bures Gram C*Sigma_ref*C^T/(n-1) has the nonzero eigenvalues of Sigma_ref^(1/2)*S*Sigma_ref^(1/2), including noncommuting covariances. No inverse, SPD ridge or feature re-extraction needed.",
+    "Official cache name branch-sampleSHA16-inception.features.pt, metric sample_sha256 and reference mu/sigma keys agree with local evaluator sources."
+  ],
+  "reviewer_findings_and_repairs": [
+    {
+      "finding": "Original reviewer trusted cost_match amounts without reconstructing K and all summary SHA links.",
+      "repair": "Added ordered K recomputation, candidate/previous/intermediate/final summary path+SHA verification, T/W and budget-excess reconciliation, necessity of retries and before-evaluation job/selection timestamps."
+    },
+    {
+      "finding": "Original reviewer did not verify execution evaluation SHA, fixed evaluator commit or reference identity.",
+      "repair": "Added evaluation SHA, commit, reference-name and reference SHA checks; GPU UUID consistency with plan/execution/match."
+    }
+  ],
+  "tiny_CPU_Bures_checks": [
+    {
+      "case": "rank_one_analytic",
+      "actual": 14.970836953374562,
+      "expected": 14.970836953374562,
+      "error": 0.0,
+      "gram_min_eigenvalue": 0.0
+    },
+    {
+      "case": "rank_zero_analytic",
+      "actual": 14.0625,
+      "expected": 14.0625,
+      "error": 0.0,
+      "gram_min_eigenvalue": 0.0
+    },
+    {
+      "case": "noncommuting_reference_cholesky_svd",
+      "actual": 4.104206151028549,
+      "expected": 4.1042061510285475,
+      "error": 1.7763568394002505e-15,
+      "gram_min_eigenvalue": -5.090329199819443e-16
+    }
+  ],
+  "finite_precision_candidate_check": {
+    "reflection_involution": {
+      "max_abs": 4.76837158203125e-07,
+      "rms": 2.1244609758871998e-08
+    },
+    "guided_affine_normal": {
+      "max_abs": 2.9760770738544164e-08,
+      "rms": 1.7126383222430675e-09
+    },
+    "guided_C2_invariance": {
+      "max_abs": 0.04834999144077301,
+      "rms": 0.006597985013461027
+    },
+    "first_successor_normal_bridge": {
+      "max_abs": 1.7036822633209603e-08,
+      "rms": 7.804361026291327e-10
+    }
+  },
+  "theory_and_reporting_limits": [
+    "The teacher denoising-risk contraction and closed-loop equivariance are ideal-arithmetic statements with exact affine support and Gaussian normal-noise reflection. They do not guarantee FID.",
+    "Actual Gsym invariance has RMS0.006597985013461027 and max0.04834999144077301 at fixed t1 B8; do not describe actual BF16 implementation as exactly invariant or finite-precision risk-monotone.",
+    "Fixed16 off-branch parity establishes official implementation parity, not candidate quality or same global noise as N1000.",
+    "1K sample covariance is rank-deficient; local negative-eigenvalue tolerance and fixed FID comparison tolerance are numerical checks, not uncertainty intervals or finite-sample-bias correction.",
+    "W excludes Python imports before main and summary/final-print/teardown; driver outer wall separately records those costs. Fairness claims must use specified T/W point estimates and disclose this boundary.",
+    "External evaluator wrapper/reference/Inception weights are plan-frozen; nanogen implementation itself was not listed in original frozen_files. It is currently the expected clean Git commit, with core source hashes recorded here before FID; final metric commit must match."
+  ],
+  "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+  "evaluator_worktree_clean": true,
+  "evaluator_core_source_hashes": {
+    "api.py": "f3f71b6c22a09b94c09033379467914f402b27658cd918bdb84776f7a39c8800",
+    "frechet.py": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+    "stats.py": "6e4aa7310888a14d594e2ed821627597e92aec0997c0bb9eaece87cc45cf02a4",
+    "catalogue.yaml": "7be4f5be46f1f48d3e9e77eabf1cafb286a0480240623b09bb8e70b5eda01589"
+  },
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "official100_noise_identity": {
+    "global_noise_sha256": "3acf7b1d0833741861ae8e7f6b3a9fdb17a87c5046cc3008ed55567d648a2315",
+    "noise_rng_state_sha256": "827e8936e2af3fd984889fcbac0c379a2c46afc613feca22efe28f731a2d93d8",
+    "global_labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0"
+  },
+  "pending": "After driver completes cost matching and FID, run the independent full reviewer once; production sampling/protocol/plan unchanged.",
+  "wall_seconds": 11.538863086840138,
+  "cpu_seconds": 11.497151357
+}

@@ -1,0 +1,193 @@
+{
+  "protocol": "raev2_guidance_reading_projection_zero_v1",
+  "created_at_utc": "2026-09-06T07:38:28.216726+00:00",
+  "scope": "Two newly deep-read papers, official author implementation audit, mathematical CPU checks only.",
+  "read_papers": [
+    {
+      "title": "Eliminating Oversaturation and Artifacts of High Guidance Scales in Diffusion Models",
+      "arxiv": "2410.02416v2",
+      "version_date": "2025-06-03",
+      "venue": "ICLR 2025",
+      "url": "https://arxiv.org/html/2410.02416v2",
+      "read_scope": [
+        "Sections 3-5",
+        "Appendices A, B, C.1-C.8, D",
+        "Algorithm 1 author PyTorch code",
+        "PDF Figure 8 visual inspection"
+      ],
+      "author_code": "Paper Algorithm 1. No separate verified official repository located; community implementations were not used."
+    },
+    {
+      "title": "CFG-Zero*: Improved Classifier-Free Guidance for Flow Matching Models",
+      "arxiv": "2503.18886v2",
+      "version_date": "2025-04-03",
+      "url": "https://arxiv.org/html/2503.18886v2",
+      "read_scope": [
+        "Sections 3-5",
+        "Equations 4-12",
+        "Tables 1-8",
+        "Appendices A1 and A3",
+        "PDF pages 4 and 8 visual verification"
+      ],
+      "author_repo": "https://github.com/WeichenFan/CFG-Zero-star",
+      "commit": "3162be1fba5dd0129ac8423ad6919d928f420a8d",
+      "code_read_scope": {
+        "models/sd/sd3_pipeline.py": [
+          "72-84",
+          "1068-1103"
+        ],
+        "models/wan/wan_pipeline.py": [
+          "74-86",
+          "535-570"
+        ],
+        "models/flux/pipeline.py": [
+          "72-84",
+          "925-970"
+        ],
+        "models/flux/Guidance_distilled.py": "complete",
+        "README.md": "usage tips and defaults"
+      }
+    }
+  ],
+  "overlap_check": "Previously indexed 17 deep-read papers do not include APG or CFG-Zero*. Prior stochastic weak-model note mentions CFG-Zero only as a comparison score.",
+  "limitations": [
+    "OpenReview direct HTML retrieval was redirected to a challenge page; it was archived as such and not treated as read forum contents.",
+    "Initial PDF render attempted unavailable fitz, then successfully used system pdftoppm; no package installation.",
+    "No RAE datasets or new experiment banks were read in this paper task.",
+    "No independent-person review claimed for local algebra checks."
+  ],
+  "changes": [
+    "New owned reading document",
+    "This owned reading data directory only"
+  ],
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "fid_calls": 0,
+  "document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_PROJECTION_ZERO_20260906_ZH.md",
+    "bytes": 15509,
+    "sha256": "a1557282362ee1c99e8384f6477ea2027dd36722214489241e7552313239ac97"
+  },
+  "files": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_author_algorithm1.html",
+      "bytes": 27208,
+      "sha256": "50132691d45c20622cde0f998fd20b787e437bfd8bd7ca0453e9984274addad3"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_author_algorithm1.txt",
+      "bytes": 1508,
+      "sha256": "6fdc909990326ebf80fe37b84a7f3b7c4d57c8a385f67ad643deeafab4b93e0a"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_openreview_forum.html",
+      "bytes": 4787,
+      "sha256": "fac4febbfb5a9e12920f073f4b8ced94d366b597bdc8ae8549e6d7d3fe634a00"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_v2.html",
+      "bytes": 796245,
+      "sha256": "3b5c00de4aaf4d01ca73bc3b128ae1d90f99f5b7c7dd59fba3ea3816ec094288"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_v2.pdf",
+      "bytes": 46864415,
+      "sha256": "89e2f5330484fb18d6f6e9cdf11f65c616a36eff36552b192b4a978d4527ebbf"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_v2.txt",
+      "bytes": 89461,
+      "sha256": "41e1226de863c3165acd938a2b199eac2741f7254b602c9b9bee0b1c0ab72a88"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/apg_v2_page8.png",
+      "bytes": 580037,
+      "sha256": "b26face0a1c6ff13135b5bd5abc055d0b94185e09a924dca3f8d30deba47ab8b"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/README.md",
+      "bytes": 22903,
+      "sha256": "704c6d237f08321e5017c58bc59471a6b2c33ea8b06905b90b1c834bfeb9f1ed"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/models/flux/Guidance_distilled.py",
+      "bytes": 989,
+      "sha256": "64f7e5e00ec731100b6826764fc7598e083a933fab1e2dbeb54d03096da2c23a"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/models/flux/pipeline.py",
+      "bytes": 48227,
+      "sha256": "ae8e1cfc4f9a6a68684e890957ae5e7a5236f00c475c28ea2ab716225dde5d45"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/models/sd/sd3_pipeline.py",
+      "bytes": 58297,
+      "sha256": "cd0a2d92892fb7da2ca76771d596d17273c5c6d89655a60177852b1d8ef161b0"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/models/wan/T2V_infer.py",
+      "bytes": 2776,
+      "sha256": "c647d909fbf82283e58c92e5eb63f5142e6a1f511114d540fd53e5d5bbd00e13"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code/models/wan/wan_pipeline.py",
+      "bytes": 27993,
+      "sha256": "ccf905664cab4cfd1e0c3cf300e946d12f5c8bb880bab579d8142df8ce8c053e"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_code_sources.json",
+      "bytes": 1947,
+      "sha256": "333835f85f74f77d517946a97bc865f51b7a95d87d46e7e921ffa6a15b344bdc"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_main_commit.json",
+      "bytes": 4321,
+      "sha256": "4b529c023f1ded64ee5ce7ca3475035a1c3330911d0d82b7df246f857dd35bc2"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_tree.json",
+      "bytes": 20462,
+      "sha256": "229adb4505d36316d87aa9e5b53e93f99bca6d4987db6d004f8196cfd72a44cb"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_v2.html",
+      "bytes": 293890,
+      "sha256": "50cb9737b6686179aadad9d10305c52be04443f9f41388df64c37e666f572e2f"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_v2.pdf",
+      "bytes": 24632582,
+      "sha256": "362c518e46ec2996fc596b9673a0ee6680247717af9b11054f80b205e1099be0"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_v2.txt",
+      "bytes": 92596,
+      "sha256": "0d1f1607d0f5c41ff92259dd6904f22ed84503af02dea5c43fba5ec3f8b2d7c2"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_v2_page4.png",
+      "bytes": 521585,
+      "sha256": "8d3b2315cb23fe69de09008fc47dde4d70874d4731b123da5a52298a78ecb96b"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/cfgzero_v2_page8.png",
+      "bytes": 594783,
+      "sha256": "82be387ae35d3e4f4d86a92043f7cb52682acab78017dbd69def4f1003ce0624"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/check_math_cpu.py",
+      "bytes": 4225,
+      "sha256": "7fc23b546735b35a9f45374fe0e7e7a043fae888b4ee4d840943d8c929a5278f"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/downloads.json",
+      "bytes": 1887,
+      "sha256": "8e3c0d35690f1de7bc162495ac5f4ed3e247e9348a31299f404743bb7d2fc7bd"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_projection_zero_v1/math_checks.json",
+      "bytes": 1320,
+      "sha256": "9e13004c278cd6367f7595113caf685bf60e36d652a6575635e5537fa9173104"
+    }
+  ]
+}

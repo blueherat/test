@@ -1,0 +1,19 @@
+{
+  "kind": "Exact Gaussian algebra, not an RAE or image FID experiment",
+  "X_and_epsilon": "independent N(0,1)",
+  "t": 0.5,
+  "s": 0.0,
+  "beta": 1.0,
+  "Z": "(X+epsilon)/2",
+  "Full_equals_exact_posterior_mean": "F=M=Z",
+  "IG": "G=sqrt(2)*Z",
+  "native_Y_variance": 1.0,
+  "true_W_X_variance": 1.0,
+  "X_minus_F_variance": 0.5,
+  "covariance_Z_X_minus_F": 0.0,
+  "independence_reason": "Joint Gaussian and zero covariance; multiplying the centered Gaussian residual by an independent sign preserves its law and independence.",
+  "symmetric_innovation_target_variance": 1.5,
+  "identity_decoder_1d_Gaussian_FID_before": 0.0,
+  "identity_decoder_1d_Gaussian_FID_after": 0.050510257216821855,
+  "population_counterexample": "Even exact Full and exact conditional variance can duplicate a variance repair already accomplished by IG. This disproves a universal improvement claim, not all RAE utility."
+}

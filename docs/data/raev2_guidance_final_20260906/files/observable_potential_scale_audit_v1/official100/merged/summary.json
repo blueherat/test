@@ -1,0 +1,48 @@
+{
+  "protocol": "raev2_observable_potential_merge_v1",
+  "complete": true,
+  "mode": "official",
+  "seed": 202609101,
+  "num_steps": 100,
+  "samples": 5000,
+  "classes": 1000,
+  "samples_per_class": 5,
+  "shards": 4,
+  "sample_archive": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/samples.npz",
+    "sha256": "289b422e5cc8e02030af51650efc2dead7385992a33c6e8ec137161d05b9dc5b",
+    "size_bytes": 983120746
+  },
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/official100/merged/request.json",
+    "sha256": "679651547b33449a99855118f3c77d0233c35479f8e3cdecdaec250acb4bad7e",
+    "size_bytes": 19745
+  },
+  "global_noise_sha256": "7e51efbf0bb4b906413238c16b337fa63e34162c483f3e14a9ef7a0dd71eb303",
+  "counters_sum": {
+    "stage2_forward_calls": 62500,
+    "stage2_sample_forwards": 500000,
+    "potential_forward_input_gradient_calls": 0,
+    "potential_sample_input_gradients": 0,
+    "potential_parameter_backward_calls": 0,
+    "decoder_forward_calls": 625,
+    "decoder_sample_forwards": 5000
+  },
+  "worker_timings_seconds_sum": {
+    "trajectory_wall_seconds": 3149.843291939236,
+    "decode_and_uint8_wall_seconds": 17.337507089599967,
+    "sampling_wall_including_output_seconds": 3188.4357916621957,
+    "potential_checkpoint_load_seconds": 0.05272454395890236,
+    "common_backbone_and_decoder_load_seconds": 44.43125298107043,
+    "noise_generation_copy_and_audit_wall_seconds": 26.57331687095575,
+    "total_wall_seconds_excluding_imports_and_final_summary_write": 3306.741633464815,
+    "total_cpu_seconds_excluding_imports_and_final_summary_write": 3358.952905835
+  },
+  "worker_total_wall_seconds_max_not_makespan": 835.8075282790232,
+  "worker_peak_gpu_memory_allocated_bytes_max": 10496353792,
+  "cost_boundary": "Worker wall/CPU sums measure aggregate process cost, not elapsed makespan or CUDA kernel time. Shared training/validation/preparation/benchmark costs are not multiplied by shard count and are not included here.",
+  "merge_wall_seconds_excluding_final_summary_write": 19.364575779996812,
+  "merge_cpu_seconds_excluding_final_summary_write": 19.450090158,
+  "fid_performed": false,
+  "gpu_used_for_merge": false
+}

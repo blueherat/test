@@ -1,0 +1,107 @@
+{
+  "request": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/sample_jobs.json",
+  "request_sha256": "eba4cd09cf7e6aadc8e766dccfb42008ea7ebf59413e5dd941722c59c3bb5aa4",
+  "started_utc": "2026-09-06T08:54:13.471590+00:00",
+  "driver_pid": 3493941,
+  "complete": true,
+  "jobs": [
+    {
+      "name": "official100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "1000",
+        "--seed",
+        "202609121"
+      ],
+      "env_overrides": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      },
+      "pid": 3493942,
+      "started_utc": "2026-09-06T08:54:13.473334+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver_logs/official100.log",
+      "exit_code": 0,
+      "finished_utc": "2026-09-06T09:05:28.203859+00:00",
+      "outer_wall_seconds": 674.7320751280058
+    },
+    {
+      "name": "global100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+        "--mode",
+        "global_ball",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "1000",
+        "--seed",
+        "202609121"
+      ],
+      "env_overrides": {
+        "CUDA_VISIBLE_DEVICES": "1",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      },
+      "pid": 3493943,
+      "started_utc": "2026-09-06T08:54:13.475069+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver_logs/global100.log",
+      "exit_code": 0,
+      "finished_utc": "2026-09-06T09:05:26.200315+00:00",
+      "outer_wall_seconds": 672.726542772958
+    },
+    {
+      "name": "spatial100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+        "--mode",
+        "spatial_balls",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "1000",
+        "--seed",
+        "202609121"
+      ],
+      "env_overrides": {
+        "CUDA_VISIBLE_DEVICES": "2",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      },
+      "pid": 3493944,
+      "started_utc": "2026-09-06T08:54:13.476946+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver_logs/spatial100.log",
+      "exit_code": 0,
+      "finished_utc": "2026-09-06T09:05:20.192652+00:00",
+      "outer_wall_seconds": 666.7170278439298
+    }
+  ],
+  "finished_utc": "2026-09-06T09:05:28.205355+00:00",
+  "driver_wall_seconds": 674.733772847103
+}

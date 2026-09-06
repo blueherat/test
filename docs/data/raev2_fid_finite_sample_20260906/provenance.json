@@ -1,0 +1,284 @@
+{
+  "gpu_used": false,
+  "sampling_performed": false,
+  "purpose": "descriptive within historical frozen feature protocol; not a performance lower bound or a changed screen decision",
+  "fold_rule": "fold j = global IDs [1000*j,1000*(j+1)); all j=0..4; all branches paired",
+  "mean_dtype": "float64",
+  "covariance_ddof": 1,
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.11.0",
+    "torch-fidelity": "0.4.0"
+  },
+  "script_sha256": "37258027bbe603dbe1fbda1f310fcb9e34d37c4cd6bfe794b2c70ed404597eb1",
+  "reference_statistics": {
+    "historical_adm": {
+      "path": "/data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz",
+      "resolved_path": "/data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz",
+      "size_bytes": 2037122530,
+      "mu_sha256": "e997ebdc7cfcd21c97adb94c7bf608464e75c955f09f0e264dd06dade7c6b749",
+      "mu_dtype": "float64",
+      "sigma_sha256": "4b83147bc28aaebe5ad7ee2591762a4f46490ed9ec88890fd3986c77f4c1c5f1",
+      "sigma_dtype": "float64",
+      "minimum_eigenvalue": 0.001115650906258251
+    },
+    "current_nanogen": {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "resolved_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "size_bytes": 33563124,
+      "mu_sha256": "5436b515f8887e0ecbf2539d98635416bbbb4b4536ebc7b195eb585e0d236621",
+      "mu_dtype": "float32",
+      "sigma_sha256": "8cf764a698c2b60eaf5c4fe2551c01135c0001ea0817db74cc743f1c08ea5391",
+      "sigma_dtype": "float64",
+      "minimum_eigenvalue": 0.0011125005848524059
+    }
+  },
+  "cohorts": {
+    "20260801": {
+      "root": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1",
+      "manifest_sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252",
+      "sample_protocol_sha256": "7ef3603d021ad34f5a807f29c15caf1ef57c59eb1eb286870e931b9ae6e4a537",
+      "unique_source_rows": 5000,
+      "all_global_ids_complete": true,
+      "class_counts_all_five": true,
+      "features": {
+        "source": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "0ef205091d9fa8a97d8fe8eab7679d9a4d174d6e9e767fdd354fba6e785ca05f",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank00.npy",
+              "sha256": "3daad90ead4b140ada231c17ce6e235ccdb90330eadd89c25c631839045e90c9"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank01.npy",
+              "sha256": "62bc141f8c19f633542fd8d8c4e7e1c2189bf1612a4581773a863e97a5aae8a1"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank02.npy",
+              "sha256": "1df7abb50e366e6fcb36ce877d14b76a4d9fcc808db64c3c5d75b3be6fde0875"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/source_rank03.npy",
+              "sha256": "c8f5ca4b0df3d7791499f8eb6fcd7cb42a50d04c33a16505c0d53491cf38c03d"
+            }
+          ]
+        },
+        "reconstruction": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "82dda5ef723ed1e9a882617e01e890e7a49ad2a5ddb333ba0eadcd0708c7dfd9",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank00.npy",
+              "sha256": "3bed39bcb4c8f119b772fe35556688d39464f5b990e9dff6ac421a28115c703e"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank01.npy",
+              "sha256": "686d43ec25ba271b3327b2f0dbf038a4a1049b74433e5823e3c131a54e9f51a3"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank02.npy",
+              "sha256": "dadaea243235017ba06577301da4dc3e7029285d694ae059a45b52ee22a83a06"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/real_rank03.npy",
+              "sha256": "d68b2e530b8a10356b4e602a32f8290f06d743b66368f36127f10cb9a8bfa85f"
+            }
+          ]
+        },
+        "full": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "81dd46ea0ca748ea5fa5750e0b71998745678a123fae1bcf8ddc7b366094f0ae",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank00.npy",
+              "sha256": "9a0ff82d763eefd0e4d169bc5c7c969aba854c0adaa8a77010db33e5bf20808d"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank01.npy",
+              "sha256": "4043841661a09b514c7bcaf38ee28bc5b297624eb91abeb0bcf9bfd73ca0f41d"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank02.npy",
+              "sha256": "ee9497e0e0c39e0cb30f44a3eb469b10596be494fa8ef1d8d2a4901f4f8f9443"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p000000_rank03.npy",
+              "sha256": "05b4aa4393474a53135c5765cef2c6e57718b854a9d8aa43a013b41d0c38ff08"
+            }
+          ]
+        },
+        "ig": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "24a94559a4cac7884384ffd0c7cccb344e1d2255663887409a726365b1771d8d",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank00.npy",
+              "sha256": "c2690dad5ea9890143a52c99f7e65125543ea555ad92e28b6edaf5e08448726c"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank01.npy",
+              "sha256": "82f20270ea4a881788a9b70fd75e2a3b9341b82570f06bd921ea0a4c8f4106a1"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank02.npy",
+              "sha256": "b578d78c146d5af3daf442f6c78999c721034d84df6efefe14aa325c490d9744"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/inception/scale_s1p780000_rank03.npy",
+              "sha256": "07a906b2590cd207e60ba3626c5b25557aacdde108a63e84dea22f59b05cc5fd"
+            }
+          ]
+        }
+      }
+    },
+    "20260802": {
+      "root": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1",
+      "manifest_sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff",
+      "sample_protocol_sha256": "3fb107ad2c7055cbe78a5a9241a9263916e134d206e423e85a3d6caf22d8918c",
+      "unique_source_rows": 5000,
+      "all_global_ids_complete": true,
+      "class_counts_all_five": true,
+      "features": {
+        "source": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "7091ddc13dfb2a4c4fbe7be9dbfb88e76a0e1d66cd14a858728a60fd8195feac",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank00.npy",
+              "sha256": "89e175c224dd8ba3fe72c532fd0664cdeef043063e1b34ddd84cc14f4d3552fe"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank01.npy",
+              "sha256": "50dbf1dce1139e4dbe3e07fd1df0a85031648ec6400f2135fb91fa00e1f21720"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank02.npy",
+              "sha256": "142d4a4565e1f49479702ed661fe1b4dfe53114bacb699e384e4d770b786c1fc"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/source_rank03.npy",
+              "sha256": "a98aef8b325e37eff92ae1cd6fe42c3fec296cc64166b4bd55af1e4d8d165257"
+            }
+          ]
+        },
+        "reconstruction": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "a6d1a38cdebc3f12c1daeb36548f0de423006c7a6052ea4891346a8bfec64765",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank00.npy",
+              "sha256": "1ba8edeed3ecf6176a82837720602e9a7cb5a06117694966fa87c6ecce86d8bf"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank01.npy",
+              "sha256": "031e000511ff1a455a1477d85a29a9a7c4986c00485fd13977446513dd9863b8"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank02.npy",
+              "sha256": "fd515cf2171b0f011ac5e220bcef5415a96ff17a52546843b8017156d907f29d"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/real_rank03.npy",
+              "sha256": "4783439c24b61683f48b3639388f6528de82f1d0516b9d8e032a270a3efb9aef"
+            }
+          ]
+        },
+        "full": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "b9a3890c66b8368ccd922dc7cd22a3292679099976838f573b1d89e1bcb554f2",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank00.npy",
+              "sha256": "f557e6780d8ecfa01b816873767b07fa0ea24c1b58d60b9d169521eee52a1406"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank01.npy",
+              "sha256": "05440f83088193a21645e3fa2fabea4e85eeaf91a4daaf80b0a4613fe308f212"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank02.npy",
+              "sha256": "78e6d97b37d41691f7adb027e0bf6837992d0977cb25e7dcb4e2c42cec204516"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p000000_rank03.npy",
+              "sha256": "ee9d65c84d35cf675cd3a2d64270d536e1f55be83b8a8307e5bbb97f036e6c7d"
+            }
+          ]
+        },
+        "ig": {
+          "shape": [
+            5000,
+            2048
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "unique_feature_rows": 5000,
+          "ordered_array_sha256": "d7936323c8547b0223e259a393d8187821c5390e16fa937124ae617843c16719",
+          "files": [
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank00.npy",
+              "sha256": "0e05df9231911201398399e80d7baddf2c13c7ee7a82aa408a27bcac682c6b49"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank01.npy",
+              "sha256": "95c0546bc5f5914af7f9a9169773489723be1d67550ee2d928abe03ede4246e6"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank02.npy",
+              "sha256": "ebc61c61232d63c86dffe8ba2cf5b8bb74d14cd1f574366d76f04d0b75428c6d"
+            },
+            {
+              "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/inception/scale_s1p780000_rank03.npy",
+              "sha256": "08a28b6a460bb41c84da86bd475eec138ea55ab64e7837b3b03a01059622f2cf"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "source_rows_shared_between_seeds": 21
+}

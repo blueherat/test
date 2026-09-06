@@ -1,0 +1,18 @@
+{
+  "measured_scope": "Final CPU copy, text-delimiter/control-character check, 41-row index count, upstream identity verification and file hashing; excludes following serialization and final checksum verification.",
+  "wall_seconds": 0.47853719908744097,
+  "process_cpu_seconds": 0.4784505,
+  "upstream_records_checked": 13,
+  "reading_search_total_wall_seconds": null,
+  "reading_search_total_cpu_seconds": null,
+  "unmeasured_reason": "No unified timing of reading/search; do not sum overlapping per-request costs as elapsed total.",
+  "download_logs": [
+    "learn_to_guide/download_manifest.json",
+    "learn_to_guide/formal_download.json",
+    "learn_to_guide/code_lookup.json"
+  ],
+  "adversarial_download_cost": "Not measured by independent reader; source identities were measured.",
+  "math_cost": "learn_to_guide/gaussian_consistency_check.json; excludes Python startup/import/output serialization.",
+  "gpu_calls": 0,
+  "model_calls": 0
+}

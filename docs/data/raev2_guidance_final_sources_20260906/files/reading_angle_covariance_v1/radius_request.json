@@ -1,0 +1,17 @@
+{
+  "protocol": "adg_clean_radius_reference_v1",
+  "created_at_utc": "2026-09-06T08:15:03.687655+00:00",
+  "source": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/noise_endpoint_zero_witness_v1/by_image_and_class.npz",
+    "sha256": "0485e01302b19647d48e91129237061d66c6f6eb66e64a2d8de178f5b81f3227"
+  },
+  "known_before_this_request": "Previous audit had already exposed mean energy=1.00028636, SEM=0.00586699, min/max; this is follow-up descriptive analysis, not a preregistered test of an unseen hypothesis. Full radius moments/quantiles not yet computed.",
+  "cohort": "All 1000 fixed validation source images, one per class; labels as saved. FP32 encoder then FP16 saved normalized latent [1024,16,16].",
+  "statistics": [
+    "Energy sample mean/std/CV",
+    "sqrt(energy) radius sample mean/std/CV and fixed min/5/25/50/75/95/max percentiles",
+    "Compare central isotropic Gaussian with same scalar energy; nominal d=262144, no Gaussian random samples",
+    "Moment effective dimension = 2 mean(energy)^2 / var(energy); only interpretable as participation ratio for a centered Gaussian, not inferred actual rank"
+  ],
+  "scope": "No new GPU/model/decoder/noise/FID, no norm clamp or schedule chosen. Real prior energy distribution is not denoiser posterior-mean norm distribution."
+}

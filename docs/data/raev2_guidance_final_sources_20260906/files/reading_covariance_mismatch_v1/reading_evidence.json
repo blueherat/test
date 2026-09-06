@@ -1,0 +1,111 @@
+{
+  "paper": {
+    "title": "Covariance Mismatch in Diffusion Models",
+    "authors": [
+      "Martin Nicolas Everaert",
+      "Sabine Süsstrunk",
+      "Radhakrishna Achanta"
+    ],
+    "venue": "EPFL Infoscience preprint, November 2024; no peer-review claim",
+    "pages": 30,
+    "pdf_metadata_creation_date": "2024-11-27 19:06:51 +08:00",
+    "pdf_source": "https://infoscience.epfl.ch/server/api/core/bitstreams/72923daf-0e38-4b3c-8ad8-96799be59469/content",
+    "bytes": 146140771,
+    "sha256": "f862e0b64a4862499905b70c9dcee0e0f1f9fba7ae84f864a3a2e46a0da290c4",
+    "md5_actual": "ddd859a67da10bade71d3c9f4b20e3df",
+    "md5_expected": "ddd859a67da10bade71d3c9f4b20e3df"
+  },
+  "reading_scope": {
+    "main_body_pages": [
+      1,
+      8
+    ],
+    "references_pages": [
+      9,
+      10,
+      29,
+      30
+    ],
+    "appendix_figure_captions_pages": [
+      11,
+      25
+    ],
+    "appendix_methods_pages": [
+      26,
+      28
+    ],
+    "appendix_prompts_sources_page": 29,
+    "visual_table_check": "page07.png; table2 checked visually",
+    "not_claimed": "Every decorative/image panel visually inspected or source code reexecuted"
+  },
+  "paper_claims": {
+    "mechanism": "Main3, directional SNR and regression/copy intuition; no formal general impossibility theorem",
+    "train_whitening_coloring": "Main4.1 Eqs4/5 and footnote2",
+    "inference_initialization_only": "Main4.3",
+    "fid_table2": {
+      "generated_count": 200,
+      "prompts": "DrawBench",
+      "reference": "10k COCO val2014",
+      "library": "torchmetrics.image.fid.FrechetInceptionDistance",
+      "cfg": 1,
+      "denoiser_calls": [
+        10,
+        10,
+        10,
+        3
+      ],
+      "unaligned": [
+        194,
+        264,
+        230,
+        279
+      ],
+      "testtime_initialization": [
+        193,
+        233,
+        227,
+        323
+      ],
+      "colored_retrained": [
+        207,
+        226,
+        226,
+        227
+      ],
+      "single_noise_level_column": "Separate models trained only at t600"
+    },
+    "training": {
+      "colored": {
+        "steps": 18000,
+        "batch": 32,
+        "hours": 9,
+        "gpu": "A100-SXM4-80GB",
+        "samples": 100000
+      },
+      "single_t": {
+        "steps": 22000,
+        "hours": 11,
+        "t": 600,
+        "delta_t_inference": 200
+      }
+    },
+    "choices": "Fig10 qualitative selection of n=3; T/t_last, timestep noise range and CFG values; no claim this is unique/no-tuning",
+    "no_cherry_picking_statement": "Fig11-13 for shown additional sample sets; does not erase settings selection"
+  },
+  "independent_derivations": [
+    "Gaussian posterior and per-direction prior sensitivity 1/(1+SNR_i)",
+    "colored noise gives identical relative posterior uncertainty in Gaussian model",
+    "generalized covariance eigenvalues invariant under invertible common coordinate transform",
+    "Gaussian target-vs-base score difference on original white-noise path, not a validated RAEv2 method"
+  ],
+  "author_assets": {
+    "git_commit": "2b9e660cbe5c27264c888e11114f23e9596817c5",
+    "github_tree": "Only project page and README, no full training code",
+    "current_hf_model_card": "Public HTML retrieved; training settings differ from Nov2024 PDF, kept separate",
+    "hf_raw_readme": "401 saved as *_raw_readme_401.txt; no auth or weights fetched"
+  },
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "new_experiments": 0,
+  "cost_scope": "Only retrieval and final archival body timers measured; no complete research/reading/pdfconversion CPU cost."
+}

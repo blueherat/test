@@ -1,0 +1,58 @@
+{
+  "scope": "Fixed algebra examples only; not diffusion/model experiments, parameter selection, or proof by testing.",
+  "gradient_max_error": 1.4712231433122724e-11,
+  "tied_value_descent_examples": [
+    {
+      "gamma_for_identity_check_only": 1.0,
+      "actual_energy_change": -0.06581005823671882,
+      "proven_upper_bound": -0.04321636434652036
+    },
+    {
+      "gamma_for_identity_check_only": 1.5,
+      "actual_energy_change": -0.08399860915795054,
+      "proven_upper_bound": -0.03241227325989027
+    }
+  ],
+  "independent_value_field": [
+    0.5,
+    -0.2621171572600097
+  ],
+  "independent_value_jacobian": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      -0.7864477329659275,
+      1.0
+    ]
+  ],
+  "independent_value_curl": -0.7864477329659275,
+  "nonglobal_stationary_example": {
+    "q": 0.0,
+    "gradient": 0.0,
+    "energy": -0.6931471805599453,
+    "energy_at_q_2": -2.000335406372896
+  },
+  "entropy_derivative": {
+    "exact": -0.703046047196597,
+    "finite_difference": -0.7030460471568745
+  },
+  "retrieval_derivative": {
+    "exact": [
+      -0.6388615608700599,
+      -0.243302213320413
+    ],
+    "finite_difference": [
+      -0.6388615609309589,
+      -0.2433022133763174
+    ]
+  },
+  "script_sha256": "44f0ea4e14c399ae9b9a84b119231c63073b8161a22066821997d4ae4b0f9e99",
+  "all_checks_passed": true,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "cost_scope": "Python process after initial time import through checks/hash; excludes process startup, JSON write and print.",
+  "wall_seconds": 0.005369757069274783,
+  "process_cpu_seconds": 0.005359718000000013
+}

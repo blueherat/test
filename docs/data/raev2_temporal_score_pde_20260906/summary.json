@@ -1,0 +1,65 @@
+{
+  "completed_utc": "2026-09-06T16:54:29.482548+00:00",
+  "request": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/temporal_score_pde_v1/request.json",
+    "sha256": "556edac6a3cb33f0fa3dcd7fb7930dbb1a590b6a11e279de3e8f72898b092f38",
+    "size_bytes": 1222
+  },
+  "grid": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/temporal_score_pde_v1/grid.csv",
+    "sha256": "9d12665333bc49121cdac25a192d3ce34b744c8b98fc8503647e9abaaaf07a89",
+    "size_bytes": 2189
+  },
+  "general_gaussian_score_pde_residual": "0",
+  "general_analytic_path_ode_residual": "0",
+  "all_cases_share_exact_gaussian_noise_boundary": true,
+  "grid_points": 75,
+  "cases": [
+    {
+      "name": "reference",
+      "mu": 0,
+      "variance": 1,
+      "score": "-x/(t**2 + (1 - t)**2)",
+      "symbolic_pde_residual": "0",
+      "noise_endpoint_score": "-x",
+      "clean_endpoint_map": "z1",
+      "identity_feature_gaussian_fid_exact": "0",
+      "identity_feature_gaussian_fid_float": 0.0
+    },
+    {
+      "name": "wrong_mean",
+      "mu": 1,
+      "variance": 1,
+      "score": "(-t - x + 1)/(t**2 + (1 - t)**2)",
+      "symbolic_pde_residual": "0",
+      "noise_endpoint_score": "-x",
+      "clean_endpoint_map": "z1 + 1",
+      "identity_feature_gaussian_fid_exact": "1",
+      "identity_feature_gaussian_fid_float": 1.0
+    },
+    {
+      "name": "wrong_variance",
+      "mu": 0,
+      "variance": 4,
+      "score": "-x/(t**2 + 4*(1 - t)**2)",
+      "symbolic_pde_residual": "0",
+      "noise_endpoint_score": "-x",
+      "clean_endpoint_map": "2*z1",
+      "identity_feature_gaussian_fid_exact": "1",
+      "identity_feature_gaussian_fid_float": 1.0
+    }
+  ],
+  "cancellation": {
+    "added_drift_coefficient": "t*(1 - 2*t)*(1 - t)",
+    "integral_0_to_1": "0",
+    "score_residual": "2*x*(t - 1)**2*(8*t**6 - 24*t**5 + 30*t**4 - 20*t**3 + 17*t**2 - 11*t + 3)/(2*t**2 - 2*t + 1)",
+    "score_residual_at_t_half_x_one": "1/2",
+    "endpoint_variance_multiplier": "1",
+    "identity_feature_gaussian_fid_exact": "0"
+  },
+  "decision": "Reject target identification from zero score PDE residual and t=1 Gaussian boundary alone; no new training or RAE sampling.",
+  "scope": "Exact scalar Gaussian counterexample, not ImageNet FID, not a refutation of data-anchored PDE regularization.",
+  "gpu_model_decoder_training_and_real_fid_calls": 0,
+  "script_wall_seconds": 0.5845693768933415,
+  "script_cpu_seconds": 0.558889066
+}

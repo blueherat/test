@@ -1,0 +1,271 @@
+{
+  "protocol": "raev2_paired_bridge_sampling_v1",
+  "command": "sample",
+  "mode": "official",
+  "seed": 202609151,
+  "sample_count": 1000,
+  "batch_size": 8,
+  "num_steps": 107,
+  "time_grid": [
+    1.0,
+    0.9988220930099487,
+    0.9976246953010559,
+    0.996407151222229,
+    0.9951691031455994,
+    0.9939098358154297,
+    0.9926289916038513,
+    0.9913259148597717,
+    0.9900000095367432,
+    0.9886506795883179,
+    0.9872773289680481,
+    0.9858793616294861,
+    0.984455943107605,
+    0.9830065369606018,
+    0.9815303087234497,
+    0.9800266623497009,
+    0.9784945845603943,
+    0.9769335389137268,
+    0.9753424525260925,
+    0.9737205505371094,
+    0.9720670580863953,
+    0.9703807830810547,
+    0.9686609506607056,
+    0.9669064283370972,
+    0.9651163220405579,
+    0.9632892608642578,
+    0.9614243507385254,
+    0.9595202207565308,
+    0.957575798034668,
+    0.9555895924568176,
+    0.9535604119300842,
+    0.9514867067337036,
+    0.9493670463562012,
+    0.9472000002861023,
+    0.9449837803840637,
+    0.9427168965339661,
+    0.940397322177887,
+    0.9380235075950623,
+    0.9355932474136353,
+    0.9331046938896179,
+    0.9305555820465088,
+    0.9279437065124512,
+    0.9252669215202332,
+    0.9225224852561951,
+    0.9197080731391907,
+    0.9168207049369812,
+    0.9138576984405518,
+    0.910815954208374,
+    0.9076923727989197,
+    0.904483437538147,
+    0.9011857509613037,
+    0.8977956175804138,
+    0.8943089246749878,
+    0.8907216787338257,
+    0.887029230594635,
+    0.8832272291183472,
+    0.8793102502822876,
+    0.8752735257148743,
+    0.8711110949516296,
+    0.8668171763420105,
+    0.8623853325843811,
+    0.8578088879585266,
+    0.8530805706977844,
+    0.8481927514076233,
+    0.8431372046470642,
+    0.83790522813797,
+    0.8324872851371765,
+    0.8268733620643616,
+    0.821052610874176,
+    0.8150134086608887,
+    0.8087431788444519,
+    0.8022283911705017,
+    0.7954545021057129,
+    0.7884058356285095,
+    0.781065046787262,
+    0.773413896560669,
+    0.7654320597648621,
+    0.7570977807044983,
+    0.7483870983123779,
+    0.7392739057540894,
+    0.7297297120094299,
+    0.7197231650352478,
+    0.7092198729515076,
+    0.6981818079948425,
+    0.6865671873092651,
+    0.6743294596672058,
+    0.6614173054695129,
+    0.647773265838623,
+    0.6333333849906921,
+    0.6180257797241211,
+    0.6017699241638184,
+    0.5844748616218567,
+    0.5660377144813538,
+    0.5463414788246155,
+    0.5252525210380554,
+    0.5026177763938904,
+    0.4782608449459076,
+    0.45197737216949463,
+    0.42352941632270813,
+    0.3926379978656769,
+    0.3589743673801422,
+    0.3221476674079895,
+    0.2816901206970215,
+    0.23703701794147491,
+    0.1875,
+    0.13223139941692352,
+    0.07017543911933899,
+    0.0
+  ],
+  "time_shift": 8,
+  "transport_t_eps": 0.05,
+  "identities": {
+    "config": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "baseline_checkpoint": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+      "size_bytes": 10520885445
+    },
+    "decoder_checkpoint": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+      "size_bytes": 1662766063
+    },
+    "normalization_stats": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+      "size_bytes": 2098901
+    }
+  },
+  "training": {
+    "checkpoint": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/final.pt",
+      "sha256": "5013cbf075ddffa5c2ae021fc916be0615ca41d9817d3af91e6b3e46c86e1983",
+      "size_bytes": 29229857
+    },
+    "request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/request.json",
+      "sha256": "7fd9e5b70d4735033eb0110c6a38fccc3e5075225aa21238154887974d59e2e2",
+      "size_bytes": 5650
+    },
+    "summary": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/train/summary.json",
+      "sha256": "6caaf81f64a4e2ef59ae906ad727a923d202335ee6c18d813bbad5ec80c16785",
+      "size_bytes": 2980
+    },
+    "supplemental_sources": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/supplemental_source_environment.json",
+      "sha256": "d6f09508be2aedd12949ec4e9aa6166dbaa96a47c3f9f0fd2a5d77c6f3a7e5c9",
+      "size_bytes": 1007
+    },
+    "cost_boundary": "Fit, data creation and mechanism diagnostics are additional costs disclosed by root; inference timing alone is not a total-cost success claim."
+  },
+  "sources": {
+    "experiments/sample_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/sample_raev2_paired_bridge.py",
+      "sha256": "93820293074739d4b794c28a8be16d2f4e1a42e1b7e7a1465f3603363895194e",
+      "size_bytes": 33118
+    },
+    "tests/test_sample_raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/tests/test_sample_raev2_paired_bridge.py",
+      "sha256": "08be2dea3d24fc748a015af3f1333f5f60efb549ed3a3d3486b47748f173744e",
+      "size_bytes": 10993
+    },
+    "experiments/raev2_paired_bridge.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/raev2_paired_bridge.py",
+      "sha256": "cdb22b7e8e4c622f0ce70c8a59f88d35308d31e0b47c007be898470d881b6a6a",
+      "size_bytes": 9746
+    },
+    "experiments/run_raev2_paired_bridge_pilot.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/run_raev2_paired_bridge_pilot.py",
+      "sha256": "08ce50fbbf48793411bd37f885d208f5ec07114cdb5bbc59f72dc34012787df7",
+      "size_bytes": 26097
+    },
+    "experiments/sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "experiments/raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "experiments/raev2_stage1_compat.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "external/RAEv2/src/stage1/rae.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/sources/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    }
+  },
+  "parity": {
+    "request": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity/request.json",
+      "sha256": "48018c5e07bef338d5bfe6f5e288cb754b36bc194ed84099a6524b3a3dd1f939",
+      "size_bytes": 11785
+    },
+    "summary": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity/summary.json",
+      "sha256": "e95b10bccfecc95a20ea963cc83ef4f1a42d35383b2c4ddac3b55ca61d7b2d6f",
+      "size_bytes": 6596
+    }
+  },
+  "candidate": "native Euler Y then frozen bridge_midpoint(candidate,Y,t,s,labels): tau0 and tau.5, two current-state FP32 field calls, beta applied once each",
+  "control": "same midpoint with frozen control field, both tau inputs0, current midpoint state retained",
+  "native_guidance": "BF16 B+1.78*(F-B) inside [.1,1], Full outside; final guided output promoted toFP32",
+  "noise_schema": "one full CUDA Generator(seed) draw[N,1024,16,16] before batching; payload/RNG SHA saved before first model forward",
+  "labels": "ascending IDs0..N-1, labels=id%1000",
+  "precision": "native model/IG/decoder BF16; state/Euler/auxiliary field FP32; TF32off",
+  "pixel_arithmetic": "BF16 decoder, clamp and multiply255 before uint8 NHWC",
+  "resident_models": "stage2 and decoder in all arms; only the used candidate/control field is instantiated in sampling; parity additionally uses fresh zero-readout fields",
+  "auxiliary_checkpoint_deserialized": false,
+  "auxiliary_verification_boundary": "all modes verify file/source SHA and completed training summary; official skips auxiliary tensor deserialization and tensor checks, and instantiates no auxiliary field",
+  "cost_scope": "T=trajectory_through_decode_wall_seconds; W=total_wall_seconds_before_summary, from main entry after imports, includes source/checkpoint hashing, load, noise, transfers, serialization. Root separately records process wall and inherited costs.",
+  "instrumentation": "actual root-module forward hooks; candidate/control calls reported separately, never equated to stage2 NFE; whole trajectory/decode CUDA events only",
+  "automatic_step_selection": false,
+  "fid_performed": false,
+  "torch_version": "2.11.0+cu130",
+  "cuda_visible_devices": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949"
+}

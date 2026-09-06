@@ -1,0 +1,76 @@
+{
+  "task": "bounded original-source search for inference-time conditional/unconditional strong/weak double difference",
+  "searched_at_utc": "2026-09-06T11:28:14.921783+00:00",
+  "deduplication": {
+    "source": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md",
+    "sha256": "bef14e7cf5cb7a999e643f3527ead3ef290dcc5376cdaadbe29df4f6b7cbde2a",
+    "paper_rows": 34,
+    "rows": [
+      "| [Towards Understanding the Mechanisms of Classifier-Free Guidance](https://papers.nips.cc/paper_files/paper/2025/file/5ac55a8d65fb5ecd9ccaa852e21325db-Paper-Conference.pdf)，NeurIPS 2025 | 对比后验 covariance 决定相对增强/抑制；同类双头不能直接继承条件/无条件语义，全 Jacobian 方案也不是免费 | [线性 / CPC](RAEV2_GUIDANCE_READING_LINEAR_CPC_20260906_ZH.md) |",
+      "| [Guiding a diffusion model with itself using sliding windows](https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_26/paper.pdf)，BMVC 2025 | 可控信息缺失与可控同向误差不同；需要 paired risk 方向证据，生成指标与更多计算的代价须另验 | [SWG / WD](RAEV2_GUIDANCE_READING_SWG_20260906_ZH.md) |",
+      "| [Entropy Rectifying Guidance for Diffusion and Flow Models](https://papers.nips.cc/paper_files/paper/2025/file/414f4c9fe9653e5de98fad6964d50315-Paper-Conference.pdf)，NeurIPS 2025 | 熵恒等式一般成立，Hopfield 下降须兼容 K/V；有超过 5% 的自报 FID 收益，但未推出免扫参系数或共享双头的公平成本优势 | [ERG](RAEV2_GUIDANCE_READING_ERG_20260906_ZH.md) |",
+      "| [Diffusion Models under Group Transformations](https://proceedings.mlr.press/v258/lu25a.html)，AISTATS 2025 | 推理群平均直接构造等变预测，权重由有限群决定；结构保证不等于质量保证，内部群查询必须计入成本 | [反射与群平均](RAEV2_GUIDANCE_READING_REFLECTION_SYMMETRIZATION_20260906_ZH.md) |",
+      "| [Robustness and Structure Preservation in Flow-Based Generative Models via Wasserstein Path-Space Divergences](https://arxiv.org/abs/2410.01244v2)，2026 修订预印本 | 精确正交误差分解可覆盖任意待修正场；flow 的 W1 上界需路径与稳定性条件，额外输出投影须另证 | [反射与群平均](RAEV2_GUIDANCE_READING_REFLECTION_SYMMETRIZATION_20260906_ZH.md) |",
+      "| [Self-Rectifying Diffusion Sampling with Perturbed-Attention Guidance](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/09184.pdf)，ECCV 2024 | softmax 后 attention 换为单位矩阵，保留每个位置自身的 V；不是删掉整个 block，原文层与强度仍经选择 | [PAG / SEG](RAEV2_GUIDANCE_READING_ATTENTION_WEAK_20260906_ZH.md) |",
+      "| [Smoothed Energy Guidance](https://proceedings.neurips.cc/paper_files/paper/2024/file/7b3f7b6670fdab2933411b5b922cdcc3-Paper-Conference.pdf)，NeurIPS 2024 | 平滑 query 的线性恒等式成立；无限平滑具有精确 KL 重心解释，不能推广成全网络曲率或质量保证 | [PAG / SEG](RAEV2_GUIDANCE_READING_ATTENTION_WEAK_20260906_ZH.md) |",
+      "| [Characteristic Guidance](https://proceedings.mlr.press/v235/zheng24f.html)，ICML 2024 | 不同查询上的 clean 共识提供目标路径结构；Gaussian 可解性与迭代成本须分开，原文高强度改善不是最佳基线胜出 | [共识与 Gaussian 检验](RAEV2_GUIDANCE_READING_CHARACTERISTIC_20260906_ZH.md) |",
+      "| [Guiding a Diffusion Model with a Bad Version of Itself](https://arxiv.org/html/2406.02507v2)，NeurIPS 2024 | 同类错误的放大比“弱模型更差”更关键；错配退化可使最优 guidance 回到关闭 | [强弱模型](RAEV2_GUIDANCE_READING_STRONG_WEAK_20260906_ZH.md) |",
+      "| [Guiding a Diffusion Transformer with the Internal Dynamics of Itself](https://arxiv.org/html/2512.24176v2)，2025/26 | 中间监督、推理外推、偏置训练标签是三个不同设计；目标不必总是原始 X | [强弱模型](RAEV2_GUIDANCE_READING_STRONG_WEAK_20260906_ZH.md) |",
+      "| [Studying Classifier(-Free) Guidance From a Classifier-Centric Perspective](https://arxiv.org/html/2503.10638v2)，AAAI 2026 | 分类器解释与实际 flow 配对不同；近邻配对可能悄悄改变目标样本权重 | [几何与分类器](RAEV2_GUIDANCE_READING_GEOMETRY_20260906_ZH.md) |",
+      "| [Classifier-Free Guidance is a Predictor-Corrector](https://arxiv.org/html/2408.09000v2)，TMLR 2025 | 随机 CFG 的 predictor/corrector 分解有精确系数；ODE、SDE 与 powered density 不同 | [几何与分类器](RAEV2_GUIDANCE_READING_GEOMETRY_20260906_ZH.md) |",
+      "| [Analytic Distribution of Classifier-Free Guidance for Schedule Design](https://arxiv.org/html/2607.19725v1)，2026 预印本 | 瞬时乘积 score 还带来整条路径的密度修正；其 schedule 不由该定理唯一决定 | [实际分布与配对](RAEV2_GUIDANCE_READING_PATHS_20260906_ZH.md) |",
+      "| [Emergence of Distortions in High-Dimensional Guided Diffusion Models](https://arxiv.org/html/2602.00716v1)，2026 预印本 | exact-score guidance 本身也能改变类均值与类内协方差；高维极限条件需逐项核对 | [实际分布与配对](RAEV2_GUIDANCE_READING_PATHS_20260906_ZH.md) |",
+      "| [On the Guidance of Flow Matching](https://arxiv.org/html/2502.02150v3)，2025 | 精确 guidance 由目标端点分布与配对共同决定；学习辅助场有条件回归入口 | [实际分布与配对](RAEV2_GUIDANCE_READING_PATHS_20260906_ZH.md) |",
+      "| [Refining Generative Process with Discriminator Guidance in Score-based Diffusion Models](https://proceedings.mlr.press/v202/kim23i/kim23i.pdf)，ICML 2023 | 假样本终点再加噪，与实际 rollout 边缘并不自动一致；missing-score 推导需要自洽条件 | [判别器 guidance](RAEV2_GUIDANCE_READING_DISCRIMINATOR_20260906_ZH.md) |",
+      "| [Improving Discriminator Guidance in Diffusion Models](https://arxiv.org/html/2503.16117v2)，ECML/PKDD 2025 | 分类函数准确不保证输入梯度准确；纯梯度 MSE 部分与旧 residual 校正同类，不能换名重跑 | [判别器 guidance](RAEV2_GUIDANCE_READING_DISCRIMINATOR_20260906_ZH.md) |",
+      "| [Stochastic Self-Guidance for Training-Free Enhancement of Diffusion Models](https://arxiv.org/abs/2508.12880v4)，ICLR 2026 | mask 的平均结构响应与其随机方差要分开；轻度删块保留 suffix，不能被旧 head-swap 直接否定 | [随机弱模型](RAEV2_GUIDANCE_READING_STOCHASTIC_WEAK_20260906_ZH.md) |",
+      "| [Sobolev Descent](https://proceedings.mlr.press/v89/mroueh19a.html)，AISTATS 2019 | 从两样本缺口与当前分布的 Jacobian Gram 导出最小代价的特征输运；加入原有漂移和移动目标时必须重推 | [Sobolev 与移动目标](RAEV2_GUIDANCE_READING_SOBOLEV_20260906_ZH.md) |",
+      "| [Effectively Unbiased FID and Inception Score and Where to Find Them](https://openaccess.thecvf.com/content_CVPR_2020/html/Chong_Effectively_Unbiased_FID_and_Inception_Score_and_Where_to_Find_CVPR_2020_paper.html)，CVPR 2020 | 同规模估计的模型相关偏差不自动相消；本地历史特征否定 1K≥5% 是最终目标必要条件 | [规模审计](RAEV2_FID_FINITE_SAMPLE_READING_20260906_ZH.md) |",
+      "| [Adjoint Matching](https://arxiv.org/html/2409.08861v5)，ICLR 2025 | 终点重加权需要处理起点归一化；转置 Jacobian 传播终点信息 | [终点控制](RAEV2_GUIDANCE_READING_ENDPOINT_CONTROL_20260906_ZH.md) |",
+      "| [DEFT](https://proceedings.neurips.cc/paper_files/paper/2024/file/22d258dfbdf840ccbf266bbc545dd95f-Paper-Conference.pdf)，NeurIPS 2024 | 小网络可摊销有新终点条件的修正；sameclass denoising residual 并非新目标 | [终点控制](RAEV2_GUIDANCE_READING_ENDPOINT_CONTROL_20260906_ZH.md) |",
+      "| [Value Gradient Guidance for Flow Matching Alignment](https://arxiv.org/html/2512.05116v1)，NeurIPS 2025 | 确定性 HJB 可围绕实际基准速度定义；控制能量不等于终点 KL 或真实 FID | [终点控制](RAEV2_GUIDANCE_READING_ENDPOINT_CONTROL_20260906_ZH.md) |",
+      "| [Adaptive Diffusion Guidance via Stochastic Optimal Control](https://arxiv.org/html/2505.19367v2)，AISTATS 2026 | 优化当前强度还需计入未来状态变化；提高类别置信度的实证 FID 仍可恶化 | [自适应控制](RAEV2_GUIDANCE_READING_ADAPTIVE_CONTROL_20260906_ZH.md) |",
+      "| [Manifold-Optimal Guidance](https://arxiv.org/html/2603.11509v1)，2026 预印本 | 局部二次问题有解析解，仍需独立识别其度量与错误机制 | [自适应控制](RAEV2_GUIDANCE_READING_ADAPTIVE_CONTROL_20260906_ZH.md) |",
+      "| [Eliminating Oversaturation and Artifacts of High Guidance Scales in Diffusion Models](https://arxiv.org/html/2410.02416v2)，ICLR 2025 | APG 的 clean 投影有增益解释，有限正交更新不保持范数；clipping/momentum 仍依经验设定 | [投影与零初始化](RAEV2_GUIDANCE_READING_PROJECTION_ZERO_20260906_ZH.md) |",
+      "| [CFG-Zero⋆](https://arxiv.org/html/2503.18886v2)，2025 | velocity 投影迁移到 clean 时必须保留状态项；零初速度假说可在固定端点证伪 | [投影与零初始化](RAEV2_GUIDANCE_READING_PROJECTION_ZERO_20260906_ZH.md) |",
+      "| [C²FG: Control Classifier-Free Guidance via Score Discrepancy Analysis](https://openaccess.thecvf.com/content/CVPR2026/papers/Gao_C2FG_Control_Classifier-Free_Guidance_via_Score_Discrepancy_Analysis_CVPR_2026_paper.pdf)，CVPR 2026 | score 差异的衰减上界不确定实际差异单调性或最优系数；正文与附录明确保留参数选择 | [差异与评价](RAEV2_GUIDANCE_READING_DISCREPANCY_EVALUATION_20260906_ZH.md) |",
+      "| [Guidance Matters](https://arxiv.org/pdf/2602.22570v1)，ICLR 2026 | 偏好分数可能主要反映旧 CFG 强度；有符号局部投影可诊断，时间平均不保证终点等价 | [差异与评价](RAEV2_GUIDANCE_READING_DISCREPANCY_EVALUATION_20260906_ZH.md) |",
+      "| [CFG++](https://proceedings.iclr.cc/paper_files/paper/2025/file/4c9477b9e2c7ec0ad3f4f15077aaf85a-Paper-Conference.pdf)，ICLR 2025 正式版 | Flow 一阶重组在 RAE Euler 下等价于步长相关的旧 gap 增益；时间残差机制仍须独立检验 | [CFG++](RAEV2_GUIDANCE_READING_CFGPLUSPLUS_20260906_ZH.md) |",
+      "| [Angle Domain Guidance](https://arxiv.org/html/2506.11039v1)，ICML 2025 | 限制 clean 预测长度的对象要明确；范数界不等于严格保长，原始 latent 球壳不等于 posterior mean 球壳 | [ADG 与真实范数检验](RAEV2_GUIDANCE_READING_ANGLE_20260906_ZH.md) |",
+      "| [PTQD](https://papers.neurips.cc/paper_files/paper/2023/file/2aab8a76c7e761b66eccaca0927787de-Paper-Conference.pdf)，NeurIPS 2023 | 实际合成后的误差可作回归校准；确定性 ODE 无随机方差预算可吸收其残差 | [量化误差](RAEV2_GUIDANCE_READING_QUANTIZATION_20260906_ZH.md) |",
+      "| [Q-Diffusion](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Q-Diffusion_Quantizing_Diffusion_Models_ICCV_2023_paper.pdf)，ICCV 2023 | 成对校准数据与直接优化合成误差并不相同；两支误差的联合协方差决定放大 | [量化误差](RAEV2_GUIDANCE_READING_QUANTIZATION_20260906_ZH.md) |",
+      "| [Covariance Mismatch in Diffusion Models](https://infoscience.epfl.ch/server/api/core/bitstreams/72923daf-0e38-4b3c-8ad8-96799be59469/content)，EPFL 2024 预印本 | 方向信息量由数据/噪声的相对方差决定；纯坐标白化不改变广义谱，主要方案改变训练路径 | [协方差与后验可辨识性](RAEV2_GUIDANCE_READING_COVARIANCE_MISMATCH_20260906_ZH.md) |"
+    ]
+  },
+  "query_families": [
+    "diffusion guidance double difference strong weak conditional unconditional",
+    "diffusion guidance difference of differences",
+    "diffusion guidance difference-in-differences",
+    "autoguidance conditional likelihood ratio",
+    "diffusion guidance four predictions weak unconditional",
+    "diffusion guidance double contrast"
+  ],
+  "direct_inference_precedent_found": false,
+  "scope_limit": "Bounded search only; absence of a hit is not evidence of novelty or absence of prior work.",
+  "selected_near_match": {
+    "paper": "DASH: Dual-Branch Score Distillation for Guidance-Calibrated Compact Diffusion Models",
+    "arxiv": "2606.00798v2",
+    "classification": "Explicit four-branch gap-matching training-loss baseline and calibration diagnostic; NOT inference guidance; teacher/student are compression identities, not an AG strong/weak pairing."
+  },
+  "excluded_categories": [
+    {
+      "item": "Original Autoguidance Appendix B.2",
+      "reason": "Already read; ordinary conditional strong + conditional weak + unconditional strong three-branch mixture."
+    },
+    {
+      "item": "Sparse Guidance",
+      "reason": "Two conditional token-sparsity branches; lacks matched unconditional strong/weak pair."
+    },
+    {
+      "item": "GENIE / text-prompt contrastive guidance",
+      "reason": "Prompt or attribute contrasts do not constitute strong/weak conditional-posterior ratio correction."
+    }
+  ],
+  "counting_decision": "Search support only; parent explicitly will not increment the 34-paper deep-reading total for this round.",
+  "actions": "Read-only network/source inspection and artifact archival only. No project source changes, GPU, training, sampling, model/data downloads, or experiments."
+}

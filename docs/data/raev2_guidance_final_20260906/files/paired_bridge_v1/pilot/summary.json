@@ -1,0 +1,97 @@
+{
+  "pilot_passed": true,
+  "native_head_parity": true,
+  "zero_midpoint_parity": true,
+  "numerical_only": true,
+  "learned_weights_saved": false,
+  "discarded_parameter_updates_per_model": 8,
+  "parameter_backwards": {
+    "candidate": 8,
+    "control": 8
+  },
+  "history": [
+    {
+      "update": 1,
+      "candidate_gradient_norm": 0.012250431813299656,
+      "candidate_loss": 0.0,
+      "control_gradient_norm": 0.012362544424831867,
+      "control_loss": 0.0
+    },
+    {
+      "update": 2,
+      "candidate_gradient_norm": 0.011470183730125427,
+      "candidate_loss": -0.0009218514314852655,
+      "control_gradient_norm": 0.011561344377696514,
+      "control_loss": -0.000927839195355773
+    },
+    {
+      "update": 3,
+      "candidate_gradient_norm": 0.011120747774839401,
+      "candidate_loss": -0.001845475286245346,
+      "control_gradient_norm": 0.01118625421077013,
+      "control_loss": -0.0018549212254583836
+    },
+    {
+      "update": 4,
+      "candidate_gradient_norm": 0.010661744512617588,
+      "candidate_loss": -0.0027577164582908154,
+      "control_gradient_norm": 0.010703887790441513,
+      "control_loss": -0.0027679274789988995
+    },
+    {
+      "update": 5,
+      "candidate_gradient_norm": 0.010087834671139717,
+      "candidate_loss": -0.0036272136494517326,
+      "control_gradient_norm": 0.010116497054696083,
+      "control_loss": -0.003636073786765337
+    },
+    {
+      "update": 6,
+      "candidate_gradient_norm": 0.00955543015152216,
+      "candidate_loss": -0.00442248722538352,
+      "control_gradient_norm": 0.009585726074874401,
+      "control_loss": -0.004429496359080076
+    },
+    {
+      "update": 7,
+      "candidate_gradient_norm": 0.009336252696812153,
+      "candidate_loss": -0.005128729157149792,
+      "control_gradient_norm": 0.00937541015446186,
+      "control_loss": -0.005135595798492432
+    },
+    {
+      "update": 8,
+      "candidate_gradient_norm": 0.009539657272398472,
+      "candidate_loss": -0.005767252761870623,
+      "control_gradient_norm": 0.009577457793056965,
+      "control_loss": -0.005776682868599892
+    }
+  ],
+  "calls": {
+    "baseline": {
+      "calls": 4,
+      "samples": 32
+    },
+    "candidate": {
+      "calls": 10,
+      "samples": 320
+    },
+    "control": {
+      "calls": 10,
+      "samples": 320
+    }
+  },
+  "protocol": "raev2_paired_bridge_fixed_mechanism_pilot_v1",
+  "mode": "pilot",
+  "complete": true,
+  "finished_utc": "2026-09-06T14:17:38.930606+00:00",
+  "stage_seconds": 0.8563903558533639,
+  "wall_seconds_from_first_time_import": 24.158206533873454,
+  "cpu_seconds_from_first_time_import": 25.067244936999998,
+  "peak_gpu_memory_allocated_bytes": 4577826304,
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/pilot/request.json",
+    "sha256": "ea5ce354cbd0d79031619ec492cb4a37408b0570e4650e7f54501e2f6aefb3a2",
+    "size_bytes": 5395
+  }
+}

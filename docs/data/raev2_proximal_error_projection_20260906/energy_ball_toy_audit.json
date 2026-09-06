@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "scope": "CPU theory audit; frozen samplers unchanged",
+  "non_gaussian_actual_law": {
+    "gain": 0.3184503078209804,
+    "target_mean": [
+      2.3,
+      1.2000000000000002
+    ],
+    "w2_squared_before": 61.25,
+    "w2_squared_after": 0.10493438929443165
+  },
+  "law_nonexpansivity": {
+    "w2_squared_before": 46.550000000000004,
+    "w2_squared_after": 3.135673901534907
+  },
+  "whole_cohort_compute_chunks": {
+    "particles": 1000,
+    "microbatch": 8,
+    "gain_difference": 0.0
+  },
+  "wrong_independent_microbatch_projection": {
+    "whole_cohort_w2_squared": 0.0,
+    "microbatch_w2_squared": 0.17157287525380985
+  },
+  "finite_particle_marginal_boundary": {
+    "particles": 2,
+    "cohorts": [
+      {
+        "cohort": [
+          0.0,
+          0.0
+        ],
+        "gain": 1.0,
+        "empirical_w2_squared_before": 2.0,
+        "empirical_w2_squared_after": 2.0
+      },
+      {
+        "cohort": [
+          0.0,
+          2.0
+        ],
+        "gain": 1.0,
+        "empirical_w2_squared_before": 0.0,
+        "empirical_w2_squared_after": 0.0
+      },
+      {
+        "cohort": [
+          2.0,
+          0.0
+        ],
+        "gain": 1.0,
+        "empirical_w2_squared_before": 0.0,
+        "empirical_w2_squared_after": 0.0
+      },
+      {
+        "cohort": [
+          2.0,
+          2.0
+        ],
+        "gain": 0.7071067811865476,
+        "empirical_w2_squared_before": 2.0,
+        "empirical_w2_squared_after": 1.1715728752538102
+      }
+    ],
+    "raw_population_w2_squared": 0.0,
+    "tagged_output_w2_squared": 0.08578643762690492
+  },
+  "target_budget_estimation_boundary": {
+    "true_budget": 2.0,
+    "used_budget": 1.0,
+    "w2_squared": 0.17157287525380985,
+    "radius_error_squared": 0.17157287525381
+  }
+}

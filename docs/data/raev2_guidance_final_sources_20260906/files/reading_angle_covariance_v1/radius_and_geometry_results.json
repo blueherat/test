@@ -1,0 +1,82 @@
+{
+  "protocol": "adg_clean_radius_reference_v1",
+  "request_sha256": "db54f2857f4a63b19dcb58458a4f63217bb143b33022742921b82f1b91e7bf58",
+  "source_sha256": "0485e01302b19647d48e91129237061d66c6f6eb66e64a2d8de178f5b81f3227",
+  "n": 1000,
+  "dimension": 262144,
+  "energy": {
+    "mean": 1.0002863601086145,
+    "sample_std": 0.18553037972135633,
+    "cv": 0.18547726643119558,
+    "quantile_probs": [
+      0,
+      0.05,
+      0.25,
+      0.5,
+      0.75,
+      0.95,
+      1
+    ],
+    "quantiles": [
+      0.7115070341836368,
+      0.7928614546995609,
+      0.8724637907089074,
+      0.9573476795063434,
+      1.070946851861731,
+      1.3697320685019216,
+      2.028488983221615
+    ]
+  },
+  "radius_div_sqrt_dimension": {
+    "mean": 0.9962662773305229,
+    "sample_std": 0.08802052246477046,
+    "cv": 0.088350398349947,
+    "quantile_probs": [
+      0,
+      0.05,
+      0.25,
+      0.5,
+      0.75,
+      0.95,
+      1
+    ],
+    "quantiles": [
+      0.8435087635488068,
+      0.8904276469607031,
+      0.9340576273982939,
+      0.9784414477455381,
+      1.0348654902453909,
+      1.1703555296708095,
+      1.4242503232303003
+    ]
+  },
+  "gaussian_energy_cv": 0.0027621358640099515,
+  "gaussian_radius_cv": 0.0013810685905493267,
+  "empirical_over_gaussian_energy_cv": 67.1499432189145,
+  "empirical_over_gaussian_radius_cv": 63.97249126837734,
+  "gaussian_moment_equivalent_dimension": 58.13646520604455,
+  "adg_norm_formula_witness": {
+    "F": [
+      1.0,
+      0.0
+    ],
+    "B": [
+      0.5000000000000001,
+      0.8660254037844386
+    ],
+    "omega": 1.78,
+    "gamma": 1.0471975511965976,
+    "angle": 0.8168140899333461,
+    "F_norm": 1.0,
+    "ADG_norm": 1.3653997584864135,
+    "formula_norm_squared": 1.8643165004747562,
+    "direct_norm_squared": 1.8643165004747564,
+    "assist_dot_F": 0.8660254037844386,
+    "assist_dot_B": 1.4874168143337463e-17
+  },
+  "cost": {
+    "wall_seconds": 0.27980011398904026,
+    "cpu_seconds": 12.122974429,
+    "scope": "From import time through calculation, before serialization and process exit; no GPU/model/noise/FID."
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "protocol": "raev2_affine_reflection_sampling_v1",
+  "command": "parity",
+  "mode": "parity",
+  "seed": 202609131,
+  "sample_count": 16,
+  "batch_size": 8,
+  "num_steps": 100,
+  "time_grid": [
+    1.0,
+    0.9987389445304871,
+    0.9974554777145386,
+    0.996148943901062,
+    0.9948186874389648,
+    0.9934640526771545,
+    0.9920844435691833,
+    0.9906790852546692,
+    0.9892473220825195,
+    0.9877883195877075,
+    0.9863013625144958,
+    0.9847856163978577,
+    0.9832402467727661,
+    0.9816642999649048,
+    0.9800570011138916,
+    0.9784172773361206,
+    0.9767442345619202,
+    0.9750366806983948,
+    0.9732937812805176,
+    0.9715142250061035,
+    0.9696969985961914,
+    0.9678407311439514,
+    0.9659442901611328,
+    0.964006245136261,
+    0.9620253443717957,
+    0.9599999785423279,
+    0.9579287767410278,
+    0.9558101296424866,
+    0.9536424279212952,
+    0.9514237642288208,
+    0.9491525292396545,
+    0.9468267560005188,
+    0.9444444179534912,
+    0.9420035481452942,
+    0.9395017623901367,
+    0.9369369745254517,
+    0.9343065619468689,
+    0.9316081404685974,
+    0.9288389086723328,
+    0.9259962439537048,
+    0.9230769276618958,
+    0.9200779795646667,
+    0.9169960021972656,
+    0.913827657699585,
+    0.9105690717697144,
+    0.9072164297103882,
+    0.9037656784057617,
+    0.9002123475074768,
+    0.8965517282485962,
+    0.8927790522575378,
+    0.8888888955116272,
+    0.8848758339881897,
+    0.8807339668273926,
+    0.8764568567276001,
+    0.8720378875732422,
+    0.8674699068069458,
+    0.8627451062202454,
+    0.8578553795814514,
+    0.8527919054031372,
+    0.8475452661514282,
+    0.8421052694320679,
+    0.836461067199707,
+    0.8306010961532593,
+    0.8245124816894531,
+    0.8181818127632141,
+    0.8115941882133484,
+    0.8047336935997009,
+    0.7975830435752869,
+    0.790123462677002,
+    0.7823343873023987,
+    0.774193525314331,
+    0.7656765580177307,
+    0.7567567229270935,
+    0.7474048137664795,
+    0.73758864402771,
+    0.7272727489471436,
+    0.7164179682731628,
+    0.7049808502197266,
+    0.6929134130477905,
+    0.6801619529724121,
+    0.6666666865348816,
+    0.6523604989051819,
+    0.6371681094169617,
+    0.621004581451416,
+    0.6037735939025879,
+    0.5853658318519592,
+    0.5656565427780151,
+    0.5445026159286499,
+    0.52173912525177,
+    0.4971751570701599,
+    0.47058823704719543,
+    0.4417177736759186,
+    0.41025641560554504,
+    0.3758389353752136,
+    0.3380281627178192,
+    0.29629629850387573,
+    0.25,
+    0.1983470916748047,
+    0.14035087823867798,
+    0.07476635277271271,
+    0.0
+  ],
+  "time_shift": 8,
+  "transport_t_eps": 0.05,
+  "identities": {
+    "config": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "baseline_checkpoint": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+      "size_bytes": 10520885445
+    },
+    "decoder_checkpoint": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+      "size_bytes": 1662766063
+    },
+    "normalization_stats": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+      "size_bytes": 2098901
+    },
+    "root_plan": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/plan.json",
+      "sha256": "1f7e448c3d336661e39cad671097be9afcc85d7d0354b7776ab833ec7ae6ce1c",
+      "size_bytes": 4422
+    },
+    "protocol_document": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+      "sha256": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db",
+      "size_bytes": 8651
+    }
+  },
+  "sources": {
+    "experiments/sample_raev2_affine_reflection.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/sample_raev2_affine_reflection.py",
+      "sha256": "37426ed1865537a14f05777ed909d90113aeee224fc0f4f0cf8f4e71d557b069",
+      "size_bytes": 37953
+    },
+    "tests/test_raev2_affine_reflection.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/tests/test_raev2_affine_reflection.py",
+      "sha256": "3872d9260f13a8f9be5f0444b7d737e4442eff954e865ed62e183edee8e6f9b0",
+      "size_bytes": 14950
+    },
+    "experiments/sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "experiments/raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "experiments/raev2_stage1_compat.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "external/RAEv2/src/stage1/rae.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    },
+    "external/RAEv2/src/encoders/vision_encoder.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/sources/external/RAEv2/src/encoders/vision_encoder.py",
+      "sha256": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+      "size_bytes": 34988
+    }
+  },
+  "parity": null,
+  "geometry": {
+    "definition": "sigma=sqrt(var+1e-5); u=sigma/||sigma||_channels; c=-(sum_channels mean)/||sigma||*u",
+    "shape": [
+      1024,
+      16,
+      16
+    ],
+    "unit64_sha256": "fd3918c879a48b907f582a639aa3f3d9d07cd421bdab3881232ab1a1fde0cc0d",
+    "anchor64_sha256": "8f2ac700fdcf0d6d4c39fa5eb43686ebda52649d3df5188fbf4d3527fee1bad1",
+    "unit32_sha256": "aed263a3bb3ef2f63f7e976caf66360d27e29ac43664450ba61acc19310f89fc",
+    "anchor32_sha256": "a181b559dabb508a0527021dc0937842009bbcf63572782c46ef1b4045274b72",
+    "stat_mean_dtype": "torch.float32",
+    "stat_variance_dtype": "torch.float32",
+    "construction_dtype": "float64 on CPU, then one cast to float32",
+    "source_is_known_encoder_affine_structure_not_fitted_reference": true
+  },
+  "reflection": "R_t z=z-2 P_N(z-(1-t)c); all normal coordinates reflected together, C2 group",
+  "candidate": "FP32 Pi_H[(G_native(z,t)+G_native(R_t z,t))*.5], at every query including outside IG window; FP32 Euler successor",
+  "native_guidance": "BF16 B+1.78*(F-B) inside [.1,1]; native Full outside; promote only final guided output toFP32",
+  "pixel_arithmetic": "native BF16 decoder, clamp and multiply255 before uint8 NHWC",
+  "loop": "both arms batch-major B8; candidate two separate B8 forwards perstep, never concatenate B16",
+  "noise_schema": "one full CUDA Generator(seed) draw[N,1024,16,16]; exact payload/RNG/labels SHA saved before first forward",
+  "labels": "ascending IDs0..N-1, labels=id%1000; all1000 classes once in sample",
+  "precision": "FP32 state/reflection/average/projection; BF16 native model/IG/decoder; TF32off",
+  "cost_scope": "synchronized full trajectory including all native forwards/reflection/projection, trajectory through decode, decoder, transfers, hashes, loads and writes recorded; no subtraction of operator costs",
+  "instrumentation": "same actual root-module FW/decoder count hooks for both arms; CUDA events only around whole trajectory/decode, no perstep events or synchronization",
+  "parity_scope": "16 same-noise images: new official successor versus direct production.sampling_step, endpoints/pixels bitwise. Additionally firstB8 at t=1: Gsym(z) and Gsym(Rz), exactly4 native forwards; finite geometry/invariance/first-successor residuals, no tuned threshold or quality selection.",
+  "theory_scope": "known C2 symmetry and H-valued output; Euler equivariance/normal bridge requires t>=t_eps, true at all candidate100 query times; no FID guarantee",
+  "automatic_step_selection": false,
+  "new_gain_schedule_or_projection_selection": false,
+  "fid_performed": false,
+  "torch_version": "2.11.0+cu130"
+}

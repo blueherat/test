@@ -1,0 +1,83 @@
+{
+  "legacy_5k": [
+    {
+      "seed": 20260801,
+      "condition": "source",
+      "archived_fid": 6.921716007527891,
+      "recomputed_float64_fid": 6.921716131790049,
+      "difference": 1.2426215789673734e-07
+    },
+    {
+      "seed": 20260801,
+      "condition": "reconstruction",
+      "archived_fid": 6.882134951636999,
+      "recomputed_float64_fid": 6.882135002390044,
+      "difference": 5.075304443380446e-08
+    },
+    {
+      "seed": 20260801,
+      "condition": "full",
+      "archived_fid": 7.749291955281194,
+      "recomputed_float64_fid": 7.749291492388011,
+      "difference": -4.628931833394745e-07
+    },
+    {
+      "seed": 20260801,
+      "condition": "ig",
+      "archived_fid": 7.093245215960167,
+      "recomputed_float64_fid": 7.093245077968675,
+      "difference": -1.3799149201076943e-07
+    },
+    {
+      "seed": 20260802,
+      "condition": "source",
+      "archived_fid": 6.802806772658528,
+      "recomputed_float64_fid": 6.802806500332167,
+      "difference": -2.723263605730608e-07
+    },
+    {
+      "seed": 20260802,
+      "condition": "reconstruction",
+      "archived_fid": 6.841543492841197,
+      "recomputed_float64_fid": 6.84154340267213,
+      "difference": -9.016906687975279e-08
+    },
+    {
+      "seed": 20260802,
+      "condition": "full",
+      "archived_fid": 7.587929999558639,
+      "recomputed_float64_fid": 7.5879301298015776,
+      "difference": 1.3024293821217725e-07
+    },
+    {
+      "seed": 20260802,
+      "condition": "ig",
+      "archived_fid": 7.201334192200022,
+      "recomputed_float64_fid": 7.2013341815704734,
+      "difference": -1.0629548796714516e-08
+    }
+  ],
+  "current_official_feature_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_screen_v1/evaluation/official_feature_cache/official100_seed202609095-4824d1b51990ba53-inception.features.pt",
+  "current_official_feature_file_sha256": "b416a4ddab8034ccf60417d36d25cc51f42b8fbf6c2a1699301e9418f4fe46f5",
+  "current_official_fid": {
+    "historical_adm": {
+      "fid": 37.65018122747074,
+      "mean_term": 0.20394066172665615,
+      "generated_covariance_trace": 170.39815629071347,
+      "bures_cross_trace": 156.7802595546088,
+      "minimum_gram_eigenvalue": -7.529021495604669e-18
+    },
+    "current_nanogen": {
+      "fid": 37.56272741368798,
+      "mean_term": 0.16001417267264964,
+      "generated_covariance_trace": 170.39815629071347,
+      "bures_cross_trace": 156.80848741823377,
+      "minimum_gram_eigenvalue": -3.1963529418469883e-17
+    }
+  },
+  "current_official_original_sqrtm_fid": 37.56270362297687,
+  "reference_to_reference_fid": 0.10179148067936694,
+  "elapsed_cpu_wall_seconds": 28.706500593107194,
+  "gpu_used": false,
+  "complete": true
+}

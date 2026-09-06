@@ -1,0 +1,708 @@
+{
+  "complete": true,
+  "passed": true,
+  "toy_seed": 202609104,
+  "dimension": 3,
+  "classes": 3,
+  "noise_replicates_per_class": 5,
+  "tests": [
+    {
+      "name": "fid vs independent nonsymmetric-product sqrtm",
+      "step": null,
+      "analytic": 0.29189741566536975,
+      "independent_numeric": 0.29189741566536487,
+      "scaled_absolute_error": 3.781245514633035e-15
+    },
+    {
+      "name": "mean gradient",
+      "step": 0.0001,
+      "analytic": 0.13639086635198702,
+      "independent_numeric": 0.13639086635208741,
+      "scaled_absolute_error": 8.834277005763462e-14
+    },
+    {
+      "name": "symmetric covariance gradient",
+      "step": 0.0001,
+      "analytic": -0.23095025387526352,
+      "independent_numeric": -0.23095025416086656,
+      "scaled_absolute_error": 2.32018345434918e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 0",
+      "step": 0.0001,
+      "analytic": 1.2605132329663846,
+      "independent_numeric": 1.2605132019238852,
+      "scaled_absolute_error": 1.3732500658316262e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 1",
+      "step": 0.0001,
+      "analytic": 0.08142510836934999,
+      "independent_numeric": 0.08142489833939948,
+      "scaled_absolute_error": 1.9421589982451638e-07
+    },
+    {
+      "name": "normalized contamination weight IF sample 2",
+      "step": 0.0001,
+      "analytic": -0.4748379654967696,
+      "independent_numeric": -0.4748379722352425,
+      "scaled_absolute_error": 4.568958115014687e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 3",
+      "step": 0.0001,
+      "analytic": -0.7953639787374098,
+      "independent_numeric": -0.795364076320304,
+      "scaled_absolute_error": 5.435270806658682e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 4",
+      "step": 0.0001,
+      "analytic": -0.750597487360893,
+      "independent_numeric": -0.7505975993948866,
+      "scaled_absolute_error": 6.39975747341376e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 5",
+      "step": 0.0001,
+      "analytic": 0.6465086798626827,
+      "independent_numeric": 0.646508653590061,
+      "scaled_absolute_error": 1.5956564307930012e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 6",
+      "step": 0.0001,
+      "analytic": -0.47773331582814416,
+      "independent_numeric": -0.47773331813161235,
+      "scaled_absolute_error": 1.5587847748252032e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 7",
+      "step": 0.0001,
+      "analytic": -2.0634645911288274e-05,
+      "independent_numeric": -2.0634076669523438e-05,
+      "scaled_absolute_error": 5.692300189763089e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 8",
+      "step": 0.0001,
+      "analytic": -0.3152391732933367,
+      "independent_numeric": -0.3152392195859832,
+      "scaled_absolute_error": 3.5197131771859626e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 9",
+      "step": 0.0001,
+      "analytic": 1.3166043377939745,
+      "independent_numeric": 1.3166043152601503,
+      "scaled_absolute_error": 9.727092267049776e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 10",
+      "step": 0.0001,
+      "analytic": -0.000721264085046136,
+      "independent_numeric": -0.0007217068898057732,
+      "scaled_absolute_error": 4.424856106580879e-07
+    },
+    {
+      "name": "normalized contamination weight IF sample 11",
+      "step": 0.0001,
+      "analytic": -0.09323457327291743,
+      "independent_numeric": -0.09323458037169274,
+      "scaled_absolute_error": 6.4933688442717485e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 12",
+      "step": 0.0001,
+      "analytic": 0.14650782180514596,
+      "independent_numeric": 0.14650782555136743,
+      "scaled_absolute_error": 3.2675062486924203e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 13",
+      "step": 0.0001,
+      "analytic": -0.5954871782998628,
+      "independent_numeric": -0.5954873365432434,
+      "scaled_absolute_error": 9.918185666019414e-08
+    },
+    {
+      "name": "normalized contamination weight IF sample 14",
+      "step": 0.0001,
+      "analytic": 0.05167639022275368,
+      "independent_numeric": 0.051676393835187184,
+      "scaled_absolute_error": 3.4349287848343994e-09
+    },
+    {
+      "name": "paired within-class difference official100 class 0",
+      "step": 0.0001,
+      "analytic": 0.28088343967302887,
+      "independent_numeric": 0.280883434875534,
+      "scaled_absolute_error": 3.745457781120555e-09
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 0",
+      "step": 0.0001,
+      "analytic": -1.8494945016183948,
+      "independent_numeric": -1.8494944292762883,
+      "scaled_absolute_error": 2.5387698234305667e-08
+    },
+    {
+      "name": "paired within-class difference official105 class 0",
+      "step": 0.0001,
+      "analytic": 0.2624696870944523,
+      "independent_numeric": 0.26246968310328356,
+      "scaled_absolute_error": 3.1613976712825378e-09
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 0",
+      "step": 0.0001,
+      "analytic": -1.252791268303687,
+      "independent_numeric": -1.2527913538895596,
+      "scaled_absolute_error": 3.7991035306013655e-08
+    },
+    {
+      "name": "paired within-class difference official100 class 1",
+      "step": 0.0001,
+      "analytic": 0.7428169508297454,
+      "independent_numeric": 0.7428169520018457,
+      "scaled_absolute_error": 6.725320781071626e-10
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 1",
+      "step": 0.0001,
+      "analytic": -1.9798814766657045,
+      "independent_numeric": -1.9798805233667283,
+      "scaled_absolute_error": 3.1991170912930664e-07
+    },
+    {
+      "name": "paired within-class difference official105 class 1",
+      "step": 0.0001,
+      "analytic": 0.2972423546341736,
+      "independent_numeric": 0.29724235754535755,
+      "scaled_absolute_error": 2.24413267895828e-09
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 1",
+      "step": 0.0001,
+      "analytic": -1.068389615088301,
+      "independent_numeric": -1.0683889724588669,
+      "scaled_absolute_error": 3.1069070808676043e-07
+    },
+    {
+      "name": "paired within-class difference official100 class 2",
+      "step": 0.0001,
+      "analytic": -0.5399698887674216,
+      "independent_numeric": -0.5399698873143066,
+      "scaled_absolute_error": 9.43599593920948e-10
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 2",
+      "step": 0.0001,
+      "analytic": 1.7657732897639016,
+      "independent_numeric": 1.7657730402148575,
+      "scaled_absolute_error": 9.022758482022571e-08
+    },
+    {
+      "name": "paired within-class difference official105 class 2",
+      "step": 0.0001,
+      "analytic": -0.4872309976217718,
+      "independent_numeric": -0.4872309933912078,
+      "scaled_absolute_error": 2.8445910668796295e-09
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 2",
+      "step": 0.0001,
+      "analytic": 1.6944907388763932,
+      "independent_numeric": 1.6944905007493238,
+      "scaled_absolute_error": 8.837553826427263e-08
+    },
+    {
+      "name": "mean gradient",
+      "step": 1e-05,
+      "analytic": 0.13639086635198702,
+      "independent_numeric": 0.13639086637873277,
+      "scaled_absolute_error": 2.3535691195639396e-11
+    },
+    {
+      "name": "symmetric covariance gradient",
+      "step": 1e-05,
+      "analytic": -0.23095025387526352,
+      "independent_numeric": -0.23095025372121822,
+      "scaled_absolute_error": 1.251434034847006e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 0",
+      "step": 1e-05,
+      "analytic": 1.2605132329663846,
+      "independent_numeric": 1.2605132329035484,
+      "scaled_absolute_error": 2.7797307171996595e-11
+    },
+    {
+      "name": "normalized contamination weight IF sample 1",
+      "step": 1e-05,
+      "analytic": 0.08142510836934999,
+      "independent_numeric": 0.0814251061687088,
+      "scaled_absolute_error": 2.0349455362340744e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 2",
+      "step": 1e-05,
+      "analytic": -0.4748379654967696,
+      "independent_numeric": -0.4748379653474188,
+      "scaled_absolute_error": 1.0126591055519801e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 3",
+      "step": 1e-05,
+      "analytic": -0.7953639787374098,
+      "independent_numeric": -0.7953639798330413,
+      "scaled_absolute_error": 6.102559076657612e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 4",
+      "step": 1e-05,
+      "analytic": -0.750597487360893,
+      "independent_numeric": -0.7505974882526799,
+      "scaled_absolute_error": 5.094185688105677e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 5",
+      "step": 1e-05,
+      "analytic": 0.6465086798626827,
+      "independent_numeric": 0.6465086797913244,
+      "scaled_absolute_error": 4.3339129342521045e-11
+    },
+    {
+      "name": "normalized contamination weight IF sample 6",
+      "step": 1e-05,
+      "analytic": -0.47773331582814416,
+      "independent_numeric": -0.47773331584011197,
+      "scaled_absolute_error": 8.098765520958443e-12
+    },
+    {
+      "name": "normalized contamination weight IF sample 7",
+      "step": 1e-05,
+      "analytic": -2.0634645911288274e-05,
+      "independent_numeric": -2.0634649544604144e-05,
+      "scaled_absolute_error": 3.6332408997488106e-12
+    },
+    {
+      "name": "normalized contamination weight IF sample 8",
+      "step": 1e-05,
+      "analytic": -0.3152391732933367,
+      "independent_numeric": -0.31523917347620056,
+      "scaled_absolute_error": 1.390346629711457e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 9",
+      "step": 1e-05,
+      "analytic": 1.3166043377939745,
+      "independent_numeric": 1.3166043375090197,
+      "scaled_absolute_error": 1.2300534961138594e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 10",
+      "step": 1e-05,
+      "analytic": -0.000721264085046136,
+      "independent_numeric": -0.0007212687336277667,
+      "scaled_absolute_error": 4.645231192205462e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 11",
+      "step": 1e-05,
+      "analytic": -0.09323457327291743,
+      "independent_numeric": -0.09323457303977987,
+      "scaled_absolute_error": 2.1325482804049456e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 12",
+      "step": 1e-05,
+      "analytic": 0.14650782180514596,
+      "independent_numeric": 0.1465078216966731,
+      "scaled_absolute_error": 9.461153906887932e-11
+    },
+    {
+      "name": "normalized contamination weight IF sample 13",
+      "step": 1e-05,
+      "analytic": -0.5954871782998628,
+      "independent_numeric": -0.5954871799662698,
+      "scaled_absolute_error": 1.044450268886041e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 14",
+      "step": 1e-05,
+      "analytic": 0.05167639022275368,
+      "independent_numeric": 0.05167639041125937,
+      "scaled_absolute_error": 1.7924305611165e-10
+    },
+    {
+      "name": "paired within-class difference official100 class 0",
+      "step": 1e-05,
+      "analytic": 0.28088343967302887,
+      "independent_numeric": 0.2808834396184068,
+      "scaled_absolute_error": 4.2644071225623295e-11
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 0",
+      "step": 1e-05,
+      "analytic": -1.8494945016183948,
+      "independent_numeric": -1.8494945008884487,
+      "scaled_absolute_error": 2.5616687561491867e-10
+    },
+    {
+      "name": "paired within-class difference official105 class 0",
+      "step": 1e-05,
+      "analytic": 0.2624696870944523,
+      "independent_numeric": 0.2624696878061883,
+      "scaled_absolute_error": 5.637648259935752e-10
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 0",
+      "step": 1e-05,
+      "analytic": -1.252791268303687,
+      "independent_numeric": -1.2527912713722333,
+      "scaled_absolute_error": 1.3621085757538702e-09
+    },
+    {
+      "name": "paired within-class difference official100 class 1",
+      "step": 1e-05,
+      "analytic": 0.7428169508297454,
+      "independent_numeric": 0.7428169515044657,
+      "scaled_absolute_error": 3.871435145993469e-10
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 1",
+      "step": 1e-05,
+      "analytic": -1.9798814766657045,
+      "independent_numeric": -1.9798814685667574,
+      "scaled_absolute_error": 2.7178755705441132e-09
+    },
+    {
+      "name": "paired within-class difference official105 class 1",
+      "step": 1e-05,
+      "analytic": 0.2972423546341736,
+      "independent_numeric": 0.2972423548630587,
+      "scaled_absolute_error": 1.7643976258661635e-10
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 1",
+      "step": 1e-05,
+      "analytic": -1.068389615088301,
+      "independent_numeric": -1.068389609298892,
+      "scaled_absolute_error": 2.798993434315843e-09
+    },
+    {
+      "name": "paired within-class difference official100 class 2",
+      "step": 1e-05,
+      "analytic": -0.5399698887674216,
+      "independent_numeric": -0.5399698888020055,
+      "scaled_absolute_error": 2.245751138287783e-11
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 2",
+      "step": 1e-05,
+      "analytic": 1.7657732897639016,
+      "independent_numeric": 1.765773287382144,
+      "scaled_absolute_error": 8.611543429047222e-10
+    },
+    {
+      "name": "paired within-class difference official105 class 2",
+      "step": 1e-05,
+      "analytic": -0.4872309976217718,
+      "independent_numeric": -0.4872309975034738,
+      "scaled_absolute_error": 7.954244008503925e-11
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 2",
+      "step": 1e-05,
+      "analytic": 1.6944907388763932,
+      "independent_numeric": 1.694490736281473,
+      "scaled_absolute_error": 9.630466496743558e-10
+    },
+    {
+      "name": "mean gradient",
+      "step": 1e-06,
+      "analytic": 0.13639086635198702,
+      "independent_numeric": 0.13639086615668816,
+      "scaled_absolute_error": 1.7185887901754194e-10
+    },
+    {
+      "name": "symmetric covariance gradient",
+      "step": 1e-06,
+      "analytic": -0.23095025387526352,
+      "independent_numeric": -0.23095025314390227,
+      "scaled_absolute_error": 5.941436276871055e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 0",
+      "step": 1e-06,
+      "analytic": 1.2605132329663846,
+      "independent_numeric": 1.2605132302390132,
+      "scaled_absolute_error": 1.2065275265938085e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 1",
+      "step": 1e-06,
+      "analytic": 0.08142510836934999,
+      "independent_numeric": 0.08142511109809902,
+      "scaled_absolute_error": 2.5232898803345137e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 2",
+      "step": 1e-06,
+      "analytic": -0.4748379654967696,
+      "independent_numeric": -0.4748379662800062,
+      "scaled_absolute_error": 5.310661950820198e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 3",
+      "step": 1e-06,
+      "analytic": -0.7953639787374098,
+      "independent_numeric": -0.7953639813429447,
+      "scaled_absolute_error": 1.4512571989885132e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 4",
+      "step": 1e-06,
+      "analytic": -0.750597487360893,
+      "independent_numeric": -0.7505974868315946,
+      "scaled_absolute_error": 3.0235305245472396e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 5",
+      "step": 1e-06,
+      "analytic": 0.6465086798626827,
+      "independent_numeric": 0.6465086777041051,
+      "scaled_absolute_error": 1.3110028300096603e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 6",
+      "step": 1e-06,
+      "analytic": -0.47773331582814416,
+      "independent_numeric": -0.47773331690592613,
+      "scaled_absolute_error": 7.293480922670384e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 7",
+      "step": 1e-06,
+      "analytic": -2.0634645911288274e-05,
+      "independent_numeric": -2.063504922489301e-05,
+      "scaled_absolute_error": 4.033052826737425e-10
+    },
+    {
+      "name": "normalized contamination weight IF sample 8",
+      "step": 1e-06,
+      "analytic": -0.3152391732933367,
+      "independent_numeric": -0.3152391765404161,
+      "scaled_absolute_error": 2.4688128585921657e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 9",
+      "step": 1e-06,
+      "analytic": 1.3166043377939745,
+      "independent_numeric": 1.3166043406620531,
+      "scaled_absolute_error": 1.2380528762132165e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 10",
+      "step": 1e-06,
+      "analytic": -0.000721264085046136,
+      "independent_numeric": -0.0007212617170182511,
+      "scaled_absolute_error": 2.366321142437707e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 11",
+      "step": 1e-06,
+      "analytic": -0.09323457327291743,
+      "independent_numeric": -0.09323456939824837,
+      "scaled_absolute_error": 3.544224773484807e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 12",
+      "step": 1e-06,
+      "analytic": 0.14650782180514596,
+      "independent_numeric": 0.14650782365066561,
+      "scaled_absolute_error": 1.609687800349291e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 13",
+      "step": 1e-06,
+      "analytic": -0.5954871782998628,
+      "independent_numeric": -0.5954871808988571,
+      "scaled_absolute_error": 1.6289659913369658e-09
+    },
+    {
+      "name": "normalized contamination weight IF sample 14",
+      "step": 1e-06,
+      "analytic": 0.05167639022275368,
+      "independent_numeric": 0.05167639294256787,
+      "scaled_absolute_error": 2.5861702502726777e-09
+    },
+    {
+      "name": "paired within-class difference official100 class 0",
+      "step": 1e-06,
+      "analytic": 0.28088343967302887,
+      "independent_numeric": 0.28088343828613915,
+      "scaled_absolute_error": 1.082760281870267e-09
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 0",
+      "step": 1e-06,
+      "analytic": -1.8494945016183948,
+      "independent_numeric": -1.8494944982183625,
+      "scaled_absolute_error": 1.1932054102260218e-09
+    },
+    {
+      "name": "paired within-class difference official105 class 0",
+      "step": 1e-06,
+      "analytic": 0.2624696870944523,
+      "independent_numeric": 0.26246968687360095,
+      "scaled_absolute_error": 1.7493595250310441e-10
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 0",
+      "step": 1e-06,
+      "analytic": -1.252791268303687,
+      "independent_numeric": -1.252791267447595,
+      "scaled_absolute_error": 3.800139401084687e-10
+    },
+    {
+      "name": "paired within-class difference official100 class 1",
+      "step": 1e-06,
+      "analytic": 0.7428169508297454,
+      "independent_numeric": 0.742816949728109,
+      "scaled_absolute_error": 6.321010638586686e-10
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 1",
+      "step": 1e-06,
+      "analytic": -1.9798814766657045,
+      "independent_numeric": -1.9798814744342863,
+      "scaled_absolute_error": 7.488278238015332e-10
+    },
+    {
+      "name": "paired within-class difference official105 class 1",
+      "step": 1e-06,
+      "analytic": 0.2972423546341736,
+      "independent_numeric": 0.29724235517392117,
+      "scaled_absolute_error": 4.1607304759657734e-10
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 1",
+      "step": 1e-06,
+      "analytic": -1.068389615088301,
+      "independent_numeric": -1.0683896166097107,
+      "scaled_absolute_error": 7.355527478088203e-10
+    },
+    {
+      "name": "paired within-class difference official100 class 2",
+      "step": 1e-06,
+      "analytic": -0.5399698887674216,
+      "independent_numeric": -0.539969894131076,
+      "scaled_absolute_error": 3.482960575157776e-09
+    },
+    {
+      "name": "paired within-class relative ratio official100 class 2",
+      "step": 1e-06,
+      "analytic": 1.7657732897639016,
+      "independent_numeric": 1.7657733016318566,
+      "scaled_absolute_error": 4.291007909817339e-09
+    },
+    {
+      "name": "paired within-class difference official105 class 2",
+      "step": 1e-06,
+      "analytic": -0.4872309976217718,
+      "independent_numeric": -0.4872309977699274,
+      "scaled_absolute_error": 9.96184178094467e-11
+    },
+    {
+      "name": "paired within-class relative ratio official105 class 2",
+      "step": 1e-06,
+      "analytic": 1.6944907388763932,
+      "independent_numeric": 1.6944907398341869,
+      "scaled_absolute_error": 3.5546369054918985e-10
+    },
+    {
+      "name": "paired stratified SE official100 fid_difference_candidate_minus_baseline",
+      "step": null,
+      "analytic": 0.266286847719921,
+      "independent_numeric": 0.26628684771992095,
+      "scaled_absolute_error": 4.383773813272351e-17
+    },
+    {
+      "name": "paired stratified SE official100 relative_improvement_one_minus_candidate_over_baseline",
+      "step": null,
+      "analytic": 0.5654937969074347,
+      "independent_numeric": 0.5654937969074346,
+      "scaled_absolute_error": 7.091839180828146e-17
+    },
+    {
+      "name": "paired covariance identity official100",
+      "step": null,
+      "analytic": 0.0709086852686124,
+      "independent_numeric": 0.07090868526861238,
+      "scaled_absolute_error": 1.2958889958328742e-17
+    },
+    {
+      "name": "paired stratified SE official105 fid_difference_candidate_minus_baseline",
+      "step": null,
+      "analytic": 0.21273540277733263,
+      "independent_numeric": 0.21273540277733263,
+      "scaled_absolute_error": 0.0
+    },
+    {
+      "name": "paired stratified SE official105 relative_improvement_one_minus_candidate_over_baseline",
+      "step": null,
+      "analytic": 0.6372382561996207,
+      "independent_numeric": 0.6372382561996208,
+      "scaled_absolute_error": 6.781071847186255e-17
+    },
+    {
+      "name": "paired covariance identity official105",
+      "step": null,
+      "analytic": 0.045256351594833946,
+      "independent_numeric": 0.04525635159483394,
+      "scaled_absolute_error": 6.638461362439927e-18
+    },
+    {
+      "name": "identical arms have zero paired SE",
+      "step": null,
+      "analytic": 0.0,
+      "independent_numeric": 0.0,
+      "scaled_absolute_error": 0.0
+    },
+    {
+      "name": "fixed class offsets do not create within-noise variance",
+      "step": null,
+      "analytic": 0.0,
+      "independent_numeric": 0.0,
+      "scaled_absolute_error": 0.0
+    }
+  ],
+  "checks": 96,
+  "maximum_scaled_absolute_error": 4.424856106580879e-07,
+  "invalid_spd_cases_stopped": [
+    "singular sample",
+    "indefinite sample",
+    "singular reference",
+    "N<=dimension"
+  ],
+  "real_5k_features_read": false,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "source_records": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/validate_toy.py",
+      "sha256": "52bf1ac74242fd3b1c43af95a64e3facb0ab41a8c753ceac1864b053de1b4a06",
+      "bytes": 6887
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_analysis_v1/fid_influence.py",
+      "sha256": "20cb21a34e37d9a3894b0a700050abf64b52c626308ed7cb93f9817d5f0c8b29",
+      "bytes": 6936
+    }
+  ],
+  "wall_seconds": 0.17596656503155828,
+  "cpu_seconds": 0.7973697220000001,
+  "limits": "Local finite-dimensional derivative and paired-variance implementation checks only; not calibration of high-dimensional finite-N confidence coverage."
+}

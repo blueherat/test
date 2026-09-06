@@ -1,0 +1,83 @@
+{
+  "protocol": "raev2_endpoint_adjoint_response_v1",
+  "phase": "finalize",
+  "complete": true,
+  "request_sha256": "eec577a37763439471e2f4530d1e7810dfc3825e30cdf4ad54f7ee4f98d7b4bd",
+  "global_ids": [
+    0,
+    142,
+    285,
+    428,
+    570,
+    713,
+    856,
+    999
+  ],
+  "global_noise_sha256": "9112d1dfb5acd8b7df73d56e9f4af47584b6b30a7958fb93f8127c15ba8b7500",
+  "delta": 0.0018097258402418833,
+  "cohort_gram": 2.606953444155491,
+  "lambda": 0.0006941918522937546,
+  "collect_summaries": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0000/summary.json",
+      "sha256": "3f84f0514e88fb6c30a1c08180c88e8c13c4f9a5ce5dc64e70ad7cf97a8f33f8",
+      "bytes": 13578
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0142/summary.json",
+      "sha256": "7e4e8ef28eadf17b640d35b2aaa46ca5c62094b3d00836a3a30e51d403a1a648",
+      "bytes": 12941
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0285/summary.json",
+      "sha256": "8debbdac5fccb36c676b5df2a7639a8d4ea03e8ce805e83aac25af4455323c35",
+      "bytes": 13032
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0428/summary.json",
+      "sha256": "2a48f42352d39e8fb0f31c981442042dd53c7bb41f8027685790c681a4973658",
+      "bytes": 12863
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0570/summary.json",
+      "sha256": "d7420f96b99464fa736e39dd9526db2b84c1deeec65b8dc3f7b2e9a993c53927",
+      "bytes": 12823
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0713/summary.json",
+      "sha256": "058ed345a3ddcdf952af5872b944cc9a2021841ae6ccd25334f7ccef8386785e",
+      "bytes": 12996
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0856/summary.json",
+      "sha256": "5a01e7ac22500b0a3b1a2cb86c0d7a4573c79122f2c54a25622cdfeb0406e74b",
+      "bytes": 12966
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/endpoint_adjoint_response_v1/collect/id0999/summary.json",
+      "sha256": "df8f9fb4a55143e5e6ee76f87617b7ced6365564543def538d49a753b81d926d",
+      "bytes": 12891
+    }
+  ],
+  "predicted_mean_response": 0.0018097258402418833,
+  "minimum_surrogate_energy": 1.2562969331813844e-06,
+  "per_image_gram": [
+    18.271281638034722,
+    0.01193118442268783,
+    7.131362482742865e-05,
+    0.06203194863005967,
+    2.4945684756982174,
+    0.0019157427524991964,
+    0.0004613291605756595,
+    0.0133659209203364
+  ],
+  "cost": {
+    "process_wall_seconds_since_initial_time_import": 4.121004298096523,
+    "process_cpu_seconds_since_initial_time_import": 4.4245816300000005,
+    "host_peak_rss_bytes": 627560448,
+    "excludes": "final JSON write, interpreter exit, parent shell startup"
+  },
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "scope": "Pilot empirical Gram; same eight trajectories, not independent population validation"
+}

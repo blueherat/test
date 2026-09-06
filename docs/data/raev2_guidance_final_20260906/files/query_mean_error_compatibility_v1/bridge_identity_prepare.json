@@ -1,0 +1,108 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "step_index": 0,
+      "t": 1.0,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 4.961024387739599e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 47,
+      "t": 0.9002123475074768,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 4.619503193282158e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 67,
+      "t": 0.7975830435752869,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 4.268256505042013e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 77,
+      "t": 0.7049808502197266,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 3.951327397139215e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 84,
+      "t": 0.6037735939025879,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 3.7334872813019103e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 89,
+      "t": 0.4971751570701599,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 3.7474963443152068e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 92,
+      "t": 0.41025641560554504,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 3.7589191208811366e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 95,
+      "t": 0.29629629850387573,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 3.8886913520430315e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 97,
+      "t": 0.1983470916748047,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 4.3716089631778195e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    },
+    {
+      "step_index": 99,
+      "t": 0.07476635277271271,
+      "bitwise_equal_to_cpu_original_order": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "max_elementwise_allowed_bound": 4.980897360142741e-06,
+      "max_abs_difference_over_bound": 0.0,
+      "elements_outside_bound": 0
+    }
+  ],
+  "epsilon_source": "step000 teacher state; no new noise",
+  "bound": "8*float32_eps*(abs((1-t)X)+abs(t*epsilon)+float32_tiny), elementwise; compare original CPU FP32 multiply/add order",
+  "states_replaced": false
+}

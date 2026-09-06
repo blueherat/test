@@ -1,0 +1,194 @@
+{
+  "created_utc": "2026-09-06T11:17:20.686544+00:00",
+  "scope": "Two new primary-paper key-theory/cost readings; parent authorized addition to synthesis after completion, total34.",
+  "papers_read": [
+    {
+      "title": "Diffusion Models under Group Transformations",
+      "authors": [
+        "Haoye Lu",
+        "Spencer Szabados",
+        "Yaoliang Yu"
+      ],
+      "venue": "AISTATS 2025, PMLR258:3538-3546",
+      "url": "https://proceedings.mlr.press/v258/lu25a.html",
+      "file": "search_support/lu25a_aistats2025.pdf",
+      "pages": 33,
+      "read_scope": "Sections3-6, associated appendix proofs, G-I costs/evaluation/limits; official code at frozen commit",
+      "official_code_commit": "41e7d9027a71e53459323eecd6b24a8ab050568e"
+    },
+    {
+      "title": "Robustness and Structure Preservation in Flow-Based Generative Models via Wasserstein Path-Space Divergences",
+      "authors": [
+        "Ziyu Chen",
+        "Markos A. Katsoulakis",
+        "Benjamin J. Zhang"
+      ],
+      "venue": "arXiv preprint",
+      "version": "2410.01244v2, 2026-06-28",
+      "url": "https://arxiv.org/abs/2410.01244v2",
+      "pdf_url": "https://arxiv.org/pdf/2410.01244v2",
+      "file": "chen_wasserstein_v2.pdf",
+      "pages": 40,
+      "read_scope": "Sections3-4 path-error framework; Sections7.1-7.5, Theorem7/Proposition2 and Section9 proofs, Section8 experiment and costs; not a claim to have audited every appendix lemma."
+    }
+  ],
+  "excluded_from_reading_count": [
+    "Antithetic Noise in Diffusion Models (2506.06185): search screening only",
+    "Rao-Blackwell Gradient Estimators for Equivariant Denoising Diffusion (2502.09890): source screening only; older title differs",
+    "Variance-Reduction Guidance (2510.21792): search screening only"
+  ],
+  "note": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_REFLECTION_SYMMETRIZATION_20260906_ZH.md",
+    "sha256": "47b1d23a1654ad04a0b0158b44c5f7c70271bd3781f7cfdc79c7446df013e0d4"
+  },
+  "index_edit": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md",
+    "sha256_at_handoff": "bef14e7cf5cb7a999e643f3527ead3ef290dcc5376cdaadbe29df4f6b7cbde2a",
+    "change": "32 to34 by adding Lu and Chen after completed reading; RESEARCH_STATUS not modified",
+    "historical32_snapshot": "local_context/synthesis_32_papers.md"
+  },
+  "checks": {
+    "lu_source_manifest_hashes_verified": true,
+    "erg_row_exactly_once": true,
+    "new_readings_not_counted_in_index": false,
+    "new_readings_added_after_parent_authorization": true
+  },
+  "costs": {
+    "model_calls": 0,
+    "gpu_calls": 0,
+    "training_calls": 0,
+    "new_experiments": 0,
+    "chen_download": "chen_download.json",
+    "other_reading_and_browsing_total_seconds": null,
+    "unmeasured_reason": "No aggregate clock recorded; partial download timing is not total research cost."
+  },
+  "files": [
+    {
+      "path": "chen_download.json",
+      "bytes": 370,
+      "sha256": "c91eab1a49cc08d112c7b8ac8f02bd71a0d0f82030b90edc146ea19af059af2d"
+    },
+    {
+      "path": "chen_wasserstein_v2.pdf",
+      "bytes": 792013,
+      "sha256": "819d51d05d8fd7d40d4c24c916d08b7aeef489c0e5aebbab686e77dfdadf53ef"
+    },
+    {
+      "path": "chen_wasserstein_v2.txt",
+      "bytes": 185356,
+      "sha256": "ee8f2957c0d0fc70831875925a2716f72bdcf78aef0549d5a3de5210b46430f2"
+    },
+    {
+      "path": "local_context/normal_curvature_audit.md",
+      "bytes": 8252,
+      "sha256": "de78fed8fb56661fb982e71fea46f5d61dd999fd54423cfc4a6f7df56f264112"
+    },
+    {
+      "path": "local_context/synthesis_32_papers.md",
+      "bytes": 26205,
+      "sha256": "c6546f5c94727862216398639d9e9dad9603efb49e699d4bbbc71c30a3ca2514"
+    },
+    {
+      "path": "local_context/synthesis_34_papers.md",
+      "bytes": 27720,
+      "sha256": "bef14e7cf5cb7a999e643f3527ead3ef290dcc5376cdaadbe29df4f6b7cbde2a"
+    },
+    {
+      "path": "reading_note.md",
+      "bytes": 10102,
+      "sha256": "47b1d23a1654ad04a0b0158b44c5f7c70271bd3781f7cfdc79c7446df013e0d4"
+    },
+    {
+      "path": "search_support/arxiv2502.09890v4.html",
+      "bytes": 896580,
+      "sha256": "d78ad162268468d84792e3d2cabb9dde9184097d9dab2c47d61ec31bf9f415d8"
+    },
+    {
+      "path": "search_support/arxiv2502.09890v4.pdf",
+      "bytes": 5265948,
+      "sha256": "97fe08f637925a31cf4756a2da5814b411a92ec5ebfb6dc68530e749c4570b35"
+    },
+    {
+      "path": "search_support/arxiv2502.09890v4_abs.html",
+      "bytes": 43841,
+      "sha256": "a2931633210e970a9fec28e40bc99562edd0afd6a63708066d55813c6880f043"
+    },
+    {
+      "path": "search_support/lu25a_aistats2025.pdf",
+      "bytes": 4111006,
+      "sha256": "16cde1a702df17a821802dc0f94915b473a4675bfdf60f1d0de49ee24ffa31b1"
+    },
+    {
+      "path": "search_support/lu25a_aistats2025.txt",
+      "bytes": 146380,
+      "sha256": "45fb8687c018a1fa99633b34f50aeee1346615e87d55ac973592875ed4f07650"
+    },
+    {
+      "path": "search_support/lu25a_landing.html",
+      "bytes": 15557,
+      "sha256": "f1b4a30a71f4e8e4fc6007b956f4aeaa87a6c34bde7ba49fafa42f5a5fb83a40"
+    },
+    {
+      "path": "search_support/lu25a_manifest.json",
+      "bytes": 4553,
+      "sha256": "700389ebc534be9a7b2ed3a057691231150047dd3fc5d03fe69f90dc3a560fb3"
+    },
+    {
+      "path": "search_support/lu25a_review_ZH.md",
+      "bytes": 5535,
+      "sha256": "0311731e251095037ba7dab447d36b9838da663cbd7c11ad265b408e86030eca"
+    },
+    {
+      "path": "search_support/search_status.json",
+      "bytes": 486,
+      "sha256": "3c7e9d931e4696f5979ce0f538a15b8ca32e16ff8b41f29d98df72876e19f6dd"
+    },
+    {
+      "path": "search_support/spdm_master_commit.json",
+      "bytes": 465916,
+      "sha256": "24ff18e1e67cf5b660ccaa61fb39ff41f40a0f1c7aa5c9a0a3062fd120f438da"
+    },
+    {
+      "path": "search_support/spdm_master_tree.json",
+      "bytes": 11381,
+      "sha256": "aaccc9d0e9e4b9b8967e134a1ca0dd81fe1fc0d341f317c75161cba78772e587"
+    },
+    {
+      "path": "search_support/spdm_source/README.md",
+      "bytes": 5919,
+      "sha256": "22313206effa3e4754e9008a459d44ed6ef6c7207ae6b4b89054bb7c7a77b9b1"
+    },
+    {
+      "path": "search_support/spdm_source/args.sh",
+      "bytes": 2001,
+      "sha256": "fee7fe9dd6da6ee239ba1d0a803a71d0fd6573148def21a7bd382c982e7482eb"
+    },
+    {
+      "path": "search_support/spdm_source/ddbm/edm_unet.py",
+      "bytes": 19705,
+      "sha256": "7e380459cee11f7d353602cbb142dce6482b825b22d1b7dc257705dcd2f5d220"
+    },
+    {
+      "path": "search_support/spdm_source/ddbm/karras_diffusion.py",
+      "bytes": 21748,
+      "sha256": "5ba44b5535453bdf26e37d38f10c6c514ca1ab9925d9c64672d656befb51d9fe"
+    },
+    {
+      "path": "search_support/spdm_source/ddbm/unet.py",
+      "bytes": 30925,
+      "sha256": "24e118ee7746e475f97779d6de76481fad52588a72629143b9e882836668b1aa"
+    },
+    {
+      "path": "search_support/spdm_source/sample_ddbm.py",
+      "bytes": 5695,
+      "sha256": "f73bb844129fa2a04e2e6ed0d2291a72e4219578bd040483c6f6c49e253241d3"
+    },
+    {
+      "path": "search_support/target_symmetry_manifest.json",
+      "bytes": 916,
+      "sha256": "f71c7d5ed8eaf6ece45b10f4c00610618cbe1c645186eb6368bf96da718758a7"
+    }
+  ],
+  "updated_utc": "2026-09-06T11:21:47.325744+00:00",
+  "scope_update": "Prior small teacher-MSE/noFID audit is not a quality falsification; current fixed quality experiment received research admission after closed-loop mechanism review. Literature audit itself runs no experiments."
+}

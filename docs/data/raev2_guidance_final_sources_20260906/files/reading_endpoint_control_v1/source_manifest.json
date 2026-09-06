@@ -1,0 +1,86 @@
+{
+  "protocol": "raev2_endpoint_control_source_archive_v1",
+  "archive_time_utc": "2026-09-06T07:01:58.954273+00:00",
+  "source_local_directory": "/tmp/raev2_endpoint_control_reading_20260906",
+  "archive_directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/reading_endpoint_control_v1",
+  "paper_count": 3,
+  "new_gpu_calls": 0,
+  "new_model_calls": 0,
+  "code_version_note": "Earlier reader fetched public main; exact paper-era commit was not obtained. Content hashes lock inspected source, not paper-era reproduction.",
+  "note": "This is source preservation and independent textual/math verification, not a new experiment or a changed guidance candidate.",
+  "files": [
+    {
+      "file": "adjoint_arxiv.pdf",
+      "source_url": "https://arxiv.org/pdf/2409.08861v5",
+      "sha256": "e59e529f1d26d8ff9260837e61d53d1c29b5aef69d080a599ba3a33ed9889f8c",
+      "bytes": 11921609,
+      "copy_sha256_verified": true,
+      "pdf_pages": 55
+    },
+    {
+      "file": "deft_neurips2024.pdf",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/22d258dfbdf840ccbf266bbc545dd95f-Paper-Conference.pdf",
+      "sha256": "237ac74a88e35e8009f4760a53eaf44ce67cfa95e4c3ea13f50ccc64d8790226",
+      "bytes": 13716927,
+      "copy_sha256_verified": true,
+      "pdf_pages": 47
+    },
+    {
+      "file": "vggflow_neurips2025.pdf",
+      "source_url": "https://papers.nips.cc/paper_files/paper/2025/file/10b7e27c8eb9571fbbd2ae6a9f8c3855-Paper-Conference.pdf",
+      "sha256": "57e63c1b7e30467ded5f4be163008825fc62e607213f1e97e47d5282291ab803",
+      "bytes": 2695466,
+      "copy_sha256_verified": true,
+      "pdf_pages": 33
+    },
+    {
+      "file": "adjoint.txt",
+      "source_url": "derived from adjoint_arxiv.pdf by earlier reader",
+      "sha256": "0b9cae4a2ab275d457b514327b43156586f9ec84934dc0b8abb742dfdeb1b629",
+      "bytes": 316935,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "deft.txt",
+      "source_url": "derived from deft_neurips2024.pdf by earlier reader",
+      "sha256": "f5925de6bcf05f1c0b59bd32d40b27919a1e1ec3ac4b22be7c5b440dc9b1b6a5",
+      "bytes": 192431,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "vggflow.txt",
+      "source_url": "derived from vggflow_neurips2025.pdf by earlier reader",
+      "sha256": "912f835ee3dbcb9cb04444b5d111697c987684261a9fc6f9c1d819f12ebf44d7",
+      "bytes": 163709,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "vggflow-main/lib/vggflow/algorithm.py",
+      "source_url": "https://raw.githubusercontent.com/lzzcd001/vggflow/main/lib/vggflow/algorithm.py",
+      "sha256": "6bea0aa035271e2828d46e8997ab76b40308de5321619755deb74e41deaaf4c6",
+      "bytes": 11750,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "vggflow-main/README.md",
+      "source_url": "https://raw.githubusercontent.com/lzzcd001/vggflow/main/README.md",
+      "sha256": "67a872a2d2e77d6c40c44d5ef1b8dae73a931bc4e07c36d97549c7aa46be10d4",
+      "bytes": 3502,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "vggflow-main/config/default_config.py",
+      "source_url": "https://raw.githubusercontent.com/lzzcd001/vggflow/main/config/default_config.py",
+      "sha256": "33554754364120e45fa333dcaf0c6b57b31ee3a92a241d32ffb9a5a355109e71",
+      "bytes": 2076,
+      "copy_sha256_verified": true
+    },
+    {
+      "file": "vggflow-main/lib/vggflow/reward_gradient.py",
+      "source_url": "https://raw.githubusercontent.com/lzzcd001/vggflow/main/lib/vggflow/reward_gradient.py",
+      "sha256": "b9b7d55e6f883273badaa176826528c1ebc33d63656acc5e0c12724792eda3c1",
+      "bytes": 5476,
+      "copy_sha256_verified": true
+    }
+  ]
+}

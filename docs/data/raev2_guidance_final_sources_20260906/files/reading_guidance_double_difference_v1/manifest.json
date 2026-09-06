@@ -1,0 +1,215 @@
+{
+  "created_utc": "2026-09-06T11:37:12.957871+00:00",
+  "purpose": "Bounded primary literature review of strong/weak x conditional/unconditional double-difference guidance; no implementation or experiment.",
+  "index_count": 34,
+  "index_status": "Reflection papers already added to 34. FBG formal deep-read and DASH review are not added by this artifact.",
+  "conclusion": "DASH explicitly evaluates/trains the same four-way contrast but deploys only two-branch student CFG. No direct four-branch inference prior established by this finite search; not a novelty proof.",
+  "prior_art_boundary": "FBG additive-noising mechanism already cited and tested in prior fixed Full/Base density-decontamination admission audit; this is a deeper formal-paper and source reading, not a new mechanism or authorization to repeat failed admission.",
+  "papers": [
+    {
+      "title": "Feedback Guidance of Diffusion Models",
+      "version": "NeurIPS 2025 formal proceedings",
+      "arxiv": "2506.06085",
+      "official_code_commit": "cec69babd78c44b72e644cc422e6e5f076bbf9e1",
+      "read_scope": "Main sections 3-4; appendices A/B/C.1/C.2/D/E/F.1/F.2/F.3/H; official sampler denoise/ratio update/Heun/config conversion and README"
+    },
+    {
+      "title": "DASH: Dual-Branch Score Distillation for Guidance-Calibrated Compact Diffusion Models",
+      "version": "arXiv 2606.00798v2, revised 2026-08-29",
+      "official_code_commit": "682e2fdad149109b053fafa34c797820252c6345",
+      "read_scope": "Main mechanism; Table1/A1/A2/A3/A6; Appendix C.1 including Remark C.5; official branch loss/training/sampling/calibration; independent subagent source review archived"
+    }
+  ],
+  "resources": {
+    "model_forwards": 0,
+    "gpu_calls": 0,
+    "training_runs": 0,
+    "sampling_runs": 0,
+    "new_experiments": 0,
+    "cost_records": [
+      "fbg_download.json",
+      "archive_cost.json"
+    ],
+    "unmeasured": "Total search, reading and source acquisition CPU/wall are not reconstructed."
+  },
+  "files": [
+    {
+      "path": "fbg_code/README.md",
+      "bytes": 7951,
+      "sha256": "c49c264c739b328d5b922e6a80aaccc579226359a0586ac0b0f8ef1880f7e258",
+      "url": "https://raw.githubusercontent.com/FelixKoulischer/Feedback-Guidance-of-Diffusion-Models/cec69babd78c44b72e644cc422e6e5f076bbf9e1/README.md"
+    },
+    {
+      "path": "fbg_code/commit.json",
+      "bytes": 5972,
+      "sha256": "ca82aed034625b895661f9f48ebe588736e2f35f7d161f2d5d318189b2d4ddb0",
+      "url": "https://api.github.com/repos/FelixKoulischer/Feedback-Guidance-of-Diffusion-Models/commits/main"
+    },
+    {
+      "path": "fbg_code/generate_images_FBG.py",
+      "bytes": 27653,
+      "sha256": "1bbb68a642da60049b70e21a34a46f4738af3a0f6c85b9f2af91548defe6c677",
+      "url": "https://raw.githubusercontent.com/FelixKoulischer/Feedback-Guidance-of-Diffusion-Models/cec69babd78c44b72e644cc422e6e5f076bbf9e1/generate_images_FBG.py"
+    },
+    {
+      "path": "fbg_code/source_manifest.json",
+      "bytes": 1199,
+      "sha256": "62f49c3cb03a509391804170692da8b7287364fa147db2791d20a663ad5beb62"
+    },
+    {
+      "path": "fbg_download.json",
+      "bytes": 435,
+      "sha256": "974f7b37477091a1a53b793f53a02f6a48c600a55df8bfb693dab9d1e1d34350"
+    },
+    {
+      "path": "feedback_guidance_neurips2025.pdf",
+      "bytes": 31316319,
+      "sha256": "d4e359f0a2a762a3efa396a5a88edff5975d7508726d458168b75178236fd8c6",
+      "url": "https://papers.neurips.cc/paper_files/paper/2025/file/73c90c0c16fe835bc58a815d4a8f28be-Paper-Conference.pdf"
+    },
+    {
+      "path": "feedback_guidance_neurips2025.txt",
+      "bytes": 120408,
+      "sha256": "c7e9e1a25a7290c28fe6a80a0f83ef43289d7d64e8cc5fed9966b331651f04f9",
+      "derived_from": "feedback_guidance_neurips2025.pdf",
+      "conversion": "pdftotext -layout"
+    },
+    {
+      "path": "local_context/prior_density_decontamination_audit.md",
+      "bytes": 7659,
+      "sha256": "ea53e9883ab9cad9540fbe5cec2363095cec7c29c32986c376c3730abdf102de",
+      "copied_from": "/home/zhoushunyu/eqvae/docs/RAEV2_DENSITY_DECONTAMINATION_AUDIT_20260906_ZH.md"
+    },
+    {
+      "path": "local_context/synthesis_34_papers.md",
+      "bytes": 27720,
+      "sha256": "bef14e7cf5cb7a999e643f3527ead3ef290dcc5376cdaadbe29df4f6b7cbde2a",
+      "copied_from": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md"
+    },
+    {
+      "path": "reading_note.md",
+      "bytes": 11730,
+      "sha256": "19fe6f1ee88c53724775f668f1bbda39bdf31172e61bdd57274521f04b282644",
+      "copied_from": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_DOUBLE_DIFFERENCE_20260906_ZH.md"
+    },
+    {
+      "path": "search_support/dash_2606.00798v2.html",
+      "bytes": 668030,
+      "sha256": "4ba33e8efd7eda372b048401b78ba6b94ceebc05119348f863cc95de86264f89",
+      "url": "https://arxiv.org/html/2606.00798v2"
+    },
+    {
+      "path": "search_support/dash_2606.00798v2.pdf",
+      "bytes": 8341250,
+      "sha256": "15417c6b843f3338936bbc5e5125d4ab8f05d393035c48deef3e11d73a98870a",
+      "url": "https://arxiv.org/pdf/2606.00798v2"
+    },
+    {
+      "path": "search_support/dash_2606.00798v2.txt",
+      "bytes": 127720,
+      "sha256": "f037686313a206fddfc002be5a0f50a349993febcb180ea85c15bd3a9dd599c6",
+      "derived_from": "dash_2606.00798v2.pdf",
+      "conversion": "pdftotext -layout; font-mismatch warning; equations cross-checked in official arXiv HTML"
+    },
+    {
+      "path": "search_support/dash_2606.00798v2_abs.html",
+      "bytes": 43349,
+      "sha256": "a3d6c8e62e005d342f1034af384b0784d06f817c1bd3386c9c16a42362269f5d",
+      "url": "https://arxiv.org/abs/2606.00798v2"
+    },
+    {
+      "path": "search_support/dash_github_commit.json",
+      "bytes": 56069,
+      "sha256": "b9c4c36b9defa3feb4459cd398d20bb3c3d551d9ce1cb35d4ef1e4101a03c6b0",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/commits/main"
+    },
+    {
+      "path": "search_support/dash_github_repo.json",
+      "bytes": 6437,
+      "sha256": "97625ef9593b055a335abe01de20302e95d2d0b6a22978754ae8219490b0bdd3",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation"
+    },
+    {
+      "path": "search_support/dash_github_tree.json",
+      "bytes": 8948,
+      "sha256": "e003fe51fc3d94d702d9fd99a2a6d1e82b939ebfa3873331bc919231fc4f9c90",
+      "url": "https://api.github.com/repos/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/git/trees/682e2fdad149109b053fafa34c797820252c6345?recursive=1"
+    },
+    {
+      "path": "search_support/dash_manifest.json",
+      "bytes": 5527,
+      "sha256": "3252491eed2bf8f31a6410719f04eb9a3075249f75057f2f15afbf267242423b"
+    },
+    {
+      "path": "search_support/dash_short_review_ZH.md",
+      "bytes": 2952,
+      "sha256": "8189f638b005f80e7ae894cde2537a0af9754a4238febf7da2fdb3f7b979c29f",
+      "type": "local analytical/search-support artifact"
+    },
+    {
+      "path": "search_support/dash_source/README.md",
+      "bytes": 8739,
+      "sha256": "f0e8baba3c0f20e34eb600ebae14d009e5b561e61f288ebe822fadfb034e71c1",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/README.md"
+    },
+    {
+      "path": "search_support/dash_source/configs/student_cifar10.yaml",
+      "bytes": 1680,
+      "sha256": "701fa438dcf90e619b5685ed820f5865a261bbae620aa6628de2eb79311196fd",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/configs/student_cifar10.yaml"
+    },
+    {
+      "path": "search_support/dash_source/diffusion/cfg.py",
+      "bytes": 1949,
+      "sha256": "7afa0a000fe9d31cfebbd8283275bd7a5d952d4716ae9561a78e65e0a624cf2f",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/diffusion/cfg.py"
+    },
+    {
+      "path": "search_support/dash_source/diffusion/ddim.py",
+      "bytes": 4250,
+      "sha256": "1941708f087273914d0527eeb957d30ec571d668ff4b297cfde6682fbe0a4a74",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/diffusion/ddim.py"
+    },
+    {
+      "path": "search_support/dash_source/evaluate.py",
+      "bytes": 13876,
+      "sha256": "fa2bc64907632e3aa9c22ed50f2fd9d67225767e2340b16cadad65e88284dfa0",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/evaluate.py"
+    },
+    {
+      "path": "search_support/dash_source/imagenet64_TPU/losses.py",
+      "bytes": 2433,
+      "sha256": "8cab8948935b45c31691122e4a3a3cfc43c696fc292eb8cf2326e82c543d88ec",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/imagenet64_TPU/losses.py"
+    },
+    {
+      "path": "search_support/dash_source/imagenet64_TPU/train_student.py",
+      "bytes": 5422,
+      "sha256": "67188cf703c1044e22920d64851ac52844a8b6ac1953c761b1a737269dd4ad62",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/imagenet64_TPU/train_student.py"
+    },
+    {
+      "path": "search_support/dash_source/train_student.py",
+      "bytes": 18902,
+      "sha256": "dca6b71a6dc52a8b4eb16a0a51c7b7bd7e541b8e46ed3e6566633a1156752b2d",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/train_student.py"
+    },
+    {
+      "path": "search_support/dash_source/training/losses.py",
+      "bytes": 3752,
+      "sha256": "063514e348be90761dc8389484247e0846a5322dcb2015f9a77b300b21699fbb",
+      "url": "https://raw.githubusercontent.com/C-loud-Nine/DASH_Dual-Branch-Score-Distillation/682e2fdad149109b053fafa34c797820252c6345/training/losses.py"
+    },
+    {
+      "path": "search_support/search_status.json",
+      "bytes": 13354,
+      "sha256": "bbc439a9575aa205b74140aacec13066e6929880924907bceb0166c8e947bb3a",
+      "type": "local analytical/search-support artifact"
+    },
+    {
+      "path": "archive_cost.json",
+      "bytes": 411,
+      "sha256": "f64d61494ded1bd62ca80d9da9a5df64a864818e41766f250e1d4a25c614005b"
+    }
+  ]
+}

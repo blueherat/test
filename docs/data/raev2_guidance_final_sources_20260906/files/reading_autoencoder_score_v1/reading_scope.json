@@ -1,0 +1,33 @@
+{
+  "scope": "exactly two primary papers; no model queries, GPU, sampling, FID, reencoding or retraining",
+  "vincent": {
+    "publication": "Neural Computation 23(7):1661–1674 (2011)",
+    "doi": "10.1162/NECO_a_00142",
+    "formal_author_pdf": "https://www-labs.iro.umontreal.ca/~vincentp/Publications/DenoisingScoreMatching_NeuralComp2011.pdf",
+    "formal_publisher_pdf": "https://direct.mit.edu/neco/article-pdf/23/7/1661/851298/neco_a_00142.pdf",
+    "pages": 14,
+    "read": "all main text and sole Appendix, emphasis sections 3.2, 4.1–4.3, 5 and A.1–A.3; reference list not followed to additional papers",
+    "version": "journal-typeset author-hosted PDF; no assertion of publisher binary identity",
+    "pdf_metadata_creation": "2011-04-27"
+  },
+  "alain_bengio": {
+    "publication": "JMLR 15(110):3743–3773 (2014)",
+    "official_page": "https://www.jmlr.org/papers/v15/alain14a.html",
+    "official_pdf": "https://jmlr.org/papers/volume15/alain14a/alain14a.pdf",
+    "pages": 31,
+    "read": "sections 2–3, Theorems 1 and 2, Proposition 1, sections 3.2/3.5/3.6; Appendices A–C; section 4 experiments not individually audited; Appendices D–F not fully read",
+    "independent_review": "particle_related_screen read same central claims and proofs; root agent checked original extracted proof text",
+    "version": "current official journal PDF; header Submitted6/13 Published11/14; PDF creation metadata2015-09-27UTC does not change publication year; no source-vs-2014 binary identity asserted"
+  },
+  "own_derivations": [
+    "fixed covariance Gaussian posterior-mean and Jacobian identities",
+    "nonlinear encoder uniform-latent symmetric-sign counterexample",
+    "hidden-scale mixture conditional score identity and nonfactorization",
+    "RAE bridge posterior mean score/Jacobian conversion"
+  ],
+  "limitations": [
+    "No claim actual RAE checkpoint minimizes Gaussian latent L2 denoising risk",
+    "Historical roundtrip metrics referenced from existing doc without payload recomputation or independence claim",
+    "No new candidate or performance arm"
+  ]
+}

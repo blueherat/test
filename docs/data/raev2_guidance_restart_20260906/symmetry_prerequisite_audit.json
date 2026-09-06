@@ -1,0 +1,98 @@
+{
+  "protocol": "raev2_horizontal_symmetry_prerequisite_cpu_v1",
+  "recorded_at_utc": "2026-09-05T16:44:25.598535+00:00",
+  "device": "cpu",
+  "torch_version": "2.11.0+cu130",
+  "model_forward_performed": false,
+  "gpu_run_performed": false,
+  "sampling_performed": false,
+  "evaluation_performed": false,
+  "artifacts": {
+    "dinov3_checkpoint": {
+      "path": "/home/zhoushunyu/data/eqvae/models/RAEv2/encoders/dinov3/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth",
+      "sha256": "8aa4cbddda325040fc78db2c272754af6ebe8ff2c55f6ec4f1964d8890f66035",
+      "size_bytes": 1213050671
+    },
+    "normalization_stats": {
+      "path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+      "size_bytes": 2098901
+    },
+    "config": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "encoder_source": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+      "sha256": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+      "size_bytes": 34988
+    },
+    "normalization_source": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    },
+    "train_source": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/train.py",
+      "sha256": "c695b29b41f93ef68efcbdd167d5043840963eac9bae1473751a909d97db6528",
+      "size_bytes": 11394
+    },
+    "data_source": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/data/unified_dataloader.py",
+      "sha256": "a2c9aa8d3931699087f9f2775cfb12669cb41bbf238d070e768a4235b9420551",
+      "size_bytes": 20895
+    }
+  },
+  "normalization": {
+    "mean_shape": [
+      1024,
+      16,
+      16
+    ],
+    "variance_shape": [
+      1024,
+      16,
+      16
+    ],
+    "dtype": "torch.float32",
+    "eps": 1e-05,
+    "dimension": 262144
+  },
+  "patch_projection_weight_shape": [
+    1024,
+    3,
+    16,
+    16
+  ],
+  "metrics": {
+    "patch_projection_horizontal_weight_relative_defect": 1.3662688732147217,
+    "normalization_mean_horizontal_relative_defect": 0.12933766841888428,
+    "normalization_variance_horizontal_relative_defect": 0.030109426006674767,
+    "conjugate_affine_offset_rms": 0.42395123839378357,
+    "conjugate_affine_offset_max_abs": 23.616228103637695,
+    "conjugate_orthogonality_frobenius_over_sqrt_dimension": 0.023914828896522522,
+    "conjugate_scale_ratio_min": 0.782723069190979,
+    "conjugate_scale_ratio_max": 1.2775911092758179
+  },
+  "formula": {
+    "P": "horizontal reversal of the last spatial dimension",
+    "N": "N(z)=(z-mu)/sqrt(var+eps)",
+    "T": "N o P o N^-1; T(y)=(P(sigma)/sigma)*P(y)+(P(mu)-mu)/sigma",
+    "weight_defect": "||W-P(W)||_F/||W||_F",
+    "orthogonality_residual": "||A^T A-I||_F/sqrt(d); A=diag(1/sigma) P diag(sigma)"
+  },
+  "training_observation": {
+    "dataset_type": "hf",
+    "horizontal_flip_supplied": false,
+    "reason": "train.py excludes hf/wds from stage2_transform; HF default transform is Resize+ToTensor"
+  },
+  "decision": "Do not infer a symmetry-based quality guarantee from spatial flip or normalized conjugate flip. No generation quality was tested.",
+  "boundaries": [
+    "The patch weight defect rules out a direct patch-projection equivariance identity, not accidental final-encoder equivariance.",
+    "The conjugate action is an involution but is not orthogonal and does not preserve N(0,I).",
+    "This does not prove the standardized latent distribution cannot accidentally be invariant under plain spatial flip.",
+    "Final DINOv3 K7 encoder equivariance and latent distribution symmetry were not measured by this CPU audit.",
+    "Existing DINOv2 generation failures do not constitute a RAEv2 Reynolds-averaging quality test."
+  ]
+}

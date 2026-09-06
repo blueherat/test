@@ -1,0 +1,50 @@
+{
+  "reading_date": "2026-09-06",
+  "papers": [
+    {
+      "title": "Learn to Guide Your Diffusion Model",
+      "version": "ICLR2026 official proceedings, 37 pages",
+      "primary_url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/d199e76b714c2611051e1b9e4bd882f1-Paper-Conference.pdf",
+      "pdf_sha256": "55510f7d652657e591c1b5bf0a7d8e1991215833b4c2d9b1980ed5cb2657b5ab",
+      "scope": "Main sections2-6, appendicesB-J theory/algorithms/experiments/cost/weight-analysis; qualitative generated images not individually evaluated. arXivv1 also archived but not claimed identical.",
+      "official_code": "No confirmed official repository found through paper, author pages and exact-title/id search; pseudocode Algorithms1-4 read, no code execution."
+    },
+    {
+      "title": "Adversarial Learning of Classifier-Free Guidance Schedules",
+      "version": "arXiv2608.14038v1, 2026-08-14",
+      "primary_url": "https://arxiv.org/pdf/2608.14038v1",
+      "pdf_sha256": "4651ece3c345195eec1303c4909c2a4f0dcf31456b27867f85264d7ca860febf",
+      "scope": "Independent collaborator main+appendicesB/C reading; terminal_reading rechecked main objectives and training architecture/settings.",
+      "official_code": "No confirmed official repository found; paper pseudocode reviewed, implementation not reproduced."
+    }
+  ],
+  "prior_overlap": "Old RAEV2_DISTRIBUTIONAL_GATE_GUIDANCE section6 cited Learn to Guide energy-kernel mechanism; this is formal deep reading, not a new-discovery claim.",
+  "math_check": "learn_to_guide/gaussian_consistency_check.py and .json; one deterministic scalar Gaussian calculation, no random draws or performance claim.",
+  "important_boundaries": [
+    "Exact original-X self-consistency fails data processing in nondegenerate Gaussian corruption with an X-independent reverse kernel; approximate training utility is retained.",
+    "Finite-step posterior-mean substitution loses conditional covariance; exact PFODE may repair marginals deterministically; no new variance-restoration arm proposed.",
+    "Learned marginal-matching schedule differs from X-G regression and full-rollout endpoint energy gate.",
+    "Teacher-marginal single-step pushforward is not the current rollout marginal.",
+    "Learn ImageNet64 FID improves >5% against listed LIG, but training/selection/amortized cost not closed.",
+    "Adversarial main-table alignment/preference gains do not constitute FID improvement."
+  ],
+  "index": {
+    "before": 37,
+    "after": 41,
+    "added": [
+      "Particle Guidance",
+      "EDDY",
+      "Learn to Guide",
+      "Adversarial CFG Schedules"
+    ],
+    "permission": "Explicit parent instruction",
+    "revision_versions_double_counted": false
+  },
+  "gpu_calls": 0,
+  "model_forward_calls": 0,
+  "training_runs": 0,
+  "sampling_runs": 0,
+  "new_FID_evaluations": 0,
+  "author_tests_run": 0,
+  "research_status_or_frozen_experiments_modified": false
+}

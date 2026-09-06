@@ -1,0 +1,65 @@
+{
+  "scope": "Scalar CPU algebra and counterexamples only; not RAE model validation, image generation, or FID replication",
+  "model_forward_calls": 0,
+  "gpu_seconds": 0,
+  "equivalence_max_abs_error": {
+    "flow_vs_euler": 2.220446049250313e-16,
+    "bridge_vs_euler": 1.1102230246251565e-16,
+    "native_as_flow": 1.6653345369377348e-16,
+    "closed_form_bridge_gain": 5.364597654988756e-13
+  },
+  "grid": {
+    "steps": 100,
+    "shift": 8,
+    "smallest_positive_t": 0.07476635514018691,
+    "native_flow_lambda_min": 0.0022446406052964063,
+    "native_flow_lambda_max": 1.0,
+    "fixed_lambda": 0.6,
+    "flow_gain_first": 475.79999999998654,
+    "flow_gain_last": 0.6,
+    "bridge_gain_max": 15.300000000000363,
+    "bridge_gain_first": 0.6
+  },
+  "corrected_posterior_recurrence": {
+    "cfg": {
+      "measured": -0.16729500000000008,
+      "exact": -0.16729500000000008,
+      "printed": -0.2921183333333335,
+      "exact_abs_error": 0.0,
+      "printed_abs_error": 0.1248233333333334
+    },
+    "cfgpp": {
+      "measured": 0.004214599999999957,
+      "exact": 0.004214599999999986,
+      "printed": -0.01732340000000004,
+      "exact_abs_error": 2.862293735361732e-17,
+      "printed_abs_error": 0.021537999999999998
+    }
+  },
+  "detached_loss_counterexample": {
+    "x": 1.0,
+    "step": 0.1,
+    "true_grad_fd": 2.000000000002,
+    "detached_grad": -2.0,
+    "before": 1.0,
+    "after_detached": 1.44,
+    "after_exact": 0.6400000000000001
+  },
+  "sd15_minus_sdxl_2m": {
+    "measured": 0.0604986111602237,
+    "expected": 0.060498611160223564
+  },
+  "table1_relative_fid_improvement_percent": [
+    7.8757225433526,
+    0.8620689655172465,
+    1.355166572557888,
+    3.3483258370814677,
+    1.648610456900619
+  ],
+  "table2_relative_fid_improvement_percent": [
+    0.7709066532595958,
+    1.6396364284441307,
+    0.42787286063569857
+  ],
+  "cpu_wall_seconds": 0.00035020988434553146
+}

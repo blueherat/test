@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "-u",
+    "/home/zhoushunyu/eqvae/experiments/merge_raev2_observable_potential.py",
+    "--num-samples",
+    "5000",
+    "--output-dir",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merged",
+    "--shards",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/shard0",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/shard1",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/shard2",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/shard3"
+  ],
+  "started_utc": "2026-09-06T06:57:12.458308+00:00",
+  "finished_utc": "2026-09-06T06:57:29.900070+00:00",
+  "returncode": 0,
+  "wall_seconds": 17.441803130088374,
+  "child_cpu_seconds": 17.73886,
+  "includes_imports_and_exit": true,
+  "log": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/potential100/merge_resume.log",
+    "sha256": "8e404ff7537e5f70fb694e3d859dbe12280837126afd970b2ca6e6e5e79e2541",
+    "size_bytes": 2202
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "task": "Primary paper reading: Towards Understanding the Mechanisms of Classifier-Free Guidance",
+  "archived_at_utc": "2026-09-06T10:19:52.682880+00:00",
+  "formal_paper_url": "https://papers.nips.cc/paper_files/paper/2025/file/5ac55a8d65fb5ecd9ccaa852e21325db-Paper-Conference.pdf",
+  "formal_paper_pages": 55,
+  "arxiv_identity": "2505.19210; v1 2025-05-25, v3 2025-11-11",
+  "official_repository": "https://github.com/Morefre/Towards-Understanding-the-Mechanisms-of-Classifier-Free-Guidance",
+  "official_code_commit": "bcf8dedfdc7ef0178d2a17d5d9543a7fc9f46af0",
+  "official_code_commit_tree": "17c8922e5b5dc60c55f7c16ea065a8fc261d57f6",
+  "note": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_LINEAR_CPC_20260906_ZH.md",
+    "sha256": "05d4b219bb43e387d2fdb8269eb2a8abf427e0d0cc406c15b522f68f967c10f6",
+    "archive_copy": "reading_note.md"
+  },
+  "reading_scope": "Formal main sections 1-5; theoretical appendices A/B/H; setup, claims and boundaries in experimental appendices C/D/E/F/G/I; official linear CPC utility, nonlinear notebook, dense Jacobian utility; formal pages 7 and 46 visually inspected.",
+  "cpu_algebra_result": "algebra_check.json",
+  "cost_records": [
+    "download.json",
+    "code_download.json",
+    "algebra_check.json"
+  ],
+  "cost_boundary": "No unified session/research wall or CPU measurement. Individual fields state exact scopes; pdftotext child CPU excluded from download record. Browsing, page rendering, source identity reads, writing and review not represented as measured experiment cost.",
+  "rendering_note": "One PyMuPDF import failed (fitz unavailable), then existing pdftoppm rendered pages 7/46. No dependency installed.",
+  "no_gpu": true,
+  "model_forward_calls": 0,
+  "vjp_calls": 0,
+  "no_training": true,
+  "no_quality_evaluation": true,
+  "no_sampler_or_frozen_protocol_changes": true,
+  "artifact_count": 22,
+  "artifacts": [
+    {
+      "relative_path": "algebra_check.json",
+      "bytes": 1679,
+      "sha256": "063efec3a813e6c9a8d55e857b093fa90d36589b9e961ff0ccbbb5d5768950cd"
+    },
+    {
+      "relative_path": "algebra_check.py",
+      "bytes": 3780,
+      "sha256": "91289fbeee0581d58add46b96a760e1c5f371ab33936442d19ea639674b7054a"
+    },
+    {
+      "relative_path": "arxiv_identity.html",
+      "bytes": 40916,
+      "sha256": "1a0c6eeae1cbb8db83c6234f02e3eed7313e46e57c02ac92e4bf877b131e756b"
+    },
+    {
+      "relative_path": "code_download.json",
+      "bytes": 2034,
+      "sha256": "fab14226bdc7d13ae6b55b55c845eee0a18a63d771ae5db19f539d7c5c9560a6"
+    },
+    {
+      "relative_path": "download.json",
+      "bytes": 369,
+      "sha256": "add593076863a8c6b23b63b2c860b58959019de7d2faa2abb0b6b59c69f82995"
+    },
+    {
+      "relative_path": "local_sources/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "bytes": 1772,
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+    },
+    {
+      "relative_path": "local_sources/external/RAEv2/src/stage2/models/DDT.py",
+      "bytes": 10586,
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2"
+    },
+    {
+      "relative_path": "local_sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "bytes": 6552,
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5"
+    },
+    {
+      "relative_path": "neurips2025_paper.pdf",
+      "bytes": 17112912,
+      "sha256": "54e819012a314bb64efd0e290eda3fee7fad579729913260a6c98ba86e708c3f"
+    },
+    {
+      "relative_path": "neurips2025_paper.txt",
+      "bytes": 183564,
+      "sha256": "2c2b94663707ed2c8650d60fd31ca915d705ffc88c2801fb5fd187205f9b44f4"
+    },
+    {
+      "relative_path": "official_code/README.md",
+      "bytes": 4630,
+      "sha256": "2baa7359d488e055e13b16492d64411d684b70bf2bad283f4e29d5878609ef97"
+    },
+    {
+      "relative_path": "official_code/edm/Investigate_CFG_in_Nonlinear_Regime.code.py",
+      "bytes": 15372,
+      "sha256": "1fc870ce1454024a958a277c50d0062f7e7137880a5a793e38176593847a0917"
+    },
+    {
+      "relative_path": "official_code/edm/Investigate_CFG_in_Nonlinear_Regime.ipynb",
+      "bytes": 4370940,
+      "sha256": "a109020167af2d04276fd7328d822af1d00adcf1c56931939b45a56603795290"
+    },
+    {
+      "relative_path": "official_code/edm/Utils/cfg_utils.py",
+      "bytes": 17221,
+      "sha256": "181d4053edab939a0193eb8389535be2f6a72ab7cec0b794a65dac15a47def7b"
+    },
+    {
+      "relative_path": "official_code/edm/Utils/cpc_utils.py",
+      "bytes": 13287,
+      "sha256": "02ecc0b4d27dcbdc7e5df87b2b4bf3ebe578b07633ed225f11a1dbc8cd2703b5"
+    },
+    {
+      "relative_path": "official_code/edm/Utils/jacobian_utils.py",
+      "bytes": 598,
+      "sha256": "79f5d19e1f34cce19894b019ae153c0f7d2081dd914fa52f44cfeb4b8ff55a37"
+    },
+    {
+      "relative_path": "official_code_commit.json",
+      "bytes": 7721,
+      "sha256": "febbb4c821a330d8f198e07e74880bd378ba2abda80ee02b7863bf5c2b50288b"
+    },
+    {
+      "relative_path": "official_code_tree.json",
+      "bytes": 18132,
+      "sha256": "4fdadf836da2cc2106a56873f1e2d98cfee3a7f047ac31ad6ecf82ea7f590799"
+    },
+    {
+      "relative_path": "official_page_07.png",
+      "bytes": 410573,
+      "sha256": "c381260c8eb881da0affa219cbd97514aa02aea5a18ea67808bfe1656c2c2eba"
+    },
+    {
+      "relative_path": "official_page_46.png",
+      "bytes": 388114,
+      "sha256": "29ce344f7525e5d156bf2a9fc9c72aee4da1c8ad9e4a77fe5929267ed8836985"
+    },
+    {
+      "relative_path": "reading_note.md",
+      "bytes": 14409,
+      "sha256": "05d4b219bb43e387d2fdb8269eb2a8abf427e0d0cc406c15b522f68f967c10f6"
+    },
+    {
+      "relative_path": "torch_eigh_reference.html",
+      "bytes": 541822,
+      "sha256": "ed8d64095b3e168660999411263374eef07534e3e446fa16a3e121306716685b"
+    }
+  ],
+  "manifest_generation_wall_seconds_before_output": 0.04458126309327781,
+  "manifest_generation_cpu_seconds_before_output": 0.044579144
+}

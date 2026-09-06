@@ -1,0 +1,131 @@
+{
+  "paper": "Entropy Rectifying Guidance for Diffusion and Flow Models",
+  "venue": "NeurIPS 2025",
+  "arxiv": "2504.13987",
+  "created_utc": "2026-09-06T10:59:07.164864+00:00",
+  "formal_main_pdf_url": "https://papers.nips.cc/paper_files/paper/2025/file/414f4c9fe9653e5de98fad6964d50315-Paper-Conference.pdf",
+  "formal_main_pages": 20,
+  "formal_supplement_pages": 20,
+  "supplement_and_author_sources": "code_review/source_manifest.json",
+  "read_scope": "Formal main method and experiments; supplement mathematical interpretations C, experimental explanations D, pseudocode E, open-source-model experiments G; source identity/background/assets also checked.",
+  "local_source_original": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py",
+  "main_note": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_ERG_20260906_ZH.md",
+    "sha256": "e3e99ceb13c7a3881052c625a030f9d5168410458ecc44e85cd2ca9da4f61969"
+  },
+  "costs": {
+    "main_download_and_text": "download.json",
+    "algebra": "algebra_results.json",
+    "other_reading_browsing_and_source_audit_seconds": null,
+    "unmeasured_reason": "No aggregate timer was recorded; no total is reconstructed from partial clocks.",
+    "model_calls": 0,
+    "gpu_calls": 0
+  },
+  "scope_limits": [
+    "No model, training, GPU, new sampler, parameter selection or existing frozen experiment modification.",
+    "Formal supplement provides pseudocode, not executable official ERG repository.",
+    "Small algebra examples verify formulas, not guidance quality or universal theorems by numerical testing."
+  ],
+  "files": [
+    {
+      "path": "algebra_check.py",
+      "bytes": 4399,
+      "sha256": "44f0ea4e14c399ae9b9a84b119231c63073b8161a22066821997d4ae4b0f9e99"
+    },
+    {
+      "path": "algebra_results.json",
+      "bytes": 1587,
+      "sha256": "3b3f0dce80a1e4a78ff8fd10aa5d15d583f32338857f2af1eea487a8632bc3e1"
+    },
+    {
+      "path": "code_review/arxiv_2504.13987v2.html",
+      "bytes": 716218,
+      "sha256": "f66552a8619aa937a4482ffa306ef720e77d2aa9f005daf8ec6bc3440ec0e10a"
+    },
+    {
+      "path": "code_review/arxiv_2504.13987v2.txt",
+      "bytes": 113480,
+      "sha256": "4ae82b8963905cee4b138835fd8e28ce8876e7e1d5abd98c1a998de0b5479a2b"
+    },
+    {
+      "path": "code_review/author_github_repositories.json",
+      "bytes": 155977,
+      "sha256": "e067f7b6553a3b6a7b13520d7202c31a9da024309f173c50902325fa13de91f5"
+    },
+    {
+      "path": "code_review/author_website.html",
+      "bytes": 12793,
+      "sha256": "e1e0678d6df4293d49b5e16e49fa12e6e96f9227808c5171a9fda47bde81501e"
+    },
+    {
+      "path": "code_review/erg_supp.pdf",
+      "bytes": 40688470,
+      "sha256": "59ab5d9d2a0700a34a0ccad03c587bf761072bed8ad98a3e1e462e2abfed95fe"
+    },
+    {
+      "path": "code_review/erg_supp.txt",
+      "bytes": 63549,
+      "sha256": "2ef24de1b0f3b525549a79878e1e549a841be4856495b96985a1b4b76d4a8d33"
+    },
+    {
+      "path": "code_review/erg_supp_page_07.png",
+      "bytes": 322669,
+      "sha256": "aad7b011910659fef64689429cef97de20c57f82bd002ca007d71b7854b8d24b"
+    },
+    {
+      "path": "code_review/implementation_review.md",
+      "bytes": 8934,
+      "sha256": "00546040d9a20a0298aef3400dae8fe9082280af3ac6a97d9a3510a87347d9fe"
+    },
+    {
+      "path": "code_review/neurips_2025_landing.html",
+      "bytes": 10039,
+      "sha256": "55cdb23272facc8137701d6a1669aa0c390dbdb30c2cdb8f529b242dd3b7b4f2"
+    },
+    {
+      "path": "code_review/neurips_2025_supplemental.zip",
+      "bytes": 40397858,
+      "sha256": "73278af578b26e3c98553f2ef5bfb8d6f57fb2bf757300c0b4e17e3dbe2125c1"
+    },
+    {
+      "path": "code_review/source_manifest.json",
+      "bytes": 4768,
+      "sha256": "856229b69ee09315c4455f5fe89a8b02b4da291df86860d227fb0c91ee4f6a7a"
+    },
+    {
+      "path": "code_review/supplement_archive_listing.json",
+      "bytes": 198,
+      "sha256": "7682191d1bb73279974acaf893f2557fd81ab9592e489de17a830ec209061e9a"
+    },
+    {
+      "path": "code_review/table7_reported_defaults.csv",
+      "bytes": 958,
+      "sha256": "d58d30cbc77b9331692c4f4ce0847e297258815173b10cee29aab14301c3210a"
+    },
+    {
+      "path": "download.json",
+      "bytes": 366,
+      "sha256": "c54e611e3d2fc54ab9e1f15de2de0b279381f02c56962467ccb1fbef56dfb63d"
+    },
+    {
+      "path": "local_sources/model_utils.py",
+      "bytes": 6552,
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5"
+    },
+    {
+      "path": "neurips2025_paper.pdf",
+      "bytes": 5069306,
+      "sha256": "75a5ad0710212a466f96d985e9626d9f84764344b6367871eff2665a4b9de4f6"
+    },
+    {
+      "path": "neurips2025_paper.txt",
+      "bytes": 86028,
+      "sha256": "c6307a80bbfca2a03e8dcb483148be1cb48f837198e6bdf8a04fe0b1d5e77b64"
+    },
+    {
+      "path": "reading_note.md",
+      "bytes": 14608,
+      "sha256": "e3e99ceb13c7a3881052c625a030f9d5168410458ecc44e85cd2ca9da4f61969"
+    }
+  ]
+}

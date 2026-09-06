@@ -1,0 +1,1068 @@
+{
+  "sha": "715783da70baa267321d6700ceb8941400c309d1",
+  "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/715783da70baa267321d6700ceb8941400c309d1",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e58a525b4800b72f919d41fa385ff34a02bcc9dd",
+      "size": 81,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e58a525b4800b72f919d41fa385ff34a02bcc9dd"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6511dc836189422dc8111b45aa9f414bf3cff745",
+      "size": 1065,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/6511dc836189422dc8111b45aa9f414bf3cff745"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a43002e9707fc9f4d13db10dc5f17029d59b5608",
+      "size": 8722,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/a43002e9707fc9f4d13db10dc5f17029d59b5608"
+    },
+    {
+      "path": "assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "abe40cdc2fc519385a6f21b4e47c23330b44f6f3",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/abe40cdc2fc519385a6f21b4e47c23330b44f6f3"
+    },
+    {
+      "path": "assets/example_lsun.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bab65f6714e553558181bd5388a18351acbb054",
+      "size": 2095981,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/5bab65f6714e553558181bd5388a18351acbb054"
+    },
+    {
+      "path": "assets/example_sd.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db97d2a127c7899fd7ca6b7c56a080be03e13788",
+      "size": 3715101,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/db97d2a127c7899fd7ca6b7c56a080be03e13788"
+    },
+    {
+      "path": "assets/teaser.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c76bbd8fc7d0ff4244f15221bcb30a90cc16b84e",
+      "size": 434916,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/c76bbd8fc7d0ff4244f15221bcb30a90cc16b84e"
+    },
+    {
+      "path": "configs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b5dcaa6a3af8fa93992c523b5360bf63b222264c",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/b5dcaa6a3af8fa93992c523b5360bf63b222264c"
+    },
+    {
+      "path": "configs/autoencoder",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6caa4c1d3c48509c21104e6266c20ea0ed6edbd6",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/6caa4c1d3c48509c21104e6266c20ea0ed6edbd6"
+    },
+    {
+      "path": "configs/autoencoder/autoencoder_kl_16x16x16.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f1d10ec75e5de5932cdcf0e8d3c712feac7578e",
+      "size": 1145,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/5f1d10ec75e5de5932cdcf0e8d3c712feac7578e"
+    },
+    {
+      "path": "configs/autoencoder/autoencoder_kl_32x32x4.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab8b36fe6e3e95df2942a437b7d9c919b60d5c86",
+      "size": 1140,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/ab8b36fe6e3e95df2942a437b7d9c919b60d5c86"
+    },
+    {
+      "path": "configs/autoencoder/autoencoder_kl_64x64x3.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e3db5c4e28bcb58be4ee0872511059f5cc965ad",
+      "size": 1139,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/5e3db5c4e28bcb58be4ee0872511059f5cc965ad"
+    },
+    {
+      "path": "configs/autoencoder/autoencoder_kl_8x8x64.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ccd09d38e4926706fb1d287f4f65619627e0eb7",
+      "size": 1148,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/5ccd09d38e4926706fb1d287f4f65619627e0eb7"
+    },
+    {
+      "path": "configs/cifar10.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e48f55f9f4fe889599b9c13edd52a9d0b92c20c",
+      "size": 901,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0e48f55f9f4fe889599b9c13edd52a9d0b92c20c"
+    },
+    {
+      "path": "configs/latent-diffusion",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "75f5aefb7f76727e76bcb2da40c7fac24aa8cdeb",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/75f5aefb7f76727e76bcb2da40c7fac24aa8cdeb"
+    },
+    {
+      "path": "configs/latent-diffusion/celebahq-ldm-vq-4.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89b3df4fe1822295d509dca2237ea891cdd964bf",
+      "size": 2028,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/89b3df4fe1822295d509dca2237ea891cdd964bf"
+    },
+    {
+      "path": "configs/latent-diffusion/cin-ldm-vq-f8.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8cd9e2ef5d26870bdbb26bf04a9b47aaa78feeb",
+      "size": 2360,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/b8cd9e2ef5d26870bdbb26bf04a9b47aaa78feeb"
+    },
+    {
+      "path": "configs/latent-diffusion/cin256-v2.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7c1aa240c740d1e5b7693f9543f996d727a302d",
+      "size": 1553,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/b7c1aa240c740d1e5b7693f9543f996d727a302d"
+    },
+    {
+      "path": "configs/latent-diffusion/ffhq-ldm-vq-4.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1899e30f77222142d7b33f45a6dcff086a31e174",
+      "size": 2020,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/1899e30f77222142d7b33f45a6dcff086a31e174"
+    },
+    {
+      "path": "configs/latent-diffusion/lsun_bedrooms-ldm-vq-4.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4ca66c16c00a0c3fd13ae1ad03635039161e7ad",
+      "size": 2024,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/c4ca66c16c00a0c3fd13ae1ad03635039161e7ad"
+    },
+    {
+      "path": "configs/latent-diffusion/lsun_churches-ldm-kl-8.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18dc8c2d9cfb925b0f45e5b89186d71e3274b086",
+      "size": 2284,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/18dc8c2d9cfb925b0f45e5b89186d71e3274b086"
+    },
+    {
+      "path": "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e331cbfdff7ece1ef9008754e97f60f68585a07",
+      "size": 1614,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/8e331cbfdff7ece1ef9008754e97f60f68585a07"
+    },
+    {
+      "path": "configs/retrieval-augmented-diffusion",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d6a9fe91193eac4942eea58575ef1dcdc888f9ff",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/d6a9fe91193eac4942eea58575ef1dcdc888f9ff"
+    },
+    {
+      "path": "configs/retrieval-augmented-diffusion/768x768.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b51b1d8373ca7a259320deaffc154f89ad2b8cf4",
+      "size": 1615,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/b51b1d8373ca7a259320deaffc154f89ad2b8cf4"
+    },
+    {
+      "path": "configs/stable-diffusion",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bab64c4904dc49ab119a560821322de1db564988",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/bab64c4904dc49ab119a560821322de1db564988"
+    },
+    {
+      "path": "configs/stable-diffusion/v1-inference.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4effe569e897369918625f9d8be5603a0e6a0d6",
+      "size": 1873,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/d4effe569e897369918625f9d8be5603a0e6a0d6"
+    },
+    {
+      "path": "configs/stable-diffusion/v1-inpainting-inference.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9eec37d24bce33ce92320a782d16ae72308190a",
+      "size": 1991,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/f9eec37d24bce33ce92320a782d16ae72308190a"
+    },
+    {
+      "path": "ddim",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "76e9fc4febb8ee260c87a611a26010b947dcdce6",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/76e9fc4febb8ee260c87a611a26010b947dcdce6"
+    },
+    {
+      "path": "ddim/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ddim/datasets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0c1eb5d8b82c79df9e76b987dfcffe4229f2086e",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/0c1eb5d8b82c79df9e76b987dfcffe4229f2086e"
+    },
+    {
+      "path": "ddim/datasets/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2a60633e2b691fd1fe634e17c6f742759ba1484",
+      "size": 7307,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/c2a60633e2b691fd1fe634e17c6f742759ba1484"
+    },
+    {
+      "path": "ddim/datasets/artcifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94b1a5cbbfe4e55f815d9eee95442be806bf35f6",
+      "size": 854,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/94b1a5cbbfe4e55f815d9eee95442be806bf35f6"
+    },
+    {
+      "path": "ddim/datasets/celeba.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c466dc07772bb7c04ea801073ca12ed12884e52",
+      "size": 7794,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/1c466dc07772bb7c04ea801073ca12ed12884e52"
+    },
+    {
+      "path": "ddim/datasets/ffhq.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d28462a8816bd4405d0a000abd4329d4f3f273bc",
+      "size": 1055,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/d28462a8816bd4405d0a000abd4329d4f3f273bc"
+    },
+    {
+      "path": "ddim/datasets/lsun.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce2c1bfa7cfdafadc54ae9d34b3aad364f30d7d4",
+      "size": 5503,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/ce2c1bfa7cfdafadc54ae9d34b3aad364f30d7d4"
+    },
+    {
+      "path": "ddim/datasets/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d021946289345c29d180544438e482d843371bc",
+      "size": 5665,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/1d021946289345c29d180544438e482d843371bc"
+    },
+    {
+      "path": "ddim/datasets/vision.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f156c1a973a1a3f1f4a24c62d746a182ff3baec",
+      "size": 3266,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0f156c1a973a1a3f1f4a24c62d746a182ff3baec"
+    },
+    {
+      "path": "ddim/dpm_solver_pytorch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6a1ffc3098e9899e4d81ae0d6b4cd6261467b85",
+      "size": 68846,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e6a1ffc3098e9899e4d81ae0d6b4cd6261467b85"
+    },
+    {
+      "path": "ddim/functions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "29326467a3529b256a9bd87bdcabeeb2e58bd5d3",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/29326467a3529b256a9bd87bdcabeeb2e58bd5d3"
+    },
+    {
+      "path": "ddim/functions/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ddim/functions/ckpt_util.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03bd1dd807bddfaae363e4b4f7263a342f67aac6",
+      "size": 3172,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/03bd1dd807bddfaae363e4b4f7263a342f67aac6"
+    },
+    {
+      "path": "ddim/functions/denoising.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "976a5adf2798e3d470b6f9541a0438f3ddfdf809",
+      "size": 2363,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/976a5adf2798e3d470b6f9541a0438f3ddfdf809"
+    },
+    {
+      "path": "ddim/functions/losses.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f76392fe786a9ffb28b9ae8bba43e1460066258",
+      "size": 594,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/9f76392fe786a9ffb28b9ae8bba43e1460066258"
+    },
+    {
+      "path": "ddim/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7072936c7e554d446cd9d6696da0b02b5ccae163",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/7072936c7e554d446cd9d6696da0b02b5ccae163"
+    },
+    {
+      "path": "ddim/models/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ddim/models/diffusion.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c8dcd17734e85f929a76e05d2d96396f3f99b6b",
+      "size": 13537,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/6c8dcd17734e85f929a76e05d2d96396f3f99b6b"
+    },
+    {
+      "path": "ddim/models/ema.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48a5f0d1ccdd489d3c557bd2a162287d24fc0927",
+      "size": 1723,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/48a5f0d1ccdd489d3c557bd2a162287d24fc0927"
+    },
+    {
+      "path": "environment.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67d4933aa028fbf106ef1d2c140d597a64e6350f",
+      "size": 975,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/67d4933aa028fbf106ef1d2c140d597a64e6350f"
+    },
+    {
+      "path": "ldm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "582e255584ad51d8fac8edd564e68dfb4edc7296",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/582e255584ad51d8fac8edd564e68dfb4edc7296"
+    },
+    {
+      "path": "ldm/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/lr_scheduler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be39da9ca6dacc22bf3df9c7389bbb403a4a3ade",
+      "size": 3882,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/be39da9ca6dacc22bf3df9c7389bbb403a4a3ade"
+    },
+    {
+      "path": "ldm/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0c1d9246536941a7ee7573bbe6fed27ba503adc5",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/0c1d9246536941a7ee7573bbe6fed27ba503adc5"
+    },
+    {
+      "path": "ldm/models/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/models/autoencoder.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a9c4f45498561953b8085981609b2a3298a5473",
+      "size": 17619,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/6a9c4f45498561953b8085981609b2a3298a5473"
+    },
+    {
+      "path": "ldm/models/diffusion",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d3cf53e08ae4677900d15a6b9f1f93811aa1ba34",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/d3cf53e08ae4677900d15a6b9f1f93811aa1ba34"
+    },
+    {
+      "path": "ldm/models/diffusion/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/models/diffusion/classifier.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e98b9d8ffb96a150b517497ace0a242d7163ef",
+      "size": 10276,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/67e98b9d8ffb96a150b517497ace0a242d7163ef"
+    },
+    {
+      "path": "ldm/models/diffusion/ddim.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "475626a95cf7cf11aee5e3b15f63e539e7879b19",
+      "size": 13553,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/475626a95cf7cf11aee5e3b15f63e539e7879b19"
+    },
+    {
+      "path": "ldm/models/diffusion/ddpm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23c08a8e4365b75ccc572069fc2cde4bfc116ac9",
+      "size": 70216,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/23c08a8e4365b75ccc572069fc2cde4bfc116ac9"
+    },
+    {
+      "path": "ldm/models/diffusion/dpm_solver",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "43d2b88b42eb37e180e37f905bc7d6b0d01c1b98",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/43d2b88b42eb37e180e37f905bc7d6b0d01c1b98"
+    },
+    {
+      "path": "ldm/models/diffusion/dpm_solver/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7427f38c07530afbab79154ea8aaf88c4bf70a08",
+      "size": 37,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/7427f38c07530afbab79154ea8aaf88c4bf70a08"
+    },
+    {
+      "path": "ldm/models/diffusion/dpm_solver/dpm_solver.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdb64e0c78cc3520f92d79db3124c85fc3cfb9b4",
+      "size": 64058,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/bdb64e0c78cc3520f92d79db3124c85fc3cfb9b4"
+    },
+    {
+      "path": "ldm/models/diffusion/dpm_solver/sampler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c42d6f964d92658e769df95a81dec92250e5a99",
+      "size": 2908,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/2c42d6f964d92658e769df95a81dec92250e5a99"
+    },
+    {
+      "path": "ldm/models/diffusion/plms.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1e75e0da1cbf0ff21cd3f7568cea19acdcc7700",
+      "size": 12777,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/f1e75e0da1cbf0ff21cd3f7568cea19acdcc7700"
+    },
+    {
+      "path": "ldm/modules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6de08797cd7482e52e7583a371ee4c4227ff8bba",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/6de08797cd7482e52e7583a371ee4c4227ff8bba"
+    },
+    {
+      "path": "ldm/modules/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/modules/attention.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c8003f455dc4b202e17aae305208d3a18c042fe",
+      "size": 9124,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0c8003f455dc4b202e17aae305208d3a18c042fe"
+    },
+    {
+      "path": "ldm/modules/diffusionmodules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "436ffcd1e5dfb49f4264e8faaa99a3c9cf6051c0",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/436ffcd1e5dfb49f4264e8faaa99a3c9cf6051c0"
+    },
+    {
+      "path": "ldm/modules/diffusionmodules/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/modules/diffusionmodules/model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba1637a6d6e691ed9146e94ebc530c2538dd18d2",
+      "size": 33480,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/ba1637a6d6e691ed9146e94ebc530c2538dd18d2"
+    },
+    {
+      "path": "ldm/modules/diffusionmodules/openaimodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa4222ac82071646d5bf39e47d74382357fe7220",
+      "size": 36036,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/fa4222ac82071646d5bf39e47d74382357fe7220"
+    },
+    {
+      "path": "ldm/modules/diffusionmodules/util.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a952e6c40308c33edd422da0ce6a60f47e73661b",
+      "size": 9561,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/a952e6c40308c33edd422da0ce6a60f47e73661b"
+    },
+    {
+      "path": "ldm/modules/distributions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d497c7d55a8fae283f91c86b4af90f939d7ba6da",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/d497c7d55a8fae283f91c86b4af90f939d7ba6da"
+    },
+    {
+      "path": "ldm/modules/distributions/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/modules/distributions/distributions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2b8ef901130efc171aa69742ca0244d94d3f2e9",
+      "size": 2970,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/f2b8ef901130efc171aa69742ca0244d94d3f2e9"
+    },
+    {
+      "path": "ldm/modules/ema.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d49592c74fca911a0602c3d3e794ae46762dc1e",
+      "size": 3260,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/7d49592c74fca911a0602c3d3e794ae46762dc1e"
+    },
+    {
+      "path": "ldm/modules/encoders",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a145723f25abb4328e1d50708742210359c06582",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/a145723f25abb4328e1d50708742210359c06582"
+    },
+    {
+      "path": "ldm/modules/encoders/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "ldm/modules/encoders/modules.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ededbe43e9e0466b9979079060692e38f561d4d3",
+      "size": 8154,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/ededbe43e9e0466b9979079060692e38f561d4d3"
+    },
+    {
+      "path": "ldm/modules/x_transformer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fc15bf9cfe0111a910e7de33d04ffdec3877576",
+      "size": 20168,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/5fc15bf9cfe0111a910e7de33d04ffdec3877576"
+    },
+    {
+      "path": "ldm/util.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbfa4b580278631f4132cd4d2a7ca7f20e853a1d",
+      "size": 5916,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/dbfa4b580278631f4132cd4d2a7ca7f20e853a1d"
+    },
+    {
+      "path": "models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b3aa272516a1be9593ff4d08386a78f1033564f5",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/b3aa272516a1be9593ff4d08386a78f1033564f5"
+    },
+    {
+      "path": "models/first_stage_models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f43acbe3d151cf7d753f158e81fc38e6966dd5ff",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/f43acbe3d151cf7d753f158e81fc38e6966dd5ff"
+    },
+    {
+      "path": "models/first_stage_models/kl-f16",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5e004ce5a266212d347e33dbfac6031a019b4f75",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/5e004ce5a266212d347e33dbfac6031a019b4f75"
+    },
+    {
+      "path": "models/first_stage_models/kl-f16/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "661921cf75a0b803c5eca41039dd058e24930452",
+      "size": 909,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/661921cf75a0b803c5eca41039dd058e24930452"
+    },
+    {
+      "path": "models/first_stage_models/kl-f32",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "57b8341d4ec50594203117b3e951561bb738f9d2",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/57b8341d4ec50594203117b3e951561bb738f9d2"
+    },
+    {
+      "path": "models/first_stage_models/kl-f32/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b642b136aaaf909ccd8766372eeffc4dffec342",
+      "size": 929,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/7b642b136aaaf909ccd8766372eeffc4dffec342"
+    },
+    {
+      "path": "models/first_stage_models/kl-f4",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0cfc2de718283a8fab67c79e5ecc3e61e1f0bf74",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/0cfc2de718283a8fab67c79e5ecc3e61e1f0bf74"
+    },
+    {
+      "path": "models/first_stage_models/kl-f4/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85cfb3e94e2ffa867ab49af82fcd8a4dc238e2ad",
+      "size": 880,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/85cfb3e94e2ffa867ab49af82fcd8a4dc238e2ad"
+    },
+    {
+      "path": "models/first_stage_models/kl-f8",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "753e62b9257e6a50f06bdd36e03c8ee498ad4f98",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/753e62b9257e6a50f06bdd36e03c8ee498ad4f98"
+    },
+    {
+      "path": "models/first_stage_models/kl-f8/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "921aa425335aced7a1a53307d39da0eba267efd6",
+      "size": 889,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/921aa425335aced7a1a53307d39da0eba267efd6"
+    },
+    {
+      "path": "models/first_stage_models/vq-f16",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f289aa2c5f71e5e7fe7acec0fecff779e6a99fb6",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/f289aa2c5f71e5e7fe7acec0fecff779e6a99fb6"
+    },
+    {
+      "path": "models/first_stage_models/vq-f16/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91c74549064bfd158424cba9c79cd2618395fc9f",
+      "size": 1026,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/91c74549064bfd158424cba9c79cd2618395fc9f"
+    },
+    {
+      "path": "models/first_stage_models/vq-f4-noattn",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1673ee31400f9897b8b7afedfec4bf577ec7611e",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/1673ee31400f9897b8b7afedfec4bf577ec7611e"
+    },
+    {
+      "path": "models/first_stage_models/vq-f4-noattn/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8e499fa2aa891ea18f2cdbdd423c22bc1db6901",
+      "size": 978,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/f8e499fa2aa891ea18f2cdbdd423c22bc1db6901"
+    },
+    {
+      "path": "models/first_stage_models/vq-f4",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "49a85624ad8eee533e4537c1ca80a346039d6b96",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/49a85624ad8eee533e4537c1ca80a346039d6b96"
+    },
+    {
+      "path": "models/first_stage_models/vq-f4/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d8cef3252742d70855d1a0df011a82223c17c4f",
+      "size": 955,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/7d8cef3252742d70855d1a0df011a82223c17c4f"
+    },
+    {
+      "path": "models/first_stage_models/vq-f8-n256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d0aba1dab2c018bb5902b728d145f02a4c216d0f",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/d0aba1dab2c018bb5902b728d145f02a4c216d0f"
+    },
+    {
+      "path": "models/first_stage_models/vq-f8-n256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8519e13d618fe04792e59fc6eb826c1804fcdc28",
+      "size": 1013,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/8519e13d618fe04792e59fc6eb826c1804fcdc28"
+    },
+    {
+      "path": "models/first_stage_models/vq-f8",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eb06e4566cb46d0fbfff1a2931972736a838e926",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/eb06e4566cb46d0fbfff1a2931972736a838e926"
+    },
+    {
+      "path": "models/first_stage_models/vq-f8/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efd6801ca965baf7119b171de8338bd16e120332",
+      "size": 1035,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/efd6801ca965baf7119b171de8338bd16e120332"
+    },
+    {
+      "path": "models/ldm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0898d91e67a93b182888f4a5c10a88ac36806a08",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/0898d91e67a93b182888f4a5c10a88ac36806a08"
+    },
+    {
+      "path": "models/ldm/bsr_sr",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9050d6bf35b3e08327142b501e66903e4d679d62",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/9050d6bf35b3e08327142b501e66903e4d679d62"
+    },
+    {
+      "path": "models/ldm/bsr_sr/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "861692a8d10b1764519576fd12200524faa32753",
+      "size": 1900,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/861692a8d10b1764519576fd12200524faa32753"
+    },
+    {
+      "path": "models/ldm/celeba256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d03867f5b0a7dea6c700188b5e851882a6ee9dd7",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/d03867f5b0a7dea6c700188b5e851882a6ee9dd7"
+    },
+    {
+      "path": "models/ldm/celeba256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a12f4e9d399afe23e6bcc824bddc8bad7ee5456d",
+      "size": 1599,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/a12f4e9d399afe23e6bcc824bddc8bad7ee5456d"
+    },
+    {
+      "path": "models/ldm/cin256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "27ac79bbdf04398fa4d421a02f88f232acd774cb",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/27ac79bbdf04398fa4d421a02f88f232acd774cb"
+    },
+    {
+      "path": "models/ldm/cin256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bc1b4566af8b53a2a20eb2b6dc68445f5fb4eb8",
+      "size": 1862,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/9bc1b4566af8b53a2a20eb2b6dc68445f5fb4eb8"
+    },
+    {
+      "path": "models/ldm/ffhq256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ce6b3040492c2dcad63ad4334f886c60ee10d496",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/ce6b3040492c2dcad63ad4334f886c60ee10d496"
+    },
+    {
+      "path": "models/ldm/ffhq256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ddfd1b93e8e52c9de2e981f9f4bbaf83e75b38e",
+      "size": 1591,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0ddfd1b93e8e52c9de2e981f9f4bbaf83e75b38e"
+    },
+    {
+      "path": "models/ldm/inpainting_big",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bca6a40937e4353f2a2020a463ea441416d73090",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/bca6a40937e4353f2a2020a463ea441416d73090"
+    },
+    {
+      "path": "models/ldm/inpainting_big/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da5fd5ea508ea0998b75519bc297411946e4a5bb",
+      "size": 1619,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/da5fd5ea508ea0998b75519bc297411946e4a5bb"
+    },
+    {
+      "path": "models/ldm/layout2img-openimages256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e8df735c394f733b22135fdf1b7db7cb2617e559",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/e8df735c394f733b22135fdf1b7db7cb2617e559"
+    },
+    {
+      "path": "models/ldm/layout2img-openimages256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e1dc15fe2732c70b918ceba4255aef895031efd",
+      "size": 1924,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/9e1dc15fe2732c70b918ceba4255aef895031efd"
+    },
+    {
+      "path": "models/ldm/lsun_beds256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "15d7c7c1d63bc27488b7a6043565ab1390aae2b7",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/15d7c7c1d63bc27488b7a6043565ab1390aae2b7"
+    },
+    {
+      "path": "models/ldm/lsun_beds256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a50c766a5e571545e4f15f897de73f9df49d85c",
+      "size": 1601,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/1a50c766a5e571545e4f15f897de73f9df49d85c"
+    },
+    {
+      "path": "models/ldm/lsun_churches256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c8eba0fbc58f6d5541a1ca58690c2ab429822831",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/c8eba0fbc58f6d5541a1ca58690c2ab429822831"
+    },
+    {
+      "path": "models/ldm/lsun_churches256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "424d0914c9a1b9d4df3a2862ee7764404fe8adc1",
+      "size": 2018,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/424d0914c9a1b9d4df3a2862ee7764404fe8adc1"
+    },
+    {
+      "path": "models/ldm/semantic_synthesis256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f23029e284f3dda83f6360c6381bdf6a4f2f9ff1",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/f23029e284f3dda83f6360c6381bdf6a4f2f9ff1"
+    },
+    {
+      "path": "models/ldm/semantic_synthesis256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a721cfffa5f0cd627be56c07cf5306ae4933cd1",
+      "size": 1378,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/1a721cfffa5f0cd627be56c07cf5306ae4933cd1"
+    },
+    {
+      "path": "models/ldm/semantic_synthesis512",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8f3dcbf4d4001274a944650f89a06a66dd08e08e",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/8f3dcbf4d4001274a944650f89a06a66dd08e08e"
+    },
+    {
+      "path": "models/ldm/semantic_synthesis512/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8faded2eec5899064fc464a1b543d3a1b9c0613f",
+      "size": 1820,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/8faded2eec5899064fc464a1b543d3a1b9c0613f"
+    },
+    {
+      "path": "models/ldm/text2img256",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7dd4726556ae83b7d044be12060c387390151013",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/7dd4726556ae83b7d044be12060c387390151013"
+    },
+    {
+      "path": "models/ldm/text2img256/config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f54a0151569fafcd0df37a480e5ea920fe7ffb5",
+      "size": 1831,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/3f54a0151569fafcd0df37a480e5ea920fe7ffb5"
+    },
+    {
+      "path": "qdiff",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "01991541736afc4224938925b8f141efff15fc4f",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/01991541736afc4224938925b8f141efff15fc4f"
+    },
+    {
+      "path": "qdiff/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f225974b1fc423880a61bc7dbf1438d34c62f6ba",
+      "size": 230,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/f225974b1fc423880a61bc7dbf1438d34c62f6ba"
+    },
+    {
+      "path": "qdiff/adaptive_rounding.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cf74805331ec44c452efc1a88fd6639e6746625",
+      "size": 3025,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0cf74805331ec44c452efc1a88fd6639e6746625"
+    },
+    {
+      "path": "qdiff/block_recon.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2cb140a104800477fe20a42b3e12a9b2a3896cf",
+      "size": 11216,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/c2cb140a104800477fe20a42b3e12a9b2a3896cf"
+    },
+    {
+      "path": "qdiff/layer_recon.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49c27822b1fad95b602213055e77c71d05ccd102",
+      "size": 8068,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/49c27822b1fad95b602213055e77c71d05ccd102"
+    },
+    {
+      "path": "qdiff/quant_block.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24eed8e303e37781b4a1022375bd25a2d74dbbcc",
+      "size": 13947,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/24eed8e303e37781b4a1022375bd25a2d74dbbcc"
+    },
+    {
+      "path": "qdiff/quant_layer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75aeb06f92351a4b52ffb2f045bb0195304ff298",
+      "size": 12472,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/75aeb06f92351a4b52ffb2f045bb0195304ff298"
+    },
+    {
+      "path": "qdiff/quant_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "388b3fd8af103b8fc27db9192053790a9cdb90e5",
+      "size": 5067,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/388b3fd8af103b8fc27db9192053790a9cdb90e5"
+    },
+    {
+      "path": "qdiff/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e1ffa21e787122b50219c965e33399f6c542ca4",
+      "size": 19101,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/0e1ffa21e787122b50219c965e33399f6c542ca4"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b73d5f5709e18c235a464560dfd6a959a94911ab",
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/trees/b73d5f5709e18c235a464560dfd6a959a94911ab"
+    },
+    {
+      "path": "scripts/sample_diffusion_ddim.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f7a679f82d2595dc81e0ead9d42e3429fffee76",
+      "size": 20549,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/7f7a679f82d2595dc81e0ead9d42e3429fffee76"
+    },
+    {
+      "path": "scripts/sample_diffusion_ldm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63b8171ff81d8bcc838dbcb45b0cf890a97d0787",
+      "size": 21475,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/63b8171ff81d8bcc838dbcb45b0cf890a97d0787"
+    },
+    {
+      "path": "scripts/txt2img.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3aaa73769225547ccdaa64f40f3858678c73219",
+      "size": 22973,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/e3aaa73769225547ccdaa64f40f3858678c73219"
+    },
+    {
+      "path": "setup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "232e09a88f2c9c54904e281d7a01fc58a90df5ab",
+      "size": 182,
+      "url": "https://api.github.com/repos/Xiuyu-Li/q-diffusion/git/blobs/232e09a88f2c9c54904e281d7a01fc58a90df5ab"
+    }
+  ],
+  "truncated": false
+}

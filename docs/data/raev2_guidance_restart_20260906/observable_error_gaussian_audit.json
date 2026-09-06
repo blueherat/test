@@ -1,0 +1,552 @@
+{
+  "protocol": "observable_error_gaussian_archive_v1",
+  "numerical_runs": {
+    "v1": {
+      "summary": {
+        "protocol": "weighted_poisson_gaussian_guidance_identity_v1",
+        "complete": true,
+        "target_mean": [
+          0.7,
+          -0.4
+        ],
+        "target_covariance": [
+          [
+            1.5,
+            0.4
+          ],
+          [
+            0.4,
+            0.6
+          ]
+        ],
+        "gradient_error": [
+          [
+            0.3,
+            0.12
+          ],
+          [
+            0.12,
+            -0.15
+          ]
+        ],
+        "bias": [
+          0.15,
+          -0.1
+        ],
+        "omega": [
+          [
+            0.0,
+            -1.1
+          ],
+          [
+            1.1,
+            0.0
+          ]
+        ],
+        "checks": [
+          {
+            "s": 0.0,
+            "weighted_gradient_matrix_error": 7.850462293418876e-17,
+            "weighted_divergence_matrix_residual": 0.0,
+            "euclidean_divergence_matrix_residual": 0.0,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 2.5938000000000008,
+            "observable_error_energy": 0.1738,
+            "invisible_error_energy": 2.4200000000000004,
+            "orthogonal_energy_residual": 4.440892098500626e-16
+          },
+          {
+            "s": 0.2,
+            "weighted_gradient_matrix_error": 1.1443916996305594e-16,
+            "weighted_divergence_matrix_residual": 1.9139476483334798e-16,
+            "euclidean_divergence_matrix_residual": 0.11000418175000008,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 3.683474986512364,
+            "observable_error_energy": 0.13065760000000007,
+            "invisible_error_energy": 3.5528173865123653,
+            "orthogonal_energy_residual": -1.3322676295501878e-15
+          },
+          {
+            "s": 0.5,
+            "weighted_gradient_matrix_error": 2.0301453349424727e-16,
+            "weighted_divergence_matrix_residual": 2.7157642517453396e-17,
+            "euclidean_divergence_matrix_residual": 1.0000329753948969,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 5.2838183333333335,
+            "observable_error_energy": 0.11611000000000006,
+            "invisible_error_energy": 5.167708333333334,
+            "orthogonal_energy_residual": 0.0
+          },
+          {
+            "s": 0.8,
+            "weighted_gradient_matrix_error": 4.0460356557118357e-16,
+            "weighted_divergence_matrix_residual": 3.32472580463585e-16,
+            "euclidean_divergence_matrix_residual": 2.3812560974457346,
+            "gradient_invisible_inner_product": 1.1102230246251565e-16,
+            "full_error_energy": 4.9684925409034095,
+            "observable_error_energy": 0.16176160000000028,
+            "invisible_error_energy": 4.80673094090341,
+            "orthogonal_energy_residual": -8.881784197001252e-16
+          },
+          {
+            "s": 1.0,
+            "weighted_gradient_matrix_error": 3.7392848776539255e-16,
+            "weighted_divergence_matrix_residual": 4.053271264639818e-16,
+            "euclidean_divergence_matrix_residual": 2.6579650341412155,
+            "gradient_invisible_inner_product": -1.3877787807814457e-16,
+            "full_error_energy": 3.6594237837837844,
+            "observable_error_energy": 0.22563999999999967,
+            "invisible_error_energy": 3.433783783783785,
+            "orthogonal_energy_residual": -4.440892098500626e-16
+          }
+        ],
+        "results": {
+          "oracle": {
+            "continuous": {
+              "mean_squared_error": 5.238529448733282e-32,
+              "covariance_frobenius_error": 1.5513355725007694e-15,
+              "w2_squared": 0.0,
+              "unclipped_w2_squared": -2.2204460492503126e-16,
+              "rhs_calls": 278
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 0.0,
+                "covariance_frobenius_error": 0.10623765770453873,
+                "w2_squared": 0.0026149392292664775,
+                "unclipped_w2_squared": 0.0026149392292664775
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 1.5407439555097887e-32,
+                "covariance_frobenius_error": 0.054003841025481676,
+                "w2_squared": 0.0006662325366033617,
+                "unclipped_w2_squared": 0.0006662325366033617
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 4.468157470978387e-31,
+                "covariance_frobenius_error": 0.027229464766175476,
+                "w2_squared": 0.000168188151451254,
+                "unclipped_w2_squared": 0.000168188151451254
+              }
+            ]
+          },
+          "baseline": {
+            "continuous": {
+              "mean_squared_error": 0.08364438289480108,
+              "covariance_frobenius_error": 0.4713416527401202,
+              "w2_squared": 0.12255085424739437,
+              "unclipped_w2_squared": 0.12255085424739437,
+              "rhs_calls": 218
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 0.07975458228470456,
+                "covariance_frobenius_error": 0.49579983762092494,
+                "w2_squared": 0.12347923929041005,
+                "unclipped_w2_squared": 0.12347923929041005
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 0.0816711321703465,
+                "covariance_frobenius_error": 0.4830815175615449,
+                "w2_squared": 0.12288449704086823,
+                "unclipped_w2_squared": 0.12288449704086823
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 0.08265066832205459,
+                "covariance_frobenius_error": 0.4770876181211098,
+                "w2_squared": 0.12268520747501721,
+                "unclipped_w2_squared": 0.12268520747501721
+              }
+            ]
+          },
+          "weighted_correction": {
+            "continuous": {
+              "mean_squared_error": 1.232595164407831e-32,
+              "covariance_frobenius_error": 8.688869536365456e-16,
+              "w2_squared": 4.440892098500626e-16,
+              "unclipped_w2_squared": 4.440892098500626e-16,
+              "rhs_calls": 410
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 4.0059342843254506e-32,
+                "covariance_frobenius_error": 0.03701984973865784,
+                "w2_squared": 0.00030732789153642415,
+                "unclipped_w2_squared": 0.00030732789153642415
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 2.0029671421627253e-31,
+                "covariance_frobenius_error": 0.01835205565587029,
+                "w2_squared": 7.615856439269209e-05,
+                "unclipped_w2_squared": 7.615856439269209e-05
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 4.0059342843254506e-32,
+                "covariance_frobenius_error": 0.009134913677500672,
+                "w2_squared": 1.894844183025768e-05,
+                "unclipped_w2_squared": 1.894844183025768e-05
+              }
+            ]
+          },
+          "euclidean_symmetric_correction": {
+            "continuous": {
+              "mean_squared_error": 2.0954117794933126e-31,
+              "covariance_frobenius_error": 1.2285962126320296,
+              "w2_squared": 0.39154449489804954,
+              "unclipped_w2_squared": 0.39154449489804954,
+              "rhs_calls": 266
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 1.232595164407831e-32,
+                "covariance_frobenius_error": 1.221142946877351,
+                "w2_squared": 0.38111642030641857,
+                "unclipped_w2_squared": 0.38111642030641857
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 4.468157470978387e-31,
+                "covariance_frobenius_error": 1.2250217227669589,
+                "w2_squared": 0.386414001499074,
+                "unclipped_w2_squared": 0.386414001499074
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 3.0814879110195774e-31,
+                "covariance_frobenius_error": 1.2268407204937122,
+                "w2_squared": 0.38899852526164613,
+                "unclipped_w2_squared": 0.38899852526164613
+              }
+            ]
+          },
+          "pure_invisible_error": {
+            "continuous": {
+              "mean_squared_error": 5.238529448733282e-32,
+              "covariance_frobenius_error": 1.1827914066321619e-15,
+              "w2_squared": 0.0,
+              "unclipped_w2_squared": -2.2204460492503126e-16,
+              "rhs_calls": 410
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 2.465190328815662e-32,
+                "covariance_frobenius_error": 0.037019849738657906,
+                "w2_squared": 0.00030732789153642415,
+                "unclipped_w2_squared": 0.00030732789153642415
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 5.238529448733282e-32,
+                "covariance_frobenius_error": 0.018352055655870506,
+                "w2_squared": 7.615856439247004e-05,
+                "unclipped_w2_squared": 7.615856439247004e-05
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 2.7733391199176196e-32,
+                "covariance_frobenius_error": 0.009134913677501882,
+                "w2_squared": 1.8948441829147455e-05,
+                "unclipped_w2_squared": 1.8948441829147455e-05
+              }
+            ]
+          }
+        },
+        "source_sha256": "c1661627b4cb99563f6fea6913325683e73bc6e8e03cf9513d09877fb3e6511d",
+        "boundary": "Known 2D Gaussian oracle test only. The correction preserves density-weighted divergence-free motion. Continuous identity does not prove finite-Euler equality or any RAEv2/FID improvement.",
+        "raev2_queries": 0,
+        "training": false,
+        "fid": false
+      },
+      "summary_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_error_gaussian_v1/summary.json",
+      "summary_sha256": "5c2779fe5028121149aa5d8359f1f7abdaadc2b3b998bf56d7e9dabc745f76d7",
+      "source_snapshot": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_error_gaussian_v1/runner_source.py"
+    },
+    "v2": {
+      "summary": {
+        "protocol": "weighted_poisson_gaussian_guidance_identity_v2",
+        "complete": true,
+        "target_mean": [
+          0.7,
+          -0.4
+        ],
+        "target_covariance": [
+          [
+            1.5,
+            0.4
+          ],
+          [
+            0.4,
+            0.6
+          ]
+        ],
+        "gradient_error": [
+          [
+            0.3,
+            0.12
+          ],
+          [
+            0.12,
+            -0.15
+          ]
+        ],
+        "bias": [
+          0.15,
+          -0.1
+        ],
+        "omega": [
+          [
+            0.0,
+            -1.1
+          ],
+          [
+            1.1,
+            0.0
+          ]
+        ],
+        "checks": [
+          {
+            "s": 0.0,
+            "weighted_gradient_matrix_error": 7.850462293418876e-17,
+            "weighted_divergence_matrix_residual": 0.0,
+            "euclidean_divergence_matrix_residual": 0.0,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 2.5938000000000008,
+            "observable_error_energy": 0.1738,
+            "invisible_error_energy": 2.4200000000000004,
+            "orthogonal_energy_residual": 4.440892098500626e-16
+          },
+          {
+            "s": 0.2,
+            "weighted_gradient_matrix_error": 1.1443916996305594e-16,
+            "weighted_divergence_matrix_residual": 1.9139476483334798e-16,
+            "euclidean_divergence_matrix_residual": 0.11000418175000008,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 3.683474986512364,
+            "observable_error_energy": 0.13065760000000007,
+            "invisible_error_energy": 3.5528173865123653,
+            "orthogonal_energy_residual": -1.3322676295501878e-15
+          },
+          {
+            "s": 0.5,
+            "weighted_gradient_matrix_error": 2.0301453349424727e-16,
+            "weighted_divergence_matrix_residual": 2.7157642517453396e-17,
+            "euclidean_divergence_matrix_residual": 1.0000329753948969,
+            "gradient_invisible_inner_product": 0.0,
+            "full_error_energy": 5.2838183333333335,
+            "observable_error_energy": 0.11611000000000006,
+            "invisible_error_energy": 5.167708333333334,
+            "orthogonal_energy_residual": 0.0
+          },
+          {
+            "s": 0.8,
+            "weighted_gradient_matrix_error": 4.0460356557118357e-16,
+            "weighted_divergence_matrix_residual": 3.32472580463585e-16,
+            "euclidean_divergence_matrix_residual": 2.3812560974457346,
+            "gradient_invisible_inner_product": 1.1102230246251565e-16,
+            "full_error_energy": 4.9684925409034095,
+            "observable_error_energy": 0.16176160000000028,
+            "invisible_error_energy": 4.80673094090341,
+            "orthogonal_energy_residual": -8.881784197001252e-16
+          },
+          {
+            "s": 1.0,
+            "weighted_gradient_matrix_error": 3.7392848776539255e-16,
+            "weighted_divergence_matrix_residual": 4.053271264639818e-16,
+            "euclidean_divergence_matrix_residual": 2.6579650341412155,
+            "gradient_invisible_inner_product": -1.3877787807814457e-16,
+            "full_error_energy": 3.6594237837837844,
+            "observable_error_energy": 0.22563999999999967,
+            "invisible_error_energy": 3.433783783783785,
+            "orthogonal_energy_residual": -4.440892098500626e-16
+          }
+        ],
+        "results": {
+          "oracle": {
+            "continuous": {
+              "mean_squared_error": 5.238529448733282e-32,
+              "covariance_frobenius_error": 1.5513355725007694e-15,
+              "w2_squared": 0.0,
+              "unclipped_w2_squared": -2.2204460492503126e-16,
+              "rhs_calls": 278
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 0.0,
+                "covariance_frobenius_error": 0.10623765770453873,
+                "w2_squared": 0.0026149392292664775,
+                "unclipped_w2_squared": 0.0026149392292664775
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 1.5407439555097887e-32,
+                "covariance_frobenius_error": 0.054003841025481676,
+                "w2_squared": 0.0006662325366033617,
+                "unclipped_w2_squared": 0.0006662325366033617
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 4.468157470978387e-31,
+                "covariance_frobenius_error": 0.027229464766175476,
+                "w2_squared": 0.000168188151451254,
+                "unclipped_w2_squared": 0.000168188151451254
+              }
+            ]
+          },
+          "baseline": {
+            "continuous": {
+              "mean_squared_error": 0.08364438289480108,
+              "covariance_frobenius_error": 0.4713416527401202,
+              "w2_squared": 0.12255085424739437,
+              "unclipped_w2_squared": 0.12255085424739437,
+              "rhs_calls": 218
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 0.07975458228470456,
+                "covariance_frobenius_error": 0.49579983762092494,
+                "w2_squared": 0.12347923929041005,
+                "unclipped_w2_squared": 0.12347923929041005
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 0.0816711321703465,
+                "covariance_frobenius_error": 0.4830815175615449,
+                "w2_squared": 0.12288449704086823,
+                "unclipped_w2_squared": 0.12288449704086823
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 0.08265066832205459,
+                "covariance_frobenius_error": 0.4770876181211098,
+                "w2_squared": 0.12268520747501721,
+                "unclipped_w2_squared": 0.12268520747501721
+              }
+            ]
+          },
+          "weighted_correction": {
+            "continuous": {
+              "mean_squared_error": 1.232595164407831e-32,
+              "covariance_frobenius_error": 8.688869536365456e-16,
+              "w2_squared": 4.440892098500626e-16,
+              "unclipped_w2_squared": 4.440892098500626e-16,
+              "rhs_calls": 410
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 4.0059342843254506e-32,
+                "covariance_frobenius_error": 0.03701984973865784,
+                "w2_squared": 0.00030732789153642415,
+                "unclipped_w2_squared": 0.00030732789153642415
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 2.0029671421627253e-31,
+                "covariance_frobenius_error": 0.01835205565587029,
+                "w2_squared": 7.615856439269209e-05,
+                "unclipped_w2_squared": 7.615856439269209e-05
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 4.0059342843254506e-32,
+                "covariance_frobenius_error": 0.009134913677500672,
+                "w2_squared": 1.894844183025768e-05,
+                "unclipped_w2_squared": 1.894844183025768e-05
+              }
+            ]
+          },
+          "euclidean_symmetric_correction": {
+            "continuous": {
+              "mean_squared_error": 2.0954117794933126e-31,
+              "covariance_frobenius_error": 1.2285962126320296,
+              "w2_squared": 0.39154449489804954,
+              "unclipped_w2_squared": 0.39154449489804954,
+              "rhs_calls": 266
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 1.232595164407831e-32,
+                "covariance_frobenius_error": 1.221142946877351,
+                "w2_squared": 0.38111642030641857,
+                "unclipped_w2_squared": 0.38111642030641857
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 4.468157470978387e-31,
+                "covariance_frobenius_error": 1.2250217227669589,
+                "w2_squared": 0.386414001499074,
+                "unclipped_w2_squared": 0.386414001499074
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 3.0814879110195774e-31,
+                "covariance_frobenius_error": 1.2268407204937122,
+                "w2_squared": 0.38899852526164613,
+                "unclipped_w2_squared": 0.38899852526164613
+              }
+            ]
+          },
+          "pure_invisible_error": {
+            "continuous": {
+              "mean_squared_error": 5.238529448733282e-32,
+              "covariance_frobenius_error": 1.1827914066321619e-15,
+              "w2_squared": 0.0,
+              "unclipped_w2_squared": -2.2204460492503126e-16,
+              "rhs_calls": 410
+            },
+            "euler": [
+              {
+                "steps": 100,
+                "mean_squared_error": 2.465190328815662e-32,
+                "covariance_frobenius_error": 0.037019849738657906,
+                "w2_squared": 0.00030732789153642415,
+                "unclipped_w2_squared": 0.00030732789153642415
+              },
+              {
+                "steps": 200,
+                "mean_squared_error": 5.238529448733282e-32,
+                "covariance_frobenius_error": 0.018352055655870506,
+                "w2_squared": 7.615856439247004e-05,
+                "unclipped_w2_squared": 7.615856439247004e-05
+              },
+              {
+                "steps": 400,
+                "mean_squared_error": 2.7733391199176196e-32,
+                "covariance_frobenius_error": 0.009134913677501882,
+                "w2_squared": 1.8948441829147455e-05,
+                "unclipped_w2_squared": 1.8948441829147455e-05
+              }
+            ]
+          }
+        },
+        "source_sha256": "937b6a959ff34564606a5ed310486b456c21bbce59dcd8053d5603c068f94b96",
+        "boundary": "Known 2D Gaussian oracle test only. The correction preserves density-weighted divergence-free motion. Continuous identity does not prove finite-Euler equality or any RAEv2/FID improvement.",
+        "raev2_queries": 0,
+        "training": false,
+        "fid": false,
+        "wall_seconds_after_imports": 0.5612477681133896,
+        "cpu_seconds_after_imports": 0.5609395909999999,
+        "revision": "Adds mean assertion, measured CPU runtime and source snapshot; same fixed mathematical cases as v1."
+      },
+      "summary_path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_error_gaussian_v2/summary.json",
+      "summary_sha256": "73bdc4e8deedf98600ddcaafaffcf82f12df94836bfe1258b5f69a521af979b1",
+      "source_snapshot": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/observable_error_gaussian_v2/runner_source.py"
+    }
+  },
+  "v1_v2_results_identical": true,
+  "cost_boundary": "Two CPU executions, no RAEv2 or decoder/feature queries. v1 application runtime was not instrumented. v2 records wall and CPU time after imports; the rerun adds mean assertions and cost accounting without changing mathematical cases."
+}

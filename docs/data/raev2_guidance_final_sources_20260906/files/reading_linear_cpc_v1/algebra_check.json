@@ -1,0 +1,54 @@
+{
+  "scope": "small deterministic CPU algebra verification; no learned models, dataset, image generation, GPU, or guidance parameter selection",
+  "seed": 20260906,
+  "noncommuting_covariance_commutator_norm": 15.282408545947002,
+  "exact_linear_gap_decomposition_max_abs_error": 5.551115123125783e-17,
+  "commuting_ode": {
+    "conditional_eigenvalues": [
+      4.0,
+      1.0
+    ],
+    "unconditional_eigenvalues": [
+      1.0,
+      3.0
+    ],
+    "sigma_start": 8.0,
+    "sigma_end": 0.4,
+    "fixed_gamma_for_identity_check": 0.75,
+    "h": [
+      3.427991886409736,
+      0.37838364167478095
+    ],
+    "CPC_relative_scaling": [
+      1.5872302049485278,
+      0.6945837717654364
+    ],
+    "appendix_B_b": [
+      1.6233605203627908,
+      0.4527400306169763
+    ],
+    "closed_solution": [
+      1.8193876006329663,
+      -0.44400878912281544
+    ],
+    "numeric_solution": [
+      1.8193876006296106,
+      -0.4440087891240144
+    ],
+    "max_abs_error": 3.355760114231998e-12
+  },
+  "common_translation_centered_covariance_max_abs_error": 1.734723475976807e-18,
+  "stationary_origin_does_not_imply_local_homogeneity": {
+    "prior": "equal atoms at -1,+1, Gaussian noise sigma=1",
+    "D_at_zero": 0.0,
+    "x": 0.8,
+    "D_x": 0.664036770267849,
+    "Jacobian_times_x": 0.4472441341857951
+  },
+  "RAEv2_single_dense_FP32_jacobian_bytes": 274877906944,
+  "timing_scope": "starts before numpy/scipy imports, ends before JSON output; no subprocesses",
+  "wall_seconds_before_output": 0.3402864949312061,
+  "cpu_seconds_before_output": 0.337033339,
+  "script_sha256": "91289fbeee0581d58add46b96a760e1c5f371ab33936442d19ea639674b7054a",
+  "all_assertions_passed": true
+}

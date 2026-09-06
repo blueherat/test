@@ -1,0 +1,151 @@
+{
+  "created_utc": "2026-09-06T09:14:54.900326+00:00",
+  "complete": true,
+  "experiment_status": "fixed_candidate_retired_after_negative_paired_1k_screen",
+  "research_goal_achieved": false,
+  "additional_sampling_or_tuning_authorized_by_this_result": false,
+  "cohort_size": 1000,
+  "seed": 202609121,
+  "fid": {
+    "official100": 38.15988081390208,
+    "global100": 38.161144351414066,
+    "spatial100": 38.31696886021251
+  },
+  "candidate_minus_official_fid": 0.1570880463104345,
+  "relative_fid_reduction_percent": {
+    "spatial_vs_official": -0.41165759158557313,
+    "spatial_vs_global": -0.4083329036558934,
+    "global_vs_official": -0.0033111673439193954
+  },
+  "cost": {
+    "created_utc": "2026-09-06T09:07:43.913715+00:00",
+    "protocol": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SPATIAL_ENERGY_BALLS_PROTOCOL_20260906_ZH.md",
+      "sha256": "5ff6e86d26f3c24dc1304dd34ec8c9f566daa5e7bccf17862726eb7ac8df9df9",
+      "size_bytes": 8749
+    },
+    "sampling_execution": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/sample_jobs_execution.json",
+      "sha256": "89734d83f2fe4b2d1f16b515e2c93aca7d663190dcb62e2affb0261864bcbc57",
+      "size_bytes": 4092
+    },
+    "new_fid_computed_or_read_before_this_decision": false,
+    "new_evaluation_artifacts_absent": true,
+    "rule": "K=max(100,ceil(100*T_spatial/T_official100)); if actual T_K<T_spatial, increase monotonically before FID",
+    "T_official100_seconds": 635.2828604145907,
+    "T_spatial_seconds": 626.382555505028,
+    "spatial_over_official_trajectory_ratio": 0.9859900125374793,
+    "K": 100,
+    "selected_cost_baseline": "official100",
+    "additional_official_sampling_required": false,
+    "measured_baseline_trajectory_budget_sufficient": true,
+    "summaries": {
+      "official100": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+        "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+        "size_bytes": 12836
+      },
+      "global100": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+        "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+        "size_bytes": 13092
+      },
+      "spatial100": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/summary.json",
+        "sha256": "30ff15fa4ddc1a567ed8a4bbd12876a70256af95ea5a30efd44dcda7b4fe9d05",
+        "size_bytes": 13101
+      }
+    },
+    "trajectory_seconds": {
+      "official100": 635.2828604145907,
+      "global100": 633.2605086229742,
+      "spatial100": 626.382555505028
+    },
+    "paired_identities": {
+      "global_noise_sha256": "8847ee5c667e23f413fad195234728890c4a72260fdde5ef0cd04b2762762de0",
+      "noise_rng_state_sha256": "3c342629c8a0ddbda83c73e11470a7c9d7ca357c74231108872c059de23c92e1",
+      "global_labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+      "seed": 202609121
+    },
+    "limitations": [
+      "Different same-model GPUs; single concurrent-run timing estimates are not intrinsic speed or exact time equality.",
+      "Spatial projection, reductions, synchronization, state writes and diagnostic callback remain inside candidate trajectory time.",
+      "Source/reference preparation is separate and historical real-latent acquisition cost remains unclosed. No total-cost success conclusion."
+    ],
+    "quality_results": null
+  },
+  "sample_level_model_forwards_this_1k_study": 300000,
+  "sample_level_decoder_forwards_this_1k_study": 3000,
+  "evaluation_outer_wall_seconds": 22.026738761924207,
+  "uncertainty": "Descriptive fixed single-cohort 1K result. No independent-cohort confirmation, significance claim, population equivalence claim, or automatic extrapolation to larger N. Cohort projection induces interactions; no iid image-level inference is supplied.",
+  "interpretation": "Correctly implemented single-step two-ball Wasserstein projection did not yield improved decoded-image FID in this fixed test. This does not falsify the projection theorem or identify a unique failure cause.",
+  "artifacts": {
+    "plan.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/plan.json",
+      "sha256": "9c7972ac459b5511f293553e86e43671d0bca8eda7d5e5359f5ebcb03ef62025",
+      "size_bytes": 2788
+    },
+    "cpu_review.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/cpu_review.json",
+      "sha256": "4372e1bfe0cc1a5e9e6ded4ad81708a5fd1f5156d89968d04b2d64cf85090fa7",
+      "size_bytes": 1200
+    },
+    "parity_acceptance.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity_acceptance.json",
+      "sha256": "6fd0e5423cca5d4ec1e4655fed4e7d08eecef04f4b26f37cbb43c06c139f0e46",
+      "size_bytes": 361
+    },
+    "sample_jobs.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/sample_jobs.json",
+      "sha256": "eba4cd09cf7e6aadc8e766dccfb42008ea7ebf59413e5dd941722c59c3bb5aa4",
+      "size_bytes": 4124
+    },
+    "sample_jobs_execution.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/sample_jobs_execution.json",
+      "sha256": "89734d83f2fe4b2d1f16b515e2c93aca7d663190dcb62e2affb0261864bcbc57",
+      "size_bytes": 4092
+    },
+    "cost_match_before_fid.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/cost_match_before_fid.json",
+      "sha256": "a5cb1aa678de4ab3b259a94576f133e387a91eb6730eeb060e226affc067c897",
+      "size_bytes": 2860
+    },
+    "fid_jobs.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_jobs.json",
+      "sha256": "8a428b25756e29e6ca40e83c0d39a7f867bb7fcea2ca3ab4de440cfff8806d46",
+      "size_bytes": 3983
+    },
+    "fid_jobs_execution.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_jobs_execution.json",
+      "sha256": "635f44693d5d99c17e672e5af981df4ed24d9e292635eca420d8e62d565b5c63",
+      "size_bytes": 2175
+    },
+    "fid_results.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_results.json",
+      "sha256": "01f75536729e653ab14ce8c9c1e1da5589242e755977609c5aecd008b077bfd7",
+      "size_bytes": 1623
+    },
+    "diagnostic_review_v1/review.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/diagnostic_review_v1/review.json",
+      "sha256": "5c70e7f15e0e7eeccd4a634b960ecde54b181ec5de79af2aaac38018f008a31c",
+      "size_bytes": 235556
+    }
+  },
+  "arm_summaries": {
+    "official100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+      "size_bytes": 12836
+    },
+    "global100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+      "size_bytes": 13092
+    },
+    "spatial100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/summary.json",
+      "sha256": "30ff15fa4ddc1a567ed8a4bbd12876a70256af95ea5a30efd44dcda7b4fe9d05",
+      "size_bytes": 13101
+    }
+  }
+}

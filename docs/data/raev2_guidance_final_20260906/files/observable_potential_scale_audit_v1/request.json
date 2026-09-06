@@ -1,0 +1,186 @@
+{
+  "protocol": "raev2_observable_potential_scale_audit_v1",
+  "created_utc": "2026-09-06T06:21:28.465905+00:00",
+  "samples": 5000,
+  "seed": 202609101,
+  "reserved_confirmation_seed": 202609102,
+  "shards": 4,
+  "batch_size": 8,
+  "arms_in_execution_order": [
+    [
+      "official100",
+      "official",
+      100
+    ],
+    [
+      "potential100",
+      "potential",
+      100
+    ],
+    [
+      "official105",
+      "official",
+      105
+    ]
+  ],
+  "candidate": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/potential_final.pt",
+    "sha256": "495b3313e945f4b845307ae0d520c3c8d8fa70e60e3983002297cd3f7ccc632e",
+    "size_bytes": 2438557
+  },
+  "sources": {
+    "experiments/run_raev2_observable_potential_scale_audit.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/run_raev2_observable_potential_scale_audit.py",
+      "sha256": "b5a5f8f58822ac3778bb5d7ce186f997f8951f13cff10c3070693b965adc0d40",
+      "size_bytes": 14291
+    },
+    "experiments/sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "experiments/merge_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/merge_raev2_observable_potential.py",
+      "sha256": "8b81646a928ee89ea033832748c0e112b88bc6d72f52fae259e4d3b307fc0670",
+      "size_bytes": 17824
+    },
+    "experiments/evaluate_raev2_official_samples.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/evaluate_raev2_official_samples.py",
+      "sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+      "size_bytes": 3684
+    },
+    "experiments/raev2_training_core.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/raev2_training_core.py",
+      "sha256": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0",
+      "size_bytes": 25067
+    },
+    "experiments/train_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "experiments/raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "experiments/raev2_stage1_compat.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "external/RAEv2/src/stage1/rae.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    },
+    "docs/RAEV2_OBSERVABLE_POTENTIAL_SCALE_AUDIT_20260906_ZH.md": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/docs/RAEV2_OBSERVABLE_POTENTIAL_SCALE_AUDIT_20260906_ZH.md",
+      "sha256": "b9f4da305fa27fbb98f2269b3a99c20228a1c55ad08a6638fa6d47f9a83650cb",
+      "size_bytes": 4664
+    },
+    "tests/test_sample_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/tests/test_sample_raev2_observable_potential.py",
+      "sha256": "3310755a12447a07ca96f7a6945f80e07530336bc9f487da28e8ef86710eb8ae",
+      "size_bytes": 14314
+    },
+    "tests/test_merge_raev2_observable_potential.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_scale_audit_v1/sources/tests/test_merge_raev2_observable_potential.py",
+      "sha256": "43d90272a8a81c94e62a56e8430f9d9d973c9fd4b764ccabfa2264d9df67412e",
+      "size_bytes": 11930
+    }
+  },
+  "previous_cost_records": {
+    "training": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_train_v1/summary.json",
+      "sha256": "45e3c0ded8d0ffd7165dc346bc935c30485d89dfa4ee7cf7e81840aeff726521"
+    },
+    "validation": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_validation_summary_v1/summary.json",
+      "sha256": "b46cd84af46cde06f927ed8d0adac9b8f8c30991ab6adadbaba7b9680283cf0b"
+    },
+    "benchmark": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_benchmark_v1/summary.json",
+      "sha256": "5c915890019c83fa6de2b31270e21cf004d22efd5c87c495e7100ccf38e2f5c2"
+    },
+    "encoding": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/summary.json",
+      "sha256": "d17d6e22ea47f7d2603f7c6843145abd6c90caf961b90a146fcc864ddc61333b"
+    },
+    "cpu_prefix_replay": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_cost_prefix_replay_v1/summary.json",
+      "sha256": "d79df1273608ea9913bc42ff67bbbf5ca8942474a8322ba20dc75e1a6c20b0ea"
+    }
+  },
+  "previous_1k_request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_screen_v1/request.json",
+    "sha256": "ad6cec9e53b49bb72bf5abf842ab4d35085221bcc000da276d1c7324cd7971cd",
+    "size_bytes": 3038
+  },
+  "previous_1k_result": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/observable_potential_screen_v1/summary.json",
+    "sha256": "88ee8db22835edd265f079ee50a38a2972d223c328872d20ad5ac31cbe674389",
+    "size_bytes": 3450
+  },
+  "known_previous_candidate_fid": 37.53166440688716,
+  "new_5k_images_or_fid_before_freeze": false,
+  "reason": "Correct an overly strong operational 1K gate; not a new fitted method or an unseen-result initial screen.",
+  "full_cost_comparison_complete": false,
+  "known_cost_step_lower_bound": 126,
+  "unknown_preparation_cost_nonnegative": true,
+  "fid_protocol": {
+    "evaluator": "official nanogen-evals",
+    "batch_size": 64,
+    "seed": 2020,
+    "fid_reference": "imagenet_256_fid_stats"
+  },
+  "expected_evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+  "evaluator_assets": {
+    "reference": {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "size_bytes": 33563124
+    },
+    "inception": {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+      "size_bytes": 95628359
+    }
+  },
+  "evaluator_environment": {
+    "NANOGEN_EVALS_STATS_DIR": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419",
+    "TORCH_HOME": "/home/zhoushunyu/.cache/torch"
+  },
+  "success_claim_permitted": false,
+  "cost_scope": "All three arms run regardless of observed FID. Outer worker elapsed intervals and child CPU are research costs; sampling trajectories are separately measured. No full-cost match claimed."
+}

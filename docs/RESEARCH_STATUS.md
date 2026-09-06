@@ -1,5 +1,434 @@
 # Research Status
 
+> **Final closeout — 2026-09-06 UTC / 2026-09-07 China.** The user-authorized final four rounds are complete; no fifth round or further method expansion. The ≥5% fair-total-cost FID goal remains **unmet**. Paired bridge 1K FID38.316312 versus inference-matched official107 FID38.372179 is only a 0.145592% point-estimate reduction, without independent quality confirmation. Pressure/innovation, unanchored temporal score consistency and sample-only finite-density transport each failed their stated mechanism entry conditions. 52 primary papers, historical theories, implementations and compact evidence are organized for Git. See [final closeout](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260906_ZH.md), [four-round ledger](RAEV2_FINAL_FIVE_ROUNDS_20260906_ZH.md) and [archive index](RAEV2_RESEARCH_ARCHIVE_INDEX_20260906_ZH.md). Entries below are dated historical records and do not authorize resuming retired work.
+
+> **Authoritative goal reset — 2026-09-06.** Theory must be coherent and
+> elegant, explain a concrete guidance mechanism, and derive an intervention
+> inside the denoising trajectory. Success requires at least 5% relative FID
+> reduction on RAEv2 against a reliable baseline at comparable computational
+> cost, with independent confirmation. Post-generation selection is excluded.
+> These requirements govern the resumed research. See
+> [`RAEV2_GUIDANCE_GOAL_20260906_ZH.md`](RAEV2_GUIDANCE_GOAL_20260906_ZH.md)
+> for the complete current scope and cost accounting; it supersedes older goals.
+
+> **User imposed a final iteration limit — 2026-09-06.** The active
+> paired-bridge 1K is round 1; research must close by the end of round 5
+> (round 4 may be the final round if evidence is sufficient). No coefficient,
+> window or seed searches may disguise extra rounds. If the ≥5% fair-cost
+> performance target remains unmet, say so and deliver organized theories,
+> ideas, experiments, compact results/data manifests and a Git commit.
+> Archival work is now running in parallel. See
+> [the authoritative final-round ledger](RAEV2_FINAL_FIVE_ROUNDS_20260906_ZH.md).
+> Stochastic Interpolants brings the documented reading to 50 primary papers;
+> its conditional KL mechanism is retained without granting the current
+> deterministic sampler an unproved guarantee.
+
+> **Paired-bridge 1K screen launched — 2026-09-06 14:59 UTC.** The
+> unchanged 2048-update candidate/control checkpoint is entering a fixed
+> parity → official100 → candidate100 → control100 → inference-cost-matched
+> officialK → uniform FID pipeline, all on physical GPU3. New seed202609151,
+> 1000 ascending classes and B8 are fixed. Source identities, decoder config
+> and evaluator files were frozen before GPU work. The driver runs in an
+> independent session; inspect its PID/state before any recovery. No image
+> selection, coefficient/window adjustment or FID-driven step selection is
+> allowed. This is an inference-matched quality screen, with additional
+> training/preparation costs still explicit; no total-cost or ≥5% success claim.
+> See [protocol](RAEV2_PAIRED_BRIDGE_SCREEN_PROTOCOL_20260906_ZH.md) and
+> [live execution](/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_execution.json).
+
+> **Original Flow Matching reading — 2026-09-06.** The documented primary
+> reading now covers 49 papers. Original CFM theorem proofs distinguish the
+> population regression objective from finite-network accuracy. A local weak
+> continuity argument covers the current non-independent paired endpoints; it
+> does not assume their conditional Dirac paths satisfy the original positive
+> density conditions. Neither reuse across auxiliary time nor a midpoint solver
+> guarantees successful learned transport. The current negative regression
+> result remains explicit. See
+> [`RAEV2_GUIDANCE_READING_FLOW_MATCHING_20260906_ZH.md`](RAEV2_GUIDANCE_READING_FLOW_MATCHING_20260906_ZH.md).
+> All 17 archived identities were independently verified.
+
+> **Paired-bridge fixed mechanism experiment complete — 2026-09-06.** One
+> 2048-update joint fit, 10K held-out teacher records and 96 actual trajectories
+> are complete. The learned normalized velocity risk is about 0.082% worse than
+> zero prediction. In contrast, the predefined finite-map channel-moment gap is
+> 7.30% smaller than official; the mean-only control does not share the overall
+> improvement. 98.51% of candidate-versus-control net advantage comes from the
+> last step. All times remain included. The 32-class actual trajectories are
+> finite and their saved endpoint identities pass independent CPU checks. This
+> supports preparing one unchanged paired 1K image screen, not a FID claim.
+> Original training completed; only unstarted validation/rollout were resumed
+> after the parent disappeared. Training was not restarted. Timing gaps and
+> preparation costs remain explicit. See
+> [`RAEV2_PAIRED_BRIDGE_PILOT_RESULTS_20260906_ZH.md`](RAEV2_PAIRED_BRIDGE_PILOT_RESULTS_20260906_ZH.md).
+
+> **Finite-step correction structure derived — 2026-09-06.** A paired auxiliary
+> bridge from a teacher state's native Euler successor to its true next-noise
+> state defines a specific conditional velocity. Exact transport removes the
+> native step's marginal mismatch and prevents relative KL growth for any actual
+> input law; invertible maps preserve the existing KL rather than strictly
+> reducing it. A conditional covariance divergence explains finite bridge motion
+> even when the initial Bayes residual mean is zero. The derivation and endpoint
+> conditions pass independent review and a fixed scalar algebra check. This is
+> a design structure, not a trained RAEv2 result. Approximation, transfer to
+> actual trajectories and cost remain to be tested. See
+> [`RAEV2_ACTUAL_ROLLOUT_FINITE_TRANSPORT_20260906_ZH.md`](RAEV2_ACTUAL_ROLLOUT_FINITE_TRANSPORT_20260906_ZH.md).
+
+> **Actual-distribution feedback reading — 2026-09-06.** Two further primary
+> papers bring the documented reading to 48. Sobolev score-difference estimation
+> supplies a concrete gradient regularizer and its statistical bias; Discriminator
+> Flow supplies an implementation that refreshes negatives from the current
+> generated trajectory. Neither fixes a natural finite correction amplitude for
+> RAEv2. The image DF critic is an IPM critic, not a calibrated density ratio,
+> and its trajectory-refresh and backward costs must be counted. The Sobolev
+> paper's ECG code differs from the noisy two-sample CE theory and score-to-epsilon
+> conversion; this is a source correspondence finding, not a reproduced failure
+> of the paper's table. Both papers' positive results and limits are retained in
+> [`RAEV2_GUIDANCE_READING_ACTUAL_DISTRIBUTION_FEEDBACK_20260906_ZH.md`](RAEV2_GUIDANCE_READING_ACTUAL_DISTRIBUTION_FEEDBACK_20260906_ZH.md).
+> All 102 archived source identities pass an independent hash check. No new
+> training, sampling or GPU work was performed for this reading. The ≥5% goal
+> remains active and unmet.
+
+> **Affine-reflection guidance: fixed quality screen complete; retired —
+> 2026-09-06.** Known RAE affine support supplies a parameter-free two-query
+> reflection average followed by clean-support projection. In ideal arithmetic,
+> teacher risk contracts; the ideal arithmetic version of the fixed 100-step
+> Euler structure also preserves the reflection symmetry and normal Gaussian
+> bridge. Native off-branch endpoints and pixels match production bitwise on
+> all 16 parity images, but the deployed reflected-field invariance has RMS
+> residual 0.006598 in the fixed GPU check; strict finite-precision invariance
+> or risk contraction is not established. This does not
+> guarantee FID. The paired 1K screen is complete: official100 FID
+> 38.2515918863, reflection100 38.2886408205, cost-selected official201
+> 38.5581217308. The candidate is 0.096856% worse than the cheaper original
+> baseline and 0.698895% better than official201; the latter is not success.
+> Cost-selected201 covers candidate T/W by 0.346066% / 0.361610%, and outer
+> wall by 0.383736%. The earlier cost-only200 remains archived and charged;
+> its T was 1.350953 seconds short, triggering201 before any FID.
+> Independent low-rank FID reconstruction passes (maximum difference
+> 2.33378e-5), along with 463 artifact identities, batch pixels, paired input
+> hashes and both cost decisions. No candidate coefficients or precision were
+> revised. This fixed method is retired without seed/scale/window searches or
+> larger sampling. This is not a new requirement for 1K gains to exceed 5%,
+> nor a statistically established claim that all scales are ineffective.
+> See the [frozen experiment protocol](RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md)
+> and [current results record](RAEV2_AFFINE_REFLECTION_RESULTS_20260906_ZH.md).
+
+> **Primary reading expanded to 46 papers; mechanisms under examination —
+> 2026-09-06.** Formal PAG, SEG, Characteristic Guidance, linear CFG/CPC and
+> Sliding Window Guidance papers, relevant appendices and official
+> implementations have been studied. CPC separates mean forcing from posterior
+> covariance contrast; SWG distinguishes input cropping from decoder query
+> information deletion. Neither supplies same-class Full/Base error semantics
+> or an automatically determined gain. The fixed 80-row teacher paired-error
+> follow-up is complete: all 10 time-group mean cross-products C_W are positive
+> (59/80 individual rows positive), but the best common scalar in the empirical
+> quadratic can lower this equal-time denoising risk by only 0.00204468%.
+> Independent reconstruction from all stored heads/targets passes, with
+> maximum scalar difference 1.14e-13. This is not FID improvement, and no
+> oracle coefficient was deployed. All
+> teacher bridge states and prior FP32 gap vectors reproduce bitwise. See the
+> [paired-error results](RAEV2_QUERY_MEAN_ERROR_COMPATIBILITY_RESULTS_20260906_ZH.md).
+> Infinite query
+> smoothing has an exact reverse-KL attention barycenter interpretation; the
+> SEG paper's general curvature guarantee does not carry through its proof.
+> A fixed audit of both DDT decoder blocks completed all 160 historical rows
+> with native Full/Base bitwise parity. All 5120 weak attention head records
+> have identical query rows and retain nonuniform key preference. Relative to
+> the original gap, the new response has pooled cosine 0.18254 and 95.3291%
+> of its energy orthogonal to each sample's original gap. This establishes a
+> distinct structural response, without error-compatibility or quality evidence;
+> there was no layer, smoothing-scale or gain search. Independently rebuilt
+> direction statistics, identities and observed call counts pass. See the
+> [completed decoder results](RAEV2_DECODER_QUERY_MEAN_RESULTS_20260906_ZH.md).
+> Separately, Characteristic Guidance converts
+> to shifted-query clean consensus in RAE coordinates. An independent Gaussian
+> derivation gives convergence for a proper power target at w=1.78, but permits
+> very slow convergence near the noise endpoint. All 792 existing directional
+> Jacobian entries pass one necessary positivity test; this does not establish
+> actual-head solvability, exact-score semantics or FID improvement. No new
+> sampler is admitted by these results. See the
+> [reading index](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md),
+> [attention mechanism](RAEV2_GUIDANCE_READING_ATTENTION_WEAK_20260906_ZH.md),
+> [fixed decoder audit protocol](RAEV2_DECODER_QUERY_MEAN_PROTOCOL_20260906_ZH.md),
+> and [consensus analysis](RAEV2_GUIDANCE_READING_CHARACTERISTIC_20260906_ZH.md).
+> ERG additionally provides an exact attention-entropy mechanism and valid
+> Hopfield energy descent under explicit K/V compatibility. Its positive
+> repeated-seed DiT FID evidence is retained, while layer, onset and strength
+> selection and unmeasured latency prevent direct transfer as a parameter-free
+> RAEv2 method. See the [ERG reading](RAEV2_GUIDANCE_READING_ERG_20260906_ZH.md).
+> Two further primary studies connect finite-group inference averaging to
+> orthogonal score-error decomposition and conditional flow-error bounds.
+> The implementation review counts the internal 2/4/8 denoiser queries that
+> the published sampler's outer NFE counter omits. The RAE clean projection
+> prevents directly inheriting a velocity-Lipschitz improvement over the raw
+> official sampler. See the [symmetry reading](RAEV2_GUIDANCE_READING_REFLECTION_SYMMETRIZATION_20260906_ZH.md).
+> Fitted CFG derives a coefficient from a specified terminal contraction mode;
+> ERK-Guid uses embedded solver differences and has positive low-step ImageNet
+> results, but retains tuned strengths and thresholds. Neither mode has yet
+> been identified in RAE's same-class Full/Base dynamics. See the
+> [solver reading](RAEV2_GUIDANCE_READING_FITTED_ERROR_20260906_ZH.md).
+> ICG additionally motivates distinguishing a geometric condition reference
+> from the unconditional mixture; random embedding responses require separate
+> mean, covariance and curvature analysis. See the
+> [ICG/TSG reading](RAEV2_GUIDANCE_READING_INDEPENDENT_CONDITION_20260906_ZH.md).
+> Two learned-guidance papers distinguish marginal consistency from the
+> stronger per-clean-image self-consistency surrogate. ImageNet-64 FID
+> 2.11->1.99 is retained as positive published evidence, with training/selection
+> cost limitations; the adversarial follow-up improves alignment rather than
+> the strongest reported FID. See the
+> [learned consistency reading](RAEV2_GUIDANCE_READING_LEARNED_CONSISTENCY_20260906_ZH.md).
+> Particle Guidance's balanced joint target and Doob conditional-expectation
+> potential provide another source of natural time dependence. Marginal
+> preservation, changed joint coverage, and improved population FID remain
+> distinct goals. See the [PG/EDDY reading](RAEV2_GUIDANCE_READING_PARTICLES_20260906_ZH.md).
+> Foundational denoising theory gives exact noise-calibrated score and
+> posterior-Jacobian identities for same-space Gaussian L2 estimation;
+> nonlinear RAE cycles do not automatically satisfy them. See the
+> [autoencoder-score reading](RAEV2_GUIDANCE_READING_AUTOENCODER_SCORE_20260906_ZH.md).
+> Two manifold studies distinguish support recovery from density recovery,
+> and show how tangent posterior second moments create legitimate normal
+> curvature bias. These are structural design clues, not evidence for another
+> hard projection. See [score geometry](RAEV2_GUIDANCE_READING_SCORE_GEOMETRY_20260906_ZH.md)
+> and [finite-noise decomposition](RAEV2_GUIDANCE_READING_MANIFOLD_DECOMPOSITION_20260906_ZH.md).
+> A DPS path-reaction study connects local approximation to terminal density
+> distortion; an independently checked extension retains the extra PDE
+> residual of an arbitrary finite denoiser. Oracle identities, normalized
+> reaction, finite-horizon initialization and actual-head semantics remain
+> distinct. See the [path-bias reading](RAEV2_GUIDANCE_READING_DPS_REACTION_20260906_ZH.md).
+> No new training or sampling arm follows from these readings alone.
+
+> **Encoder-derived raw-token support bound is inactive on cached queries —
+> 2026-09-06.** The K7 encoder yields the deterministic ideal bound
+> ||a_j||<=64 per raw token. Across all 184320 frozen teacher/rollout
+> Full/Base/native-IG token predictions, the largest norm is 46.65022205;
+> none violate the bound. This is not a new quality result and supplies no
+> active correction on those queries. No radius, gain or sampling run follows.
+> See the [CPU support check](RAEV2_RAW_TOKEN_SUPPORT_BOUND_20260906_ZH.md).
+
+> **Two spatial energy balls: frozen paired 1K completed, negative —
+> 2026-09-06.** Official100/global100/spatial100 FID is
+> 38.1598808139 / 38.1611443514 / 38.3169688602. The candidate worsens official100
+> by 0.411658% and the same-reference global control by 0.408333%; this finite
+> implementation ends without radius, band-count, gain, window or seed searches.
+> Fourteen CPU checks and a 16-image native endpoint/pixel parity passed before
+> sampling; an independent audit verified all 100 steps on the full N=1000
+> cohort. Measured trajectory time selected K=100 under the frozen rule before
+> any FID was computed. Different same-model GPUs limit timing interpretation,
+> and historical reference acquisition cost remains unclosed. Neither a
+> full-cost success nor the 5% goal is established. See the
+> [complete results](RAEV2_SPATIAL_ENERGY_BALLS_RESULTS_20260906_ZH.md).
+
+> **Primary reading expanded to 26 papers; geometry and numerical checks —
+> 2026-09-06.** New full-text studies cover CFG++ (including its ICLR flow
+> appendix), ADG, PTQD, Q-Diffusion and Covariance Mismatch. The flow CFG++
+> formula reduces to a step-dependent coefficient on the existing Euler gap;
+> a new manifold effect cannot be claimed from that rewrite alone. A fixed-head
+> CPU BF16 audit measures mixing error around 1.06–1.07% of the gap norm,
+> primarily from final addition, and does not support catastrophic subtraction
+> as the mechanism. This does not evaluate high-precision model-forward error.
+> In a separate existing 1K real-latent cache, radius CV is 8.835%; nominal
+> dimensionality does not justify a fixed isotropic shell. A Gaussian posterior
+> derivation additionally separates real-sample norm from denoiser-mean norm.
+> These results have not produced a new sampler, training run or FID gain.
+> See the [reading index](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md),
+> [ADG analysis](RAEV2_GUIDANCE_READING_ANGLE_20260906_ZH.md), and
+> [mixing audit](RAEV2_GUIDANCE_MIX_NUMERICS_20260906_ZH.md).
+
+> **Fixed spatial energy analysis identifies cancellation — 2026-09-06.**
+> Across both historical 5K banks, IG total latent energy is close to real,
+> while spatial-DC energy is about 6–7% deficient and its orthogonal complement
+> about 5.7–5.8% excessive. The complete channel residuals reproduce across
+> banks (DC/AC cosine 0.87447/0.99754); source-identity deduplication preserves
+> the result. These are raw second energies, not covariance eigenvalues or a
+> quality guarantee. This supports a fixed two-subspace extension of the old
+> energy-ball projection, with budgets derived from the Gaussian corruption
+> path and no manual guidance schedule. Mathematical review permits one fixed
+> 1K experiment. Native checks subsequently passed and the negative quality
+> result is reported above. See [energy evidence](RAEV2_SPECTRAL_ENERGY_AUDIT_20260906_ZH.md)
+> and [frozen candidate protocol](RAEV2_SPATIAL_ENERGY_BALLS_PROTOCOL_20260906_ZH.md).
+
+> **Primary reading expanded to 21 papers; endpoint response pilot negative —
+> 2026-09-06.** Four further full-text studies (APG, CFG-Zero*, C2FG, Guidance
+> Matters) distinguish projection coordinates, score bounds, coefficient design
+> and evaluation effects. A frozen eight-image full-suffix adjoint intervention
+> completed with no gain search or image selection: the FP32 finite response was
+> 23.5503% of the linear prediction, while native BF16/uint8 response reversed
+> sign at -15.1659%. This implementation does not enter distillation/deployment.
+> Its 3992 backbone forwards and 792 input VJPs were a mechanism audit, with no
+> FID evaluation, training or fair-cost performance claim. See
+> [`RAEV2_ENDPOINT_ADJOINT_RESPONSE_RESULTS_20260906_ZH.md`](RAEV2_ENDPOINT_ADJOINT_RESPONSE_RESULTS_20260906_ZH.md)
+> and the [reading index](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md).
+> A separate CPU cache check at t=1 estimates native IG minus zero-velocity
+> risk as -1.18912893 per coordinate, opposing the checkpoint-specific
+> zero-initialization hypothesis; no zero-step/window search follows. A precise
+> class-mean-risk derivation also shows why positive endpoint reward response
+> alone does not establish a quality improvement. See
+> [`RAEV2_NOISE_ENDPOINT_ZERO_WITNESS_20260906_ZH.md`](RAEV2_NOISE_ENDPOINT_ZERO_WITNESS_20260906_ZH.md)
+> and [`RAEV2_ENDPOINT_ALIGNMENT_QUALITY_GAP_20260906_ZH.md`](RAEV2_ENDPOINT_ALIGNMENT_QUALITY_GAP_20260906_ZH.md).
+
+> **Paired 5K scale audit complete; frozen candidate retired — 2026-09-06.**
+> Official100/potential100/official105 FID is 6.9748978477 / 6.9746474293 /
+> 6.9604170334. The candidate improves official100 by only 0.00359028% and
+> worsens official105 by 0.20444746%; official105 uses 0.34737% more measured
+> trajectory time than the candidate. All three paired arms completed, including
+> a verified continuation that reused the first two arms without resampling.
+> This finite candidate's quality line ends without another seed, 50K or larger
+> training. This is not an equivalence claim across all sample sizes. A primary-paper reading and
+> fixed historical features show IG gains of 8.4659% / 5.0949% at 5K while all
+> ten balanced 1K folds fall below 5%. The previous mandatory 1K ≥5% gate was
+> too strong; correcting it remains justified despite this negative result.
+> Preparation remains 660.5193496611901 seconds plus an unclosed nonnegative
+> remainder, so complete total-cost matching and the goal remain unverified. See
+> [`RAEV2_OBSERVABLE_POTENTIAL_SCALE_RESULTS_20260906_ZH.md`](RAEV2_OBSERVABLE_POTENTIAL_SCALE_RESULTS_20260906_ZH.md)
+> and [`RAEV2_FID_FINITE_SAMPLE_READING_20260906_ZH.md`](RAEV2_FID_FINITE_SAMPLE_READING_20260906_ZH.md).
+
+> **Omitted-potential witnesses complete; broaden primary-paper reading —
+> 2026-09-06.** All 100 times × 1K validation images have been evaluated for two
+> fixed gradient tests outside the frozen potential's rank128 input rowspace.
+> The radial witness is about 4.85 descriptive SEMs from zero, but the two-test
+> same-bank variational plug-in is only 0.4002% of the old achieved proxy gain.
+> This is not an upper bound on the complete omitted error, a causal explanation
+> of the failed FID screen, or grounds to launch a width/time-weight sweep.
+> All 100K old residual MSE values match bitwise; independent CPU aggregation
+> agrees within 3.55e-15. No new training or FID follows from this diagnostic.
+> At the user's request, reading now extends beyond fixed-point/PFR to strong/
+> weak error compatibility, actual guided distributions, flow couplings and
+> learned guidance. Eleven primary papers have been read with their core
+> derivations, experiments and specified appendices. Sobolev Descent additionally
+> motivates actual-state Jacobian-Gram feedback with explicit moving-target
+> moment balance, under stated ideal conditions; no new candidate is trained.
+> A concrete issue is that correcting X-G can also remove
+> the existing guidance bias; better bridge MSE alone is not the quality goal.
+> See [`RAEV2_POTENTIAL_OMITTED_WITNESS_20260906_ZH.md`](RAEV2_POTENTIAL_OMITTED_WITNESS_20260906_ZH.md),
+> [`RAEV2_GUIDANCE_READING_STRONG_WEAK_20260906_ZH.md`](RAEV2_GUIDANCE_READING_STRONG_WEAK_20260906_ZH.md)
+> and the complete reading index
+> [`RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md`](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md).
+
+> **Extremal curvature and distribution structure — 2026-09-06.** A completed
+> FP32 JVP/VJP Krylov audit detects positive Full symmetric score-proxy Rayleigh
+> directions at all 40 fixed states, while all paired random directions are
+> negative. The earlier three-direction audit did not inspect this subspace.
+> Neither positivity nor the substantial nonsymmetric response identifies a
+> density saddle or an error to suppress. Separately, CPU analysis of both
+> complete historical 5K banks shows within-class variance expansion and
+> between-class contraction together under IG; the changes are not simple
+> homotheties and do not by themselves explain image quality. Four-cell
+> predicted-clean features also show a large change in the current head's image
+> feature response across Full/IG histories, with no new causal suffix or FID
+> result. Full protocols, numerical checks and costs are archived in
+> [`RAEV2_EXTREMAL_CURVATURE_AUDIT_20260906_ZH.md`](RAEV2_EXTREMAL_CURVATURE_AUDIT_20260906_ZH.md),
+> [`RAEV2_CLASS_MOMENT_AUDIT_20260906_ZH.md`](RAEV2_CLASS_MOMENT_AUDIT_20260906_ZH.md)
+> and [`RAEV2_PREDICTED_CLEAN_INTERACTION_AUDIT_20260906_ZH.md`](RAEV2_PREDICTED_CLEAN_INTERACTION_AUDIT_20260906_ZH.md).
+
+> **Observable-error finite solver: paired 1K screen failed — 2026-09-06.** A
+> density-weighted continuity correction derives a potential-gradient guidance
+> field as the unique minimum-energy correction, without treating finite F/B
+> heads as exact scores. A known Gaussian test verifies the weighted projection,
+> distinguishes it from ordinary Jacobian symmetrization, and preserves the
+> continuous/discrete boundary. This is residual flow matching in a gradient
+> field space. A fixed 608,000-parameter scalar solver has passed nine CPU tests
+> and a real RAEv2 GPU derivative/parity pilot. Its one fixed 2,048-update fit
+> on 5K real images is complete. Disjoint 1K fit-heldout validation across all
+> 100 times reduces weighted bridge coupling MSE by 1.0968%, while retaining
+> a nonzero weak residual and negative mean gains at the first 17 query times.
+> The complete 100-step B8 benchmark adds 4.783% sampling time. Paired 1K FID
+> is 37.5627037 for official100 and 37.5316644 for the fixed potential: only
+> about 0.083% relative reduction. The original operational 1K gate failed,
+> and no later stages ran in that initial screen. That gate was subsequently
+> corrected: the frozen candidate and official100/105 completed a paired 5K
+> scale audit, reported above, and the candidate is now retired on that evidence.
+> Full preparation-cost matching and independent confirmation did not run.
+> The goal remains unmet. See
+> [`RAEV2_OBSERVABLE_ERROR_GUIDANCE_20260906_ZH.md`](RAEV2_OBSERVABLE_ERROR_GUIDANCE_20260906_ZH.md).
+
+> **Decoded class moments — 2026-09-06.** CPU analysis of both complete
+> historical 5K banks separates Inception within-class and noise-corrected
+> between-class traces. Under IG, decoded within-class trace decreases and
+> between-class trace increases; both move toward original-image values in
+> all six bank/split summaries. Raw-latent changes have the opposite signs.
+> The positive decoded pooled-trace increment comes from the between-class
+> term, but within-class contraction also repairs Full's excess variance.
+> Reconstruction references give the same direction; the reversal alone does
+> not identify decoder nonlinearity, a causal guidance direction, or FID gains.
+> No new model calls or sampling were performed. See
+> [`RAEV2_DECODED_CLASS_MOMENT_AUDIT_20260906_ZH.md`](RAEV2_DECODED_CLASS_MOMENT_AUDIT_20260906_ZH.md).
+
+> **Mechanism admission clarified — 2026-09-06.** A learnable controller and a
+> terminal distribution loss do not alone meet the mechanism-to-design goal.
+> The proposed 2049-parameter affine F/B token gate has not derived its structure
+> or useful control direction from a concrete error mechanism. Its module passes
+> ten CPU tests, but the eight-image full-rollout GPU gradient audit has not run;
+> that audit, training and FID sampling are now on hold. Auxiliary training is
+> allowed in principle, with disclosed costs; the issue is the missing derivation.
+> See [`RAEV2_DISTRIBUTIONAL_GATE_GUIDANCE_20260906_ZH.md`](RAEV2_DISTRIBUTIONAL_GATE_GUIDANCE_20260906_ZH.md).
+
+> **Decoder finite-displacement audit — 2026-09-06.** FP32 decoder JVPs on two
+> historical 1K endpoint subsets confirm a large nonlinear remainder, about
+> 1.24–1.25 times the Full-to-IG pixel-change norm on average, opposing the linear
+> component. This does not identify that remainder as an error to remove.
+> A follow-up CPU check over both complete historical 5K banks does not reproduce
+> the heldout block-mean improvement across seeds; all four class-aggregated
+> projection intervals cross zero. Expansion of this specific block-mean JVP
+> attribution is stopped. These are retrospective diagnostics, not new guidance,
+> independent confirmation or FID results. See
+> [`RAEV2_DECODER_LINEARIZATION_AUDIT_20260906_ZH.md`](RAEV2_DECODER_LINEARIZATION_AUDIT_20260906_ZH.md).
+
+> **Depth/readout and density-decontamination checks — 2026-09-06.** The genuine
+> depth-by-readout crossing completed with bitwise native parity. Crossed heads
+> produce interactions roughly 13–31 times the original gap at time-mean level;
+> the large opposing decomposition terms do not justify a shared-readout weak
+> model. A separate FBG/SuperDiff-inspired linear-decontamination calculation
+> passes exact-mixture CPU identities and refinement checks, but its RAEv2
+> prerequisite audit fails: two independent trace estimates agree on 82
+> negative posterior-covariance margins across all eight trajectories.
+> This does not isolate model inconsistency from ratio-estimation error, and
+> neither test is an FID result. Neither candidate proceeds to 1K, and no
+> gain normalization, density temperature, bias, or clipping rescue is planned.
+> Full formulas, numerical qualifications and costs are in
+> [`RAEV2_DEPTH_READOUT_AUDIT_20260906_ZH.md`](RAEV2_DEPTH_READOUT_AUDIT_20260906_ZH.md)
+> and [`RAEV2_DENSITY_DECONTAMINATION_AUDIT_20260906_ZH.md`](RAEV2_DENSITY_DECONTAMINATION_AUDIT_20260906_ZH.md).
+
+> **Normal-noise and curvature measurements — 2026-09-06.** Both frozen-state
+> diagnostics completed without a sampling intervention or FID evaluation.
+> Across 32 classes and all 100 steps, the normal component accounts for only
+> about `8e-6` of the rollout full/base-gap energy. The separate FP32 derivative
+> audit contains 480 rows from eight classes, ten times and two state domains;
+> none of its three measured directions has positive score-curvature proxy.
+> These measurements do not support launching simple normal projection,
+> reflection averaging, or positive-curvature suppression as a quality method.
+> They do not establish a negative-definite full Hessian or a failed FID result.
+> The 5% target remains unmet. See
+> [`RAEV2_NORMAL_CURVATURE_AUDIT_20260906_ZH.md`](RAEV2_NORMAL_CURVATURE_AUDIT_20260906_ZH.md).
+
+> **RAEv2 guidance objective revised — 2026-09-06.** The user has reopened
+> guidance research with an explicit restriction: do not bind the method to
+> NeurIPS-2025 fixed points or PFR, and do not seek gains through extensive
+> manual tuning or hand-designed extrapolation schedules/windows. A candidate
+> needs a provable, testable mechanism linked to model error or distribution
+> quality; consistency/orthogonality alone is insufficient. The improvement
+> must be reached by a guidance intervention inside the denoising trajectory.
+> Post-generation rejection/ranking or generating extra complete images to
+> choose from is outside the intended method scope, as clarified by the user.
+> A generic reweighting KL identity does not explain the RAEv2 guidance mechanism.
+> The initial target
+> is roughly 5% paired FID-1K reduction under the frozen official RAEv2
+> protocol, followed by independent confirmation. The newly started manually
+> configured semantic/routing screens were stopped without evaluation after
+> this clarification. See
+> [`RAEV2_GUIDANCE_RESTART_20260906_ZH.md`](RAEV2_GUIDANCE_RESTART_20260906_ZH.md)
+> for the current constraints and the explicitly superseded initial plan.
+
+> **First constrained RAEv2 screens — 2026-09-06.** The diagonal finite-sample
+> calibration failed its heldout mechanism audit. Two radial designs without
+> tuned guidance strengths passed their mathematical checks but failed FID-1K:
+> official `38.3977875`, global proximal `38.4083633`, actual-cohort energy
+> ball `38.4086042`. Noise, labels, official model/decoder and evaluator were
+> matched. The 5% goal remains unmet; no coefficient/window rescue is planned.
+> Posterior acceptance was a scope error: its four GPU jobs were stopped at the
+> user's correction, after 832 proposals and before a complete paired cohort or
+> any FID. Its conditional KL certificate is retained only as an archived
+> mathematical result; the method is retired and will not be rescued or evaluated.
+
 > **RAEv2 guidance theory archive closed — 2026-09-05.** The SiT PFR/OU
 > certificate remains a strong within-model result, but it did not transfer to
 > RAEv2 at formal 5K.  The follow-up RAEv2 mechanisms are now fully archived:

@@ -1,0 +1,41 @@
+{
+  "request": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity_jobs.json",
+  "request_sha256": "0ca79865a2f6f61915559076edb11573131d815097f71282dfa060a29d49b435",
+  "started_utc": "2026-09-06T08:52:14.655348+00:00",
+  "driver_pid": 3489983,
+  "complete": true,
+  "jobs": [
+    {
+      "name": "parity16",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+        "--mode",
+        "parity",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16",
+        "--num-steps",
+        "100",
+        "--num-samples",
+        "16",
+        "--seed",
+        "202609121"
+      ],
+      "env_overrides": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      },
+      "pid": 3489984,
+      "started_utc": "2026-09-06T08:52:14.656906+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver_logs/parity16.log",
+      "exit_code": 0,
+      "finished_utc": "2026-09-06T08:53:05.712270+00:00",
+      "outer_wall_seconds": 51.05673461104743
+    }
+  ],
+  "finished_utc": "2026-09-06T08:53:05.713190+00:00",
+  "driver_wall_seconds": 51.057848752941936
+}

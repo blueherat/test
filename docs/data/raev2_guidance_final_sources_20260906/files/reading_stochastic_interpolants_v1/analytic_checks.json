@@ -1,0 +1,46 @@
+{
+  "kind": "analytic deterministic scalar calculations, not an RAE experiment",
+  "gaussian_excess_risk_constant": {
+    "times": [
+      0.0,
+      0.1,
+      0.5,
+      0.9,
+      1.0
+    ],
+    "target_variances": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "epsilon": 1,
+    "exact_b": 0,
+    "exact_score": "-x",
+    "learned_b": 1,
+    "learned_score": "-x+1",
+    "learned_forward_SDE": "dX=(-X+2)dt+sqrt(2)dW, X0~N(0,1)",
+    "terminal_mean": 1.2642411176571153,
+    "terminal_variance": 1,
+    "KL_target_to_learned": 0.7991528017874561,
+    "delta_Lb": 0.5,
+    "delta_Ls": 0.5,
+    "paper_equation_2_45_RHS": 0.5,
+    "corrected_RHS_and_Lemma22_bound": 1.0,
+    "printed_bound_violated": true
+  },
+  "nonsymmetric_reverse_epsilon": {
+    "epsilon_original": "1+t",
+    "epsilon_reversed": "2-u",
+    "initial_variance_derivative_correct": 0,
+    "initial_variance_derivative_using_paper_2_35_noise_argument": -2
+  },
+  "calls": {
+    "GPU": 0,
+    "model_forward": 0,
+    "training": 0,
+    "samples_generated": 0
+  },
+  "compute_wall_seconds_excluding_imports_and_write": 1.5598954632878304e-05
+}

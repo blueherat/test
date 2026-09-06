@@ -1,0 +1,29 @@
+{
+  "prompt": "A zebra in the grass who is cleaning himself.",
+  "seed": 20300020,
+  "model": "runwayml/stable-diffusion-v1-5",
+  "sampler": "deterministic DDIM",
+  "guidance_scale": 12.0,
+  "num_steps": 12,
+  "schemes": {
+    "cfg": {
+      "file": "zebra-cfg.webp",
+      "sha256": "7a9d4878e83fe0b99b2cb051db08b4f198b61f995e8456caae09e1fe85ae3cc2",
+      "near_clipped_rgb": 0.06466802209615707,
+      "clip_score": 0.33568131923675537
+    },
+    "fitted": {
+      "file": "zebra-fitted.webp",
+      "sha256": "af562fdf107c9a2e6a5ac2b946aa94d7e80a12182eb723c4f41a326ac59d16e8",
+      "near_clipped_rgb": 0.00011571248614927754,
+      "clip_score": 0.3386058807373047
+    },
+    "interval": {
+      "file": "zebra-interval.webp",
+      "sha256": "8617fe0ed166bde39fa0b0c6d6f3f67588a5f78f9abd5d79a17795e032b76f65",
+      "near_clipped_rgb": 0.0,
+      "clip_score": 0.2750099003314972
+    }
+  },
+  "scope": "Fixed matched-seed illustration from the audited portfolio bundle; not a benchmark endpoint."
+}

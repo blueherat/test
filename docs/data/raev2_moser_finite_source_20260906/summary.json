@@ -1,0 +1,98 @@
+{
+  "complete": true,
+  "created_utc": "2026-09-06T16:55:37.413310+00:00",
+  "request": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/moser_finite_source_v1/request.json",
+    "size_bytes": 777,
+    "sha256": "b2a44930924825f01c034b068720c9148744ae015c53bf657abfbe15af0d4736"
+  },
+  "exact_moser": {
+    "rhs_calls": 89,
+    "min_path_density": 0.07957747154594767,
+    "cdf_invariant_max_error": 2.2967272528262583e-10,
+    "endpoint_fourier_moments": [
+      0.24999999999976222,
+      2.6971064270853162e-12
+    ],
+    "target_fourier_moments": [
+      0.25,
+      0.0
+    ]
+  },
+  "finite_galerkin": {
+    "rhs_calls": 62,
+    "gradient_grams": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "finite_source": 0.25,
+    "coefficients": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "endpoint_fourier_moments": [
+      0.24491866240409466,
+      0.059985151192852526
+    ],
+    "analytic_endpoint_moments": [
+      0.24491866240370913,
+      0.05998515119362204
+    ],
+    "discrepancy": [
+      -0.005081337595905344,
+      0.059985151192852526
+    ],
+    "mechanism": "Zero residual in one projected feature on prescribed rho does not ensure actual rho follows that path."
+  },
+  "empirical_objective": {
+    "rows": [
+      {
+        "k": 0,
+        "exact_gradient_gram": 0.0,
+        "source": -2.0,
+        "objective": 0.0
+      },
+      {
+        "k": -1,
+        "exact_gradient_gram": 0.0,
+        "source": -2.0,
+        "objective": -2.0
+      },
+      {
+        "k": -10,
+        "exact_gradient_gram": 0.0,
+        "source": -2.0,
+        "objective": -20.0
+      },
+      {
+        "k": -100,
+        "exact_gradient_gram": 0.0,
+        "source": -2.0,
+        "objective": -200.0
+      }
+    ],
+    "analytic_loss_unbounded_below": true,
+    "fp64_sine_pi_squared": 1.4997597826618576e-32,
+    "mechanism": "Finite empirical gradient Gram may have nullspace carrying nonzero source."
+  },
+  "outputs": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/moser_finite_source_v1/trajectories.npz",
+      "size_bytes": 91152,
+      "sha256": "54d1738f3d24cd9071e0afda80befec0790f7f2759dff13fa05d275e9234e051"
+    }
+  ],
+  "new_gpu_calls": 0,
+  "model_calls": 0,
+  "trained_parameters": 0,
+  "raev2_fid_measured": false,
+  "conclusion": "Exact target-compatible flow succeeds in analytic positive-density case; finite sample-only implementation lacks inherited guarantee. No RAEv2 training authorized by this check.",
+  "wall_seconds": 0.008690807037055492,
+  "cpu_seconds": 0.008689174999999993
+}

@@ -1,0 +1,427 @@
+{
+  "protocol": "raev2_fixed_teacher_query_mean_error_compatibility_v1",
+  "created_utc": "2026-09-06T10:29:44.066716+00:00",
+  "protocol_document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_QUERY_MEAN_ERROR_COMPATIBILITY_PROTOCOL_20260906_ZH.md",
+    "sha256": "52930f8843d66e2306162f8214c76e91e67c072b440a1694e4220dd85037d52d",
+    "bytes": 5115
+  },
+  "source_request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_query_mean_v2/request.json",
+    "sha256": "d7ac7fb4a2bfdcda86244e474ac26e46d406d0073c3dd42e7b0229c606af2c17",
+    "bytes": 12721
+  },
+  "source_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_query_mean_v2/summary.json",
+    "sha256": "530d6eb9cb843da9dc6191430b3bc9a97034438e3d1fc7f14629280ae1f9bd07",
+    "bytes": 4362
+  },
+  "source_outputs": {
+    "F_minus_W.npy": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_query_mean_v2/F_minus_W.npy",
+      "sha256": "5ed69e2ec4c778637a65d9afc2190f18e9307aa55aae4b9ee5ac657f87973517",
+      "bytes": 167772288
+    },
+    "F_minus_B.npy": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_query_mean_v2/F_minus_B.npy",
+      "sha256": "47c357f00387afc1143e187c98acb31e99046371caca0bd5af7bed133c62ba5d",
+      "bytes": 167772288
+    },
+    "per_image_directions.csv": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_query_mean_v2/per_image_directions.csv",
+      "sha256": "7344c2b3ea2f612850c256cf7a288bbfe47c6ee02aacc6b425bd51e905c13a46",
+      "bytes": 50932
+    }
+  },
+  "config": {
+    "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+    "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "bytes": 1772
+  },
+  "checkpoint": {
+    "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+    "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "bytes": 10520885445
+  },
+  "state_source_request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/request.json",
+    "sha256": "74bc7d4a88c3ac49d5aa0c2d18f58d47bc3ebeab44b89421e0b3f3f1d64b9c8b",
+    "bytes": 379306
+  },
+  "state_source_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/summary.json",
+    "sha256": "a37378114a88a94f87ad6905ad9e6766bcc420d1bfaf4412d1059809c2d26fdd",
+    "bytes": 3566
+  },
+  "sources": {
+    "experiments/audit_raev2_query_mean_error_compatibility.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/experiments/audit_raev2_query_mean_error_compatibility.py",
+      "sha256": "95d7e67addf2e3c1c189b56a5c4fd91bddd5486a940379aacf6cc162c65bf47e",
+      "bytes": 30697
+    },
+    "experiments/audit_raev2_decoder_query_mean.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/experiments/audit_raev2_decoder_query_mean.py",
+      "sha256": "2f6313482f0752a5b8c5fb1e6bd0f24d852156f3007ab4e7c071b92472cc8296",
+      "bytes": 35254
+    },
+    "tests/test_raev2_decoder_query_mean.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/tests/test_raev2_decoder_query_mean.py",
+      "sha256": "0f63c7c61ba8f929e476cf907b2f72c5931c847fcb668fa49a17fb9ee8ac47d2",
+      "bytes": 10370
+    },
+    "experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "bytes": 35236
+    },
+    "experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "bytes": 21794
+    },
+    "external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "bytes": 10586
+    },
+    "external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "bytes": 6552
+    },
+    "external/RAEv2/src/utils/model_utils.py": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/sources/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "bytes": 1318
+    }
+  },
+  "snapshots": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_000.pt",
+      "sha256": "ad42411e58f242d32eccdf8dc17b377182377d7dfe80b13f1a8df137a7ee316e",
+      "bytes": 50335365,
+      "step_index": 0,
+      "t": 1.0
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_047.pt",
+      "sha256": "4f5d3af2e14f8bb6ee133c1600daf2071993d2418775cd1d39a87b9f433127bc",
+      "bytes": 50335365,
+      "step_index": 47,
+      "t": 0.9002123475074768
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_067.pt",
+      "sha256": "9275470bee539bfea7fef4234ed02d636e249cfe9b326dc9e98b97b140b3f833",
+      "bytes": 50335365,
+      "step_index": 67,
+      "t": 0.7975830435752869
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_077.pt",
+      "sha256": "1be2f16a12e6288811952efcc74378f631b4c70e47f2860b0c259e2bce9ac842",
+      "bytes": 50335365,
+      "step_index": 77,
+      "t": 0.7049808502197266
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_084.pt",
+      "sha256": "4e170072309886c1529e7e00a8530b20a5bf22ee2cf3716e45b5ae6a0686f3e8",
+      "bytes": 50335365,
+      "step_index": 84,
+      "t": 0.6037735939025879
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_089.pt",
+      "sha256": "a8a8725d9550ca3e571e1692df48cdf9eed12360baacea649c06b4e299f30c39",
+      "bytes": 50335365,
+      "step_index": 89,
+      "t": 0.4971751570701599
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_092.pt",
+      "sha256": "13339e4232d07102ae170f7426c0a21bccaceb50960b2bdac7f92318b19eba6c",
+      "bytes": 50335365,
+      "step_index": 92,
+      "t": 0.41025641560554504
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_095.pt",
+      "sha256": "376233289b46422074a74a51e9427507318d0b004bd0c073fd8eb4f398c164e9",
+      "bytes": 50335365,
+      "step_index": 95,
+      "t": 0.29629629850387573
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_097.pt",
+      "sha256": "e5d3ec263c7b6ccb001409c8af3c3b6fa077fe40279999ec7921c0b198b9e81c",
+      "bytes": 50335365,
+      "step_index": 97,
+      "t": 0.1983470916748047
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/normal_noise_audit_seed202609071/states/step_099.pt",
+      "sha256": "ba548387340e93a4677743d25bdd2ba56d44487f2efe5ba3e03cfc9bd824aa95",
+      "bytes": 50335365,
+      "step_index": 99,
+      "t": 0.07476635277271271
+    }
+  ],
+  "clean_bank": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/heldout_clean_c_current_fp32/clean_rank00.npz",
+    "sha256": "12cbd7b433a2141f6f39e8ca2485dbf3fff8a51e492308046f307c8833d43c78",
+    "bytes": 483136491
+  },
+  "paired_clean": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/paired_X_fp16.npy",
+    "sha256": "274526915ddf5c19efcef7bfa444204ce4feac442dea77d550c879da67544f3e",
+    "bytes": 4194432
+  },
+  "paired_clean_identity": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/paired_clean_identity.json",
+    "sha256": "b0409220ec1f9567d86f5777e0b6b8ee891a231b11d127a893ba7491b4417cb0",
+    "bytes": 429
+  },
+  "bridge_identity_prepare": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/query_mean_error_compatibility_v1/bridge_identity_prepare.json",
+    "sha256": "3eb426f3c6e6e224b79ec0e65e8d66eb8cfe855bc3d98cd74380e85cbfeadf69",
+    "bytes": 3457
+  },
+  "sample_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "labels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "source_rows": [
+    985579,
+    801642,
+    769290,
+    1066283,
+    356051,
+    843767,
+    756795,
+    67027
+  ],
+  "bank_array_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "source_teacher_vector_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151
+  ],
+  "domain": "teacher",
+  "batches": 10,
+  "rows": 80,
+  "unique_ids": 8,
+  "latent_shape": [
+    1024,
+    16,
+    16
+  ],
+  "coordinate_normalizer": 262144,
+  "output_heads": {
+    "F.npy": [
+      80,
+      1024,
+      16,
+      16
+    ],
+    "B.npy": [
+      80,
+      1024,
+      16,
+      16
+    ],
+    "W.npy": [
+      80,
+      1024,
+      16,
+      16
+    ]
+  },
+  "output_head_dtype": "float32",
+  "output_order": "snapshot ascending original step, IDs0..7; teacher only",
+  "precision": "FP32 weights/states; native BF16 CUDA autocast; TF32 off; helper capture=False; stored FP32 heads; main risk/C/Q promote all heads and paired FP16 X to FP64 before subtraction",
+  "parity_arithmetic": "CPU FP32 F-W/F-B exactly as v2; both arrays must be bitwise equal to all 80 corresponding teacher rows; individual head norms checked against v2",
+  "main_delta_arithmetic": "FP64 subtraction after promoting saved F/B/W; separately record FP32-difference roundoff, never alter direction",
+  "native_parity_scope": "No new independent model.forward; v2 native Full/Base parity is prior evidence. Current audit checks both difference arrays and individual head norms, not individual old head tensor equality.",
+  "norm_tolerance": {
+    "absolute": 1e-10,
+    "relative": 1e-12
+  },
+  "bridge_bound_float32_eps_multiplier": 8.0,
+  "risk_identity_tolerance": {
+    "absolute": 1e-12,
+    "relative_to_difference_plus_2C_plus_Q": 1e-11
+  },
+  "zero_Q_rule": "If FP64 Q=0 retain row, require C=0, oracle C/Q is null. No filtering.",
+  "oracle_scope": "C/Q is descriptive only, unconstrained; no deployment coefficient, fitted curve, window or sampling",
+  "aggregation": "8 images per original time: coordinate-mean R/C/Q mean/min/max; any all80 summary is equal-time descriptive, not trajectory/training weighting",
+  "expected_module_events_per_batch": {
+    "shared_encoder": {
+      "s_embedder": 1,
+      "encoder_block_00": 1,
+      "encoder_block_01": 1,
+      "encoder_block_02": 1,
+      "encoder_block_03": 1,
+      "encoder_block_04": 1,
+      "encoder_block_05": 1,
+      "encoder_block_06": 1,
+      "encoder_block_07": 1,
+      "encoder_block_08": 1,
+      "encoder_block_09": 1,
+      "encoder_block_10": 1,
+      "encoder_block_11": 1,
+      "encoder_block_12": 1,
+      "encoder_block_13": 1,
+      "encoder_block_14": 1,
+      "encoder_block_15": 1,
+      "encoder_block_16": 1,
+      "encoder_block_17": 1,
+      "encoder_block_18": 1,
+      "encoder_block_19": 1,
+      "encoder_block_20": 1,
+      "encoder_block_21": 1,
+      "encoder_block_22": 1,
+      "encoder_block_23": 1,
+      "encoder_block_24": 1,
+      "encoder_block_25": 1,
+      "encoder_block_26": 1,
+      "encoder_block_27": 1
+    },
+    "full_decoder_and_readout": {
+      "decoder_28_q": 1,
+      "decoder_28_mlp": 1,
+      "decoder_29_q": 1,
+      "decoder_29_mlp": 1,
+      "full_readout": 1
+    },
+    "base_readout": {
+      "base_readout": 1
+    },
+    "weak_decoder_and_readout": {
+      "decoder_28_q": 1,
+      "decoder_28_mlp": 1,
+      "decoder_29_q": 1,
+      "decoder_29_mlp": 1,
+      "full_readout": 1
+    }
+  },
+  "expected_forward_counts": {
+    "shared_encoder_passes": 10,
+    "native_model_forward_calls": 0,
+    "encoder_block_calls": 280,
+    "explicit_full_decoder_block_calls": 20,
+    "weak_decoder_block_calls": 20,
+    "native_reference_decoder_block_calls": 0,
+    "full_final_readout_calls_including_weak_and_reference": 20,
+    "base_readout_calls_including_reference": 10
+  },
+  "data_boundary": "Already inspected historical states. Only8 related source IDs/classes, one original epsilon each; no population sign proof, covariance-compatibility proof or FID inference.",
+  "no_new_noise": true,
+  "no_rollout_witness": true,
+  "no_sampling": true,
+  "no_decoder_images": true,
+  "no_fid": true,
+  "torch_version": "2.11.0+cu130"
+}

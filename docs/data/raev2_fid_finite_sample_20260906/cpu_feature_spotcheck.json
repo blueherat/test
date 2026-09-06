@@ -1,0 +1,93 @@
+{
+  "gpu_used": false,
+  "torch": "2.11.0+cu130",
+  "torch_fidelity": "0.4.0",
+  "rows": [
+    {
+      "seed": 20260801,
+      "condition": "source",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.00276947021484375,
+      "feature_rmse": 0.00036183398333378136
+    },
+    {
+      "seed": 20260801,
+      "condition": "real",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.0026521682739257812,
+      "feature_rmse": 0.00034659990342333913
+    },
+    {
+      "seed": 20260801,
+      "condition": "scale_s1p000000",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.0025830864906311035,
+      "feature_rmse": 0.00034471298567950726
+    },
+    {
+      "seed": 20260801,
+      "condition": "scale_s1p780000",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.002122223377227783,
+      "feature_rmse": 0.00033030001213774085
+    },
+    {
+      "seed": 20260802,
+      "condition": "source",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.002737283706665039,
+      "feature_rmse": 0.0004835312138311565
+    },
+    {
+      "seed": 20260802,
+      "condition": "real",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.0038442611694335938,
+      "feature_rmse": 0.0005562358419410884
+    },
+    {
+      "seed": 20260802,
+      "condition": "scale_s1p000000",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.003914833068847656,
+      "feature_rmse": 0.0006072898395359516
+    },
+    {
+      "seed": 20260802,
+      "condition": "scale_s1p780000",
+      "global_ids": [
+        0,
+        4
+      ],
+      "max_abs_feature_diff": 0.004395961761474609,
+      "feature_rmse": 0.0006089924718253314
+    }
+  ],
+  "current_weight_path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+  "current_weight_sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+  "historical_weights_hash_archived": false,
+  "historical_source_code_enables_tf32_matmul_and_cudnn": true,
+  "note": "This is a numerical lineage spot-check, not a bitwise identity certificate. Historical decoded images are stored in float16; CPU extraction also differs from historical CUDA TF32 execution.",
+  "elapsed_cpu_wall_seconds": 1.5468386521097273
+}

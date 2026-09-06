@@ -1,0 +1,99 @@
+{
+  "complete": true,
+  "round": 2,
+  "created_utc": "2026-09-06T15:45:26.958400+00:00",
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/request.json",
+    "sha256": "f5cfbf698d6df7027e237b17ca0ad6cad8ee151ae4c711c574994919f7c5c364",
+    "bytes": 2543
+  },
+  "scope": "CPU-only mechanism decision on preexisting teacher data; not FID, not a new sampler and not completion of the 5% quality goal.",
+  "rows": 10000,
+  "time_points": 100,
+  "records_per_time": 100,
+  "unique_sources": 1000,
+  "unique_labels": 1000,
+  "checks": {
+    "moment_schema_shapes_dtypes_finite": true,
+    "counts_csv_match": true,
+    "four_target_energies_exact_equal": true,
+    "native_beta_fp32_formula_exact_match": true,
+    "stored_scalars_exact_fp32_roundtrip": true,
+    "source_and_producer_request_identities": true,
+    "source_sha_unchanged_through_finish": true
+  },
+  "equal_time_means": {
+    "d2_W2_minus_Y2": 3.0787915066582554e-05,
+    "e2_R2_reconstructed": 0.0003369613020098069,
+    "cross_twice_d2_minus_e2": -0.0003061733869432243,
+    "channel_spatial_mean_residual_squared_mean": 1.8022721635233325e-06,
+    "Y_second_moment": 0.7800994902622768,
+    "W_second_moment": 0.7801302781773434
+  },
+  "exact_sign_counts_no_tolerance_or_selection": {
+    "d2_W2_minus_Y2": {
+      "negative": 63,
+      "zero": 0,
+      "positive": 37
+    },
+    "e2_R2_reconstructed": {
+      "negative": 0,
+      "zero": 0,
+      "positive": 100
+    },
+    "cross_twice_d2_minus_e2": {
+      "negative": 79,
+      "zero": 0,
+      "positive": 21
+    }
+  },
+  "all_102400_channel_d2_signs": {
+    "negative": 60531,
+    "zero": 0,
+    "positive": 41869
+  },
+  "rounding_boundary": {
+    "formula": "per row: FP64(beta)*FP64(beta)*stored_FP32_target_energy; then equal record mean",
+    "producer": "R=FP32(W-Y), target=FP32(R/beta), target_energy=FP32 mean(target^2). W/Y moments were accumulated from their FP32 states in FP64.",
+    "maximum_abs_difference_if_extra_FP32_unit_conversion_used": 5.391158786755001e-10,
+    "maximum_relative_difference_if_extra_FP32_unit_conversion_used": 1.0802206378552107e-07,
+    "historical_error_bound": "Original R/normalized-target tensors and exact reduction tree were not saved. No certified numerical bound on the prior division/square/reduction or W-Y subtraction error can be recovered here. The comparison above only measures an additional conversion arithmetic choice; it is not such a bound.",
+    "cross_interpretation": "d2-e2 reconstructs 2E[Y.R]/D up to those stored FP32 arithmetic boundaries; it is not a direct dot product of original tensors."
+  },
+  "limitations": [
+    "Fixed heterogeneous class/time cohort; same source/noise reused across ten times. No IID CI, significance test or independence claim.",
+    "No per-channel R^2 stored, therefore no per-channel cross or conditional covariance.",
+    "Near-zero aggregate cross would only pass a necessary condition, not prove m0=0.",
+    "Current validation did not save Full F; symmetric Full-innovation covariance cannot be reconstructed from this R_G cache.",
+    "Exact population moment identities do not alone turn finite-cohort values into population refutations or generated-image quality guarantees."
+  ],
+  "decision": "No new training budget for pressure-only or symmetric innovation. In this fixed cohort, true second-moment change d2 is negative at 63/100 times and d2-e2 is negative at 79/100 times. These full-cohort observations do not certify m0=0 or justify treating all residual energy as missing variance. They are descriptive evidence, not an IID population test. The fixed Gaussian example independently rules out a universal guarantee for the symmetric variant; actual IG missing covariance and a bounded finite Stein class remain unestablished.",
+  "outputs": {
+    "per_time.csv": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/per_time.csv",
+      "sha256": "4e38f6134c48ba0195aea48821673444bbc0bd2ece054b464492f43446acf183",
+      "bytes": 23016
+    },
+    "channel_moments.npz": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/channel_moments.npz",
+      "sha256": "eadd5a80473e22fd7d67bcaba00589381e6c16d6c07cd730b4315e8fe043a499",
+      "bytes": 1362599
+    },
+    "gaussian_counterexample.json": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/pressure_innovation_v1/gaussian_counterexample.json",
+      "sha256": "c846281a9626f49b7f7e1e4f9def17223bebba2e681769d5d8307e847530ca6c",
+      "bytes": 904
+    }
+  },
+  "calls": {
+    "GPU": 0,
+    "main_model": 0,
+    "auxiliary_model": 0,
+    "decoder": 0,
+    "training": 0,
+    "new_samples": 0,
+    "FID": 0
+  },
+  "wall_seconds_before_summary_write": 0.35943595110438764,
+  "cpu_seconds_before_summary_write": 3.464768558
+}

@@ -1,0 +1,178 @@
+{
+  "ptqd_mechanism": {
+    "paper": "ptqd.pdf",
+    "pages_one_based": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "sections": [
+      "4.1",
+      "4.2",
+      "4.3"
+    ],
+    "equations": [
+      6,
+      7,
+      9,
+      11,
+      12,
+      15
+    ],
+    "limitations": [
+      "modeled residual Gaussian",
+      "uncorrelated wrt output not full conditional independence",
+      "negative k clamped",
+      "deterministic sigma=0 has no variance budget"
+    ]
+  },
+  "ptqd_statistics_and_result": {
+    "paper": "ptqd.pdf",
+    "pages_one_based": [
+      8,
+      9
+    ],
+    "sections": [
+      "5.1",
+      "5.3"
+    ],
+    "table": 2,
+    "setting": "250 steps eta1 scale1.5 W4A8",
+    "fid": {
+      "Q-Diffusion": 5.37,
+      "PTQD": 5.11,
+      "FP": 5.05
+    },
+    "statistics_samples": 1024
+  },
+  "ptqd_supp": {
+    "paper": "ptqd_supp.pdf",
+    "pages_one_based": [
+      1,
+      2
+    ],
+    "sections": [
+      "A",
+      "B"
+    ],
+    "focus": "DDIM coefficient and normaltest non-rejection; no claim that independence or BF16 transfer follows"
+  },
+  "ptqd_guided_collection": {
+    "file": "PTQD/ldm/models/diffusion/ddim.py",
+    "lines": [
+      376,
+      393,
+      612,
+      657
+    ]
+  },
+  "ptqd_statistics_actual": {
+    "file": "PTQD/quant_scripts/analyze_error.py",
+    "lines": [
+      9,
+      103
+    ],
+    "findings": [
+      "per-t regression slope with intercept",
+      "raw-error channel mean",
+      "nonnegative slope in residual",
+      "mean of per-sample residual std, not pooled variance"
+    ]
+  },
+  "ptqd_optimization_cost": {
+    "file": "PTQD/quant_scripts/quantize_ldm_brecqA.py",
+    "lines": [
+      109,
+      156
+    ],
+    "weight_iters": 10000,
+    "activation_iters": 5000
+  },
+  "qdiffusion_mechanism": {
+    "paper": "qdiffusion.pdf",
+    "sections": [
+      "3.1",
+      "3.2",
+      "3.3"
+    ],
+    "focus": [
+      "multi-time calibration",
+      "split concatenated shortcut activations/weights"
+    ]
+  },
+  "qdiffusion_cfg_and_precision": {
+    "paper": "qdiffusion_supp.pdf",
+    "pages_one_based": [
+      1,
+      2
+    ],
+    "sections": [
+      "A.1",
+      "A.2",
+      "A.3"
+    ],
+    "cfg_WA_calibration_branch_samples": 12800,
+    "normalization_nonlinear": "full precision",
+    "sd_W4A8_W8A8_attention_scores": "INT16"
+  },
+  "qdiffusion_pairing": {
+    "file": "q-diffusion/qdiff/utils.py",
+    "lines": [
+      325,
+      347
+    ]
+  },
+  "qdiffusion_loss": {
+    "file": "q-diffusion/qdiff/block_recon.py",
+    "lines": [
+      125,
+      151,
+      204,
+      205
+    ],
+    "finding": "blockwise target reconstruction, not a guided-output loss"
+  },
+  "qdiffusion_default_optimization": {
+    "file": "q-diffusion/scripts/txt2img.py",
+    "lines": [
+      265,
+      276
+    ],
+    "weight_iters": 20000,
+    "activation_iters": 5000
+  },
+  "qdiffusion_fake_quant": {
+    "file": "q-diffusion/qdiff/quant_layer.py",
+    "lines": [
+      66,
+      89,
+      216,
+      276
+    ],
+    "finding": "dequantized floating tensor enters ordinary F conv/linear; not INT4 wall-time benchmark"
+  },
+  "local_algebra": {
+    "origin": "Independently derived in note, no experiment",
+    "equations": [
+      "eG=w eF+(1-w)eB+e_mix",
+      "covariance includes cross-branch terms",
+      "normalized additive uncorrelated noise can induce negative gain error",
+      "same-state Euler clean-error coefficient h/max(t,.05)"
+    ],
+    "no_claims": [
+      "not measured BF16 covariance",
+      "no proposed gain schedule or new tuning",
+      "no FID or deployment guarantee"
+    ]
+  },
+  "scope": {
+    "papers_read_count": 2,
+    "third_paper_read": false,
+    "gpu_calls": 0,
+    "model_calls": 0,
+    "experiments_run": 0,
+    "existing_source_changed": false
+  },
+  "web_fetch_note": "CVF main PDF browser open returned an error, but its official URL downloaded successfully through urllib; local PDF and pdftotext archived. No secondary-source technical claims used."
+}

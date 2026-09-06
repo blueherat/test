@@ -1,0 +1,72 @@
+{
+  "complete": true,
+  "inference_cost_match_complete": true,
+  "frozen_before_fid": true,
+  "final_official_steps": 107,
+  "official100": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100/summary.json",
+    "sha256": "ffc3877079eedfba16000643dce7486eb69e09c4c53079ea9897919da6f7b789",
+    "size_bytes": 13826
+  },
+  "candidate100": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100/summary.json",
+    "sha256": "587baeb2d0e474990170294cb6cae59b3bcf162e412d74542f097b647c8f9ccf",
+    "size_bytes": 14071
+  },
+  "control100": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/control100/summary.json",
+    "sha256": "e4e2d6265fbfc8fd6ca76b54a5fb09fa4a484942feb27a2657471921b86cb997",
+    "size_bytes": 14043
+  },
+  "official_cost": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/summary.json",
+    "sha256": "77fd1cb93541b5f3541b5ec5d562209a701f589e84e091e4e4cc412e67de8951",
+    "size_bytes": 13829
+  },
+  "T_W_candidate": [
+    670.7456658084411,
+    701.9334182299208
+  ],
+  "T_W_official_cost": [
+    675.0833416176029,
+    703.6674276809208
+  ],
+  "relative_budget_excess": [
+    0.00646694571471218,
+    0.0024703332338453787
+  ],
+  "stage2_nfe_candidate": 100,
+  "stage2_nfe_baseline": 107,
+  "auxiliary_forwards_per_candidate_sample": 200,
+  "control_did_not_select_cost": true,
+  "official100_reused_for_cost_baseline": false,
+  "same_gpu_uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "timings_are_observed_point_estimates": true,
+  "selection_records": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/cost_selection_00.json",
+      "sha256": "c6a95423d5e8149bdb07ba607d22e73ab09e1883dfa9a6d7335f149834494127",
+      "size_bytes": 938
+    }
+  ],
+  "all_intermediate_official_outputs_retained": true,
+  "additional_costs": {
+    "historical_real_image_encoding_seconds": 113.860739042,
+    "historical_encoded_images": 6000,
+    "pilot_train_validate_rollout_runner_wall_seconds": 741.310023239,
+    "joint_candidate_control_training_seconds_included_above": 490.104689422,
+    "joint_training_not_divided_between_fields": true,
+    "prior_cpu_review_wall_seconds_approx": 13.897838,
+    "parity_summary": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity/summary.json",
+      "sha256": "e95b10bccfecc95a20ea963cc83ef4f1a42d35383b2c4ddac3b55ca61d7b2d6f",
+      "size_bytes": 6596
+    },
+    "current_jobs_and_wall": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_execution.json",
+    "driver_source_verification_seconds_at_cost_freeze": 130.6888274475932,
+    "current_parity_sampling_evaluation_failed_and_intermediate_jobs_are_additional": true
+  },
+  "total_cost_complete": false,
+  "goal_complete": false,
+  "cost_boundary": "K matches inference T/W only. Data selection cost and exact historical training-driver outer wall are unclosed; training, diagnostics, parity, all arms, intermediate baselines, evaluation and driver verification remain additional disclosed costs."
+}

@@ -1,0 +1,25 @@
+{
+  "selected_utc": "2026-09-06T15:37:13.884788+00:00",
+  "selected_steps": 107,
+  "fid_started": false,
+  "candidate": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100/summary.json",
+    "sha256": "587baeb2d0e474990170294cb6cae59b3bcf162e412d74542f097b647c8f9ccf",
+    "size_bytes": 14071
+  },
+  "previous_official": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100/summary.json",
+    "sha256": "ffc3877079eedfba16000643dce7486eb69e09c4c53079ea9897919da6f7b789",
+    "size_bytes": 13826
+  },
+  "candidate_T_W": [
+    670.7456658084411,
+    701.9334182299208
+  ],
+  "previous_official_T_W": [
+    630.883723547915,
+    659.2046888810582
+  ],
+  "reuse_official100": false,
+  "rule": "K>=100; ceil100*initial ratios; then max(K+1,ceilK*ratios), both T and W; no control/FID input"
+}

@@ -1,0 +1,66 @@
+{
+  "complete": true,
+  "finished_utc": "2026-09-06T10:16:59.663119+00:00",
+  "paper_arxiv": "2411.10257",
+  "primary_version": "BMVC 2025 formal paper and supplementary; arXiv v3 2025-08-29 source crosscheck",
+  "author_commit": "68b141675d3705710595b086e86615ebe127c539",
+  "author_commit_utc": "2026-01-05T11:53:45Z",
+  "report": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_READING_SWG_20260906_ZH.md",
+    "relative": null,
+    "bytes": 14909,
+    "sha256": "4f369c5a13d551d621549415890bc01809f845ca1245991e234fdca2abbab757"
+  },
+  "read_scope": {
+    "arxiv_v3": [
+      "Sections 1-6",
+      "Appendix A full experimental settings, WD tables, timing table and crop pseudocode",
+      "Appendix B Gaussian posterior derivation Eq7-23 and Euler algorithm; toy figure captions"
+    ],
+    "formal_bmvc": [
+      "corresponding main mechanism and tables crosschecked",
+      "supplementary Sections 1-2 crosschecked"
+    ],
+    "arxiv_v1": [
+      "title/abstract",
+      "mechanism and WD/SWG methods",
+      "Section5.3 WD/kernel/interval ablations"
+    ],
+    "visual_pages": [
+      "arxiv_v3 p4",
+      "arxiv_v3 p26",
+      "BMVC supplement p3"
+    ],
+    "author_sources": "read_author_sources.json; full toy math/source cells and relevant crop/mask/positional interpolation/optimizer/entrypoint search sections, not every line of the vendored codebase"
+  },
+  "paper_claim_boundaries": [
+    "Gaussian-convolved-data posterior identity is exact for the stipulated error family",
+    "No theorem maps weight decay/crop/query-mean to scaled collinear prediction bias",
+    "Equation4 norm-ratio assumes collinear amplified error; generally optimal scalar includes signed dot product",
+    "Direction compatibility is not identified by Full-Weak versus Full-Base geometry alone",
+    "FDD/IS improvements do not constitute fair-cost FID improvement"
+  ],
+  "static_author_code_boundaries": [
+    "toy oracle numpy norm without axis produces shared batch scalar",
+    "EDM2 combined branches return before overlap mask; cfg-swg additionally passes None labels to positive crops",
+    "DiT standalone crop mixes full output whereas vanilla CFG defaults to first3 epsilon channels and combined crop uses all4 epsilon channels",
+    "README DiT M-SWG w0.5 FID5.97 differs from formal table3.30; no execution or historical cause inferred"
+  ],
+  "published_time_ratios": {
+    "EDM2S_swg_over_cfgdagger": 1.3043478260869565,
+    "DiTXL_swg_over_cfg": 1.345562130177515,
+    "EDM2S_swg_over_unguided": 1.5441176470588236,
+    "DiTXL_swg_over_unguided": 2.4663774403470713,
+    "absolute_rate_warning": "published imgs/s/GPU denominator ambiguous; if512total across2GPUs reported rates are4x standard perGPU calculation",
+    "equal_wall_quality_baseline_found": false
+  },
+  "new_question": "Does structural Delta=Full-Weak align with Full prediction bias relative to the true bridge conditional mean, rather than merely delete correctly extracted information?",
+  "intervention_or_gain_selected": false,
+  "executed_author_code": false,
+  "new_toy_simulations": false,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "sampling_calls": 0,
+  "fid_calls": 0,
+  "frozen_runner_or_tests_edited": false
+}

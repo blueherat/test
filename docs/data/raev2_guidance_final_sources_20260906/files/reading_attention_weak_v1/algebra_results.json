@@ -1,0 +1,77 @@
+{
+  "scope": "Fixed mathematical witnesses, not an RAE experiment or paper result.",
+  "softmax_energy": {
+    "a": [
+      4.0,
+      -4.0
+    ],
+    "B": [
+      [
+        0.75,
+        0.25
+      ],
+      [
+        0.25,
+        0.75
+      ]
+    ],
+    "original_lse": 4.000335406372896,
+    "blurred_lse": 2.01814992791781,
+    "H_times_ones_max_abs": 9.118140270603092e-17,
+    "original_mean_zero_direction_curvature_abs": 0.0006704753415129029,
+    "composite_mean_zero_direction_curvature_abs": 0.008831353106645559,
+    "meaning": "Averaging can increase curvature in a nonconstant direction despite lowering log-sum-exp. H has a constant null direction; use the exact composite Hessian B.T H(Ba) B."
+  },
+  "uniform_query": {
+    "logit_blur_equivalence_max_abs": 0.0,
+    "attention": [
+      [
+        0.6065192072646467,
+        0.08208344870360676,
+        0.31139734403174646
+      ],
+      [
+        0.6065192072646467,
+        0.08208344870360676,
+        0.31139734403174646
+      ],
+      [
+        0.6065192072646467,
+        0.08208344870360676,
+        0.31139734403174646
+      ]
+    ],
+    "all_attention_rows_equal_max_abs": 0.0,
+    "attention_is_uniform_over_keys": false,
+    "query_mean_preservation_max_abs": 0.0,
+    "reverse_kl_geometric_barycenter_max_abs": 5.551115123125783e-17,
+    "reverse_kl_optimality_identity_residual": 5.551115123125783e-17,
+    "arithmetic_mean_attention": [
+      0.5693291621901762,
+      0.07122845921170054,
+      0.35944237859812334
+    ],
+    "different_from_forward_kl_barycenter": true,
+    "query_projection_pythagorean_residual": 8.881784197001252e-16
+  },
+  "finite_reflection_padding": {
+    "input": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "output": [
+      0.5,
+      0.25,
+      0.0
+    ],
+    "input_mean": 0.3333333333333333,
+    "output_mean": 0.25,
+    "meaning": "Normalized symmetric local kernel plus reflection padding need not preserve the global spatial mean; the exact full-query average does."
+  },
+  "cost": {
+    "wall_seconds": 0.06999168521724641,
+    "cpu_seconds": 3.7390064950000004,
+    "scope": "Includes imports and computation; excludes final JSON serialization, process exit, downloads and reading."
+  }
+}

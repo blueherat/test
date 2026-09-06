@@ -1,0 +1,61 @@
+{
+  "complete": true,
+  "created_utc": "2026-09-06T15:10:15.125540+00:00",
+  "source": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/validate/teacher_regression.csv",
+    "sha256": "8c37b1fe8f20d40a74f25872ef41d0fe176438b5ab5a11b60600de51bad07dbb",
+    "size_bytes": 3741403
+  },
+  "script": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/analyze_velocity_units.py",
+    "sha256": "25b83270ded2308642c5976ee858c5be7b73b91b2f726a49371c8fb51ea7a521",
+    "size_bytes": 3152
+  },
+  "rows": 10000,
+  "time_points": 100,
+  "records_per_time": 100,
+  "scope": "Post-hoc descriptive units conversion, after fixed screen launch but before any screen FID. Does not modify its frozen formula, weights, time coverage or cost rule.",
+  "formula": "w_hat=beta*f, R=beta*normalized_target. Multiply stored target_energy, prediction_energy and cross by beta^2 per row, then mean all rows.",
+  "rounding_boundary": "Reconstructed from stored FP32 reductions and beta scalars; not a new raw-tensor recomputation of R.",
+  "interpretation": "All four physical bridge-velocity risks remain worse than zero prediction. This is a teacher-interpolant regression diagnostic, not actual deployment-midpoint label risk, KL or FID.",
+  "no_time_or_class_selection": true,
+  "no_independence_or_CI_claim": true,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "results": [
+    {
+      "teacher_query": "candidate_tau0.0",
+      "target_energy": 0.00033696130200980685,
+      "prediction_energy": 1.1492864381939016e-05,
+      "cross": 2.0988218268719716e-06,
+      "risk_gain_over_zero": -7.295220728195072e-06,
+      "relative_risk_gain_percent": -2.165002534321509
+    },
+    {
+      "teacher_query": "candidate_tau0.5",
+      "target_energy": 0.00033696130200980685,
+      "prediction_energy": 1.1467310893027358e-05,
+      "cross": 1.9754434615888655e-06,
+      "risk_gain_over_zero": -7.516423969849627e-06,
+      "relative_risk_gain_percent": -2.2306490166728024
+    },
+    {
+      "teacher_query": "candidate_tau1.0",
+      "target_energy": 0.00033696130200980685,
+      "prediction_energy": 1.1537766474851375e-05,
+      "cross": 1.8592778679340734e-06,
+      "risk_gain_over_zero": -7.819210738983228e-06,
+      "relative_risk_gain_percent": -2.3205070411188222
+    },
+    {
+      "teacher_query": "control_tau0.0",
+      "target_energy": 0.00033696130200980685,
+      "prediction_energy": 1.1562880131747538e-05,
+      "cross": 2.1313887028152145e-06,
+      "risk_gain_over_zero": -7.300102726117109e-06,
+      "relative_risk_gain_percent": -2.1664513647637342
+    }
+  ],
+  "wall_seconds_before_write": 0.34581334493122995,
+  "cpu_seconds_before_write": 0.345811383
+}

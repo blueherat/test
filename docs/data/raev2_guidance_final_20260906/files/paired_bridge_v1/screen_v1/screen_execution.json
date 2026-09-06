@@ -1,0 +1,335 @@
+{
+  "protocol": "raev2_paired_bridge_fixed_1k_v1",
+  "complete": true,
+  "driver_pid": 825551,
+  "started_utc": "2026-09-06T14:59:27.894406+00:00",
+  "plan_sha256": "489b97edad1baefcbb375c0b95fe9ddb03b69c3f11605042ca2ec9fa1db8c9b4",
+  "gpu_uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+  "physical_gpu_index": 3,
+  "jobs": [
+    {
+      "name": "parity",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py",
+        "--mode",
+        "parity",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity"
+      ],
+      "started_utc": "2026-09-06T14:59:51.835038+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/parity.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T14:59:51.909782+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 22.43 W, 42\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 831247,
+      "exit_code": 0,
+      "outer_wall_seconds": 73.08018547599204,
+      "finished_utc": "2026-09-06T15:01:04.993282+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:01:05.067956+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 128.80 W, 62\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    },
+    {
+      "name": "official100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity",
+        "--num-steps",
+        "100"
+      ],
+      "started_utc": "2026-09-06T15:01:29.913388+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/official100.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T15:01:29.981981+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 23.86 W, 49\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 844216,
+      "exit_code": 0,
+      "outer_wall_seconds": 667.7244328348897,
+      "finished_utc": "2026-09-06T15:12:37.711683+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:12:37.768699+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 129.04 W, 63\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    },
+    {
+      "name": "candidate100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py",
+        "--mode",
+        "candidate",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity",
+        "--num-steps",
+        "100"
+      ],
+      "started_utc": "2026-09-06T15:13:01.444150+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/candidate100.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T15:13:01.516068+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 26.13 W, 49\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 915975,
+      "exit_code": 0,
+      "outer_wall_seconds": 710.7729094140232,
+      "finished_utc": "2026-09-06T15:24:52.294822+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:24:52.396143+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 100 %, 129.70 W, 63\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    },
+    {
+      "name": "control100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py",
+        "--mode",
+        "control",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/control100",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity",
+        "--num-steps",
+        "100"
+      ],
+      "started_utc": "2026-09-06T15:25:14.904308+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/control100.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T15:25:14.976998+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 26.50 W, 50\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 991660,
+      "exit_code": 0,
+      "outer_wall_seconds": 706.7569796869066,
+      "finished_utc": "2026-09-06T15:37:01.737200+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:37:01.806860+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 128.53 W, 64\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    },
+    {
+      "name": "official107",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_paired_bridge.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107",
+        "--parity-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity",
+        "--num-steps",
+        "107"
+      ],
+      "started_utc": "2026-09-06T15:37:25.490175+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/official107.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T15:37:25.562868+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 26.97 W, 50\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 1025093,
+      "exit_code": 0,
+      "outer_wall_seconds": 711.742867280962,
+      "finished_utc": "2026-09-06T15:49:17.309599+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:49:17.383500+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 128.61 W, 64\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    },
+    {
+      "name": "evaluation",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+        "--branch",
+        "official100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100/samples.npz",
+        "--branch",
+        "candidate100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100/samples.npz",
+        "--branch",
+        "control100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/control100/samples.npz",
+        "--branch",
+        "official107=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/samples.npz",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official_evaluation.csv",
+        "--batch-size",
+        "64",
+        "--device",
+        "cuda",
+        "--seed",
+        "2020",
+        "--fid-reference",
+        "imagenet_256_fid_stats",
+        "--evaluator-root",
+        "/home/zhoushunyu/data/eqvae/external_sources/nanogen-evals",
+        "--feature-cache-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official_feature_cache"
+      ],
+      "started_utc": "2026-09-06T15:49:42.511403+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/screen_logs/evaluation.log",
+      "gpu_before": {
+        "observed_utc": "2026-09-06T15:49:42.589339+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 25.11 W, 49\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      },
+      "pid": 1064855,
+      "exit_code": 0,
+      "outer_wall_seconds": 36.04527912195772,
+      "finished_utc": "2026-09-06T15:50:18.638882+00:00",
+      "gpu_after": {
+        "observed_utc": "2026-09-06T15:50:18.707602+00:00",
+        "returncode": 0,
+        "stdout": "3, GPU-7d3e4e7d-abfa-e06e-c264-796052797949, NVIDIA GeForce RTX 4090, 18 MiB, 0 %, 82.06 W, 51\n",
+        "stderr": "",
+        "fixed_gpu_identity_verified": true
+      }
+    }
+  ],
+  "cost_selections": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/cost_selection_00.json",
+      "sha256": "c6a95423d5e8149bdb07ba607d22e73ab09e1883dfa9a6d7335f149834494127",
+      "size_bytes": 938
+    }
+  ],
+  "sampling_results": {
+    "official100": {
+      "summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100/summary.json",
+        "sha256": "ffc3877079eedfba16000643dce7486eb69e09c4c53079ea9897919da6f7b789",
+        "size_bytes": 13826
+      },
+      "samples_npz": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official100/samples.npz",
+        "sha256": "31a8c19c505a3272ccd14d84cf5ea3595649a2b5d4029bbda3aa5f1e0d412dd4",
+        "size_bytes": 196624746
+      },
+      "T_W": [
+        630.883723547915,
+        659.2046888810582
+      ]
+    },
+    "candidate100": {
+      "summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100/summary.json",
+        "sha256": "587baeb2d0e474990170294cb6cae59b3bcf162e412d74542f097b647c8f9ccf",
+        "size_bytes": 14071
+      },
+      "samples_npz": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/candidate100/samples.npz",
+        "sha256": "c7f63a7297dc80e30d9340b632c6b5d91930526f7350bcf455c7396b305dba6f",
+        "size_bytes": 196624746
+      },
+      "T_W": [
+        670.7456658084411,
+        701.9334182299208
+      ]
+    },
+    "control100": {
+      "summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/control100/summary.json",
+        "sha256": "e4e2d6265fbfc8fd6ca76b54a5fb09fa4a484942feb27a2657471921b86cb997",
+        "size_bytes": 14043
+      },
+      "samples_npz": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/control100/samples.npz",
+        "sha256": "2e3b477c3537108f9125f5f9e0bcc20ac1ca267da958527badcdbc7aec26e849",
+        "size_bytes": 196624746
+      },
+      "T_W": [
+        671.181979780551,
+        699.0398699291982
+      ]
+    },
+    "official107": {
+      "summary": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/summary.json",
+        "sha256": "77fd1cb93541b5f3541b5ec5d562209a701f589e84e091e4e4cc412e67de8951",
+        "size_bytes": 13829
+      },
+      "samples_npz": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official107/samples.npz",
+        "sha256": "15d72459f9788db0727e828c3fdddb07f847f265e688e949447aad2461170cbd",
+        "size_bytes": 196624746
+      },
+      "T_W": [
+        675.0833416176029,
+        703.6674276809208
+      ]
+    }
+  },
+  "verification_wall_seconds": 153.93198095541447,
+  "fid_started": true,
+  "no_automatic_restart": true,
+  "goal_complete": false,
+  "total_cost_complete": false,
+  "parity": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/parity/summary.json",
+    "sha256": "e95b10bccfecc95a20ea963cc83ef4f1a42d35383b2c4ddac3b55ca61d7b2d6f",
+    "size_bytes": 6596
+  },
+  "cost_match_sha256": "c77a893a8ad74985f75612920ecb5f32d34af615c074b90140e4bcbea087e913",
+  "fid_authorized_utc": "2026-09-06T15:49:31.028287+00:00",
+  "evaluation_branches": [
+    "official100",
+    "candidate100",
+    "control100",
+    "official107"
+  ],
+  "cost_baseline_evaluation_branch": "official107",
+  "finished_utc": "2026-09-06T15:50:30.503528+00:00",
+  "driver_wall_seconds": 3062.6091733451467,
+  "evaluation": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official_evaluation.json",
+    "sha256": "38db3532f31dc6aa9186e50545ca09faedd4bd4b6bc57aa1af8a4a0483f3dbd5",
+    "size_bytes": 2183
+  },
+  "evaluation_csv": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/paired_bridge_v1/screen_v1/official_evaluation.csv",
+    "sha256": "fb43c67742621f5ac0f719e93cfa23934631841707d60ab4be795b8bbbc78e53",
+    "size_bytes": 1547
+  }
+}
