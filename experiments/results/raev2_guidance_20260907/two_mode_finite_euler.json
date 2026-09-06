@@ -1,0 +1,368 @@
+{
+  "complete": true,
+  "real": {
+    "dc_variance": 127.45872412001808,
+    "ac_variance": 0.5694283556069893
+  },
+  "generated": {
+    "dc_variance": 119.61328027273362,
+    "ac_variance": 0.6012897366140242
+  },
+  "source_manifests": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/manifest.json",
+      "sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252",
+      "content": {
+        "protocol": "raev2_ig_scale_response_v1",
+        "status": "complete",
+        "inference_only": true,
+        "samples": 5000,
+        "seed": 20260801,
+        "scales": [
+          1.0,
+          1.2,
+          1.4,
+          1.6,
+          1.78,
+          2.0,
+          2.2
+        ],
+        "code_scale_convention": "base + s * (full - base); s=1 is full",
+        "world_size": 4,
+        "latent_size": [
+          1024,
+          16,
+          16
+        ],
+        "sampler_steps": 100,
+        "ig_interval": [
+          0.1,
+          1.0
+        ],
+        "precision": "bf16",
+        "state_key": "ema",
+        "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+        "checkpoint_size": 10520885445,
+        "packed_data_path": "/data/shared/imagenet-1k/random_access_v1",
+        "parquet_data_path": "/data/shared/imagenet-1k",
+        "fid_reference": "/data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz",
+        "test_fraction": 0.2,
+        "train_samples": 4000,
+        "heldout_samples": 1000,
+        "class_disjoint_split": true,
+        "same_noise_and_labels_across_scales": true,
+        "skip_fid": false,
+        "metric_spaces": [
+          "latent",
+          "roundtrip",
+          "decoded_inception"
+        ],
+        "roundtrip_definition": "E(clamp(D(z_s))) versus E(clamp(D(E(x)))); clamped decoder images are stored as float16 without uint8 quantization",
+        "measurement_warning": "A scale ranking reversal after round-trip supports an E-compose-D effect; decoded Inception rankings still combine decoder and feature-metric geometry."
+      }
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/manifest.json",
+      "sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff",
+      "content": {
+        "protocol": "raev2_ig_scale_response_v1",
+        "status": "complete",
+        "inference_only": true,
+        "samples": 5000,
+        "seed": 20260802,
+        "scales": [
+          1.0,
+          1.2,
+          1.4,
+          1.6,
+          1.78,
+          2.0,
+          2.2
+        ],
+        "code_scale_convention": "base + s * (full - base); s=1 is full",
+        "world_size": 4,
+        "latent_size": [
+          1024,
+          16,
+          16
+        ],
+        "sampler_steps": 100,
+        "ig_interval": [
+          0.1,
+          1.0
+        ],
+        "precision": "bf16",
+        "state_key": "ema",
+        "checkpoint": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+        "checkpoint_size": 10520885445,
+        "packed_data_path": "/data/shared/imagenet-1k/random_access_v1",
+        "parquet_data_path": "/data/shared/imagenet-1k",
+        "fid_reference": "/data/shared/adm_refs/VIRTUAL_imagenet256_labeled.npz",
+        "test_fraction": 0.2,
+        "train_samples": 4000,
+        "heldout_samples": 1000,
+        "class_disjoint_split": true,
+        "same_noise_and_labels_across_scales": true,
+        "skip_fid": false,
+        "metric_spaces": [
+          "latent",
+          "roundtrip",
+          "decoded_inception"
+        ],
+        "roundtrip_definition": "E(clamp(D(z_s))) versus E(clamp(D(E(x)))); clamped decoder images are stored as float16 without uint8 quantization",
+        "measurement_warning": "A scale ranking reversal after round-trip supports an E-compose-D effect; decoded Inception rankings still combine decoder and feature-metric geometry."
+      }
+    }
+  ],
+  "fid_used_for_estimation": false,
+  "centering": "none; maximum entropy subject to two raw second-moment constraints",
+  "approximation": "unconditional zero-mean Gaussian with DC and orthogonal AC eigenspaces",
+  "seconds": 37.125495651038364,
+  "raw_second_moments": {
+    "real": {
+      "samples": 5000,
+      "dc_variance": 124.10679534737484,
+      "ac_variance": 0.5182969911716817,
+      "sources": [
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/latents.npy",
+          "sha256": "b0283d24ab47214983d4904a2c08b62cfc81efb19b6d1459d68e9cea79702f11",
+          "shape": [
+            5000,
+            1024,
+            16,
+            16
+          ]
+        }
+      ]
+    },
+    "generated": {
+      "samples": 10000,
+      "dc_variance": 116.48711738423982,
+      "ac_variance": 0.5485144401415825,
+      "sources": [
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank00.npy",
+          "sha256": "9a1a61dd49b949e1ca3c023757e65c7108cd32c73aa215c7671fb1fbd352ef37",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank01.npy",
+          "sha256": "5ad2b1dc47e0122d89f4be51612077ede7281686c7a91cd2244e2df8c237d865",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank02.npy",
+          "sha256": "d5e66385b5ba6d02cbe1ebc725a359eac8109d96a88b6ab5242ccdf3d052f212",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260801_scales7_v1/latents/scale_s1p780000_rank03.npy",
+          "sha256": "05d921b6f69623a75b2409189e2dcd66a40b533f208f6de51dfde0ba68545c55",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank00.npy",
+          "sha256": "43255747c958208d3cb64401210cbf33de90d9d52015859ae286dab4c9bd21c9",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank01.npy",
+          "sha256": "ebbc3dcef9d1c1efe81a17820734329473320d3217ee4a07b8ece7001ca06c96",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank02.npy",
+          "sha256": "566887454069d18dd650271ee65e23ba5a8c0556768a51c17fc1275c3cb0f6e2",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        },
+        {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_ig_scale_response/n5000_seed20260802_scales7_v1/latents/scale_s1p780000_rank03.npy",
+          "sha256": "d6ca9fea363f37e964b9d5ae496b09d34af79c31d2c2adbe774d6ec4962caee2",
+          "shape": [
+            1250,
+            1024,
+            16,
+            16
+          ]
+        }
+      ]
+    }
+  },
+  "finite_euler_calibration": true,
+  "time_grid": [
+    1.0,
+    0.9987389445304871,
+    0.9974554777145386,
+    0.996148943901062,
+    0.9948186874389648,
+    0.9934640526771545,
+    0.9920844435691833,
+    0.9906790852546692,
+    0.9892473220825195,
+    0.9877883195877075,
+    0.9863013625144958,
+    0.9847856163978577,
+    0.9832402467727661,
+    0.9816642999649048,
+    0.9800570011138916,
+    0.9784172773361206,
+    0.9767442345619202,
+    0.9750366806983948,
+    0.9732937812805176,
+    0.9715142250061035,
+    0.9696969985961914,
+    0.9678407311439514,
+    0.9659442901611328,
+    0.964006245136261,
+    0.9620253443717957,
+    0.9599999785423279,
+    0.9579287767410278,
+    0.9558101296424866,
+    0.9536424279212952,
+    0.9514237642288208,
+    0.9491525292396545,
+    0.9468267560005188,
+    0.9444444179534912,
+    0.9420035481452942,
+    0.9395017623901367,
+    0.9369369745254517,
+    0.9343065619468689,
+    0.9316081404685974,
+    0.9288389086723328,
+    0.9259962439537048,
+    0.9230769276618958,
+    0.9200779795646667,
+    0.9169960021972656,
+    0.913827657699585,
+    0.9105690717697144,
+    0.9072164297103882,
+    0.9037656784057617,
+    0.9002123475074768,
+    0.8965517282485962,
+    0.8927790522575378,
+    0.8888888955116272,
+    0.8848758339881897,
+    0.8807339668273926,
+    0.8764568567276001,
+    0.8720378875732422,
+    0.8674699068069458,
+    0.8627451062202454,
+    0.8578553795814514,
+    0.8527919054031372,
+    0.8475452661514282,
+    0.8421052694320679,
+    0.836461067199707,
+    0.8306010961532593,
+    0.8245124816894531,
+    0.8181818127632141,
+    0.8115941882133484,
+    0.8047336935997009,
+    0.7975830435752869,
+    0.790123462677002,
+    0.7823343873023987,
+    0.774193525314331,
+    0.7656765580177307,
+    0.7567567229270935,
+    0.7474048137664795,
+    0.73758864402771,
+    0.7272727489471436,
+    0.7164179682731628,
+    0.7049808502197266,
+    0.6929134130477905,
+    0.6801619529724121,
+    0.6666666865348816,
+    0.6523604989051819,
+    0.6371681094169617,
+    0.621004581451416,
+    0.6037735939025879,
+    0.5853658318519592,
+    0.5656565427780151,
+    0.5445026159286499,
+    0.52173912525177,
+    0.4971751570701599,
+    0.47058823704719543,
+    0.4417177736759186,
+    0.41025641560554504,
+    0.3758389353752136,
+    0.3380281627178192,
+    0.29629629850387573,
+    0.25,
+    0.1983470916748047,
+    0.14035087823867798,
+    0.07476635277271271,
+    0.0
+  ],
+  "sampling_steps": 100,
+  "raw_calibration_sha256": "0dcd9b20457d23012389eea02947caab7dd0bf115aadf0630ba9bb0034fc4ba5",
+  "grid_source_sha256": "8801b027337e821eff019820d47cdaa365b3b4f0224bb895a9cf0905f74d830d",
+  "inversion_checks": [
+    {
+      "side": "real",
+      "mode": "dc_variance",
+      "target": 124.10679534737484,
+      "effective_prior": 127.45872412001808,
+      "finite_endpoint": 124.10679534737503,
+      "uncorrected_endpoint": 120.85172539373896
+    },
+    {
+      "side": "real",
+      "mode": "ac_variance",
+      "target": 0.5182969911716817,
+      "effective_prior": 0.5694283556069893,
+      "finite_endpoint": 0.5182969911716808,
+      "uncorrected_endpoint": 0.469879619941544
+    },
+    {
+      "side": "generated",
+      "mode": "dc_variance",
+      "target": 116.48711738423982,
+      "effective_prior": 119.61328027273362,
+      "finite_endpoint": 116.48711738423934,
+      "uncorrected_endpoint": 113.44999541038771
+    },
+    {
+      "side": "generated",
+      "mode": "ac_variance",
+      "target": 0.5485144401415825,
+      "effective_prior": 0.6012897366140242,
+      "finite_endpoint": 0.5485144401415817,
+      "uncorrected_endpoint": 0.4984813273975381
+    }
+  ]
+}

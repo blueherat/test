@@ -1,5 +1,5 @@
 import numpy as np
-from experiments.raev2_two_mode_ratio import posterior_difference
+from experiments.raev2_two_mode_ratio import posterior_difference,fit_euler_prior_variance,euler_terminal_variance
 
 
 def test_gaussian_denoiser_replacement_including_endpoints():
@@ -21,3 +21,19 @@ def test_dense_covariance_score_difference_to_clean_formula():
     expected=t*t/a*delta_score
     actual=posterior_difference(t,125,118)*(dc@x)+posterior_difference(t,.51,.55)*((np.eye(n)-dc)@x)
     np.testing.assert_allclose(actual,expected,atol=1e-14)
+
+
+def test_guided_finite_sampler_exactly_matches_target_second_moment():
+    u=np.linspace(1.,0.,101)
+    grid=8*u/(1+7*u)
+    for p,q in [(124.,116.),(.518,.549),(.001,100.)]:
+        pp=fit_euler_prior_variance(p,grid)
+        qq=fit_euler_prior_variance(q,grid)
+        np.testing.assert_allclose(euler_terminal_variance(qq,grid),q,rtol=1e-11)
+        variance=1.
+        for t,s in zip(grid[:-1],grid[1:]):
+            a=1-t
+            native=a*qq/(t*t+a*a*qq)
+            guided=native+posterior_difference(t,pp,qq)
+            variance*=(1-(t-s)*(1-guided)/t)**2
+        np.testing.assert_allclose(variance,p,rtol=1e-11)

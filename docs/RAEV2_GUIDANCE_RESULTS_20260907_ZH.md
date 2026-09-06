@@ -27,3 +27,7 @@
 进一步验证：critic_isotropic 和 critic_exchangeable 的完整 8 图轨迹均有限，单 B8 轨迹耗时约27.98/28.04秒，峰值显存约12.35GB；保留 encoder 的 official8 输出与先前原始 official8 逐像素一致。约5.5倍推理成本，尚无正式 FID，不能拿代理 logit 或小图预览当目标成功。
 
 FID 独立审计：使用缓存 Inception 特征，以 N×N Gram 特征值重新计算协方差交叉根迹，独立于原 D×D scipy sqrtm 路径。9个完整1K分支最大偏差2.57e−5。固定 reference SHA为 `925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac`。随机删块的 FID 差可以精确拆成：均值项+0.03556、保持原协方差形状时 trace 改变−0.17686、在新 trace 下归一化形状改变−0.07536，总和−0.21666。这是描述性代数分解，不是“某机制导致FID变化”的因果比例；它进一步支持必须做较大样本的独立确认。
+
+执行延续：`continue_raev2_guidance_after_5k.py` 通过 `/proc` 的 PID + starttime 等待现有5K进程，禁止自动重跑失败/中断的5K。如果随机删块相对 official/piecewise 中更强的控制达到3%，留下成本验证待办；否则自动执行已经通过8图检查的两个固定critic 1K。每一阶段都有独立状态、日志、源SHA，goal不会由排队程序自动标为完成。
+
+后备候选的新增实质进展：两空间Gaussian修正已进一步按实际100步Euler方差映射求反函数，三个解析测试通过。它解决了把连续prior方差直接当有限步终点方差的具体错误；原始矩版没有被采样后择优。真实/生成DC与AC总共四个观测矩决定全部系数，仍无新FID。见 [推导与固定数值](RAEV2_TWO_MODE_RATIO_20260907_ZH.md)。
