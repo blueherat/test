@@ -13,3 +13,9 @@
 ## 1K 之后冻结的独立确认
 
 随机删块 FID38.270118，相对 official38.486774 改善0.5629%；mean_weak38.566323。保持随机删块全部设置，独立 seed202609072，5000 图，每类5张，batch编号和mask噪声空间规则不变。运行 official100、piecewise100、stochastic_weak100。没有训练或 FID 选择的新增系数。若候选超过3%，再按实测每图成本确定官方步数并验证；不能通过更差的昂贵 baseline 代替 original100。
+
+## 完成结果
+
+独立5K official FID6.949768，piecewise7.011577，stochastic_weak7.027320，随机弱参考相对官方退化1.1159%，实测推理成本1.723倍。1K的+0.5629%没有获得独立5K质量确认；此固定迁移失败，停止该分支，不继续调层、窗口或强度。
+
+全部五个均衡1K分块也一并保留，随机弱参考三块正、两块负，均未达3%；不得选择最好的块申报成功。5K的seed与原1K不同，反转不能仅归因于N。详见 [本轮完整结果](RAEV2_GUIDANCE_RESULTS_20260907_ZH.md) 和 [可版本化身份及成本](../experiments/results/raev2_guidance_20260907/weak_confirm5k.json)。

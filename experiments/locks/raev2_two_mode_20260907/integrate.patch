@@ -1,0 +1,70 @@
+--- a/experiments/sample_raev2_ancestral_guidance.py
++++ b/experiments/sample_raev2_ancestral_guidance.py
+@@ -21,6 +21,7 @@
+ from experiments.raev2_ancestral_guidance import ancestral_step
+ from experiments.raev2_transport_projection import projected_guidance
+ from experiments.raev2_stochastic_weak import SharedPrefixWeak
++from experiments.raev2_two_mode_ratio import two_mode_correction
+ from experiments.raev2_image_critic_guidance import ImageCritic, ExchangeablePosterior, PROBE, COVARIANCE
+ from experiments.raev2_stage1_compat import install_raev2_decoder_config_compat
+ from experiments.sample_raev2_pfr_retiming import DEFAULT_CONFIG, DEFAULT_CHECKPOINT, load_config, shifted_time_grid
+@@ -45,7 +46,7 @@
+ def get_args():
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument('--output', type=Path, required=True)
+-    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable'])
++    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode'])
+     p.add_argument('--variance-calibration', type=Path, default=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json'))
+     p.add_argument('--samples', type=int, default=1000)
+     p.add_argument('--seed', type=int, default=202609071)
+@@ -97,11 +98,19 @@
+             raise ValueError('requires the complete, fixed 100-time forward-pair calibration')
+         if max(abs(t-row['time']) for t,row in zip(grid[:-1],calibration['rows']))>2e-7:
+             raise ValueError('calibration time grid mismatch')
++    ratio_calibration=None
++    if 'two_mode' in args.modes:
++        ratio_path=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/two_mode_ratio/finite_euler_calibration.json')
++        ratio_calibration=json.loads(ratio_path.read_text())
++        if args.steps!=100 or not ratio_calibration.get('finite_euler_calibration') or not ratio_calibration['complete']:
++            raise ValueError('two-mode guidance requires the fixed finite-Euler calibration')
++        if len(grid)!=len(ratio_calibration['time_grid']) or max(abs(a-b) for a,b in zip(grid,ratio_calibration['time_grid']))>2e-7:
++            raise ValueError('two-mode time grid mismatch')
+     request = {k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()}
+     request.update(protocol='raev2_gaussian_channel_guidance_v1', checkpoint_sha256=file_sha256(args.checkpoint),
+                    config_sha256=file_sha256(args.config), state_key='ema', time_grid=grid,
+                    torch_version=torch.__version__, gpu=torch.cuda.get_device_name(),
+-                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py']},
++                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py']},
+                    decoder_sha256=file_sha256(Path(cfg.stage_1.params['pretrained_decoder_path'])),
+                    stats_sha256=file_sha256(Path(cfg.stage_1.params['normalization_stat_path'])))
+     if calibration is not None:
+@@ -117,6 +126,9 @@
+         request['critic']={'probe_sha256':file_sha256(PROBE),'covariance_sha256':file_sha256(COVARIANCE) if covariance else None,
+             'gradient_precision':'FP32 decoder and DINO, TF32 off, FP64 unit CLS','continuous_pixels':True,
+             'strength':1.,'all_100_times':True,'gradient_microbatch':args.batch}
++    if ratio_calibration is not None:
++        request['two_mode']={'calibration_sha256':file_sha256(ratio_path),'strength':1.,'all_100_times':True,
++            'real_effective_prior':ratio_calibration['real'],'generated_effective_prior':ratio_calibration['generated']}
+     put(out/'request.json',request)
+     batch_ids = list(range(args.shard,args.samples//args.batch,args.shards))
+     # Shared model/decoder warmup; excluded from per-image timings and disclosed.
+@@ -168,6 +180,8 @@
+                             attenuation=1-1/(model.num_enc_blocks-model.base_model_depth) if mode=='mean_weak' else None)
+                         clean=clean+.25*(full.float()-weak.float())
+                         weak_calls+=1
++                if mode=='two_mode':
++                    clean=clean+two_mode_correction(state,t,ratio_calibration)
+                 if mode in ('velocity_projection','noise_projection'):
+                     clean=projected_guidance(state,full,base,clean,t,coordinate=mode.split('_')[0])
+                 if mode.startswith('critic_'):
+--- a/experiments/run_raev2_ancestral_study.py
++++ b/experiments/run_raev2_ancestral_study.py
+@@ -30,7 +30,7 @@
+     jobs=[]
+     began=time.perf_counter()
+     frozen={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (
+-        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',Path(__file__).resolve())}
++        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',Path(__file__).resolve())}
+     state={'complete':False,'pid':os.getpid(),'args':{k:str(v) if isinstance(v,Path) else v for k,v in vars(a).items()},'sources':frozen,'jobs':[]}
+     def save():
+         (out/'execution.json').write_text(json.dumps(state,indent=2)+'\n')

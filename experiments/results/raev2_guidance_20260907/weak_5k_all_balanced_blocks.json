@@ -1,0 +1,188 @@
+{
+  "complete": true,
+  "purpose": "diagnostic only; all five fixed blocks, no selection or new success claim",
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "sources": {
+    "official": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official_feature_cache/official-2547467d351624f2-inception.features.pt",
+      "sha256": "148b151084d82f04aa961c6c1eeb24bfd5389c8c0e7992b22c27c96b54f1b608"
+    },
+    "piecewise": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official_feature_cache/piecewise-84f96dc7a54c6734-inception.features.pt",
+      "sha256": "480dc7e93cafd38226cbc6d3e39de039e58b6799b40b5418fe4d14c56ee12b2c"
+    },
+    "stochastic_weak": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official_feature_cache/stochastic_weak-95a1e5095321f62f-inception.features.pt",
+      "sha256": "50313e912f2cbfdc3eabaaa642e11b7b5e54d598d34d5107078bde6c1e09e85a"
+    }
+  },
+  "official_full5k_metrics": [
+    {
+      "branch": "official",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+      "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.57569732666016,
+      "fid": 6.9497684777115865
+    },
+    {
+      "branch": "piecewise",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/piecewise/samples.npz",
+      "sample_sha256": "84f96dc7a54c67346178e72d1204a05dc890bed37cb78ddad9b41a43ac449a09",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 161.09173431396485,
+      "fid": 7.011576542127955
+    },
+    {
+      "branch": "stochastic_weak",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/stochastic_weak/samples.npz",
+      "sample_sha256": "95a1e5095321f62fcbf347e4e16aee05abab491b9f229ba2da3bd04fc662685f",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 161.2629821777344,
+      "fid": 7.0273202343015555
+    }
+  ],
+  "rows": [
+    {
+      "mode": "official",
+      "block": 0,
+      "first_id": 0,
+      "last_id": 999,
+      "samples": 1000,
+      "fid": 39.0407327021025,
+      "relative_improvement_percent": 0.0
+    },
+    {
+      "mode": "official",
+      "block": 1,
+      "first_id": 1000,
+      "last_id": 1999,
+      "samples": 1000,
+      "fid": 38.608352927897215,
+      "relative_improvement_percent": 0.0
+    },
+    {
+      "mode": "official",
+      "block": 2,
+      "first_id": 2000,
+      "last_id": 2999,
+      "samples": 1000,
+      "fid": 38.44894097258907,
+      "relative_improvement_percent": 0.0
+    },
+    {
+      "mode": "official",
+      "block": 3,
+      "first_id": 3000,
+      "last_id": 3999,
+      "samples": 1000,
+      "fid": 38.41223674540754,
+      "relative_improvement_percent": 0.0
+    },
+    {
+      "mode": "official",
+      "block": 4,
+      "first_id": 4000,
+      "last_id": 4999,
+      "samples": 1000,
+      "fid": 38.24951725782091,
+      "relative_improvement_percent": 0.0
+    },
+    {
+      "mode": "piecewise",
+      "block": 0,
+      "first_id": 0,
+      "last_id": 999,
+      "samples": 1000,
+      "fid": 38.95739953527635,
+      "relative_improvement_percent": 0.21345185158797575
+    },
+    {
+      "mode": "piecewise",
+      "block": 1,
+      "first_id": 1000,
+      "last_id": 1999,
+      "samples": 1000,
+      "fid": 38.52608038086146,
+      "relative_improvement_percent": 0.2130952003816522
+    },
+    {
+      "mode": "piecewise",
+      "block": 2,
+      "first_id": 2000,
+      "last_id": 2999,
+      "samples": 1000,
+      "fid": 38.32627142982142,
+      "relative_improvement_percent": 0.3190453096097112
+    },
+    {
+      "mode": "piecewise",
+      "block": 3,
+      "first_id": 3000,
+      "last_id": 3999,
+      "samples": 1000,
+      "fid": 38.287005295152426,
+      "relative_improvement_percent": 0.3260196772323809
+    },
+    {
+      "mode": "piecewise",
+      "block": 4,
+      "first_id": 4000,
+      "last_id": 4999,
+      "samples": 1000,
+      "fid": 38.19178775244336,
+      "relative_improvement_percent": 0.15092871627222504
+    },
+    {
+      "mode": "stochastic_weak",
+      "block": 0,
+      "first_id": 0,
+      "last_id": 999,
+      "samples": 1000,
+      "fid": 38.930491872043206,
+      "relative_improvement_percent": 0.28237387576837136
+    },
+    {
+      "mode": "stochastic_weak",
+      "block": 1,
+      "first_id": 1000,
+      "last_id": 1999,
+      "samples": 1000,
+      "fid": 38.71761404847177,
+      "relative_improvement_percent": -0.282998657773903
+    },
+    {
+      "mode": "stochastic_weak",
+      "block": 2,
+      "first_id": 2000,
+      "last_id": 2999,
+      "samples": 1000,
+      "fid": 38.709173655516736,
+      "relative_improvement_percent": -0.6768266598375039
+    },
+    {
+      "mode": "stochastic_weak",
+      "block": 3,
+      "first_id": 3000,
+      "last_id": 3999,
+      "samples": 1000,
+      "fid": 38.337582207933565,
+      "relative_improvement_percent": 0.1943509251199793
+    },
+    {
+      "mode": "stochastic_weak",
+      "block": 4,
+      "first_id": 4000,
+      "last_id": 4999,
+      "samples": 1000,
+      "fid": 37.87220513367504,
+      "relative_improvement_percent": 0.986449375563625
+    }
+  ]
+}
