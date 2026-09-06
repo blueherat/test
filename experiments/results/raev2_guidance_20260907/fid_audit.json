@@ -1,0 +1,172 @@
+{
+  "complete": true,
+  "reference": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "formula": "rank-N Gram eigenvalues, FP64, Bessel sample covariance",
+  "max_fid_error": 2.5613132805801797e-05,
+  "rows": [
+    {
+      "study": "ancestral_screen1k",
+      "mode": "official",
+      "fid": 38.48679932387703,
+      "official_fid": 38.486773927092486,
+      "mean_term": 0.12608680504625236,
+      "covariance_term": 38.36071251883078,
+      "sample_covariance_trace": 176.56188233312807,
+      "feature_sha256": "89e02091ac6d5c84da2d854cc770174233a5071f9cbec981d74dff1b60d9b3b7",
+      "marginal_entropy": 6.811262797751371,
+      "conditional_entropy": 1.3072229747731394,
+      "whole_sample_is_not_ten_split_is": 245.68244375319676,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": 0.0,
+        "normalized_shape_effect_at_new_trace": -0.0,
+        "normalized_root_affinity": 0.8926598596504162
+      }
+    },
+    {
+      "study": "ancestral_screen1k",
+      "mode": "piecewise",
+      "fid": 38.33504910658087,
+      "official_fid": 38.33502403244245,
+      "mean_term": 0.1482419371012598,
+      "covariance_term": 38.18680716947961,
+      "sample_covariance_trace": 175.76467897160623,
+      "feature_sha256": "e8043edf811a2e76dcc940f6e547835ab817752e9086dc0921bd620181c01087",
+      "marginal_entropy": 6.811088688392975,
+      "conditional_entropy": 1.2799246223016498,
+      "whole_sample_is_not_ten_split_is": 252.4375941005623,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.07662291797177645,
+        "normalized_shape_effect_at_new_trace": -0.09728243137941801,
+        "normalized_root_affinity": 0.8929328541253527
+      }
+    },
+    {
+      "study": "ancestral_screen1k",
+      "mode": "ancestral",
+      "fid": 38.8944480055645,
+      "official_fid": 38.894423475741064,
+      "mean_term": 0.14812382384374817,
+      "covariance_term": 38.74632418172075,
+      "sample_covariance_trace": 174.6434574246822,
+      "feature_sha256": "eadbe8e0dfbd4b8a59feced6496f563caf302c9fa1528ba05b5b4cf15c21c989",
+      "marginal_entropy": 6.808105812077414,
+      "conditional_entropy": 1.266718929656783,
+      "whole_sample_is_not_ten_split_is": 255.0314529414822,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.181617616476359,
+        "normalized_shape_effect_at_new_trace": 0.5672292793662883,
+        "normalized_root_affinity": 0.8910629964092682
+      }
+    },
+    {
+      "study": "ancestral_screen1k",
+      "mode": "partial",
+      "fid": 38.50662847909246,
+      "official_fid": 38.506604116550875,
+      "mean_term": 0.1636815515279333,
+      "covariance_term": 38.342946927564526,
+      "sample_covariance_trace": 172.60459998555044,
+      "feature_sha256": "78736d825444bb38e8a9e6a78e024fc6e7379ee0f79079e81df5fdf897fa2a33",
+      "marginal_entropy": 6.816600246525951,
+      "conditional_entropy": 1.3064269893092975,
+      "whole_sample_is_not_ten_split_is": 247.1939514937055,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.3641476181652772,
+        "normalized_shape_effect_at_new_trace": 0.34638202689893516,
+        "normalized_root_affinity": 0.8916789829687471
+      }
+    },
+    {
+      "study": "calibrated_screen1k",
+      "mode": "calibrated",
+      "fid": 38.54122532064981,
+      "official_fid": 38.54119986713289,
+      "mean_term": 0.13738015246503743,
+      "covariance_term": 38.40384516818477,
+      "sample_covariance_trace": 176.1903260832186,
+      "feature_sha256": "848a5fe1bbb12a6bc6aa965dcc7ee79fce679dc031dbe8ee2abf1336862a391c",
+      "marginal_entropy": 6.808038186026371,
+      "conditional_entropy": 1.3103921876772293,
+      "whole_sample_is_not_ten_split_is": 244.11660447867024,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.03591484901305064,
+        "normalized_shape_effect_at_new_trace": 0.07904749836699315,
+        "normalized_root_affinity": 0.8924383042479654
+      }
+    },
+    {
+      "study": "projection_screen1k",
+      "mode": "velocity_projection",
+      "fid": 38.478771264998926,
+      "official_fid": 38.478745998151055,
+      "mean_term": 0.14045216502128358,
+      "covariance_term": 38.33831909997764,
+      "sample_covariance_trace": 176.04241560399757,
+      "feature_sha256": "f1a5b9b24c032cb61c547fe8e9745eeb8c34e0ddff2d8d6bd2c0ea36e9350378",
+      "marginal_entropy": 6.809946854089043,
+      "conditional_entropy": 1.284691168788708,
+      "whole_sample_is_not_ten_split_is": 250.9504941710741,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.05011349082918454,
+        "normalized_shape_effect_at_new_trace": 0.02772007197599401,
+        "normalized_root_affinity": 0.892582132823647
+      }
+    },
+    {
+      "study": "projection_screen1k",
+      "mode": "noise_projection",
+      "fid": 38.483961312062405,
+      "official_fid": 38.4839356989296,
+      "mean_term": 0.13359639472142482,
+      "covariance_term": 38.35036491734098,
+      "sample_covariance_trace": 176.6886713381907,
+      "feature_sha256": "0c6f78cbf06955c138b75916d94ffa8b1cb7596eb6fb28ccd80474369a94e9eb",
+      "marginal_entropy": 6.810977503796017,
+      "conditional_entropy": 1.2999032992444226,
+      "whole_sample_is_not_ten_split_is": 247.41676058007224,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": 0.012336332081468879,
+        "normalized_shape_effect_at_new_trace": -0.0226839335712912,
+        "normalized_root_affinity": 0.8927233487631981
+      }
+    },
+    {
+      "study": "weak_screen1k",
+      "mode": "stochastic_weak",
+      "fid": 38.27014261720823,
+      "official_fid": 38.27011788786808,
+      "mean_term": 0.1616442157910325,
+      "covariance_term": 38.108498401417194,
+      "sample_covariance_trace": 174.69505131678423,
+      "feature_sha256": "1eb56eaf32388a4a609737b82408876479cb7808df0e127b66a150fa488c3a7b",
+      "marginal_entropy": 6.813912858523028,
+      "conditional_entropy": 1.2651940194831532,
+      "whole_sample_is_not_ten_split_is": 256.90820421298486,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.17685767846430722,
+        "normalized_shape_effect_at_new_trace": -0.07535643894936049,
+        "normalized_root_affinity": 0.8928719716849725
+      }
+    },
+    {
+      "study": "weak_screen1k",
+      "mode": "mean_weak",
+      "fid": 38.566348309369886,
+      "official_fid": 38.56632325374693,
+      "mean_term": 0.14136277262113825,
+      "covariance_term": 38.42498553674875,
+      "sample_covariance_trace": 176.06725743000086,
+      "feature_sha256": "f87130e3d8db459c933020a59284487e5dd67a135245dbdb2c2e433483b1fe79",
+      "marginal_entropy": 6.814350602021737,
+      "conditional_entropy": 1.3410472737215544,
+      "whole_sample_is_not_ten_split_is": 238.24589874401877,
+      "covariance_decomposition_relative_official": {
+        "trace_effect_at_baseline_shape": -0.04773272764247488,
+        "normalized_shape_effect_at_new_trace": 0.11200574556036358,
+        "normalized_root_affinity": 0.8923458187272306
+      }
+    }
+  ],
+  "reference_covariance_trace": 180.62153178676937
+}

@@ -1,0 +1,28 @@
+{
+  "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "packages": {
+    "torch": "2.11.0",
+    "torchvision": "0.26.0",
+    "timm": "1.0.28",
+    "omegaconf": "2.3.0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pandas": "2.3.3",
+    "huggingface-hub": "0.36.2"
+  },
+  "sources": {
+    "external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "external/RAEv2/src/utils/guidance_utils.py": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+    "external/RAEv2/src/stage1/rae.py": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+    "external/RAEv2/src/encoders/vision_encoder.py": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+    "external/RAEv2/src/encoders/models/dinov3_loader.py": "d5a159b089a075f155bd66aef2e8dc96be0973a622f6a3c22e2a6dde9973c214",
+    "experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2"
+  },
+  "sampling_precision": "BF16 model/decoder; FP32 state; native BF16 IG arithmetic",
+  "note": "supplemental environment manifest captured during unchanged independent 5K, not an initial preregistration"
+}
