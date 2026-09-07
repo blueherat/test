@@ -45,6 +45,7 @@
 - [最后semantic5K完整审核](../experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json)。
 - [当前质量与历史方法入口](RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md)。
 - [全工作区理论、代码和数据清单](RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md)。
+- [Git中实际归档的独立核验](RAEV2_GUIDANCE_ARCHIVE_VERIFICATION_20260907_ZH.md)：第6轮提交的完整Git对象与文件集合均已检查。
 - [历史资产缺口复核](RESEARCH_WORKSPACE_REFERENCE_REVIEW_20260907_ZH.md)：八项旧原始资产未在记录路径找到，不能宣称全部历史数据现可重跑。
 - [既有52篇一手文献阅读档案](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md)与[各理论家族](RAEV2_RESEARCH_ARCHIVE_INDEX_20260906_ZH.md)。
 

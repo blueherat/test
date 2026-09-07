@@ -1,8 +1,8 @@
 {
   "complete": true,
   "goal_achieved": false,
-  "created_unix": 1788768147.451561,
-  "research_round": 6,
+  "created_unix": 1788768809.15913,
+  "research_round": 7,
   "maximum_rounds": 8,
   "quality_completed_at_round": 6,
   "quality_research_closed": true,
@@ -38,8 +38,8 @@
     },
     {
       "requirement": "Conclude within at most8 further research rounds and commit",
-      "status": "quality_research_closed_git_finalization_separate",
-      "evidence": "Quality closure at round6; commits and final worktree state must be checked after this artifact is written"
+      "status": "quality_closeout_git_archive_verified",
+      "evidence": "Quality experiments ended in round6; round7 reads every archived file directly from commit573e939 and verifies complete tree membership and payload hashes. Later administrative changes have their own commits."
     }
   ],
   "summaries": {
@@ -198,16 +198,17 @@
     "extra_sample_unconditional_calls": 495000
   },
   "evidence_sha256": {
-    "experiments/results/raev2_guidance_20260907/research_evidence_index.json": "0d8d301d75f994b65c87650f31986cbca900d493a45d02817975a5dd27cd8e79",
+    "experiments/results/raev2_guidance_20260907/research_evidence_index.json": "588b2f5f70f675067ceb022a9d899b84a4b8a163f3c214e7b35ac8ddf6195d85",
     "experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json": "bc21588a70458f57efcf96e8bebeb638466068e71bf7fd1666c1c6963d9081bf",
     "experiments/results/raev2_guidance_20260907/fid_audit_extended.json": "6a7208aa17bf6f9beb668a4d18b9b71a0e0342171c0adb6a5ae857d016d0005c",
     "experiments/results/raev2_guidance_20260907/directional_variance_confirm5k_audit.json": "39310b1bf41a633a1ee9c55b83cd41cf729817aec06cb72a237633c76df3e2f0",
     "experiments/results/raev2_guidance_20260907/directional_variance_calibration.json": "1e6da51495be729658abb717190dba6a613872c4b8e2d8d8bc0447993179a019",
     "experiments/results/raev2_guidance_20260907/fixed_mean_nll_fid_counterexample.json": "ec7fcde67cc2229c8442115d74aec088cc901fd399d9d8ed7e6e11dc211e53c6",
-    "experiments/results/raev2_guidance_20260907/workspace_reference_review.json": "41b00bc111153d81db19283a4ecc5a040dc1a818addc3c676d61d79a6959c1d8"
+    "experiments/results/raev2_guidance_20260907/workspace_reference_review.json": "41b00bc111153d81db19283a4ecc5a040dc1a818addc3c676d61d79a6959c1d8",
+    "experiments/results/raev2_guidance_20260907/round7_git_commit_verification.json": "9d0eb68f662984837dae95c22680b4f15c9ffcbfaec2294b197a8b4ef7ac9e5c"
   },
   "final_controller_state_sha256": "8fbc97ab44e89fc6735f611866ed7511d77d38bfb0c655fdb69c48e303fca210",
   "cost_control_decision": "Not run: final candidate fails quality against original100-step official; no slower or worse baseline used to manufacture success",
   "timing_limit": "Measured shared-host inference timings; GPU exclusivity was not certified, so small timing differences do not establish speedups",
-  "source_sha256": "bb994613128b94fc52c74fb246526dd6357326a0c35dc80aeee5cdf7b0218205"
+  "source_sha256": "b8904d12b0757dfd80ff98e36b90fe7a85d22b27226867f958a80bf4c6c99aad"
 }

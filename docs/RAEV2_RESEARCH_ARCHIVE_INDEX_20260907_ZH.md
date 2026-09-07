@@ -65,6 +65,8 @@
 
 ## 复现与收束
 
+第7轮已从不可变Git对象逐字节验证第6轮提交，6220个清单文件和清单自身完整存在，见[Git归档核验](RAEV2_GUIDANCE_ARCHIVE_VERIFICATION_20260907_ZH.md)。这完成的是归档要求，不改变未达到3%的结论。
+
 本轮质量采样均已结束。执行历史通过真实PID/starttime、输入和source snapshots核对，未因一次观察超时重启。模型、配置、环境、解码精度与评价reference身份均见[64K环境](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_environment.json)和各sampling request；后续复现须沿用对应冻结版本与输入。
 
 全部5K已经完成，索引已更新，保留此前快照的Git历史。最后一轮无论是否达到目标，都须提交理论、文献导航、方法与数据索引、全部正负结果及尚缺证据，明确哪些检查已实际完成。仅有该归档不代表 FID 目标达成。

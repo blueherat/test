@@ -124,6 +124,15 @@ def main():
          'status': 'quality_research_closed_git_finalization_separate',
          'evidence': f"Quality closure at round{quality_round}; commits and final worktree state must be checked after this artifact is written"},
     ]
+    git_verification = result_root / 'round7_git_commit_verification.json'
+    if git_verification.exists():
+        checked = read(git_verification)
+        assert checked['complete'] and checked['git_archival_of_quality_closeout_verified']
+        assert checked['goal_still_unmet'] and checked['no_training_sampling_or_new_parameter_changes']
+        assert checked['verified_commit'] == '573e939ed26e4b530e8bdacd4bf2b6590e54e8b3'
+        evidence[str(git_verification.relative_to(ROOT))] = sha(git_verification)
+        requirements[-1].update(status='quality_closeout_git_archive_verified',
+            evidence='Quality experiments ended in round6; round7 reads every archived file directly from commit573e939 and verifies complete tree membership and payload hashes. Later administrative changes have their own commits.')
     result = {'complete': True, 'goal_achieved': False, 'created_unix': time.time(),
               'research_round': ledger['current_round'], 'maximum_rounds': 8,
               'quality_completed_at_round': quality_round,
@@ -176,6 +185,7 @@ def main():
         '- [最后semantic5K完整审核](../experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json)。',
         '- [当前质量与历史方法入口](RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md)。',
         '- [全工作区理论、代码和数据清单](RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md)。',
+        '- [Git中实际归档的独立核验](RAEV2_GUIDANCE_ARCHIVE_VERIFICATION_20260907_ZH.md)：第6轮提交的完整Git对象与文件集合均已检查。',
         '- [历史资产缺口复核](RESEARCH_WORKSPACE_REFERENCE_REVIEW_20260907_ZH.md)：八项旧原始资产未在记录路径找到，不能宣称全部历史数据现可重跑。',
         '- [既有52篇一手文献阅读档案](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md)与[各理论家族](RAEV2_RESEARCH_ARCHIVE_INDEX_20260906_ZH.md)。', '',
         '大模型、latent、样本、特征及完整日志保留原址，Git保存代码、配置、理论、'
