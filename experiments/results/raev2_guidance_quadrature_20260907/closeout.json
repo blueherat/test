@@ -1,0 +1,39 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "recorded_at": "2026-09-07T12:00:07.460305+00:00",
+  "hypothesis": "native guidance temporal quadrature materially improves paired 5K quality",
+  "decision": "Close this fixed quadrature hypothesis after near-zero guidance-only effect; no strength/window/step sweep or independent confirmation for this candidate.",
+  "run": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_quadrature_20260907/discovery5k",
+  "baseline_fid": 6.9497684777115865,
+  "target_fid": 6.741275423380238,
+  "rows": [
+    {
+      "mode": "guidance_2m",
+      "fid": 6.949552715854452,
+      "relative_improvement_percent": 0.0031045905748761093,
+      "cost_ratio": 1.0004324444804384,
+      "sample_model_calls": 500000,
+      "sample_sha256": "4a63b125d63abc00d10c0520b3c1c29fbd5f1a1633f96f9cdd87154ebdd8a024"
+    },
+    {
+      "mode": "full_2m",
+      "fid": 6.950265664697781,
+      "relative_improvement_percent": -0.007154007903853454,
+      "cost_ratio": 1.0084311705239704,
+      "sample_model_calls": 500000,
+      "sample_sha256": "7c504dfff81a2d55496d9dcbce414a5e17c5395e77c5094954f6848e263abf5e"
+    },
+    {
+      "mode": "exponential_2m",
+      "fid": 6.965459140969983,
+      "relative_improvement_percent": -0.22577246002823959,
+      "cost_ratio": 1.006579754425384,
+      "sample_model_calls": 500000,
+      "sample_sha256": "0c7bd99b392a64ae594e2fa97232e60aff72c04814dd820a7e37aa5fb015ccbc"
+    }
+  ],
+  "independent_fid_max_error": 8.926193117986259e-13,
+  "all_audit_checks_passed": true,
+  "unspent_confirmation_seed": 202609073
+}

@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "samples": 8,
+  "interpretation": "Magnitude sanity check on the fixed smoke images; not FID or quality evidence.",
+  "rows": [
+    {
+      "mode": "guidance_2m",
+      "endpoint_difference_rms": 0.06513194974123603,
+      "endpoint_reference_rms": 1.0043992838000757,
+      "pixel_difference_rms_uint8_units": 5.0066887938259805,
+      "pixel_difference_max": 130.0,
+      "pixel_fraction_changed": 0.6473948160807291
+    },
+    {
+      "mode": "full_2m",
+      "endpoint_difference_rms": 0.09715597292887058,
+      "endpoint_reference_rms": 1.0043992838000757,
+      "pixel_difference_rms_uint8_units": 6.434370693843291,
+      "pixel_difference_max": 180.0,
+      "pixel_fraction_changed": 0.7960980733235677
+    },
+    {
+      "mode": "exponential_2m",
+      "endpoint_difference_rms": 0.13744502797235095,
+      "endpoint_reference_rms": 1.0043992838000757,
+      "pixel_difference_rms_uint8_units": 9.732209104993265,
+      "pixel_difference_max": 204.0,
+      "pixel_fraction_changed": 0.8182996114095052
+    }
+  ]
+}

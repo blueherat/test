@@ -1,0 +1,107 @@
+{
+  "complete": true,
+  "pid": 4052701,
+  "pid_starttime": "214200346",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_quadrature_20260907/smoke8",
+    "samples": 8,
+    "seed": 202609072,
+    "modes": [
+      "official",
+      "guidance_2m",
+      "full_2m",
+      "exponential_2m"
+    ],
+    "gpus": [
+      0
+    ],
+    "no_evaluate": true
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_guidance_quadrature.py": "d2dc75ab5c39679622625bf70847c514d654d8dca7a98fc0beafce488940402e",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_guidance_quadrature.py": "401c3b13f93c26f4cd73d4343b0257e5dcf6202e6bd25315384bc8d7e11246d6",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 4055504,
+      "pid_starttime": "214201008",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_guidance_quadrature.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature_20260907/smoke8",
+        "--samples",
+        "8",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "1",
+        "--modes",
+        "official",
+        "guidance_2m",
+        "full_2m",
+        "exponential_2m"
+      ]
+    }
+  ],
+  "sampling_complete": true,
+  "sampling_seconds": 52.1079942220822,
+  "merged": {
+    "official": {
+      "complete": true,
+      "samples": 8,
+      "mode": "official",
+      "seed": 202609072,
+      "sample_sha256": "1cf8a38d97b017fe21f23fc84566e21263a23cba2956a0f76393b835ab1c400a",
+      "trajectory_seconds_sum": 5.04168654885143,
+      "decode_seconds_sum": 0.028427664656192064,
+      "sample_model_calls": 800,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "guidance_2m": {
+      "complete": true,
+      "samples": 8,
+      "mode": "guidance_2m",
+      "seed": 202609072,
+      "sample_sha256": "e77a54ad82043396a778b20de055c186f218180eb34a3034ec33bc3b8ffd2728",
+      "trajectory_seconds_sum": 5.031762149184942,
+      "decode_seconds_sum": 0.027398501988500357,
+      "sample_model_calls": 800,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "full_2m": {
+      "complete": true,
+      "samples": 8,
+      "mode": "full_2m",
+      "seed": 202609072,
+      "sample_sha256": "543c2edbb97b2e4aa7889d67e9b68df8968cbc9c401587743393ff28ad042716",
+      "trajectory_seconds_sum": 5.070213685743511,
+      "decode_seconds_sum": 0.02736624702811241,
+      "sample_model_calls": 800,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "exponential_2m": {
+      "complete": true,
+      "samples": 8,
+      "mode": "exponential_2m",
+      "seed": 202609072,
+      "sample_sha256": "2b8dd127988f7269f230a20039ceb4cbe2d6692657a3f1fb40cfed47bae1dfb3",
+      "trajectory_seconds_sum": 5.056551922112703,
+      "decode_seconds_sum": 0.02744905697181821,
+      "sample_model_calls": 800,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    }
+  },
+  "total_seconds": 52.108216925058514
+}

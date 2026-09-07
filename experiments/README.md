@@ -1,5 +1,16 @@
 # Research experiments
 
+## 2026-09-07: renewed RAEv2 guidance study
+
+The user has reopened guidance research after the archived closeout. The
+completed paired-5K experiment separates temporal quadrature of the Full
+prediction from quadrature of the native guidance increment, retaining the
+official checkpoint, IG1.78, time grid and 100 model calls. Protocol, scope
+and audited results: [RAEv2 guidance quadrature](../docs/RAEV2_GUIDANCE_QUADRATURE_20260907_ZH.md).
+Guidance-only FID is 6.94955 versus 6.94977 official; neither Full-only nor
+the complete second-order control improves FID. This hypothesis is closed
+without reaching the requested 3% improvement. The earlier results remain valid.
+
 ## Active mainline: Projected Future Reference
 
 The active inference-time guidance line is PFR.  Its current interpretation is
