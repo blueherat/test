@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-09-07T12:35:24.833547+00:00",
+  "recorded_at": "2026-09-07T13:22:38.808014+00:00",
   "goal_complete": false,
   "completed_study": {
     "name": "guidance temporal quadrature",
@@ -39,14 +39,14 @@
       "pid_starttime": "214657697"
     }
   ],
-  "latest_user_steering": "Finish this 5K and then review whether research has drifted; reread the NeurIPS25 fixed-point paper for intuition and taste. Do not extend covariance or launch a next hypothesis before that review.",
-  "next_action": "Review completed. Develop one controlled latent-write/read/retention diagnostic based on native IG message and Full as reader; no further covariance work. Goal remains paired 5K ~3% improvement, not diagnostic success.",
+  "latest_user_steering": "Guidance information being put into the latent is the core. Does the proposed local decomposition depend on the IG extrapolation coefficient? Large IG extrapolation cannot be justified by an unverified first-order expansion.",
+  "next_action": "Continue deriving a finite-amplitude latent-write/read/retention mechanism with actual nonlinear readout, a frozen message and correctly located perturbation budget. Freeze a substantive design before running a pilot. Exact inverse-and-replay only reproduces IG and is not a quality advance. No covariance extension or one-VJP writer run. Paired 5K ~3% goal remains active.",
   "preparation": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/preparation.json",
   "inference_calibration": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/calibration.json",
   "audit_output": "experiments/results/raev2_spatial_guidance_covariance_20260907/discovery5k_audit.json",
   "confirmation_seed_unspent": 202609073,
   "latest_user_core_interpretation": "FSG puts guidance information into the latent; the fixed point explains that operation. Think from this core.",
-  "discussion_candidate_not_implemented": "Freeze the current strong guidance proposal; use the reference readout Jacobian to map its desired output information into a latent write, then test whether the information survives subsequent reference-only denoising. Do not confuse immediate readout matching with final quality. No new experiment before the current 5K closes and the requested review.",
+  "discussion_candidate_not_implemented": "Single-Jacobian writer paused before implementation or GPU execution. Euler decomposition is exact for finite beta, but a one-point Jacobian response is only local and its finite-amplitude applicability has not been established.",
   "current_progress": {
     "spatial_full": 5000,
     "spatial_diagonal": 5000
