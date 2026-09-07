@@ -2,6 +2,13 @@
 
 ## 2026-09-07: renewed RAEv2 guidance study
 
+The current spatial-covariance hypothesis and fixed controls are documented in
+[the spatial guidance covariance study](../docs/RAEV2_SPATIAL_GUIDANCE_COVARIANCE_20260907_ZH.md).
+Its 64K/8K statistics and exact 8-image baseline parity are complete; two paired
+5K arms are running. After these finish, the user has requested a direction
+review centered on guidance information being written into the latent. No
+further covariance extension is planned before that review.
+
 The user has reopened guidance research after the archived closeout. The
 completed paired-5K experiment separates temporal quadrature of the Full
 prediction from quadrature of the native guidance increment, retaining the

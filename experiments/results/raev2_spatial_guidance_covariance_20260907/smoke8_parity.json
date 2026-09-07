@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "rows": {
+    "official": {
+      "pixel_bitwise_equal_to": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/shard0/official/samples.npz",
+      "mismatch_pixels": 0,
+      "all_input_and_model_identities_equal": true
+    },
+    "unit": {
+      "pixel_bitwise_equal_to": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k/shard0/directional_variance/samples.npz",
+      "mismatch_pixels": 0,
+      "all_input_and_model_identities_equal": true
+    }
+  },
+  "meaning": "unit covariance recovers original global-direction stochastic trajectories; official recovers native baseline"
+}

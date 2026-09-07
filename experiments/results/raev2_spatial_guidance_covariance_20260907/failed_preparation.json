@@ -1,0 +1,191 @@
+{
+  "complete": false,
+  "extraction_complete": false,
+  "plan": {
+    "name": "spatial_guidance_covariance",
+    "train": 64000,
+    "validation": "existing 8K held-out rows; descriptive 1000-class SE, not an untouched holdout",
+    "batch": 8,
+    "steps": 100,
+    "spatial_dimension": 256,
+    "fitted_dimension": 255,
+    "spherical_head_sha256": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+    "basis": "one channel-normalized Full.float()-Base.float() direction per spatial token",
+    "reference": "frozen conditional scalar variance and frozen global directional kappa",
+    "frame": "V = U H(w)[:,1:], H is the Householder reflection mapping e0 to global coordinates w",
+    "residual": "r = V^T (X-G_native) / sqrt(m), V^T u_global=0",
+    "fit": "K = train mean(r r^T), uncentered maximum likelihood with fixed mean",
+    "full_parameters": 32640,
+    "diagonal_control_parameters": 255,
+    "sampling": "S_global xi + V(K^(1/2)-I)V^T xi",
+    "invariant": "global direction remains an eigenvector with the original variance m*kappa",
+    "unit_matrix": "exactly recovers the existing global directional covariance sampler",
+    "zero_token_rule": "if any token gap vanishes, spatial transform is identity for that image",
+    "entry": "SPD K; validation full-minus-global and full-minus-diagonal mean NLL+2 class SE < 0",
+    "sample_count": 5000,
+    "discovery_seed": 202609072,
+    "confirmation_seed": 202609073,
+    "no_centering_shrinkage_optimizer_grid_or_time_strength_fit": true,
+    "no_fid_used_in_fit": true
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_spatial_guidance_covariance.py": "903f6ba533ba3493e627af45b0738009e329387d6763070b8bb26f75996244ed",
+    "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py": "d2b5de74e332c782d552d715e001809fbdd312373a697a9db573bb08780948bb",
+    "/home/zhoushunyu/eqvae/experiments/calibrate_raev2_spatial_guidance_covariance.py": "7fa3112961963dbbb2e15b4434bd633a5f194ca325e85849c8b9c1de3fe43a76",
+    "/home/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance.py": "402688a9981aad2e8e91bfcd3713fd682feabda3ac5b46da08320436d6e89097",
+    "/home/zhoushunyu/eqvae/experiments/raev2_directional_variance.py": "ffe28beba32b41ed55fadf53d45167fc982c37f54c7f4c6b6f132274f12cea22",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_variance.py": "e43a38f629cd1f6acff21bf9f9c34fda9aaef704ce8aa8c97f461fdf7ef1e925",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "9b0bdbeaf9b24a4267489c0df286223ec309a3c664d44be297107fc73e2e40fd",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/docs/RAEV2_SPATIAL_GUIDANCE_COVARIANCE_20260907_ZH.md": "13715aed63958bfaf8f2819b07a3e5747fb0e37b674d8ced5ba23488074e08f8"
+  },
+  "pid": 113314,
+  "pid_starttime": "214570788",
+  "checkpoint_sha256_verified": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "splits": {
+    "train": {
+      "complete": true,
+      "count": 64000,
+      "active": 64000,
+      "moments_sha256": "f97bea0dea7389f7b630f126f1f235150cc393481e96ce98fa1c839d31992699",
+      "teacher_sample_main_calls": 64000,
+      "extraction_seconds_sum": 746.5332897617482,
+      "all_cached_features_mse_scalar_and_global_projection_bitwise_equal": true
+    }
+  },
+  "jobs": [
+    {
+      "split": "train",
+      "rank": 0,
+      "pid": 115558,
+      "pid_starttime": "214572942",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "train",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "split": "train",
+      "rank": 1,
+      "pid": 115560,
+      "pid_starttime": "214572942",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "train",
+        "--shard",
+        "1"
+      ]
+    },
+    {
+      "split": "train",
+      "rank": 2,
+      "pid": 115562,
+      "pid_starttime": "214572942",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "train",
+        "--shard",
+        "2"
+      ]
+    },
+    {
+      "split": "train",
+      "rank": 3,
+      "pid": 115563,
+      "pid_starttime": "214572942",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "train",
+        "--shard",
+        "3"
+      ]
+    },
+    {
+      "split": "validation",
+      "rank": 0,
+      "pid": 126287,
+      "pid_starttime": "214594061",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "validation",
+        "--shard",
+        "0"
+      ]
+    },
+    {
+      "split": "validation",
+      "rank": 1,
+      "pid": 126288,
+      "pid_starttime": "214594061",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "validation",
+        "--shard",
+        "1"
+      ]
+    },
+    {
+      "split": "validation",
+      "rank": 2,
+      "pid": 126289,
+      "pid_starttime": "214594061",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "validation",
+        "--shard",
+        "2"
+      ]
+    },
+    {
+      "split": "validation",
+      "rank": 3,
+      "pid": 126290,
+      "pid_starttime": "214594061",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/extract_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/moments",
+        "--split",
+        "validation",
+        "--shard",
+        "3"
+      ]
+    }
+  ],
+  "error": "RuntimeError('validation extraction failed; inspect shard logs')",
+  "seconds": 217.2026952430606
+}

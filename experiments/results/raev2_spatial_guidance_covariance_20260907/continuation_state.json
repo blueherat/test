@@ -1,0 +1,54 @@
+{
+  "recorded_at": "2026-09-07T12:35:24.833547+00:00",
+  "goal_complete": false,
+  "completed_study": {
+    "name": "guidance temporal quadrature",
+    "commit": "10a5f43",
+    "finding": "no substantive 5K gain; three arms fully audited"
+  },
+  "current_run": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+  "sampling_session_id": 23768,
+  "audit_wait_session_id": 83870,
+  "run_controller": {
+    "pid": 158022,
+    "pid_starttime": "214656563"
+  },
+  "workers": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 159875,
+      "pid_starttime": "214657696"
+    },
+    {
+      "rank": 1,
+      "gpu": 1,
+      "pid": 159876,
+      "pid_starttime": "214657696"
+    },
+    {
+      "rank": 2,
+      "gpu": 2,
+      "pid": 159877,
+      "pid_starttime": "214657697"
+    },
+    {
+      "rank": 3,
+      "gpu": 3,
+      "pid": 159878,
+      "pid_starttime": "214657697"
+    }
+  ],
+  "latest_user_steering": "Finish this 5K and then review whether research has drifted; reread the NeurIPS25 fixed-point paper for intuition and taste. Do not extend covariance or launch a next hypothesis before that review.",
+  "next_action": "Let both existing 5K arms finish, collect official and independent audit results, then critically review the direction against FSG and PFR before choosing further work.",
+  "preparation": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/preparation.json",
+  "inference_calibration": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/calibration.json",
+  "audit_output": "experiments/results/raev2_spatial_guidance_covariance_20260907/discovery5k_audit.json",
+  "confirmation_seed_unspent": 202609073,
+  "latest_user_core_interpretation": "FSG puts guidance information into the latent; the fixed point explains that operation. Think from this core.",
+  "discussion_candidate_not_implemented": "Freeze the current strong guidance proposal; use the reference readout Jacobian to map its desired output information into a latent write, then test whether the information survives subsequent reference-only denoising. Do not confuse immediate readout matching with final quality. No new experiment before the current 5K closes and the requested review.",
+  "current_progress": {
+    "spatial_full": 5000,
+    "spatial_diagonal": 184
+  }
+}

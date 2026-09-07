@@ -1,0 +1,126 @@
+{
+  "complete": true,
+  "pid": 149102,
+  "pid_starttime": "214640883",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/smoke8",
+    "fit": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+    "samples": 8,
+    "seed": 202609072,
+    "modes": [
+      "official",
+      "unit",
+      "spatial_full",
+      "spatial_diagonal"
+    ],
+    "gpus": [
+      0
+    ],
+    "no_evaluate": true
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_spatial_guidance_covariance.py": "2aa9d4b4eadee3b5d475018cd8132ab956c1b2780ab7b3fee8abc4a7c2928e31",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py": "c52b7d55f884d767bfe9fe87a29a9e5cbca54f48a3fd02c2fb676a31207fcd13",
+    "/home/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance.py": "212321bebbbf21ab5909b23c44f426e47196e61dcff141bf64c9be6208334a50",
+    "/home/zhoushunyu/eqvae/experiments/raev2_directional_variance.py": "ffe28beba32b41ed55fadf53d45167fc982c37f54c7f4c6b6f132274f12cea22",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_variance.py": "e43a38f629cd1f6acff21bf9f9c34fda9aaef704ce8aa8c97f461fdf7ef1e925",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_guidance_quadrature.py": "401c3b13f93c26f4cd73d4343b0257e5dcf6202e6bd25315384bc8d7e11246d6",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_guidance_quadrature.py": "d2dc75ab5c39679622625bf70847c514d654d8dca7a98fc0beafce488940402e",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  },
+  "calibration_sources": {
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/calibration.json": "a34e769e4a0e8bb8fd5df4752de3a599263bae4f52dbeabf59e1242d81e0c7e9",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/covariance.npz": "e89215a7f17cc462b0540f2b416b583f794eb2eee151830b8bb857898988a301",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_fit/head.pt": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/directional_variance_moments/calibration.json": "1e6da51495be729658abb717190dba6a613872c4b8e2d8d8bc0447993179a019",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json": "ef6c7cfb341ad9a0985bc86d8ff219205e2591b0267d0e095c87db84a443d2c5"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 150901,
+      "pid_starttime": "214642008",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/smoke8",
+        "--fit",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+        "--samples",
+        "8",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "1",
+        "--modes",
+        "official",
+        "unit",
+        "spatial_full",
+        "spatial_diagonal"
+      ]
+    }
+  ],
+  "sampling_complete": true,
+  "sampling_seconds": 50.116904735099524,
+  "merged": {
+    "official": {
+      "complete": true,
+      "samples": 8,
+      "mode": "official",
+      "seed": 202609072,
+      "sample_sha256": "1cf8a38d97b017fe21f23fc84566e21263a23cba2956a0f76393b835ab1c400a",
+      "trajectory_seconds_sum": 4.988036768976599,
+      "decode_seconds_sum": 0.027418371755629778,
+      "sample_model_calls": 800,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "unit": {
+      "complete": true,
+      "samples": 8,
+      "mode": "unit",
+      "seed": 202609072,
+      "sample_sha256": "a3989e36311340681811e59bfa44eed72f52a3d04d9757dbca1c3bdd6f7d09f4",
+      "trajectory_seconds_sum": 5.145686132833362,
+      "decode_seconds_sum": 0.029276894871145487,
+      "sample_model_calls": 800,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "spatial_full": {
+      "complete": true,
+      "samples": 8,
+      "mode": "spatial_full",
+      "seed": 202609072,
+      "sample_sha256": "dada45a480424dc662cf17102331540adb500a86cbcff5d6dc57dbd0a74b4696",
+      "trajectory_seconds_sum": 5.135699454229325,
+      "decode_seconds_sum": 0.027326734270900488,
+      "sample_model_calls": 800,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "spatial_diagonal": {
+      "complete": true,
+      "samples": 8,
+      "mode": "spatial_diagonal",
+      "seed": 202609072,
+      "sample_sha256": "b48be9dfd9dd07b9eb8c92cda0dd57d6e180b03716d8fc33f27c0e738c3c8852",
+      "trajectory_seconds_sum": 5.136255563702434,
+      "decode_seconds_sum": 0.027369049843400717,
+      "sample_model_calls": 800,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    }
+  },
+  "seconds": 50.117220958229154
+}
