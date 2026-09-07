@@ -1,0 +1,97 @@
+{
+  "created_unix": 1788767032.3198643,
+  "source_state": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final_semantic_add5k_continuation/state.json",
+  "source_state_sha256": "8b0276ca9c0521881c3b22b28484ef41679b56e330d587acf5a1701cdcd2e867",
+  "state": {
+    "complete": false,
+    "pid": 3138310,
+    "stage": "unchanged_final_semantic_add5k",
+    "prerequisite_pid": 3095567,
+    "prerequisite_process_identity": "212731188",
+    "plan": {
+      "research_round": 5,
+      "maximum_rounds": 8,
+      "last_additional_quality_candidate": true,
+      "mode": "semantic_add",
+      "samples": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "batch": 8,
+      "unchanged_1k_parameters": {
+        "additional_cfg_strength": 0.15,
+        "null_label": 1000,
+        "activity": "same original IG interval [.1,1]",
+        "conditional_layout": "original B8; null in a separate B8 forward",
+        "base_anchor": "unchanged native BF16 IG; correction computed in FP32",
+        "model_calls_note": "sample_model_calls includes conditional and null; extra_sample_unconditional_calls is a subset"
+      },
+      "original_1k_fid": 37.74654580265707,
+      "original_1k_sample_sha256": "97983b4647b2ebfcc4bd43047987b6c885426a982559275f56278a927b5c02b7",
+      "original_1k_inference_cost_ratio": 1.9913447187653919,
+      "reason": "Strongest original1K candidate without its own5K; orthogonal variant failure is not the additive result",
+      "known_limitation": "Orthogonal1K is only .1106% better than additive and its5K fails; no assertion additive will reverse this",
+      "no_new_strength_window_layer_seed_or_training": true,
+      "cost_control_if_quality_passes": {
+        "solver": "Heun with final Euler",
+        "steps": 101,
+        "main_calls_per_image": 201,
+        "rule": "ceil((100*original_additive1k_measured_cost_ratio+1)/2)",
+        "fresh_source_patch_and_native8_checks_required": true,
+        "never_apply_stale_old_Heun_patch": true
+      },
+      "skip_if_directional_quality_meets_three_percent_pending_audit": true
+    },
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/continue_raev2_final_semantic_add5k.py": "f85f3cfed187e11239a75c347269859ac65a059aeb5b56fab97943ce6b844c05",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_final_semantic_add5k.py": "45236f20d7400385f998d87e00aaff1ae0a021793e64d8dca09f1acd825b8c49",
+      "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "9b0bdbeaf9b24a4267489c0df286223ec309a3c664d44be297107fc73e2e40fd",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py": "93eb3a9c245214612700e2a93b257239ec8f56185e5acaea65c5b7de540bcd78",
+      "/home/zhoushunyu/eqvae/experiments/raev2_semantic_complement.py": "48d65f9b223dc3e35f576c5824264c75ac6ac50931a670590af64bc6c7b2c38f",
+      "/home/zhoushunyu/eqvae/experiments/raev2_semantic_quality_guidance.py": "b8cc133cc75605166216666f5db48c8e4e94086e41ddb8a68751114f211a1df1",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+      "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+      "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/shard0/request.json": "5f3b692f3ff5f20cdaa9943d773e120732d5db592c861df1986166de437c11e6",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/semantic_add/summary.json": "7a552fac1ac8582db86dc6fc483c85f0f71450cf33ba7bc6915b1643002a086d",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/metrics.json": "700b065117f739da76792a08e193131741ef5db752fbf97fd1534f38dab5b89c"
+    },
+    "goal_achieved": false,
+    "no_automatic_restart": true,
+    "prerequisite_execution_sha256": "89ec12bed3f7f0b59e9a06d0b70ad7e4d2fc70e0cd58fdd212aedbed7988b609",
+    "child_pid": 3143584,
+    "command": [
+      "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py",
+      "--output",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k",
+      "--samples",
+      "5000",
+      "--seed",
+      "202609072",
+      "--modes",
+      "semantic_add"
+    ],
+    "parity": [
+      {
+        "mode": "official",
+        "all_pixels_equal": true,
+        "sample_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247",
+        "reference_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247"
+      },
+      {
+        "mode": "semantic_add",
+        "all_pixels_equal": true,
+        "sample_sha256": "13185478217ff6c8546f53bbdd5f1be3e39cc5e82083d0b3d0c34db81702ae2e",
+        "reference_sha256": "13185478217ff6c8546f53bbdd5f1be3e39cc5e82083d0b3d0c34db81702ae2e"
+      }
+    ]
+  },
+  "controller_liveness_observed": {
+    "pid": 3138310,
+    "state": "S",
+    "starttime_ticks": "212830884"
+  },
+  "snapshot_is_not_future_liveness_proof": true,
+  "goal_achieved": false
+}

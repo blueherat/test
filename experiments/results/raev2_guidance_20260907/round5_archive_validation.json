@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "created_unix": 1788767160.1475012,
+  "checks": [
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-m",
+        "py_compile",
+        "experiments/index_research_workspace_20260907.py",
+        "experiments/audit_research_workspace_references_20260907.py",
+        "experiments/audit_raev2_fixed_mean_nll_fid_counterexample.py",
+        "experiments/audit_raev2_final_semantic_add5k.py",
+        "experiments/continue_raev2_final_semantic_add5k.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-m",
+        "pyflakes",
+        "experiments/index_research_workspace_20260907.py",
+        "experiments/audit_research_workspace_references_20260907.py",
+        "experiments/audit_raev2_fixed_mean_nll_fid_counterexample.py",
+        "experiments/audit_raev2_final_semantic_add5k.py",
+        "experiments/continue_raev2_final_semantic_add5k.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "sources": {
+    "experiments/index_research_workspace_20260907.py": "18285573736bfd8ce7a1ff49830e8f94d972467393cfe2a04a29b67a0df6c88c",
+    "experiments/audit_research_workspace_references_20260907.py": "e71c44b54d9910496205b1414469d7d49cc1fcf352b1b43f66dbc60a8a966412",
+    "experiments/audit_raev2_fixed_mean_nll_fid_counterexample.py": "24444d20f801e9fe32d1e58115d157c6069c73c8258e53c713e2312a48e88e52",
+    "experiments/audit_raev2_final_semantic_add5k.py": "45236f20d7400385f998d87e00aaff1ae0a021793e64d8dca09f1acd825b8c49",
+    "experiments/continue_raev2_final_semantic_add5k.py": "f85f3cfed187e11239a75c347269859ac65a059aeb5b56fab97943ce6b844c05"
+  },
+  "quality_index_sha256": "7eab2db0119bc9faff0e6849c447311cd52e45868f876d7ba51d50aecb66721d",
+  "quality_rows": 29,
+  "analytic_counterexample_sha256": "ec7fcde67cc2229c8442115d74aec088cc901fd399d9d8ed7e6e11dc211e53c6",
+  "reference_review_sha256": "41b00bc111153d81db19283a4ecc5a040dc1a818addc3c676d61d79a6959c1d8",
+  "full_workspace_manifest_is_separate_and_generated_after_this_record": true
+}

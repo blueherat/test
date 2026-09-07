@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "analytic_counterexample_not_raev2_quality": true,
+  "target": {
+    "mean": 0.0,
+    "variance": 1.0
+  },
+  "rows": [
+    {
+      "name": "variance_matches_target",
+      "mean": 1.0,
+      "variance": 1.0,
+      "kl_p_to_q": 0.5,
+      "fid_squared_wasserstein": 1.0
+    },
+    {
+      "name": "fixed_mean_nll_optimum",
+      "mean": 1.0,
+      "variance": 2.0,
+      "kl_p_to_q": 0.3465735902799727,
+      "fid_squared_wasserstein": 1.17157287525381
+    }
+  ],
+  "kl_change": -0.1534264097200273,
+  "fid_change": 0.17157287525380993,
+  "claim": "Even exact fixed-mean Gaussian KL improvement need not improve FID with identity decoding",
+  "does_not_identify_cause_of_actual_raev2_results": true,
+  "new_quality_candidates": 0,
+  "source_sha256": "24444d20f801e9fe32d1e58115d157c6069c73c8258e53c713e2312a48e88e52"
+}

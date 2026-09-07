@@ -124,6 +124,10 @@ torchrun --nproc_per_node=8 eval.py \
 
 该脚本会生成包含 5 万张样本图像的文件夹，同时生成一个 `.npz` 文件；这些输出可以直接用于 [ADM 的 TensorFlow 评估套件](https://github.com/openai/guided-diffusion/tree/main/evaluations) 来计算 gFID。
 
+### 研究档案
+
+本工作区后续研究的理论、代码和数据导航见[完整研究档案](docs/RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md)。RAEv2 guidance 的当前可比结果见[研究结果索引](docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md)，其中保留负结果、历史资产缺口和研究次数上限。
+
 ### 致谢
 
 本代码主要基于 [LDM](https://github.com/CompVis/latent-diffusion) 和 [fastDiT](https://github.com/chuanyangjin/fast-DiT) 构建。

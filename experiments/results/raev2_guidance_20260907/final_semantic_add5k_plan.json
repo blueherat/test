@@ -1,0 +1,33 @@
+{
+  "research_round": 5,
+  "maximum_rounds": 8,
+  "last_additional_quality_candidate": true,
+  "mode": "semantic_add",
+  "samples": 5000,
+  "seed": 202609072,
+  "steps": 100,
+  "batch": 8,
+  "unchanged_1k_parameters": {
+    "additional_cfg_strength": 0.15,
+    "null_label": 1000,
+    "activity": "same original IG interval [.1,1]",
+    "conditional_layout": "original B8; null in a separate B8 forward",
+    "base_anchor": "unchanged native BF16 IG; correction computed in FP32",
+    "model_calls_note": "sample_model_calls includes conditional and null; extra_sample_unconditional_calls is a subset"
+  },
+  "original_1k_fid": 37.74654580265707,
+  "original_1k_sample_sha256": "97983b4647b2ebfcc4bd43047987b6c885426a982559275f56278a927b5c02b7",
+  "original_1k_inference_cost_ratio": 1.9913447187653919,
+  "reason": "Strongest original1K candidate without its own5K; orthogonal variant failure is not the additive result",
+  "known_limitation": "Orthogonal1K is only .1106% better than additive and its5K fails; no assertion additive will reverse this",
+  "no_new_strength_window_layer_seed_or_training": true,
+  "cost_control_if_quality_passes": {
+    "solver": "Heun with final Euler",
+    "steps": 101,
+    "main_calls_per_image": 201,
+    "rule": "ceil((100*original_additive1k_measured_cost_ratio+1)/2)",
+    "fresh_source_patch_and_native8_checks_required": true,
+    "never_apply_stale_old_Heun_patch": true
+  },
+  "skip_if_directional_quality_meets_three_percent_pending_audit": true
+}
