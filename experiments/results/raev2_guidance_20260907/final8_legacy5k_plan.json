@@ -1,0 +1,82 @@
+{
+  "created_unix": 1788758390.9418168,
+  "decision_before_either_new_5k": true,
+  "research_round_started": 1,
+  "remaining_research_round_limit": 8,
+  "modes": [
+    "paired_ratio_calibrated",
+    "calibrated"
+  ],
+  "samples": 5000,
+  "seed": 202609072,
+  "steps": 100,
+  "batch": 8,
+  "reason": "User requested fixed 5K for slightly negative 1K; two distinct mechanisms, not a parameter sweep",
+  "fixed_1k_fid": {
+    "paired_ratio_calibrated": 38.56759907090867,
+    "calibrated": 38.5411998671
+  },
+  "unchanged_ratio_calibration": {
+    "complete": true,
+    "alpha": 1.5041111779055252,
+    "alpha_class_cluster_se": 0.07332033484735617,
+    "heldout_loss_change": -1.3754929808417955,
+    "heldout_loss_change_class_cluster_se": 0.26674966192989547,
+    "entry_condition_passed": true,
+    "fit_classes": "even ImageNet class ids",
+    "check_classes": "odd ImageNet class ids",
+    "source_is_prior_classifier_holdout_not_a_new_data_draw": true,
+    "uncalibrated_1k_had_already_been_observed": true,
+    "fid_used_for_parameter_fit": false,
+    "time_dependent_parameters": 0,
+    "global_fitted_scalars": 1,
+    "sampling_time_window_unchanged": true,
+    "stationarity": -8.981260180007667e-16,
+    "score_at_one": -4.223408977968323,
+    "fit_loss_after_calibration": -10.915779932922868,
+    "checkpoint_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+    "validation_records_sha256": "c27240e19e7a1dfb7f5be42affd7b14d2346d0ecab6ff6f0e0710d7f9e5940e9",
+    "native_time_request_sha256": "734c826c7ae983483c7cd18c4149d9214235277f691f2bbb5e977bff4ae14423",
+    "source_sha256": "31ec8816499705952dae3e628e13e9cbd5cbaf8295064d2ddebae84b961a7018",
+    "limitation": "proper scoring within a one-dimensional function family does not guarantee an exact density ratio or FID gain"
+  },
+  "unchanged_formulas": {
+    "paired_ratio_calibrated": "G + alpha*t^2*grad(f); one previous probability calibration",
+    "calibrated": "native Euler + ((t-s)/t)*sqrt(previous MSE_G(t))*xi"
+  },
+  "known_limitations": [
+    "Endpoint re-noising differs from actual native marginals",
+    "Fixed-mean Gaussian cross-entropy optimality does not imply FID improvement"
+  ],
+  "no_refit_or_coefficient_window_layer_seed_search": true,
+  "skip_if_prefix_quality_meets_three_percent_pending_audit": true,
+  "baseline_noise_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_final8_legacy5k.py": "41cae21df291d58bab01ed96e173b5d2b9ff5ced29422ee76364a33bcd94e755",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_final8_legacy5k.py": "2fccd795c91c96888c826cdd502669f9eee5b63f6a4f285e14b2bf19389ca60d",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+    "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+    "/home/zhoushunyu/eqvae/experiments/raev2_paired_ratio_model.py": "fb58ca15f6bbd63c62f887c40de8de9b5f198f4e21d16d06eaa49e502a09e9e7",
+    "/home/zhoushunyu/eqvae/experiments/raev2_ancestral_guidance.py": "1debe7bbe0533840a1a690a3094133bf5fc63a302fb49bcd32aad419fdd55e08",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit/critic.pt": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_calibration.json": "728485eab135a12c335e79a2ed64dd8baa49f851de47e324294172dc1ed4b815",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json": "ef6c7cfb341ad9a0985bc86d8ff219205e2591b0267d0e095c87db84a443d2c5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/summary.json": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/metrics.json": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520",
+    "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/semantic_confirm5k.json": "bcd2392803349d75ae6a4d4a44850bb904cfbe87942442ee03803fb794bc33d5",
+    "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/paired_ratio_screens.json": "5464332c74db3ad4d772f5501430e0614059b55277c04d89ed3c6420cebc10e9"
+  },
+  "allowed_reviewed_integration": {
+    "experiments/sample_raev2_ancestral_guidance.py": [
+      "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320",
+      "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347"
+    ],
+    "experiments/run_raev2_ancestral_study.py": [
+      "ce6d913a501214ee7b2a1ac0572136e54769b1ce94fb10e64a8675068fe19163",
+      "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9"
+    ]
+  },
+  "no_automatic_goal_completion": true
+}

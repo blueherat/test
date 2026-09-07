@@ -85,8 +85,8 @@ def main():
             print(json.dumps({'count': start+8, 'target': len(ids), 'seconds': time.perf_counter()-began}), flush=True)
     positive.flush(); negative.flush()
     np.savez(out/'metadata.npz', ids=ids, times=bank.times[ids], positive_indices=all_k)
-    for path, digest in sources.items():
-        assert sha(Path(path)) == digest
+    for path, expected_digest in sources.items():
+        assert sha(Path(path)) == expected_digest
     record = {'complete': True, 'count': len(ids), 'positive_choices': spec['positive_choices'],
               'native_fp32_prefix_parity': parity, 'seconds': time.perf_counter()-began, 'sources': sources,
               'checkpoint_sha256': sha(Path(DEFAULT_CHECKPOINT)), 'config_sha256': sha(Path(DEFAULT_CONFIG)),

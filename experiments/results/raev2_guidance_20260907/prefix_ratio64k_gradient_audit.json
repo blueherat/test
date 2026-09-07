@@ -1,0 +1,122 @@
+{
+  "complete": true,
+  "plan": {
+    "queries": [
+      0,
+      1,
+      25,
+      75,
+      99
+    ],
+    "selection": "first whole ascending held-out B8 at each preselected query; first native noise B8 at t1",
+    "fp32_vs_fp64_gradient_relative_tolerance": 0.002,
+    "fp64_fd_relative_tolerance": 0.002,
+    "central_difference_total_l2_step_per_image": 0.001,
+    "zero_head_correction_must_be_exact_zero": true,
+    "fp64_reference": "same weights/buffers; preserve double RMSNorm arithmetic and use double zero attention mask",
+    "fid_used": false,
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+      "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "8ab5964268d017edbac01dea8c352ace495e02e5a0a293e3e82d860dba62e6b5",
+      "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732"
+    },
+    "checkpoint_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b"
+  },
+  "rows": [
+    {
+      "query_index": 0,
+      "time": 1.0,
+      "ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fp32_vs_ideal_fp64_gradient_relative_error": 4.130596963224472e-06,
+      "fp64_central_difference_relative_error": 3.924153126663371e-08,
+      "correction_rms": 0.0018378716195002198,
+      "seconds_since_start": 3.7611588211730123
+    },
+    {
+      "query_index": 1,
+      "time": 0.9987389445304871,
+      "ids": [
+        2352,
+        2353,
+        2354,
+        2355,
+        2356,
+        2357,
+        2358,
+        2359
+      ],
+      "fp32_vs_ideal_fp64_gradient_relative_error": 3.9531135195545905e-06,
+      "fp64_central_difference_relative_error": 1.5589249678329426e-08,
+      "correction_rms": 0.001552697503939271,
+      "seconds_since_start": 7.254148826934397
+    },
+    {
+      "query_index": 25,
+      "time": 0.9599999785423279,
+      "ids": [
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463
+      ],
+      "fp32_vs_ideal_fp64_gradient_relative_error": 4.7283711665136045e-06,
+      "fp64_central_difference_relative_error": 1.646903083709624e-08,
+      "correction_rms": 0.0027035705279558897,
+      "seconds_since_start": 10.749013504944742
+    },
+    {
+      "query_index": 75,
+      "time": 0.7272727489471436,
+      "ids": [
+        1424,
+        1425,
+        1426,
+        1427,
+        1428,
+        1429,
+        1430,
+        1431
+      ],
+      "fp32_vs_ideal_fp64_gradient_relative_error": 2.424525730479036e-06,
+      "fp64_central_difference_relative_error": 6.549555637218546e-11,
+      "correction_rms": 0.0005837562493979931,
+      "seconds_since_start": 14.255102776922286
+    },
+    {
+      "query_index": 99,
+      "time": 0.07476635277271271,
+      "ids": [
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351
+      ],
+      "fp32_vs_ideal_fp64_gradient_relative_error": 1.9217333128850096e-06,
+      "fp64_central_difference_relative_error": 9.746618126445074e-11,
+      "correction_rms": 1.9334361240908038e-06,
+      "seconds_since_start": 17.761539535131305
+    }
+  ],
+  "zero_head_correction_exact_zero": true,
+  "native_precision_flags_restored": true,
+  "elapsed_gpu_worker_seconds": 17.830346120055765,
+  "fid_used": false,
+  "no_images_generated": true
+}

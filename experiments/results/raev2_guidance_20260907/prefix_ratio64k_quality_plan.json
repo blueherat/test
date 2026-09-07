@@ -1,5 +1,5 @@
 {
-  "created_unix": 1788736191.0231855,
+  "created_unix": 1788757018.587918,
   "decision_before_new_head_and_any_fid": true,
   "primary_requested_sample_counts": [
     1000,
@@ -29,12 +29,20 @@
   "cost_policy": "reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control",
   "no_automatic_goal_completion": true,
   "sources": {
-    "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
-    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "95295663bb321a719a402cc3baa6d5969c98c3b352a1d6ab676d0e0622f0de2f",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "8ab5964268d017edbac01dea8c352ace495e02e5a0a293e3e82d860dba62e6b5",
     "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
     "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
     "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
     "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
-    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_backward_precision_diagnostic/execution.json": "06c323424389cfb8d3999ba2274ce830f2e1867a6c059596e21aeb21c3cb14f0"
+  },
+  "recovery": {
+    "created_unix": 1788758373.3732364,
+    "previous_plan_sha256": "289703e2c92424275e06180fe4476ea536f63b47dcff90cad864abbca74c1ef8",
+    "diagnostic_sha256": "06c323424389cfb8d3999ba2274ce830f2e1867a6c059596e21aeb21c3cb14f0",
+    "only_change": "keep FP32 and TF32-off context active during autograd backward",
+    "no_new_head_formula_data_or_tolerances": true
   }
 }

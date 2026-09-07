@@ -1,0 +1,340 @@
+{
+  "created_unix": 1788758369.8927178,
+  "all_prior_parent_and_child_pids_absent": true,
+  "preserved_failures": [
+    {
+      "original": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_gradient_audit",
+      "preserved": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_gradient_audit_failed_backward_precision",
+      "record_sha256": "3642ebe15cc947d319f999dff6e9a616dd44d45aa74783602f29b65c332d9eb4",
+      "state": {
+        "plan": {
+          "queries": [
+            0,
+            1,
+            25,
+            75,
+            99
+          ],
+          "selection": "first whole ascending held-out B8 at each preselected query; first native noise B8 at t1",
+          "fp32_vs_fp64_gradient_relative_tolerance": 0.002,
+          "fp64_fd_relative_tolerance": 0.002,
+          "central_difference_total_l2_step_per_image": 0.001,
+          "zero_head_correction_must_be_exact_zero": true,
+          "fp64_reference": "same weights/buffers; preserve double RMSNorm arithmetic and use double zero attention mask",
+          "fid_used": false,
+          "sources": {
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732"
+          },
+          "checkpoint_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b"
+        },
+        "rows": [
+          {
+            "query_index": 0,
+            "time": 1.0,
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "fp32_vs_ideal_fp64_gradient_relative_error": 0.00686115121555149,
+            "fp64_central_difference_relative_error": 3.924153126663371e-08,
+            "correction_rms": 0.0018400244880467653,
+            "seconds_since_start": 4.051397037692368
+          }
+        ]
+      }
+    },
+    {
+      "original": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_screen_continuation",
+      "preserved": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_screen_continuation_failed_backward_precision",
+      "record_sha256": "3672a5e319b2f643a9cf21c850c969cd0a47cb189453e75edbb8cbce0fdd73f5",
+      "state": {
+        "complete": false,
+        "pid": 2773257,
+        "started_unix": 1788757969.7252731,
+        "stage": "failed_requires_inspection_no_restart",
+        "sources": {
+          "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347",
+          "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py": "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+          "/home/zhoushunyu/eqvae/experiments/raev2_actual_ratio_data.py": "a0998a7023a61640d41411da4b3d261385abb570b9a182a9ece360946266e381",
+          "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+          "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/head.pt": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+          "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/execution.json": "280009181482a29458646e951f4c923ba0a029cd67be295b0429ae72775d8d7c",
+          "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/plan.json": "6c0774dc4e50e06e6317a3c507bac3281dcde1ddefc2ca7bfa4997c67819264e",
+          "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_smoke_v2/shard0/official/samples.npz": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247"
+        },
+        "fit_execution": {
+          "complete": true,
+          "plan": {
+            "name": "prefix_ratio64k",
+            "train": {
+              "count": 64000,
+              "real_per_class": 64,
+              "positive_choices": 5,
+              "pairing": "(global_id//1000 + k) mod64, k=0..4"
+            },
+            "validation": {
+              "count": 8000,
+              "real_per_class": 8,
+              "positive_choices": 8,
+              "pairing": "all eight held-out real choices for every held-out noise state"
+            },
+            "feature": "unchanged native base_model_depth8; token RMS then pooled first and second moments",
+            "feature_dimension": 2880,
+            "parameters_including_bias": 2881,
+            "normalization": "one training mixture mean and one global RMS; positive/negative sides each weight one half",
+            "prior": "unchanged generalized Bayes N(0,I/dim), unit expected f^2 on the normalized training mixture",
+            "ridge_rule": "dim/N independent generated states, including regularized bias; N=64000",
+            "ridge": 0.045015625,
+            "objective": "average paired scaled logistic over states and five balanced positive choices, plus one prior",
+            "optimizer": {
+              "method": "L-BFGS-B",
+              "initialization": "zero",
+              "maxiter": 500,
+              "gtol": 1e-08,
+              "ftol": 1e-13,
+              "maxls": 30
+            },
+            "validation_entry": "mean conditional risk + 2 SE of 1000 class means < 0; optimizer gradient maxabs <1e-5",
+            "validation_uncertainty_limit": "descriptive class-cluster SE under fixed balanced classes; not a formal guarantee",
+            "sampling_if_entry_passed": {
+              "formula": "native G + t^2 grad_z f",
+              "strength": 1.0,
+              "times": "all original100 including pure noise",
+              "seed": 202609071,
+              "samples": 1000,
+              "requires": "input gradient audit, finite whole trajectory and original official8 pixel parity"
+            },
+            "no_fid_layer_temperature_window_or_regularizer_search": true,
+            "data_expansion_count_is_one_engineering_budget_not_a_unique_theorem": true,
+            "train_conditional_average_is_five_balanced_choices_not_exact_all64": true,
+            "fid_used_for_fitting": false
+          },
+          "sources": {
+            "/home/zhoushunyu/eqvae/experiments/fit_raev2_prefix_ratio64k.py": "e9c6084bca524263dd2cfa6bd8f481c0bcb3bd4107c71b969984d13f360c9e33",
+            "/home/zhoushunyu/eqvae/experiments/raev2_conditional_ratio_objective.py": "be5c31b7ae619469cef0a07f4b87ba205ce2a3fdf3f1ce91a9b70afba8b3d785",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio64k_plan.py": "089bc05f9381c69c8554ef5f02ce3fb332cc27aaac7efaf6af8f158053e5e262"
+          },
+          "feature_execution_sha256": "2dc088fc39cc4933046340fb960cae24bbc693fbf65df563ae71772ec25e9db9",
+          "training_conditional_risk": -2.2208383085880508,
+          "regularized_objective": -1.6808415325302288,
+          "gradient_max_abs": 2.3437649660980353e-06,
+          "optimizer_converged": true,
+          "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+          "iterations": 237,
+          "coefficient_norm": 4.8981145681370775,
+          "validation": {
+            "independent_noise_states": 8000,
+            "positive_choices_per_state": 8,
+            "classes": 1000,
+            "mean_scaled_logistic": -1.2157890575431125,
+            "class_standard_error": 0.21766497350972955,
+            "upper_two_standard_errors": -0.7804591105236534,
+            "native_batch_standard_error_diagnostic": 0.1894597051840176,
+            "entry_condition_passed": true,
+            "not_a_fid_or_input_gradient_generalization_claim": true
+          },
+          "cpu_elapsed_seconds": 151.8139675250277,
+          "checkpoint_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+          "validation_records_sha256": "588d44603101f7945a97eda142760ebc9dd7d509c53dc2fdd2bfc6a1694a06fe",
+          "no_fid_evaluated": true
+        },
+        "seed": 202609071,
+        "samples": 1000,
+        "steps": 100,
+        "strength": 1.0,
+        "time_interval": "all original100",
+        "goal_achieved": false,
+        "child_pid": 2773261,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "-m",
+          "experiments.audit_raev2_prefix_ratio64k_gradient"
+        ],
+        "error": "gradient.log failed with code 1; outputs retained, no resampling"
+      }
+    },
+    {
+      "original": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_quality_continuation",
+      "preserved": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_quality_continuation_failed_backward_precision",
+      "record_sha256": "101b122410dc6d8f06603be5fd92f5b20dbf40a6be116aee4aad6dec98260872",
+      "state": {
+        "complete": false,
+        "pid": 2713366,
+        "plan": {
+          "created_unix": 1788757018.587918,
+          "decision_before_new_head_and_any_fid": true,
+          "primary_requested_sample_counts": [
+            1000,
+            5000
+          ],
+          "screen1k": {
+            "seed": 202609071,
+            "samples": 1000
+          },
+          "independent5k": {
+            "seed": 202609072,
+            "samples": 5000,
+            "run_regardless_of_1k_fid_if_entry_gradient_parity_and_whole1k_pass": true
+          },
+          "rationale": "User goal permits either1K or5K; existing all-block evidence shows finite-N ranking changes; compare both unchanged, report both",
+          "head_formula_strength_and_time_schedule_unchanged": true,
+          "prerequisites": "one fixed64K fit passes original entry, numerical gradient audit and original official8 parity, finite complete1K",
+          "no_new_seed_coefficient_window_layer_or_temperature_selection": true,
+          "baseline5k": {
+            "study": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k",
+            "official_fid": 6.9497684777115865,
+            "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+            "noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+            "summary_sha256": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+            "metrics_sha256": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520"
+          },
+          "cost_policy": "reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control",
+          "no_automatic_goal_completion": true,
+          "sources": {
+            "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+            "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+            "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+            "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+          }
+        },
+        "stage": "failed_requires_inspection_no_restart",
+        "prerequisite_pid": 2704867,
+        "prerequisite_process_identity": "211938105",
+        "started_unix": 1788757018.5882642,
+        "sources": {
+          "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+          "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+          "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+          "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+        },
+        "goal_achieved": false,
+        "integration_applied": true,
+        "head_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+        "child_pid": 2773257,
+        "command": [
+          "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+          "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py"
+        ],
+        "error": "screen1k.log failed (1); no automatic repeat"
+      }
+    },
+    {
+      "original": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final8_legacy5k_continuation",
+      "preserved": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final8_legacy5k_continuation_failed_backward_precision",
+      "record_sha256": "3a0632fb6aa853cdaf86aa8f3976cca6da7e4e9ed9227c811ca176df6822fd80",
+      "state": {
+        "complete": false,
+        "pid": 2772895,
+        "stage": "failed_requires_inspection_no_restart",
+        "prerequisite_pid": 2713366,
+        "prerequisite_process_identity": "211946852",
+        "goal_achieved": false,
+        "plan": {
+          "created_unix": 1788757952.361745,
+          "decision_before_either_new_5k": true,
+          "research_round_started": 1,
+          "remaining_research_round_limit": 8,
+          "modes": [
+            "paired_ratio_calibrated",
+            "calibrated"
+          ],
+          "samples": 5000,
+          "seed": 202609072,
+          "steps": 100,
+          "batch": 8,
+          "reason": "User requested fixed 5K for slightly negative 1K; two distinct mechanisms, not a parameter sweep",
+          "fixed_1k_fid": {
+            "paired_ratio_calibrated": 38.56759907090867,
+            "calibrated": 38.5411998671
+          },
+          "unchanged_ratio_calibration": {
+            "complete": true,
+            "alpha": 1.5041111779055252,
+            "alpha_class_cluster_se": 0.07332033484735617,
+            "heldout_loss_change": -1.3754929808417955,
+            "heldout_loss_change_class_cluster_se": 0.26674966192989547,
+            "entry_condition_passed": true,
+            "fit_classes": "even ImageNet class ids",
+            "check_classes": "odd ImageNet class ids",
+            "source_is_prior_classifier_holdout_not_a_new_data_draw": true,
+            "uncalibrated_1k_had_already_been_observed": true,
+            "fid_used_for_parameter_fit": false,
+            "time_dependent_parameters": 0,
+            "global_fitted_scalars": 1,
+            "sampling_time_window_unchanged": true,
+            "stationarity": -8.981260180007667e-16,
+            "score_at_one": -4.223408977968323,
+            "fit_loss_after_calibration": -10.915779932922868,
+            "checkpoint_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+            "validation_records_sha256": "c27240e19e7a1dfb7f5be42affd7b14d2346d0ecab6ff6f0e0710d7f9e5940e9",
+            "native_time_request_sha256": "734c826c7ae983483c7cd18c4149d9214235277f691f2bbb5e977bff4ae14423",
+            "source_sha256": "31ec8816499705952dae3e628e13e9cbd5cbaf8295064d2ddebae84b961a7018",
+            "limitation": "proper scoring within a one-dimensional function family does not guarantee an exact density ratio or FID gain"
+          },
+          "unchanged_formulas": {
+            "paired_ratio_calibrated": "G + alpha*t^2*grad(f); one previous probability calibration",
+            "calibrated": "native Euler + ((t-s)/t)*sqrt(previous MSE_G(t))*xi"
+          },
+          "known_limitations": [
+            "Endpoint re-noising differs from actual native marginals",
+            "Fixed-mean Gaussian cross-entropy optimality does not imply FID improvement"
+          ],
+          "no_refit_or_coefficient_window_layer_seed_search": true,
+          "skip_if_prefix_quality_meets_three_percent_pending_audit": true,
+          "baseline_noise_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+          "sources": {
+            "/home/zhoushunyu/eqvae/experiments/continue_raev2_final8_legacy5k.py": "41cae21df291d58bab01ed96e173b5d2b9ff5ced29422ee76364a33bcd94e755",
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_final8_legacy5k.py": "2fccd795c91c96888c826cdd502669f9eee5b63f6a4f285e14b2bf19389ca60d",
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+            "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+            "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+            "/home/zhoushunyu/eqvae/experiments/raev2_paired_ratio_model.py": "fb58ca15f6bbd63c62f887c40de8de9b5f198f4e21d16d06eaa49e502a09e9e7",
+            "/home/zhoushunyu/eqvae/experiments/raev2_ancestral_guidance.py": "1debe7bbe0533840a1a690a3094133bf5fc63a302fb49bcd32aad419fdd55e08",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit/critic.pt": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_calibration.json": "728485eab135a12c335e79a2ed64dd8baa49f851de47e324294172dc1ed4b815",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json": "ef6c7cfb341ad9a0985bc86d8ff219205e2591b0267d0e095c87db84a443d2c5",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/summary.json": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/metrics.json": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520",
+            "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/semantic_confirm5k.json": "bcd2392803349d75ae6a4d4a44850bb904cfbe87942442ee03803fb794bc33d5",
+            "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/paired_ratio_screens.json": "5464332c74db3ad4d772f5501430e0614059b55277c04d89ed3c6420cebc10e9"
+          },
+          "allowed_reviewed_integration": {
+            "experiments/sample_raev2_ancestral_guidance.py": [
+              "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320",
+              "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347"
+            ],
+            "experiments/run_raev2_ancestral_study.py": [
+              "ce6d913a501214ee7b2a1ac0572136e54769b1ce94fb10e64a8675068fe19163",
+              "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9"
+            ]
+          },
+          "no_automatic_goal_completion": true
+        },
+        "error": "prefix queue failed; inspect before independent GPU work"
+      }
+    }
+  ],
+  "head_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+  "corrected_runtime_sha256": "8ab5964268d017edbac01dea8c352ace495e02e5a0a293e3e82d860dba62e6b5",
+  "regression_test": "tests/test_raev2_prefix_backward_precision.py: 1 passed",
+  "no_retraining_no_data_regeneration_no_previous_images_to_resample": true
+}

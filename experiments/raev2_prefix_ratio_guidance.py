@@ -46,7 +46,9 @@ class PrefixRatioHead(nn.Module):
             return self.from_features(features)
 
     def clean_correction(self, model, state, times, labels):
-        with torch.enable_grad():
+        # Backward must share the forward precision context. Leaving it here
+        # restores native TF32/autocast before grad() and perturbs the field.
+        with torch.enable_grad(), prefix_fp32(state.device.type):
             variable = state.detach().float().requires_grad_(True)
             potential = self.potential(model, variable, times, labels)
             gradient, = torch.autograd.grad(potential.sum(), variable)

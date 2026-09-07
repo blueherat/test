@@ -1,0 +1,76 @@
+{
+  "complete": true,
+  "plan": {
+    "name": "prefix_ratio64k",
+    "train": {
+      "count": 64000,
+      "real_per_class": 64,
+      "positive_choices": 5,
+      "pairing": "(global_id//1000 + k) mod64, k=0..4"
+    },
+    "validation": {
+      "count": 8000,
+      "real_per_class": 8,
+      "positive_choices": 8,
+      "pairing": "all eight held-out real choices for every held-out noise state"
+    },
+    "feature": "unchanged native base_model_depth8; token RMS then pooled first and second moments",
+    "feature_dimension": 2880,
+    "parameters_including_bias": 2881,
+    "normalization": "one training mixture mean and one global RMS; positive/negative sides each weight one half",
+    "prior": "unchanged generalized Bayes N(0,I/dim), unit expected f^2 on the normalized training mixture",
+    "ridge_rule": "dim/N independent generated states, including regularized bias; N=64000",
+    "ridge": 0.045015625,
+    "objective": "average paired scaled logistic over states and five balanced positive choices, plus one prior",
+    "optimizer": {
+      "method": "L-BFGS-B",
+      "initialization": "zero",
+      "maxiter": 500,
+      "gtol": 1e-08,
+      "ftol": 1e-13,
+      "maxls": 30
+    },
+    "validation_entry": "mean conditional risk + 2 SE of 1000 class means < 0; optimizer gradient maxabs <1e-5",
+    "validation_uncertainty_limit": "descriptive class-cluster SE under fixed balanced classes; not a formal guarantee",
+    "sampling_if_entry_passed": {
+      "formula": "native G + t^2 grad_z f",
+      "strength": 1.0,
+      "times": "all original100 including pure noise",
+      "seed": 202609071,
+      "samples": 1000,
+      "requires": "input gradient audit, finite whole trajectory and original official8 pixel parity"
+    },
+    "no_fid_layer_temperature_window_or_regularizer_search": true,
+    "data_expansion_count_is_one_engineering_budget_not_a_unique_theorem": true,
+    "train_conditional_average_is_five_balanced_choices_not_exact_all64": true,
+    "fid_used_for_fitting": false
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/fit_raev2_prefix_ratio64k.py": "e9c6084bca524263dd2cfa6bd8f481c0bcb3bd4107c71b969984d13f360c9e33",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_ratio_objective.py": "be5c31b7ae619469cef0a07f4b87ba205ce2a3fdf3f1ce91a9b70afba8b3d785",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio64k_plan.py": "089bc05f9381c69c8554ef5f02ce3fb332cc27aaac7efaf6af8f158053e5e262"
+  },
+  "feature_execution_sha256": "2dc088fc39cc4933046340fb960cae24bbc693fbf65df563ae71772ec25e9db9",
+  "training_conditional_risk": -2.2208383085880508,
+  "regularized_objective": -1.6808415325302288,
+  "gradient_max_abs": 2.3437649660980353e-06,
+  "optimizer_converged": true,
+  "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "iterations": 237,
+  "coefficient_norm": 4.8981145681370775,
+  "validation": {
+    "independent_noise_states": 8000,
+    "positive_choices_per_state": 8,
+    "classes": 1000,
+    "mean_scaled_logistic": -1.2157890575431125,
+    "class_standard_error": 0.21766497350972955,
+    "upper_two_standard_errors": -0.7804591105236534,
+    "native_batch_standard_error_diagnostic": 0.1894597051840176,
+    "entry_condition_passed": true,
+    "not_a_fid_or_input_gradient_generalization_claim": true
+  },
+  "cpu_elapsed_seconds": 151.8139675250277,
+  "checkpoint_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+  "validation_records_sha256": "588d44603101f7945a97eda142760ebc9dd7d509c53dc2fdd2bfc6a1694a06fe",
+  "no_fid_evaluated": true
+}

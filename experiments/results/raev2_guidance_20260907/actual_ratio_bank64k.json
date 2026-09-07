@@ -1,0 +1,194 @@
+{
+  "complete": true,
+  "pid": 2072122,
+  "started_unix": 1788733093.6616333,
+  "plan": {
+    "train": {
+      "samples": 64000,
+      "seed": 202609101,
+      "time_seed": 202609103
+    },
+    "validation": {
+      "samples": 8000,
+      "seed": 202609102,
+      "time_seed": 202609104
+    }
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/prepare_raev2_actual_ratio_bank.py": "642a3b9a07fab0f813b6026ae957157dd355aaeb41c362500c407a1bd5707411",
+    "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py": "785f95716109e3fd8633396eda636ee0287d69b0c9066550e26c9e020ed9db4c",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320"
+  },
+  "splits": {
+    "train": [
+      {
+        "shard": 0,
+        "count": 16000,
+        "files": {
+          "states.npy": "e5974d2b20ea32130434e58a7b6db7f7607984eb82d34c46b8c0f079a7122bf4",
+          "noise.npy": "3b64ac29683c0ecd0e545bb4d84b02bf8bb4e93c05ca154dc9637bfcd76d4eaf",
+          "metadata.npz": "28fb38bbd6b2ef360b3eef683ec330ce6d56700f1d3978ffb1bee7e9250ccdc9"
+        },
+        "sample_model_calls": 795896,
+        "seconds": 5280.320754016982
+      },
+      {
+        "shard": 1,
+        "count": 16000,
+        "files": {
+          "states.npy": "00b99fdcdb748893b1ccf66dff8284c552e8db1ff518b1fa412e1d061be34b71",
+          "noise.npy": "383f7213a3dae3349a08ceff139b8b12c00f268d08b9139ee6af329f294df795",
+          "metadata.npz": "73aeb9e84fbeeaa0366c24e2e231525457a52bb56a9569008b2109b111fe0a0c"
+        },
+        "sample_model_calls": 795984,
+        "seconds": 5230.689947240287
+      },
+      {
+        "shard": 2,
+        "count": 16000,
+        "files": {
+          "states.npy": "5c77b10a27321102e50988177a8de87033a8f67c9798ad6712cdcefe183342cb",
+          "noise.npy": "a3d70aa407d014c502b43c51c7effc4eed5e9abb8babc0c76f56f47212ab7638",
+          "metadata.npz": "d83913a767623c7676edd622a3987c3a25c76c650556c71767a5555211ba5201"
+        },
+        "sample_model_calls": 791808,
+        "seconds": 5156.337079407182
+      },
+      {
+        "shard": 3,
+        "count": 16000,
+        "files": {
+          "states.npy": "ff46496262d10d7c4aec2a4e8cfb371f70de4189cc52dbce7df5f2cfd0dac808",
+          "noise.npy": "96bf5dd0f777eb2995bafd636f75dbac4268f1292be675c142699625243aa762",
+          "metadata.npz": "85ad5ed8140dbd1860b06b3d50ade87f2ce6189e3de25ac6d85a9ac2a9812cff"
+        },
+        "sample_model_calls": 810232,
+        "seconds": 5421.594394105952
+      }
+    ],
+    "validation": [
+      {
+        "shard": 0,
+        "count": 2000,
+        "files": {
+          "states.npy": "7cb441b53adce46569a3a452309851f5abe7ed620594d300acc5d9843ae50266",
+          "noise.npy": "177a961bf99107fae05170a3a493367c02cdb9c6cbd4a00e8e014c1947ae0d99",
+          "metadata.npz": "fc9d15d8c809bc9a487c855fba3db2d8d21209c58545a9a077f3b62a97370862"
+        },
+        "sample_model_calls": 101056,
+        "seconds": 652.0410731448792
+      },
+      {
+        "shard": 1,
+        "count": 2000,
+        "files": {
+          "states.npy": "d939110ee150d6585cdcf8c0c65f9dad4b80d730af05aeffadf4ad2d10c604ae",
+          "noise.npy": "c78accc3703d5cebe610e4464ae569159e865b9ddaa49e32465d848a12d0cb0e",
+          "metadata.npz": "bd9a0200a8eacdc8230390e465104696b7220cc258e69de9e68c1800e2634ff8"
+        },
+        "sample_model_calls": 97328,
+        "seconds": 621.2287093931809
+      },
+      {
+        "shard": 2,
+        "count": 2000,
+        "files": {
+          "states.npy": "142f775f923ed53e99b30a9f37f7e99ac8c57dc73c8e0b8f51b6d2ec8dba634f",
+          "noise.npy": "b6bb48d461305116ed841decdc1747b0f9bd17597aad9c3793938b55d2f13dec",
+          "metadata.npz": "c7c8f6fe186501a4eaffe6e649629ec8fee1741ace62b70a9fcf70771ef26b70"
+        },
+        "sample_model_calls": 101480,
+        "seconds": 641.570655612275
+      },
+      {
+        "shard": 3,
+        "count": 2000,
+        "files": {
+          "states.npy": "407ee107a5f3bc2a57b8dbb77ad73f3b5e3fe6c089934fbc0e74ff0a6a165c2d",
+          "noise.npy": "23f3979a3569d02927b01461713e46d75b48e86d538b2a814d56ae4a846311ce",
+          "metadata.npz": "a2c1a1517fd174cf7eaee0f4d20e149d90d0e18f00812e7d4850793ada34bec3"
+        },
+        "sample_model_calls": 96576,
+        "seconds": 628.5021037468687
+      }
+    ]
+  },
+  "purpose": "actual native marginals, shared-noise ratio fit; no quality evaluation",
+  "stage": "data_complete_no_fit_or_fid_yet",
+  "jobs": [
+    {
+      "pid": 2312091,
+      "rank": 0,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py",
+        "--output",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/actual_ratio_bank64k/validation",
+        "--shard",
+        "0",
+        "--samples",
+        "8000",
+        "--seed",
+        "202609102",
+        "--time-seed",
+        "202609104"
+      ]
+    },
+    {
+      "pid": 2312092,
+      "rank": 1,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py",
+        "--output",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/actual_ratio_bank64k/validation",
+        "--shard",
+        "1",
+        "--samples",
+        "8000",
+        "--seed",
+        "202609102",
+        "--time-seed",
+        "202609104"
+      ]
+    },
+    {
+      "pid": 2312093,
+      "rank": 2,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py",
+        "--output",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/actual_ratio_bank64k/validation",
+        "--shard",
+        "2",
+        "--samples",
+        "8000",
+        "--seed",
+        "202609102",
+        "--time-seed",
+        "202609104"
+      ]
+    },
+    {
+      "pid": 2312094,
+      "rank": 3,
+      "command": [
+        "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py",
+        "--output",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/actual_ratio_bank64k/validation",
+        "--shard",
+        "3",
+        "--samples",
+        "8000",
+        "--seed",
+        "202609102",
+        "--time-seed",
+        "202609104"
+      ]
+    }
+  ],
+  "elapsed_seconds": 6160.521405220032,
+  "execution_file_sha256": "d6ff9c968f0a49fc4ee783520d8f68c4903f14db09c4c46fbe5510ea02bb1cbb"
+}

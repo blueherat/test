@@ -4,6 +4,7 @@ Only after the existing fit parent terminates successfully, apply the reviewed
 pending integration and run the existing gradient/parity/screen sequence. Any
 failure stops with original outputs retained. No resampling or tuning loop.
 """
+import argparse
 import json
 import os
 from pathlib import Path
@@ -18,25 +19,44 @@ from experiments.summarize_raev2_guidance_20260907 import DATA, sha
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--resume-after-reviewed-gradient-fix', action='store_true')
+    args = parser.parse_args()
+    recovery = args.resume_after_reviewed_gradient_fix
     out = DATA/'prefix_ratio64k_quality_continuation'
     out.mkdir(exist_ok=False)
     # This continuation decision must precede the fixed head and its first FID.
-    assert not (DATA/'prefix_ratio64k_fit/head.pt').exists()
+    if not recovery:
+        assert not (DATA/'prefix_ratio64k_fit/head.pt').exists()
     assert not (DATA/'prefix_ratio64k_screen1k').exists()
+    prior_plan = None
+    if recovery:
+        previous = DATA/'prefix_ratio64k_quality_continuation_failed_backward_precision'
+        failed_state = json.loads((previous/'state.json').read_text())
+        assert failed_state['stage'] == 'failed_requires_inspection_no_restart'
+        assert process_identity(failed_state['pid']) is None
+        prior_plan = json.loads((previous/'plan.json').read_text())
+        assert prior_plan['decision_before_new_head_and_any_fid']
+        diagnostic_path = DATA/'prefix_ratio64k_backward_precision_diagnostic/execution.json'
+        diagnostic = json.loads(diagnostic_path.read_text())
+        assert diagnostic['complete'] and diagnostic['forward_and_backward_protected_relative_error'] < .002
+        assert sha(DATA/'prefix_ratio64k_fit/head.pt') == diagnostic['checkpoint_sha256']
     prerequisite_path = DATA/'prefix_ratio64k_features/execution.json'
     prerequisite = json.loads(prerequisite_path.read_text())
     parent_pid = prerequisite['pid']
     parent_identity = process_identity(parent_pid)
-    assert parent_identity is not None
+    assert parent_identity is not None or (recovery and prerequisite['complete'])
     lock = ROOT/'experiments/locks/raev2_prefix_ratio64k_20260907'
     integration = json.loads((lock/'manifest.json').read_text())
     assert sha(lock/'integration.patch') == integration['patch_sha256']
     for path, identities in integration['files'].items():
-        assert sha(ROOT/path) == identities['before_sha256'], 'pending integration base changed'
+        assert sha(ROOT/path) == identities['after_sha256' if recovery else 'before_sha256'], 'reviewed integration identity changed'
     source_paths = [Path(__file__).resolve(), ROOT/'experiments/raev2_prefix_ratio_guidance.py',
         ROOT/'experiments/audit_raev2_prefix_ratio64k_gradient.py', ROOT/'experiments/run_raev2_prefix_ratio64k_screen.py',
         ROOT/'experiments/raev2_prefix_ratio_features.py', lock/'integration.patch', lock/'manifest.json']
     sources = {str(p): sha(p) for p in source_paths}
+    if recovery:
+        sources[str(diagnostic_path)] = sha(diagnostic_path)
     baseline = DATA/'weak_confirm5k'
     assert json.loads((baseline/'execution.json').read_text())['complete']
     baseline_summary = json.loads((baseline/'official/summary.json').read_text())
@@ -59,6 +79,16 @@ def main():
             'metrics_sha256': sha(baseline/'metrics.json')},
         'cost_policy': 'reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control',
         'no_automatic_goal_completion': True, 'sources': sources}
+    if recovery:
+        # Retain the original scientific decision date; this is an engineering
+        # recovery after its first real-gradient preflight, before any images.
+        plan['created_unix'] = prior_plan['created_unix']
+        for key in ['primary_requested_sample_counts', 'screen1k', 'independent5k', 'baseline5k']:
+            assert plan[key] == prior_plan[key]
+        plan['recovery'] = {'created_unix': time.time(), 'previous_plan_sha256': sha(previous/'plan.json'),
+                            'diagnostic_sha256': sha(diagnostic_path),
+                            'only_change': 'keep FP32 and TF32-off context active during autograd backward',
+                            'no_new_head_formula_data_or_tolerances': True}
     (out/'plan.json').write_text(json.dumps(plan, indent=2)+'\n')
     (ROOT/'experiments/results/raev2_guidance_20260907/prefix_ratio64k_quality_plan.json').write_text(json.dumps(plan, indent=2)+'\n')
     state = {'complete': False, 'pid': os.getpid(), 'plan': plan, 'stage': 'waiting_for_existing_feature_and_fit_parent',
@@ -83,7 +113,7 @@ def main():
         check_sources()
     save()
     try:
-        while process_identity(parent_pid) == parent_identity:
+        while parent_identity is not None and process_identity(parent_pid) == parent_identity:
             time.sleep(5)
         prerequisite = json.loads(prerequisite_path.read_text())
         assert prerequisite['complete'], 'feature preparation did not complete; no restart'
@@ -98,12 +128,13 @@ def main():
             return
         for bank_name in ['actual_ratio_bank64k', 'real_ratio_bank64k']:
             assert json.loads((DATA/bank_name/'execution.json').read_text())['complete']
-        for path, identities in integration['files'].items():
-            assert sha(ROOT/path) == identities['before_sha256']
-        state['stage'] = 'applying_reviewed_integration_after_readers_finished'
-        save()
-        subprocess.run(['git', 'apply', '--check', str(lock/'integration.patch')], cwd=ROOT, check=True)
-        subprocess.run(['git', 'apply', str(lock/'integration.patch')], cwd=ROOT, check=True)
+        if not recovery:
+            for path, identities in integration['files'].items():
+                assert sha(ROOT/path) == identities['before_sha256']
+            state['stage'] = 'applying_reviewed_integration_after_readers_finished'
+            save()
+            subprocess.run(['git', 'apply', '--check', str(lock/'integration.patch')], cwd=ROOT, check=True)
+            subprocess.run(['git', 'apply', str(lock/'integration.patch')], cwd=ROOT, check=True)
         for path, identities in integration['files'].items():
             assert sha(ROOT/path) == identities['after_sha256']
         state.update(stage='gradient_parity_and_fixed1k', integration_applied=True,

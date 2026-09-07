@@ -1,0 +1,230 @@
+{
+  "reason": "feature preflight failed before any feature forward: local digest variable shadows imported digest function",
+  "recovery_decided_unix": 1788756847.4284542,
+  "setting_changes": false,
+  "input_banks_regenerated": false,
+  "existing_outputs_retained": true,
+  "feature_rows_before_failure": 0,
+  "critic_fit_started": false,
+  "images_generated": false,
+  "failed_worker_startup_gpu_cost_not_measured_separately": true,
+  "archives": {
+    "prefix_ratio64k_features": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_features_failed_digest_shadow",
+      "state_sha256": "6c3386d7fb5f424b3ec9b404a7c84d3e18ba895a9de6eb111a62a9ec596e6c81",
+      "error": "feature worker failed; existing data retained, no automatic restart",
+      "state": {
+        "complete": false,
+        "pid": 2145485,
+        "started_unix": 1788734597.306614,
+        "plan": {
+          "name": "prefix_ratio64k",
+          "train": {
+            "count": 64000,
+            "real_per_class": 64,
+            "positive_choices": 5,
+            "pairing": "(global_id//1000 + k) mod64, k=0..4"
+          },
+          "validation": {
+            "count": 8000,
+            "real_per_class": 8,
+            "positive_choices": 8,
+            "pairing": "all eight held-out real choices for every held-out noise state"
+          },
+          "feature": "unchanged native base_model_depth8; token RMS then pooled first and second moments",
+          "feature_dimension": 2880,
+          "parameters_including_bias": 2881,
+          "normalization": "one training mixture mean and one global RMS; positive/negative sides each weight one half",
+          "prior": "unchanged generalized Bayes N(0,I/dim), unit expected f^2 on the normalized training mixture",
+          "ridge_rule": "dim/N independent generated states, including regularized bias; N=64000",
+          "ridge": 0.045015625,
+          "objective": "average paired scaled logistic over states and five balanced positive choices, plus one prior",
+          "optimizer": {
+            "method": "L-BFGS-B",
+            "initialization": "zero",
+            "maxiter": 500,
+            "gtol": 1e-08,
+            "ftol": 1e-13,
+            "maxls": 30
+          },
+          "validation_entry": "mean conditional risk + 2 SE of 1000 class means < 0; optimizer gradient maxabs <1e-5",
+          "validation_uncertainty_limit": "descriptive class-cluster SE under fixed balanced classes; not a formal guarantee",
+          "sampling_if_entry_passed": {
+            "formula": "native G + t^2 grad_z f",
+            "strength": 1.0,
+            "times": "all original100 including pure noise",
+            "seed": 202609071,
+            "samples": 1000,
+            "requires": "input gradient audit, finite whole trajectory and original official8 pixel parity"
+          },
+          "no_fid_layer_temperature_window_or_regularizer_search": true,
+          "data_expansion_count_is_one_engineering_budget_not_a_unique_theorem": true,
+          "train_conditional_average_is_five_balanced_choices_not_exact_all64": true,
+          "fid_used_for_fitting": false
+        },
+        "stage": "failed_requires_inspection_no_restart",
+        "sources": {
+          "/home/zhoushunyu/eqvae/experiments/prepare_raev2_prefix_ratio64k.py": "cc62a69be07d4531d8ef259d9f82fd8fe01e349d2d94279ba83528451cbe13ef",
+          "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio64k.py": "0df000b8eaa9a571d37fd49138e3cea497b2f47897edd9d399a0c5428b06ef7e",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio64k_plan.py": "089bc05f9381c69c8554ef5f02ce3fb332cc27aaac7efaf6af8f158053e5e262",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+          "/home/zhoushunyu/eqvae/experiments/raev2_actual_ratio_data.py": "a0998a7023a61640d41411da4b3d261385abb570b9a182a9ece360946266e381",
+          "/home/zhoushunyu/eqvae/experiments/sample_raev2_ancestral_guidance.py": "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320",
+          "/home/zhoushunyu/eqvae/experiments/fit_raev2_prefix_ratio64k.py": "e9c6084bca524263dd2cfa6bd8f481c0bcb3bd4107c71b969984d13f360c9e33",
+          "/home/zhoushunyu/eqvae/experiments/raev2_conditional_ratio_objective.py": "be5c31b7ae619469cef0a07f4b87ba205ce2a3fdf3f1ce91a9b70afba8b3d785",
+          "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+          "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/__init__.py": "45564aae24261df1aa8f9f3ff3b747f78a16cac9bcd40a0155aafee9e4ccd8b8",
+          "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/lightningDiT.py": "75299e2745d8baaf502a78e912a0c4122b5b5683e8bc66b73ff459f2777d8419",
+          "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5"
+        },
+        "splits": {},
+        "native_parent_pid": 2072122,
+        "native_parent_process_identity": "209554353",
+        "no_native_bank_restart": true,
+        "real_execution_sha256": "8559b41a8026663b4985739d016439ad985cc84607db0dc3c42cfbc8b62a251a",
+        "all_input_hashes_verified": true,
+        "native_execution_sha256": "d6ff9c968f0a49fc4ee783520d8f68c4903f14db09c4c46fbe5510ea02bb1cbb",
+        "native_data_model_calls": 3590360,
+        "jobs": [
+          {
+            "pid": 2324680,
+            "rank": 0,
+            "command": [
+              "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+              "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio64k.py",
+              "--split",
+              "train",
+              "--shard",
+              "0"
+            ]
+          },
+          {
+            "pid": 2324681,
+            "rank": 1,
+            "command": [
+              "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+              "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio64k.py",
+              "--split",
+              "train",
+              "--shard",
+              "1"
+            ]
+          },
+          {
+            "pid": 2324682,
+            "rank": 2,
+            "command": [
+              "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+              "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio64k.py",
+              "--split",
+              "train",
+              "--shard",
+              "2"
+            ]
+          },
+          {
+            "pid": 2324683,
+            "rank": 3,
+            "command": [
+              "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+              "/home/zhoushunyu/eqvae/experiments/extract_raev2_prefix_ratio64k.py",
+              "--split",
+              "train",
+              "--shard",
+              "3"
+            ]
+          }
+        ],
+        "error": "feature worker failed; existing data retained, no automatic restart"
+      }
+    },
+    "prefix_ratio64k_quality_continuation": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_quality_continuation_failed_feature_prerequisite",
+      "state_sha256": "76fcba4cb7bf9b101a031478f5e39b811455271cd6e00d437a33f4ca4388fb9a",
+      "error": "feature preparation did not complete; no restart",
+      "state": {
+        "complete": false,
+        "pid": 2224897,
+        "plan": {
+          "created_unix": 1788736191.0231855,
+          "decision_before_new_head_and_any_fid": true,
+          "primary_requested_sample_counts": [
+            1000,
+            5000
+          ],
+          "screen1k": {
+            "seed": 202609071,
+            "samples": 1000
+          },
+          "independent5k": {
+            "seed": 202609072,
+            "samples": 5000,
+            "run_regardless_of_1k_fid_if_entry_gradient_parity_and_whole1k_pass": true
+          },
+          "rationale": "User goal permits either1K or5K; existing all-block evidence shows finite-N ranking changes; compare both unchanged, report both",
+          "head_formula_strength_and_time_schedule_unchanged": true,
+          "prerequisites": "one fixed64K fit passes original entry, numerical gradient audit and original official8 parity, finite complete1K",
+          "no_new_seed_coefficient_window_layer_or_temperature_selection": true,
+          "baseline5k": {
+            "study": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k",
+            "official_fid": 6.9497684777115865,
+            "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+            "noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+            "summary_sha256": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+            "metrics_sha256": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520"
+          },
+          "cost_policy": "reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control",
+          "no_automatic_goal_completion": true,
+          "sources": {
+            "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+            "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+            "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+            "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+            "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+            "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+          }
+        },
+        "stage": "failed_requires_inspection_no_restart",
+        "prerequisite_pid": 2145485,
+        "prerequisite_process_identity": "209704719",
+        "started_unix": 1788736191.0234873,
+        "sources": {
+          "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "f460836f799e342a4f89d8b3edcbec53c409243bd32a0e44e1d10a7d42eb5d0b",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "cf408cf67ea978ce8fb0bdb9b30ff78090f15dde44adcbb23cb5d0038d77e3a7",
+          "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+          "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+          "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+          "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+          "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468"
+        },
+        "goal_achieved": false,
+        "error": "feature preparation did not complete; no restart"
+      }
+    }
+  },
+  "fix": {
+    "file": "experiments/extract_raev2_prefix_ratio64k.py",
+    "change": "rename the final source-hash loop value from digest to expected_digest; formula/data/precision unchanged",
+    "after_sha256": "af920716ea4f6924006368c40ad4b01c4b3da7bea3baf45b696f8a1c215d06be"
+  },
+  "static_check": {
+    "tool": "pyflakes3.4.0 installed only under /tmp/eqvae_raev2_static_check",
+    "files_checked": 10,
+    "remaining_report": "fit_raev2_prefix_ratio64k.py:61 undefined name risk",
+    "review": "risk assigned line56; synchronous L-BFGS-B calls progress at lines66-67; deletion occurs only at line71 after minimize returns. Inspected installed scipy.optimize._lbfgsb_py callback path before its final return. No source change needed for this conservative closure report."
+  },
+  "resumed": {
+    "prefix_ratio64k_features": {
+      "pid": 2704867,
+      "stage_at_recording": "verifying_all_bank_hashes",
+      "started_unix": 1788756931.1534977
+    },
+    "prefix_ratio64k_quality_continuation": {
+      "pid": 2713366,
+      "stage_at_recording": "waiting_for_existing_feature_and_fit_parent",
+      "started_unix": 1788757018.5882642
+    }
+  },
+  "resumed_record_unix": 1788757131.664424
+}

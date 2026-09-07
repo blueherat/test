@@ -24,6 +24,7 @@ from experiments.raev2_stochastic_weak import SharedPrefixWeak
 from experiments.raev2_two_mode_ratio import two_mode_correction
 from experiments.raev2_semantic_complement import semantic_correction
 from experiments.raev2_paired_ratio_model import PairedRatioCritic
+from experiments.raev2_prefix_ratio_guidance import PrefixRatioHead
 from experiments.raev2_image_critic_guidance import ImageCritic, ExchangeablePosterior, PROBE, COVARIANCE, exact_fp32
 from experiments.raev2_stage1_compat import install_raev2_decoder_config_compat
 from experiments.sample_raev2_pfr_retiming import DEFAULT_CONFIG, DEFAULT_CHECKPOINT, load_config, shifted_time_grid
@@ -48,7 +49,7 @@ def seed_for(seed, batch, namespace):
 def get_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated','actual_ratio'])
+    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated','actual_ratio','prefix_ratio64k'])
     p.add_argument('--variance-calibration', type=Path, default=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json'))
     p.add_argument('--samples', type=int, default=1000)
     p.add_argument('--seed', type=int, default=202609071)
@@ -109,6 +110,15 @@ def main():
                 raise ValueError('temperature requires held-out probability calibration')
             if paired_temperature['checkpoint_sha256'] != file_sha256(paired_path):
                 raise ValueError('temperature and critic mismatch')
+    prefix_ratio = None
+    if 'prefix_ratio64k' in args.modes:
+        prefix_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/head.pt')
+        prefix_fit = json.loads((prefix_path.parent/'execution.json').read_text())
+        if args.steps != 100 or not prefix_fit['complete'] or not prefix_fit['optimizer_converged']:
+            raise ValueError('prefix ratio requires the fixed complete 100-step experiment')
+        if file_sha256(prefix_path) != prefix_fit['checkpoint_sha256']:
+            raise ValueError('prefix ratio checkpoint identity mismatch')
+        prefix_ratio = PrefixRatioHead(prefix_path).cuda().eval().requires_grad_(False)
     weak_model = SharedPrefixWeak(model) if any(m in args.modes for m in ('stochastic_weak','mean_weak')) else None
     shift = math.sqrt((cfg.misc.time_dist_shift_dim or math.prod(cfg.misc.latent_size))/cfg.misc.time_dist_shift_base)
     grid = shifted_time_grid(args.steps,shift,torch.device('cuda')).cpu().tolist()
@@ -131,7 +141,7 @@ def main():
     request.update(protocol='raev2_gaussian_channel_guidance_v1', checkpoint_sha256=file_sha256(args.checkpoint),
                    config_sha256=file_sha256(args.config), state_key='ema', time_grid=grid,
                    torch_version=torch.__version__, gpu=torch.cuda.get_device_name(),
-                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py','experiments/raev2_paired_ratio_model.py']},
+                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py','experiments/raev2_paired_ratio_model.py','experiments/raev2_prefix_ratio_guidance.py','experiments/raev2_prefix_ratio_features.py']},
                    decoder_sha256=file_sha256(Path(cfg.stage_1.params['pretrained_decoder_path'])),
                    stats_sha256=file_sha256(Path(cfg.stage_1.params['normalization_stat_path'])))
     if calibration is not None:
@@ -165,6 +175,13 @@ def main():
         if paired_temperature is not None:
             request['paired_ratio']['temperature_calibration'] = paired_temperature
             request['paired_ratio']['temperature_sha256'] = file_sha256(temperature_path)
+    if prefix_ratio is not None:
+        request['prefix_ratio64k'] = {'checkpoint_sha256': file_sha256(prefix_path),
+            'plan': prefix_ratio.plan, 'held_out_validation': prefix_ratio.validation,
+            'strength': 1., 'all_100_times': True, 'formula': 'native G + t^2 grad_z f(prefix(z,t,c))',
+            'prefix_depth': model.base_model_depth, 'feature_precision': 'FP32, TF32 off',
+            'head_precision': 'FP64 fitted weights and global normalization',
+            'extra_cost': 'one 8-layer prefix forward and its input backward per main query; measured trajectory seconds include both'}
     put(out/'request.json',request)
     batch_ids = list(range(args.shard,args.samples//args.batch,args.shards))
     # Shared model/decoder warmup; excluded from per-image timings and disclosed.
@@ -196,6 +213,7 @@ def main():
         semantic_calls=0
         critic_calls=0
         ratio_calls=0
+        prefix_calls=0
         critic_records=[]
         started=time.perf_counter()
         for batch_id in batch_ids:
@@ -231,6 +249,13 @@ def main():
                             correction=paired_temperature['alpha']*correction
                     clean=clean+correction
                     ratio_calls+=1
+                    if batch_id==batch_ids[0]:
+                        critic_records.append({'step':step,'time':t,
+                            'correction_rms':float(correction.square().mean().sqrt())})
+                if mode=='prefix_ratio64k':
+                    correction=prefix_ratio.clean_correction(model,state,times,labels)
+                    clean=clean+correction
+                    prefix_calls+=1
                     if batch_id==batch_ids[0]:
                         critic_records.append({'step':step,'time':t,
                             'correction_rms':float(correction.square().mean().sqrt())})
@@ -280,6 +305,8 @@ def main():
             'extra_weak_continuations':weak_calls,'extra_sample_weak_continuations':weak_calls*args.batch,
             'critic_backward_calls':critic_calls,'sample_critic_backward_calls':critic_calls*args.batch,'critic_first_batch':critic_records,
             'ratio_backward_calls':ratio_calls,'sample_ratio_backward_calls':ratio_calls*args.batch,
+            'prefix_forward_calls':prefix_calls,'sample_prefix_forward_calls':prefix_calls*args.batch,
+            'prefix_backward_calls':prefix_calls,'sample_prefix_backward_calls':prefix_calls*args.batch,
             'initial_noise':records,'max_memory_allocated':torch.cuda.max_memory_allocated()})
 
 
