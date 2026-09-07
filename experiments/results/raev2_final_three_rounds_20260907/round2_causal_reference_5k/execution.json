@@ -1,0 +1,141 @@
+{
+  "complete": true,
+  "pid": 441533,
+  "pid_starttime": "215243852",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
+    "samples": 5000,
+    "seed": 202609072,
+    "modes": [
+      "causal_reference"
+    ],
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "no_evaluate": false
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_causal_reference.py": "335e8ee0dd06e919a474eb078194a7b11d59a10f8e79a9b3a35fb21e8cc2f4f3",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_causal_reference.py": "01b7d3f5a7470110df9308b4786136b27e3acd122ca426ea54d3dd1fb8bb5a99",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/raev2_causal_reference.py": "73f57481ac1269c9d1b2b03c28a13e4108a07dde0cc63b5e79bb8f62a4dd41a9",
+    "/home/zhoushunyu/eqvae/experiments/raev2_pfr_retiming.py": "be4339468cb183aa468ebbc817dcde0b33980086f6937a720dbfa1e8a86c0577",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 441556,
+      "pid_starttime": "215243865",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_causal_reference.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "4",
+        "--modes",
+        "causal_reference"
+      ]
+    },
+    {
+      "rank": 1,
+      "gpu": 1,
+      "pid": 441557,
+      "pid_starttime": "215243865",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_causal_reference.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "1",
+        "--shards",
+        "4",
+        "--modes",
+        "causal_reference"
+      ]
+    },
+    {
+      "rank": 2,
+      "gpu": 2,
+      "pid": 441558,
+      "pid_starttime": "215243865",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_causal_reference.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "2",
+        "--shards",
+        "4",
+        "--modes",
+        "causal_reference"
+      ]
+    },
+    {
+      "rank": 3,
+      "gpu": 3,
+      "pid": 441559,
+      "pid_starttime": "215243865",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_causal_reference.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "3",
+        "--shards",
+        "4",
+        "--modes",
+        "causal_reference"
+      ]
+    }
+  ],
+  "sampling_complete": true,
+  "sampling_seconds": 1238.6841654782183,
+  "merged": {
+    "causal_reference": {
+      "complete": true,
+      "samples": 5000,
+      "mode": "causal_reference",
+      "seed": 202609072,
+      "sample_sha256": "0e75e9f79896093817dd684dd69ec367c00d10603210d0e09f576bcacd864862",
+      "trajectory_seconds_sum": 4690.930574594531,
+      "decode_seconds_sum": 17.430166027974337,
+      "sample_model_calls": 500000,
+      "prefix_sample_calls": 990000,
+      "inactive_current_prefix_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8"
+    }
+  },
+  "total_seconds": 1251.7767499210313
+}

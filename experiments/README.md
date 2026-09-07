@@ -6,10 +6,12 @@ The latest user instruction limits the remaining work to about **three idea
 rounds**, followed by a theory/experiment/data/Git closeout even if the 3% FID
 target is missed. The [bounded research record](../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)
 is authoritative for this limit. Round 1, a finite read-budget writer, failed its
-fixed mechanism criterion. Round 2, a causal weak-reference response, has passed
-native 8-image parity and is running its single paired 5K. Round 3 is not yet
-selected. [Compact evidence and full data manifests](results/raev2_final_three_rounds_20260907/)
-include the completed native finite-retention diagnostic and round 1.
+fixed mechanism criterion. Round 2, a causal weak-reference response, reached
+FID 6.92573 versus 6.94977 official (+0.34595%, 1.48370x inference cost), below
+the target, and is closed after independent paired-5K verification. Round 3
+is the final candidate: let Full reread the exact prewritten IG increment.
+[Compact evidence and full data manifests](results/raev2_final_three_rounds_20260907/)
+include the completed native finite-retention diagnostic and rounds 1–2.
 
 The current spatial-covariance hypothesis and fixed controls are documented in
 [the spatial guidance covariance study](../docs/RAEV2_SPATIAL_GUIDANCE_COVARIANCE_20260907_ZH.md).

@@ -33,7 +33,7 @@
 
 ## 第2轮：只用本次写入引起的弱参考响应
 
-状态：公式与实现冻结；六项解析/零响应测试通过，8图 official/null-control 与历史原生对照逐像素相同；进入唯一完整配对5K候选。
+状态：唯一完整配对5K与独立复核完成；FID改善0.34595%，未达到3%，关闭本轮，不追加强度或窗口变体。
 
 第1轮研究如何编码；本轮研究**参考在读取写入后的信息后，该怎样改变校准**。它是PFR反事实参考思想的一个受控变体，不称新发现的积分器。
 
@@ -55,6 +55,32 @@
 
 实现：[公式](../experiments/raev2_causal_reference.py)、[采样器](../experiments/sample_raev2_causal_reference.py)、[顺序控制器](../experiments/run_raev2_causal_reference.py)、[测试](../tests/test_raev2_causal_reference.py)。数据：`/home/zhoushunyu/data/eqvae/experiments/raev2_causal_reference_20260907`。
 
+5K结果：FID **6.925725593732238**，相对官方6.9497684777115865改善 **0.345952301237884%**；IS159.86886291503907，官方157.57569732666016。独立FP64 PSD算法FID6.925725593734166，与官方数值一致。全部625个B8的噪声/类别、5,000张合并与分片像素、checkpoint/config/decoder/stat和冻结源码均通过复核。采样与解码worker时间合计4708.36秒，相对原生3173.40秒为 **1.48370倍**；主模型500000样本调用、额外Base-prefix990000样本调用、非活动源时刻额外调用0。此发现bank已经多次探索，小幅改善不构成独立确认或SOTA。数据和完整哈希清单已归档至`round2_causal_reference_5k/`。
+
+## 第3轮：先写入，再让Full重新读取
+
+状态：最后一个候选已固定，实现对照后仅运行一次配对5K。不增加强度、时间窗、视野或迭代次数候选。
+
+回到FSG附录中“latent校准 + 缓存reference推进”的准确分解，单独改变读取的位置。不是把同类Base解释成无条件模型，也不要求强弱预测一致。令本步q=(t−s)/t，M=G_native−F.float()。当s>0时，先定义
+
+    z_hat = z + q/(1−q) M = z + (t−s)/s M。
+
+使用缓存Full时，实数算术下
+
+    (1−q) z_hat + q F(z,t) = (1−q)z + q G(z,t)，
+
+所以这个前置写入本身没有改变原IG。第3轮唯一新动作是在**同一当前时刻、同一类别**重新查询Full(z_hat,t)，用它接替缓存Full。有限响应ΔF=Full(z_hat,t)−Full(z,t)给出
+
+    z_new = z_IG + q ΔF。
+
+实现从原生BF16 G出发，以FP32计算G_new=G_native+ΔF，再执行原顺序Euler，避免把浮点重排误差当作算法效果。输入z_hat是真正送入Full的查询；没有用原点Jacobian预测ΔF。原生IG最后一个活动源时刻的后继仍为正，因此此式有定义；末步s=0不活动，不进行前置写入或额外读取。
+
+若Full恰为仿射Ax+b，则额外终点变化q·[(t−s)/s]·A M精确成立，对任意有限β成立。非线性读取保留完整有限响应。Full读取为常数或写入为零时，回到原生；`write_null`额外读取未改动输入，必须逐像素复现official。此改动明确检验**让读取者立即对已有写入产生反馈**是否有用；可能放大有益部分，也可能放大错误或改变方向。即时响应、留存与FID仍是不同命题，不声称固定点、流形或收敛保证。小时间步下的反馈阶数与把大IG幅度当作小参数是不同问题。
+
+固定协议：同一seed202609072、原权重与decoder/stat、100步shift8、B8、nativeBF16/TF32on，原IG1.78及原活动区间。主预测500000样本调用，额外Full读取495000，合计995000；输入反向0，训练0。先做8图official/零写入/候选的实现校验，再做唯一5K候选`full_read_after_write`；不通过1K排名或smoke外观选择参数。仅非有限数值或实现错误阻止完整质量实验。若仍未达标，第三轮结束即停止研究扩展。
+
+实现：[公式](../experiments/raev2_full_read_after_write.py)、[采样器](../experiments/sample_raev2_full_read_after_write.py)、[控制器](../experiments/run_raev2_full_read_after_write.py)、[解析与有限幅度测试](../tests/test_raev2_full_read_after_write.py)、[独立审计](../experiments/audit_raev2_full_read_after_write.py)。数据目录：`/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907`。
+
 ## 剩余轮次与收束
 
-第3轮尚未选择，依前轮证据逐个推导。三轮额度固定，不以超参变体增加额外轮次。收束时保存各轮理论成立与未成立的部分、全部结果和限制、实际调用成本、可复现代码、数据定位与SHA，并提交Git；大模型、样本及大数组仍保存在数据盘，以清单追溯。
+第3轮已选择，为最后一轮。三轮额度固定，不以超参变体增加额外轮次。收束时保存各轮理论成立与未成立的部分、全部结果和限制、实际调用成本、可复现代码、数据定位与SHA，并提交Git；大模型、样本及大数组仍保存在数据盘，以清单追溯。

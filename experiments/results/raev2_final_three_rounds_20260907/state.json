@@ -1,8 +1,8 @@
 {
   "latest_user_limit": "Approximately three more independent idea rounds; if unsuccessful, stop research and archive theory, experiments, data and Git.",
   "max_rounds": 3,
-  "current_round": 2,
-  "rounds_completed": 1,
+  "current_round": 3,
+  "rounds_completed": 2,
   "round_1": {
     "method": "finite_read_budget_writer",
     "status": "closed_negative",
@@ -11,15 +11,28 @@
   },
   "round_2": {
     "method": "causal_reference",
-    "status": "discovery5k_running",
+    "status": "closed_below_target",
     "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_causal_reference_20260907/discovery5k",
     "controller": {
       "pid": 441533,
       "starttime": "215243852"
-    }
+    },
+    "fid": 6.925725593732238,
+    "relative_improvement_percent": 0.345952301237884,
+    "cost_ratio": 1.4836967573891515,
+    "independently_audited": true
   },
   "round_3": {
-    "status": "not_selected"
+    "method": "full_read_after_write",
+    "status": "discovery5k_running",
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+    "unique_candidate": true,
+    "remaining_new_idea_rounds_after_this": 0,
+    "controller": {
+      "pid": 516350,
+      "starttime": "215444366"
+    },
+    "smoke_verified": true
   },
   "goal_3_percent_achieved": false,
   "after_round_3": "Stop expansion and archive even if target is not achieved; do not use automatic goal continuations to add rounds."

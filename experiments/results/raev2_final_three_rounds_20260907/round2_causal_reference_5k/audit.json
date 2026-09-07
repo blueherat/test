@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "reason_goal_not_yet_certified": "Discovery bank; independent confirmation and mechanism assessment remain.",
+  "baseline": {
+    "branch": "official",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+    "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 157.57569732666016,
+    "fid": 6.9497684777115865,
+    "independent_fid": {
+      "fid": 6.949768477712524,
+      "mean_term": 0.08339284871598794,
+      "covariance_term": 6.866375628996536,
+      "sample_covariance_trace": 173.26131863637335,
+      "method": "symmetric reference-root covariance product",
+      "minimum_product_eigenvalue": 6.927673954452891e-07
+    },
+    "feature_sha256": "148b151084d82f04aa961c6c1eeb24bfd5389c8c0e7992b22c27c96b54f1b608",
+    "inference_seconds": 3173.3982818077784
+  },
+  "rows": [
+    {
+      "branch": "causal_reference",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_causal_reference_20260907/discovery5k/causal_reference/samples.npz",
+      "sample_sha256": "0e75e9f79896093817dd684dd69ec367c00d10603210d0e09f576bcacd864862",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 159.86886291503907,
+      "fid": 6.925725593732238,
+      "independent_fid": {
+        "fid": 6.925725593734166,
+        "mean_term": 0.0871917135494815,
+        "covariance_term": 6.838533880184684,
+        "sample_covariance_trace": 173.51386578921824,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 6.728470576714189e-07
+      },
+      "feature_sha256": "a8fa73be9cb74fcb6ec12193e13a6062ec90191056eb5c984083162ac0a64c91",
+      "mode": "causal_reference",
+      "samples": 5000,
+      "seed": 202609072,
+      "relative_improvement_percent": 0.345952301237884,
+      "discovery_point_meets_3_percent": false,
+      "inference_seconds": 4708.360740622506,
+      "cost_ratio": 1.4836967573891515,
+      "sample_model_calls": 500000,
+      "prefix_sample_calls": 990000,
+      "inactive_current_prefix_calls": 0
+    }
+  ],
+  "paired_all_batch_noise_labels_verified": true,
+  "all_merged_pixels_and_shard_hashes_verified": true,
+  "frozen_sources_verified": true,
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "execution_sha256": "b2119b79c3408b75d439e38203465d7229c6c91ca1fcae8f198ab7341643154d",
+  "audit_source_sha256": "ee5246a3f3a115a87e3495b324610e6f834533a080b994f675f0346ad3b8afe8",
+  "elapsed_seconds": 14.961246090941131
+}
