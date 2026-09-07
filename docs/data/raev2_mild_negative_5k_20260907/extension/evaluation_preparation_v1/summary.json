@@ -1,0 +1,76 @@
+{
+  "complete": true,
+  "family_count": 3,
+  "method_count": 4,
+  "families": {
+    "legacy": {
+      "plan": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge_plan.json",
+        "sha256": "b690fce757543ccac1edadbec47a9a135218ed3564b96fbf00d0ee75fa35a819",
+        "size_bytes": 25921
+      },
+      "merge_argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged"
+      ]
+    },
+    "native_global": {
+      "plan": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge_plan.json",
+        "sha256": "163e267a5db33f7372dec38c81a753718e18c51a8a765903028ddc44106cd475",
+        "size_bytes": 18013
+      },
+      "merge_argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged"
+      ]
+    },
+    "reflection": {
+      "plan": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge_plan.json",
+        "sha256": "1a4e5c7aa21cd606bcd970975a5260643bc22c9a5b7d81f2b4b317bb7fd4be0d",
+        "size_bytes": 26361
+      },
+      "merge_argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged"
+      ]
+    }
+  },
+  "cost_release": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_release.json",
+    "sha256": "0238c29b15e408a5945a21657401037b1b117dda8d3e25626c4b00766f2b4539",
+    "size_bytes": 4802
+  },
+  "reported_cost_match": false,
+  "missing_historical_costs": [
+    "Historical legacy and spatial process outer wall is unavailable here; null totals preserve missingness.",
+    "Legacy elapsed_seconds includes load/preparation/sample/decode/I/O; no separated trajectory T or observed decoder-call count exists.",
+    "Spatial trajectory+decode component sum differs from the reflection whole-span T; both fields are kept distinct.",
+    "Candidate calibration, historical data acquisition, training, rejected earlier studies, this CPU audit and evaluator costs are not all closed by these sampling summaries.",
+    "Family tables reuse shared baselines for comparisons; physical job accounting deduplicates them and includes the discarded historical official200.",
+    "Per-process wall on allocated GPUs is an elapsed cost proxy, not measured integrated GPU busy time; four-card parallel duration is not total compute.",
+    "Old1K FID was already inspected when choosing candidates. This cost-only script reads no FID, features, pixels or future metric."
+  ],
+  "cost_limitations": [
+    "Reflection official201 covers both pooled recorded T and W; these are noisy point timings.",
+    "Legacy main-model NFE matches; missing separated timing and preparation totals prevent an exact total-cost claim.",
+    "Native global has matched NFE and actual runner costs, but timing boundaries differ; no old spatial-seed official201 exists.",
+    "No candidate selection, coefficient change or new quality trial is released."
+  ],
+  "gpu_model_calls": 0,
+  "merging_started": false,
+  "fid_started": false
+}

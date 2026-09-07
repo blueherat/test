@@ -1,0 +1,203 @@
+{
+  "complete": true,
+  "samples_per_loop": 16,
+  "endpoint_bitwise": true,
+  "pixel_bitwise": true,
+  "max_endpoint_abs_difference": 0.0,
+  "pixel_mismatches": 0,
+  "new_official_endpoint_sha256": "2016e8e1e93e4ee3c348bd520fbda4e2d66df15e749b82b9603bd5bca656bc2b",
+  "production_endpoint_sha256": "2016e8e1e93e4ee3c348bd520fbda4e2d66df15e749b82b9603bd5bca656bc2b",
+  "new_official_pixels_sha256": "52070f75927455047c97e7583037d513a6c4245aaecfdf0607ef07b7f5e71dba",
+  "production_pixels_sha256": "52070f75927455047c97e7583037d513a6c4245aaecfdf0607ef07b7f5e71dba",
+  "batches": [
+    {
+      "reference": false,
+      "start": 0,
+      "trajectory_wall_seconds": 5.445877010934055,
+      "trajectory_cuda_event_span_seconds": 5.4458203125,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 5.523255312349647,
+      "decode_and_uint8_wall_seconds": 0.07720427680760622,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": false,
+      "start": 8,
+      "trajectory_wall_seconds": 4.99329635174945,
+      "trajectory_cuda_event_span_seconds": 4.99325537109375,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 5.022881634067744,
+      "decode_and_uint8_wall_seconds": 0.029478056356310844,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": true,
+      "start": 0,
+      "trajectory_wall_seconds": 5.000930248759687,
+      "trajectory_cuda_event_span_seconds": 5.000892578125,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 5.028885303996503,
+      "decode_and_uint8_wall_seconds": 0.027861628215759993,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": true,
+      "start": 8,
+      "trajectory_wall_seconds": 5.011350927408785,
+      "trajectory_cuda_event_span_seconds": 5.0113056640625,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 5.040646689012647,
+      "decode_and_uint8_wall_seconds": 0.029195467941462994,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    }
+  ],
+  "forward_counts_observed": {
+    "stage2_forward_calls": 404,
+    "stage2_sample_forwards": 3232,
+    "decoder_forward_calls": 4,
+    "decoder_sample_forwards": 32
+  },
+  "off_branch_forward_counts_observed": {
+    "stage2_forward_calls": 400,
+    "stage2_sample_forwards": 3200,
+    "decoder_forward_calls": 4,
+    "decoder_sample_forwards": 32
+  },
+  "candidate_formula_check": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/candidate_formula_check.json",
+    "sha256": "a4e8310dd5286ed84a6731ffcc2a0f475383446ab6724777691175c028d7ee66",
+    "size_bytes": 1490
+  },
+  "candidate_formula_check_forward_counts": {
+    "observed": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    },
+    "expected": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    }
+  },
+  "geometry_diagnostics": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/geometry_diagnostics.json",
+    "sha256": "689426165c40b1c1721293f4b3e624fba5cca507ae9ea8f28557512dd13eb59a",
+    "size_bytes": 2312
+  },
+  "parity_is_not_quality_or_cost_comparison": true,
+  "parity_result": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/parity_result.json",
+    "sha256": "1adf14aef6f9991e464b75a3d85994b6f635914b8e05d6bad5b26efbdb23b45d",
+    "size_bytes": 5166
+  },
+  "protocol": "raev2_fixed_1k_cohort_affine_reflection_extension_v1",
+  "command": "parity",
+  "mode": "parity",
+  "run_started_utc": "2026-09-07T08:48:51.089513+00:00",
+  "request": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/request.json",
+    "sha256": "0a94d85ca4277b9c89094bdafd8f5671b41a22ea119202a45f3b80e580760626",
+    "size_bytes": 13006
+  },
+  "sampling_input": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/sampling_input.json",
+    "sha256": "3704636337e7de7f624c2fdc4fa35b4d547c0dcb5fd1bb5059991ae005c0a52f",
+    "size_bytes": 1032
+  },
+  "seed": 202609171,
+  "num_steps": 100,
+  "global_noise_sha256": "d2365c19e39bf1d9756ec34b0f72c927beb947543aecf8c59ad1d97e91b88b48",
+  "noise_rng_state_sha256": "72ec92f95beb92ba3a25cad365f420d16c13f7fda59da1ba478c1d3def0f816a",
+  "global_labels_sha256": "f23d672bb9b341f9afa8498423b75deb80e726145969391d4b9392464c2298ee",
+  "preprocessing_source_weight_stats_hash_and_geometry_wall_seconds": 21.33178919972852,
+  "geometry_transfer_wall_seconds": 0.001168802846223116,
+  "loading": {
+    "decoder_load_wall_seconds": 5.551181315910071,
+    "backbone_load_wall_seconds": 5.273516329005361,
+    "checkpoint_step": 100080
+  },
+  "noise_generation_wall_seconds": 0.003070834092795849,
+  "noise_identity_and_audit_save_wall_seconds": 0.021188429091125727,
+  "peak_loading": {
+    "allocated_bytes": 5264607232,
+    "reserved_bytes": 5618270208
+  },
+  "peak_loading_and_noise_preparation": {
+    "allocated_bytes": 5283481600,
+    "reserved_bytes": 5637144576
+  },
+  "peak_sampling": {
+    "allocated_bytes": 5538449408,
+    "reserved_bytes": 5966397440
+  },
+  "total_wall_seconds_before_summary": 54.16150053218007,
+  "cpu_seconds_before_summary": 57.358270638,
+  "cost_not_yet_matched": "No automated official step choice. Root must compare observed full costs before any cost-matched claim."
+}

@@ -1,0 +1,336 @@
+{
+  "created_at_utc": "2026-09-07T10:32:05.469816+00:00",
+  "source": {
+    "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_mild_negative_extension_cost.py",
+    "resolved_path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_mild_negative_extension_cost.py",
+    "sha256": "eeb9a0b574ec72b5851ddd5d6418006bef6d6972f4da23c35d5ba81651a26e9e",
+    "size_bytes": 21977
+  },
+  "inputs": {
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/plan.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/plan.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/plan.json",
+      "sha256": "55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159",
+      "size_bytes": 112297
+    },
+    "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "sha256": "f1ca6fc426cd068940e2f51ecc036e253a3d15cbe620927b5a8ea51cf63499cf",
+      "size_bytes": 5495
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_execution.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_execution.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/screen_execution.json",
+      "sha256": "c540881d238616d7ec10d683b31a7ee23f046835d6d2e49f6cc091a8b3b0163d",
+      "size_bytes": 8224
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+      "sha256": "54cc8bdaa6c9e3113ed5a5e6cdb2b22421e3eb22f80b8ae76523448029109630",
+      "size_bytes": 686
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+      "sha256": "b840e678877882e524fcb2514d6ec1876813203e92abb4cbb22931585b3bf304",
+      "size_bytes": 687
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+      "sha256": "325aa8fd6128369ff3c3775a483f9db70a96fc867b98e9349f6b6206fb8a3228",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+      "size_bytes": 12836
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+      "size_bytes": 13092
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+      "sha256": "cc70c746d3feb355eae4bc708e5a34684a6b5ad54d80290daeb64c949eecc146",
+      "size_bytes": 13575
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+      "sha256": "4c51fc630473ad5d2c33903f2b6a2a61c3f172e51487db2dd937850c70c0c9ff",
+      "size_bytes": 13661
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+      "sha256": "92035b6a816dde51f2e652af388200bace572e3bb6ed4d252da7eb7a565a5893",
+      "size_bytes": 13592
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+      "sha256": "f466626f583de0062499cf16d67cae78b5683cd10334558233858efe9503a3cb",
+      "size_bytes": 13587
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/execution.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/execution.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/execution.json",
+      "sha256": "c2733fe19b05c05485d2bdd71554f364fcc08f03fa36cbcaadc8b93bdc8981c5",
+      "size_bytes": 18011
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16/summary.json",
+      "sha256": "f065026e70ca4ae531ab9566314ab88c497bc7cca504d4d3ec9f66929a43c9e7",
+      "size_bytes": 3065
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16/summary.json",
+      "sha256": "82fecc7bc78b6af1ad176563c8141901f1ed61e237978f716b65e66dc57ec8b7",
+      "size_bytes": 7486
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/summary.json",
+      "sha256": "000730f3147e086c09c486493cdce690fe5160b3610417daf7ec3c05d0c88dee",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/summary.json",
+      "sha256": "389ba59b7b025c235a3d5be02f447426930ca3e6992a6a01f10869d79a5f098f",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/summary.json",
+      "sha256": "b2dc407944dd573967215c6c06dc7d3f69ba7175e384e456e48dd2047d41151b",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/summary.json",
+      "sha256": "d1aa3fac3db4f695fafb93756c48e8b60e5c9df43409a8f3a7cb5d8c8324bda5",
+      "size_bytes": 13664
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100/summary.json",
+      "sha256": "8d4e73b16ae2cd04635bb59fd36d17e5008fbfd1be250e2ec97c54945e684ff8",
+      "size_bytes": 13181
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100/summary.json",
+      "sha256": "9fa338a46047fa933828c137753d02f7a42fc3b21d70ca70a5a1e317a2b79527",
+      "size_bytes": 13723
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201/summary.json",
+      "sha256": "150125b22cb94f14a2d490d664695cd3ffb0df3feec537ccc76461625e7972b8",
+      "size_bytes": 13677
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/execution.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/execution.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/execution.json",
+      "sha256": "49a1fce96a9f609c84a4eb3b49cfde5e49c544e978dfc260ff80df6dbd80cfc4",
+      "size_bytes": 18013
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16/summary.json",
+      "sha256": "70e008858001e5d27d18f7bb4d2851e2b900e23e59c60f657afbccb8cc6b25a3",
+      "size_bytes": 3058
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/summary.json",
+      "sha256": "a9b3c856ae09e3437e3e5d5bba9fd82e35d210ee74cba1fd7c7d31d9f67c5c79",
+      "size_bytes": 7496
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json",
+      "sha256": "4b0ce4f9bd78f3d73ca75e0df3fb46c9dcbae425d6317fdb1a08e649d530f0f9",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json",
+      "sha256": "558f3ffa4d7a29fc9a0aba3db2ea896a3108c5e6eb710d90defefbf8c6a8c11d",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json",
+      "sha256": "09ce825d4741a0ecb9b9d1e857a5f0a401e8ed47267a9c6a94be4779ff551e17",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/summary.json",
+      "sha256": "fd2c790e3069b551cb5953aab2e194f16f5a79d90eded18f8bc904cad31d9b77",
+      "size_bytes": 13663
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/summary.json",
+      "sha256": "ca1f28607915623dda9042800f81262cc7ef5b4c8148dde78571248e7cf853e2",
+      "size_bytes": 13179
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/summary.json",
+      "sha256": "5786910ae1cde573e938449e84e678d118f80e094dd25545806ad8d241c09f36",
+      "size_bytes": 13723
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/summary.json",
+      "sha256": "3b83a0914e3f5b080b9feac357487719fd4149b436cdc76ec5fda081b857d39a",
+      "size_bytes": 13670
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/execution.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/execution.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/execution.json",
+      "sha256": "0cce68f6575c37b4546dd7a496510197a15c60f730b562a7febc2da8a665f903",
+      "size_bytes": 18013
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16/summary.json",
+      "sha256": "bcbd7bb5a91288c06508dbab4dd4b28f0254051471645b45527dd25fd9662755",
+      "size_bytes": 3053
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16/summary.json",
+      "sha256": "b276742aad9605877f1c40aa08d5417497a85c5c44c5391bac62e16355e3f67a",
+      "size_bytes": 7488
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/summary.json",
+      "sha256": "5e571f4d2250a760bd57853eafac5a7b8b4898dbd6679f73511aa30f75ca16c4",
+      "size_bytes": 687
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/summary.json",
+      "sha256": "b79dcf0dec1520bb056a466e64ecd7dac5755c6f5ccc108d5b7e6a19833f9366",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/summary.json",
+      "sha256": "aa78a0d37b4d810ec0c87253332215dc15984510a089ee07796de351071e04d0",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/summary.json",
+      "sha256": "e72189daa20732b5ac20ebf4dfb4e6d5fd9c6bc801ae4a787415c12ac2f7fcb8",
+      "size_bytes": 13666
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100/summary.json",
+      "sha256": "f09ed713595c20c13c68a0f8992323b40cfe2b6a0da10f43c35417c996fc4d22",
+      "size_bytes": 13181
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100/summary.json",
+      "sha256": "d638d4743f8f14c5de8f24c949b1a5039b8ef0aceda68427b7d56c3b15e9a8cf",
+      "size_bytes": 13723
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201/summary.json",
+      "sha256": "a9d8b9c42902eb08c6f092440136284cad5674ba4111d382aa11ab64743e57d8",
+      "size_bytes": 13680
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/execution.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/execution.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/execution.json",
+      "sha256": "afdd2fc338f6362ad224e2db32fe10353a809dd03f12c9a7031494a71069aa5f",
+      "size_bytes": 18011
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16/summary.json",
+      "sha256": "7617b933fec835edefc5731e76c6cb2a1a8a74b1beb4657fa56309e844c10009",
+      "size_bytes": 3054
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16/summary.json",
+      "sha256": "e90759ef731241891bbc9259f72c6cb852e0f24e8d7ec0c22df4623f89983707",
+      "size_bytes": 7491
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/summary.json",
+      "sha256": "522b74633d257a1e4d72be138011b06ab9b8f6c4ae6e9cbf270236eb786812d3",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/summary.json",
+      "sha256": "39165586288d1fc1e8639ac48b0aff81aa9f279048a4ffc1fefcf9850df06739",
+      "size_bytes": 688
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/summary.json",
+      "sha256": "1dfa498811349e59589ff36a8227f1756cbfc460fcd442ad2a8ee82d25be5c46",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/summary.json",
+      "sha256": "1429b52c9ab4fe2703d706b1f728943302618aac3382f71757ce884c72955051",
+      "size_bytes": 13666
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100/summary.json",
+      "sha256": "1379cf26bd6d11923ecd7599fbe157a751c00051bc7fc9ef71064fbadcf0873e",
+      "size_bytes": 13179
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100/summary.json",
+      "sha256": "8a907105d38c361e2bc81356866f3b50f76cf30a5a0ea325db58707fd804693e",
+      "size_bytes": 13717
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201/summary.json",
+      "sha256": "753167223c2895ea623ea73486f4d4a7039880f3067ceb1a44a5902d0dcea54c",
+      "size_bytes": 13678
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/parity16/summary.json",
+      "sha256": "84fc37df5c33e770ebeecaa9ae270b1eb10477da1c3a08d2581f34ef94fdd3b3",
+      "size_bytes": 3015
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/parity16/summary.json",
+      "sha256": "b15d012fad2cdbad8d38b4cc1c0449a152d69b512c6deb2c9b5e94cb27f21824",
+      "size_bytes": 7373
+    }
+  },
+  "scope": "CPU-only, completed frozen plans/executions/summaries; no image/model/FID reads"
+}

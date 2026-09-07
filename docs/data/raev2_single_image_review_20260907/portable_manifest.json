@@ -1,0 +1,128 @@
+{
+  "protocol": "raev2_single_image_review_portable_archive_v1",
+  "created_at_utc": "2026-09-07T09:36:29.712704+00:00",
+  "archive_root_relative_to_repository": "docs/data/raev2_single_image_review_20260907",
+  "scope": "Small evidence only; no new experiments, no new 5K results, no quality-improvement claim.",
+  "payload_file_count": 11,
+  "payload_total_bytes": 2890162,
+  "files": [
+    {
+      "category": "retained_patch_phase_hypothesis",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_patch_phase_audit_v1/request.json",
+      "sha256": "0702eda639b660b80a56697a911630719ccca35359162e684e55350b65b9e492",
+      "size_bytes": 1204,
+      "copy_path": "patch_phase/request.json"
+    },
+    {
+      "category": "retained_patch_phase_hypothesis",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_patch_phase_audit_v1/summary.json",
+      "sha256": "60d92d7c63c1b2aa42ec64c250369620385b9584406735b3937732056565c6b9",
+      "size_bytes": 46620,
+      "copy_path": "patch_phase/summary.json"
+    },
+    {
+      "category": "retained_patch_phase_hypothesis",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_patch_phase_audit_v1/independent_review.json",
+      "sha256": "5483b03ebbe2ef40e0e50edb757bda886645827e2bf2d027516eed9c48970443",
+      "size_bytes": 15710,
+      "copy_path": "patch_phase/independent_review.json"
+    },
+    {
+      "category": "retained_patch_phase_hypothesis",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_patch_phase_audit_v1/seed20260801_phase_statistics.npz",
+      "sha256": "49fcb178883509146ef1e4d50eabf6f57c64905cbf69469082390af96fdf1fbd",
+      "size_bytes": 1403772,
+      "copy_path": "patch_phase/seed20260801_phase_statistics.npz"
+    },
+    {
+      "category": "retained_patch_phase_hypothesis",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/decoder_patch_phase_audit_v1/seed20260802_phase_statistics.npz",
+      "sha256": "868c2701efbf98a1440506f942104516c2585d8def7b586479da177748daa925",
+      "size_bytes": 1403679,
+      "copy_path": "patch_phase/seed20260802_phase_statistics.npz"
+    },
+    {
+      "category": "user_rejected_sampling_acceleration",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_adjacent_sampling_v1/manifest.json",
+      "sha256": "3b42ce6380da0456ca55660d3f365529cdc903d740f8a4370c90e9161a8dc15e",
+      "size_bytes": 7220,
+      "copy_path": "rejected_sampling/manifest.json"
+    },
+    {
+      "category": "user_rejected_sampling_acceleration",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/reading_adjacent_sampling_v1/theory_toys.json",
+      "sha256": "757e45b8b7599423ae106f3888317fc40e1b4ce01a8d1648ecf59cae89a11aa1",
+      "size_bytes": 2940,
+      "copy_path": "rejected_sampling/theory_toys.json"
+    },
+    {
+      "category": "not_a_single_image_quality_method",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/adjacent_coupling_review_v1/manifest.json",
+      "sha256": "add3b2d178054568795a7c6a298684234f33a7234befc00933fd7ddfaac804cb",
+      "size_bytes": 3131,
+      "copy_path": "out_of_scope_coupling/manifest.json"
+    },
+    {
+      "category": "not_a_single_image_quality_method",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/adjacent_coupling_review_v1/causal_ot_conference_recovery.json",
+      "sha256": "3e874ce9f71043f4ab2bcbb8f4fd6b42e5e05e53f3418935d9f527db65d75720",
+      "size_bytes": 421,
+      "copy_path": "out_of_scope_coupling/causal_ot_conference_recovery.json"
+    },
+    {
+      "category": "not_a_single_image_quality_method",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/adjacent_coupling_review_v1/toy_checks.json",
+      "sha256": "3d6e8312746d0adf26adf19e082d245f29b902fcd0b9d6fe5a14424a0a760dab",
+      "size_bytes": 1993,
+      "copy_path": "out_of_scope_coupling/toy_checks.json"
+    },
+    {
+      "category": "small_training_not_established",
+      "original_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/reading_manifest.json",
+      "sha256": "7742abf3c64dd2353a8d5df107db7b2b2d76349e46a8c6230f8de1e113d3c6d2",
+      "size_bytes": 3472,
+      "copy_path": "unestablished_small_training/reading_manifest.json"
+    }
+  ],
+  "generated_readme": {
+    "copy_path": "README.md",
+    "sha256": "3915c5c579c803fcedae4c64a5255f2c0a32e18c91253ba9c770b530bcdd6b80",
+    "size_bytes": 4379
+  },
+  "retained_hypothesis_status": "Historically the only retained hypothesis was patch-phase structure; it remains unvalidated and is now also stopped under the final user instruction.",
+  "excluded_extensions": [
+    ".pdf",
+    ".html",
+    ".txt"
+  ],
+  "known_missing_evidence": [
+    {
+      "document": "docs/RAEV2_ADJACENT_DECODER_IDEAS_20260907_ZH.md",
+      "item": "inline Procrustes CPU check",
+      "status": "No original standalone script/JSON was saved, confirmed by author; not recreated."
+    },
+    {
+      "documents": [
+        "docs/RAEV2_ADJACENT_DECODER_IDEAS_20260907_ZH.md",
+        "docs/RAEV2_ADJACENT_SURROGATE_REVIEW_20260907_ZH.md",
+        "docs/RAEV2_SINGLE_IMAGE_DECODER_ADAPTATION_REVIEW_20260907_ZH.md"
+      ],
+      "item": "standalone paper-capture manifests",
+      "status": "No additional standalone manifests; primary links and derivations remain in Markdown."
+    },
+    {
+      "document": "docs/RAEV2_ADJACENT_EXACT_SAMPLING_REVIEW_20260907_ZH.md",
+      "item": "complete paper review and standalone acquisition evidence",
+      "status": "Initial reading only; no additional manifest located in this task."
+    }
+  ],
+  "raw_payloads_not_rehashed_or_copied": [
+    "Historical decoded image shards and ImageNet packed data",
+    "Model and decoder checkpoints",
+    "Primary-paper PDFs/HTML/text; their old recorded identities are retained in copied reading manifests"
+  ],
+  "source_files_modified": false,
+  "main_reports_modified": false,
+  "git_commit_created": false,
+  "final_user_direction": "Return to guidance and wait for the existing 5K extension. All adjacent and single-image new-direction research stopped; this directory is historical only."
+}

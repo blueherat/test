@@ -1,0 +1,110 @@
+{
+  "protocol": "raev2_single_image_review_archive_verification_v1",
+  "verified_at_utc": "2026-09-07T09:37:58.347141+00:00",
+  "independent_second_read_after_copy": true,
+  "portable_manifest_sha256": "7398d66eaf53cd902db66ef39710e554ed639ad0091161a6cb40381b278b9551",
+  "payload_files_verified": 11,
+  "payload_bytes_verified": 2890162,
+  "json_files_parsed": 9,
+  "npz_files_validated": 2,
+  "readme_identity_verified": true,
+  "exact_payload_and_metadata_file_set_verified": true,
+  "excluded_large_document_formats_absent": true,
+  "patch_review_request_summary_identity_chain_verified": true,
+  "linked_main_documents_exist": 8,
+  "files": [
+    {
+      "copy_path": "patch_phase/request.json",
+      "sha256": "0702eda639b660b80a56697a911630719ccca35359162e684e55350b65b9e492",
+      "bytes": 1204,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "patch_phase/summary.json",
+      "sha256": "60d92d7c63c1b2aa42ec64c250369620385b9584406735b3937732056565c6b9",
+      "bytes": 46620,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "patch_phase/independent_review.json",
+      "sha256": "5483b03ebbe2ef40e0e50edb757bda886645827e2bf2d027516eed9c48970443",
+      "bytes": 15710,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "patch_phase/seed20260801_phase_statistics.npz",
+      "sha256": "49fcb178883509146ef1e4d50eabf6f57c64905cbf69469082390af96fdf1fbd",
+      "bytes": 1403772,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "npz_identity_shape_dtype_finite_checks_passed": true
+    },
+    {
+      "copy_path": "patch_phase/seed20260802_phase_statistics.npz",
+      "sha256": "868c2701efbf98a1440506f942104516c2585d8def7b586479da177748daa925",
+      "bytes": 1403679,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "npz_identity_shape_dtype_finite_checks_passed": true
+    },
+    {
+      "copy_path": "rejected_sampling/manifest.json",
+      "sha256": "3b42ce6380da0456ca55660d3f365529cdc903d740f8a4370c90e9161a8dc15e",
+      "bytes": 7220,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "rejected_sampling/theory_toys.json",
+      "sha256": "757e45b8b7599423ae106f3888317fc40e1b4ce01a8d1648ecf59cae89a11aa1",
+      "bytes": 2940,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "out_of_scope_coupling/manifest.json",
+      "sha256": "add3b2d178054568795a7c6a298684234f33a7234befc00933fd7ddfaac804cb",
+      "bytes": 3131,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "out_of_scope_coupling/causal_ot_conference_recovery.json",
+      "sha256": "3e874ce9f71043f4ab2bcbb8f4fd6b42e5e05e53f3418935d9f527db65d75720",
+      "bytes": 421,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "out_of_scope_coupling/toy_checks.json",
+      "sha256": "3d6e8312746d0adf26adf19e082d245f29b902fcd0b9d6fe5a14424a0a760dab",
+      "bytes": 1993,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    },
+    {
+      "copy_path": "unestablished_small_training/reading_manifest.json",
+      "sha256": "7742abf3c64dd2353a8d5df107db7b2b2d76349e46a8c6230f8de1e113d3c6d2",
+      "bytes": 3472,
+      "source_hash_equals_copy_hash": true,
+      "source_unchanged_since_copy": true,
+      "json_parse_passed": true
+    }
+  ],
+  "new_experiments_executed": false,
+  "quality_improvement_claim": false,
+  "verification_scope": "Byte-exact archival integrity and existing-array readability; does not rerun theory, generation, FID, or original image extraction.",
+  "final_user_stop_instruction_recorded": true,
+  "payload_hashes_rechecked_after_final_status_update": true
+}

@@ -1,0 +1,101 @@
+{
+  "created_at_utc": "2026-09-07T09:03:07.898151+00:00",
+  "complete": true,
+  "source_sha256": "f2ace921810d593e96ad7877606e2d1b41b33676e0a44e0267f0d6403c2cb383",
+  "scope": "Analytic Gaussian moments plus a fixed 2x2 Procrustes/covariance calculation; no Monte Carlo or learned model.",
+  "procrustes": {
+    "A": [
+      [
+        2.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "B": [
+      [
+        0.0,
+        -1.0
+      ],
+      [
+        3.0,
+        0.0
+      ]
+    ],
+    "Q": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        -1.0,
+        0.0
+      ]
+    ],
+    "orthogonality_max_abs": 0.0,
+    "achieved_cost": 5.000000000000001,
+    "nuclear_norm_lower_bound": 5.0,
+    "independent_innovation_cost": 15.0,
+    "shared_unrotated_cost": 15.0
+  },
+  "incompatible_pairwise_correlations": {
+    "matrix": [
+      [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        1.0,
+        1.0
+      ]
+    ],
+    "eigenvalues": [
+      -1.0000000000000002,
+      2.0,
+      2.0
+    ]
+  },
+  "current_noise_adaptive_sign_counterexample": {
+    "transformed_noise": "sign(Z)*Z=abs(Z)",
+    "mean_exact": 0.7978845608028654,
+    "second_moment_exact": 1,
+    "variance_exact": 0.3633802276324186,
+    "orthogonal_scalar_square": 1
+  },
+  "greedy_local_cost_terminal_failure": [
+    {
+      "rho": 1,
+      "first_cost_exact": 0,
+      "terminal_cost_exact": 4,
+      "each_endpoint_mean": 0,
+      "each_endpoint_variance": 1
+    },
+    {
+      "rho": 0,
+      "first_cost_exact": 2,
+      "terminal_cost_exact": 2,
+      "each_endpoint_mean": 0,
+      "each_endpoint_variance": 1
+    },
+    {
+      "rho": -1,
+      "first_cost_exact": 4,
+      "terminal_cost_exact": 0,
+      "each_endpoint_mean": 0,
+      "each_endpoint_variance": 1
+    }
+  ],
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "generated_images": 0,
+  "cpu_wall_seconds_before_write": 0.0006177513860166073
+}

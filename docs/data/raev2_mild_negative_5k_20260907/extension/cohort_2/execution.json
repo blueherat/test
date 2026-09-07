@@ -1,0 +1,368 @@
+{
+  "protocol": "raev2_mild_negative_fixed_1k_to_5k_extension_v1",
+  "plan_sha256": "55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159",
+  "cohort_index": 2,
+  "seed": 202609172,
+  "worker_pid": 3452160,
+  "worker_ppid": 1,
+  "gpu": {
+    "index": 1,
+    "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+    "name": "NVIDIA GeForce RTX 4090"
+  },
+  "started_at_utc": "2026-09-07T08:47:55.473578+00:00",
+  "jobs": [
+    {
+      "name": "spatial_parity16",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "parity",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16",
+        "--num-steps",
+        "100"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16",
+      "started_at_utc": "2026-09-07T08:47:55.544449+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16.log",
+      "pid": 3452172,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T08:48:46.278844+00:00",
+      "outer_wall_seconds": 50.73236766317859,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16/summary.json",
+        "sha256": "70e008858001e5d27d18f7bb4d2851e2b900e23e59c60f657afbccb8cc6b25a3",
+        "size_bytes": 3058
+      }
+    },
+    {
+      "name": "reflection_parity16",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "parity",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16",
+        "--num-steps",
+        "100"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16",
+      "started_at_utc": "2026-09-07T08:48:46.287986+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16.log",
+      "pid": 3460551,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T08:49:47.993059+00:00",
+      "outer_wall_seconds": 61.70274419989437,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/summary.json",
+        "sha256": "a9b3c856ae09e3437e3e5d5bba9fd82e35d210ee74cba1fd7c7d31d9f67c5c79",
+        "size_bytes": 7496
+      }
+    },
+    {
+      "name": "legacy_official100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100",
+        "--sample-count",
+        "1000",
+        "--batch-size",
+        "8",
+        "--seed",
+        "202609172",
+        "--precision",
+        "bf16"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100",
+      "started_at_utc": "2026-09-07T08:49:48.004922+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100.log",
+      "pid": 3467158,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T09:00:55.031196+00:00",
+      "outer_wall_seconds": 667.0240527857095,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json",
+        "sha256": "4b0ce4f9bd78f3d73ca75e0df3fb46c9dcbae425d6317fdb1a08e649d530f0f9",
+        "size_bytes": 688
+      }
+    },
+    {
+      "name": "global_proximal100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+        "--mode",
+        "proximal",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100",
+        "--sample-count",
+        "1000",
+        "--batch-size",
+        "8",
+        "--seed",
+        "202609172",
+        "--precision",
+        "bf16",
+        "--calibration",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100",
+      "started_at_utc": "2026-09-07T09:00:55.043339+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100.log",
+      "pid": 3517974,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T09:12:06.296024+00:00",
+      "outer_wall_seconds": 671.2505760588683,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json",
+        "sha256": "558f3ffa4d7a29fc9a0aba3db2ea896a3108c5e6eb710d90defefbf8c6a8c11d",
+        "size_bytes": 688
+      }
+    },
+    {
+      "name": "legacy_energy100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+        "--mode",
+        "energy_ball",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100",
+        "--sample-count",
+        "1000",
+        "--batch-size",
+        "8",
+        "--seed",
+        "202609172",
+        "--precision",
+        "bf16",
+        "--calibration-parent",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+        "--paired-official",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100",
+      "started_at_utc": "2026-09-07T09:12:06.308483+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100.log",
+      "pid": 3564205,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T09:23:18.605166+00:00",
+      "outer_wall_seconds": 672.2944700969383,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json",
+        "sha256": "09ce825d4741a0ecb9b9d1e857a5f0a401e8ed47267a9c6a94be4779ff551e17",
+        "size_bytes": 879
+      }
+    },
+    {
+      "name": "native_official100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100",
+        "--num-steps",
+        "100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100",
+      "started_at_utc": "2026-09-07T09:23:18.614399+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100.log",
+      "pid": 3621123,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T09:34:37.955163+00:00",
+      "outer_wall_seconds": 679.3252859641798,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/summary.json",
+        "sha256": "fd2c790e3069b551cb5953aab2e194f16f5a79d90eded18f8bc904cad31d9b77",
+        "size_bytes": 13663
+      }
+    },
+    {
+      "name": "native_global100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "global_ball",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100",
+        "--num-steps",
+        "100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100",
+      "started_at_utc": "2026-09-07T09:34:37.968036+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100.log",
+      "pid": 3662270,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T09:45:51.706541+00:00",
+      "outer_wall_seconds": 673.7359239086509,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/summary.json",
+        "sha256": "ca1f28607915623dda9042800f81262cc7ef5b4c8148dde78571248e7cf853e2",
+        "size_bytes": 13179
+      }
+    },
+    {
+      "name": "reflection100",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "reflection",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100",
+        "--num-steps",
+        "100",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100",
+      "started_at_utc": "2026-09-07T09:45:51.719451+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100.log",
+      "pid": 3706040,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T10:07:43.652864+00:00",
+      "outer_wall_seconds": 1311.9308153670281,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/summary.json",
+        "sha256": "5786910ae1cde573e938449e84e678d118f80e094dd25545806ad8d241c09f36",
+        "size_bytes": 13723
+      }
+    },
+    {
+      "name": "native_official201",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+        "--extension-manifest",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+        "--extension-manifest-sha256",
+        "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+        "--cohort-index",
+        "2",
+        "--mode",
+        "official",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201",
+        "--num-steps",
+        "201",
+        "--parity-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+      ],
+      "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201",
+      "started_at_utc": "2026-09-07T10:07:43.666157+00:00",
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201.log",
+      "pid": 3754112,
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-07T10:29:40.857391+00:00",
+      "outer_wall_seconds": 1317.1884593577124,
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/summary.json",
+        "sha256": "3b83a0914e3f5b080b9feac357487719fd4149b436cdc76ec5fda081b857d39a",
+        "size_bytes": 13670
+      }
+    }
+  ],
+  "complete": true,
+  "terminal": true,
+  "fid_started": false,
+  "finished_at_utc": "2026-09-07T10:29:40.880985+00:00",
+  "worker_outer_wall_seconds": 6105.407441087067
+}

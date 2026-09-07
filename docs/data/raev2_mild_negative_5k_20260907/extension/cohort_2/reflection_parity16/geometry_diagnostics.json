@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "t": 1.0,
+      "sample_count": 16,
+      "residuals": {
+        "involution": {
+          "max_abs": 4.76837158203125e-07,
+          "rms": 2.3590901293378514e-08
+        },
+        "projection_idempotence": {
+          "max_abs": 1.1920928955078125e-07,
+          "rms": 3.053594755482217e-09
+        },
+        "projected_affine_normal": {
+          "max_abs": 9.55681857730286e-08,
+          "rms": 4.042138512672703e-09
+        },
+        "reflection_tangent_change": {
+          "max_abs": 2.3811063065530547e-07,
+          "rms": 2.549664973612497e-08
+        }
+      }
+    },
+    {
+      "t": 0.5,
+      "sample_count": 16,
+      "residuals": {
+        "involution": {
+          "max_abs": 4.76837158203125e-07,
+          "rms": 2.3599032390312834e-08
+        },
+        "projection_idempotence": {
+          "max_abs": 1.1920928955078125e-07,
+          "rms": 3.053594755482217e-09
+        },
+        "projected_affine_normal": {
+          "max_abs": 9.55681857730286e-08,
+          "rms": 4.042138512672703e-09
+        },
+        "reflection_tangent_change": {
+          "max_abs": 2.3811063065530547e-07,
+          "rms": 2.5496728972860187e-08
+        }
+      }
+    },
+    {
+      "t": 0.0,
+      "sample_count": 16,
+      "residuals": {
+        "involution": {
+          "max_abs": 4.76837158203125e-07,
+          "rms": 2.361451646016418e-08
+        },
+        "projection_idempotence": {
+          "max_abs": 1.1920928955078125e-07,
+          "rms": 3.053594755482217e-09
+        },
+        "projected_affine_normal": {
+          "max_abs": 9.55681857730286e-08,
+          "rms": 4.042138512672703e-09
+        },
+        "reflection_tangent_change": {
+          "max_abs": 2.3811063065530547e-07,
+          "rms": 2.5496683804733556e-08
+        }
+      }
+    }
+  ],
+  "unit64_norm_squared_max_error": 8.881784197001252e-16,
+  "unit32_norm_squared_max_error_fp64": 8.455455668965328e-09,
+  "unit32_sha256": "aed263a3bb3ef2f63f7e976caf66360d27e29ac43664450ba61acc19310f89fc",
+  "anchor32_sha256": "a181b559dabb508a0527021dc0937842009bbcf63572782c46ef1b4045274b72",
+  "wall_seconds": 0.45310684805735946,
+  "scope": "CPU FP32 formula with actual stats and parity CUDA noise; FP64 reference reductions. Residuals are descriptive, not an extra projection or parameter."
+}

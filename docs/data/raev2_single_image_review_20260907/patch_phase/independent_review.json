@@ -1,0 +1,417 @@
+{
+  "protocol": "raev2_decoder_patch_phase_independent_review_v1",
+  "reviewed_at_utc": "2026-09-07T09:27:26.704597+00:00",
+  "reviewer": "scale_sampler_review",
+  "stop_required": false,
+  "checks": [
+    {
+      "name": "running_source_matches_request",
+      "passed": true,
+      "details": {
+        "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_decoder_patch_phase.py",
+        "sha256": "37c3533e6007b6679d6102d7152ad4b56f8e7fdb1b9a3e5079cce10c0b7a5700",
+        "size_bytes": 7992
+      }
+    },
+    {
+      "name": "completed_cpu_only_scope",
+      "passed": true,
+      "details": {
+        "cpu_wall_seconds": 59.27566549181938,
+        "quality_improvement_claim": false
+      }
+    },
+    {
+      "name": "phase_formula_independent_random_reference",
+      "passed": true,
+      "details": {
+        "max_abs_error": 2.220446049250313e-16,
+        "centers_per_phase": 14,
+        "samples_per_phase_per_channel": 3136,
+        "first_difference_support": "[left, left+1]",
+        "second_difference_support": "[center-1, center, center+1]"
+      }
+    },
+    {
+      "name": "synthetic_patch_steps_axis0",
+      "passed": true,
+      "details": {
+        "first_active_phase": [
+          15
+        ],
+        "second_active_phases": [
+          0,
+          15
+        ]
+      }
+    },
+    {
+      "name": "synthetic_patch_steps_axis1",
+      "passed": true,
+      "details": {
+        "first_active_phase": [
+          15
+        ],
+        "second_active_phases": [
+          0,
+          15
+        ]
+      }
+    },
+    {
+      "name": "historical_bank_config_20260801",
+      "passed": true,
+      "details": {
+        "manifest_sha256": "285b3e1533dd4e84c76d4023d6f096df100d86080b978dd1ffe74d187c5e2252",
+        "checkpoint_path_recorded": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+        "checkpoint_size_recorded": 10520885445,
+        "checkpoint_hash_not_recorded_in_old_manifest": true
+      }
+    },
+    {
+      "name": "original_global_ids_20260801",
+      "passed": true,
+      "details": {
+        "unique": 5000
+      }
+    },
+    {
+      "name": "minimum_id_per_class_selection_20260801",
+      "passed": true,
+      "details": {
+        "selected": 1000,
+        "id_min": 0,
+        "id_max": 999,
+        "unique_classes": 1000,
+        "test_classes": 200
+      }
+    },
+    {
+      "name": "original_class_split_20260801",
+      "passed": true,
+      "details": {
+        "test_fraction": 0.2,
+        "not_used_for_model_selection": true
+      }
+    },
+    {
+      "name": "strided_rank_mapping_20260801",
+      "passed": true,
+      "details": {
+        "formula": "rank=global_id%4; local_row=global_id//4",
+        "all_5000_ids_accounted_for": true
+      }
+    },
+    {
+      "name": "source_order_and_preprocess_20260801",
+      "passed": true,
+      "details": {
+        "packed_manifest": "/data/shared/imagenet-1k/random_access_v1/manifest.json",
+        "packed_manifest_sha256": "a3ef360766c3cb0c6ed00639f1a1d23da8a93e37ad04f03217af1830f9756a38",
+        "source_root": "/data/shared/imagenet-1k/data",
+        "shards_checked": 294,
+        "total_rows": 1281167,
+        "sorted_source_names_sizes_and_parquet_row_counts_match": true,
+        "index_map": null,
+        "original_runner": "run_raev2_scale_response_study.py: source_rows selected with seed+31, saved unchanged as real_source_rows, and directly indexed into DeterministicImageNetPacked for collect_real_latents and source-image Inception",
+        "original_selector": "run_raev2_distribution_auc.py: concatenated labels from sorted train-*.parquet files; selected rows are global indices in that concatenation",
+        "original_packer": "build_imagenet_random_access.py: sorted train-*.parquet, then original row-group and row order; unchanged encoded image bytes; manifest records restored to sorted source order",
+        "identity_limit": "Source order, file sizes, row counts, and selected labels are checked; the full 146 GB packed payload is not rehashed against parquet in this extraction."
+      }
+    },
+    {
+      "name": "decoded_shards_20260801_reconstruction",
+      "passed": true,
+      "details": {
+        "shards": 4,
+        "NHWC": true,
+        "clamped_then_float16_in_original_runner": true
+      }
+    },
+    {
+      "name": "decoded_shards_20260801_generated_ig1p78",
+      "passed": true,
+      "details": {
+        "shards": 4,
+        "NHWC": true,
+        "clamped_then_float16_in_original_runner": true
+      }
+    },
+    {
+      "name": "small_artifact_hashes_20260801",
+      "passed": true,
+      "details": {
+        "array_and_manifest_hashes_independently_verified": true,
+        "large_decoded_shard_hashes_not_repeated": true
+      }
+    },
+    {
+      "name": "historical_bank_config_20260802",
+      "passed": true,
+      "details": {
+        "manifest_sha256": "eed0dcdac9ef64da2c94f335eb66d9aeaafce8f9f37ec6bc0053f51b2f1c15ff",
+        "checkpoint_path_recorded": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+        "checkpoint_size_recorded": 10520885445,
+        "checkpoint_hash_not_recorded_in_old_manifest": true
+      }
+    },
+    {
+      "name": "original_global_ids_20260802",
+      "passed": true,
+      "details": {
+        "unique": 5000
+      }
+    },
+    {
+      "name": "minimum_id_per_class_selection_20260802",
+      "passed": true,
+      "details": {
+        "selected": 1000,
+        "id_min": 0,
+        "id_max": 999,
+        "unique_classes": 1000,
+        "test_classes": 200
+      }
+    },
+    {
+      "name": "original_class_split_20260802",
+      "passed": true,
+      "details": {
+        "test_fraction": 0.2,
+        "not_used_for_model_selection": true
+      }
+    },
+    {
+      "name": "strided_rank_mapping_20260802",
+      "passed": true,
+      "details": {
+        "formula": "rank=global_id%4; local_row=global_id//4",
+        "all_5000_ids_accounted_for": true
+      }
+    },
+    {
+      "name": "source_order_and_preprocess_20260802",
+      "passed": true,
+      "details": {
+        "packed_manifest": "/data/shared/imagenet-1k/random_access_v1/manifest.json",
+        "packed_manifest_sha256": "a3ef360766c3cb0c6ed00639f1a1d23da8a93e37ad04f03217af1830f9756a38",
+        "source_root": "/data/shared/imagenet-1k/data",
+        "shards_checked": 294,
+        "total_rows": 1281167,
+        "sorted_source_names_sizes_and_parquet_row_counts_match": true,
+        "index_map": null,
+        "original_runner": "run_raev2_scale_response_study.py: source_rows selected with seed+31, saved unchanged as real_source_rows, and directly indexed into DeterministicImageNetPacked for collect_real_latents and source-image Inception",
+        "original_selector": "run_raev2_distribution_auc.py: concatenated labels from sorted train-*.parquet files; selected rows are global indices in that concatenation",
+        "original_packer": "build_imagenet_random_access.py: sorted train-*.parquet, then original row-group and row order; unchanged encoded image bytes; manifest records restored to sorted source order",
+        "identity_limit": "Source order, file sizes, row counts, and selected labels are checked; the full 146 GB packed payload is not rehashed against parquet in this extraction."
+      }
+    },
+    {
+      "name": "decoded_shards_20260802_reconstruction",
+      "passed": true,
+      "details": {
+        "shards": 4,
+        "NHWC": true,
+        "clamped_then_float16_in_original_runner": true
+      }
+    },
+    {
+      "name": "decoded_shards_20260802_generated_ig1p78",
+      "passed": true,
+      "details": {
+        "shards": 4,
+        "NHWC": true,
+        "clamped_then_float16_in_original_runner": true
+      }
+    },
+    {
+      "name": "small_artifact_hashes_20260802",
+      "passed": true,
+      "details": {
+        "array_and_manifest_hashes_independently_verified": true,
+        "large_decoded_shard_hashes_not_repeated": true
+      }
+    },
+    {
+      "name": "independent_original_pixel_spots",
+      "passed": true,
+      "details": {
+        "pixel_images_checked": 48,
+        "sample_ids_each_seed": [
+          0,
+          1,
+          2,
+          3,
+          127,
+          128,
+          511,
+          999
+        ],
+        "max_absolute_energy_error": 1.734723475976807e-17
+      }
+    },
+    {
+      "name": "all_saved_statistics_independently_recomputed",
+      "passed": true,
+      "details": {
+        "max_absolute_error": 0.0,
+        "branches": 6,
+        "per_image_arrays": 6000,
+        "statistics_per_image": 64
+      }
+    },
+    {
+      "name": "large_archived_shard_recorded_sizes",
+      "passed": true,
+      "details": {
+        "files": 16,
+        "all_current_sizes_match_producer_manifest": true,
+        "full_hash_not_repeated": true
+      }
+    }
+  ],
+  "source_script_sha256": "37c3533e6007b6679d6102d7152ad4b56f8e7fdb1b9a3e5079cce10c0b7a5700",
+  "request_sha256": "0702eda639b660b80a56697a911630719ccca35359162e684e55350b65b9e492",
+  "summary_sha256": "60d92d7c63c1b2aa42ec64c250369620385b9584406735b3937732056565c6b9",
+  "observations": [
+    {
+      "seed": 20260801,
+      "phase_curve_correlations_reconstruction_vs_generated": {
+        "dx": 0.9872393995514956,
+        "dxx": 0.9953318120235499,
+        "dy": 0.9807518970225004,
+        "dyy": 0.9876697166205909
+      },
+      "phase_rms_by_branch": {
+        "dx": {
+          "source_real": 0.00901235723626746,
+          "reconstruction": 0.06029674683634924,
+          "generated_ig1p78": 0.06490331810536062
+        },
+        "dxx": {
+          "source_real": 0.007286203081294014,
+          "reconstruction": 0.09205390722377196,
+          "generated_ig1p78": 0.09546096427104289
+        },
+        "dy": {
+          "source_real": 0.005957365957965103,
+          "reconstruction": 0.060665360540084284,
+          "generated_ig1p78": 0.06408331421726256
+        },
+        "dyy": {
+          "source_real": 0.005942388969411264,
+          "reconstruction": 0.058814788824017326,
+          "generated_ig1p78": 0.0653785719224417
+        }
+      },
+      "pooled_boundary_contrasts": {
+        "dx": {
+          "source_real": -0.009400326966735095,
+          "reconstruction": 0.04163651548750125,
+          "generated_ig1p78": 0.03446727804194938
+        },
+        "dxx": {
+          "source_real": -0.006834143994030706,
+          "reconstruction": -0.027842956568167043,
+          "generated_ig1p78": -0.019766623293261842
+        },
+        "dy": {
+          "source_real": 0.015039633252606488,
+          "reconstruction": 0.15509424466314614,
+          "generated_ig1p78": 0.1462434826955341
+        },
+        "dyy": {
+          "source_real": 0.010189528107272694,
+          "reconstruction": 0.013798055596903724,
+          "generated_ig1p78": 0.02090469748513346
+        }
+      }
+    },
+    {
+      "seed": 20260802,
+      "phase_curve_correlations_reconstruction_vs_generated": {
+        "dx": 0.9771815669879647,
+        "dxx": 0.9935602101752546,
+        "dy": 0.9836716669171135,
+        "dyy": 0.9818650293234165
+      },
+      "phase_rms_by_branch": {
+        "dx": {
+          "source_real": 0.006472881495482915,
+          "reconstruction": 0.05886798864819397,
+          "generated_ig1p78": 0.0648322753525881
+        },
+        "dxx": {
+          "source_real": 0.0036008090231680148,
+          "reconstruction": 0.08871509541836407,
+          "generated_ig1p78": 0.09320576846077291
+        },
+        "dy": {
+          "source_real": 0.009085612305583617,
+          "reconstruction": 0.06449152582948159,
+          "generated_ig1p78": 0.06659506755625703
+        },
+        "dyy": {
+          "source_real": 0.007932128782406652,
+          "reconstruction": 0.06085874174029188,
+          "generated_ig1p78": 0.06268271191569694
+        }
+      },
+      "pooled_boundary_contrasts": {
+        "dx": {
+          "source_real": 0.014729492477689399,
+          "reconstruction": 0.0695823756329178,
+          "generated_ig1p78": 0.039769467979113626
+        },
+        "dxx": {
+          "source_real": 0.0029716663295081824,
+          "reconstruction": -0.022976817138973038,
+          "generated_ig1p78": -0.022231086518802345
+        },
+        "dy": {
+          "source_real": 0.030021042152612032,
+          "reconstruction": 0.1699224002783153,
+          "generated_ig1p78": 0.14812247771910525
+        },
+        "dyy": {
+          "source_real": 0.012842568993891912,
+          "reconstruction": 0.01796250073877892,
+          "generated_ig1p78": 0.0159126034387439
+        }
+      }
+    }
+  ],
+  "cross_seed_source_row_overlap": 1,
+  "conclusion": {
+    "indexing_and_descriptive_statistics_valid": true,
+    "stable_phase_signature_supported": true,
+    "generation_exclusive_seam_defect_supported": false,
+    "decoder_only_causality_supported": false,
+    "quality_repair_justified_by_current_data": false,
+    "fid_gain_or_5percent_claim_supported": false,
+    "text": "Both reconstruction and generated branches show a repeatable 16-phase energy pattern unlike source images. Their profiles are highly similar. Generated first-difference seam contrasts are lower than reconstruction in both axes and seeds; normalized phase RMS is slightly higher, so a blanket generated-is-not-stronger statement needs the metric specified. This does not identify a beneficial filter or training direction."
+  },
+  "limitations": [
+    "Source images and reconstructions are truly paired; generated samples only share class/global slot, not a paired content target.",
+    "The old pipeline includes encoder patchification, FP16 latent serialization, decoder, BF16 numerics, clamp, and FP16 pixel serialization. The decoder alone is not isolated.",
+    "Source images come from train; this is an exploratory mechanism diagnostic, not a new heldout-quality result. Two seeds share classes and may overlap source rows.",
+    "FP16 decoded pixels are not the original FP32 or evaluated uint8 pixels; raw real pixels use FP32 division by 255.",
+    "Per-image normalization differs from pooled normalization; neither is a percentage image-quality improvement.",
+    "Second differences measure discrete curvature energy, not Hessian eigenvalues, semantic fidelity or a certified seam defect.",
+    "Centers are restricted to [16,240), but finite-difference stencil neighbors include positions 15 and 240.",
+    "Large historical decoded files were mmap-read at selected spots and their recorded sizes/headers checked; their full SHA256 was computed by the producer and not repeated here. The full packed ImageNet payload and old checkpoint/decoder weights were not rehashed.",
+    "Old manifest records checkpoint path/size, not complete immutable source/model/decoder hashes. This audit authenticates present archived arrays, not a fresh exact replay of the historic model.",
+    "No confidence interval, randomization, causal intervention, quality metric or perceptual preference test establishes benefit of removing the signature."
+  ],
+  "gpu_calls": 0,
+  "training_runs": 0,
+  "new_sampling_runs": 0,
+  "new_5k_images_read": 0,
+  "reviewed_dependency_hashes": {
+    "experiments/extract_raev2_decoder_audit_real_blocks.py": "2c39f68fabd75c0401c491f51c93ae8eab0956cfd8fa49e0af1ff18aa440af62",
+    "experiments/raev2_training_core.py": "aa6c582abcdce2ea760c2d1316ce4b5cfdb21de835a2e91820b1aacc521a8ba0",
+    "experiments/run_raev2_scale_response_study.py": "f59958d2cddaf1dea1911bcef54c80e1f0ebf4e52085958fdcdcad914d41cc02",
+    "external/RAEv2/src/stage1/rae.py": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+    "external/RAEv2/src/stage1/decoders/decoder.py": "8652679e3e1ca2fa01b84a639b6f47764b8ca03d4ca3dca1419a8da403b87362"
+  }
+}

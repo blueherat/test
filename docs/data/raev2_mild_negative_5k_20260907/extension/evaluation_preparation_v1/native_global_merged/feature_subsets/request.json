@@ -1,0 +1,42 @@
+{
+  "protocol": "raev2_extension_official_feature_subsets_v1",
+  "merge_summary": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/summary.json",
+    "sha256": "22e4ca43869411e593ef924b3b0ef810ba6b82380904bf03ac9910fcf7621a6a",
+    "size_bytes": 240911
+  },
+  "official_evaluation": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_evaluation.json",
+    "sha256": "59fdcb1c7708878b334eec70287c8a021d2c9b8f499583bf3e49f2816b271355",
+    "size_bytes": 1236
+  },
+  "feature_cache": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache",
+  "reference": {
+    "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "size_bytes": 33563124
+  },
+  "official_frechet_source": {
+    "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+    "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+    "size_bytes": 2357
+  },
+  "source": {
+    "path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_1k_extension_features.py",
+    "sha256": "1689fdb2a0f85acbcd3297ddf0aaf241a7d06688358139764a1d203efaf96619",
+    "size_bytes": 8543
+  },
+  "subsets": {
+    "pooled5k": [
+      0,
+      5000
+    ],
+    "new4k": [
+      1000,
+      5000
+    ]
+  },
+  "pooled5k_reproduction_absolute_tolerance": 1e-06,
+  "independent_feature_extraction": false,
+  "inception_score_for_new4k": false
+}

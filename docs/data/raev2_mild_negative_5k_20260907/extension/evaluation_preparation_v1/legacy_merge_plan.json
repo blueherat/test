@@ -1,0 +1,491 @@
+{
+  "protocol": "raev2_paired_1k_extension_merge_v1",
+  "family": "legacy",
+  "invariant_request_fields": [
+    "mode",
+    "num_steps",
+    "batch_size"
+  ],
+  "root_plan": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/plan.json",
+    "sha256": "55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159",
+    "size_bytes": 112297
+  },
+  "cost_release": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_release.json",
+    "sha256": "0238c29b15e408a5945a21657401037b1b117dda8d3e25626c4b00766f2b4539",
+    "size_bytes": 4802
+  },
+  "blocks": [
+    {
+      "id": "old",
+      "role": "screen",
+      "seed": 202609066,
+      "arms": {
+        "official100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json",
+            "sha256": "fc09da6ee971d6f9f8a9cc79d63fc08177e0718f7cc7a6d08b3031f9b80dd993",
+            "size_bytes": 5661
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+            "sha256": "54cc8bdaa6c9e3113ed5a5e6cdb2b22421e3eb22f80b8ae76523448029109630",
+            "size_bytes": 686
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json",
+            "sha256": "fe97467781795e9a364f9fb096cc901848f09987a4d5a1bd738a8c8cfed58602",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+            "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "official",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "global_proximal100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json",
+            "sha256": "90ad514d071988655023344e739a96226a6fd6da24d41cde4a95e2f52b6ccf33",
+            "size_bytes": 3068532
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+            "sha256": "b840e678877882e524fcb2514d6ec1876813203e92abb4cbb22931585b3bf304",
+            "size_bytes": 687
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json",
+            "sha256": "7d731090630f9a7f33c16dfd99090953ef7c6b0a1fc94d14e4d657e666b568db",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+            "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "proximal",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "energy100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json",
+            "sha256": "75930ae5ef63522a8547758141e0c104e86aa4f0eb4d52c9446b78227f71b5ed",
+            "size_bytes": 755819
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+            "sha256": "325aa8fd6128369ff3c3775a483f9db70a96fc867b98e9349f6b6206fb8a3228",
+            "size_bytes": 879
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json",
+            "sha256": "2505cfabb2a0ff594c7271c3d2efa6b67556df7e125f49f41613db96c7ca9968",
+            "size_bytes": 68870
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+            "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "energy_ball",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        }
+      }
+    },
+    {
+      "id": "new1",
+      "role": "confirmation",
+      "seed": 202609171,
+      "arms": {
+        "official100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/request.json",
+            "sha256": "8025bd4a9532236b7bd8890ac5dc0452ad766beba5aeb3bd8d9dc5c805907352",
+            "size_bytes": 5697
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/summary.json",
+            "sha256": "000730f3147e086c09c486493cdce690fe5160b3610417daf7ec3c05d0c88dee",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/batch_manifest.json",
+            "sha256": "b6f5387c507c454de887cbade2a08c5d63da94bd728effc40b5b2a959256dee1",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/samples.npz",
+            "sha256": "5d0282d33e0e5cabb199bac1bfe1a9097801f226315fe8b487535dbeeecee362",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "official",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "global_proximal100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/request.json",
+            "sha256": "233a0708667238e782f237ebca6581209f63dd21b44bb0ce3937c5aab4b8e1f5",
+            "size_bytes": 3068572
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/summary.json",
+            "sha256": "389ba59b7b025c235a3d5be02f447426930ca3e6992a6a01f10869d79a5f098f",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/batch_manifest.json",
+            "sha256": "e9f7661dde254abe730ce51163e7b5d2bfc5dd74ad6760424922678946d3b1f7",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/samples.npz",
+            "sha256": "4fd6a4ca7acfc3a73abd9d6a1a9accc4a0d95f6769437d9c907687ed3674734f",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "proximal",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "energy100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/request.json",
+            "sha256": "8d2118d2a35c672dfcdcde4229cfed3784bd48755435478fb4cd9efbb4903b06",
+            "size_bytes": 755875
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/summary.json",
+            "sha256": "b2dc407944dd573967215c6c06dc7d3f69ba7175e384e456e48dd2047d41151b",
+            "size_bytes": 879
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/batch_manifest.json",
+            "sha256": "a2217cbb1dbf1f3b9ab214b4e35270cd30a2c812f49ad5ab5164a64685177057",
+            "size_bytes": 68870
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/samples.npz",
+            "sha256": "951f00679b9854720ba3a57b6b22f61e9139564c80212e5a38e1e4f5a62463e0",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "energy_ball",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        }
+      }
+    },
+    {
+      "id": "new2",
+      "role": "confirmation",
+      "seed": 202609172,
+      "arms": {
+        "official100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/request.json",
+            "sha256": "1cd693c9043c4a2082f654206493e62d053b320f87e8751ce6f6af7f803b639a",
+            "size_bytes": 5697
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/summary.json",
+            "sha256": "4b0ce4f9bd78f3d73ca75e0df3fb46c9dcbae425d6317fdb1a08e649d530f0f9",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/batch_manifest.json",
+            "sha256": "35171bb7cd34fe02ba48be515ccb924d2627b7b9e34e020446d0a421344caf82",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/samples.npz",
+            "sha256": "3396e05ce2d4252d0e38cc809b01ce5dcd292c2a11fbb58574fc839b45b910aa",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "official",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "global_proximal100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/request.json",
+            "sha256": "8aabc7aefb14be532ab4606f569051e13e0fc2debc87af2fef0e4ee0372aad98",
+            "size_bytes": 3068572
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/summary.json",
+            "sha256": "558f3ffa4d7a29fc9a0aba3db2ea896a3108c5e6eb710d90defefbf8c6a8c11d",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/batch_manifest.json",
+            "sha256": "62d98eb5eb2fbd70cd2a36183d6b915c77a0f2faf632e8bf5839848690610e1f",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/samples.npz",
+            "sha256": "29f47b0e17cb9f59c5e3024430fe3d432982f1829a245e1b39e196be8f033186",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "proximal",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "energy100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/request.json",
+            "sha256": "cda51f618019dc2a2bb513e5e1ac9490fc9912513bb019fa812cf5cc58b92ede",
+            "size_bytes": 755875
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/summary.json",
+            "sha256": "09ce825d4741a0ecb9b9d1e857a5f0a401e8ed47267a9c6a94be4779ff551e17",
+            "size_bytes": 879
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/batch_manifest.json",
+            "sha256": "255702ff93eafb6bf399c598c8c95aca705904ba6c22edfea3d45139ff481ed1",
+            "size_bytes": 68870
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/samples.npz",
+            "sha256": "98b8866b019aa2459dcab57d57a3b87d2e5cf176211d67c897c39ffe222d79a0",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "energy_ball",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        }
+      }
+    },
+    {
+      "id": "new3",
+      "role": "confirmation",
+      "seed": 202609173,
+      "arms": {
+        "official100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/request.json",
+            "sha256": "3e68836e1fea74301f646c54630e476a967f93691e82d06ca5c68a86e2c2c935",
+            "size_bytes": 5697
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/summary.json",
+            "sha256": "5e571f4d2250a760bd57853eafac5a7b8b4898dbd6679f73511aa30f75ca16c4",
+            "size_bytes": 687
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/batch_manifest.json",
+            "sha256": "ffcdc72c34167735d4155aec49969672ea81135d02364330eecd65a128d74e3f",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/samples.npz",
+            "sha256": "bd620be449507c780638fe40d56b71589693865f013c9c5be6b9d2e7eeaa6d92",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "official",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "global_proximal100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/request.json",
+            "sha256": "44681c276e91d12d1858adb87143a52052729f4de4d1c91643638e75a1f01f60",
+            "size_bytes": 3068572
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/summary.json",
+            "sha256": "b79dcf0dec1520bb056a466e64ecd7dac5755c6f5ccc108d5b7e6a19833f9366",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/batch_manifest.json",
+            "sha256": "2b449c0a37a1d822bc7f15972dac3242a6e52c7cf5f6de6cdfd8e164c4b58c96",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/samples.npz",
+            "sha256": "06537dd527701c5b8c3b15ccfa09081b027bbac3be4ab145aaa6a6402e2d5969",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "proximal",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "energy100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/request.json",
+            "sha256": "c5c081b5a28a28af2435387a8879daab29fa654d37fa3a29106b4ba841afc631",
+            "size_bytes": 755875
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/summary.json",
+            "sha256": "aa78a0d37b4d810ec0c87253332215dc15984510a089ee07796de351071e04d0",
+            "size_bytes": 879
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/batch_manifest.json",
+            "sha256": "ce45a0e2ef92786062a15604d95c86c7fb665d8d5df1f0bcc90795f49b24cf9f",
+            "size_bytes": 68870
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/samples.npz",
+            "sha256": "45d8ac44059481a80bb732e775ac0d2317ca12b8d7163ecf612a6c33f8cfdd14",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "energy_ball",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        }
+      }
+    },
+    {
+      "id": "new4",
+      "role": "confirmation",
+      "seed": 202609174,
+      "arms": {
+        "official100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/request.json",
+            "sha256": "963f24e79d550f1908eff7f259a4717cb1f16ce3f9f7578206f0bfb4f7474ab9",
+            "size_bytes": 5697
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/summary.json",
+            "sha256": "522b74633d257a1e4d72be138011b06ab9b8f6c4ae6e9cbf270236eb786812d3",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/batch_manifest.json",
+            "sha256": "10d21de3d87929a9ea9fe6ac5a85d7b2c5d5d9d6c2e9379306a78e97390ba767",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/samples.npz",
+            "sha256": "06c358fd61ce0b66efcae88857ed8ceb01cc31fd64b0a11201247023c074d052",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "official",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "global_proximal100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/request.json",
+            "sha256": "f6eec50bc9707538ef4815b2f6ab72fe6f1ac3d436ab4a260bd1f26218af50ae",
+            "size_bytes": 3068572
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/summary.json",
+            "sha256": "39165586288d1fc1e8639ac48b0aff81aa9f279048a4ffc1fefcf9850df06739",
+            "size_bytes": 688
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/batch_manifest.json",
+            "sha256": "f799590b796567ee362936a8e81ce708c42dd066fdc3da371fb880c0de65684b",
+            "size_bytes": 57495
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/samples.npz",
+            "sha256": "f0d617229d9b95d20871ab022e69d9bc1d32b4ab9582988fb2b7f03555bedb5f",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "proximal",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        },
+        "energy100": {
+          "request": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/request.json",
+            "sha256": "c52b07c2eeb83171c78665ba1d5fee4e02ae7ea330302248af09b06d38ea59ba",
+            "size_bytes": 755875
+          },
+          "summary": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/summary.json",
+            "sha256": "1dfa498811349e59589ff36a8227f1756cbfc460fcd442ad2a8ee82d25be5c46",
+            "size_bytes": 879
+          },
+          "batch_manifest": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/batch_manifest.json",
+            "sha256": "f0944a218dc0d606e98730eec28bb37436bcd5211a29030db706fa2060ad38bc",
+            "size_bytes": 68870
+          },
+          "samples": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/samples.npz",
+            "sha256": "a818f7780e9e98de7e8b38d0173937c29953b30fc91176214e718ad72ab0fc51",
+            "size_bytes": 196608264
+          },
+          "expected_request_fields": {
+            "mode": "energy_ball",
+            "num_steps": 100,
+            "batch_size": 8,
+            "config_sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+            "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+          }
+        }
+      }
+    }
+  ]
+}

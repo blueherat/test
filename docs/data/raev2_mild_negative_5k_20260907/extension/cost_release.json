@@ -1,0 +1,87 @@
+{
+  "complete": true,
+  "frozen_before_fid": true,
+  "fid_started": false,
+  "created_at_utc": "2026-09-07T10:33:09.037808+00:00",
+  "root_plan_sha256": "55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159",
+  "reflection_baselines": [
+    {
+      "cohort_index": 0,
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201",
+      "num_steps": 201
+    },
+    {
+      "cohort_index": 1,
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201",
+      "num_steps": 201
+    },
+    {
+      "cohort_index": 2,
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201",
+      "num_steps": 201
+    },
+    {
+      "cohort_index": 3,
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201",
+      "num_steps": 201
+    },
+    {
+      "cohort_index": 4,
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201",
+      "num_steps": 201
+    }
+  ],
+  "evidence": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_review_v1/request.json",
+      "sha256": "3e25d35b9861725123c9640e6f35401faf48ee5910dc647dd7499fd5e448b980"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_review_v1/summary.json",
+      "sha256": "e98513eefff6ea675ba83ea1f19b4f96de4419226fc1a8905e28a3a74d615fa0"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_review_v1/cohort_costs.csv",
+      "sha256": "75444677378b0505dae8070b41b9cfa788d73b36672b8215f14cde1bf3844d92"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cost_review_v1/totals.csv",
+      "sha256": "d684a9ca009e03a1f58f4ef0d0ce17289438061e56d3235f70143d2ed8f59db0"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/execution.json",
+      "sha256": "c2733fe19b05c05485d2bdd71554f364fcc08f03fa36cbcaadc8b93bdc8981c5"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/execution.json",
+      "sha256": "49a1fce96a9f609c84a4eb3b49cfde5e49c544e978dfc260ff80df6dbd80cfc4"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/execution.json",
+      "sha256": "0cce68f6575c37b4546dd7a496510197a15c60f730b562a7febc2da8a665f903"
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/execution.json",
+      "sha256": "afdd2fc338f6362ad224e2db32fe10353a809dd03f12c9a7031494a71069aa5f"
+    }
+  ],
+  "matched": false,
+  "reflection_pooled5k_recorded_T_and_W_covered": true,
+  "reflection_official_uniform_steps": 201,
+  "fair_total_research_cost_closed": false,
+  "missing_historical_costs": [
+    "Historical legacy and spatial process outer wall is unavailable here; null totals preserve missingness.",
+    "Legacy elapsed_seconds includes load/preparation/sample/decode/I/O; no separated trajectory T or observed decoder-call count exists.",
+    "Spatial trajectory+decode component sum differs from the reflection whole-span T; both fields are kept distinct.",
+    "Candidate calibration, historical data acquisition, training, rejected earlier studies, this CPU audit and evaluator costs are not all closed by these sampling summaries.",
+    "Family tables reuse shared baselines for comparisons; physical job accounting deduplicates them and includes the discarded historical official200.",
+    "Per-process wall on allocated GPUs is an elapsed cost proxy, not measured integrated GPU busy time; four-card parallel duration is not total compute.",
+    "Old1K FID was already inspected when choosing candidates. This cost-only script reads no FID, features, pixels or future metric."
+  ],
+  "limitations": [
+    "Reflection official201 covers both pooled recorded T and W; these are noisy point timings.",
+    "Legacy main-model NFE matches; missing separated timing and preparation totals prevent an exact total-cost claim.",
+    "Native global has matched NFE and actual runner costs, but timing boundaries differ; no old spatial-seed official201 exists.",
+    "No candidate selection, coefficient change or new quality trial is released."
+  ]
+}

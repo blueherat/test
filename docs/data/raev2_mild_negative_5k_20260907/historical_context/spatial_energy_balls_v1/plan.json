@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-09-06T08:41:22.715268+00:00",
+  "study": "RAEv2 fixed two-spatial-energy-ball 1K screen",
+  "state": "implementation_pre_gpu",
+  "protocol_document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SPATIAL_ENERGY_BALLS_PROTOCOL_20260906_ZH.md",
+    "sha256": "5ff6e86d26f3c24dc1304dd34ec8c9f566daa5e7bccf17862726eb7ac8df9df9"
+  },
+  "reference": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz",
+    "sha256": "5fbb3db3eca2adf0193896ebfd4657ee06014c88c630cb9f4445b77db92cf774",
+    "view": "all_5000",
+    "arm": "real",
+    "normalization": "sum over channels divided by1024",
+    "m_dc": 0.48495455146882827,
+    "m_ac": 0.5164395398984812,
+    "source_precision": "historical BF16 encoder then FP16 saved raw normalized latents; defines empirical target, not known real-population upper bound"
+  },
+  "cohort": {
+    "n": 1000,
+    "seed": 202609121,
+    "classes": "ID modulo1000",
+    "noise": "one full-shape CUDA FP32 draw before B8 grouping",
+    "cohort_coupling": "global/spatial balls use the entire1000 population, never independent perGPU/microbatch projection"
+  },
+  "arms": [
+    {
+      "name": "official100",
+      "mode": "official",
+      "steps": 100,
+      "loop": "batch_major"
+    },
+    {
+      "name": "global100",
+      "mode": "global_ball",
+      "steps": 100,
+      "loop": "time_major"
+    },
+    {
+      "name": "spatial100",
+      "mode": "spatial_balls",
+      "steps": 100,
+      "loop": "time_major"
+    }
+  ],
+  "parity": {
+    "n": 16,
+    "microbatch": 8,
+    "steps": 100,
+    "comparison": "projection disabled time_major vs native batch_major endpoints and pixels bitwise; not quality selection"
+  },
+  "cost_rule": {
+    "first_K": "max(100,ceil(100*T_spatial/T_official100))",
+    "refinement_if_short": "max(K+1,ceil(K*T_spatial/T_officialK))",
+    "metric_blinding": "all arms and timing-only cost baseline frozen/completed before reading new FID",
+    "scope": "trajectory includes correction reductions/synchronizations/writebacks/loop; load/decode/IO/preparation separate; different4090 timing is point estimate"
+  },
+  "evaluator": {
+    "runner": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+    "runner_sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "batch_size": 64,
+    "seed": 2020,
+    "reference": "imagenet_256_fid_stats",
+    "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac"
+  },
+  "quality_claim": "none; one fixed candidate and same-reference structural control, no gain/window/channel/radius/seed search; full preparation cost may remain unclosed"
+}

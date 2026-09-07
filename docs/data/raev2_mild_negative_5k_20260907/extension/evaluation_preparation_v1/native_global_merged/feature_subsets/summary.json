@@ -1,0 +1,68 @@
+{
+  "protocol": "raev2_extension_official_feature_subsets_v1",
+  "complete": true,
+  "results": [
+    {
+      "family": "native_global",
+      "arm": "official100",
+      "subset": "pooled5k",
+      "samples": 5000,
+      "fid": 7.093016100303544,
+      "official_pooled5k_fid": 7.093016100303544,
+      "sample_sha256": "01ace1f45e68fed885228aae272aa87f1db2386e562dec117a4a28cffeb0b211",
+      "feature_row_start": 0,
+      "feature_row_stop": 5000
+    },
+    {
+      "family": "native_global",
+      "arm": "official100",
+      "subset": "new4k",
+      "samples": 4000,
+      "fid": 8.743323803922351,
+      "official_pooled5k_fid": null,
+      "sample_sha256": "49fd079874386e7d5648105d5eeff1118d48915afc32b4fd3d805126fd926320",
+      "feature_row_start": 1000,
+      "feature_row_stop": 5000
+    },
+    {
+      "family": "native_global",
+      "arm": "global100",
+      "subset": "pooled5k",
+      "samples": 5000,
+      "fid": 7.0766692743397925,
+      "official_pooled5k_fid": 7.0766692743397925,
+      "sample_sha256": "40c0ce3bc6c2b9aadeb00a452834a5095c5b024b321171990f8d1c48591b82a5",
+      "feature_row_start": 0,
+      "feature_row_stop": 5000
+    },
+    {
+      "family": "native_global",
+      "arm": "global100",
+      "subset": "new4k",
+      "samples": 4000,
+      "fid": 8.727140311845915,
+      "official_pooled5k_fid": null,
+      "sample_sha256": "26c2676c65a6431c85e23a77d745caffaf6b9bbdf273436678492d0ce51f0e66",
+      "feature_row_start": 1000,
+      "feature_row_stop": 5000
+    }
+  ],
+  "features": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+      "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+      "size_bytes": 40962402
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+      "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+      "size_bytes": 40962388
+    }
+  ],
+  "gpu_model_calls": 0,
+  "wall_seconds": 16.262765556108207,
+  "cpu_seconds": 53.408952022,
+  "quality_claim": "new4K is the preselected-method follow-up; pooled5K retains screened observations; neither alone is a population FID guarantee",
+  "independent_feature_extraction": false,
+  "cost_match_claim": false
+}

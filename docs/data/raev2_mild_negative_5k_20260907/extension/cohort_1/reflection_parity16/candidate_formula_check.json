@@ -1,0 +1,57 @@
+{
+  "sample_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "t": 1.0,
+  "following": 0.9987389445304871,
+  "residuals": {
+    "reflection_involution": {
+      "max_abs": 2.384185791015625e-07,
+      "rms": 2.120246860439995e-08
+    },
+    "guided_affine_normal": {
+      "max_abs": 3.031492854904417e-08,
+      "rms": 1.6880705884567433e-09
+    },
+    "guided_C2_invariance": {
+      "max_abs": 0.039017438888549805,
+      "rms": 0.004726390363577514
+    },
+    "first_successor_normal_bridge": {
+      "max_abs": 1.3135779727835306e-08,
+      "rms": 7.865015505941784e-10
+    }
+  },
+  "all_finite": true,
+  "counts": {
+    "observed": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    },
+    "expected": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    }
+  },
+  "operator_counts": {
+    "stage2_forward": 4,
+    "reflection": 2,
+    "average_projection": 2
+  },
+  "wall_seconds": 0.22527003707364202,
+  "cuda_event_span_seconds": 0.2252060546875,
+  "guided_sha256": "eaeadaa38d0a5de2657351a237dd72e1ef5c37acd6f4813e4b2a8a2e6eb6c07c",
+  "reflected_guided_sha256": "5adf6e085eae8c7174082376b9c66ea663e35906b929fd3bedb92c13aaea65b3",
+  "scope": "fixed first B8, exactly4 native model calls; descriptive FP32/BF16 residuals, no selected threshold or re-projection; no decode/FID"
+}

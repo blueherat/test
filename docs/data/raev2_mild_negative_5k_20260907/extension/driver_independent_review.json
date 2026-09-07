@@ -1,0 +1,324 @@
+{
+  "protocol": "raev2_mild_negative_extension_driver_independent_review_v1",
+  "created_at_utc": "2026-09-07T08:52:48.041806+00:00",
+  "plan": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/plan.json",
+    "sha256": "55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159"
+  },
+  "driver": {
+    "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py",
+    "sha256": "5423e8023cac0ba4e1656aea174105eb5584be016f5fb59422d6ad1cf1e4503d"
+  },
+  "scope": "Read-only independent driver/plan review by wrapper author; no modification of frozen files, no new GPU/model/inception calls. JSON result is the only written artifact.",
+  "stop_required": false,
+  "critical_findings": [],
+  "checks": [
+    {
+      "name": "launch binds current plan",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "four prescribed distinct new seeds",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "four cohorts and 36 fixed jobs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cohort1 names/order/physical GPU",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cohort2 names/order/physical GPU",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cohort3 names/order/physical GPU",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cohort4 names/order/physical GPU",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all 36 argument vectors preserve count/seed/method/parity/calibration layouts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all job output directories distinct",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all frozen source hashes independently recomputed",
+      "passed": true,
+      "details": {
+        "count": 29
+      }
+    },
+    {
+      "name": "small frozen metadata/source identities and all recorded sizes",
+      "passed": true,
+      "details": {
+        "small_files_rehashed": 66,
+        "large_files_size_checked_only": 16,
+        "large_files_reason": "Avoid re-reading GB weights/calibrations/images during active timed GPU jobs. Initial prepare recorded their hashes; this review does not independently revalidate their bytes."
+      }
+    },
+    {
+      "name": "both manifests and all nine per-cohort plans pass complete CPU admission checks",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "nine retained historical 1K records complete and bind original sample identities",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "each original candidate retains its proper historical paired baseline",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all eight native parity jobs passed and cross-family endpoints/pixels match bitwise",
+      "passed": true,
+      "details": [
+        {
+          "cohort": 1,
+          "seed": 202609171,
+          "noise_sha256": "d2365c19e39bf1d9756ec34b0f72c927beb947543aecf8c59ad1d97e91b88b48",
+          "endpoint_sha256": "2016e8e1e93e4ee3c348bd520fbda4e2d66df15e749b82b9603bd5bca656bc2b",
+          "pixel_sha256": "52070f75927455047c97e7583037d513a6c4245aaecfdf0607ef07b7f5e71dba"
+        },
+        {
+          "cohort": 2,
+          "seed": 202609172,
+          "noise_sha256": "945dab506e415e0a62a4174ad0c2931d7079a24af3d0a552c234e77d44bdc7f0",
+          "endpoint_sha256": "403f0b1a37aa58bc4a688aea337e51a517b6bd78261aff407d6fc72b15775fc2",
+          "pixel_sha256": "7ba21332ccbd807e1501f4b325d6bb85d56ebb9d3d4b64f0641822d49a393b92"
+        },
+        {
+          "cohort": 3,
+          "seed": 202609173,
+          "noise_sha256": "576fbbfb2ff8ad6a8d5c4f9cf058d06c0dcac3b017be3ad7ece1027ef2ef00ae",
+          "endpoint_sha256": "861a9f1e4e841898ae2f62a0845fe7da482db85f68cee4568e6e24a31a4a9124",
+          "pixel_sha256": "eb75d83e4895a9477ef984cae4730383b772bdf281a5cc19f7d35637407a2feb"
+        },
+        {
+          "cohort": 4,
+          "seed": 202609174,
+          "noise_sha256": "73acadf61723214b82afb898d4d93763f70074aeae49ff1f5ea5ec6d440e637c",
+          "endpoint_sha256": "076fa6c17c7bb4a801176a93595b6e811584773ff1ed2e0889d3c21e5d7ca3a5",
+          "pixel_sha256": "6970b29855744951baf0a3cdac3dde9be8c050f5d969428a8ca7ce6ad6b690f6"
+        }
+      ]
+    },
+    {
+      "name": "four current workers/jobs bind planned GPU visibility and no FID has started",
+      "passed": true,
+      "details": [
+        {
+          "cohort": 1,
+          "terminal": false,
+          "completed_jobs": 2,
+          "last_job": "legacy_official100",
+          "live_processes": [
+            {
+              "pid": 3452159,
+              "cuda_visible_devices": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py worker --cohort-index 1 --plan-sha256 55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159 "
+            },
+            {
+              "pid": 3467093,
+              "cuda_visible_devices": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py --mode official --output-dir /home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100 --sample-count 1000 --batch-size 8 --seed 202609171 --precision bf16 "
+            }
+          ]
+        },
+        {
+          "cohort": 2,
+          "terminal": false,
+          "completed_jobs": 2,
+          "last_job": "legacy_official100",
+          "live_processes": [
+            {
+              "pid": 3452160,
+              "cuda_visible_devices": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py worker --cohort-index 2 --plan-sha256 55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159 "
+            },
+            {
+              "pid": 3467158,
+              "cuda_visible_devices": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py --mode official --output-dir /home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100 --sample-count 1000 --batch-size 8 --seed 202609172 --precision bf16 "
+            }
+          ]
+        },
+        {
+          "cohort": 3,
+          "terminal": false,
+          "completed_jobs": 2,
+          "last_job": "legacy_official100",
+          "live_processes": [
+            {
+              "pid": 3452161,
+              "cuda_visible_devices": "GPU-b2e881de-f004-31a3-9724-18a26885fa51",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py worker --cohort-index 3 --plan-sha256 55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159 "
+            },
+            {
+              "pid": 3467109,
+              "cuda_visible_devices": "GPU-b2e881de-f004-31a3-9724-18a26885fa51",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py --mode official --output-dir /home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100 --sample-count 1000 --batch-size 8 --seed 202609173 --precision bf16 "
+            }
+          ]
+        },
+        {
+          "cohort": 4,
+          "terminal": false,
+          "completed_jobs": 2,
+          "last_job": "legacy_official100",
+          "live_processes": [
+            {
+              "pid": 3452162,
+              "cuda_visible_devices": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py worker --cohort-index 4 --plan-sha256 55554188eeb66f2de867b58a0ef41f981a92e8aa0bb6688d89d19d7dcc39c159 "
+            },
+            {
+              "pid": 3467094,
+              "cuda_visible_devices": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+              "command_line": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py --mode official --output-dir /home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100 --sample-count 1000 --batch-size 8 --seed 202609174 --precision bf16 "
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "arithmetic_review": {
+    "legacy": "Original proximal/energy source unchanged; FP32 guidance, FP32 Euler, native decoder, TF32 on, sequential B8 device randn; shared legacy official has no calibration argument.",
+    "native": "Original spatial/reflection source unchanged; both use same clean_forward/euler_update/native_uint8 and full-cohort noise helper, native BF16 IG/decoder, FP32 state, TF32 off. Reflection official adds observation hooks/geometry preparation but no altered model math.",
+    "native_official_sharing": "Four observed parity cohorts match identical noise/RNG/labels and final endpoints/pixels across spatial and reflection implementations. This supports sharing new official100; all actual 1K noise/labels must still be verified after completion.",
+    "cohort_law": "Five disjoint 1000-particle cohorts are pooled; no interacting method is changed to N5000."
+  },
+  "cost_review": {
+    "reflection": "201 steps is predeclared before new FID, but not yet demonstrated sufficient. Require aggregate original1K+new4K T and W coverage; if short, pre-FID larger uniform K on all five seeds, retain/charge insufficient arms.",
+    "legacy": "NFE matched at100, not proven wall/total-cost matched. Historical elapsed includes load/prepare/sampling/decode/I/O, cannot manufacture missing T decomposition. Outer subprocess wall must remain separately reported.",
+    "native_global": "Official100 shared for quality; report observed projection/diagnostics wall. Existing more-expensive official201 has a different historical seed and cannot simply be pooled as native-global5K matched baseline.",
+    "parallelism": "Four GPUs run concurrently; sum GPU work/individual job walls for costs, do not call elapsed four-GPU makespan single-GPU cost.",
+    "goal_claim": "This supplemental experiment can test sign reversal; no achieved5percent or SOTA claim until quality, independent confirmation and full cost conditions are met."
+  },
+  "limitations": [
+    "GPU jobs remain active; completed5K outputs, actual full-cohort pairing, merge correctness, final wall cost matching, FID and feature identities were not yet available and are not claimed verified.",
+    "Large frozen assets were size-checked, not rehashed in this review; prepare and per-sampler verification remain their current byte-hash evidence.",
+    "Historical1K participated in method selection; pooled5K is selected evidence. New4K must be reported separately.",
+    "Interacting energy-ball particles are not5000 independent repetitions; per-cohort law unchanged.",
+    "Driver checks successful exit plus summary existence, not summary complete flag. Final collector must require complete=true and exact counts/hashes before admitting images."
+  ],
+  "large_assets_not_rehashed": [
+    {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+      "size_bytes": 10520885445
+    },
+    {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+      "size_bytes": 1662766063
+    },
+    {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "resolved_path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+      "size_bytes": 95628359
+    },
+    {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "resolved_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "size_bytes": 33563124
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt",
+      "sha256": "0f22bcb10df43e6a0b4656fb36a64a2e63d8ee6d4237d055769831476b48a654",
+      "size_bytes": 525916191
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+      "sha256": "1c800eea183493f280582105857f6762b05178e7e4893c8f5054b68821967361",
+      "size_bytes": 1573571815
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz",
+      "sha256": "5fbb3db3eca2adf0193896ebfd4657ee06014c88c630cb9f4445b77db92cf774",
+      "size_bytes": 164166798
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+      "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+      "size_bytes": 196608264
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+      "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+      "size_bytes": 196608264
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+      "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+      "size_bytes": 196608264
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+      "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+      "size_bytes": 196624746
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+      "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+      "size_bytes": 196624746
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+      "sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+      "size_bytes": 196624746
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+      "sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+      "size_bytes": 196624746
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+      "sha256": "de4df178853e7cd1af74abbbbe3ad97da20c31767b47d372fed7a11f72e2721a",
+      "size_bytes": 196624746
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+      "sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+      "size_bytes": 196624746
+    }
+  ],
+  "audit_wall_seconds": 0.08380025206133723
+}

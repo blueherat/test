@@ -1,0 +1,49 @@
+{
+  "request": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_jobs.json",
+  "request_sha256": "8a428b25756e29e6ca40e83c0d39a7f867bb7fcea2ca3ab4de440cfff8806d46",
+  "started_utc": "2026-09-06T09:08:20.292056+00:00",
+  "driver_pid": 3519159,
+  "complete": true,
+  "jobs": [
+    {
+      "name": "fid_all_three",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+        "--branch",
+        "official100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+        "--branch",
+        "global100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+        "--branch",
+        "spatial100=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/samples.npz",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_results.csv",
+        "--batch-size",
+        "64",
+        "--device",
+        "cuda",
+        "--seed",
+        "2020",
+        "--fid-reference",
+        "imagenet_256_fid_stats",
+        "--feature-cache-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache"
+      ],
+      "env_overrides": {
+        "CUDA_VISIBLE_DEVICES": "3",
+        "TORCH_HOME": "/home/zhoushunyu/.cache/torch",
+        "OMP_NUM_THREADS": "4",
+        "OPENBLAS_NUM_THREADS": "4",
+        "MKL_NUM_THREADS": "4"
+      },
+      "pid": 3519263,
+      "started_utc": "2026-09-06T09:08:20.293918+00:00",
+      "log": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/driver_logs/fid_all_three.log",
+      "exit_code": 0,
+      "finished_utc": "2026-09-06T09:08:42.319086+00:00",
+      "outer_wall_seconds": 22.026738761924207
+    }
+  ],
+  "finished_utc": "2026-09-06T09:08:42.320056+00:00",
+  "driver_wall_seconds": 22.02799117192626
+}

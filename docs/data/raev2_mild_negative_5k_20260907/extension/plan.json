@@ -1,0 +1,1834 @@
+{
+  "protocol": "raev2_mild_negative_fixed_1k_to_5k_extension_v1",
+  "created_at_utc": "2026-09-07T08:44:21.979051+00:00",
+  "protocol_document": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+    "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+    "sha256": "f1ca6fc426cd068940e2f51ecc036e253a3d15cbe620927b5a8ea51cf63499cf",
+    "size_bytes": 5495
+  },
+  "python": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+  "root": "/home/zhoushunyu/eqvae",
+  "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1",
+  "seeds": [
+    202609171,
+    202609172,
+    202609173,
+    202609174
+  ],
+  "source_freeze_complete": true,
+  "frozen_sources": {
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+      "sha256": "37426ed1865537a14f05777ed909d90113aeee224fc0f4f0cf8f4e71d557b069",
+      "size_bytes": 37953
+    },
+    "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py": {
+      "path": "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py",
+      "sha256": "3872d9260f13a8f9be5f0444b7d737e4442eff954e865ed62e183edee8e6f9b0",
+      "size_bytes": 14950
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+      "sha256": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+      "size_bytes": 34988
+    },
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+      "sha256": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db",
+      "size_bytes": 8651
+    },
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py",
+      "sha256": "7ea49251f08f9ea4cfae3c9934cf390ba335236c679c94db7d25c217a08a2279",
+      "size_bytes": 8856
+    },
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+      "sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+      "size_bytes": 3684
+    },
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py",
+      "sha256": "5423e8023cac0ba4e1656aea174105eb5584be016f5fb59422d6ad1cf1e4503d",
+      "size_bytes": 18017
+    },
+    "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "sha256": "f1ca6fc426cd068940e2f51ecc036e253a3d15cbe620927b5a8ea51cf63499cf",
+      "size_bytes": 5495
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+      "sha256": "43b4e7c721e25e846b591e87e73404b105ea6594e060efe19323aad1da11b7b6",
+      "size_bytes": 6069
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+      "sha256": "1b9cfc8737bc49e87836935637b2ae63f122303783928530b3152e91cc86a797",
+      "size_bytes": 7029
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+      "sha256": "593cbdd2eb5ef594bc662c260236fefd4593176813ce73971ded2244447c6686",
+      "size_bytes": 22218
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+      "sha256": "0fa37619a897f74aaa8d70098b12ced97f4bda502e519eab8548ea66737c8a51",
+      "size_bytes": 21060
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py",
+      "sha256": "87ca59bf98ba754c2be53ebffd8caa389fef490b955239b8a11ef14c92a840e6",
+      "size_bytes": 6021
+    },
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py",
+      "sha256": "937c312c3feaa39c1f3a52ba1659c3efcf553a788f1163d4272789c140c1b6ab",
+      "size_bytes": 11615
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py",
+      "sha256": "c64739c38852e59bcbbe9f19cc651695247fabef7926fe020bca20e67d1587f8",
+      "size_bytes": 1319
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+      "sha256": "e68c4d5197f40ba4cbffff54349edd619a172e171b8265682def8e108cc0ab34",
+      "size_bytes": 37610
+    },
+    "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py": {
+      "path": "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py",
+      "sha256": "b274ae96e08833688bb99589ae520c541bbb3705134be9f7367592bc9642f789",
+      "size_bytes": 11908
+    }
+  },
+  "frozen_files": {
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection.py",
+      "sha256": "37426ed1865537a14f05777ed909d90113aeee224fc0f4f0cf8f4e71d557b069",
+      "size_bytes": 37953
+    },
+    "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py": {
+      "path": "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/tests/test_raev2_affine_reflection.py",
+      "sha256": "3872d9260f13a8f9be5f0444b7d737e4442eff954e865ed62e183edee8e6f9b0",
+      "size_bytes": 14950
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_observable_potential.py",
+      "sha256": "817f881d3ac59fbe4f035841566a9a00bce5be9c0812b89b098060566163269b",
+      "size_bytes": 27816
+    },
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py",
+      "sha256": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+      "size_bytes": 25837
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_observable_potential.py",
+      "sha256": "ede326720114f8e60b8c6e47a938b59392a570582dd4c8014fe3f09cdcc4fd75",
+      "size_bytes": 9981
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py",
+      "sha256": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+      "size_bytes": 35236
+    },
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_calibration.py",
+      "sha256": "2151675a5e36d9eb63d284d0bd70ee23d2f5a60fc9593d5c71b18ba3dbee56b0",
+      "size_bytes": 21794
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py",
+      "sha256": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+      "size_bytes": 2517
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py",
+      "sha256": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577",
+      "size_bytes": 5516
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/model_utils.py",
+      "sha256": "0a7c3259a283a388e0fd22f0782d586ff753d6559394fed4ce30acf15b78194e",
+      "size_bytes": 1318
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py",
+      "sha256": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+      "size_bytes": 10586
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py",
+      "sha256": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+      "size_bytes": 6552
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/stage1/rae.py",
+      "sha256": "33448de8bb621f8d4bfab2bdd9a38341eec9b5a496ab2f9f421f1dc6cabe074e",
+      "size_bytes": 4341
+    },
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py": {
+      "path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/external/RAEv2/src/encoders/vision_encoder.py",
+      "sha256": "4c6e29c86e3824beb1cfe1d504d3adf0173a6b578ffd005a7e8211456ee63a8a",
+      "size_bytes": 34988
+    },
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+      "size_bytes": 1772
+    },
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+      "size_bytes": 10520885445
+    },
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+      "size_bytes": 1662766063
+    },
+    "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt": {
+      "path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77",
+      "size_bytes": 2098901
+    },
+    "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_AFFINE_REFLECTION_PROTOCOL_20260906_ZH.md",
+      "sha256": "efb2e2117696a5518cae7bc1e8e965b5b073abeeb1619696165ebc6bfcd680db",
+      "size_bytes": 8651
+    },
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/run_raev2_affine_reflection_screen.py",
+      "sha256": "7ea49251f08f9ea4cfae3c9934cf390ba335236c679c94db7d25c217a08a2279",
+      "size_bytes": 8856
+    },
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+      "sha256": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+      "size_bytes": 3684
+    },
+    "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth": {
+      "path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "resolved_path": "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+      "size_bytes": 95628359
+    },
+    "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac": {
+      "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "resolved_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+      "size_bytes": 33563124
+    },
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/run_raev2_mild_negative_extension.py",
+      "sha256": "5423e8023cac0ba4e1656aea174105eb5584be016f5fb59422d6ad1cf1e4503d",
+      "size_bytes": 18017
+    },
+    "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md": {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md",
+      "sha256": "f1ca6fc426cd068940e2f51ecc036e253a3d15cbe620927b5a8ea51cf63499cf",
+      "size_bytes": 5495
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+      "sha256": "43b4e7c721e25e846b591e87e73404b105ea6594e060efe19323aad1da11b7b6",
+      "size_bytes": 6069
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+      "sha256": "1b9cfc8737bc49e87836935637b2ae63f122303783928530b3152e91cc86a797",
+      "size_bytes": 7029
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+      "sha256": "593cbdd2eb5ef594bc662c260236fefd4593176813ce73971ded2244447c6686",
+      "size_bytes": 22218
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+      "sha256": "0fa37619a897f74aaa8d70098b12ced97f4bda502e519eab8548ea66737c8a51",
+      "size_bytes": 21060
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt",
+      "sha256": "0f22bcb10df43e6a0b4656fb36a64a2e63d8ee6d4237d055769831476b48a654",
+      "size_bytes": 525916191
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+      "sha256": "1c800eea183493f280582105857f6762b05178e7e4893c8f5054b68821967361",
+      "size_bytes": 1573571815
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/seed20260801_energies.npz",
+      "sha256": "5fbb3db3eca2adf0193896ebfd4657ee06014c88c630cb9f4445b77db92cf774",
+      "size_bytes": 164166798
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json",
+      "sha256": "fc09da6ee971d6f9f8a9cc79d63fc08177e0718f7cc7a6d08b3031f9b80dd993",
+      "size_bytes": 5661
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+      "sha256": "54cc8bdaa6c9e3113ed5a5e6cdb2b22421e3eb22f80b8ae76523448029109630",
+      "size_bytes": 686
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json",
+      "sha256": "fe97467781795e9a364f9fb096cc901848f09987a4d5a1bd738a8c8cfed58602",
+      "size_bytes": 57495
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+      "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+      "size_bytes": 196608264
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_calibration.py",
+      "sha256": "87ca59bf98ba754c2be53ebffd8caa389fef490b955239b8a11ef14c92a840e6",
+      "size_bytes": 6021
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json",
+      "sha256": "90ad514d071988655023344e739a96226a6fd6da24d41cde4a95e2f52b6ccf33",
+      "size_bytes": 3068532
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+      "sha256": "b840e678877882e524fcb2514d6ec1876813203e92abb4cbb22931585b3bf304",
+      "size_bytes": 687
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json",
+      "sha256": "7d731090630f9a7f33c16dfd99090953ef7c6b0a1fc94d14e4d657e666b568db",
+      "size_bytes": 57495
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+      "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+      "size_bytes": 196608264
+    },
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_proximal_global_calibration.py",
+      "sha256": "937c312c3feaa39c1f3a52ba1659c3efcf553a788f1163d4272789c140c1b6ab",
+      "size_bytes": 11615
+    },
+    "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/raev2_proximal_global_calibration.py",
+      "sha256": "c64739c38852e59bcbbe9f19cc651695247fabef7926fe020bca20e67d1587f8",
+      "size_bytes": 1319
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json",
+      "sha256": "75930ae5ef63522a8547758141e0c104e86aa4f0eb4d52c9446b78227f71b5ed",
+      "size_bytes": 755819
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+      "sha256": "325aa8fd6128369ff3c3775a483f9db70a96fc867b98e9349f6b6206fb8a3228",
+      "size_bytes": 879
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json",
+      "sha256": "2505cfabb2a0ff594c7271c3d2efa6b67556df7e125f49f41613db96c7ca9968",
+      "size_bytes": 68870
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+      "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+      "size_bytes": 196608264
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/noise_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/noise_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/noise_manifest.json",
+      "sha256": "5ade648a140fbacf86ca3639b824257fbc216b99cc702368910e7b39cc1bbb8f",
+      "size_bytes": 29168
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/request.json",
+      "sha256": "3b468b38392d9dd8dbe47165bb898e8b556aca55798efbe090ee40ae9419b636",
+      "size_bytes": 12527
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+      "size_bytes": 12836
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/batch_manifest.json",
+      "sha256": "545256f5263d61c4e712dcf7d0ec10b1a284ae84322dc02db61c941aaca85abb",
+      "size_bytes": 124684
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+      "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+      "size_bytes": 196624746
+    },
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py": {
+      "path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls.py",
+      "sha256": "e68c4d5197f40ba4cbffff54349edd619a172e171b8265682def8e108cc0ab34",
+      "size_bytes": 37610
+    },
+    "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py": {
+      "path": "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py",
+      "resolved_path": "/home/zhoushunyu/eqvae/tests/test_raev2_spatial_energy_balls.py",
+      "sha256": "b274ae96e08833688bb99589ae520c541bbb3705134be9f7367592bc9642f789",
+      "size_bytes": 11908
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/sampling_input.json",
+      "sha256": "2c25d2db28b3a49576306da8c24653db96821d9ff2e0f4e8ffddbb230b82db95",
+      "size_bytes": 1004
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/request.json",
+      "sha256": "1c85c288a9d3b7bf71492663654df8184ef2462bb297350639b54671f927d9cc",
+      "size_bytes": 12504
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+      "size_bytes": 13092
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/batch_manifest.json",
+      "sha256": "fd16d1342d85fff608ce7ae93e5e478de0781c12a4395441d852f0642306e358",
+      "size_bytes": 100235
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+      "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+      "size_bytes": 196624746
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/sampling_input.json",
+      "sha256": "56ea61fdb293a1558be2f718a4a201f71516fccff3335f2dbe102af63623b64b",
+      "size_bytes": 1000
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/request.json",
+      "sha256": "8667bc6c6b197abbb926f8c31367339ef17638ce8d680f098e507f3b595f4f91",
+      "size_bytes": 12087
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+      "sha256": "cc70c746d3feb355eae4bc708e5a34684a6b5ad54d80290daeb64c949eecc146",
+      "size_bytes": 13575
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/batch_manifest.json",
+      "sha256": "598e97ebd85ca1adc85127859dab1faddcdd08b3076340bf8a721b69ad321c94",
+      "size_bytes": 215862
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+      "sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+      "size_bytes": 196624746
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/sampling_input.json",
+      "sha256": "b9865775debca66f852fc4e4e268bd5769408228d3ba940bd37337bd0f582040",
+      "size_bytes": 998
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/request.json",
+      "sha256": "6ce4703164c561f40c0727e33c140dc9dbcd657cbac95981316bfe4457458820",
+      "size_bytes": 12117
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+      "sha256": "4c51fc630473ad5d2c33903f2b6a2a61c3f172e51487db2dd937850c70c0c9ff",
+      "size_bytes": 13661
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/batch_manifest.json",
+      "sha256": "d0a6069db1041bc642a0d9d37f4f78323e7211b319defb20ea2d488ffedddfa7",
+      "size_bytes": 224355
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+      "sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+      "size_bytes": 196624746
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/sampling_input.json",
+      "sha256": "03b19dfcf558fe422383722b035c0793ea3b8f73971893f27641b2ca058aeb19",
+      "size_bytes": 1002
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/request.json",
+      "sha256": "7a3fc5e7b0bb298de8f8fa068959e1e8011a7007b21bb150ece8227288b2c4c6",
+      "size_bytes": 14484
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+      "sha256": "92035b6a816dde51f2e652af388200bace572e3bb6ed4d252da7eb7a565a5893",
+      "size_bytes": 13592
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/batch_manifest.json",
+      "sha256": "467d86a00ab516496aafef6b90213c5d493669a120d9f32ddce80de0cd321179",
+      "size_bytes": 216332
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+      "sha256": "de4df178853e7cd1af74abbbbe3ad97da20c31767b47d372fed7a11f72e2721a",
+      "size_bytes": 196624746
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/sampling_input.json",
+      "sha256": "abd73709dfe487e840f54209182eaf07bcc82d50aef04ab95b58269ecd12c008",
+      "size_bytes": 998
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/request.json",
+      "sha256": "091a2dd5cc6e6167bd6208ecfeb798d37040ddb5fadfc259c05f1614feeead1c",
+      "size_bytes": 14508
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+      "sha256": "f466626f583de0062499cf16d67cae78b5683cd10334558233858efe9503a3cb",
+      "size_bytes": 13587
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/batch_manifest.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/batch_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/batch_manifest.json",
+      "sha256": "1855ae57856c256957cc48b566f27d6aed8fa6b20f4a071b8add212a492cff8e",
+      "size_bytes": 216305
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+      "sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+      "size_bytes": 196624746
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/sampling_input.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/sampling_input.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/sampling_input.json",
+      "sha256": "b5ffae75781aaca59ec110bfff37a776fef93d020ceafb90a9273bea065e84c6",
+      "size_bytes": 998
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/request.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/request.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/request.json",
+      "sha256": "d7a4860fe131a5075ccfc3ec9a9294747359f3b6af56f4223e54b69c66a03f17",
+      "size_bytes": 90118
+    },
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/summary.json": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/summary.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spectral_energy_audit_v1/summary.json",
+      "sha256": "9f98830570684fc0f70a5718c34e280d8d125962f5d521c9200f2a13bc2804cc",
+      "size_bytes": 22275
+    }
+  },
+  "historical_1k": {
+    "legacy_official100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/request.json",
+          "sha256": "fc09da6ee971d6f9f8a9cc79d63fc08177e0718f7cc7a6d08b3031f9b80dd993",
+          "size_bytes": 5661
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/summary.json",
+          "sha256": "54cc8bdaa6c9e3113ed5a5e6cdb2b22421e3eb22f80b8ae76523448029109630",
+          "size_bytes": 686
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/batch_manifest.json",
+          "sha256": "fe97467781795e9a364f9fb096cc901848f09987a4d5a1bd738a8c8cfed58602",
+          "size_bytes": 57495
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+          "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+          "size_bytes": 196608264
+        }
+      }
+    },
+    "global_proximal100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/request.json",
+          "sha256": "90ad514d071988655023344e739a96226a6fd6da24d41cde4a95e2f52b6ccf33",
+          "size_bytes": 3068532
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/summary.json",
+          "sha256": "b840e678877882e524fcb2514d6ec1876813203e92abb4cbb22931585b3bf304",
+          "size_bytes": 687
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/batch_manifest.json",
+          "sha256": "7d731090630f9a7f33c16dfd99090953ef7c6b0a1fc94d14e4d657e666b568db",
+          "size_bytes": 57495
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+          "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+          "size_bytes": 196608264
+        }
+      }
+    },
+    "legacy_energy100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/request.json",
+          "sha256": "75930ae5ef63522a8547758141e0c104e86aa4f0eb4d52c9446b78227f71b5ed",
+          "size_bytes": 755819
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/summary.json",
+          "sha256": "325aa8fd6128369ff3c3775a483f9db70a96fc867b98e9349f6b6206fb8a3228",
+          "size_bytes": 879
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/batch_manifest.json",
+          "sha256": "2505cfabb2a0ff594c7271c3d2efa6b67556df7e125f49f41613db96c7ca9968",
+          "size_bytes": 68870
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+          "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+          "size_bytes": 196608264
+        },
+        "noise_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/noise_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/noise_manifest.json",
+          "sha256": "5ade648a140fbacf86ca3639b824257fbc216b99cc702368910e7b39cc1bbb8f",
+          "size_bytes": 29168
+        }
+      }
+    },
+    "spatial_official100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/request.json",
+          "sha256": "3b468b38392d9dd8dbe47165bb898e8b556aca55798efbe090ee40ae9419b636",
+          "size_bytes": 12527
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+          "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+          "size_bytes": 12836
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/batch_manifest.json",
+          "sha256": "545256f5263d61c4e712dcf7d0ec10b1a284ae84322dc02db61c941aaca85abb",
+          "size_bytes": 124684
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+          "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/sampling_input.json",
+          "sha256": "2c25d2db28b3a49576306da8c24653db96821d9ff2e0f4e8ffddbb230b82db95",
+          "size_bytes": 1004
+        }
+      }
+    },
+    "native_global100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/request.json",
+          "sha256": "1c85c288a9d3b7bf71492663654df8184ef2462bb297350639b54671f927d9cc",
+          "size_bytes": 12504
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+          "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+          "size_bytes": 13092
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/batch_manifest.json",
+          "sha256": "fd16d1342d85fff608ce7ae93e5e478de0781c12a4395441d852f0642306e358",
+          "size_bytes": 100235
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+          "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/sampling_input.json",
+          "sha256": "56ea61fdb293a1558be2f718a4a201f71516fccff3335f2dbe102af63623b64b",
+          "size_bytes": 1000
+        }
+      }
+    },
+    "reflection_official100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/request.json",
+          "sha256": "8667bc6c6b197abbb926f8c31367339ef17638ce8d680f098e507f3b595f4f91",
+          "size_bytes": 12087
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/summary.json",
+          "sha256": "cc70c746d3feb355eae4bc708e5a34684a6b5ad54d80290daeb64c949eecc146",
+          "size_bytes": 13575
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/batch_manifest.json",
+          "sha256": "598e97ebd85ca1adc85127859dab1faddcdd08b3076340bf8a721b69ad321c94",
+          "size_bytes": 215862
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+          "sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/sampling_input.json",
+          "sha256": "b9865775debca66f852fc4e4e268bd5769408228d3ba940bd37337bd0f582040",
+          "size_bytes": 998
+        }
+      }
+    },
+    "reflection100": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/request.json",
+          "sha256": "6ce4703164c561f40c0727e33c140dc9dbcd657cbac95981316bfe4457458820",
+          "size_bytes": 12117
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/summary.json",
+          "sha256": "4c51fc630473ad5d2c33903f2b6a2a61c3f172e51487db2dd937850c70c0c9ff",
+          "size_bytes": 13661
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/batch_manifest.json",
+          "sha256": "d0a6069db1041bc642a0d9d37f4f78323e7211b319defb20ea2d488ffedddfa7",
+          "size_bytes": 224355
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+          "sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/sampling_input.json",
+          "sha256": "03b19dfcf558fe422383722b035c0793ea3b8f73971893f27641b2ca058aeb19",
+          "size_bytes": 1002
+        }
+      }
+    },
+    "reflection_official200_cost_only": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/request.json",
+          "sha256": "7a3fc5e7b0bb298de8f8fa068959e1e8011a7007b21bb150ece8227288b2c4c6",
+          "size_bytes": 14484
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/summary.json",
+          "sha256": "92035b6a816dde51f2e652af388200bace572e3bb6ed4d252da7eb7a565a5893",
+          "size_bytes": 13592
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/batch_manifest.json",
+          "sha256": "467d86a00ab516496aafef6b90213c5d493669a120d9f32ddce80de0cd321179",
+          "size_bytes": 216332
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/samples.npz",
+          "sha256": "de4df178853e7cd1af74abbbbe3ad97da20c31767b47d372fed7a11f72e2721a",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official200/sampling_input.json",
+          "sha256": "abd73709dfe487e840f54209182eaf07bcc82d50aef04ab95b58269ecd12c008",
+          "size_bytes": 998
+        }
+      }
+    },
+    "reflection_official201": {
+      "directory": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201",
+      "artifacts": {
+        "request.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/request.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/request.json",
+          "sha256": "091a2dd5cc6e6167bd6208ecfeb798d37040ddb5fadfc259c05f1614feeead1c",
+          "size_bytes": 14508
+        },
+        "summary.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/summary.json",
+          "sha256": "f466626f583de0062499cf16d67cae78b5683cd10334558233858efe9503a3cb",
+          "size_bytes": 13587
+        },
+        "batch_manifest.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/batch_manifest.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/batch_manifest.json",
+          "sha256": "1855ae57856c256957cc48b566f27d6aed8fa6b20f4a071b8add212a492cff8e",
+          "size_bytes": 216305
+        },
+        "samples.npz": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+          "sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+          "size_bytes": 196624746
+        },
+        "sampling_input.json": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/sampling_input.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/sampling_input.json",
+          "sha256": "b5ffae75781aaca59ec110bfff37a776fef93d020ceafb90a9273bea065e84c6",
+          "size_bytes": 998
+        }
+      }
+    }
+  },
+  "manifests": {
+    "spatial": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+      "sha256": "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+      "size_bytes": 2684
+    },
+    "reflection": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+      "sha256": "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+      "size_bytes": 3179
+    }
+  },
+  "cohorts": [
+    {
+      "index": 1,
+      "seed": 202609171,
+      "gpu": {
+        "index": 0,
+        "uuid": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "jobs": [
+        {
+          "name": "spatial_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16"
+        },
+        {
+          "name": "reflection_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16"
+        },
+        {
+          "name": "legacy_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609171",
+            "--precision",
+            "bf16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100"
+        },
+        {
+          "name": "global_proximal100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "proximal",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609171",
+            "--precision",
+            "bf16",
+            "--calibration",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100"
+        },
+        {
+          "name": "legacy_energy100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+            "--mode",
+            "energy_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609171",
+            "--precision",
+            "bf16",
+            "--calibration-parent",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+            "--paired-official",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100"
+        },
+        {
+          "name": "native_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100"
+        },
+        {
+          "name": "native_global100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "global_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/spatial_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100"
+        },
+        {
+          "name": "reflection100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "reflection",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100"
+        },
+        {
+          "name": "native_official201",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "1",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201",
+            "--num-steps",
+            "201",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "seed": 202609172,
+      "gpu": {
+        "index": 1,
+        "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "jobs": [
+        {
+          "name": "spatial_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16"
+        },
+        {
+          "name": "reflection_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+        },
+        {
+          "name": "legacy_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609172",
+            "--precision",
+            "bf16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100"
+        },
+        {
+          "name": "global_proximal100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "proximal",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609172",
+            "--precision",
+            "bf16",
+            "--calibration",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100"
+        },
+        {
+          "name": "legacy_energy100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+            "--mode",
+            "energy_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609172",
+            "--precision",
+            "bf16",
+            "--calibration-parent",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+            "--paired-official",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100"
+        },
+        {
+          "name": "native_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100"
+        },
+        {
+          "name": "native_global100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "global_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/spatial_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100"
+        },
+        {
+          "name": "reflection100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "reflection",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100"
+        },
+        {
+          "name": "native_official201",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "2",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201",
+            "--num-steps",
+            "201",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "seed": 202609173,
+      "gpu": {
+        "index": 2,
+        "uuid": "GPU-b2e881de-f004-31a3-9724-18a26885fa51",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "jobs": [
+        {
+          "name": "spatial_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16"
+        },
+        {
+          "name": "reflection_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16"
+        },
+        {
+          "name": "legacy_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609173",
+            "--precision",
+            "bf16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100"
+        },
+        {
+          "name": "global_proximal100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "proximal",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609173",
+            "--precision",
+            "bf16",
+            "--calibration",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100"
+        },
+        {
+          "name": "legacy_energy100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+            "--mode",
+            "energy_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609173",
+            "--precision",
+            "bf16",
+            "--calibration-parent",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+            "--paired-official",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100"
+        },
+        {
+          "name": "native_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100"
+        },
+        {
+          "name": "native_global100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "global_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/spatial_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100"
+        },
+        {
+          "name": "reflection100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "reflection",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100"
+        },
+        {
+          "name": "native_official201",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "3",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201",
+            "--num-steps",
+            "201",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "seed": 202609174,
+      "gpu": {
+        "index": 3,
+        "uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+        "name": "NVIDIA GeForce RTX 4090"
+      },
+      "jobs": [
+        {
+          "name": "spatial_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16"
+        },
+        {
+          "name": "reflection_parity16",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "parity",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16",
+            "--num-steps",
+            "100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16"
+        },
+        {
+          "name": "legacy_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609174",
+            "--precision",
+            "bf16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100"
+        },
+        {
+          "name": "global_proximal100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_proximal_calibration.py",
+            "--mode",
+            "proximal",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609174",
+            "--precision",
+            "bf16",
+            "--calibration",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_global_c_seed202609065/merged/calibration.pt"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100"
+        },
+        {
+          "name": "legacy_energy100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_energy_ball_guidance.py",
+            "--mode",
+            "energy_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100",
+            "--sample-count",
+            "1000",
+            "--batch-size",
+            "8",
+            "--seed",
+            "202609174",
+            "--precision",
+            "bf16",
+            "--calibration-parent",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/proximal_calibration_seed202609062/merged/calibration.pt",
+            "--paired-official",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100"
+        },
+        {
+          "name": "native_official100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100"
+        },
+        {
+          "name": "native_global100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_energy_balls_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/spatial_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "a79bcc7306ae8b8f25b6e535741ae90fac5f99524e61c073508c0bd36a10f0c2",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "global_ball",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/spatial_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100"
+        },
+        {
+          "name": "reflection100",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "reflection",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100",
+            "--num-steps",
+            "100",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100"
+        },
+        {
+          "name": "native_official201",
+          "argv": [
+            "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+            "/home/zhoushunyu/eqvae/experiments/sample_raev2_affine_reflection_extension.py",
+            "--extension-manifest",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/reflection_extension_manifest.json",
+            "--extension-manifest-sha256",
+            "7dc6bb01a5d75ef1946418946bb27e57a90796be35e44fe4904b70eee54ad9db",
+            "--cohort-index",
+            "4",
+            "--mode",
+            "official",
+            "--output-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201",
+            "--num-steps",
+            "201",
+            "--parity-dir",
+            "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection_parity16"
+          ],
+          "output_dir": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201"
+        }
+      ]
+    }
+  ],
+  "evaluation": "none in this driver; all cohorts and cost decisions finish before uniform FID",
+  "no_automatic_restart": true,
+  "prepare_wall_seconds": 15.482203008141369
+}

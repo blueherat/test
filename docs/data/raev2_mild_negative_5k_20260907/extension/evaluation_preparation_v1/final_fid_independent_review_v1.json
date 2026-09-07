@@ -1,0 +1,4101 @@
+{
+  "protocol": "raev2_extension_independent_bures_audit_v1",
+  "complete": true,
+  "started_utc": "2026-09-07T10:42:38.055352+00:00",
+  "checks": [
+    {
+      "name": "reference_identity",
+      "passed": true,
+      "expected": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac"
+      },
+      "observed": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      }
+    },
+    {
+      "name": "reference_shape_and_finite",
+      "passed": true
+    },
+    {
+      "name": "reference_psd",
+      "passed": true,
+      "minimum": 0.0011125005848524059
+    },
+    {
+      "name": "evaluator_committed_identity",
+      "passed": true,
+      "commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "tracked_status": ""
+    },
+    {
+      "name": "official_sequential_order_contract",
+      "passed": true
+    },
+    {
+      "name": "legacy:evaluation_complete",
+      "passed": true,
+      "artifact": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_evaluation_execution.json",
+        "sha256": "e97428c5d4d173c3b367d42b8c169ba292dcb3f6f69633de21ca26755746d244",
+        "size_bytes": 3453
+      }
+    },
+    {
+      "name": "legacy:merge_and_subsets_complete",
+      "passed": true
+    },
+    {
+      "name": "legacy:arm_set",
+      "passed": true,
+      "observed": [
+        "official100",
+        "global_proximal100",
+        "energy100"
+      ]
+    },
+    {
+      "name": "legacy:official_branch_set",
+      "passed": true
+    },
+    {
+      "name": "legacy:subset_request:merge_summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/summary.json",
+        "sha256": "0e42c30f6eb1d5b536609282922ff5eadf521cde9c9b53a8332eb0d0ed61e1c2",
+        "size_bytes": 242212
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/summary.json",
+        "sha256": "0e42c30f6eb1d5b536609282922ff5eadf521cde9c9b53a8332eb0d0ed61e1c2",
+        "size_bytes": 242212
+      }
+    },
+    {
+      "name": "legacy:subset_request:official_evaluation",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_evaluation.json",
+        "sha256": "bb632999b4930adad419834ad3ab597689f91c2fcd9717071dd548f11375378d",
+        "size_bytes": 1828
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_evaluation.json",
+        "sha256": "bb632999b4930adad419834ad3ab597689f91c2fcd9717071dd548f11375378d",
+        "size_bytes": 1828
+      }
+    },
+    {
+      "name": "legacy:subset_request:reference",
+      "passed": true,
+      "expected": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      },
+      "observed": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      }
+    },
+    {
+      "name": "legacy:subset_request:official_frechet_source",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      }
+    },
+    {
+      "name": "legacy:merge_plan",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge_plan.json",
+        "sha256": "b690fce757543ccac1edadbec47a9a135218ed3564b96fbf00d0ee75fa35a819",
+        "size_bytes": 25921
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge_plan.json",
+        "sha256": "b690fce757543ccac1edadbec47a9a135218ed3564b96fbf00d0ee75fa35a819",
+        "size_bytes": 25921
+      }
+    },
+    {
+      "name": "legacy:plan_contents_equal",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/pooled5k/samples.npz",
+        "sha256": "f00fba3155be6b8e48b3026dd1a6b31594fd7131a24087cec422217a6b0c85aa",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/pooled5k/samples.npz",
+        "sha256": "f00fba3155be6b8e48b3026dd1a6b31594fd7131a24087cec422217a6b0c85aa",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "legacy:official100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/new4k/samples.npz",
+        "sha256": "781f50de68c060183ece3d059e8d938807f00f3592b1a4562f53ebf3a9d7e88b",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/new4k/samples.npz",
+        "sha256": "781f50de68c060183ece3d059e8d938807f00f3592b1a4562f53ebf3a9d7e88b",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "legacy:official100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/pooled5k/summary.json",
+        "sha256": "74ed4146e437e58b1bb8047630359780d60a5fb38b124ac40e77a20c65257201",
+        "size_bytes": 248082
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/pooled5k/summary.json",
+        "sha256": "74ed4146e437e58b1bb8047630359780d60a5fb38b124ac40e77a20c65257201",
+        "size_bytes": 248082
+      }
+    },
+    {
+      "name": "legacy:official100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/new4k/summary.json",
+        "sha256": "e60daa2da56464aef304ddb4dd9ca5315301e452598d3b9c2d550bb1a217e419",
+        "size_bytes": 198842
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/new4k/summary.json",
+        "sha256": "e60daa2da56464aef304ddb4dd9ca5315301e452598d3b9c2d550bb1a217e419",
+        "size_bytes": 198842
+      }
+    },
+    {
+      "name": "legacy:official100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:official100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+        "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+        "sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:official100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609066
+    },
+    {
+      "name": "legacy:official100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/samples.npz",
+        "sha256": "5d0282d33e0e5cabb199bac1bfe1a9097801f226315fe8b487535dbeeecee362",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_official100/samples.npz",
+        "sha256": "5d0282d33e0e5cabb199bac1bfe1a9097801f226315fe8b487535dbeeecee362",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:official100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "legacy:official100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/samples.npz",
+        "sha256": "3396e05ce2d4252d0e38cc809b01ce5dcd292c2a11fbb58574fc839b45b910aa",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_official100/samples.npz",
+        "sha256": "3396e05ce2d4252d0e38cc809b01ce5dcd292c2a11fbb58574fc839b45b910aa",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:official100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "legacy:official100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/samples.npz",
+        "sha256": "bd620be449507c780638fe40d56b71589693865f013c9c5be6b9d2e7eeaa6d92",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_official100/samples.npz",
+        "sha256": "bd620be449507c780638fe40d56b71589693865f013c9c5be6b9d2e7eeaa6d92",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:official100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "legacy:official100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/samples.npz",
+        "sha256": "06c358fd61ce0b66efcae88857ed8ceb01cc31fd64b0a11201247023c074d052",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_official100/samples.npz",
+        "sha256": "06c358fd61ce0b66efcae88857ed8ceb01cc31fd64b0a11201247023c074d052",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:official100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "legacy:official100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_official100_pooled5k-f00fba3155be6b8e-inception.features.pt",
+        "sha256": "20f2db464a5757b0c8c466db39dce1c844bbbd9d65fecc91945e3511e6587860",
+        "size_bytes": 40962225
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_official100_pooled5k-f00fba3155be6b8e-inception.features.pt",
+        "sha256": "20f2db464a5757b0c8c466db39dce1c844bbbd9d65fecc91945e3511e6587860",
+        "size_bytes": 40962225
+      }
+    },
+    {
+      "name": "legacy:official100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "legacy:official100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.104279750396708,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.191103822893383e-07,
+        "maximum": 79.42227623811218,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:official100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 1.4868106745780096e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:official100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:official_fid_matches",
+      "passed": true,
+      "difference": 1.4868106745780096e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:official100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.88473322346112,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.808430996080076e-07,
+        "maximum": 79.745317112284,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:official100:new4k:fid_matches",
+      "passed": true,
+      "difference": -2.327027459614328e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:official100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:official100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.39780569760309,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 6.914666695495798e-17,
+        "maximum": 78.27184234752261,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:official100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "legacy:official100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        1.820085221027057e-05
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "legacy:official100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official_feature_cache/official-e055bce33fb702d7-inception.features.pt"
+      ]
+    },
+    {
+      "name": "legacy:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0019104480743408203,
+      "rms_difference": 3.6828277790598725e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "legacy:global_proximal100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/pooled5k/samples.npz",
+        "sha256": "87c6cc9f38f6ef02f45047b891254b73f0a00e266911e791cfd7066429fb8763",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/pooled5k/samples.npz",
+        "sha256": "87c6cc9f38f6ef02f45047b891254b73f0a00e266911e791cfd7066429fb8763",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/new4k/samples.npz",
+        "sha256": "5c4e413aa5b82d61bac69b0e6f447f8bbfc235e9ab5a47809bb01bca9f0b58c7",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/new4k/samples.npz",
+        "sha256": "5c4e413aa5b82d61bac69b0e6f447f8bbfc235e9ab5a47809bb01bca9f0b58c7",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/pooled5k/summary.json",
+        "sha256": "d5d5c3cf4093abc3d4c4c1d3409376da4c6d32c05d02cec15e754b9a88f493f7",
+        "size_bytes": 248106
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/pooled5k/summary.json",
+        "sha256": "d5d5c3cf4093abc3d4c4c1d3409376da4c6d32c05d02cec15e754b9a88f493f7",
+        "size_bytes": 248106
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/new4k/summary.json",
+        "sha256": "ab637bdced13c16eaaaafb5cd680568297759ea4576a60b753a6345245d47aeb",
+        "size_bytes": 198870
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/new4k/summary.json",
+        "sha256": "ab637bdced13c16eaaaafb5cd680568297759ea4576a60b753a6345245d47aeb",
+        "size_bytes": 198870
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:global_proximal100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+        "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+        "sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609066
+    },
+    {
+      "name": "legacy:global_proximal100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/samples.npz",
+        "sha256": "4fd6a4ca7acfc3a73abd9d6a1a9accc4a0d95f6769437d9c907687ed3674734f",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/global_proximal100/samples.npz",
+        "sha256": "4fd6a4ca7acfc3a73abd9d6a1a9accc4a0d95f6769437d9c907687ed3674734f",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "legacy:global_proximal100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/samples.npz",
+        "sha256": "29f47b0e17cb9f59c5e3024430fe3d432982f1829a245e1b39e196be8f033186",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/global_proximal100/samples.npz",
+        "sha256": "29f47b0e17cb9f59c5e3024430fe3d432982f1829a245e1b39e196be8f033186",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "legacy:global_proximal100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/samples.npz",
+        "sha256": "06537dd527701c5b8c3b15ccfa09081b027bbac3be4ab145aaa6a6402e2d5969",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/global_proximal100/samples.npz",
+        "sha256": "06537dd527701c5b8c3b15ccfa09081b027bbac3be4ab145aaa6a6402e2d5969",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "legacy:global_proximal100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/samples.npz",
+        "sha256": "f0d617229d9b95d20871ab022e69d9bc1d32b4ab9582988fb2b7f03555bedb5f",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/global_proximal100/samples.npz",
+        "sha256": "f0d617229d9b95d20871ab022e69d9bc1d32b4ab9582988fb2b7f03555bedb5f",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "legacy:global_proximal100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_global_proximal100_pooled5k-87c6cc9f38f6ef02-inception.features.pt",
+        "sha256": "ec197c227752129a2009bb2521a03a60cd297455cce0e61fb36a96ba652e75b2",
+        "size_bytes": 40962402
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_global_proximal100_pooled5k-87c6cc9f38f6ef02-inception.features.pt",
+        "sha256": "ec197c227752129a2009bb2521a03a60cd297455cce0e61fb36a96ba652e75b2",
+        "size_bytes": 40962402
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "legacy:global_proximal100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.111888882119639,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.152732798613299e-07,
+        "maximum": 80.13472461751374,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": -6.581402089977928e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:global_proximal100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:official_fid_matches",
+      "passed": true,
+      "difference": -6.581402089977928e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:global_proximal100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.90060592786286,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.704267194634332e-07,
+        "maximum": 80.46903600823731,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:new4k:fid_matches",
+      "passed": true,
+      "difference": 7.638334409421077e-14,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:global_proximal100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:global_proximal100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.40818290298391,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 1.3613037055094536e-17,
+        "maximum": 78.92921014479302,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:global_proximal100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "legacy:global_proximal100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        -0.00018038692066113526
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "legacy:global_proximal100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official_feature_cache/global_proximal-41d7b0a54e5e3f06-inception.features.pt"
+      ]
+    },
+    {
+      "name": "legacy:global_proximal100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.003433704376220703,
+      "rms_difference": 3.8808629714857046e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "legacy:energy100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/pooled5k/samples.npz",
+        "sha256": "96a8de46d78d86ade71faa3fe9da0bb8992f19da0cffc68e88e73b4a04cab45f",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/pooled5k/samples.npz",
+        "sha256": "96a8de46d78d86ade71faa3fe9da0bb8992f19da0cffc68e88e73b4a04cab45f",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "legacy:energy100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/new4k/samples.npz",
+        "sha256": "9cffca37fdbdca30bac3604647504316ee3c878db415deed8a0291d79ab61b36",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/new4k/samples.npz",
+        "sha256": "9cffca37fdbdca30bac3604647504316ee3c878db415deed8a0291d79ab61b36",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "legacy:energy100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/pooled5k/summary.json",
+        "sha256": "9999c8b6287734b7da3d165109aaf59cd60b8971f7b22e608b63d336385f57be",
+        "size_bytes": 248117
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/pooled5k/summary.json",
+        "sha256": "9999c8b6287734b7da3d165109aaf59cd60b8971f7b22e608b63d336385f57be",
+        "size_bytes": 248117
+      }
+    },
+    {
+      "name": "legacy:energy100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/new4k/summary.json",
+        "sha256": "2c19adee1a204ea183d75136e2596793f010eed827fa88fbb0813874427c58d6",
+        "size_bytes": 198842
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/new4k/summary.json",
+        "sha256": "2c19adee1a204ea183d75136e2596793f010eed827fa88fbb0813874427c58d6",
+        "size_bytes": 198842
+      }
+    },
+    {
+      "name": "legacy:energy100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:energy100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+        "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+        "sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:energy100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609066
+    },
+    {
+      "name": "legacy:energy100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/samples.npz",
+        "sha256": "951f00679b9854720ba3a57b6b22f61e9139564c80212e5a38e1e4f5a62463e0",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/legacy_energy100/samples.npz",
+        "sha256": "951f00679b9854720ba3a57b6b22f61e9139564c80212e5a38e1e4f5a62463e0",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:energy100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "legacy:energy100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/samples.npz",
+        "sha256": "98b8866b019aa2459dcab57d57a3b87d2e5cf176211d67c897c39ffe222d79a0",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/legacy_energy100/samples.npz",
+        "sha256": "98b8866b019aa2459dcab57d57a3b87d2e5cf176211d67c897c39ffe222d79a0",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:energy100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "legacy:energy100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/samples.npz",
+        "sha256": "45d8ac44059481a80bb732e775ac0d2317ca12b8d7163ecf612a6c33f8cfdd14",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/legacy_energy100/samples.npz",
+        "sha256": "45d8ac44059481a80bb732e775ac0d2317ca12b8d7163ecf612a6c33f8cfdd14",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:energy100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "legacy:energy100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/samples.npz",
+        "sha256": "a818f7780e9e98de7e8b38d0173937c29953b30fc91176214e718ad72ab0fc51",
+        "size_bytes": 196608264
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/legacy_energy100/samples.npz",
+        "sha256": "a818f7780e9e98de7e8b38d0173937c29953b30fc91176214e718ad72ab0fc51",
+        "size_bytes": 196608264
+      }
+    },
+    {
+      "name": "legacy:energy100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "legacy:energy100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_energy100_pooled5k-96a8de46d78d86ad-inception.features.pt",
+        "sha256": "5fdc9b2d3cdd24e1e7873cba7b7e23dd65c974cc07cfe4601ddf59787b8a432e",
+        "size_bytes": 40962211
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_energy100_pooled5k-96a8de46d78d86ad-inception.features.pt",
+        "sha256": "5fdc9b2d3cdd24e1e7873cba7b7e23dd65c974cc07cfe4601ddf59787b8a432e",
+        "size_bytes": 40962211
+      }
+    },
+    {
+      "name": "legacy:energy100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "legacy:energy100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.118126183566873,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.007521985321425e-07,
+        "maximum": 79.62983628229503,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:energy100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 2.686739719592879e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:energy100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:official_fid_matches",
+      "passed": true,
+      "difference": 2.686739719592879e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:energy100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.906294863606611,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.592422224011084e-07,
+        "maximum": 80.37301984264589,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:energy100:new4k:fid_matches",
+      "passed": true,
+      "difference": 3.481659405224491e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "legacy:energy100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "legacy:energy100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.40873663414648,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 3.564907565109174e-17,
+        "maximum": 76.78323069859638,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "legacy:energy100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "legacy:energy100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        0.00013247213060196827
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "legacy:energy100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/official_feature_cache/energy_ball-794944d7f6dbb6cc-inception.features.pt"
+      ]
+    },
+    {
+      "name": "legacy:energy100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0020322799682617188,
+      "rms_difference": 3.7771224665074096e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "native_global:evaluation_complete",
+      "passed": true,
+      "artifact": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_evaluation_execution.json",
+        "sha256": "ec5131b65883a592cbc7604a7f3d7e6a96e7ccb2cb05e13cba39caff92f20478",
+        "size_bytes": 3302
+      }
+    },
+    {
+      "name": "native_global:merge_and_subsets_complete",
+      "passed": true
+    },
+    {
+      "name": "native_global:arm_set",
+      "passed": true,
+      "observed": [
+        "official100",
+        "global100"
+      ]
+    },
+    {
+      "name": "native_global:official_branch_set",
+      "passed": true
+    },
+    {
+      "name": "native_global:subset_request:merge_summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/summary.json",
+        "sha256": "22e4ca43869411e593ef924b3b0ef810ba6b82380904bf03ac9910fcf7621a6a",
+        "size_bytes": 240911
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/summary.json",
+        "sha256": "22e4ca43869411e593ef924b3b0ef810ba6b82380904bf03ac9910fcf7621a6a",
+        "size_bytes": 240911
+      }
+    },
+    {
+      "name": "native_global:subset_request:official_evaluation",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_evaluation.json",
+        "sha256": "59fdcb1c7708878b334eec70287c8a021d2c9b8f499583bf3e49f2816b271355",
+        "size_bytes": 1236
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_evaluation.json",
+        "sha256": "59fdcb1c7708878b334eec70287c8a021d2c9b8f499583bf3e49f2816b271355",
+        "size_bytes": 1236
+      }
+    },
+    {
+      "name": "native_global:subset_request:reference",
+      "passed": true,
+      "expected": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      },
+      "observed": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      }
+    },
+    {
+      "name": "native_global:subset_request:official_frechet_source",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      }
+    },
+    {
+      "name": "native_global:merge_plan",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge_plan.json",
+        "sha256": "163e267a5db33f7372dec38c81a753718e18c51a8a765903028ddc44106cd475",
+        "size_bytes": 18013
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge_plan.json",
+        "sha256": "163e267a5db33f7372dec38c81a753718e18c51a8a765903028ddc44106cd475",
+        "size_bytes": 18013
+      }
+    },
+    {
+      "name": "native_global:plan_contents_equal",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/pooled5k/samples.npz",
+        "sha256": "01ace1f45e68fed885228aae272aa87f1db2386e562dec117a4a28cffeb0b211",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/pooled5k/samples.npz",
+        "sha256": "01ace1f45e68fed885228aae272aa87f1db2386e562dec117a4a28cffeb0b211",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "native_global:official100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/new4k/samples.npz",
+        "sha256": "49fd079874386e7d5648105d5eeff1118d48915afc32b4fd3d805126fd926320",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/new4k/samples.npz",
+        "sha256": "49fd079874386e7d5648105d5eeff1118d48915afc32b4fd3d805126fd926320",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "native_global:official100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/pooled5k/summary.json",
+        "sha256": "1b2636e951ec10be389d1b1b1e6e70caa3bda6237e905d862bef38ca0928217a",
+        "size_bytes": 249370
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/pooled5k/summary.json",
+        "sha256": "1b2636e951ec10be389d1b1b1e6e70caa3bda6237e905d862bef38ca0928217a",
+        "size_bytes": 249370
+      }
+    },
+    {
+      "name": "native_global:official100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/new4k/summary.json",
+        "sha256": "32d040f124b6c29dc123fd1852197a4fd03386c7628b5a5ef67a61bb0149efb0",
+        "size_bytes": 199917
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official100/new4k/summary.json",
+        "sha256": "32d040f124b6c29dc123fd1852197a4fd03386c7628b5a5ef67a61bb0149efb0",
+        "size_bytes": 199917
+      }
+    },
+    {
+      "name": "native_global:official100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "native_global:official100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+        "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+        "sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:official100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609121
+    },
+    {
+      "name": "native_global:official100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/samples.npz",
+        "sha256": "5f50f0c0af68b1d5eca26d6578431504c2d19e02fc4456c4de1ee910433ce170",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/samples.npz",
+        "sha256": "5f50f0c0af68b1d5eca26d6578431504c2d19e02fc4456c4de1ee910433ce170",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:official100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "native_global:official100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/samples.npz",
+        "sha256": "5ebf7566ef03c298f263f022f96db408415dba8f02b84ed7673e3e2d2609fa03",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/samples.npz",
+        "sha256": "5ebf7566ef03c298f263f022f96db408415dba8f02b84ed7673e3e2d2609fa03",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:official100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "native_global:official100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/samples.npz",
+        "sha256": "6bbb59e153408f509c64160b582b81a51ddb63aee4d74da43de6bcf2a7073de6",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/samples.npz",
+        "sha256": "6bbb59e153408f509c64160b582b81a51ddb63aee4d74da43de6bcf2a7073de6",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:official100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "native_global:official100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/samples.npz",
+        "sha256": "01aad65c27a1662d1e02950964c3fc374ed1411f6c82577230f2064078e03cc4",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/samples.npz",
+        "sha256": "01aad65c27a1662d1e02950964c3fc374ed1411f6c82577230f2064078e03cc4",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:official100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "native_global:official100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+        "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+        "size_bytes": 40962402
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+        "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+        "size_bytes": 40962402
+      }
+    },
+    {
+      "name": "native_global:official100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "native_global:official100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.09301610030593,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.777676574058137e-07,
+        "maximum": 81.88262779632805,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:official100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 2.3865354137342365e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:official100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:official_fid_matches",
+      "passed": true,
+      "difference": 2.3865354137342365e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:official100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.743323803924495,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.483374539515312e-07,
+        "maximum": 82.12124741260803,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:official100:new4k:fid_matches",
+      "passed": true,
+      "difference": 2.1440627051561023e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:official100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:official100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.15998343412355,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 4.697856483667647e-17,
+        "maximum": 81.09040625513362,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:official100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "native_global:official100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        0.00010262022147600192
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "native_global:official100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache/official100-51b8547444d7e9eb-inception.features.pt"
+      ]
+    },
+    {
+      "name": "native_global:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.00241851806640625,
+      "rms_difference": 3.971708548127104e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "native_global:global100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/pooled5k/samples.npz",
+        "sha256": "40c0ce3bc6c2b9aadeb00a452834a5095c5b024b321171990f8d1c48591b82a5",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/pooled5k/samples.npz",
+        "sha256": "40c0ce3bc6c2b9aadeb00a452834a5095c5b024b321171990f8d1c48591b82a5",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "native_global:global100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/new4k/samples.npz",
+        "sha256": "26c2676c65a6431c85e23a77d745caffaf6b9bbdf273436678492d0ce51f0e66",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/new4k/samples.npz",
+        "sha256": "26c2676c65a6431c85e23a77d745caffaf6b9bbdf273436678492d0ce51f0e66",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "native_global:global100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/pooled5k/summary.json",
+        "sha256": "e5df2817c93da963fcd92341a2031c75431c6049ae03d7d22ef2abc632276c99",
+        "size_bytes": 249148
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/pooled5k/summary.json",
+        "sha256": "e5df2817c93da963fcd92341a2031c75431c6049ae03d7d22ef2abc632276c99",
+        "size_bytes": 249148
+      }
+    },
+    {
+      "name": "native_global:global100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/new4k/summary.json",
+        "sha256": "20dd0eb07c51c3265e83dad599ed8a454e892ea22457ff3e1dae1fbfd7bde539",
+        "size_bytes": 199688
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/global100/new4k/summary.json",
+        "sha256": "20dd0eb07c51c3265e83dad599ed8a454e892ea22457ff3e1dae1fbfd7bde539",
+        "size_bytes": 199688
+      }
+    },
+    {
+      "name": "native_global:global100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "native_global:global100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+        "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+        "sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:global100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609121
+    },
+    {
+      "name": "native_global:global100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100/samples.npz",
+        "sha256": "f3496184d432c45f139d562be85693b5065e83ab4b4cb698e129e7cee32cde8f",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_global100/samples.npz",
+        "sha256": "f3496184d432c45f139d562be85693b5065e83ab4b4cb698e129e7cee32cde8f",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:global100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "native_global:global100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/samples.npz",
+        "sha256": "a28880bb20cf64dc7a17777d31fec6ba48cbd290c561677bbb6d548c687ff5da",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_global100/samples.npz",
+        "sha256": "a28880bb20cf64dc7a17777d31fec6ba48cbd290c561677bbb6d548c687ff5da",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:global100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "native_global:global100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100/samples.npz",
+        "sha256": "7b7ccd56e19b1a2daf0c75c11db6b84d1ea1caf6fc6112c6a670acc5b28f490a",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_global100/samples.npz",
+        "sha256": "7b7ccd56e19b1a2daf0c75c11db6b84d1ea1caf6fc6112c6a670acc5b28f490a",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:global100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "native_global:global100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100/samples.npz",
+        "sha256": "5ed4d0e2981d2e1c45d81f1711ccc600404ba9ab0c8141bc7e760b097028278f",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_global100/samples.npz",
+        "sha256": "5ed4d0e2981d2e1c45d81f1711ccc600404ba9ab0c8141bc7e760b097028278f",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "native_global:global100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "native_global:global100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+        "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+        "size_bytes": 40962388
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+        "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+        "size_bytes": 40962388
+      }
+    },
+    {
+      "name": "native_global:global100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "native_global:global100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.07666927434317,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.719873966735311e-07,
+        "maximum": 81.07147923051559,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:global100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 3.3777425301195763e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:global100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:official_fid_matches",
+      "passed": true,
+      "difference": 3.3777425301195763e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:global100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.727140311846181,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.566733589023636e-07,
+        "maximum": 81.60789086022044,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:global100:new4k:fid_matches",
+      "passed": true,
+      "difference": 2.6645352591003757e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "native_global:global100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "native_global:global100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.16117055286858,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": -9.567546458502292e-18,
+        "maximum": 79.09489915648544,
+        "negative_count": 1,
+        "negative_mass": 9.567546458502292e-18,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "native_global:global100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "native_global:global100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        2.6201454517149614e-05
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "native_global:global100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache/global100-48eda0fb04db2bc5-inception.features.pt"
+      ]
+    },
+    {
+      "name": "native_global:global100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.002384185791015625,
+      "rms_difference": 3.958788855269273e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:evaluation_complete",
+      "passed": true,
+      "artifact": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_evaluation_execution.json",
+        "sha256": "cb7b05d9e268e6672f0fd88316cf0e1e7015ac3d4d2a513c5348db0aa0b20311",
+        "size_bytes": 3507
+      }
+    },
+    {
+      "name": "reflection:merge_and_subsets_complete",
+      "passed": true
+    },
+    {
+      "name": "reflection:arm_set",
+      "passed": true,
+      "observed": [
+        "official100",
+        "reflection100",
+        "official201"
+      ]
+    },
+    {
+      "name": "reflection:official_branch_set",
+      "passed": true
+    },
+    {
+      "name": "reflection:subset_request:merge_summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/summary.json",
+        "sha256": "733056e6a5a97ea534f302308f52360d9da419642f217887bedb8e6fc2cf12fe",
+        "size_bytes": 242580
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/summary.json",
+        "sha256": "733056e6a5a97ea534f302308f52360d9da419642f217887bedb8e6fc2cf12fe",
+        "size_bytes": 242580
+      }
+    },
+    {
+      "name": "reflection:subset_request:official_evaluation",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_evaluation.json",
+        "sha256": "ea7644d16a50a4c1e1765866d1aa0f32c43c97069c61719d89c91ceae758dfe8",
+        "size_bytes": 1847
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_evaluation.json",
+        "sha256": "ea7644d16a50a4c1e1765866d1aa0f32c43c97069c61719d89c91ceae758dfe8",
+        "size_bytes": 1847
+      }
+    },
+    {
+      "name": "reflection:subset_request:reference",
+      "passed": true,
+      "expected": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      },
+      "observed": {
+        "path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/blobs/925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "size_bytes": 33563124
+      }
+    },
+    {
+      "name": "reflection:subset_request:official_frechet_source",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py",
+        "sha256": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+        "size_bytes": 2357
+      }
+    },
+    {
+      "name": "reflection:merge_plan",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge_plan.json",
+        "sha256": "1a4e5c7aa21cd606bcd970975a5260643bc22c9a5b7d81f2b4b317bb7fd4be0d",
+        "size_bytes": 26361
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge_plan.json",
+        "sha256": "1a4e5c7aa21cd606bcd970975a5260643bc22c9a5b7d81f2b4b317bb7fd4be0d",
+        "size_bytes": 26361
+      }
+    },
+    {
+      "name": "reflection:plan_contents_equal",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/pooled5k/samples.npz",
+        "sha256": "fd01e41f8e71f371f4e2c20d223cd4688cde3f1fc551df5623c8f5605c8f6004",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/pooled5k/samples.npz",
+        "sha256": "fd01e41f8e71f371f4e2c20d223cd4688cde3f1fc551df5623c8f5605c8f6004",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "reflection:official100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/new4k/samples.npz",
+        "sha256": "49fd079874386e7d5648105d5eeff1118d48915afc32b4fd3d805126fd926320",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/new4k/samples.npz",
+        "sha256": "49fd079874386e7d5648105d5eeff1118d48915afc32b4fd3d805126fd926320",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "reflection:official100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/pooled5k/summary.json",
+        "sha256": "8129129adfd463e9213def9351afd6abc7a96289ef393ea173ae9468e9e1642f",
+        "size_bytes": 249416
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/pooled5k/summary.json",
+        "sha256": "8129129adfd463e9213def9351afd6abc7a96289ef393ea173ae9468e9e1642f",
+        "size_bytes": 249416
+      }
+    },
+    {
+      "name": "reflection:official100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/new4k/summary.json",
+        "sha256": "64ff65a38ea843f9a8eeaf23191d0c707058e3db7e3ad49f95b465f4b97c59b3",
+        "size_bytes": 199914
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official100/new4k/summary.json",
+        "sha256": "64ff65a38ea843f9a8eeaf23191d0c707058e3db7e3ad49f95b465f4b97c59b3",
+        "size_bytes": 199914
+      }
+    },
+    {
+      "name": "reflection:official100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:official100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+        "sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+        "sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609131
+    },
+    {
+      "name": "reflection:official100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/samples.npz",
+        "sha256": "5f50f0c0af68b1d5eca26d6578431504c2d19e02fc4456c4de1ee910433ce170",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official100/samples.npz",
+        "sha256": "5f50f0c0af68b1d5eca26d6578431504c2d19e02fc4456c4de1ee910433ce170",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "reflection:official100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/samples.npz",
+        "sha256": "5ebf7566ef03c298f263f022f96db408415dba8f02b84ed7673e3e2d2609fa03",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official100/samples.npz",
+        "sha256": "5ebf7566ef03c298f263f022f96db408415dba8f02b84ed7673e3e2d2609fa03",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "reflection:official100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/samples.npz",
+        "sha256": "6bbb59e153408f509c64160b582b81a51ddb63aee4d74da43de6bcf2a7073de6",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official100/samples.npz",
+        "sha256": "6bbb59e153408f509c64160b582b81a51ddb63aee4d74da43de6bcf2a7073de6",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "reflection:official100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/samples.npz",
+        "sha256": "01aad65c27a1662d1e02950964c3fc374ed1411f6c82577230f2064078e03cc4",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official100/samples.npz",
+        "sha256": "01aad65c27a1662d1e02950964c3fc374ed1411f6c82577230f2064078e03cc4",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "reflection:official100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official100_pooled5k-fd01e41f8e71f371-inception.features.pt",
+        "sha256": "dc67f6f95b5595e13a9da749936a7dae418fd0c4ce933a9be83524e27c86043b",
+        "size_bytes": 40962381
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official100_pooled5k-fd01e41f8e71f371-inception.features.pt",
+        "sha256": "dc67f6f95b5595e13a9da749936a7dae418fd0c4ce933a9be83524e27c86043b",
+        "size_bytes": 40962381
+      }
+    },
+    {
+      "name": "reflection:official100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "reflection:official100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.040981003047614,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.716027876152505e-07,
+        "maximum": 80.904964213684,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 3.206324095117452e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:official_fid_matches",
+      "passed": true,
+      "difference": 3.206324095117452e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.743323803924495,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.483374539515312e-07,
+        "maximum": 82.12124741260803,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official100:new4k:fid_matches",
+      "passed": true,
+      "difference": 2.1440627051561023e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.25159514493583,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": -3.491470319611071e-18,
+        "maximum": 76.17902259833829,
+        "negative_count": 1,
+        "negative_mass": 3.491470319611071e-18,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "reflection:official100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        3.2586038329895928e-06
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "reflection:official100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/official100-919b7edcdaea16d9-inception.features.pt"
+      ]
+    },
+    {
+      "name": "reflection:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0021216869354248047,
+      "rms_difference": 4.10914577822175e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:reflection100:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/pooled5k/samples.npz",
+        "sha256": "df4ccc9c285582206a3990874a8c58e9ede41eceb23de2fece214ecb24394bff",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/pooled5k/samples.npz",
+        "sha256": "df4ccc9c285582206a3990874a8c58e9ede41eceb23de2fece214ecb24394bff",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "reflection:reflection100:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/new4k/samples.npz",
+        "sha256": "beabd3e685f454264456e9980c025d69e2d330a9ac2e454dc5a0d9dd45e3871d",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/new4k/samples.npz",
+        "sha256": "beabd3e685f454264456e9980c025d69e2d330a9ac2e454dc5a0d9dd45e3871d",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "reflection:reflection100:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/pooled5k/summary.json",
+        "sha256": "5b90b82c2a71779b581a2367ea814166662c9b43c5316f9e6517a4ba30081adc",
+        "size_bytes": 249385
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/pooled5k/summary.json",
+        "sha256": "5b90b82c2a71779b581a2367ea814166662c9b43c5316f9e6517a4ba30081adc",
+        "size_bytes": 249385
+      }
+    },
+    {
+      "name": "reflection:reflection100:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/new4k/summary.json",
+        "sha256": "a1ea6c3bbc4706ef7e1835ae39acc90ad91b5ab466adf1eb9d3daf4368885955",
+        "size_bytes": 199868
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/reflection100/new4k/summary.json",
+        "sha256": "a1ea6c3bbc4706ef7e1835ae39acc90ad91b5ab466adf1eb9d3daf4368885955",
+        "size_bytes": 199868
+      }
+    },
+    {
+      "name": "reflection:reflection100:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:reflection100:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+        "sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+        "sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:reflection100:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609131
+    },
+    {
+      "name": "reflection:reflection100:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100/samples.npz",
+        "sha256": "0e3c71d338531a90c7e0fc954ccc53821245c243d9005d006071e1768170c630",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/reflection100/samples.npz",
+        "sha256": "0e3c71d338531a90c7e0fc954ccc53821245c243d9005d006071e1768170c630",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:reflection100:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "reflection:reflection100:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/samples.npz",
+        "sha256": "b0b75e3695905b313cd0d26607c7c6492804806a569406468931e87a6d3554ce",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection100/samples.npz",
+        "sha256": "b0b75e3695905b313cd0d26607c7c6492804806a569406468931e87a6d3554ce",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:reflection100:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "reflection:reflection100:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100/samples.npz",
+        "sha256": "56b2750a873a824911128985e6ce684ee63602960f672e4ae51c04b12d55bc7a",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/reflection100/samples.npz",
+        "sha256": "56b2750a873a824911128985e6ce684ee63602960f672e4ae51c04b12d55bc7a",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:reflection100:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "reflection:reflection100:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100/samples.npz",
+        "sha256": "eb5a6f26b118bea6f03a63d124144ba39d1c48f511aa46ae43fa79d7b9543e7b",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/reflection100/samples.npz",
+        "sha256": "eb5a6f26b118bea6f03a63d124144ba39d1c48f511aa46ae43fa79d7b9543e7b",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:reflection100:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "reflection:reflection100:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_reflection100_pooled5k-df4ccc9c28558220-inception.features.pt",
+        "sha256": "145001615fd7b454b978a593a04b39459c88850ae285d3da3317bc5be6f1c640",
+        "size_bytes": 40962395
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_reflection100_pooled5k-df4ccc9c28558220-inception.features.pt",
+        "sha256": "145001615fd7b454b978a593a04b39459c88850ae285d3da3317bc5be6f1c640",
+        "size_bytes": 40962395
+      }
+    },
+    {
+      "name": "reflection:reflection100:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "reflection:reflection100:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.0272004564290595,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.812619333407817e-07,
+        "maximum": 81.75265991265334,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:reflection100:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 1.5942802633617248e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:reflection100:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:official_fid_matches",
+      "passed": true,
+      "difference": 1.5942802633617248e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:reflection100:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.730481657743614,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.544219114295013e-07,
+        "maximum": 82.63292026795196,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:reflection100:new4k:fid_matches",
+      "passed": true,
+      "difference": 2.277289468111121e-12,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:reflection100:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:reflection100:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.28857415654859,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 3.488615360799731e-17,
+        "maximum": 78.37612093768838,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:reflection100:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "reflection:reflection100:historical_fid_close",
+      "passed": true,
+      "differences": [
+        -6.666398103050142e-05
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "reflection:reflection100:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/reflection100-275ff1f8997cfb9e-inception.features.pt"
+      ]
+    },
+    {
+      "name": "reflection:reflection100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0018247365951538086,
+      "rms_difference": 3.974989841763082e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:official201:pooled_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/pooled5k/samples.npz",
+        "sha256": "38ad10e1b22a25dc41ee4f9b0436519aa059f498e287beb225a77da33988a3e6",
+        "size_bytes": 983201250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/pooled5k/samples.npz",
+        "sha256": "38ad10e1b22a25dc41ee4f9b0436519aa059f498e287beb225a77da33988a3e6",
+        "size_bytes": 983201250
+      }
+    },
+    {
+      "name": "reflection:official201:new4k_archive",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/new4k/samples.npz",
+        "sha256": "a96b0d5bfc58cc159490f873f1e7a79f92074e02380183b182927ad6d29dd17d",
+        "size_bytes": 786561250
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/new4k/samples.npz",
+        "sha256": "a96b0d5bfc58cc159490f873f1e7a79f92074e02380183b182927ad6d29dd17d",
+        "size_bytes": 786561250
+      }
+    },
+    {
+      "name": "reflection:official201:pooled5k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/pooled5k/summary.json",
+        "sha256": "61a5a3d3eb45172f6c31f593c40bd706026c9b3915aebf6bbabdfa5c0681f4b2",
+        "size_bytes": 249436
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/pooled5k/summary.json",
+        "sha256": "61a5a3d3eb45172f6c31f593c40bd706026c9b3915aebf6bbabdfa5c0681f4b2",
+        "size_bytes": 249436
+      }
+    },
+    {
+      "name": "reflection:official201:new4k:summary",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/new4k/summary.json",
+        "sha256": "a606bd3ff0ecd94349fef1e14ed1063369131bda0f95c7cb6cf795bb2db95a8e",
+        "size_bytes": 199929
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official201/new4k/summary.json",
+        "sha256": "a606bd3ff0ecd94349fef1e14ed1063369131bda0f95c7cb6cf795bb2db95a8e",
+        "size_bytes": 199929
+      }
+    },
+    {
+      "name": "reflection:official201:pooled_image_shape",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:pooled_ids_labels_blocks",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:pooled_raw_pixel_hash",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:new4k_is_exact_pooled_tail",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:official201:source_block_0",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+        "sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+        "sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official201:block_0_pixels_exact",
+      "passed": true,
+      "block_id": "old",
+      "seed": 202609131
+    },
+    {
+      "name": "reflection:official201:source_block_1",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201/samples.npz",
+        "sha256": "3875f417abd2d913696df20058bed090b2b7a860ec9195c07862a341851cb21d",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_1/native_official201/samples.npz",
+        "sha256": "3875f417abd2d913696df20058bed090b2b7a860ec9195c07862a341851cb21d",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official201:block_1_pixels_exact",
+      "passed": true,
+      "block_id": "new1",
+      "seed": 202609171
+    },
+    {
+      "name": "reflection:official201:source_block_2",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/samples.npz",
+        "sha256": "adfb149099b0aa0564fb422d1c14021812f711d2a43145a5ce61d8bb1c345859",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/native_official201/samples.npz",
+        "sha256": "adfb149099b0aa0564fb422d1c14021812f711d2a43145a5ce61d8bb1c345859",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official201:block_2_pixels_exact",
+      "passed": true,
+      "block_id": "new2",
+      "seed": 202609172
+    },
+    {
+      "name": "reflection:official201:source_block_3",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201/samples.npz",
+        "sha256": "3eedc8ee76d7a0bafd6998cb01bd30dff15cd5e13ed29ba185ee5d6aea66f1bd",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_3/native_official201/samples.npz",
+        "sha256": "3eedc8ee76d7a0bafd6998cb01bd30dff15cd5e13ed29ba185ee5d6aea66f1bd",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official201:block_3_pixels_exact",
+      "passed": true,
+      "block_id": "new3",
+      "seed": 202609173
+    },
+    {
+      "name": "reflection:official201:source_block_4",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201/samples.npz",
+        "sha256": "31d5590a76b8dc4620156f377daac782138cd1ef775416b03aace632121d44df",
+        "size_bytes": 196624746
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_4/native_official201/samples.npz",
+        "sha256": "31d5590a76b8dc4620156f377daac782138cd1ef775416b03aace632121d44df",
+        "size_bytes": 196624746
+      }
+    },
+    {
+      "name": "reflection:official201:block_4_pixels_exact",
+      "passed": true,
+      "block_id": "new4",
+      "seed": 202609174
+    },
+    {
+      "name": "reflection:official201:official_samples_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:official_feature_hash",
+      "passed": true,
+      "expected": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official201_pooled5k-38ad10e1b22a25dc-inception.features.pt",
+        "sha256": "0780dfdcdb10a954ebc4041e5ea05f9473857814fb3dd3a494ebe2cdc38f52c8",
+        "size_bytes": 40962381
+      },
+      "observed": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official201_pooled5k-38ad10e1b22a25dc-inception.features.pt",
+        "sha256": "0780dfdcdb10a954ebc4041e5ea05f9473857814fb3dd3a494ebe2cdc38f52c8",
+        "size_bytes": 40962381
+      }
+    },
+    {
+      "name": "reflection:official201:feature_shape_finite",
+      "passed": true,
+      "observed_shape": [
+        5000,
+        2048
+      ],
+      "dtype": "torch.float32"
+    },
+    {
+      "name": "reflection:official201:pooled5k:numerically_valid",
+      "passed": true,
+      "fid": 7.043213605332487,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.490237694809415e-07,
+        "maximum": 80.92198478509366,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official201:pooled5k:fid_matches",
+      "passed": true,
+      "difference": 3.455014052633487e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official201:pooled5k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:official_fid_matches",
+      "passed": true,
+      "difference": 3.455014052633487e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official201:new4k:numerically_valid",
+      "passed": true,
+      "fid": 8.719266034680416,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.466696660680147e-07,
+        "maximum": 82.14552435641843,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official201:new4k:fid_matches",
+      "passed": true,
+      "difference": 4.689582056016661e-13,
+      "tolerance": 1e-06
+    },
+    {
+      "name": "reflection:official201:new4k:row_range_binding",
+      "passed": true
+    },
+    {
+      "name": "reflection:official201:old1k:numerically_valid",
+      "passed": true,
+      "fid": 38.558133152361265,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 5.927703985110664e-17,
+        "maximum": 76.16850628131462,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      }
+    },
+    {
+      "name": "reflection:official201:historical_metrics_found",
+      "passed": true,
+      "count": 1
+    },
+    {
+      "name": "reflection:official201:historical_fid_close",
+      "passed": true,
+      "differences": [
+        1.1421585767834586e-05
+      ],
+      "tolerance": 0.001
+    },
+    {
+      "name": "reflection:official201:historical_feature_unique",
+      "passed": true,
+      "paths": [
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/official201-25592107f06d183b-inception.features.pt"
+      ]
+    },
+    {
+      "name": "reflection:official201:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0020812153816223145,
+      "rms_difference": 4.043516154050044e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "shared_native_official_new4k_feature_rows",
+      "passed": true,
+      "shape_equal": true,
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "rms_difference": 0.0,
+      "close_at_atol_1e_4_rtol_1e_5": true
+    },
+    {
+      "name": "all_24_subset_results_present",
+      "passed": true,
+      "observed": 24
+    }
+  ],
+  "rows": [
+    {
+      "family": "legacy",
+      "arm": "official100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_official100_pooled5k-f00fba3155be6b8e-inception.features.pt",
+        "sha256": "20f2db464a5757b0c8c466db39dce1c844bbbd9d65fecc91945e3511e6587860",
+        "size_bytes": 40962225
+      },
+      "fid": 7.104279750396708,
+      "mean_term": 0.08764652357235447,
+      "covariance_term": 7.016633226824354,
+      "sample_covariance_trace": 172.98823929116264,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.29656892555383,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.191103822893383e-07,
+        "maximum": 79.42227623811218,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.1042797503952215,
+      "difference_from_feature_subsets": 1.4868106745780096e-12,
+      "official_fid": 7.1042797503952215,
+      "difference_from_official": 1.4868106745780096e-12
+    },
+    {
+      "family": "legacy",
+      "arm": "official100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_official100_pooled5k-f00fba3155be6b8e-inception.features.pt",
+        "sha256": "20f2db464a5757b0c8c466db39dce1c844bbbd9d65fecc91945e3511e6587860",
+        "size_bytes": 40962225
+      },
+      "fid": 8.88473322346112,
+      "mean_term": 0.0969600139580348,
+      "covariance_term": 8.787773209503086,
+      "sample_covariance_trace": 173.27202615977296,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.55289236851962,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.808430996080076e-07,
+        "maximum": 79.745317112284,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.5265566588595902e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.884733223461353,
+      "difference_from_feature_subsets": -2.327027459614328e-13
+    },
+    {
+      "family": "legacy",
+      "arm": "official100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_official100_pooled5k-f00fba3155be6b8e-inception.features.pt",
+        "sha256": "20f2db464a5757b0c8c466db39dce1c844bbbd9d65fecc91945e3511e6587860",
+        "size_bytes": 40962225
+      },
+      "fid": 38.39780569760309,
+      "mean_term": 0.14162467741193965,
+      "covariance_term": 38.25618102019115,
+      "sample_covariance_trace": 171.93407756577466,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.14971416617644,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 6.914666695495798e-17,
+        "maximum": 78.27184234752261,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 8.881784197001252e-16,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/metrics_official.json",
+            "sha256": "050fda8d7600efeb880ca81c3a0a426939998881559e0edaf38d0917daa1a493",
+            "size_bytes": 536
+          },
+          "row": {
+            "branch": "official",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official/samples.npz",
+            "sample_sha256": "e055bce33fb702d723b978449929bde023336c997134b67586a2b3a795fc53f1",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 57.3992862701416,
+            "fid": 38.39778749675088
+          }
+        }
+      ],
+      "differences_from_historical": [
+        1.820085221027057e-05
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official_feature_cache/official-e055bce33fb702d7-inception.features.pt",
+          "sha256": "90741bf8e354812ec9dc43c16c01f738c789f268eadcd6856270595414560bd4",
+          "size_bytes": 8193964
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.0019104480743408203,
+        "rms_difference": 3.6828277790598725e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.397810932458476,
+        "mean_term": 0.14162665405132685,
+        "covariance_term": 38.25618427840715,
+        "sample_covariance_trace": 171.93422815465152,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.14978783150687,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": -6.111864330654716e-17,
+          "maximum": 78.27194772794385,
+          "negative_count": 1,
+          "negative_mass": 6.111864330654716e-17,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 8.881784197001252e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": -5.234855386504478e-06
+    },
+    {
+      "family": "legacy",
+      "arm": "global_proximal100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_global_proximal100_pooled5k-87c6cc9f38f6ef02-inception.features.pt",
+        "sha256": "ec197c227752129a2009bb2521a03a60cd297455cce0e61fb36a96ba652e75b2",
+        "size_bytes": 40962402
+      },
+      "fid": 7.111888882119639,
+      "mean_term": 0.08637872622213215,
+      "covariance_term": 7.025510155897507,
+      "sample_covariance_trace": 173.22121008760382,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.40861585923784,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.152732798613299e-07,
+        "maximum": 80.13472461751374,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.111888882120297,
+      "difference_from_feature_subsets": -6.581402089977928e-13,
+      "official_fid": 7.111888882120297,
+      "difference_from_official": -6.581402089977928e-13
+    },
+    {
+      "family": "legacy",
+      "arm": "global_proximal100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_global_proximal100_pooled5k-87c6cc9f38f6ef02-inception.features.pt",
+        "sha256": "ec197c227752129a2009bb2521a03a60cd297455cce0e61fb36a96ba652e75b2",
+        "size_bytes": 40962402
+      },
+      "fid": 8.90060592786286,
+      "mean_term": 0.09503380703639185,
+      "covariance_term": 8.805572120826469,
+      "sample_covariance_trace": 173.6188019741014,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.71738082002213,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.704267194634332e-07,
+        "maximum": 80.46903600823731,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.900605927862784,
+      "difference_from_feature_subsets": 7.638334409421077e-14
+    },
+    {
+      "family": "legacy",
+      "arm": "global_proximal100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_global_proximal100_pooled5k-87c6cc9f38f6ef02-inception.features.pt",
+        "sha256": "ec197c227752129a2009bb2521a03a60cd297455cce0e61fb36a96ba652e75b2",
+        "size_bytes": 40962402
+      },
+      "fid": 38.40818290298391,
+      "mean_term": 0.1437624737890695,
+      "covariance_term": 38.26442042919484,
+      "sample_covariance_trace": 171.71094700968473,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.03402918362963,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 1.3613037055094536e-17,
+        "maximum": 78.92921014479302,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.1102230246251565e-15,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/metrics_global.json",
+            "sha256": "b0f62f2382bcc9642d0799aa957068d5534ed5c40a46a889e93d34ca94682257",
+            "size_bytes": 543
+          },
+          "row": {
+            "branch": "global_proximal",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/global/samples.npz",
+            "sample_sha256": "41d7b0a54e5e3f069992d77cbd99fcea9f4c0de9cf4ce9279b2e4311c12a16b8",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 57.291225051879884,
+            "fid": 38.40836328990457
+          }
+        }
+      ],
+      "differences_from_historical": [
+        -0.00018038692066113526
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/proximal_seed202609066/official_feature_cache/global_proximal-41d7b0a54e5e3f06-inception.features.pt",
+          "sha256": "c5ddea948fb96934d627db0c29a2563fe09983ba1b2680f185d514ab17e0033c",
+          "size_bytes": 8194013
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.003433704376220703,
+        "rms_difference": 3.8808629714857046e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.40838677184652,
+        "mean_term": 0.14376398329332646,
+        "covariance_term": 38.2646227885532,
+        "sample_covariance_trace": 171.7112377081087,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.03407335316246,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": 5.002836493382943e-17,
+          "maximum": 78.92891930175546,
+          "negative_count": 0,
+          "negative_mass": -0.0,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 8.881784197001252e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": -0.00020386886261292148
+    },
+    {
+      "family": "legacy",
+      "arm": "energy100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_energy100_pooled5k-96a8de46d78d86ad-inception.features.pt",
+        "sha256": "5fdc9b2d3cdd24e1e7873cba7b7e23dd65c974cc07cfe4601ddf59787b8a432e",
+        "size_bytes": 40962211
+      },
+      "fid": 7.118126183566873,
+      "mean_term": 0.0870721153494442,
+      "covariance_term": 7.031054068217429,
+      "sample_covariance_trace": 173.26419788036208,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.427337799457,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 7.007521985321425e-07,
+        "maximum": 79.62983628229503,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.118126183564186,
+      "difference_from_feature_subsets": 2.686739719592879e-12,
+      "official_fid": 7.118126183564186,
+      "difference_from_official": 2.686739719592879e-12
+    },
+    {
+      "family": "legacy",
+      "arm": "energy100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_energy100_pooled5k-96a8de46d78d86ad-inception.features.pt",
+        "sha256": "5fdc9b2d3cdd24e1e7873cba7b7e23dd65c974cc07cfe4601ddf59787b8a432e",
+        "size_bytes": 40962211
+      },
+      "fid": 8.906294863606611,
+      "mean_term": 0.09444281672279618,
+      "covariance_term": 8.811852046883814,
+      "sample_covariance_trace": 173.66600395138235,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.73784184563397,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.592422224011084e-07,
+        "maximum": 80.37301984264589,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.5265566588595902e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.906294863606263,
+      "difference_from_feature_subsets": 3.481659405224491e-13
+    },
+    {
+      "family": "legacy",
+      "arm": "energy100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache/legacy_energy100_pooled5k-96a8de46d78d86ad-inception.features.pt",
+        "sha256": "5fdc9b2d3cdd24e1e7873cba7b7e23dd65c974cc07cfe4601ddf59787b8a432e",
+        "size_bytes": 40962211
+      },
+      "fid": 38.40873663414648,
+      "mean_term": 0.1507488547076832,
+      "covariance_term": 38.25798777943879,
+      "sample_covariance_trace": 171.73595180930786,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.04974790831923,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 3.564907565109174e-17,
+        "maximum": 76.78323069859638,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.1102230246251565e-15,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/metrics_energy_ball.json",
+            "sha256": "bff6e3479a219a51b3903a59aa8c03975d7ad13709f798ddde813a5ce271d116",
+            "size_bytes": 546
+          },
+          "row": {
+            "branch": "energy_ball",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/energy_ball/samples.npz",
+            "sample_sha256": "794944d7f6dbb6ccbf6b302fa319dc78be8cf89c1ba93d433193ff73b845112e",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 57.41648979187012,
+            "fid": 38.40860416201588
+          }
+        }
+      ],
+      "differences_from_historical": [
+        0.00013247213060196827
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/energy_ball_seed202609066/official_feature_cache/energy_ball-794944d7f6dbb6cc-inception.features.pt",
+          "sha256": "72b38b3f2374ea1a36837a581f9f2813dd698439d1da512d0b1092c93df47e9c",
+          "size_bytes": 8193985
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.0020322799682617188,
+        "rms_difference": 3.7771224665074096e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.4086272963469,
+        "mean_term": 0.15075161201209386,
+        "covariance_term": 38.257875684334806,
+        "sample_covariance_trace": 171.73560155764594,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.04962883004023,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": -3.821812658509022e-18,
+          "maximum": 76.78265100332703,
+          "negative_count": 1,
+          "negative_mass": 3.821812658509022e-18,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": 0.00010933779957866818
+    },
+    {
+      "family": "native_global",
+      "arm": "official100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+        "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+        "size_bytes": 40962402
+      },
+      "fid": 7.09301610030593,
+      "mean_term": 0.10289359765539419,
+      "covariance_term": 6.990122502650536,
+      "sample_covariance_trace": 172.79772849096517,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.21456888754201,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.777676574058137e-07,
+        "maximum": 81.88262779632805,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.942890293094024e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.093016100303544,
+      "difference_from_feature_subsets": 2.3865354137342365e-12,
+      "official_fid": 7.093016100303544,
+      "difference_from_official": 2.3865354137342365e-12
+    },
+    {
+      "family": "native_global",
+      "arm": "official100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+        "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+        "size_bytes": 40962402
+      },
+      "fid": 8.743323803924495,
+      "mean_term": 0.1066247650941667,
+      "covariance_term": 8.63669903883033,
+      "sample_covariance_trace": 173.2881860994427,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.63650942369088,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.483374539515312e-07,
+        "maximum": 82.12124741260803,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.743323803922351,
+      "difference_from_feature_subsets": 2.1440627051561023e-12
+    },
+    {
+      "family": "native_global",
+      "arm": "official100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_official100_pooled5k-01ace1f45e68fed8-inception.features.pt",
+        "sha256": "0d01c99efee1bd89913183d4c321b550d2e2827fbc94974a0287b909e4af4e4d",
+        "size_bytes": 40962402
+      },
+      "fid": 38.15998343412355,
+      "mean_term": 0.1720027812481898,
+      "covariance_term": 37.987980652875365,
+      "sample_covariance_trace": 170.92327793925574,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 156.77841453657487,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 4.697856483667647e-17,
+        "maximum": 81.09040625513362,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.3322676295501878e-15,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_results.json",
+            "sha256": "01f75536729e653ab14ce8c9c1e1da5589242e755977609c5aecd008b077bfd7",
+            "size_bytes": 1623
+          },
+          "row": {
+            "branch": "official100",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/samples.npz",
+            "sample_sha256": "51b8547444d7e9eb2bb899895d00cbc90ff9afd4295c409cac55b4a5cb993eff",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 59.171474075317384,
+            "fid": 38.15988081390208
+          }
+        }
+      ],
+      "differences_from_historical": [
+        0.00010262022147600192
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache/official100-51b8547444d7e9eb-inception.features.pt",
+          "sha256": "ee64729f59c555185d1718d7f3a4006ae2a2913f31649ad5285fc44e14565dbb",
+          "size_bytes": 8193985
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.00241851806640625,
+        "rms_difference": 3.971708548127104e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.15990453150718,
+        "mean_term": 0.1720015405851172,
+        "covariance_term": 37.987902990922066,
+        "sample_covariance_trace": 170.92329445234378,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 156.77846162409554,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": -1.0209798227662977e-16,
+          "maximum": 81.09186634180531,
+          "negative_count": 1,
+          "negative_mass": 1.0209798227662977e-16,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 1.1102230246251565e-15,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": 7.8902616373e-05
+    },
+    {
+      "family": "native_global",
+      "arm": "global100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+        "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+        "size_bytes": 40962388
+      },
+      "fid": 7.07666927434317,
+      "mean_term": 0.10513113902558341,
+      "covariance_term": 6.971538135317587,
+      "sample_covariance_trace": 172.70596909917757,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.1779813753147,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.719873966735311e-07,
+        "maximum": 81.07147923051559,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.8041124150158794e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.0766692743397925,
+      "difference_from_feature_subsets": 3.3777425301195763e-12,
+      "official_fid": 7.0766692743397925,
+      "difference_from_official": 3.3777425301195763e-12
+    },
+    {
+      "family": "native_global",
+      "arm": "global100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+        "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+        "size_bytes": 40962388
+      },
+      "fid": 8.727140311846181,
+      "mean_term": 0.10961313955167971,
+      "covariance_term": 8.617527172294501,
+      "sample_covariance_trace": 173.13087375925184,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.56743918686337,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.566733589023636e-07,
+        "maximum": 81.60789086022044,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.727140311845915,
+      "difference_from_feature_subsets": 2.6645352591003757e-13
+    },
+    {
+      "family": "native_global",
+      "arm": "global100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged/official_feature_cache/native_global_global100_pooled5k-40c0ce3bc6c2b9aa-inception.features.pt",
+        "sha256": "c79c9ec63a72810d3acb777f09b5a3350ffd3a530700fe2130f50a65b9ab7a02",
+        "size_bytes": 40962388
+      },
+      "fid": 38.16117055286858,
+      "mean_term": 0.1716249181562517,
+      "covariance_term": 37.98954563471233,
+      "sample_covariance_trace": 171.09344702933484,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 156.86271659069595,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": -9.567546458502292e-18,
+        "maximum": 79.09489915648544,
+        "negative_count": 1,
+        "negative_mass": 9.567546458502292e-18,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/fid_results.json",
+            "sha256": "01f75536729e653ab14ce8c9c1e1da5589242e755977609c5aecd008b077bfd7",
+            "size_bytes": 1623
+          },
+          "row": {
+            "branch": "global100",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/samples.npz",
+            "sample_sha256": "48eda0fb04db2bc5c84936090a796d81e3b45245d1790e459fee5436769ed022",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 59.442770385742186,
+            "fid": 38.161144351414066
+          }
+        }
+      ],
+      "differences_from_historical": [
+        2.6201454517149614e-05
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official_feature_cache/global100-48eda0fb04db2bc5-inception.features.pt",
+          "sha256": "ed33c05f1bc209dc71cb134597ec308310b570f9517dff9bb5dd1ce314427c4e",
+          "size_bytes": 8193971
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.002384185791015625,
+        "rms_difference": 3.958788855269273e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.16116783899993,
+        "mean_term": 0.1716196457357613,
+        "covariance_term": 37.98954819326417,
+        "sample_covariance_trace": 171.09337504235907,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 156.86267931793213,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": 2.1010685149360568e-17,
+          "maximum": 79.09519718057032,
+          "negative_count": 0,
+          "negative_mass": -0.0,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": 2.713868653358986e-06
+    },
+    {
+      "family": "reflection",
+      "arm": "official100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official100_pooled5k-fd01e41f8e71f371-inception.features.pt",
+        "sha256": "dc67f6f95b5595e13a9da749936a7dae418fd0c4ce933a9be83524e27c86043b",
+        "size_bytes": 40962381
+      },
+      "fid": 7.040981003047614,
+      "mean_term": 0.10679713018154205,
+      "covariance_term": 6.934183872866072,
+      "sample_covariance_trace": 172.96670080790216,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.32702436090273,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.716027876152505e-07,
+        "maximum": 80.904964213684,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.040981003044408,
+      "difference_from_feature_subsets": 3.206324095117452e-12,
+      "official_fid": 7.040981003044408,
+      "difference_from_official": 3.206324095117452e-12
+    },
+    {
+      "family": "reflection",
+      "arm": "official100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official100_pooled5k-fd01e41f8e71f371-inception.features.pt",
+        "sha256": "dc67f6f95b5595e13a9da749936a7dae418fd0c4ce933a9be83524e27c86043b",
+        "size_bytes": 40962381
+      },
+      "fid": 8.743323803924495,
+      "mean_term": 0.1066247650941667,
+      "covariance_term": 8.63669903883033,
+      "sample_covariance_trace": 173.2881860994427,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.63650942369088,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.483374539515312e-07,
+        "maximum": 82.12124741260803,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.743323803922351,
+      "difference_from_feature_subsets": 2.1440627051561023e-12
+    },
+    {
+      "family": "reflection",
+      "arm": "official100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official100_pooled5k-fd01e41f8e71f371-inception.features.pt",
+        "sha256": "dc67f6f95b5595e13a9da749936a7dae418fd0c4ce933a9be83524e27c86043b",
+        "size_bytes": 40962381
+      },
+      "fid": 38.25159514493583,
+      "mean_term": 0.20134184137298344,
+      "covariance_term": 38.05025330356284,
+      "sample_covariance_trace": 171.7589848610508,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.16513167212867,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": -3.491470319611071e-18,
+        "maximum": 76.17902259833829,
+        "negative_count": 1,
+        "negative_mass": 3.491470319611071e-18,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 8.881784197001252e-16,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_evaluation.json",
+            "sha256": "2c3caf2526d7f4ea4d4a3688cfd202788e17de07df97b1ebe969cff349d3adde",
+            "size_bytes": 1623
+          },
+          "row": {
+            "branch": "official100",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official100/samples.npz",
+            "sample_sha256": "919b7edcdaea16d9abb8d1821ed8baccfe03ecaf11f5fe4d5d7d1de5c0e7539c",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 59.814046478271486,
+            "fid": 38.251591886331994
+          }
+        }
+      ],
+      "differences_from_historical": [
+        3.2586038329895928e-06
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/official100-919b7edcdaea16d9-inception.features.pt",
+          "sha256": "8cef2c937129a15f74a04742cacaeaf263598a6da482736a4b0e8a24c9ca7808",
+          "size_bytes": 8193985
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.0021216869354248047,
+        "rms_difference": 4.10914577822175e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.2516149495134,
+        "mean_term": 0.2013334445524687,
+        "covariance_term": 38.050281504960935,
+        "sample_covariance_trace": 171.75939207409775,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.1653211779531,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": 2.44809459863928e-17,
+          "maximum": 76.18035246698477,
+          "negative_count": 0,
+          "negative_mass": -0.0,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": -1.9804577576110205e-05
+    },
+    {
+      "family": "reflection",
+      "arm": "reflection100",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_reflection100_pooled5k-df4ccc9c28558220-inception.features.pt",
+        "sha256": "145001615fd7b454b978a593a04b39459c88850ae285d3da3317bc5be6f1c640",
+        "size_bytes": 40962395
+      },
+      "fid": 7.0272004564290595,
+      "mean_term": 0.108238864296655,
+      "covariance_term": 6.918961592132405,
+      "sample_covariance_trace": 173.00360762486,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.35308890974846,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.812619333407817e-07,
+        "maximum": 81.75265991265334,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.6653345369377348e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.027200456427465,
+      "difference_from_feature_subsets": 1.5942802633617248e-12,
+      "official_fid": 7.027200456427465,
+      "difference_from_official": 1.5942802633617248e-12
+    },
+    {
+      "family": "reflection",
+      "arm": "reflection100",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_reflection100_pooled5k-df4ccc9c28558220-inception.features.pt",
+        "sha256": "145001615fd7b454b978a593a04b39459c88850ae285d3da3317bc5be6f1c640",
+        "size_bytes": 40962395
+      },
+      "fid": 8.730481657743614,
+      "mean_term": 0.10837042343445463,
+      "covariance_term": 8.622111234309159,
+      "sample_covariance_trace": 173.2851576366879,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.64228909457404,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.544219114295013e-07,
+        "maximum": 82.63292026795196,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.942890293094024e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.730481657741336,
+      "difference_from_feature_subsets": 2.277289468111121e-12
+    },
+    {
+      "family": "reflection",
+      "arm": "reflection100",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_reflection100_pooled5k-df4ccc9c28558220-inception.features.pt",
+        "sha256": "145001615fd7b454b978a593a04b39459c88850ae285d3da3317bc5be6f1c640",
+        "size_bytes": 40962395
+      },
+      "fid": 38.28857415654859,
+      "mean_term": 0.20069721999512363,
+      "covariance_term": 38.08787693655347,
+      "sample_covariance_trace": 171.95666119650684,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.24515802336137,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 3.488615360799731e-17,
+        "maximum": 78.37612093768838,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 9.992007221626409e-16,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_evaluation.json",
+            "sha256": "2c3caf2526d7f4ea4d4a3688cfd202788e17de07df97b1ebe969cff349d3adde",
+            "size_bytes": 1623
+          },
+          "row": {
+            "branch": "reflection100",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/reflection100/samples.npz",
+            "sample_sha256": "275ff1f8997cfb9ee178e0071afcf2ceb98efb1c404c69908e9db37a816f1f68",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 59.74216995239258,
+            "fid": 38.28864082052962
+          }
+        }
+      ],
+      "differences_from_historical": [
+        -6.666398103050142e-05
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/reflection100-275ff1f8997cfb9e-inception.features.pt",
+          "sha256": "0f66309c84245618dc7cfd1f7d91786ed4671129ff12b28bb850007d6c21cae4",
+          "size_bytes": 8193999
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.0018247365951538086,
+        "rms_difference": 3.974989841763082e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.28866415831216,
+        "mean_term": 0.20070163663917878,
+        "covariance_term": 38.08796252167298,
+        "sample_covariance_trace": 171.95688386578408,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.24522656544022,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": -5.223439469114169e-17,
+          "maximum": 78.37615786705078,
+          "negative_count": 1,
+          "negative_mass": 5.223439469114169e-17,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": -9.000176356721568e-05
+    },
+    {
+      "family": "reflection",
+      "arm": "official201",
+      "subset": "pooled5k",
+      "rows": [
+        0,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official201_pooled5k-38ad10e1b22a25dc-inception.features.pt",
+        "sha256": "0780dfdcdb10a954ebc4041e5ea05f9473857814fb3dd3a494ebe2cdc38f52c8",
+        "size_bytes": 40962381
+      },
+      "fid": 7.043213605332487,
+      "mean_term": 0.10327441584457106,
+      "covariance_term": 6.939939189487916,
+      "sample_covariance_trace": 173.264771349749,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 173.4731819735152,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 6.490237694809415e-07,
+        "maximum": 80.92198478509366,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.5265566588595902e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 4999,
+      "feature_subsets_fid": 7.0432136053321415,
+      "difference_from_feature_subsets": 3.455014052633487e-13,
+      "official_fid": 7.0432136053321415,
+      "difference_from_official": 3.455014052633487e-13
+    },
+    {
+      "family": "reflection",
+      "arm": "official201",
+      "subset": "new4k",
+      "rows": [
+        1000,
+        5000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official201_pooled5k-38ad10e1b22a25dc-inception.features.pt",
+        "sha256": "0780dfdcdb10a954ebc4041e5ea05f9473857814fb3dd3a494ebe2cdc38f52c8",
+        "size_bytes": 40962381
+      },
+      "fid": 8.719266034680416,
+      "mean_term": 0.10212620879038095,
+      "covariance_term": 8.617139825890035,
+      "sample_covariance_trace": 173.54567337928324,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 172.7750326700813,
+      "spectrum": {
+        "dimension": 2048,
+        "minimum": 5.466696660680147e-07,
+        "maximum": 82.14552435641843,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 1.5265566588595902e-16,
+      "formula": "symmetric D-by-D Bures: sqrt(C_real) @ C_sample @ sqrt(C_real)",
+      "sample_covariance_denominator": 3999,
+      "feature_subsets_fid": 8.719266034679947,
+      "difference_from_feature_subsets": 4.689582056016661e-13
+    },
+    {
+      "family": "reflection",
+      "arm": "official201",
+      "subset": "old1k",
+      "rows": [
+        0,
+        1000
+      ],
+      "feature": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged/official_feature_cache/reflection_official201_pooled5k-38ad10e1b22a25dc-inception.features.pt",
+        "sha256": "0780dfdcdb10a954ebc4041e5ea05f9473857814fb3dd3a494ebe2cdc38f52c8",
+        "size_bytes": 40962381
+      },
+      "fid": 38.558133152361265,
+      "mean_term": 0.20059986043740677,
+      "covariance_term": 38.35753329192386,
+      "sample_covariance_trace": 172.22093244971782,
+      "reference_covariance_trace": 180.62153178676937,
+      "cross_root_trace": 157.24246547228168,
+      "spectrum": {
+        "dimension": 1000,
+        "minimum": 5.927703985110664e-17,
+        "maximum": 76.16850628131462,
+        "negative_count": 0,
+        "negative_mass": -0.0,
+        "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+      },
+      "pre_symmetrization_max_asymmetry": 8.881784197001252e-16,
+      "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+      "sample_covariance_denominator": 999,
+      "historical_metrics": [
+        {
+          "artifact": {
+            "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_evaluation.json",
+            "sha256": "2c3caf2526d7f4ea4d4a3688cfd202788e17de07df97b1ebe969cff349d3adde",
+            "size_bytes": 1623
+          },
+          "row": {
+            "branch": "official201",
+            "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official201/samples.npz",
+            "sample_sha256": "25592107f06d183bc81e3ebb8ba1bfb0f52bba727eec07d1614fdbb4f714534c",
+            "fid_reference": "imagenet_256_fid_stats",
+            "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+            "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+            "inception_score": 60.015543365478514,
+            "fid": 38.5581217307755
+          }
+        }
+      ],
+      "differences_from_historical": [
+        1.1421585767834586e-05
+      ],
+      "historical_feature_comparison": {
+        "artifact": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/affine_reflection_v1/official_feature_cache/official201-25592107f06d183b-inception.features.pt",
+          "sha256": "c6978fed04019cadcc37975a3f6f42768ee4e83c7cd8b5dae05656c1cad115b1",
+          "size_bytes": 8193985
+        },
+        "shape_equal": true,
+        "bitwise_equal": false,
+        "max_abs_difference": 0.0020812153816223145,
+        "rms_difference": 4.043516154050044e-05,
+        "close_at_atol_1e_4_rtol_1e_5": false
+      },
+      "historical_features_independent_fid": {
+        "fid": 38.558144821911725,
+        "mean_term": 0.20059941062751874,
+        "covariance_term": 38.35754541128421,
+        "sample_covariance_trace": 172.22090865638648,
+        "reference_covariance_trace": 180.62153178676937,
+        "cross_root_trace": 157.24244751593582,
+        "spectrum": {
+          "dimension": 1000,
+          "minimum": -8.370167881619743e-17,
+          "maximum": 76.1696176594286,
+          "negative_count": 1,
+          "negative_mass": 8.370167881619743e-17,
+          "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+        },
+        "pre_symmetrization_max_asymmetry": 7.771561172376096e-16,
+        "formula": "symmetric rank-N Gram: centered_X @ C_real @ centered_X.T / (N-1)",
+        "sample_covariance_denominator": 999
+      },
+      "prefix_vs_historical_features_fid_difference": -1.1669550460169376e-05
+    }
+  ],
+  "errors": [],
+  "source": {
+    "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_extension_fid_independent.py",
+    "sha256": "a6d23843116a0e17a7673fd618d7b680d9630710f6bf6f1e315772e59ad0eb27",
+    "size_bytes": 19990
+  },
+  "gpu_model_calls": 0,
+  "feature_extraction_calls": 0,
+  "independent_feature_extraction": false,
+  "new4k_and_pooled5k_absolute_tolerance": 1e-06,
+  "old1k_historical_absolute_tolerance": 0.001,
+  "numpy_version": "2.2.6",
+  "scipy_version": "1.15.3",
+  "torch_version": "2.11.0+cu130",
+  "blas_threads": 4,
+  "limits": [
+    "This verifies arithmetic and stored provenance, not an independent Inception extractor.",
+    "Feature row order follows the checked official sequential extraction contract; old1K has an additional row-wise historical-feature comparison.",
+    "Old1K is rank deficient; historical scipy sqrtm and the independent rank-N PSD formula may differ numerically.",
+    "Pooled5K includes the screened old1K; new4K is separate confirmation data.",
+    "No population FID, significance, cost-match, or 5-percent improvement claim is made."
+  ],
+  "reference_spectrum": {
+    "dimension": 2048,
+    "minimum": 0.0011125005848524059,
+    "maximum": 9.100634517621682,
+    "negative_count": 0,
+    "negative_mass": -0.0,
+    "clipping": "negative eigenvalues only are replaced by zero; no positive-eigenvalue threshold"
+  },
+  "official_order_contract_source": {
+    "path": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/api.py",
+    "sha256": "f3f71b6c22a09b94c09033379467914f402b27658cd918bdb84776f7a39c8800",
+    "size_bytes": 11596
+  },
+  "wall_seconds": 95.01853167079389,
+  "cpu_seconds": 126.675261903,
+  "finished_utc": "2026-09-07T10:44:13.073908+00:00",
+  "all_checks_passed": false,
+  "failed_checks": [
+    {
+      "name": "legacy:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0019104480743408203,
+      "rms_difference": 3.6828277790598725e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "legacy:global_proximal100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:global_proximal100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.003433704376220703,
+      "rms_difference": 3.8808629714857046e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "legacy:energy100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "legacy:energy100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0020322799682617188,
+      "rms_difference": 3.7771224665074096e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "native_global:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "native_global:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.00241851806640625,
+      "rms_difference": 3.971708548127104e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "native_global:global100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "native_global:global100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.002384185791015625,
+      "rms_difference": 3.958788855269273e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:official100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:official100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0021216869354248047,
+      "rms_difference": 4.10914577822175e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:reflection100:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:reflection100:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0018247365951538086,
+      "rms_difference": 3.974989841763082e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    },
+    {
+      "name": "reflection:official201:new4k_ids_labels_blocks",
+      "passed": false
+    },
+    {
+      "name": "reflection:official201:old1k_feature_row_order",
+      "passed": false,
+      "shape_equal": true,
+      "bitwise_equal": false,
+      "max_abs_difference": 0.0020812153816223145,
+      "rms_difference": 4.043516154050044e-05,
+      "close_at_atol_1e_4_rtol_1e_5": false
+    }
+  ],
+  "max_5k_4k_absolute_fid_error": 3.3777425301195763e-12,
+  "max_old1k_historical_absolute_fid_error": 0.00018038692066113526
+}

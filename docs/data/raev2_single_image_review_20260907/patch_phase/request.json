@@ -1,0 +1,30 @@
+{
+  "protocol": "raev2_historical_decoder_patch_phase_v1",
+  "seeds": [
+    20260801,
+    20260802
+  ],
+  "script": {
+    "path": "/home/zhoushunyu/eqvae/experiments/audit_raev2_decoder_patch_phase.py",
+    "sha256": "37c3533e6007b6679d6102d7152ad4b56f8e7fdb1b9a3e5079cce10c0b7a5700",
+    "size_bytes": 7992
+  },
+  "cuda_visible_devices": "",
+  "selection": "Fixed first global sample_id per class in each existing 5K bank; all 1000 classes.",
+  "phases": 16,
+  "interior": "[16:240) with 14 full periods; first and second pixel differences.",
+  "first_difference_boundary_phase": [
+    15
+  ],
+  "second_difference_boundary_phases": [
+    0,
+    15
+  ],
+  "hypothesis": "Generated decoded images may show an excess signature tied to the known decoder patch lattice.",
+  "scope": "Descriptive diagnostic only; no FID, fitting, thresholds, filters, or inferred quality gain.",
+  "limitations": [
+    "Original decoded banks store clamped FP16 pixels, not original FP32 or official uint8.",
+    "Real source images are uint8/255; JPEG and resizing can themselves induce phase structure.",
+    "A phase signature does not identify the decoder as its cause or imply FID improvement after removing it."
+  ]
+}

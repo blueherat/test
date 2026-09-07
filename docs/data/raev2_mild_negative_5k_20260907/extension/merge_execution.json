@@ -1,0 +1,58 @@
+{
+  "complete": true,
+  "jobs": [
+    {
+      "family": "legacy",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged"
+      ],
+      "pid": 3818449,
+      "started_at_utc": "2026-09-07T10:34:04.188020+00:00",
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merge.log",
+      "exit_code": 0,
+      "outer_wall_seconds": 46.00768572604284,
+      "finished_at_utc": "2026-09-07T10:34:50.194780+00:00"
+    },
+    {
+      "family": "native_global",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merged"
+      ],
+      "pid": 3818450,
+      "started_at_utc": "2026-09-07T10:34:04.189162+00:00",
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/native_global_merge.log",
+      "exit_code": 0,
+      "outer_wall_seconds": 46.00755310989916,
+      "finished_at_utc": "2026-09-07T10:34:50.195805+00:00"
+    },
+    {
+      "family": "reflection",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/merge_raev2_1k_extension.py",
+        "--plan",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge_plan.json",
+        "--output-dir",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merged"
+      ],
+      "pid": 3818451,
+      "started_at_utc": "2026-09-07T10:34:04.190327+00:00",
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/reflection_merge.log",
+      "exit_code": 0,
+      "outer_wall_seconds": 46.21284779673442,
+      "finished_at_utc": "2026-09-07T10:34:50.402279+00:00"
+    }
+  ],
+  "fid_started": false,
+  "outer_wall_measurement_scope": "Parent launch-to-observed-completion upper bounds: waits were collected in family order, so later families may include observation delay. Use each merger summary wall_seconds for its own operation duration; neither is inference cost."
+}

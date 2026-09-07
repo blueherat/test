@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-09-06T09:07:43.913715+00:00",
+  "protocol": {
+    "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SPATIAL_ENERGY_BALLS_PROTOCOL_20260906_ZH.md",
+    "sha256": "5ff6e86d26f3c24dc1304dd34ec8c9f566daa5e7bccf17862726eb7ac8df9df9",
+    "size_bytes": 8749
+  },
+  "sampling_execution": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/sample_jobs_execution.json",
+    "sha256": "89734d83f2fe4b2d1f16b515e2c93aca7d663190dcb62e2affb0261864bcbc57",
+    "size_bytes": 4092
+  },
+  "new_fid_computed_or_read_before_this_decision": false,
+  "new_evaluation_artifacts_absent": true,
+  "rule": "K=max(100,ceil(100*T_spatial/T_official100)); if actual T_K<T_spatial, increase monotonically before FID",
+  "T_official100_seconds": 635.2828604145907,
+  "T_spatial_seconds": 626.382555505028,
+  "spatial_over_official_trajectory_ratio": 0.9859900125374793,
+  "K": 100,
+  "selected_cost_baseline": "official100",
+  "additional_official_sampling_required": false,
+  "measured_baseline_trajectory_budget_sufficient": true,
+  "summaries": {
+    "official100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/official100/summary.json",
+      "sha256": "f3539f1c003b5b205c868f4575b9c9a781c8d40b7c2a1f43208dcdb41f5244d3",
+      "size_bytes": 12836
+    },
+    "global100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/global100/summary.json",
+      "sha256": "a691dd254c1f287344de2ed3c45d2df251d5d70534cf53a331f897d5ad29ea5b",
+      "size_bytes": 13092
+    },
+    "spatial100": {
+      "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/spatial_energy_balls_v1/spatial100/summary.json",
+      "sha256": "30ff15fa4ddc1a567ed8a4bbd12876a70256af95ea5a30efd44dcda7b4fe9d05",
+      "size_bytes": 13101
+    }
+  },
+  "trajectory_seconds": {
+    "official100": 635.2828604145907,
+    "global100": 633.2605086229742,
+    "spatial100": 626.382555505028
+  },
+  "paired_identities": {
+    "global_noise_sha256": "8847ee5c667e23f413fad195234728890c4a72260fdde5ef0cd04b2762762de0",
+    "noise_rng_state_sha256": "3c342629c8a0ddbda83c73e11470a7c9d7ca357c74231108872c059de23c92e1",
+    "global_labels_sha256": "702746827e553786bb026ac120cb58745fef3d3f554c33891809001cc37639f0",
+    "seed": 202609121
+  },
+  "limitations": [
+    "Different same-model GPUs; single concurrent-run timing estimates are not intrinsic speed or exact time equality.",
+    "Spatial projection, reductions, synchronization, state writes and diagnostic callback remain inside candidate trajectory time.",
+    "Source/reference preparation is separate and historical real-latent acquisition cost remains unclosed. No total-cost success conclusion."
+  ],
+  "quality_results": null
+}

@@ -1,0 +1,63 @@
+{
+  "family": "legacy",
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+    "name": "NVIDIA GeForce RTX 4090"
+  },
+  "cost_release_sha256": "0238c29b15e408a5945a21657401037b1b117dda8d3e25626c4b00766f2b4539",
+  "complete": true,
+  "fid_started": true,
+  "jobs": [
+    {
+      "name": "official_pooled5k",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_evaluation.csv",
+        "--branch",
+        "legacy_official100_pooled5k=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official100/pooled5k/samples.npz",
+        "--branch",
+        "legacy_global_proximal100_pooled5k=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/global_proximal100/pooled5k/samples.npz",
+        "--branch",
+        "legacy_energy100_pooled5k=/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/energy100/pooled5k/samples.npz",
+        "--batch-size",
+        "64",
+        "--seed",
+        "2020",
+        "--device",
+        "cuda",
+        "--feature-cache-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache"
+      ],
+      "started_at_utc": "2026-09-07T10:35:46.750150+00:00",
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_official_pooled5k.log",
+      "pid": 3824754,
+      "exit_code": 0,
+      "outer_wall_seconds": 35.39433496398851,
+      "finished_at_utc": "2026-09-07T10:36:22.154538+00:00"
+    },
+    {
+      "name": "cpu_feature_subsets",
+      "argv": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_1k_extension_features.py",
+        "--merge-summary",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/summary.json",
+        "--official-evaluation",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_evaluation.json",
+        "--feature-cache-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/official_feature_cache",
+        "--output-dir",
+        "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_merged/feature_subsets"
+      ],
+      "started_at_utc": "2026-09-07T10:36:22.155407+00:00",
+      "log": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/evaluation_preparation_v1/legacy_cpu_feature_subsets.log",
+      "pid": 3826906,
+      "exit_code": 0,
+      "outer_wall_seconds": 23.419789327308536,
+      "finished_at_utc": "2026-09-07T10:36:45.578116+00:00"
+    }
+  ]
+}

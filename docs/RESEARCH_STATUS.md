@@ -1,5 +1,27 @@
 # Research Status
 
+> **Fixed mild-negative 5K follow-up complete and closed — 2026-09-07.**
+> All four candidates, controls and cost accounting are complete. Against each
+> family's official100, pooled5K gains are global proximal −0.107106%, legacy
+> energy −0.194903%, native global energy +0.230464%, reflection +0.195719%.
+> Reflection gains +0.227356% against the cost-covered official201, but loses
+> 0.128630% on the new4K alone. Native global gains +0.185095% on new4K.
+> None approaches 5%; total research-cost success is unproved. The user returned
+> to guidance and requested only completion and Git: all adjacent directions
+> are stopped, with historical notes retained. No additional quality search.
+> See [supplement closeout](RAEV2_MILD_NEGATIVE_5K_CLOSEOUT_20260907_ZH.md).
+
+> **Limited 5K follow-up authorized — 2026-09-07.** The user explicitly
+> reopened only supplementation of mildly negative 1K candidates to 5K.
+> Preserve all original methods/calibrations and original 1K images; add four
+> fixed independent 1K cohorts, report new4K separately, and retain actual
+> inference/preparation cost limits. Selected: global proximal, legacy global
+> energy ball, native global energy ball and affine reflection. No new method,
+> gain/window or training search. This newer instruction supersedes the prior
+> closeout's no-resume boundary for this bounded follow-up only. See
+> [frozen supplement protocol](RAEV2_MILD_NEGATIVE_5K_EXTENSION_PROTOCOL_20260907_ZH.md).
+
+
 > **Closed at the user's final round 8/8 limit — 2026-09-07.** All fixed quality experiments ended in round6 below the3% target; best1K gain2.031820%, best5K0.564060%. Round7 verified all6220 inventory files directly from the quality-closeout Git commit. Final state and archive review are now closed; no new fitting, sampling, parameter changes or automatic research continuation. The objective is unmet, and archival completion is not success. Further research requires a new explicit user instruction. See [final report](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md) and [completed eight-round ledger](RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md).
 
 > **Quality closeout, final round 6/8 — 2026-09-07.** The final unchanged semantic_add5K is complete: FID7.250174077, 4.322527% worse than official, inference1.994621×; all pixels,625 paired input batches, original parameters, frozen sources and independent FID pass audit. All17 candidates have1K and9 have5K; none meets3%. Best1K gain is2.031820%, best5K0.564060%. Quality research is now closed; remaining rounds are only final evidence/archive/Git review. No Heun cost run or new candidate follows this failure. See [final report](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md). Archival completion is not goal success.

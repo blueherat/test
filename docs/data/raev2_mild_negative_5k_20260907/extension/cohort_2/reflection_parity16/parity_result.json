@@ -1,0 +1,155 @@
+{
+  "complete": true,
+  "samples_per_loop": 16,
+  "endpoint_bitwise": true,
+  "pixel_bitwise": true,
+  "max_endpoint_abs_difference": 0.0,
+  "pixel_mismatches": 0,
+  "new_official_endpoint_sha256": "403f0b1a37aa58bc4a688aea337e51a517b6bd78261aff407d6fc72b15775fc2",
+  "production_endpoint_sha256": "403f0b1a37aa58bc4a688aea337e51a517b6bd78261aff407d6fc72b15775fc2",
+  "new_official_pixels_sha256": "7ba21332ccbd807e1501f4b325d6bb85d56ebb9d3d4b64f0641822d49a393b92",
+  "production_pixels_sha256": "7ba21332ccbd807e1501f4b325d6bb85d56ebb9d3d4b64f0641822d49a393b92",
+  "batches": [
+    {
+      "reference": false,
+      "start": 0,
+      "trajectory_wall_seconds": 5.273229403886944,
+      "trajectory_cuda_event_span_seconds": 5.27315576171875,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 5.348174191080034,
+      "decode_and_uint8_wall_seconds": 0.07474437030032277,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": false,
+      "start": 8,
+      "trajectory_wall_seconds": 4.953765123151243,
+      "trajectory_cuda_event_span_seconds": 4.95369970703125,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 4.982991997152567,
+      "decode_and_uint8_wall_seconds": 0.02911146217957139,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": true,
+      "start": 0,
+      "trajectory_wall_seconds": 4.9623389658518136,
+      "trajectory_cuda_event_span_seconds": 4.962275390625,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 4.990230273921043,
+      "decode_and_uint8_wall_seconds": 0.02779779816046357,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    },
+    {
+      "reference": true,
+      "start": 8,
+      "trajectory_wall_seconds": 4.9624587232246995,
+      "trajectory_cuda_event_span_seconds": 4.9623291015625,
+      "counts": {
+        "observed": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        },
+        "expected": {
+          "stage2_forward_calls": 100,
+          "stage2_sample_forwards": 800,
+          "decoder_forward_calls": 1,
+          "decoder_sample_forwards": 8
+        }
+      },
+      "trajectory_through_decode_wall_seconds": 4.9911855440586805,
+      "decode_and_uint8_wall_seconds": 0.02860615821555257,
+      "operator_counts": {
+        "stage2_forward": 100,
+        "decoder_forward": 1
+      }
+    }
+  ],
+  "forward_counts_observed": {
+    "stage2_forward_calls": 404,
+    "stage2_sample_forwards": 3232,
+    "decoder_forward_calls": 4,
+    "decoder_sample_forwards": 32
+  },
+  "off_branch_forward_counts_observed": {
+    "stage2_forward_calls": 400,
+    "stage2_sample_forwards": 3200,
+    "decoder_forward_calls": 4,
+    "decoder_sample_forwards": 32
+  },
+  "candidate_formula_check": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/candidate_formula_check.json",
+    "sha256": "a7b6aa0d9248db884ea01cab13c8da75f5e6915f6ec01ab35b6f166639b35613",
+    "size_bytes": 1493
+  },
+  "candidate_formula_check_forward_counts": {
+    "observed": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    },
+    "expected": {
+      "stage2_forward_calls": 4,
+      "stage2_sample_forwards": 32,
+      "decoder_forward_calls": 0,
+      "decoder_sample_forwards": 0
+    }
+  },
+  "geometry_diagnostics": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/scale_extension_5k_v1/cohort_2/reflection_parity16/geometry_diagnostics.json",
+    "sha256": "a5dbb5c7d10ef215deb26a4a8696d24df156d7d2018514d29e1f8dd104e1c7f2",
+    "size_bytes": 2308
+  },
+  "parity_is_not_quality_or_cost_comparison": true
+}
