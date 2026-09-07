@@ -1,5 +1,7 @@
 # 第5轮：最后一个原设置的 semantic_add 5K
 
+第6轮最终结果：FID **7.250174076930023**，相对原official恶化 **4.322527%**，独立FID **7.250174076931897**。推理与解码 **6329.726582 GPU秒**，为原对照 **1.994621倍**。全部5000张像素、625个batch配对、旧参数和冻结源码审核通过；质量未通过，不执行Heun成本对照。见[最终审核](../experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json)与[完整执行](../experiments/results/raev2_guidance_20260907/final_semantic_add5k_execution.json)。下文保留采样前协议。
+
 此项是最后八轮内最后一个新增质量候选。只补做旧 `semantic_add` 的完整 5K，没有修改 .15 强度、时间区间、层、精度、seed 或训练模型。完成后不再开启质量新路线；若达到门槛，只做必要的独立指标与成本对照。否则整理全部研究并按八轮上限收束。
 
 ## 为什么仍值得补这一次

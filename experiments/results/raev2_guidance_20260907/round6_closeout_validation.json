@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "created_unix": 1788768193.9139159,
+  "checks": [
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-m",
+        "py_compile",
+        "experiments/closeout_raev2_guidance_goal_20260907.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "-m",
+        "pyflakes",
+        "experiments/closeout_raev2_guidance_goal_20260907.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "all146_indexed_theory_document_hashes_checked": true,
+  "all_goal_requirement_evidence_hashes_checked": true,
+  "quality_rows": 30,
+  "incomplete_quality_studies": 0,
+  "best1k_improvement_percent": 2.0318204850572674,
+  "best5k_improvement_percent": 0.5640600112897687,
+  "final_study_controller_and_auditor_pids_verified_gone": [
+    3138310,
+    3143584,
+    3233867
+  ],
+  "final_state_sha256": "8fbc97ab44e89fc6735f611866ed7511d77d38bfb0c655fdb69c48e303fca210",
+  "goal_audit_sha256": "e67c0cdd8579066436b18748cf7077b8c11d615c9890e2f1783a41ad7a5141cb",
+  "all_current_quality_experiments_finished_no_extra_quality_jobs_launched": true,
+  "unrelated_gpu_jobs_are_outside_this_task_and_not_stopped": true,
+  "full_workspace_manifest_generated_after_this_record": true
+}

@@ -1,0 +1,213 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "created_unix": 1788768147.451561,
+  "research_round": 6,
+  "maximum_rounds": 8,
+  "quality_completed_at_round": 6,
+  "quality_research_closed": true,
+  "no_further_quality_candidates": true,
+  "quality_rows": 30,
+  "candidate_quality_rows": 26,
+  "controls_rows": 4,
+  "requirements": [
+    {
+      "requirement": "At least3% relative FID improvement on comparable1K or5K",
+      "status": "contradicted_by_completed_results",
+      "evidence": "All26 candidate quality rows miss even the original official threshold; stronger/cost controls cannot turn this into success"
+    },
+    {
+      "requirement": "Theory-grounded guidance with few hyperparameters; no time-bin extrapolation sweep",
+      "status": "implemented_with_documented_limits",
+      "evidence": "Frozen protocols, one shared convex conditional-variance head and one closed-form global directional ratio; fixed old semantic .15; no new quality candidate after the latter"
+    },
+    {
+      "requirement": "Try5K despite slightly worse1K, including promising original settings",
+      "status": "completed",
+      "evidence": "Nine fixed candidates have both1K and5K, including unchanged final semantic_add"
+    },
+    {
+      "requirement": "Reproducible comparable inputs and evaluation",
+      "status": "completed_with_scope_limits",
+      "evidence": "All30 current-protocol quality rows have sample/source hashes in the index; best1K,best5K,and final5K independent FID evidence inspected here; individual full audits remain separate"
+    },
+    {
+      "requirement": "Organize prior theory, papers, ideas, positive/negative experiments and data",
+      "status": "organized_with_eight_historical_raw_asset_availability_gaps",
+      "evidence": "Full Git-workspace navigation and per-file inventory; previous52-paper reading index; explicit raw-asset reference review"
+    },
+    {
+      "requirement": "Conclude within at most8 further research rounds and commit",
+      "status": "quality_research_closed_git_finalization_separate",
+      "evidence": "Quality closure at round6; commits and final worktree state must be checked after this artifact is written"
+    }
+  ],
+  "summaries": {
+    "1000": {
+      "samples": 1000,
+      "seed": 202609071,
+      "candidate_count": 17,
+      "official_fid": 38.486773927092486,
+      "official_three_percent_threshold": 37.33217070927971,
+      "stronger_fixed_control": {
+        "study": "ancestral_screen1k",
+        "mode": "piecewise",
+        "samples": 1000,
+        "seed": 202609071,
+        "fid": 38.33502403244245,
+        "inception_score": 58.307651138305665,
+        "relative_improvement_percent": 0.39429102303432106,
+        "inference_seconds": 636.2876741683576,
+        "inference_cost_ratio": 1.006262564502491,
+        "main_model_calls": 100000,
+        "additional_calls": {},
+        "sample": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/ancestral_screen1k/piecewise/samples.npz",
+          "bytes": 196608264,
+          "sha256": "7e5c67a9d1499bf6e2f0be182d722c7ba6950c68d6fde8d6d881a898837018dc"
+        },
+        "summary": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_screen1k/piecewise/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/ancestral_screen1k/piecewise/summary.json",
+          "bytes": 408,
+          "sha256": "f9c7c3d6644d63499d59a927abb0c4cdd67c626057fd8d7aabdba856fc444724"
+        },
+        "execution_sha256": "646b05e931e96f21e13dc2d8b50f2151673f838c579bbe1faacdb241764516b6",
+        "metrics_sha256": "12d85ed2c89445f0598bb650425ac48e8718767d7bc4de17708d073730b765b2",
+        "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md"
+      },
+      "best_candidate": {
+        "study": "semantic_complement_screen1k",
+        "mode": "semantic_orthogonal",
+        "samples": 1000,
+        "seed": 202609071,
+        "fid": 37.70479177040414,
+        "inception_score": 61.478842163085936,
+        "relative_improvement_percent": 2.0318204850572674,
+        "inference_seconds": 1262.964256711537,
+        "inference_cost_ratio": 1.9973255862524673,
+        "main_model_calls": 199000,
+        "additional_calls": {
+          "sample_critic_backward_calls": 0,
+          "extra_sample_unconditional_calls": 99000
+        },
+        "sample": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/semantic_orthogonal/samples.npz",
+          "bytes": 196608264,
+          "sha256": "39c264ab71613efdf0e8dc4a8facb2fa826ec7b26e820b383d81fd3d5cff50c7"
+        },
+        "summary": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/semantic_orthogonal/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/semantic_complement_screen1k/semantic_orthogonal/summary.json",
+          "bytes": 543,
+          "sha256": "f93a6715fb30c3f302d78783f94209450bb8980f07a49a7b522bc9d00b5d020e"
+        },
+        "execution_sha256": "bb5c3b43758741dfa6911a042733cc12402aca94ffad6ac4a18ca7a3f76b135d",
+        "metrics_sha256": "700b065117f739da76792a08e193131741ef5db752fbf97fd1534f38dab5b89c",
+        "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_SEMANTIC_COMPLEMENT_20260907_ZH.md"
+      },
+      "best_improvement_vs_official_percent": 2.0318204850572674,
+      "best_improvement_vs_stronger_fixed_control_percent": 1.644011652385946
+    },
+    "5000": {
+      "samples": 5000,
+      "seed": 202609072,
+      "candidate_count": 9,
+      "official_fid": 6.9497684777115865,
+      "official_three_percent_threshold": 6.741275423380238,
+      "stronger_fixed_control": {
+        "study": "weak_confirm5k",
+        "mode": "official",
+        "samples": 5000,
+        "seed": 202609072,
+        "fid": 6.9497684777115865,
+        "inception_score": 157.57569732666016,
+        "relative_improvement_percent": 0.0,
+        "inference_seconds": 3173.3982818077784,
+        "inference_cost_ratio": 1.0,
+        "main_model_calls": 500000,
+        "additional_calls": {
+          "sample_critic_backward_calls": 0
+        },
+        "sample": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+          "bytes": 983040264,
+          "sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386"
+        },
+        "summary": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/summary.json",
+          "bytes": 486,
+          "sha256": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3"
+        },
+        "execution_sha256": "eb341e0bf82ec41d4ecab47b9fec8cbe7ae14ef05871541368e1ac8dcc25d3c6",
+        "metrics_sha256": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520",
+        "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_GOAL_20260907_ZH.md"
+      },
+      "best_candidate": {
+        "study": "directional_variance_confirm5k",
+        "mode": "directional_variance",
+        "samples": 5000,
+        "seed": 202609072,
+        "fid": 6.910567612851594,
+        "inception_score": 158.30079345703126,
+        "relative_improvement_percent": 0.5640600112897687,
+        "inference_seconds": 3217.7804299108684,
+        "inference_cost_ratio": 1.013985684796491,
+        "main_model_calls": 500000,
+        "additional_calls": {
+          "sample_critic_backward_calls": 0,
+          "sample_ratio_backward_calls": 0,
+          "extra_sample_unconditional_calls": 0,
+          "sample_prefix_forward_calls": 0,
+          "sample_prefix_backward_calls": 0
+        },
+        "sample": {
+          "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k/directional_variance/samples.npz",
+          "bytes": 983040264,
+          "sha256": "94f97094eaf4da02136159f497b06d8d29c3fa4cf014d31b021247d7515d7381"
+        },
+        "summary": {
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k/directional_variance/summary.json",
+          "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k/directional_variance/summary.json",
+          "bytes": 744,
+          "sha256": "cde3b099ef419ed2f92600f849051562443e7ef37c78a5591c3bf843df40a25b"
+        },
+        "execution_sha256": "97b20775e9617ff31b1c31fd1b96096c6dc99d62de1a4c6c76d38a8e95e7f993",
+        "metrics_sha256": "e2e0f01f98f610717cddbddf44b9b40d3a0fdcff465be1a95babb3ae3a9d3109",
+        "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_DIRECTIONAL_VARIANCE_PROTOCOL_20260907_ZH.md"
+      },
+      "best_improvement_vs_official_percent": 0.5640600112897687,
+      "best_improvement_vs_stronger_fixed_control_percent": 0.5640600112897687
+    }
+  },
+  "final_semantic_add5k": {
+    "fid": 7.250174076930023,
+    "sample_sha256": "eb7ad9072ee645a53331898058a1f4b91b1dc274eebe80064783dda16180a3b8",
+    "independent_fid": {
+      "fid": 7.250174076931897,
+      "mean_term": 0.3657672930823408,
+      "covariance_term": 6.884406783849556,
+      "sample_covariance_trace": 171.50916226908745,
+      "method": "symmetric reference-root covariance product",
+      "minimum_product_eigenvalue": 6.027664379340951e-07
+    },
+    "inference_cost_ratio": 1.9946209143544746,
+    "improvement_vs_official_percent": -4.3225267169958,
+    "sample_model_calls": 995000,
+    "extra_sample_unconditional_calls": 495000
+  },
+  "evidence_sha256": {
+    "experiments/results/raev2_guidance_20260907/research_evidence_index.json": "0d8d301d75f994b65c87650f31986cbca900d493a45d02817975a5dd27cd8e79",
+    "experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json": "bc21588a70458f57efcf96e8bebeb638466068e71bf7fd1666c1c6963d9081bf",
+    "experiments/results/raev2_guidance_20260907/fid_audit_extended.json": "6a7208aa17bf6f9beb668a4d18b9b71a0e0342171c0adb6a5ae857d016d0005c",
+    "experiments/results/raev2_guidance_20260907/directional_variance_confirm5k_audit.json": "39310b1bf41a633a1ee9c55b83cd41cf729817aec06cb72a237633c76df3e2f0",
+    "experiments/results/raev2_guidance_20260907/directional_variance_calibration.json": "1e6da51495be729658abb717190dba6a613872c4b8e2d8d8bc0447993179a019",
+    "experiments/results/raev2_guidance_20260907/fixed_mean_nll_fid_counterexample.json": "ec7fcde67cc2229c8442115d74aec088cc901fd399d9d8ed7e6e11dc211e53c6",
+    "experiments/results/raev2_guidance_20260907/workspace_reference_review.json": "41b00bc111153d81db19283a4ecc5a040dc1a818addc3c676d61d79a6959c1d8"
+  },
+  "final_controller_state_sha256": "8fbc97ab44e89fc6735f611866ed7511d77d38bfb0c655fdb69c48e303fca210",
+  "cost_control_decision": "Not run: final candidate fails quality against original100-step official; no slower or worse baseline used to manufacture success",
+  "timing_limit": "Measured shared-host inference timings; GPU exclusivity was not certified, so small timing differences do not establish speedups",
+  "source_sha256": "bb994613128b94fc52c74fb246526dd6357326a0c35dc80aeee5cdf7b0218205"
+}

@@ -1,7 +1,7 @@
 {
   "complete": true,
   "goal_achieved": false,
-  "created_unix": 1788767072.6689644,
+  "created_unix": 1788768115.9716642,
   "scope": "Every completed current-protocol1K/5K study, explicitly mapped intermediates and theory-document identities",
   "quality_rows": [
     {
@@ -394,6 +394,39 @@
       "execution_sha256": "4303b3dbc876d2fbfe5f10dd0c859b5d51c54919aa67df8df0124c7bb567d4a4",
       "metrics_sha256": "6792b3b033e0ca35c2de04b9a8ea84dd0a3287d855146e446b3952feea0de4d8",
       "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md"
+    },
+    {
+      "study": "final_semantic_add_confirm5k",
+      "mode": "semantic_add",
+      "samples": 5000,
+      "seed": 202609072,
+      "fid": 7.250174076930023,
+      "inception_score": 174.54324645996093,
+      "relative_improvement_percent": -4.3225267169958,
+      "inference_seconds": 6329.72658247035,
+      "inference_cost_ratio": 1.9946209143544746,
+      "main_model_calls": 995000,
+      "additional_calls": {
+        "sample_critic_backward_calls": 0,
+        "sample_ratio_backward_calls": 0,
+        "extra_sample_unconditional_calls": 495000,
+        "sample_prefix_forward_calls": 0,
+        "sample_prefix_backward_calls": 0
+      },
+      "sample": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k/semantic_add/samples.npz",
+        "bytes": 983040264,
+        "sha256": "eb7ad9072ee645a53331898058a1f4b91b1dc274eebe80064783dda16180a3b8"
+      },
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k/semantic_add/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k/semantic_add/summary.json",
+        "bytes": 730,
+        "sha256": "764fb60dd5c74f820dc07031e1c18c9c471278c50c03835e3959a2b6651a0bf1"
+      },
+      "execution_sha256": "c93e7d7e100c157873e2709c27d44cda62fb6cf1b6c28207d05580de6b2b5cb4",
+      "metrics_sha256": "3680a0328900cce69fc11a109f7ee65c40e42916fddcc33b186e60ff7221f501",
+      "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_SEMANTIC_COMPLEMENT_20260907_ZH.md"
     },
     {
       "study": "paired_ratio_calibrated_screen1k",
@@ -867,19 +900,7 @@
       "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_STOCHASTIC_WEAK_20260907_ZH.md"
     }
   ],
-  "incomplete_studies_at_snapshot": [
-    {
-      "study": "final_semantic_add_confirm5k",
-      "execution": {
-        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k/execution.json",
-        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final_semantic_add_confirm5k/execution.json",
-        "bytes": 4596,
-        "sha256": "a9d117cb7c3065c01aa6f14e56c556649f95d6ae94569c9223a97453870e12a5"
-      },
-      "complete": false,
-      "pid_claim_not_a_liveness_check": 3143584
-    }
-  ],
+  "incomplete_studies_at_snapshot": [],
   "intermediate_evidence": [
     {
       "name": "paired_ratio_fit",
@@ -1400,8 +1421,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
-      "bytes": 8798,
-      "sha256": "6aa31ea0a3797fc215f2398171358a9ea0ffb6c823eee675d373d91413971daf"
+      "bytes": 8978,
+      "sha256": "f2b439e017aa1810a393bbdbb6bdc6b59385aa5ad8fb31beac2f320749420dfa"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_FIVE_ROUNDS_20260906_ZH.md",
@@ -1412,8 +1433,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_SEMANTIC_ADD5K_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_SEMANTIC_ADD5K_20260907_ZH.md",
-      "bytes": 4307,
-      "sha256": "5c7254fe23fa2af3b58c17534fcef146d123efac9f99835e030d1cf16587cda6"
+      "bytes": 4863,
+      "sha256": "19347a48f8a2da61eef3816e16f3172d257d8b0cf698fc37704be184b0c254fc"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FLOW_PULLBACK_20260905_ZH.md",
@@ -1434,6 +1455,12 @@
       "sha256": "3408a7af479cadc13a0d7f7364d1e6f6d868fbfbc536a3881613270c89c7e88e"
     },
     {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md",
+      "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md",
+      "bytes": 3832,
+      "sha256": "039f8b98fdbbcf734c277d75253b1a52f7e616ad3e12117ed7a9dc4fdd34b48a"
+    },
+    {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_GOAL_20260906_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_GOAL_20260906_ZH.md",
       "bytes": 5674,
@@ -1442,8 +1469,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_GOAL_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_GOAL_20260907_ZH.md",
-      "bytes": 3988,
-      "sha256": "a9c18557b9eef84f1d55cdeee9ac93f1709b0d7ab7de837f8abb9de09e429ecf"
+      "bytes": 4360,
+      "sha256": "4e86f39ca3d51a4d189d195fbeed77d587fd96b7f7627b19e6f41d61dd89356c"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_MIX_NUMERICS_20260906_ZH.md",
@@ -1664,14 +1691,14 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_RESULTS_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_RESULTS_20260907_ZH.md",
-      "bytes": 14892,
-      "sha256": "29e043acb3e8cc1005ca81011edfdb066fefc9317d763324322ba2609839fb3e"
+      "bytes": 14928,
+      "sha256": "fc43fd62675508cae6458f1a96342c8e64bae292f8457eb7379e69e0010ceb4c"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_THEORY_LESSONS_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDANCE_THEORY_LESSONS_20260907_ZH.md",
-      "bytes": 5831,
-      "sha256": "244542ae01f1bd274b1018b68732a3a9d0ee03f60d9da8cbfc411876c18e0422"
+      "bytes": 5952,
+      "sha256": "0fd7fd72480e94d5fa7d69f855307b53e4d3016dfe3a2f72caed3fd613640ce6"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md",
@@ -1922,8 +1949,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md",
-      "bytes": 10345,
-      "sha256": "29d4f1b7f87000e1a65bfe37602827c126194dd74c5efaabc2a9bf06c7cb19ba"
+      "bytes": 10526,
+      "sha256": "81400eadccc6c31df03225938af71ad0d8d4fcf96a65849174eaf3166ebd90a4"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SELF_GUIDANCE_RESEARCH_LEDGER_ZH.md",
@@ -1946,8 +1973,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SEMANTIC_COMPLEMENT_RESULTS_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_SEMANTIC_COMPLEMENT_RESULTS_20260907_ZH.md",
-      "bytes": 3658,
-      "sha256": "e8869d9992dc3108633651c34a53c9fca109d297603776ff45b70ec13382efee"
+      "bytes": 4123,
+      "sha256": "4b11e9288ea6864487c50549eb0243bd4d5e82b7b652de9971707dc812b28f74"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SOBOLEV_ACTUAL_Q_EULER_AUDIT_20260906_ZH.md",
@@ -2024,8 +2051,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RESEARCH_STATUS.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RESEARCH_STATUS.md",
-      "bytes": 100479,
-      "sha256": "2aa49aad74cee153386dba0dd03ec8d37f247b73222e62eb4173c8fc0dbc071f"
+      "bytes": 101106,
+      "sha256": "e33c5e2b1642a9a88c95d5de1ec748c50f2c7147b00e750b0140260a2c88b805"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/SEMIGROUP_CONSISTENT_GUIDANCE_THEORY_ZH.md",

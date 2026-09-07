@@ -1,6 +1,6 @@
 # 2026-09-07 guidance 研究结果（持续更新）
 
-第 5/8 轮更新：方向性方差完整1K/5K分别为38.610371 / 6.910568，相对official为−.3211% / +.5641%，5K推理1.014倍，独立审核通过但未达到3%。最后一个旧候选 semantic_add 原 .15 正在补做完整5K，此后不新增质量路线。最新全表见[当前及历史研究总索引](RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md)，整个工作区见[完整理论、代码与数据索引](RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md)。以下阶段记录按原时间保留，其中“运行中/下一步”只描述相应历史阶段。
+第6/8轮收束：最后semantic_add原 .15 的完整5K为7.250174（−4.3225%，推理1.9946倍），独立审核通过但未达标。全部17种候选完成1K，其中9种完成5K，连同控制共30条完整结果；最佳1K改善2.0318%，最佳5K改善.5641%，**3%目标未达到**。见[最终报告](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md)、[当前及历史研究索引](RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md)和[全工作区归档](RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md)。以下阶段记录按原时间保留，其中“运行中/下一步”只描述相应历史阶段。
 
 新 3% 目标仍未达成。固定官方 EMA + native BF16 IG1.78，100-step shift8 Euler，1K 个均衡类别样本，seed202609071，B8，每 batch 初始噪声和类别逐一配对。官方 nanogen Inception / imagenet_256_fid_stats；不能和旧非官方 evaluator 的绝对值混用。改善为 100(1−FID/FID官方)，负值表示变差。
 

@@ -1,11 +1,11 @@
 {
-  "updated_unix": 1788766506.8246362,
-  "current_round": 5,
+  "updated_unix": 1788768193.7573488,
+  "current_round": 6,
   "maximum_rounds": 8,
   "count_each_subsequent_research_turn": true,
   "goal_achieved": false,
-  "stage": "directional5k_audited_final_semantic_add5k_running_full_workspace_archive",
-  "next_round": 6,
+  "stage": "quality_research_closed_unmet_round6_archived_pending_final_review",
+  "next_round": 7,
   "policy_document": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
   "no_round_reset_for_debugging_or_waiting": true,
   "round1_evidence": {
@@ -56,5 +56,20 @@
     "last_additional_quality_candidate": true,
     "final_candidate_complete": false,
     "workspace_inventory": "docs/RESEARCH_WORKSPACE_INVENTORY_20260907_ZH.md"
-  }
+  },
+  "quality_research_closed": true,
+  "no_further_quality_candidates": true,
+  "round6_evidence": {
+    "last_5k_audit": "experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json",
+    "last_5k_execution": "experiments/results/raev2_guidance_20260907/final_semantic_add5k_execution.json",
+    "last_5k_fid": 7.250174076930023,
+    "last_5k_improvement_percent": -4.3225267169958,
+    "last_5k_cost_ratio": 1.9946209143544746,
+    "quality_research_complete": true,
+    "goal_achieved": false,
+    "heun_cost_control_not_run_because_quality_failed": true,
+    "final_report": "docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md",
+    "requirement_audit": "experiments/results/raev2_guidance_20260907/final_goal_requirement_audit.json"
+  },
+  "quality_completed_at_round": 6
 }

@@ -17,11 +17,11 @@
 
 ## 覆盖范围与可验证边界
 
-本快照覆盖 **6,214 个文件**；其中文档 **354 份**。家族按路径关键词划分，只用于导航，不推断科学状态。一个文件可涉及多个方向，这里按构建器中固定优先序归入一个家族；全部路径仍可在 JSON 中检索。
+本快照覆盖 **6,220 个文件**；其中文档 **355 份**。家族按路径关键词划分，只用于导航，不推断科学状态。一个文件可涉及多个方向，这里按构建器中固定优先序归入一个家族；全部路径仍可在 JSON 中检索。
 
 | 家族 | 全部文件 | 文档 | 代码/笔记本 | 结构化数据/证据 |
 |---|---:|---:|---:|---:|
-| RAEv2 guidance、理论与迁移 | 1521 | 143 | 439 | 923 |
+| RAEv2 guidance、理论与迁移 | 1527 | 144 | 440 | 927 |
 | RAE、LPL、decoder 与 latent 几何 | 239 | 47 | 186 | 0 |
 | PFR、反事实参考与半群 guidance | 135 | 12 | 51 | 72 |
 | SiT / ImageNet-100 与内部头 | 1309 | 50 | 257 | 827 |
@@ -76,6 +76,7 @@ Markdown 引用检查只解析明确的链接和单个行内本地路径，记�
 - [RAEv2 有限区间 Flow Pullback：理论、数值门槛与配对采样协议](RAEV2_FLOW_PULLBACK_20260905_ZH.md) — `docs/RAEV2_FLOW_PULLBACK_20260905_ZH.md`
 - [RAEv2 Guidance 理论探索归档：从 PFR 迁移到半群 Value](RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md) — `docs/RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md`
 - [RAEv2 guidance 本次研究结题：5%目标未实现](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260906_ZH.md) — `docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260906_ZH.md`
+- [RAEv2 guidance：最终质量结论与归档](RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md) — `docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md`
 - [RAEv2 guidance：当前研究目标](RAEV2_GUIDANCE_GOAL_20260906_ZH.md) — `docs/RAEV2_GUIDANCE_GOAL_20260906_ZH.md`
 - [RAEv2 guidance：重新启动的 3% 目标](RAEV2_GUIDANCE_GOAL_20260907_ZH.md) — `docs/RAEV2_GUIDANCE_GOAL_20260907_ZH.md`
 - [RAEv2：固定 native BF16 heads 的 guidance 混合数值审计（2026-09-06）](RAEV2_GUIDANCE_MIX_NUMERICS_20260906_ZH.md) — `docs/RAEV2_GUIDANCE_MIX_NUMERICS_20260906_ZH.md`
