@@ -99,6 +99,10 @@ def main():
     assert 6 <= ledger['current_round'] <= ledger['maximum_rounds'] == 8
     quality_round = ledger['quality_completed_at_round']
     assert quality_round == 6
+    final_closed = ledger.get('research_closed', False)
+    if final_closed:
+        assert ledger['current_round'] == ledger['research_closed_at_round'] == 8
+        assert ledger['next_round'] is None and ledger['no_automatic_research_restart']
     evidence = {str(p.relative_to(ROOT)): sha(p) for p in [
         index_path, final_audit_path, semantic1k_path, directional_path,
         result_root / 'directional_variance_calibration.json',
@@ -136,6 +140,8 @@ def main():
     result = {'complete': True, 'goal_achieved': False, 'created_unix': time.time(),
               'research_round': ledger['current_round'], 'maximum_rounds': 8,
               'quality_completed_at_round': quality_round,
+              'research_closed_at_user_limit': final_closed,
+              'new_research_requires_new_user_instruction': final_closed,
               'quality_research_closed': True, 'no_further_quality_candidates': True,
               'quality_rows': 30, 'candidate_quality_rows': 26, 'controls_rows': 4,
               'requirements': requirements, 'summaries': summaries,
@@ -152,8 +158,9 @@ def main():
     lines = [
         '# RAEv2 guidance：最终质量结论与归档', '',
         f"第{quality_round}/8轮完成全部质量试验，**未达到 FID 改善至少3%的目标**。"
-        '最后一个原设置的 semantic_add 5K也已完成独立审核。质量研究在此收束，'
-        '剩余轮次仅用于最终核验与Git归档，不新增方法、系数、时间窗或seed。', '',
+        '最后一个原设置的 semantic_add 5K也已完成独立审核。' +
+        ('第8/8轮已按用户上限完成研究收束与归档核验；不再自动开展研究，继续实验需要新的用户指令。'
+         if final_closed else '质量研究在此收束，剩余轮次仅用于最终核验与Git归档，不新增方法、系数、时间窗或seed。'), '',
         '## 结果', '',
         '| 规模 | 原 official FID | 最佳候选 | 候选FID | 相对原official改善 | 推理成本比 |',
         '|---|---:|---|---:|---:|---:|',

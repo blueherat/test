@@ -1,10 +1,12 @@
 {
   "complete": true,
   "goal_achieved": false,
-  "created_unix": 1788768809.15913,
-  "research_round": 7,
+  "created_unix": 1788769311.1329865,
+  "research_round": 8,
   "maximum_rounds": 8,
   "quality_completed_at_round": 6,
+  "research_closed_at_user_limit": true,
+  "new_research_requires_new_user_instruction": true,
   "quality_research_closed": true,
   "no_further_quality_candidates": true,
   "quality_rows": 30,
@@ -198,7 +200,7 @@
     "extra_sample_unconditional_calls": 495000
   },
   "evidence_sha256": {
-    "experiments/results/raev2_guidance_20260907/research_evidence_index.json": "588b2f5f70f675067ceb022a9d899b84a4b8a163f3c214e7b35ac8ddf6195d85",
+    "experiments/results/raev2_guidance_20260907/research_evidence_index.json": "ca0e7c1d7130de112dcc6fde4b7f8673af6f74c5b85c17938845988c2c16fc15",
     "experiments/results/raev2_guidance_20260907/final_semantic_add5k_audit.json": "bc21588a70458f57efcf96e8bebeb638466068e71bf7fd1666c1c6963d9081bf",
     "experiments/results/raev2_guidance_20260907/fid_audit_extended.json": "6a7208aa17bf6f9beb668a4d18b9b71a0e0342171c0adb6a5ae857d016d0005c",
     "experiments/results/raev2_guidance_20260907/directional_variance_confirm5k_audit.json": "39310b1bf41a633a1ee9c55b83cd41cf729817aec06cb72a237633c76df3e2f0",
@@ -210,5 +212,5 @@
   "final_controller_state_sha256": "8fbc97ab44e89fc6735f611866ed7511d77d38bfb0c655fdb69c48e303fca210",
   "cost_control_decision": "Not run: final candidate fails quality against original100-step official; no slower or worse baseline used to manufacture success",
   "timing_limit": "Measured shared-host inference timings; GPU exclusivity was not certified, so small timing differences do not establish speedups",
-  "source_sha256": "b8904d12b0757dfd80ff98e36b90fe7a85d22b27226867f958a80bf4c6c99aad"
+  "source_sha256": "df1156c8989a8ea51176fcabe4ba12ffea9119f42e6ae354f5c5a6a511d0f684"
 }

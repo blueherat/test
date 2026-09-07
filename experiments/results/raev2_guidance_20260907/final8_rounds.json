@@ -1,11 +1,11 @@
 {
-  "updated_unix": 1788768902.768136,
-  "current_round": 7,
+  "updated_unix": 1788769203.7504172,
+  "current_round": 8,
   "maximum_rounds": 8,
   "count_each_subsequent_research_turn": true,
   "goal_achieved": false,
-  "stage": "git_archive_verified_final_round8_pending",
-  "next_round": 8,
+  "stage": "closed_at_user_eight_round_limit_goal_unmet",
+  "next_round": null,
   "policy_document": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
   "no_round_reset_for_debugging_or_waiting": true,
   "round1_evidence": {
@@ -79,5 +79,20 @@
     "quality_still_unmet": true,
     "no_additional_quality_work": true,
     "verification_complete": true
+  },
+  "research_closed": true,
+  "research_closed_at_round": 8,
+  "research_closed_unix": 1788769203.7504172,
+  "no_automatic_research_restart": true,
+  "stop_reason": "User explicitly required closure after at most8 further research rounds; all fixed quality experiments finished below3percent",
+  "new_research_requires_new_explicit_user_instruction": true,
+  "round8_evidence": {
+    "quality_completed_at_round": 6,
+    "final_quality_report": "docs/RAEV2_GUIDANCE_FINAL_CLOSEOUT_20260907_ZH.md",
+    "requirement_audit": "experiments/results/raev2_guidance_20260907/final_goal_requirement_audit.json",
+    "committed_corpus_verification": "experiments/results/raev2_guidance_20260907/round7_git_commit_verification.json",
+    "no_new_fitting_sampling_or_parameter_changes": true,
+    "no_pending_quality_jobs": true,
+    "goal_achieved": false
   }
 }
