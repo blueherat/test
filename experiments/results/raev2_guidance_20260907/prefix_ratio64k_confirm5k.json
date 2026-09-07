@@ -1,0 +1,137 @@
+{
+  "complete": true,
+  "pid": 2793979,
+  "plan": {
+    "created_unix": 1788757018.587918,
+    "decision_before_new_head_and_any_fid": true,
+    "primary_requested_sample_counts": [
+      1000,
+      5000
+    ],
+    "screen1k": {
+      "seed": 202609071,
+      "samples": 1000
+    },
+    "independent5k": {
+      "seed": 202609072,
+      "samples": 5000,
+      "run_regardless_of_1k_fid_if_entry_gradient_parity_and_whole1k_pass": true
+    },
+    "rationale": "User goal permits either1K or5K; existing all-block evidence shows finite-N ranking changes; compare both unchanged, report both",
+    "head_formula_strength_and_time_schedule_unchanged": true,
+    "prerequisites": "one fixed64K fit passes original entry, numerical gradient audit and original official8 parity, finite complete1K",
+    "no_new_seed_coefficient_window_layer_or_temperature_selection": true,
+    "baseline5k": {
+      "study": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k",
+      "official_fid": 6.9497684777115865,
+      "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+      "noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "summary_sha256": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+      "metrics_sha256": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520"
+    },
+    "cost_policy": "reuse original official baseline; disclose all preparation/inference costs; quality success still requires independent metric audit and appropriate measured cost control",
+    "no_automatic_goal_completion": true,
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "95295663bb321a719a402cc3baa6d5969c98c3b352a1d6ab676d0e0622f0de2f",
+      "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "8ab5964268d017edbac01dea8c352ace495e02e5a0a293e3e82d860dba62e6b5",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+      "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+      "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+      "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+      "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_backward_precision_diagnostic/execution.json": "06c323424389cfb8d3999ba2274ce830f2e1867a6c059596e21aeb21c3cb14f0"
+    },
+    "recovery": {
+      "created_unix": 1788758373.3732364,
+      "previous_plan_sha256": "289703e2c92424275e06180fe4476ea536f63b47dcff90cad864abbca74c1ef8",
+      "diagnostic_sha256": "06c323424389cfb8d3999ba2274ce830f2e1867a6c059596e21aeb21c3cb14f0",
+      "only_change": "keep FP32 and TF32-off context active during autograd backward",
+      "no_new_head_formula_data_or_tolerances": true
+    }
+  },
+  "stage": "paired1k_and_independent5k_complete_requires_quality_and_cost_audit",
+  "prerequisite_pid": 2704867,
+  "prerequisite_process_identity": null,
+  "started_unix": 1788758373.3736007,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_prefix_ratio64k_quality.py": "95295663bb321a719a402cc3baa6d5969c98c3b352a1d6ab676d0e0622f0de2f",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_guidance.py": "8ab5964268d017edbac01dea8c352ace495e02e5a0a293e3e82d860dba62e6b5",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_gradient.py": "13c549b6c5c15d53a025822abdce8a9f05983f24371c6cac1a47f9c94282d774",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_prefix_ratio64k_screen.py": "3081fb8ad4f077881777f8a37827fdecca05183ca8cdc7922fdf9d8de28bafed",
+    "/home/zhoushunyu/eqvae/experiments/raev2_prefix_ratio_features.py": "9d33e963294c7330125432fcc83d08a9321312897bfb2f96d92ddddaed980732",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/integration.patch": "d5ebb3b61849543784de49c1fb0c58ebce45e43f5d6969c24ed74c168805f261",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_prefix_ratio64k_20260907/manifest.json": "a434f68e1fd171f27a536a9efd2c8aae36e78d17aa4d88c4a83eedd52ca75468",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_backward_precision_diagnostic/execution.json": "06c323424389cfb8d3999ba2274ce830f2e1867a6c059596e21aeb21c3cb14f0"
+  },
+  "goal_achieved": false,
+  "integration_applied": true,
+  "head_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+  "child_pid": 2820517,
+  "command": [
+    "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py",
+    "--output",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_confirm5k",
+    "--samples",
+    "5000",
+    "--seed",
+    "202609072",
+    "--modes",
+    "prefix_ratio64k"
+  ],
+  "screen1k_metrics": [
+    {
+      "branch": "prefix_ratio64k",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_screen1k/prefix_ratio64k/samples.npz",
+      "sample_sha256": "38d237f035d57b1148bbb799956313daceeee44b897efe359f9ffd548c330826",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 57.54489288330078,
+      "fid": 38.57656983257465
+    }
+  ],
+  "confirm5k_metrics": [
+    {
+      "branch": "prefix_ratio64k",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_confirm5k/prefix_ratio64k/samples.npz",
+      "sample_sha256": "40e5d2cbde99d22bd51f882a6cbd169c361c27bd6dd5ccbc224d05e4c354dc6b",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 156.79081115722656,
+      "fid": 6.926132977365967
+    }
+  ],
+  "confirm5k_summary": {
+    "complete": true,
+    "mode": "prefix_ratio64k",
+    "count": 5000,
+    "seed": 202609072,
+    "steps": 100,
+    "trajectory_seconds_sum": 7451.6225888454355,
+    "decode_seconds_sum": 17.944230403751135,
+    "sample_model_calls": 500000,
+    "extra_sample_weak_continuations": 0,
+    "sample_critic_backward_calls": 0,
+    "sample_ratio_backward_calls": 0,
+    "extra_sample_unconditional_calls": 0,
+    "sample_prefix_forward_calls": 500000,
+    "sample_prefix_backward_calls": 500000,
+    "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+    "sample_sha256": "40e5d2cbde99d22bd51f882a6cbd169c361c27bd6dd5ccbc224d05e4c354dc6b"
+  },
+  "paired_official5k": {
+    "branch": "official",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+    "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 157.57569732666016,
+    "fid": 6.9497684777115865
+  },
+  "improvement5k_vs_official_percent": 0.34009047094764044,
+  "inference_cost5k_ratio": 2.3538069148364276,
+  "elapsed_seconds": 2446.851760149002
+}

@@ -1,11 +1,11 @@
 {
-  "updated_unix": 1788758591.9561079,
-  "current_round": 1,
+  "updated_unix": 1788761123.9669,
+  "current_round": 2,
   "maximum_rounds": 8,
   "count_each_subsequent_research_turn": true,
   "goal_achieved": false,
-  "stage": "fixed_prefix1k_running_unchanged5k_and_two_legacy5k_queued",
-  "next_round": 2,
+  "stage": "round2_prefix_both_fids_audited_unmet_legacy5k_live",
+  "next_round": 3,
   "policy_document": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
   "no_round_reset_for_debugging_or_waiting": true,
   "round1_evidence": {
@@ -13,5 +13,15 @@
     "gradient": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/prefix_ratio64k_gradient_audit.json",
     "precision_recovery": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/prefix_ratio64k_backward_recovery.json",
     "legacy5k_plan": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/final8_legacy5k_plan.json"
+  },
+  "previous_turn_classification": "progress",
+  "round2_evidence": {
+    "prefix1k_audit": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/prefix_ratio64k_screen1k_audit.json",
+    "rejected_scalar_calibration": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/prefix_ratio64k_probability_calibration.json",
+    "current_historical_index": "/home/zhoushunyu/eqvae/docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md",
+    "conditional_variance_protocol": "/home/zhoushunyu/eqvae/docs/RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md",
+    "conditional_variance_not_started": true,
+    "prefix5k_audit": "experiments/results/raev2_guidance_20260907/prefix_ratio64k_confirm5k_audit.json",
+    "prefix5k_improvement_percent": 0.34009047094764044
   }
 }

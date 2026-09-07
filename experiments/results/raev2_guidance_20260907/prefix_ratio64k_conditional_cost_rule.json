@@ -1,0 +1,25 @@
+{
+  "created_unix": 1788760038.027388,
+  "round": 2,
+  "conditional_only_if_fixed_prefix5k_quality_passes": true,
+  "decision_before_prefix5k_fid": true,
+  "no_new_images_or_sampler_changes": true,
+  "fixed_control": "native IG Heun with final Euler step",
+  "step_selection_uses_only_already_measured_1k_inference_times_not_FID": true,
+  "estimated_main_calls_to_match_inference": 235.90330465495657,
+  "steps": 118,
+  "main_calls_per_image": 235,
+  "minimum_positive_time": 0.064,
+  "time_floor": 0.05,
+  "target_measured_cost_ratio_range": [
+    0.95,
+    1.05
+  ],
+  "must_measure_actual_control_cost_and_retain_original100_baseline": true,
+  "do_not_apply_stale_heun_patch": true,
+  "all_preparation_costs_remain_separately_disclosed_not_hidden_or_called_matched": true,
+  "sources": {
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_screen1k/official/summary.json": "f9a2933345449a1853e154028c610ac56463fd5e6c1d79a4a654a5f39e9cb94b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_screen1k/prefix_ratio64k/summary.json": "c42159151d7e0d431b65f8fdd6e9b195c0c8bacc81a138567e3f8daba6af1132"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "complete": true,
+  "plan": {
+    "created_unix": 1788758940.4049807,
+    "round": 2,
+    "global_fitted_scalars": 1,
+    "fit_classes": "even ImageNet class ids in original8K heldout",
+    "check_classes": "odd ImageNet class ids in original8K heldout",
+    "prior_holdout_used_for_original_entry_not_a_new_data_draw": true,
+    "fit_on_scaled_logistic_likelihood_not_fid": true,
+    "exact_training_identity": "d/dalpha R_train(alpha*w)|1 = -ridge*||augmented_w||^2",
+    "entry_rule": "one-sided shrinkage correction: alpha-2*SE>1 and odd-class loss-change+2*SE<0",
+    "root_solver": "brentq on alpha>=0; expanding bracket is numerical optimization, no sampling",
+    "running_unit_strength1k_and5k_remain_unchanged": true,
+    "no_automatic_sampling": true,
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/calibrate_raev2_prefix_ratio64k.py": "c9697af9596679c125014b5b68ebc70e719fb4f9783e8ff7061cc11891325af8",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/head.pt": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_fit/execution.json": "280009181482a29458646e951f4c923ba0a029cd67be295b0429ae72775d8d7c",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/prefix_ratio64k_features/execution.json": "2dc088fc39cc4933046340fb960cae24bbc693fbf65df563ae71772ec25e9db9"
+    }
+  },
+  "alpha": 1.3005569600892848,
+  "alpha_class_cluster_se": 0.1617787849695261,
+  "stationarity": 8.526512829121202e-17,
+  "odd_class_loss_change": 0.2103900666326507,
+  "odd_class_loss_change_class_se": 0.09098378333056871,
+  "entry_condition_passed": false,
+  "checkpoint_sha256": "4c7c53fa49ab9dfca8378bdfeaccb879e591eb0d53f21274e85ece8328e9da3b",
+  "diagnostics": {
+    "train": {
+      "loss_at_one": -2.22083830858804,
+      "score_at_one": -1.0799939172672748,
+      "curvature_at_one": 2.154810011230323,
+      "ridge_predicted_score": -1.0799935521156405,
+      "stationarity_error_bound": 0.0006161899724662436
+    },
+    "validation": {
+      "loss_at_one": -1.2157890575431036,
+      "score_at_one": -0.10634557320671943,
+      "curvature_at_one": 2.096991041743828
+    }
+  },
+  "cpu_elapsed_seconds": 7.118889462202787,
+  "no_fid_evaluated_or_guidance_modified": true
+}
