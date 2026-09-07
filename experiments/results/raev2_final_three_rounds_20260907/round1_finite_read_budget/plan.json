@@ -1,0 +1,35 @@
+{
+  "protocol": "raev2_finite_read_budget_writer_v1",
+  "hypothesis": "At unchanged native latent-write budget and no larger finite Full read response, orient more of that response along the frozen native guidance message.",
+  "reader": "Full at the original successor noise time s, unchanged class and B8.",
+  "objective": "Maximize dot(M/||M||, Full(z_none+delta,s)-Full(z_none,s)).",
+  "constraints": "||delta||<=||z_IG-z_Full|| and ||Full(z_none+delta,s)-Full(z_none,s)||<=native finite response norm.",
+  "start": "Unchanged original native IG successor, feasible by construction.",
+  "iterations": 4,
+  "line_search": [
+    1.0,
+    0.5,
+    0.25,
+    0.125
+  ],
+  "optimization": "Conditional-gradient ball vertex at current native state, four finite trial mixtures, best feasible improving trial per sample, recomputed assembled B8 forward after each update. Stop if an iteration accepts no sample.",
+  "numerical": "Input ball vertices are inset by a FP32 addition-error envelope; actual FP64 norms enforce the original budget. No numerical allowance for a larger read-response energy.",
+  "derivative_status": "Native BF16 autograd is a proposal heuristic, not the exact derivative of a discontinuous quantized function or a first-order extrapolation in IG strength.",
+  "cohort": "Reuse all 16 frozen B8 batches and all eight write times from finite_retention_v1; this is an adaptive mechanism follow-up, not independent confirmation.",
+  "continuation": "After the optimized one-time write, Full alone on every remaining native query to zero.",
+  "triage": "For a possible quality trial require finite constraints/monotonicity, improved terminal message projection at >=6/8 fixed time groups, and no lower mean cosine to the complete remaining-IG terminal contrast. These are mechanism criteria, not quality guarantees; full online solver cost must also be assessed.",
+  "no_fid": true,
+  "parameter_training": false,
+  "precision": "Original native BF16/B8 with TF32 on; FP32 latent arithmetic.",
+  "source": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907",
+  "source_analysis_sha256": "53bc2e92cf8ab2ad8b18009e0c8a4049f5bc5f97e69506700f599e198c7cc435",
+  "source_audit_sha256": "70ac614593ece21c95f252417ed29d39f6dae519679a6c60e53540b94ef1ffd8",
+  "source_sha256": {
+    "/home/zhoushunyu/eqvae/experiments/raev2_finite_read_budget_writer.py": "fb2a1a4253d6dd18d86ed1abf5b138852d493ccd66739f8b2a06b1a9ac417e4a",
+    "/home/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention.py": "f2964bfa4b950f1203d4624173239c2df797fde8533a93221a088c3bd8d14ac5",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  }
+}

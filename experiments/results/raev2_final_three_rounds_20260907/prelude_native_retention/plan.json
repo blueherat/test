@@ -1,0 +1,43 @@
+{
+  "protocol": "raev2_finite_guidance_retention_v1",
+  "question": "Does one actual native IG write change subsequent Full-only readouts in the frozen message direction?",
+  "query_indices": [
+    4,
+    16,
+    32,
+    48,
+    64,
+    80,
+    92,
+    96
+  ],
+  "batches_per_query": 2,
+  "batch": 8,
+  "samples": 128,
+  "ranks": 4,
+  "selection": "Smallest two SHA256 scores per query over original B8 batch IDs; metadata only.",
+  "selection_namespace": "raev2-finite-retention:202609074",
+  "arms": [
+    "none_then_full",
+    "one_ig_then_full",
+    "all_ig"
+  ],
+  "write": "One unchanged native IG Euler step; its difference from the Full Euler step is the actual successor-state intervention.",
+  "reader": "Full alone at all remaining original query times, with class unchanged.",
+  "message": "Frozen native IG clean minus source Full clean, in FP32.",
+  "primary_readout": "Every Full readout and terminal latent: finite difference projected on the frozen clean message, divided by message squared norm.",
+  "secondary": "One-write terminal contrast projected on full remaining-IG terminal contrast; a response statistic, not information fraction or quality.",
+  "independence": "Previously used exploratory actual-state bank; two B8 clusters per time, not an independent quality confirmation.",
+  "rules": "No time selection after reading values; no derivative, scale search, optimization, images or FID. No automatic quality-run promotion.",
+  "precision": "Native BF16 heads and IG mixing, FP32 states/Euler, TF32 on; original B8 shape.",
+  "created_at": "2026-09-07T13:34:31.802759+00:00",
+  "source_sha256": {
+    "/home/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention.py": "f2964bfa4b950f1203d4624173239c2df797fde8533a93221a088c3bd8d14ac5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/experiments/cache_raev2_actual_ratio_states.py": "785f95716109e3fd8633396eda636ee0287d69b0c9066550e26c9e020ed9db4c",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/utils/guidance_utils.py": "bcba1a65897faa7545f9e54a8360583dfae34542d52128ec2062d09ee824a577"
+  }
+}

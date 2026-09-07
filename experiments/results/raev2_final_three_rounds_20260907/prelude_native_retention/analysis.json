@@ -1,0 +1,564 @@
+{
+  "complete": true,
+  "samples": 128,
+  "readout_records": 5760,
+  "groups": [
+    {
+      "write_query": 4,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.00878131300331122,
+        "min": -0.0017788599824368762,
+        "max": 0.062078502975025575
+      },
+      "first_read_cosine": {
+        "mean": 0.08852827773439625,
+        "min": -0.021414459043070537,
+        "max": 0.5134029335847679
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.05332660675048828,
+        "min": 0.042011260986328125,
+        "max": 0.07558059692382812
+      },
+      "terminal_projection": {
+        "mean": 0.017185894757461063,
+        "min": 0.0003593801491340668,
+        "max": 0.07646643489381143,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.040503028638856686,
+        "min": 0.0004288465914780523,
+        "max": 0.09243612692973167,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.45389955868813925,
+        "min": 0.21129584023915604,
+        "max": 1.6036572482562228,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.005632646613642902,
+        "min": -0.003995637475391769,
+        "max": 0.03489793191932631,
+        "positive_count": 12
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.07959327886581355,
+        "min": -0.10385523338395154,
+        "max": 0.39480132889706043,
+        "positive_count": 12
+      },
+      "write_rms_mean": 8.954717624540305e-05,
+      "message_rms_mean": 0.06576177618814516
+    },
+    {
+      "write_query": 16,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.01706537707647536,
+        "min": 0.006301752853176035,
+        "max": 0.03283877964874553
+      },
+      "first_read_cosine": {
+        "mean": 0.22420229195756497,
+        "min": 0.11154399931478573,
+        "max": 0.36165566999589605
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.10488390922546387,
+        "min": 0.07840728759765625,
+        "max": 0.13483428955078125
+      },
+      "terminal_projection": {
+        "mean": 0.022874610780711083,
+        "min": 0.012733143517149543,
+        "max": 0.05140229834392845,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.0726446936371127,
+        "min": 0.03084333458338923,
+        "max": 0.16356925552396967,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.4303268686104566,
+        "min": 0.08338799404234314,
+        "max": 1.292533392102595,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.018315802141228105,
+        "min": 0.0017274093352634993,
+        "max": 0.044735404912104475,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.18298697347547657,
+        "min": 0.03880050311891859,
+        "max": 0.30601317419497265,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.0002112071056703981,
+      "message_rms_mean": 0.12081335601270163
+    },
+    {
+      "write_query": 32,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.015396002104746937,
+        "min": 0.004961128823498385,
+        "max": 0.036242069648349265
+      },
+      "first_read_cosine": {
+        "mean": 0.20152956800023888,
+        "min": 0.08460513280003863,
+        "max": 0.35187611870497215
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.17282533645629883,
+        "min": 0.13690948486328125,
+        "max": 0.1960906982421875
+      },
+      "terminal_projection": {
+        "mean": 0.01813981942592828,
+        "min": 0.007856386221274193,
+        "max": 0.03988339239847532,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.10284376464462827,
+        "min": 0.038816968208284855,
+        "max": 0.18739349621432844,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.22120982010025825,
+        "min": 0.06317696127614941,
+        "max": 0.6567613988481636,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.01649198747279651,
+        "min": 0.005846538787412394,
+        "max": 0.04465885093367581,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.19191357573426945,
+        "min": 0.04116441926377736,
+        "max": 0.29059501465931914,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.0004056820496203916,
+      "message_rms_mean": 0.15697032294639449
+    },
+    {
+      "write_query": 48,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.011180618846288987,
+        "min": 0.007278518025346117,
+        "max": 0.015291502908379682
+      },
+      "first_read_cosine": {
+        "mean": 0.1606337552680866,
+        "min": 0.09794080078122692,
+        "max": 0.20150400755292536
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.2573091983795166,
+        "min": 0.22447967529296875,
+        "max": 0.28847503662109375
+      },
+      "terminal_projection": {
+        "mean": 0.015127985286387693,
+        "min": 0.009858199620570444,
+        "max": 0.02659482122169484,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.1340881197590603,
+        "min": 0.0828350132914736,
+        "max": 0.16664923485278607,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.11959591262065973,
+        "min": 0.0750686716171888,
+        "max": 0.32105772866981974,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.015948976913687202,
+        "min": 0.008003867245124068,
+        "max": 0.0474820994970715,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.21397703072098356,
+        "min": 0.07930311510843906,
+        "max": 0.31847794450207867,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.0006914153232532997,
+      "message_rms_mean": 0.16431032926495528
+    },
+    {
+      "write_query": 64,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.01039604571791069,
+        "min": 0.006758422749009828,
+        "max": 0.014792458345009632
+      },
+      "first_read_cosine": {
+        "mean": 0.15048437309614707,
+        "min": 0.10342018075688994,
+        "max": 0.19669494315637998
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.42621660232543945,
+        "min": 0.406951904296875,
+        "max": 0.4472236633300781
+      },
+      "terminal_projection": {
+        "mean": 0.01278792221286167,
+        "min": 0.010370948093145193,
+        "max": 0.015389240685127505,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.16209117511006907,
+        "min": 0.14088084741494902,
+        "max": 0.19161147914445428,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.07889110336524857,
+        "min": 0.06950398466232585,
+        "max": 0.09152932733269362,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.012210761327642542,
+        "min": 0.009557618864170848,
+        "max": 0.01606205219017584,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.20667276535420095,
+        "min": 0.1698540989841893,
+        "max": 0.25537890680387365,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.0014454904487508835,
+      "message_rms_mean": 0.17952966277378307
+    },
+    {
+      "write_query": 80,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.01430842475423111,
+        "min": 0.011817776045460174,
+        "max": 0.020930390719671052
+      },
+      "first_read_cosine": {
+        "mean": 0.18461040130593426,
+        "min": 0.1405698400092178,
+        "max": 0.2884740317938136
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.6627392768859863,
+        "min": 0.62554931640625,
+        "max": 0.6879730224609375
+      },
+      "terminal_projection": {
+        "mean": 0.019845953913646297,
+        "min": 0.017598418961270724,
+        "max": 0.02482946471201201,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.238723474238916,
+        "min": 0.19117444942011294,
+        "max": 0.30977607571505084,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.0835469684064061,
+        "min": 0.07719613668255777,
+        "max": 0.09205424163454787,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.017764009074150842,
+        "min": 0.01608590069696801,
+        "max": 0.01892108102890921,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.25512527973765214,
+        "min": 0.2280073310609126,
+        "max": 0.3229558145241489,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.003314108567617122,
+      "message_rms_mean": 0.15443707017121006
+    },
+    {
+      "write_query": 92,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.0542586629603394,
+        "min": 0.04698642725634271,
+        "max": 0.06432496728023658
+      },
+      "first_read_cosine": {
+        "mean": 0.4981548806399268,
+        "min": 0.429558121267212,
+        "max": 0.5764875339753595
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.883460521697998,
+        "min": 0.869476318359375,
+        "max": 0.8936882019042969
+      },
+      "terminal_projection": {
+        "mean": 0.0678012756317276,
+        "min": 0.06148310993789313,
+        "max": 0.07758180498181316,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.5599000920179484,
+        "min": 0.49880464259001905,
+        "max": 0.6199460590252498,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.12109275433387538,
+        "min": 0.11392030438818031,
+        "max": 0.13036197021104406,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.06405090579914448,
+        "min": 0.06145689230688875,
+        "max": 0.06613150441761138,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.5405987681621445,
+        "min": 0.49306644245805487,
+        "max": 0.5911040647228555,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.01097158551628678,
+      "message_rms_mean": 0.1307813140240735
+    },
+    {
+      "write_query": 96,
+      "samples": 16,
+      "batch_clusters": 2,
+      "first_read_projection": {
+        "mean": 0.17448592406512423,
+        "min": 0.16474076342384913,
+        "max": 0.18932371689529665
+      },
+      "first_read_cosine": {
+        "mean": 0.8287351937176055,
+        "min": 0.8176852155319467,
+        "max": 0.8508400059587653
+      },
+      "first_quantized_input_changed_fraction": {
+        "mean": 0.9374113082885742,
+        "min": 0.9291954040527344,
+        "max": 0.94317626953125
+      },
+      "terminal_projection": {
+        "mean": 0.18038369763147516,
+        "min": 0.17345309047005114,
+        "max": 0.19170213071979728,
+        "positive_count": 16
+      },
+      "terminal_cosine": {
+        "mean": 0.8111655479213717,
+        "min": 0.8002667752378428,
+        "max": 0.8225438372399781,
+        "positive_count": 16
+      },
+      "terminal_relative_norm": {
+        "mean": 0.22237898345922114,
+        "min": 0.213722230561529,
+        "max": 0.23306007782277985,
+        "positive_count": 16
+      },
+      "one_relative_to_all_projection": {
+        "mean": 0.20757200062175957,
+        "min": 0.20470822093741953,
+        "max": 0.21147660171520055,
+        "positive_count": 16
+      },
+      "one_relative_to_all_cosine": {
+        "mean": 0.8267776196679055,
+        "min": 0.814273940303816,
+        "max": 0.8418601199262201,
+        "positive_count": 16
+      },
+      "write_rms_mean": 0.022787559331667477,
+      "message_rms_mean": 0.11029175354914467
+    }
+  ],
+  "goal_complete": false,
+  "quality_evaluated": false,
+  "input_gradients": 0,
+  "interpretation": "Finite paired model response to one unchanged native IG impulse. No FID, semantic correctness, mutual information or small-perturbation theorem is inferred.",
+  "max_finite_recurrence_roundoff_rms": 4.952462842691222e-08,
+  "sample_model_calls": 17760,
+  "worker_seconds": [
+    32.631858789827675,
+    32.379836732987314,
+    25.540250385180116,
+    25.878330972976983
+  ],
+  "rank_checks": [
+    [
+      {
+        "ordinal": 0,
+        "native_ig_parity": true,
+        "cached_prefix_bitwise": true
+      }
+    ],
+    [
+      {
+        "ordinal": 1,
+        "native_ig_parity": true,
+        "cached_prefix_bitwise": true
+      }
+    ],
+    [
+      {
+        "ordinal": 2,
+        "native_ig_parity": true,
+        "cached_prefix_bitwise": true
+      }
+    ],
+    [
+      {
+        "ordinal": 3,
+        "native_ig_parity": true,
+        "cached_prefix_bitwise": true
+      }
+    ]
+  ],
+  "artifacts": [
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank0/batch00",
+      "summary_sha256": "b3ba653de7f9133f05f734523b5d98996541ba9996b5fbf61c2c53672a311ff4",
+      "snapshots.npz": "4173694dc03419a9d5e252d3daf6752dbc73beeed0a3fa1b9695873bb860cccc",
+      "readouts.csv": "edf4714cdcca2b66041a25cc7e0d3467aa6987516d744bc7e642f909d7b05cdd"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank1/batch01",
+      "summary_sha256": "ac4c4735f10906486a20dced6ccf8230e6cb33808e6ea3cbccf91342f80314c7",
+      "snapshots.npz": "06dc61f4ee8b56e2c17c1b01044b54e46a96bf0ed324d8495d1540ade75cb781",
+      "readouts.csv": "736b14344e180bf92ef404631cd42f1b05e001fe03a04bd9e997f4c18515cbac"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank2/batch02",
+      "summary_sha256": "37e82ead57bed0f5b6e519f512815d4986035abf2c51509e8f18ad80ad6ac16d",
+      "snapshots.npz": "d146e80bf5a2c28d57f11203d7e861858d505eecce2405f51cd45979fb3d4c57",
+      "readouts.csv": "cff8465130e43bec97441e4caa833680e8e49925fe2bf2fd9027b96674e2fa1e"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank3/batch03",
+      "summary_sha256": "b483e60e46a8b000b0f208fb02969dbceadcfb0fdab34ef2d84a33ab2f52f057",
+      "snapshots.npz": "2450cfb24e4dfd5c16d49f583dc7d7629a8ad5f498be2cdb8a81283fa5dd6a7f",
+      "readouts.csv": "2163e6108735375990c982ec312dd0efba8271c9bbe1549aea730bd74733f3d9"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank0/batch04",
+      "summary_sha256": "5eab0156fe9502e79a37d6908a67898761b42b6e5e6cada19ed37a35cf63ffdf",
+      "snapshots.npz": "c152a1cd5be7299baaeadd8fb94a89792fd0ea4f026c5d295d961bbe8ee4951e",
+      "readouts.csv": "021fc2dad9711c3bcb57bdc24a1dea0af348b5c548902aed426b9789561517d4"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank1/batch05",
+      "summary_sha256": "f7a7c5d423c42989fe0d97875fea21be0a00a5d529fb16faf40f2c11141162a5",
+      "snapshots.npz": "972822b1bc13b6eab50156a3d4918baed6895aefff2b889e2242ee79e3e949ce",
+      "readouts.csv": "addc1afa17fc2efe8d809870656a5813def65aa5350bbf26992ded825d530220"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank2/batch06",
+      "summary_sha256": "64b1cab3cb5e2fc0bfecdb0155dca466cf98a0d6972f64eb491ca55eb35d28e0",
+      "snapshots.npz": "1311391f345810cd2de358faf78f337d7527bc9ddceee966617d10d9ef13e560",
+      "readouts.csv": "e26568190ad3a6755f85787b87f09f560bb06bf085f1950089b622cdf22554fe"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank3/batch07",
+      "summary_sha256": "575bb37c5353d20bade68a67e19dd394e03909160de8ff55133400e6f7c7fad2",
+      "snapshots.npz": "89c36776c90cffc9e0b0a449bbf5a6797979a62c42429d0cbbbd49d8b294985b",
+      "readouts.csv": "f8ef1b74f1387ea1113697a00a5aa5ae6a57f6ffc29ff19b0bcf8883648a97c3"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank0/batch08",
+      "summary_sha256": "def1de30d5fc6308316c659b5d0da90844577841541344b65393c969ae85cc1e",
+      "snapshots.npz": "7836bd15fbc76f0b99274ad317710aa452e54de5f390e5ff0f4f5a1e81f36ee8",
+      "readouts.csv": "a475a2c5be551e669d3e49b04c2bc21ef8ac1f6caf2abf07d683aeb041547876"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank1/batch09",
+      "summary_sha256": "e0d098d05b8e1a63dfa3be90f9f2799dd468f1cca5f17d3e13bc5b143a8f1c46",
+      "snapshots.npz": "2f397e94500aef5fbeec2a1377bb7b635761e04e019355ee459ddb2fba41f938",
+      "readouts.csv": "5825cd41041d02e1cf823ceb119cf57b95db76b7b70d1e74499f5c0a965535de"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank2/batch10",
+      "summary_sha256": "b6dfc627fbe1bdfcfe704d6a16888cf1dcbe95aa1559d943afe8a56db8a9d144",
+      "snapshots.npz": "4bc2528dcda78bd4a1a3153c78e0917a7f224ceb369a6a53d8675ece48b408e2",
+      "readouts.csv": "128db084bbd4655bff7d9c946f2429f1384ff3902c66f35b765ae1a613ec06a8"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank3/batch11",
+      "summary_sha256": "9009b4b1744486c2754fceb2b0d0cf50f4ba0d28d8ac12684c555b2ea8923cbe",
+      "snapshots.npz": "fa59bf10f386604c270ecf33c079190325747524062fa699e39319f8af86bd78",
+      "readouts.csv": "d2614cf7595e58e9d8a409b4bbb1aa65ddd3f9bf3771a6274cabfffcfc89676d"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank0/batch12",
+      "summary_sha256": "70abec77bf4e7003d6fbb4f55b505906895b9b633c8e168eade4ecc950bb5943",
+      "snapshots.npz": "64199212ed5b3be4e3202fc323348340b95abf0bc38620affe4d5f034351044f",
+      "readouts.csv": "e90c9ecfe5b29113aad4e9adad04c558862632cb94ef112d1efa2c80b34ec64b"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank1/batch13",
+      "summary_sha256": "0eef6ccd8e60cbc237a9981e198b893a1f0f83dff3807dde1310484dce9a8984",
+      "snapshots.npz": "cf502f291e8e2417d6f00af5d19527eae9ed67b757df2f3d2984077e0b0fb690",
+      "readouts.csv": "b89419832c0d34e80b3792752680d598c19713708832722571ad97d88c608206"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank2/batch14",
+      "summary_sha256": "3e2eea76a72dfc56b3bfbfadbf7e35ca9717b7b4f3c89eefd89ad290581bc700",
+      "snapshots.npz": "2d04d9f225eaf040ea3368dfc723e3d210862fc8b3c6985500b6c6c30f9c9ce7",
+      "readouts.csv": "f9875df8dadc60b7036291c3c77496902159006d1ca1c4dc2dff50c149bc5e45"
+    },
+    {
+      "directory": "/data/users/zhoushunyu/eqvae/experiments/raev2_finite_guidance_retention_20260907/rank3/batch15",
+      "summary_sha256": "673c1b3ce20cfcd041e754d758a4527cbacbbd21fe5ac18d1077132151547dc4",
+      "snapshots.npz": "bd36c0eb46d299ea899e4a58d54a4b92e9d792b1f153def16e90a0e44ae898b1",
+      "readouts.csv": "9dba61ec6c9cb82591ee66ee404412c95a2d6c539aece21d171ed58410347f50"
+    }
+  ],
+  "prepared_sha256": "cf2e9166430c177586c5e19e1fab262be8a1c4af4cb3ee04f9436b32bf6a9da0"
+}

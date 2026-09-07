@@ -1,0 +1,1022 @@
+{
+  "complete": true,
+  "mode": "official",
+  "samples": 8,
+  "sample_sha256": "b461de11cfeb17e820c8a7bc9bdef50cd5f158b5bb1a6264aa99017430499c16",
+  "trajectory_seconds": 5.0464023179374635,
+  "decode_seconds": 0.029065151698887348,
+  "total_seconds": 5.173609039280564,
+  "sample_model_calls": 800,
+  "prefix_sample_calls": 0,
+  "inactive_current_prefix_calls": 0,
+  "initial_noise": [
+    {
+      "batch": 0,
+      "noise_sha256": "7f719610c5a61042646a3944d1f82b38f6dc8ba0d27bd11c41e5154014bb770d",
+      "labels_sha256": "fece8d601cd4c9020e24f9e4a47feedefb2bceff5e9798d8056aea8700052eaa"
+    }
+  ],
+  "first_batch_diagnostics": [
+    {
+      "step": 0,
+      "time": 1.0,
+      "future_time": 0.9987389445304871,
+      "message_rms": 0.07409979403018951,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 11515.000234874582
+    },
+    {
+      "step": 1,
+      "time": 0.9987389445304871,
+      "future_time": 0.9974554777145386,
+      "message_rms": 0.07011228799819946,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 10309.03960936244
+    },
+    {
+      "step": 2,
+      "time": 0.9974554777145386,
+      "future_time": 0.996148943901062,
+      "message_rms": 0.06752769649028778,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 9562.991791983039
+    },
+    {
+      "step": 3,
+      "time": 0.996148943901062,
+      "future_time": 0.9948186874389648,
+      "message_rms": 0.06639924645423889,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 9246.049086443585
+    },
+    {
+      "step": 4,
+      "time": 0.9948186874389648,
+      "future_time": 0.9934640526771545,
+      "message_rms": 0.06692269444465637,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 9392.403372498997
+    },
+    {
+      "step": 5,
+      "time": 0.9934640526771545,
+      "future_time": 0.9920844435691833,
+      "message_rms": 0.06907609850168228,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 10006.575798280437
+    },
+    {
+      "step": 6,
+      "time": 0.9920844435691833,
+      "future_time": 0.9906790852546692,
+      "message_rms": 0.07240331918001175,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 10993.775481247045
+    },
+    {
+      "step": 7,
+      "time": 0.9906790852546692,
+      "future_time": 0.9892473220825195,
+      "message_rms": 0.07637535035610199,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 12233.094346492537
+    },
+    {
+      "step": 8,
+      "time": 0.9892473220825195,
+      "future_time": 0.9877883195877075,
+      "message_rms": 0.08101727068424225,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 13765.281819875821
+    },
+    {
+      "step": 9,
+      "time": 0.9877883195877075,
+      "future_time": 0.9863013625144958,
+      "message_rms": 0.08599965274333954,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 15510.409896732557
+    },
+    {
+      "step": 10,
+      "time": 0.9863013625144958,
+      "future_time": 0.9847856163978577,
+      "message_rms": 0.09090341627597809,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 17329.67231493469
+    },
+    {
+      "step": 11,
+      "time": 0.9847856163978577,
+      "future_time": 0.9832402467727661,
+      "message_rms": 0.09544839709997177,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 19105.88736516808
+    },
+    {
+      "step": 12,
+      "time": 0.9832402467727661,
+      "future_time": 0.9816642999649048,
+      "message_rms": 0.10026063024997711,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 21080.978166766763
+    },
+    {
+      "step": 13,
+      "time": 0.9816642999649048,
+      "future_time": 0.9800570011138916,
+      "message_rms": 0.10488966852426529,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 23072.53854678524
+    },
+    {
+      "step": 14,
+      "time": 0.9800570011138916,
+      "future_time": 0.9784172773361206,
+      "message_rms": 0.10979511588811874,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 25281.099364102964
+    },
+    {
+      "step": 15,
+      "time": 0.9784172773361206,
+      "future_time": 0.9767442345619202,
+      "message_rms": 0.11420369893312454,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 27352.072540542547
+    },
+    {
+      "step": 16,
+      "time": 0.9767442345619202,
+      "future_time": 0.9750366806983948,
+      "message_rms": 0.11878423392772675,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 29590.172365418282
+    },
+    {
+      "step": 17,
+      "time": 0.9750366806983948,
+      "future_time": 0.9732937812805176,
+      "message_rms": 0.12323934584856033,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 31851.41004219639
+    },
+    {
+      "step": 18,
+      "time": 0.9732937812805176,
+      "future_time": 0.9715142250061035,
+      "message_rms": 0.12778693437576294,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 34245.4431835957
+    },
+    {
+      "step": 19,
+      "time": 0.9715142250061035,
+      "future_time": 0.9696969985961914,
+      "message_rms": 0.13189437985420227,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 36482.31718071875
+    },
+    {
+      "step": 20,
+      "time": 0.9696969985961914,
+      "future_time": 0.9678407311439514,
+      "message_rms": 0.1350175142288208,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 38230.51148142848
+    },
+    {
+      "step": 21,
+      "time": 0.9678407311439514,
+      "future_time": 0.9659442901611328,
+      "message_rms": 0.13766448199748993,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 39744.19644299972
+    },
+    {
+      "step": 22,
+      "time": 0.9659442901611328,
+      "future_time": 0.964006245136261,
+      "message_rms": 0.13964155316352844,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 40893.9646772922
+    },
+    {
+      "step": 23,
+      "time": 0.964006245136261,
+      "future_time": 0.9620253443717957,
+      "message_rms": 0.14129853248596191,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 41870.218039050174
+    },
+    {
+      "step": 24,
+      "time": 0.9620253443717957,
+      "future_time": 0.9599999785423279,
+      "message_rms": 0.14304788410663605,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 42913.39047676781
+    },
+    {
+      "step": 25,
+      "time": 0.9599999785423279,
+      "future_time": 0.9579287767410278,
+      "message_rms": 0.144943505525589,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 44058.26605192192
+    },
+    {
+      "step": 26,
+      "time": 0.9579287767410278,
+      "future_time": 0.9558101296424866,
+      "message_rms": 0.146689772605896,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 45126.29034979992
+    },
+    {
+      "step": 27,
+      "time": 0.9558101296424866,
+      "future_time": 0.9536424279212952,
+      "message_rms": 0.1487760841846466,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 46419.03858268006
+    },
+    {
+      "step": 28,
+      "time": 0.9536424279212952,
+      "future_time": 0.9514237642288208,
+      "message_rms": 0.1502622812986374,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 47351.0780289621
+    },
+    {
+      "step": 29,
+      "time": 0.9514237642288208,
+      "future_time": 0.9491525292396545,
+      "message_rms": 0.15133166313171387,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48027.44924156259
+    },
+    {
+      "step": 30,
+      "time": 0.9491525292396545,
+      "future_time": 0.9468267560005188,
+      "message_rms": 0.15224574506282806,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48609.40153678837
+    },
+    {
+      "step": 31,
+      "time": 0.9468267560005188,
+      "future_time": 0.9444444179534912,
+      "message_rms": 0.15285812318325043,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49001.22269460917
+    },
+    {
+      "step": 32,
+      "time": 0.9444444179534912,
+      "future_time": 0.9420035481452942,
+      "message_rms": 0.15332643687725067,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49301.941699821764
+    },
+    {
+      "step": 33,
+      "time": 0.9420035481452942,
+      "future_time": 0.9395017623901367,
+      "message_rms": 0.15365548431873322,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49513.77669787902
+    },
+    {
+      "step": 34,
+      "time": 0.9395017623901367,
+      "future_time": 0.9369369745254517,
+      "message_rms": 0.15390132367610931,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49672.334369846605
+    },
+    {
+      "step": 35,
+      "time": 0.9369369745254517,
+      "future_time": 0.9343065619468689,
+      "message_rms": 0.1543884426355362,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49987.27837788371
+    },
+    {
+      "step": 36,
+      "time": 0.9343065619468689,
+      "future_time": 0.9316081404685974,
+      "message_rms": 0.15526990592479706,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50559.70029260171
+    },
+    {
+      "step": 37,
+      "time": 0.9316081404685974,
+      "future_time": 0.9288389086723328,
+      "message_rms": 0.15589334070682526,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50966.533097177955
+    },
+    {
+      "step": 38,
+      "time": 0.9288389086723328,
+      "future_time": 0.9259962439537048,
+      "message_rms": 0.15632182359695435,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51247.08281917876
+    },
+    {
+      "step": 39,
+      "time": 0.9259962439537048,
+      "future_time": 0.9230769276618958,
+      "message_rms": 0.15679001808166504,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51554.517487012636
+    },
+    {
+      "step": 40,
+      "time": 0.9230769276618958,
+      "future_time": 0.9200779795646667,
+      "message_rms": 0.15701591968536377,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51703.180587491595
+    },
+    {
+      "step": 41,
+      "time": 0.9200779795646667,
+      "future_time": 0.9169960021972656,
+      "message_rms": 0.15732453763484955,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51906.630975982254
+    },
+    {
+      "step": 42,
+      "time": 0.9169960021972656,
+      "future_time": 0.913827657699585,
+      "message_rms": 0.157366082072258,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51934.053286390656
+    },
+    {
+      "step": 43,
+      "time": 0.913827657699585,
+      "future_time": 0.9105690717697144,
+      "message_rms": 0.15725386142730713,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51860.008527134065
+    },
+    {
+      "step": 44,
+      "time": 0.9105690717697144,
+      "future_time": 0.9072164297103882,
+      "message_rms": 0.15723207592964172,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51845.6320911526
+    },
+    {
+      "step": 45,
+      "time": 0.9072164297103882,
+      "future_time": 0.9037656784057617,
+      "message_rms": 0.1572640836238861,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51866.74745806091
+    },
+    {
+      "step": 46,
+      "time": 0.9037656784057617,
+      "future_time": 0.9002123475074768,
+      "message_rms": 0.15718340873718262,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51813.550381332236
+    },
+    {
+      "step": 47,
+      "time": 0.9002123475074768,
+      "future_time": 0.8965517282485962,
+      "message_rms": 0.1571587175130844,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51797.26996518907
+    },
+    {
+      "step": 48,
+      "time": 0.8965517282485962,
+      "future_time": 0.8927790522575378,
+      "message_rms": 0.15720374882221222,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51826.952932521235
+    },
+    {
+      "step": 49,
+      "time": 0.8927790522575378,
+      "future_time": 0.8888888955116272,
+      "message_rms": 0.1571321338415146,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51779.75028549578
+    },
+    {
+      "step": 50,
+      "time": 0.8888888955116272,
+      "future_time": 0.8848758339881897,
+      "message_rms": 0.1570192575454712,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51705.38236182557
+    },
+    {
+      "step": 51,
+      "time": 0.8848758339881897,
+      "future_time": 0.8807339668273926,
+      "message_rms": 0.15695196390151978,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51661.07166559642
+    },
+    {
+      "step": 52,
+      "time": 0.8807339668273926,
+      "future_time": 0.8764568567276001,
+      "message_rms": 0.1567980945110321,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51559.826519881746
+    },
+    {
+      "step": 53,
+      "time": 0.8764568567276001,
+      "future_time": 0.8720378875732422,
+      "message_rms": 0.15679803490638733,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51559.79128130833
+    },
+    {
+      "step": 54,
+      "time": 0.8720378875732422,
+      "future_time": 0.8674699068069458,
+      "message_rms": 0.1566712111234665,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51476.41831183646
+    },
+    {
+      "step": 55,
+      "time": 0.8674699068069458,
+      "future_time": 0.8627451062202454,
+      "message_rms": 0.1566031575202942,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51431.70130400445
+    },
+    {
+      "step": 56,
+      "time": 0.8627451062202454,
+      "future_time": 0.8578553795814514,
+      "message_rms": 0.1565723419189453,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51411.47314415536
+    },
+    {
+      "step": 57,
+      "time": 0.8578553795814514,
+      "future_time": 0.8527919054031372,
+      "message_rms": 0.15653055906295776,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51384.03260017336
+    },
+    {
+      "step": 58,
+      "time": 0.8527919054031372,
+      "future_time": 0.8475452661514282,
+      "message_rms": 0.15642975270748138,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51317.86427746422
+    },
+    {
+      "step": 59,
+      "time": 0.8475452661514282,
+      "future_time": 0.8421052694320679,
+      "message_rms": 0.15630266070365906,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51234.518876479866
+    },
+    {
+      "step": 60,
+      "time": 0.8421052694320679,
+      "future_time": 0.836461067199707,
+      "message_rms": 0.15604479610919952,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 51065.6023031093
+    },
+    {
+      "step": 61,
+      "time": 0.836461067199707,
+      "future_time": 0.8306010961532593,
+      "message_rms": 0.1558782160282135,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50956.641111015386
+    },
+    {
+      "step": 62,
+      "time": 0.8306010961532593,
+      "future_time": 0.8245124816894531,
+      "message_rms": 0.1556524783372879,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50809.160529783265
+    },
+    {
+      "step": 63,
+      "time": 0.8245124816894531,
+      "future_time": 0.8181818127632141,
+      "message_rms": 0.15538787841796875,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50636.56066895436
+    },
+    {
+      "step": 64,
+      "time": 0.8181818127632141,
+      "future_time": 0.8115941882133484,
+      "message_rms": 0.15501822531223297,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50395.924465139076
+    },
+    {
+      "step": 65,
+      "time": 0.8115941882133484,
+      "future_time": 0.8047336935997009,
+      "message_rms": 0.15475711226463318,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50226.29091569877
+    },
+    {
+      "step": 66,
+      "time": 0.8047336935997009,
+      "future_time": 0.7975830435752869,
+      "message_rms": 0.15449415147304535,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 50055.75003136185
+    },
+    {
+      "step": 67,
+      "time": 0.7975830435752869,
+      "future_time": 0.790123462677002,
+      "message_rms": 0.15416918694972992,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49845.40134766778
+    },
+    {
+      "step": 68,
+      "time": 0.790123462677002,
+      "future_time": 0.7823343873023987,
+      "message_rms": 0.15382063388824463,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49620.27091039953
+    },
+    {
+      "step": 69,
+      "time": 0.7823343873023987,
+      "future_time": 0.774193525314331,
+      "message_rms": 0.15342950820922852,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49368.249412187426
+    },
+    {
+      "step": 70,
+      "time": 0.774193525314331,
+      "future_time": 0.7656765580177307,
+      "message_rms": 0.15300539135932922,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 49095.6974491436
+    },
+    {
+      "step": 71,
+      "time": 0.7656765580177307,
+      "future_time": 0.7567567229270935,
+      "message_rms": 0.15266276895999908,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48876.055990355395
+    },
+    {
+      "step": 72,
+      "time": 0.7567567229270935,
+      "future_time": 0.7474048137664795,
+      "message_rms": 0.15218320488929749,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48569.474080256536
+    },
+    {
+      "step": 73,
+      "time": 0.7474048137664795,
+      "future_time": 0.73758864402771,
+      "message_rms": 0.15176279842853546,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48301.49424952797
+    },
+    {
+      "step": 74,
+      "time": 0.73758864402771,
+      "future_time": 0.7272727489471436,
+      "message_rms": 0.1514022797346115,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 48072.283789626024
+    },
+    {
+      "step": 75,
+      "time": 0.7272727489471436,
+      "future_time": 0.7164179682731628,
+      "message_rms": 0.15096502006053925,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 47795.014000293566
+    },
+    {
+      "step": 76,
+      "time": 0.7164179682731628,
+      "future_time": 0.7049808502197266,
+      "message_rms": 0.15052706003189087,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 47518.10028419219
+    },
+    {
+      "step": 77,
+      "time": 0.7049808502197266,
+      "future_time": 0.6929134130477905,
+      "message_rms": 0.1500573456287384,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 47222.005120439986
+    },
+    {
+      "step": 78,
+      "time": 0.6929134130477905,
+      "future_time": 0.6801619529724121,
+      "message_rms": 0.14947012066841125,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 46853.143106003205
+    },
+    {
+      "step": 79,
+      "time": 0.6801619529724121,
+      "future_time": 0.6666666865348816,
+      "message_rms": 0.1489204466342926,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 46509.17480761818
+    },
+    {
+      "step": 80,
+      "time": 0.6666666865348816,
+      "future_time": 0.6523604989051819,
+      "message_rms": 0.1482451856136322,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 46088.344279477555
+    },
+    {
+      "step": 81,
+      "time": 0.6523604989051819,
+      "future_time": 0.6371681094169617,
+      "message_rms": 0.14752057194709778,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 45638.89063497198
+    },
+    {
+      "step": 82,
+      "time": 0.6371681094169617,
+      "future_time": 0.621004581451416,
+      "message_rms": 0.14675810933113098,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 45168.33991546772
+    },
+    {
+      "step": 83,
+      "time": 0.621004581451416,
+      "future_time": 0.6037735939025879,
+      "message_rms": 0.14579807221889496,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 44579.31845139738
+    },
+    {
+      "step": 84,
+      "time": 0.6037735939025879,
+      "future_time": 0.5853658318519592,
+      "message_rms": 0.14477300643920898,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 43954.68041031669
+    },
+    {
+      "step": 85,
+      "time": 0.5853658318519592,
+      "future_time": 0.5656565427780151,
+      "message_rms": 0.14356471598148346,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 43224.04203865706
+    },
+    {
+      "step": 86,
+      "time": 0.5656565427780151,
+      "future_time": 0.5445026159286499,
+      "message_rms": 0.1420774608850479,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 42333.11727106428
+    },
+    {
+      "step": 87,
+      "time": 0.5445026159286499,
+      "future_time": 0.52173912525177,
+      "message_rms": 0.14047938585281372,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 41386.16073992439
+    },
+    {
+      "step": 88,
+      "time": 0.52173912525177,
+      "future_time": 0.4971751570701599,
+      "message_rms": 0.1387827843427658,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 40392.527934199956
+    },
+    {
+      "step": 89,
+      "time": 0.4971751570701599,
+      "future_time": 0.47058823704719543,
+      "message_rms": 0.13649426400661469,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 39071.375671997244
+    },
+    {
+      "step": 90,
+      "time": 0.47058823704719543,
+      "future_time": 0.4417177736759186,
+      "message_rms": 0.13398633897304535,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 37648.776949806896
+    },
+    {
+      "step": 91,
+      "time": 0.4417177736759186,
+      "future_time": 0.41025641560554504,
+      "message_rms": 0.13078278303146362,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 35869.97934612698
+    },
+    {
+      "step": 92,
+      "time": 0.41025641560554504,
+      "future_time": 0.3758389353752136,
+      "message_rms": 0.1270054131746292,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 33827.852153729975
+    },
+    {
+      "step": 93,
+      "time": 0.3758389353752136,
+      "future_time": 0.3380281627178192,
+      "message_rms": 0.12235309183597565,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 31394.951346785005
+    },
+    {
+      "step": 94,
+      "time": 0.3380281627178192,
+      "future_time": 0.29629629850387573,
+      "message_rms": 0.11685635894536972,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 28637.469548669498
+    },
+    {
+      "step": 95,
+      "time": 0.29629629850387573,
+      "future_time": 0.25,
+      "message_rms": 0.11033526808023453,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 25530.455507189756
+    },
+    {
+      "step": 96,
+      "time": 0.25,
+      "future_time": 0.1983470916748047,
+      "message_rms": 0.10379409790039062,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 22593.07208533587
+    },
+    {
+      "step": 97,
+      "time": 0.1983470916748047,
+      "future_time": 0.14035087823867798,
+      "message_rms": 0.10052871704101562,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 21193.86606122135
+    },
+    {
+      "step": 98,
+      "time": 0.14035087823867798,
+      "future_time": 0.07476635277271271,
+      "message_rms": 0.10633844137191772,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 23714.309378403617
+    },
+    {
+      "step": 99,
+      "time": 0.07476635277271271,
+      "future_time": 0.0,
+      "message_rms": 0.0,
+      "finite_response_rms": 0.0,
+      "clean_correction_rms": 0.0,
+      "response_message_dot": 0.0,
+      "message_squared_norm": 0.0
+    }
+  ],
+  "max_memory_allocated": 5533038592
+}

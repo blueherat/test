@@ -1,0 +1,111 @@
+{
+  "complete": true,
+  "samples": 128,
+  "groups": [
+    {
+      "write_query": 4,
+      "terminal_projection_native": 0.01718589475746106,
+      "terminal_projection_writer": 0.01821689005271784,
+      "terminal_cosine_native": 0.04050302863885668,
+      "terminal_cosine_writer": 0.04069779712347012,
+      "to_all_cosine_native": 0.07959327886581355,
+      "to_all_cosine_writer": 0.07842228000775646,
+      "mean_initial_read_projection": 0.33375383219315635,
+      "mean_final_read_projection": 0.3523326350420387
+    },
+    {
+      "write_query": 16,
+      "terminal_projection_native": 0.022874610780711083,
+      "terminal_projection_writer": 0.023256519284157125,
+      "terminal_cosine_native": 0.0726446936371127,
+      "terminal_cosine_writer": 0.07029022667378915,
+      "to_all_cosine_native": 0.18298697347547657,
+      "to_all_cosine_writer": 0.19323219007178777,
+      "mean_initial_read_projection": 1.0428045456224078,
+      "mean_final_read_projection": 1.0739796713868721
+    },
+    {
+      "write_query": 32,
+      "terminal_projection_native": 0.01813981942592828,
+      "terminal_projection_writer": 0.018434171284304898,
+      "terminal_cosine_native": 0.10284376464462826,
+      "terminal_cosine_writer": 0.10361470120229324,
+      "to_all_cosine_native": 0.19191357573426945,
+      "to_all_cosine_writer": 0.19142283692553633,
+      "mean_initial_read_projection": 1.2364736809691557,
+      "mean_final_read_projection": 1.2873470042986432
+    },
+    {
+      "write_query": 48,
+      "terminal_projection_native": 0.015127985286387693,
+      "terminal_projection_writer": 0.01525421133028047,
+      "terminal_cosine_native": 0.1340881197590603,
+      "terminal_cosine_writer": 0.13405810666279872,
+      "to_all_cosine_native": 0.21397703072098356,
+      "to_all_cosine_writer": 0.21465343118402525,
+      "mean_initial_read_projection": 0.9385712355252276,
+      "mean_final_read_projection": 0.9424437304476998
+    },
+    {
+      "write_query": 64,
+      "terminal_projection_native": 0.01278792221286167,
+      "terminal_projection_writer": 0.01278792221286167,
+      "terminal_cosine_native": 0.16209117511006907,
+      "terminal_cosine_writer": 0.16209117511006907,
+      "to_all_cosine_native": 0.20667276535420095,
+      "to_all_cosine_writer": 0.20667276535420095,
+      "mean_initial_read_projection": 0.9578624526525753,
+      "mean_final_read_projection": 0.9578624526525753
+    },
+    {
+      "write_query": 80,
+      "terminal_projection_native": 0.019845953913646297,
+      "terminal_projection_writer": 0.019845953913646297,
+      "terminal_cosine_native": 0.238723474238916,
+      "terminal_cosine_writer": 0.238723474238916,
+      "to_all_cosine_native": 0.25512527973765214,
+      "to_all_cosine_writer": 0.25512527973765214,
+      "mean_initial_read_projection": 1.1415494884366435,
+      "mean_final_read_projection": 1.1415494884366435
+    },
+    {
+      "write_query": 92,
+      "terminal_projection_native": 0.06780127563172761,
+      "terminal_projection_writer": 0.06780127563172761,
+      "terminal_cosine_native": 0.5599000920179484,
+      "terminal_cosine_writer": 0.5599000920179484,
+      "to_all_cosine_native": 0.5405987681621445,
+      "to_all_cosine_writer": 0.5405987681621445,
+      "mean_initial_read_projection": 3.647994993192445,
+      "mean_final_read_projection": 3.647994993192445
+    },
+    {
+      "write_query": 96,
+      "terminal_projection_native": 0.18038369763147516,
+      "terminal_projection_writer": 0.18038369763147516,
+      "terminal_cosine_native": 0.8111655479213717,
+      "terminal_cosine_writer": 0.8111655479213717,
+      "to_all_cosine_native": 0.8267776196679055,
+      "to_all_cosine_writer": 0.8267776196679055,
+      "mean_initial_read_projection": 9.869838258744917,
+      "mean_final_read_projection": 9.869838258744917
+    }
+  ],
+  "terminal_projection_improved_groups": 4,
+  "mean_to_all_cosine_gain": 0.0011574849240703327,
+  "mechanism_triage_passed": false,
+  "quality_evaluated": false,
+  "goal_complete": false,
+  "forward_batch_calls": 904,
+  "backward_batch_calls": 28,
+  "worker_seconds": [
+    15.508527596015483,
+    14.46405981713906,
+    10.99374932795763,
+    11.038402137812227
+  ],
+  "max_memory_allocated": 9783900160,
+  "max_latent_budget_ratio": 1.0,
+  "max_read_response_budget_ratio": 1.0,
+  "accepted_sample_updates": 20
+}

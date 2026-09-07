@@ -2,6 +2,15 @@
 
 ## 2026-09-07: renewed RAEv2 guidance study
 
+The latest user instruction limits the remaining work to about **three idea
+rounds**, followed by a theory/experiment/data/Git closeout even if the 3% FID
+target is missed. The [bounded research record](../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)
+is authoritative for this limit. Round 1, a finite read-budget writer, failed its
+fixed mechanism criterion. Round 2, a causal weak-reference response, has passed
+native 8-image parity and is running its single paired 5K. Round 3 is not yet
+selected. [Compact evidence and full data manifests](results/raev2_final_three_rounds_20260907/)
+include the completed native finite-retention diagnostic and round 1.
+
 The current spatial-covariance hypothesis and fixed controls are documented in
 [the spatial guidance covariance study](../docs/RAEV2_SPATIAL_GUIDANCE_COVARIANCE_20260907_ZH.md).
 Its statistics, baseline parity, two paired 5K arms and independent audits are
@@ -9,7 +18,9 @@ complete. Full covariance gives FID 6.90614 versus 6.94977 official and 6.91057
 for the previous global covariance. The incremental effect is too small for the
 3% goal, and this branch is closed. The requested [direction review](../docs/RAEV2_LATENT_GUIDANCE_REVIEW_20260907_ZH.md)
 returns to guidance information being written into, read from and retained in
-the latent. A controlled write/retention diagnostic is the next candidate.
+the latent. The [native finite-retention diagnostic](../docs/RAEV2_FINITE_GUIDANCE_RETENTION_20260907_ZH.md)
+is now complete; the prior single-Jacobian writer was paused before execution
+because its local argument did not justify the finite IG amplitude.
 
 The user has reopened guidance research after the archived closeout. The
 completed paired-5K experiment separates temporal quadrature of the Full
