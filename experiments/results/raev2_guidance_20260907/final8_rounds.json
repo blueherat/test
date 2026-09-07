@@ -1,11 +1,11 @@
 {
-  "updated_unix": 1788761123.9669,
-  "current_round": 2,
+  "updated_unix": 1788763381.60142,
+  "current_round": 3,
   "maximum_rounds": 8,
   "count_each_subsequent_research_turn": true,
   "goal_achieved": false,
-  "stage": "round2_prefix_both_fids_audited_unmet_legacy5k_live",
-  "next_round": 3,
+  "stage": "conditional_variance1k_audited_slightly_negative_unchanged5k_running",
+  "next_round": 4,
   "policy_document": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
   "no_round_reset_for_debugging_or_waiting": true,
   "round1_evidence": {
@@ -23,5 +23,16 @@
     "conditional_variance_not_started": true,
     "prefix5k_audit": "experiments/results/raev2_guidance_20260907/prefix_ratio64k_confirm5k_audit.json",
     "prefix5k_improvement_percent": 0.34009047094764044
+  },
+  "round3_evidence": {
+    "legacy5k_audit": "experiments/results/raev2_guidance_20260907/final8_legacy5k_audit.json",
+    "legacy5k_execution_and_metadata_recovery": "experiments/results/raev2_guidance_20260907/final8_legacy5k_execution.json",
+    "conditional_features": "experiments/results/raev2_guidance_20260907/conditional_variance_features_complete.json",
+    "conditional_fit": "experiments/results/raev2_guidance_20260907/conditional_variance_fit.json",
+    "conditional_risk_diagnostic": "experiments/results/raev2_guidance_20260907/conditional_variance_risk_diagnostic.json",
+    "conditional_8_pixel_parity": "experiments/results/raev2_guidance_20260907/conditional_variance_smoke8.json",
+    "conditional_1k5k_complete": false,
+    "conditional_1k_audit": "experiments/results/raev2_guidance_20260907/conditional_variance_screen1k_audit.json",
+    "conditional_1k_improvement_percent": -0.15678302278294698
   }
 }

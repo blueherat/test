@@ -1,6 +1,6 @@
 # RAEv2 guidance：当前结果与新旧研究总入口
 
-2026-09-07，第 2/8 轮。3% 目标未达到；[最后八轮台账](RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md)约束后续工作，不因等待或调试重置轮次。本文连接当前实验证据与已经归档的旧研究，不把准备、分类验证或解析定理当作图像质量成功。
+2026-09-07，第 3/8 轮。3% 目标未达到；[最后八轮台账](RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md)约束后续工作，不因等待或调试重置轮次。本文连接当前实验证据与已经归档的旧研究，不把准备、分类验证或解析定理当作图像质量成功。
 
 ## 当前协议的完整质量结果
 
@@ -12,7 +12,7 @@
 | 历史 interval | 38.335024 | 7.011577 | [历史调度来源](RAEV2_GUIDANCE_EXPLORATION_ARCHIVE_20260905_ZH.md)，仅对照 |
 | ancestral | 38.894423 | 未做 | [Gaussian 通道协议](RAEV2_GUIDANCE_GOAL_20260907_ZH.md) |
 | partial ancestral | 38.506604 | 未做 | 同上；η=.5 固定 |
-| guided reverse 方差 | 38.541200 | 队列进行中 | [方差最优性与实际边界](RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md) |
+| guided reverse 方差 | 38.541200 | 6.944997 | [方差最优性与实际边界](RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md) |
 | 全图速度投影 | 38.478746 | 未做 | [两种投影](RAEV2_TRANSPORT_PROJECTION_20260907_ZH.md) |
 | 全图物理噪声投影 | 38.483936 | 未做 | 同上；没有实用 1K 改善 |
 | stochastic weak | 38.270118 | 7.027320 | [随机弱参考](RAEV2_STOCHASTIC_WEAK_20260907_ZH.md)，5K 阴性 |
@@ -23,12 +23,13 @@
 | semantic add | 37.746546 | 未做 | [类别差补充](RAEV2_SEMANTIC_COMPLEMENT_20260907_ZH.md) |
 | semantic orthogonal | 37.704792 | 7.189965 | [结果](RAEV2_SEMANTIC_COMPLEMENT_RESULTS_20260907_ZH.md)，1K +2.0318% 但 5K −3.4562% |
 | paired ratio | 38.442135 | 未做 | [共享噪声分类](RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md)，实际 q 与再加噪 q 不同 |
-| paired ratio calibrated | 38.567599 | 运行中 | 同上；唯一原全局倍率 1.5041111779 |
+| paired ratio calibrated | 38.567599 | 6.938002 | 同上；唯一原全局倍率 1.5041111779 |
 | actual prefix ratio64K | 38.576570 | 6.926133 | [冻结前缀头](RAEV2_PREFIX_RATIO_20260907_ZH.md)，1K −.2333%、5K +.3401%，推理约2.35倍；未达标 |
+| conditional variance | 38.547115 | 运行中 | [条件Gaussian方差](RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md)，留出NLL通过，1K −.1568%，同头固定5K继续 |
 
-精确数值、实际样本 SHA、每条源码快照、输入配对、成本和对应理论文档在[机器可读总索引](../experiments/results/raev2_guidance_20260907/research_evidence_index.json)。构建器为 [index_raev2_guidance_research_20260907.py](../experiments/index_raev2_guidance_research_20260907.py)。当前 23 条完整质量结果的样本 SHA 与冻结源码都已复核；运行中项目单列，状态文件中的 PID 本身不被当作存活证明。
+精确数值、实际样本 SHA、每条源码快照、输入配对、成本和对应理论文档在[机器可读总索引](../experiments/results/raev2_guidance_20260907/research_evidence_index.json)。构建器为 [index_raev2_guidance_research_20260907.py](../experiments/index_raev2_guidance_research_20260907.py)。当前 26 条完整质量结果的样本 SHA 与冻结源码都已复核；运行中项目单列，状态文件中的 PID 本身不被当作存活证明。
 
-独立指标复算仍由各自审计提供：[早期 1K](../experiments/results/raev2_guidance_20260907/fid_audit.json)、[旧 ratio 双 1K](../experiments/results/raev2_guidance_20260907/paired_ratio_screens.json)、[semantic 及两个 5K 控制](../experiments/results/raev2_guidance_20260907/semantic_confirm5k.json)、[新前缀 1K](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_screen1k_audit.json)与[新前缀 5K](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_confirm5k_audit.json)。索引并不声称替代所有数值、全像素及成本审计。
+独立指标复算仍由各自审计提供：[早期 1K](../experiments/results/raev2_guidance_20260907/fid_audit.json)、[旧 ratio 双 1K](../experiments/results/raev2_guidance_20260907/paired_ratio_screens.json)、[semantic 及两个 5K 控制](../experiments/results/raev2_guidance_20260907/semantic_confirm5k.json)、[新前缀 1K](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_screen1k_audit.json)、[新前缀 5K](../experiments/results/raev2_guidance_20260907/prefix_ratio64k_confirm5k_audit.json)和[两条旧 5K](../experiments/results/raev2_guidance_20260907/final8_legacy5k_audit.json)。索引并不声称替代所有数值、全像素及成本审计。
 
 ## 没有生成质量结果的研究也完整保留
 
@@ -57,7 +58,7 @@
 
 [52 篇一手文献总索引](RAEV2_GUIDANCE_READING_SYNTHESIS_20260906_ZH.md)连接原文阅读范围、证明核对、官方代码版本、PDF/源码资产 manifest 和实验成本限制。142 份文档是理论/实验文档数量，不是新增论文数量；本次只对这些文档计算 SHA，未把整个历史大型资产库重新散列或复制进 Git。当前重读 DG、改进 DG、Sobolev 与有限样本 FID 的用途，是判断训练对象、梯度、实际分布与最终指标之间缺什么，不能以论文篇数替代实验证据。
 
-新的[条件方差协议](RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md)由 ICML2022 covariance 原文进一步推导，只在既定试验失败后使用剩余额度；目前未训练或采样。[原文获取身份与阅读范围](../experiments/results/raev2_guidance_20260907/extended_analytic_dpm_reading.json)已归档。
+新的[条件方差协议](RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md)由 ICML2022 covariance 原文进一步推导，只在既定试验失败后使用剩余额度；第3轮原生64K/8K特征、唯一拟合和完整8图验证完成；1K38.547115略差，原头5K运行中。[原文获取身份与阅读范围](../experiments/results/raev2_guidance_20260907/extended_analytic_dpm_reading.json)已归档。
 
 ## 复现与收束
 

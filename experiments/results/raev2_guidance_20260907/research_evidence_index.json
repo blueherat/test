@@ -1,7 +1,7 @@
 {
   "complete": true,
   "goal_achieved": false,
-  "created_unix": 1788761133.7141647,
+  "created_unix": 1788763392.4454448,
   "scope": "Every completed current-protocol1K/5K study, explicitly mapped intermediates and theory-document identities",
   "quality_rows": [
     {
@@ -140,6 +140,39 @@
       "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md"
     },
     {
+      "study": "conditional_variance_screen1k",
+      "mode": "conditional_variance",
+      "samples": 1000,
+      "seed": 202609071,
+      "fid": 38.54711465462702,
+      "inception_score": 56.982516860961915,
+      "relative_improvement_percent": -0.15678302278294698,
+      "inference_seconds": 655.6914063855074,
+      "inference_cost_ratio": 1.036948762168144,
+      "main_model_calls": 100000,
+      "additional_calls": {
+        "sample_critic_backward_calls": 0,
+        "sample_ratio_backward_calls": 0,
+        "extra_sample_unconditional_calls": 0,
+        "sample_prefix_forward_calls": 0,
+        "sample_prefix_backward_calls": 0
+      },
+      "sample": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_screen1k/conditional_variance/samples.npz",
+        "bytes": 196608264,
+        "sha256": "fd6221d9fa81846c06bbd2e0b3cbad96b0323f00d26abef5630cf6bb7909e38c"
+      },
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_screen1k/conditional_variance/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_screen1k/conditional_variance/summary.json",
+        "bytes": 692,
+        "sha256": "18fe265538b546b8184c192389c2ddf4388ce4a78dfc456d74c26b59ee2f7ef5"
+      },
+      "execution_sha256": "fdbebcbd5c1816d281469d691d8e1816b3f99788fca62ce6f58c6c4dcda33004",
+      "metrics_sha256": "1e433fa453ad39d7d3df3a9f21c3d96f75d925b3d19ac92ba6e46516017d6ad7",
+      "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md"
+    },
+    {
       "study": "critic_screen1k",
       "mode": "critic_isotropic",
       "samples": 1000,
@@ -196,6 +229,72 @@
       "execution_sha256": "033564234fe024a82410aca8969687b6c8cb656d0e56568436b53752d3b8af0f",
       "metrics_sha256": "84e5e2ad4392a23d76945b41dc93dbda7e08c4f87d501272a39321c34ad0878e",
       "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_IMAGE_CRITIC_GUIDANCE_20260907_ZH.md"
+    },
+    {
+      "study": "final8_legacy_confirm5k",
+      "mode": "paired_ratio_calibrated",
+      "samples": 5000,
+      "seed": 202609072,
+      "fid": 6.938002014689573,
+      "inception_score": 158.01795043945313,
+      "relative_improvement_percent": 0.16930726627439885,
+      "inference_seconds": 3222.7312373863533,
+      "inference_cost_ratio": 1.015545781272205,
+      "main_model_calls": 500000,
+      "additional_calls": {
+        "sample_critic_backward_calls": 0,
+        "sample_ratio_backward_calls": 500000,
+        "extra_sample_unconditional_calls": 0,
+        "sample_prefix_forward_calls": 0,
+        "sample_prefix_backward_calls": 0
+      },
+      "sample": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/paired_ratio_calibrated/samples.npz",
+        "bytes": 983040264,
+        "sha256": "45482cc7c1166302b57441bf940174b3d941c16377aad7dd4e906ad53dbf41b2"
+      },
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/paired_ratio_calibrated/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/paired_ratio_calibrated/summary.json",
+        "bytes": 655,
+        "sha256": "ac7c2ee6596154e8aec89594be6a27deecc18f3a9295cafa75df99b6ed314e4f"
+      },
+      "execution_sha256": "4303b3dbc876d2fbfe5f10dd0c859b5d51c54919aa67df8df0124c7bb567d4a4",
+      "metrics_sha256": "6792b3b033e0ca35c2de04b9a8ea84dd0a3287d855146e446b3952feea0de4d8",
+      "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md"
+    },
+    {
+      "study": "final8_legacy_confirm5k",
+      "mode": "calibrated",
+      "samples": 5000,
+      "seed": 202609072,
+      "fid": 6.944996552691919,
+      "inception_score": 157.58624267578125,
+      "relative_improvement_percent": 0.06866307899280333,
+      "inference_seconds": 3174.8634854136035,
+      "inference_cost_ratio": 1.000461714375477,
+      "main_model_calls": 500000,
+      "additional_calls": {
+        "sample_critic_backward_calls": 0,
+        "sample_ratio_backward_calls": 0,
+        "extra_sample_unconditional_calls": 0,
+        "sample_prefix_forward_calls": 0,
+        "sample_prefix_backward_calls": 0
+      },
+      "sample": {
+        "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/calibrated/samples.npz",
+        "bytes": 983040264,
+        "sha256": "42714c1b7091cafead4f5a9a484b38cdb07c503ce52b1b117e3124c26abb153b"
+      },
+      "summary": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/calibrated/summary.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/calibrated/summary.json",
+        "bytes": 639,
+        "sha256": "bacd5bbeec4f7959da6e7d3ced8ea516c2ce1f5c95b6c196359666c5bb4aa959"
+      },
+      "execution_sha256": "4303b3dbc876d2fbfe5f10dd0c859b5d51c54919aa67df8df0124c7bb567d4a4",
+      "metrics_sha256": "6792b3b033e0ca35c2de04b9a8ea84dd0a3287d855146e446b3952feea0de4d8",
+      "theory_document": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md"
     },
     {
       "study": "paired_ratio_calibrated_screen1k",
@@ -671,15 +770,15 @@
   ],
   "incomplete_studies_at_snapshot": [
     {
-      "study": "final8_legacy_confirm5k",
+      "study": "conditional_variance_confirm5k",
       "execution": {
-        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/execution.json",
-        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/execution.json",
-        "bytes": 4454,
-        "sha256": "cd78dcce3d3b9409cbb8b7f68dbfd61ef7d355f541d43a7d653bc987c4574a9c"
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_confirm5k/execution.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_confirm5k/execution.json",
+        "bytes": 4506,
+        "sha256": "aaa6ad65a69ecf404dd6d7c6324021613449042a5b0ac82cd57e6b0d310e19c6"
       },
       "complete": false,
-      "pid_claim_not_a_liveness_check": 2899430
+      "pid_claim_not_a_liveness_check": 3015949
     }
   ],
   "intermediate_evidence": [
@@ -887,6 +986,52 @@
       "validation": null,
       "entry_condition_passed": false,
       "this_is_not_quality_sampling": true
+    },
+    {
+      "name": "conditional_variance_features",
+      "execution_present": true,
+      "complete": true,
+      "execution": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_features/execution.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_features/execution.json",
+        "bytes": 25181,
+        "sha256": "46740141ff16591445dc37fe1c2e8319fa18206f7709990b5114fc5d624f02e2"
+      },
+      "stage": "features_complete_before_one_fixed_fit",
+      "validation": null,
+      "entry_condition_passed": null,
+      "this_is_not_quality_sampling": true
+    },
+    {
+      "name": "conditional_variance_fit",
+      "execution_present": true,
+      "complete": true,
+      "execution": {
+        "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_fit/execution.json",
+        "resolved_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_fit/execution.json",
+        "bytes": 27974,
+        "sha256": "e0442a889a6dbbc24ff45980daa938c64ea0d615905bfa469e9ab93073a47301"
+      },
+      "stage": null,
+      "validation": {
+        "samples": 8000,
+        "classes": 1000,
+        "mean_nll_change": -0.005166167474034574,
+        "class_standard_error": 0.0001442578764525251,
+        "upper_two_standard_errors": -0.0048776517211295235,
+        "entry_condition_passed": true,
+        "variance_ratio_quantiles": {
+          "min": 0.5097192835642389,
+          "p01": 0.6841079652113449,
+          "p50": 0.9971031847575956,
+          "p99": 1.3372603039026592,
+          "max": 1.6188499971438823
+        },
+        "descriptive_uncertainty_not_untouched_historical_holdout": true,
+        "not_a_fid_generalization_claim": true
+      },
+      "entry_condition_passed": null,
+      "this_is_not_quality_sampling": true
     }
   ],
   "theory_documents": [
@@ -995,8 +1140,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md",
-      "bytes": 5375,
-      "sha256": "c08ea9a16d6d3a958d90fea6d2b601630064c91e90db069866e49a07b62bf03e"
+      "bytes": 10444,
+      "sha256": "ba8c19e0d994eac2e4bc9785899e8078a183019673b1da682ba00cc7e7b74b86"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_CRITIC_JACOBIAN_AUDIT_20260907_ZH.md",
@@ -1115,8 +1260,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
-      "bytes": 7579,
-      "sha256": "f56aa52c7ca6ee95bc60134ac104884f915d11212a0ef9c19732011180733e37"
+      "bytes": 8090,
+      "sha256": "bd48d00a7528abd65c79222986ac86ab9ffde442430ea81c069a874c34a02919"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_FIVE_ROUNDS_20260906_ZH.md",
@@ -1379,8 +1524,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_GUIDED_REVERSE_VARIANCE_20260907_ZH.md",
-      "bytes": 3700,
-      "sha256": "dfcaa1f8653a08eaf52b5af107b15a35c8df4c82aa82e5aefb1bb75043de9dcb"
+      "bytes": 4633,
+      "sha256": "cd40863282771fb26f9c4a2008fd1fe9056b01d5beb153e373cd67da669b1634"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_IG_DECODER_PUSHFORWARD_MECHANISM_ZH.md",
@@ -1511,8 +1656,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md",
-      "bytes": 10076,
-      "sha256": "358a95c184305fb6913604e8410f10bfe446f02d3b9e65c5ffa8986e9d5841e0"
+      "bytes": 11100,
+      "sha256": "fe05fc5be63f158c6befb220877eeceb0673faee011dd31eea3db94e3bf2afa8"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_PFR_TRANSFER_RESULTS_ZH.md",
@@ -1625,8 +1770,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RAEV2_RESEARCH_ARCHIVE_INDEX_20260907_ZH.md",
-      "bytes": 9219,
-      "sha256": "5147dd634fad4ec36bb6e4c868291c6ad0347477e2e5005d6c8f92ddcd51e680"
+      "bytes": 9566,
+      "sha256": "52f8bea9eb0ba7ab5add19f3f6cded2920f776e53ad79f24e036fc6da93ed9aa"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SELF_GUIDANCE_RESEARCH_LEDGER_ZH.md",
@@ -1727,8 +1872,8 @@
     {
       "path": "/home/zhoushunyu/eqvae/docs/RESEARCH_STATUS.md",
       "resolved_path": "/home/zhoushunyu/eqvae/docs/RESEARCH_STATUS.md",
-      "bytes": 97066,
-      "sha256": "44327e4db38bd1af33ec94fc2d3351d750f5002c873b7f3376e9900edefccf24"
+      "bytes": 98381,
+      "sha256": "04bf6bde93056b4140dcee3711521383578537138f110db896cd7ae18714d2a4"
     },
     {
       "path": "/home/zhoushunyu/eqvae/docs/SEMIGROUP_CONSISTENT_GUIDANCE_THEORY_ZH.md",
@@ -1806,5 +1951,5 @@
   "full_sample_hashes_and_source_snapshots_checked_for_quality_rows": true,
   "previous_independent_metric_audits_remain_separate": true,
   "historical_large_assets_not_all_rehashed_or_copied_by_this_index": true,
-  "source_sha256": "bb028a244e08f05633269a7965cf0787078ad6805f5dbd80592ba1b49b5d7624"
+  "source_sha256": "2ccf46e43ea6b9dcc21d68e1956d0726147253b6bc8a17fcc43aa05afc1cfdf4"
 }

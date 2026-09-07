@@ -56,7 +56,16 @@ def main():
             old_request = json.loads((DATA/old_folder/f'shard{rank}/request.json').read_text())
             assert {k: request[k] for k in keys} == {k: old_request[k] for k in keys}
             parameter_keys = ['paired_ratio'] if mode == 'paired_ratio_calibrated' else ['variance_calibration_sha256', 'variance_formula']
-            assert {k: request[k] for k in parameter_keys} == {k: old_request[k] for k in parameter_keys}
+            current_parameters = {k: request[k] for k in parameter_keys}
+            previous_parameters = {k: old_request[k] for k in parameter_keys}
+            if mode == 'paired_ratio_calibrated':
+                # A later actual-native experiment added a descriptive source
+                # label to both critic routes. It is not a sampling parameter.
+                current_parameters['paired_ratio'] = dict(current_parameters['paired_ratio'])
+                previous_parameters['paired_ratio'] = dict(previous_parameters['paired_ratio'])
+                assert current_parameters['paired_ratio'].pop('source_law') == 'renoised_endpoints'
+                assert previous_parameters['paired_ratio'].pop('source_law', 'renoised_endpoints') == 'renoised_endpoints'
+            assert current_parameters == previous_parameters
             part = json.loads((shard/mode/'summary.json').read_text())
             assert part['complete'] and sha(shard/mode/'samples.npz') == part['sample_sha256']
             records.extend(part['initial_noise'])
@@ -83,6 +92,8 @@ def main():
     result = {'complete': True, 'goal_achieved': False, 'rows': rows, 'controls': controls,
               'paired_inputs_and_all_merged_pixels_verified': True,
               'source_snapshots_verified': True, 'execution_sha256': sha(folder/'execution.json'),
+              'legacy_request_compatibility': 'Normalize only optional source_law=renoised_endpoints annotation; all checkpoint, alpha, plan and other parameter fields remain exact',
+              'audit_source_sha256': sha(Path(__file__).resolve()),
               'reference_sha256': sha(reference_path),
               'preparation_cost_note': 'Reuse fixed prior critic and two probability/variance calibrations; see original fit and calibration records, no retraining here',
               'quality_success_requires_review_and_appropriate_cost_comparison': True}

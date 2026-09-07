@@ -1,0 +1,190 @@
+{
+  "complete": true,
+  "pid": 2795956,
+  "stage": "legacy5k_complete_results_require_review",
+  "prerequisite_pid": 2793979,
+  "prerequisite_process_identity": "212082330",
+  "goal_achieved": false,
+  "plan": {
+    "created_unix": 1788758390.9418168,
+    "decision_before_either_new_5k": true,
+    "research_round_started": 1,
+    "remaining_research_round_limit": 8,
+    "modes": [
+      "paired_ratio_calibrated",
+      "calibrated"
+    ],
+    "samples": 5000,
+    "seed": 202609072,
+    "steps": 100,
+    "batch": 8,
+    "reason": "User requested fixed 5K for slightly negative 1K; two distinct mechanisms, not a parameter sweep",
+    "fixed_1k_fid": {
+      "paired_ratio_calibrated": 38.56759907090867,
+      "calibrated": 38.5411998671
+    },
+    "unchanged_ratio_calibration": {
+      "complete": true,
+      "alpha": 1.5041111779055252,
+      "alpha_class_cluster_se": 0.07332033484735617,
+      "heldout_loss_change": -1.3754929808417955,
+      "heldout_loss_change_class_cluster_se": 0.26674966192989547,
+      "entry_condition_passed": true,
+      "fit_classes": "even ImageNet class ids",
+      "check_classes": "odd ImageNet class ids",
+      "source_is_prior_classifier_holdout_not_a_new_data_draw": true,
+      "uncalibrated_1k_had_already_been_observed": true,
+      "fid_used_for_parameter_fit": false,
+      "time_dependent_parameters": 0,
+      "global_fitted_scalars": 1,
+      "sampling_time_window_unchanged": true,
+      "stationarity": -8.981260180007667e-16,
+      "score_at_one": -4.223408977968323,
+      "fit_loss_after_calibration": -10.915779932922868,
+      "checkpoint_sha256": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+      "validation_records_sha256": "c27240e19e7a1dfb7f5be42affd7b14d2346d0ecab6ff6f0e0710d7f9e5940e9",
+      "native_time_request_sha256": "734c826c7ae983483c7cd18c4149d9214235277f691f2bbb5e977bff4ae14423",
+      "source_sha256": "31ec8816499705952dae3e628e13e9cbd5cbaf8295064d2ddebae84b961a7018",
+      "limitation": "proper scoring within a one-dimensional function family does not guarantee an exact density ratio or FID gain"
+    },
+    "unchanged_formulas": {
+      "paired_ratio_calibrated": "G + alpha*t^2*grad(f); one previous probability calibration",
+      "calibrated": "native Euler + ((t-s)/t)*sqrt(previous MSE_G(t))*xi"
+    },
+    "known_limitations": [
+      "Endpoint re-noising differs from actual native marginals",
+      "Fixed-mean Gaussian cross-entropy optimality does not imply FID improvement"
+    ],
+    "no_refit_or_coefficient_window_layer_seed_search": true,
+    "skip_if_prefix_quality_meets_three_percent_pending_audit": true,
+    "baseline_noise_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/continue_raev2_final8_legacy5k.py": "41cae21df291d58bab01ed96e173b5d2b9ff5ced29422ee76364a33bcd94e755",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_final8_legacy5k.py": "2fccd795c91c96888c826cdd502669f9eee5b63f6a4f285e14b2bf19389ca60d",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+      "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+      "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+      "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+      "/home/zhoushunyu/eqvae/experiments/raev2_paired_ratio_model.py": "fb58ca15f6bbd63c62f887c40de8de9b5f198f4e21d16d06eaa49e502a09e9e7",
+      "/home/zhoushunyu/eqvae/experiments/raev2_ancestral_guidance.py": "1debe7bbe0533840a1a690a3094133bf5fc63a302fb49bcd32aad419fdd55e08",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_fit/critic.pt": "9570104c61fa9b551c95ae93e28e82a7b6a077d466746eed58a7ed3191525560",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/paired_ratio_calibration.json": "728485eab135a12c335e79a2ed64dd8baa49f851de47e324294172dc1ed4b815",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json": "ef6c7cfb341ad9a0985bc86d8ff219205e2591b0267d0e095c87db84a443d2c5",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/summary.json": "c41c8a5266fe83539adad29db679a9de313a12473880ec4862cc5fa2f565ccf3",
+      "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/metrics.json": "7ae3f62a35accb432b1339e963a608c768689f3e2ed27ee299b90d329d316520",
+      "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/semantic_confirm5k.json": "bcd2392803349d75ae6a4d4a44850bb904cfbe87942442ee03803fb794bc33d5",
+      "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/paired_ratio_screens.json": "5464332c74db3ad4d772f5501430e0614059b55277c04d89ed3c6420cebc10e9"
+    },
+    "allowed_reviewed_integration": {
+      "experiments/sample_raev2_ancestral_guidance.py": [
+        "e00bd9ece0a8e1f694500b7c7bc0cc955e5eb8ebeaed69e12dedbf216a25a320",
+        "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347"
+      ],
+      "experiments/run_raev2_ancestral_study.py": [
+        "ce6d913a501214ee7b2a1ac0572136e54769b1ce94fb10e64a8675068fe19163",
+        "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9"
+      ]
+    },
+    "no_automatic_goal_completion": true
+  },
+  "selected_integration_sources": {
+    "experiments/sample_raev2_ancestral_guidance.py": "b8355e9c6947327c9c1a524927f4cb64b79ce2c925912c3663fd486a7c126347",
+    "experiments/run_raev2_ancestral_study.py": "950d9947d60e42726aeade9d04b8d19568b5f130b3bdf28aac43dbff886e68e9"
+  },
+  "prefix_queue_sha256": "6ba67e47d2ebfe251c08b6c25814bb503488fdc74ff312535213e9dbf4117edf",
+  "started_sampling_unix": 1788760823.4957469,
+  "child_pid": 2974217,
+  "command": [
+    "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+    "-m",
+    "experiments.audit_raev2_final8_legacy5k"
+  ],
+  "results": [
+    {
+      "branch": "paired_ratio_calibrated",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/paired_ratio_calibrated/samples.npz",
+      "sample_sha256": "45482cc7c1166302b57441bf940174b3d941c16377aad7dd4e906ad53dbf41b2",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 158.01795043945313,
+      "fid": 6.938002014689573,
+      "complete": true,
+      "mode": "paired_ratio_calibrated",
+      "count": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "trajectory_seconds_sum": 3205.38964584982,
+      "decode_seconds_sum": 17.341591536533087,
+      "sample_model_calls": 500000,
+      "extra_sample_weak_continuations": 0,
+      "sample_critic_backward_calls": 0,
+      "sample_ratio_backward_calls": 500000,
+      "extra_sample_unconditional_calls": 0,
+      "sample_prefix_forward_calls": 0,
+      "sample_prefix_backward_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "independent_fid": {
+        "fid": 6.938002014689925,
+        "mean_term": 0.08065461582078698,
+        "covariance_term": 6.857347398869138,
+        "sample_covariance_trace": 173.4318120948202,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 6.773189594169727e-07
+      },
+      "inference_gpu_seconds": 3222.7312373863533,
+      "inference_cost_ratio": 1.015545781272205,
+      "improvement_vs_official_percent": 0.16930726627439885,
+      "improvement_vs_best_existing_control_percent": 0.16930726627439885,
+      "feature_sha256": "ce36ecd43bd70ef438327a510d87265be9cfaa0ce7a7603c1fff0ccfe682e891",
+      "unchanged_1k_formula_and_parameters_verified": true
+    },
+    {
+      "branch": "calibrated",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/final8_legacy_confirm5k/calibrated/samples.npz",
+      "sample_sha256": "42714c1b7091cafead4f5a9a484b38cdb07c503ce52b1b117e3124c26abb153b",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.58624267578125,
+      "fid": 6.944996552691919,
+      "complete": true,
+      "mode": "calibrated",
+      "count": 5000,
+      "seed": 202609072,
+      "steps": 100,
+      "trajectory_seconds_sum": 3157.5154587919824,
+      "decode_seconds_sum": 17.348026621621102,
+      "sample_model_calls": 500000,
+      "extra_sample_weak_continuations": 0,
+      "sample_critic_backward_calls": 0,
+      "sample_ratio_backward_calls": 0,
+      "extra_sample_unconditional_calls": 0,
+      "sample_prefix_forward_calls": 0,
+      "sample_prefix_backward_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8",
+      "independent_fid": {
+        "fid": 6.944996552693689,
+        "mean_term": 0.07865293256629376,
+        "covariance_term": 6.866343620127395,
+        "sample_covariance_trace": 173.3395770669005,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 6.869095915039203e-07
+      },
+      "inference_gpu_seconds": 3174.8634854136035,
+      "inference_cost_ratio": 1.000461714375477,
+      "improvement_vs_official_percent": 0.06866307899280333,
+      "improvement_vs_best_existing_control_percent": 0.06866307899280333,
+      "feature_sha256": "39669d6e8c62e1e71a67fb6f24e51d233c401ad2c14be7d6d59178148cbeb0b4",
+      "unchanged_1k_formula_and_parameters_verified": true
+    }
+  ],
+  "recovery": {
+    "reason": "Normalize only optional source_law=renoised_endpoints annotation; all checkpoint, alpha, plan and other parameter fields remain exact",
+    "sampling_repeated": false,
+    "original_failure_sha256": "91aef401001a764a148dbf7278ea29191e47eab93eaa1bb4b72874782a7bea8a",
+    "revised_audit_sha256": "6d492ecf1ee6a9e7d1a9254b9f7964f596321e7e3c4181bc3df1edc24e81df7a",
+    "manual_recovery_source_sha256": "2e60a526661af08bf8696a9d383e85fa76cea56afbc867fae527fadf7315f5a5",
+    "completed_unix": 1788762777.2483377
+  }
+}

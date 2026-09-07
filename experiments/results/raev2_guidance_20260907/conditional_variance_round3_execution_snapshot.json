@@ -1,0 +1,116 @@
+{
+  "complete": false,
+  "pid": 2992142,
+  "stage": "sampling_confirm5k",
+  "plan": {
+    "name": "conditional_variance64k",
+    "train": {
+      "count": 64000,
+      "time_seed": 202609109
+    },
+    "validation": {
+      "count": 8000,
+      "time_seed": 202609110
+    },
+    "batch": 8,
+    "steps": 100,
+    "feature_dimension": 2880,
+    "parameters_including_bias": 2881,
+    "prefix_depth": 8,
+    "features": "native BF16-autocast block7 patch tokens, FP32 RMS pooled first and second moments",
+    "real_noise_pairing": "one real row global_id with the same global_id existing native initial epsilon",
+    "normalization": "training feature mean and one global RMS; append1",
+    "target": "R=mean_coordinates((real_clean-native_guided_clean)^2)",
+    "variance": "old_mse0(t) * exp(theta dot normalized_features)",
+    "risk": ".5 mean(h + (R/mse0) expm1(-h)) + .5 ridge ||theta||^2",
+    "ridge": 0.045015625,
+    "ridge_rule": "unit-predictive-logvariance Gaussian prior, dim/N independent real-noise pairs",
+    "optimizer": {
+      "method": "L-BFGS-B",
+      "maxiter": 500,
+      "gtol": 1e-08,
+      "ftol": 1e-13,
+      "maxls": 30
+    },
+    "entry": "gradient maxabs<1e-5 and validation mean NLL change+2 class SE<0",
+    "validation_uncertainty": "descriptive1000-class cluster SE, not a formal guarantee or untouched historical holdout",
+    "sampling": {
+      "samples": [
+        1000,
+        5000
+      ],
+      "seeds": [
+        202609071,
+        202609072
+      ],
+      "all100_times": true,
+      "no_strength_or_window": true,
+      "no_extra_main_calls_or_input_backward": true
+    },
+    "no_parameter_grid_or_best_checkpoint_selection": true
+  },
+  "preparation_pid": 2989759,
+  "preparation_process_identity": "212522725",
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_conditional_variance.py": "ab1176f72cbac3b4c742efcf91641e01e58c625d10f6ad2f214d865a37f05969",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_variance.py": "e43a38f629cd1f6acff21bf9f9c34fda9aaef704ce8aa8c97f461fdf7ef1e925",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_conditional_variance_quality.py": "33de43c95a691504543d68689abd3faa4cf00673de55780df26230251b7164bd",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+    "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_conditional_variance_20260907/manifest.json": "56b6de00066a469847805890d1933d2e59e2ec44e4ef5bdea17082c6d41fc31d",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_conditional_variance_20260907/integration.patch": "c6daa9553f571c491a8ea77923176a2e2db74ac06e458d171fc8970c254975cb"
+  },
+  "goal_achieved": false,
+  "research_round_limit": 8,
+  "no_automatic_restart_or_parameter_changes": true,
+  "fit_execution_sha256": "e0442a889a6dbbc24ff45980daa938c64ea0d615905bfa469e9ab93073a47301",
+  "checkpoint_sha256": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+  "integration_applied": true,
+  "child_pid": 3015949,
+  "command": [
+    "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py",
+    "--output",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_confirm5k",
+    "--samples",
+    "5000",
+    "--seed",
+    "202609072",
+    "--modes",
+    "conditional_variance"
+  ],
+  "parity": [
+    {
+      "mode": "official",
+      "sample_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_smoke_v2/shard0/official/samples.npz",
+      "reference_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247",
+      "all_pixels_equal": true
+    },
+    {
+      "mode": "calibrated",
+      "sample_sha256": "98b0ad4d05f068148065eb60604beb9d1a9474bd6a057b04278452ffe084bad0",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/calibrated_smoke/shard0/calibrated/samples.npz",
+      "reference_sha256": "98b0ad4d05f068148065eb60604beb9d1a9474bd6a057b04278452ffe084bad0",
+      "all_pixels_equal": true
+    },
+    {
+      "mode": "conditional_variance_zero",
+      "sample_sha256": "98b0ad4d05f068148065eb60604beb9d1a9474bd6a057b04278452ffe084bad0",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_smoke8/shard0/calibrated/samples.npz",
+      "reference_sha256": "98b0ad4d05f068148065eb60604beb9d1a9474bd6a057b04278452ffe084bad0",
+      "all_pixels_equal": true
+    }
+  ],
+  "screen1k": {
+    "audit_sha256": "89751ba9c3987940f217d6637cebde60c541675a6f029ba6780267596d0d2833",
+    "fid": 38.54711465462702,
+    "improvement_vs_official_percent": -0.15678302278294698,
+    "improvement_vs_best_control_percent": -0.5532554825192992,
+    "inference_cost_ratio": 1.036948762168144
+  },
+  "snapshot_note": "Round3 snapshot; consult live DATA continuation/state.json and Linux PID/starttime for later progress"
+}

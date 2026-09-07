@@ -27,6 +27,7 @@ DOCS = {
     'paired_ratio': 'RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md',
     'paired_ratio_calibrated': 'RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md',
     'prefix_ratio64k': 'RAEV2_PREFIX_RATIO_20260907_ZH.md',
+    'conditional_variance': 'RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md',
 }
 
 
@@ -87,7 +88,8 @@ def main():
     for name in ['paired_ratio_fit', 'actual_ratio_fit', 'prefix_ratio_fit', 'prefix_ratio_rb_fit',
                  'actual_ratio_bank64k', 'real_ratio_bank64k', 'prefix_ratio64k_features',
                  'prefix_ratio64k_fit', 'prefix_ratio64k_gradient_audit',
-                 'prefix_ratio64k_backward_precision_diagnostic', 'prefix_ratio64k_probability_calibration']:
+                 'prefix_ratio64k_backward_precision_diagnostic', 'prefix_ratio64k_probability_calibration',
+                 'conditional_variance_features', 'conditional_variance_fit']:
         path = DATA/name/'execution.json'
         if not path.exists():
             intermediate.append({'name': name, 'execution_present': False})
