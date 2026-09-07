@@ -1,0 +1,114 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "note": "Discovery bank; assess the full/diagonal mechanism and independently confirm a promising candidate.",
+  "controls": {
+    "official": {
+      "branch": "official",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+      "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.57569732666016,
+      "fid": 6.9497684777115865,
+      "independent_fid": {
+        "fid": 6.949768477712524,
+        "mean_term": 0.08339284871598794,
+        "covariance_term": 6.866375628996536,
+        "sample_covariance_trace": 173.26131863637335,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 6.927673954452891e-07
+      },
+      "feature_sha256": "148b151084d82f04aa961c6c1eeb24bfd5389c8c0e7992b22c27c96b54f1b608",
+      "inference_seconds": 3173.3982818077784
+    },
+    "global": {
+      "branch": "directional_variance",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k/directional_variance/samples.npz",
+      "sample_sha256": "94f97094eaf4da02136159f497b06d8d29c3fa4cf014d31b021247d7515d7381",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 158.30079345703126,
+      "fid": 6.910567612851594,
+      "independent_fid": {
+        "fid": 6.910567612852198,
+        "mean_term": 0.06606642901417845,
+        "covariance_term": 6.84450118383802,
+        "sample_covariance_trace": 174.56674207746434,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 7.109113429732491e-07
+      },
+      "feature_sha256": "5a61f0abef7777d0828ef5f6447f3ceb4fa061563a984a75d1f2bb778126c21a",
+      "inference_seconds": 3217.7804299108684
+    }
+  },
+  "rows": [
+    {
+      "branch": "spatial_full",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k/spatial_full/samples.npz",
+      "sample_sha256": "cf24035976c6d20ccc0a226a147e0b27ed7be09215af6a6f565bfb5685a32de6",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 157.1682113647461,
+      "fid": 6.906138434746595,
+      "independent_fid": {
+        "fid": 6.906138434747269,
+        "mean_term": 0.0664933725882898,
+        "covariance_term": 6.839645062158979,
+        "sample_covariance_trace": 174.2936771517467,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 7.322725282410029e-07
+      },
+      "feature_sha256": "92ecc8cc7973a3a445e721ff51bae18618f3e690da77bc0ab570f61fc3308ec0",
+      "mode": "spatial_full",
+      "samples": 5000,
+      "relative_improvement_percent": 0.6277913157095361,
+      "relative_improvement_over_global_percent": 0.06409282642372283,
+      "discovery_point_meets_3_percent": false,
+      "inference_seconds": 3247.8541870298795,
+      "cost_ratio_to_official": 1.0234625151368286,
+      "cost_ratio_to_global": 1.0093461184732995,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0
+    },
+    {
+      "branch": "spatial_diagonal",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k/spatial_diagonal/samples.npz",
+      "sample_sha256": "588515a0d5b45eaaf9223c304c0c019acbe8f465cfe6508a953160d6cedc8fa6",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 156.80394134521484,
+      "fid": 6.921581807593384,
+      "independent_fid": {
+        "fid": 6.9215818075946105,
+        "mean_term": 0.06768275544530833,
+        "covariance_term": 6.853899052149302,
+        "sample_covariance_trace": 174.30765391476905,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 7.085959538412275e-07
+      },
+      "feature_sha256": "ecb7c920fa3f4f9f48c55c07db63623b13b8fc9c6d66260d1e062e1b59d0ca5b",
+      "mode": "spatial_diagonal",
+      "samples": 5000,
+      "relative_improvement_percent": 0.4055771096346472,
+      "relative_improvement_over_global_percent": -0.15938191128188617,
+      "discovery_point_meets_3_percent": false,
+      "inference_seconds": 3254.009081662167,
+      "cost_ratio_to_official": 1.0254020430768203,
+      "cost_ratio_to_global": 1.0112588949247547,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0
+    }
+  ],
+  "paired_all_batch_noise_labels_verified": true,
+  "all_merged_pixels_and_shard_hashes_verified": true,
+  "frozen_sources_and_calibrations_verified": true,
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "execution_sha256": "d0445cd21a0bbdda3511de90459adeecbe64a010de62e38690eac03a48a55614",
+  "audit_source_sha256": "23fb453dc0f8d1f8fd6850bf198844dd45cf37fa1bd8e4766f7c6191f53d60c9",
+  "elapsed_seconds": 19.50687659299001
+}

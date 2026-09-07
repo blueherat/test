@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "recorded_at": "2026-09-07T13:03:26.078992+00:00",
+  "baseline_fid": 6.9497684777115865,
+  "prior_global_fid": 6.910567612851594,
+  "target_fid": 6.741275423380238,
+  "rows": [
+    {
+      "mode": "spatial_full",
+      "fid": 6.906138434746595,
+      "relative_improvement_percent": 0.6277913157095361,
+      "relative_improvement_over_global_percent": 0.06409282642372283,
+      "cost_ratio_to_official": 1.0234625151368286,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0
+    },
+    {
+      "mode": "spatial_diagonal",
+      "fid": 6.921581807593384,
+      "relative_improvement_percent": 0.4055771096346472,
+      "relative_improvement_over_global_percent": -0.15938191128188617,
+      "cost_ratio_to_official": 1.0254020430768203,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0
+    }
+  ],
+  "independent_fid_max_error": 1.226574397605873e-12,
+  "decision": "Close covariance branch: negligible incremental 5K effect over existing global covariance. Complete user-requested review around writing guidance information into latent before new work.",
+  "confirmation_seed_unspent": 202609073
+}

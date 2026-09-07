@@ -1,0 +1,187 @@
+{
+  "complete": true,
+  "pid": 249409,
+  "pid_starttime": "214795204",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+    "fit": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+    "samples": 5000,
+    "seed": 202609072,
+    "modes": [
+      "spatial_full",
+      "spatial_diagonal"
+    ],
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "no_evaluate": false
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_spatial_guidance_covariance.py": "2aa9d4b4eadee3b5d475018cd8132ab956c1b2780ab7b3fee8abc4a7c2928e31",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py": "c52b7d55f884d767bfe9fe87a29a9e5cbca54f48a3fd02c2fb676a31207fcd13",
+    "/home/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance.py": "212321bebbbf21ab5909b23c44f426e47196e61dcff141bf64c9be6208334a50",
+    "/home/zhoushunyu/eqvae/experiments/raev2_directional_variance.py": "ffe28beba32b41ed55fadf53d45167fc982c37f54c7f4c6b6f132274f12cea22",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_variance.py": "e43a38f629cd1f6acff21bf9f9c34fda9aaef704ce8aa8c97f461fdf7ef1e925",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_guidance_quadrature.py": "401c3b13f93c26f4cd73d4343b0257e5dcf6202e6bd25315384bc8d7e11246d6",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_guidance_quadrature.py": "d2dc75ab5c39679622625bf70847c514d654d8dca7a98fc0beafce488940402e",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/experiments/finish_raev2_spatial_guidance_covariance.py": "99a2b7a8b27c651e120137e6cb58a1878f42d363ad85862c8673e3de9d7ee43e",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_spatial_guidance_covariance.py": "23fb453dc0f8d1f8fd6850bf198844dd45cf37fa1bd8e4766f7c6191f53d60c9"
+  },
+  "calibration_sources": {
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/calibration.json": "a34e769e4a0e8bb8fd5df4752de3a599263bae4f52dbeabf59e1242d81e0c7e9",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/covariance.npz": "e89215a7f17cc462b0540f2b416b583f794eb2eee151830b8bb857898988a301",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/conditional_variance_fit/head.pt": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/directional_variance_moments/calibration.json": "1e6da51495be729658abb717190dba6a613872c4b8e2d8d8bc0447993179a019",
+    "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json": "ef6c7cfb341ad9a0985bc86d8ff219205e2591b0267d0e095c87db84a443d2c5"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 159875,
+      "pid_starttime": "214657696",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+        "--fit",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "4",
+        "--modes",
+        "spatial_full",
+        "spatial_diagonal"
+      ]
+    },
+    {
+      "rank": 1,
+      "gpu": 1,
+      "pid": 159876,
+      "pid_starttime": "214657696",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+        "--fit",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "1",
+        "--shards",
+        "4",
+        "--modes",
+        "spatial_full",
+        "spatial_diagonal"
+      ]
+    },
+    {
+      "rank": 2,
+      "gpu": 2,
+      "pid": 159877,
+      "pid_starttime": "214657697",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+        "--fit",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "2",
+        "--shards",
+        "4",
+        "--modes",
+        "spatial_full",
+        "spatial_diagonal"
+      ]
+    },
+    {
+      "rank": 3,
+      "gpu": 3,
+      "pid": 159878,
+      "pid_starttime": "214657697",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_spatial_guidance_covariance.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
+        "--fit",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "3",
+        "--shards",
+        "4",
+        "--modes",
+        "spatial_full",
+        "spatial_diagonal"
+      ]
+    }
+  ],
+  "recovery": {
+    "previous_controller": {
+      "pid": 158022,
+      "pid_starttime": "214656563"
+    },
+    "reason": "controller PID absent; existing workers retained",
+    "new_sampling_calls": 0,
+    "source_sha256": "99a2b7a8b27c651e120137e6cb58a1878f42d363ad85862c8673e3de9d7ee43e",
+    "original_execution_sha256": "b2d259c9857e2e0dcb38a9b548ac68b041c68d79e3fa08ffde97c39912629ba3"
+  },
+  "sampling_complete": true,
+  "merged": {
+    "spatial_full": {
+      "complete": true,
+      "samples": 5000,
+      "mode": "spatial_full",
+      "seed": 202609072,
+      "sample_sha256": "cf24035976c6d20ccc0a226a147e0b27ed7be09215af6a6f565bfb5685a32de6",
+      "trajectory_seconds_sum": 3230.5757641452365,
+      "decode_seconds_sum": 17.278422884643078,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8"
+    },
+    "spatial_diagonal": {
+      "complete": true,
+      "samples": 5000,
+      "mode": "spatial_diagonal",
+      "seed": 202609072,
+      "sample_sha256": "588515a0d5b45eaaf9223c304c0c019acbe8f465cfe6508a953160d6cedc8fa6",
+      "trajectory_seconds_sum": 3236.691404148005,
+      "decode_seconds_sum": 17.317677514161915,
+      "sample_model_calls": 500000,
+      "inactive_image_queries": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8"
+    }
+  },
+  "recovery_seconds": 333.5605955622159
+}

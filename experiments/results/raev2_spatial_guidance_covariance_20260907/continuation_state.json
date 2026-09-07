@@ -7,11 +7,11 @@
     "finding": "no substantive 5K gain; three arms fully audited"
   },
   "current_run": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/discovery5k",
-  "sampling_session_id": 23768,
-  "audit_wait_session_id": 83870,
+  "sampling_session_id": null,
+  "audit_wait_session_id": null,
   "run_controller": {
-    "pid": 158022,
-    "pid_starttime": "214656563"
+    "pid": 249409,
+    "pid_starttime": "214795204"
   },
   "workers": [
     {
@@ -40,7 +40,7 @@
     }
   ],
   "latest_user_steering": "Finish this 5K and then review whether research has drifted; reread the NeurIPS25 fixed-point paper for intuition and taste. Do not extend covariance or launch a next hypothesis before that review.",
-  "next_action": "Let both existing 5K arms finish, collect official and independent audit results, then critically review the direction against FSG and PFR before choosing further work.",
+  "next_action": "Review completed. Develop one controlled latent-write/read/retention diagnostic based on native IG message and Full as reader; no further covariance work. Goal remains paired 5K ~3% improvement, not diagnostic success.",
   "preparation": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/preparation.json",
   "inference_calibration": "/home/zhoushunyu/data/eqvae/experiments/raev2_spatial_guidance_covariance_20260907/repaired/fit/calibration.json",
   "audit_output": "experiments/results/raev2_spatial_guidance_covariance_20260907/discovery5k_audit.json",
@@ -49,6 +49,9 @@
   "discussion_candidate_not_implemented": "Freeze the current strong guidance proposal; use the reference readout Jacobian to map its desired output information into a latent write, then test whether the information survives subsequent reference-only denoising. Do not confuse immediate readout matching with final quality. No new experiment before the current 5K closes and the requested review.",
   "current_progress": {
     "spatial_full": 5000,
-    "spatial_diagonal": 184
-  }
+    "spatial_diagonal": 5000
+  },
+  "run_complete": true,
+  "audit_complete": true,
+  "post_5k_review": "docs/RAEV2_LATENT_GUIDANCE_REVIEW_20260907_ZH.md"
 }
