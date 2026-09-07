@@ -1,11 +1,19 @@
-# 最后三轮研究证据
+# 最后三轮研究证据：已收束，3%目标未达到
 
-用户最新上限：再做约三轮；若未达到约3%的配对5K FID改善，停止扩展并整理Git。当前记录见[研究报告](../../../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)。
+三轮已完成，停止新增实验。第1轮未过机制门槛；第2轮FID6.92572559（+0.34595%）；第3轮FID6.97019678（−0.29394%）；官方基线6.94976848。完整理论与裁决见[最终报告](../../../docs/RAEV2_FINAL_THREE_ROUNDS_CLOSEOUT_20260907_ZH.md)，执行前协议与逐轮结果见[三轮记录](../../../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)。
 
-- `prelude_native_retention/`：三轮限制前完成的128样本有限写入/Full留存机制数据；完整首读与终点快照、输入数组在数据盘，逐query统计和图表在本目录。
-- `round1_finite_read_budget/`：第1轮，固定有限输入/读取预算的非线性编码搜索；15/128样本被改变，4/8时刻组终点投影改善，未通过6/8门槛。无FID，已关闭。
-- `round2_causal_reference_smoke/`：第2轮8图原生与零响应控制；逐像素parity通过。完整5K见下一项，不把smoke当作质量结果。
-- `round2_causal_reference_5k/`：第2轮完整配对5K及独立审计；FID6.92572559，改善0.34595%，成本1.48370倍，未达标并关闭。
-- `state.json`：三轮上限、当前进度和继续工作的实际数据路径；第3轮为Full重新读取前置写入，是最后一轮。
+[可比5K表CSV](paired5k.csv) · [Markdown表](paired5k.md) · [PNG图](paired5k.png) · [PDF图](paired5k.pdf) · [机器结论](closeout.json) · [最终状态](state.json)
 
-各子目录的`archive_manifest.json`逐文件记录原始数据路径、大小、实际SHA256与是否复制进Git。模型和大数组保留在数据盘。当前5K发现seed已经重复探索，独立确认seed202609073未用。FID官方基线6.9497684777115865，约3%阈值6.741275423380239；当前未达到。
+| 证据目录 | 内容 | 索引文件数 | 原始文件字节数 |
+|---|---|---:|---:|
+| [prelude_native_retention](prelude_native_retention/archive_manifest.json) | 三轮限制前的128样本原生有限写入/读取诊断；无FID | 92 | 1,613,155,210 |
+| [round1_finite_read_budget](round1_finite_read_budget/archive_manifest.json) | 第1轮，15/128样本改变，4/8时刻组改善；机制门槛阴性，无FID | 51 | 402,786,759 |
+| [round2_causal_reference_smoke](round2_causal_reference_smoke/archive_manifest.json) | 第2轮8图原生/零响应实现控制；逐像素一致 | 37 | 36,208,609 |
+| [round2_causal_reference_5k](round2_causal_reference_5k/archive_manifest.json) | 第2轮完整配对5K、指标、成本及独立审计 | 52 | 2,063,258,498 |
+| [round3_full_read_after_write](round3_full_read_after_write/archive_manifest.json) | 第3轮完整8图控制与配对5K、审计、测试、协议和退出记录 | 94 | 2,099,517,563 |
+
+上述清单实际索引326个文件，共6,214,926,639字节；其中3,828,138字节轻量证据复制进Git。它们是本次前置诊断与最后三轮的清单，不代替全仓库历史清单。每项原始路径、大小、实际SHA256与复制状态可由`archive_manifest.json`追溯；大数组、图像和特征留在数据盘。
+
+[模型与decoder/stat身份](model_identities.json)、[运行环境](environment.json)、[核心论文来源与SHA](paper_reference.json)、[第2轮启动/完成上下文](round2_run_context/manifest.json)、[最终归档核验](archive_verification.json)一并保存。每个采样run的冻结源码与原始request保留在对应证据目录。
+
+本轮全部采样进程已经退出。发现seed202609072已反复探索，独立确认seed202609073本次未用；不把小幅获胜点或归档完成当作质量成功，也不宣称50K/SOTA。此前最佳空间协方差6.90613843仅改善0.62779%。原生有限留存结果、搜索失败和两项5K结果均保留，没有第四轮。

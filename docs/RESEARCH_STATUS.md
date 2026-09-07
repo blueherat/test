@@ -1,17 +1,18 @@
 # Research Status
 
-> **Latest bounded guidance study — 2026-09-07, final round 3/3 running.**
-> The user's latest instruction allows about three further idea rounds, then
-> requires theory/experiment/data/Git closeout even if the 3% target is missed.
-> Round 1 failed its finite-read-budget mechanism gate. Round 2 completed paired
-> 5K at FID6.925725594 versus official6.949768478 (+0.345952%, 1.483697x cost),
-> with full pairing and independent FID checks. The final fixed candidate lets
-> Full reread the exactly prewritten native IG increment; seven analytic tests
-> and native/zero-write eight-image pixel controls passed, and its single 5K
-> is running. No fourth idea round or parameter search follows. The recent
-> comparable best remains spatial covariance6.906138435 (+0.627791%); no3%
-> success or independent confirmation. See the
-> [current three-round record](RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md).
+> **Latest three-round guidance study complete and closed — 2026-09-07.**
+> The user-imposed final three idea rounds are finished. The3% paired-5K FID
+> target remains unmet: round1 failed its mechanism gate; round2 reached
+> FID6.925725594 (+0.345952%, 1.483697x inference cost); round3 reached
+> FID6.970196781 (−0.293942%, 1.991345x), versus official6.949768478.
+> All paired inputs, shard/merged pixels, frozen sources and independent FID
+> checks pass. The recent comparable best remains spatial covariance6.906138435
+> (+0.627791%) on the repeatedly explored discovery bank. All final sampling
+> processes exited. No fourth idea round, parameter search or confirmation is
+> queued. Theory, positive/negative results, code and data manifests are archived;
+> archival completion is not quality success. See the
+> [final report](RAEV2_FINAL_THREE_ROUNDS_CLOSEOUT_20260907_ZH.md) and
+> [three-round record](RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md).
 > Earlier limits and “active” entries below are historical snapshots.
 
 > **Fixed mild-negative 5K follow-up complete and closed — 2026-09-07.**

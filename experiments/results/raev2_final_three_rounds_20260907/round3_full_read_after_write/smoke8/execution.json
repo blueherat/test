@@ -1,0 +1,104 @@
+{
+  "complete": true,
+  "pid": 511610,
+  "pid_starttime": "215429925",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/smoke8",
+    "samples": 8,
+    "seed": 202609072,
+    "modes": [
+      "official",
+      "write_null",
+      "full_read_after_write"
+    ],
+    "gpus": [
+      0
+    ],
+    "no_evaluate": true
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_full_read_after_write.py": "e05eaa4dce3e45e1f211ec79b83aa4ca4de13b6c056ec2fd648b66280bf4f5d6",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py": "d2d2876fee82886d673f8350ace0a6acbb2c635d2d6837e2130d9c903241f8ea",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/raev2_full_read_after_write.py": "d20f3570b055afd287b5148fbbe8d88c2a4498956773aedb79a68caf1639cc62",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 511630,
+      "pid_starttime": "215429937",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/smoke8",
+        "--samples",
+        "8",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "1",
+        "--modes",
+        "official",
+        "write_null",
+        "full_read_after_write"
+      ]
+    }
+  ],
+  "sampling_complete": true,
+  "sampling_seconds": 54.11354390112683,
+  "merged": {
+    "official": {
+      "complete": true,
+      "samples": 8,
+      "mode": "official",
+      "seed": 202609072,
+      "sample_sha256": "1cf8a38d97b017fe21f23fc84566e21263a23cba2956a0f76393b835ab1c400a",
+      "trajectory_seconds_sum": 5.046472699381411,
+      "decode_seconds_sum": 0.029641597997397184,
+      "sample_model_calls": 800,
+      "main_sample_calls": 800,
+      "reread_sample_calls": 0,
+      "inactive_current_reread_calls": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "write_null": {
+      "complete": true,
+      "samples": 8,
+      "mode": "write_null",
+      "seed": 202609072,
+      "sample_sha256": "1cf8a38d97b017fe21f23fc84566e21263a23cba2956a0f76393b835ab1c400a",
+      "trajectory_seconds_sum": 10.004201012663543,
+      "decode_seconds_sum": 0.02751156920567155,
+      "sample_model_calls": 1592,
+      "main_sample_calls": 800,
+      "reread_sample_calls": 792,
+      "inactive_current_reread_calls": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    },
+    "full_read_after_write": {
+      "complete": true,
+      "samples": 8,
+      "mode": "full_read_after_write",
+      "seed": 202609072,
+      "sample_sha256": "c5aa3b1535947fef861d75dcc0eadd0bb61a7269d5012583c1c508ff83a586f6",
+      "trajectory_seconds_sum": 10.046745154075325,
+      "decode_seconds_sum": 0.028790451120585203,
+      "sample_model_calls": 1592,
+      "main_sample_calls": 800,
+      "reread_sample_calls": 792,
+      "inactive_current_reread_calls": 0,
+      "paired_noise_labels_sha256": "081c9026490e9708f72172b73607feb9cbb7fd9e98c59f77b04d3a695cb0c76d"
+    }
+  },
+  "total_seconds": 54.113844892941415
+}

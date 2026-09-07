@@ -2,16 +2,16 @@
 
 ## 2026-09-07: renewed RAEv2 guidance study
 
-The latest user instruction limits the remaining work to about **three idea
-rounds**, followed by a theory/experiment/data/Git closeout even if the 3% FID
-target is missed. The [bounded research record](../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)
-is authoritative for this limit. Round 1, a finite read-budget writer, failed its
-fixed mechanism criterion. Round 2, a causal weak-reference response, reached
-FID 6.92573 versus 6.94977 official (+0.34595%, 1.48370x inference cost), below
-the target, and is closed after independent paired-5K verification. Round 3
-is the final candidate: let Full reread the exact prewritten IG increment.
-[Compact evidence and full data manifests](results/raev2_final_three_rounds_20260907/)
-include the completed native finite-retention diagnostic and rounds 1–2.
+The latest **three additional idea rounds are complete and closed**. The 3%
+paired-5K FID target was not reached. Round 1 failed its fixed mechanism gate;
+round 2 gave FID6.92573 (+0.34595%, 1.48370x inference time), and round 3 gave
+FID6.97020 (−0.29394%, 1.99134x), against official6.94977. All quality results
+passed full pairing, pixel/source identity and independent FID checks. The recent
+comparable best remains spatial covariance6.90614 (+0.62779%), on a repeatedly
+explored discovery bank. No new experiment or independent confirmation is queued.
+See the [final theory/results report](../docs/RAEV2_FINAL_THREE_ROUNDS_CLOSEOUT_20260907_ZH.md),
+[original three-round protocol](../docs/RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md), and
+[compact evidence and data manifests](results/raev2_final_three_rounds_20260907/INDEX.md).
 
 The current spatial-covariance hypothesis and fixed controls are documented in
 [the spatial guidance covariance study](../docs/RAEV2_SPATIAL_GUIDANCE_COVARIANCE_20260907_ZH.md).
@@ -33,9 +33,9 @@ Guidance-only FID is 6.94955 versus 6.94977 official; neither Full-only nor
 the complete second-order control improves FID. This hypothesis is closed
 without reaching the requested 3% improvement. The earlier results remain valid.
 
-## Active mainline: Projected Future Reference
+## Projected Future Reference: theory and existing results
 
-The active inference-time guidance line is PFR.  Its current interpretation is
+The PFR inference-time guidance line is documented here. Its interpretation is
 counterfactual reference residualization / weak-response precompensation, not
 a higher-order ODE solver or a more accurate future posterior.  Start with
 [`PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md`](../docs/PFR_COUNTERFACTUAL_RESIDUAL_THEORY_ZH.md)

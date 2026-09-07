@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "assets": {
+    "checkpoint": {
+      "path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt",
+      "bytes": 10520885445,
+      "sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a"
+    },
+    "decoder": {
+      "path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt",
+      "bytes": 1662766063,
+      "sha256": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87"
+    },
+    "stats": {
+      "path": "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "resolved_path": "/data/users/zhoushunyu/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt",
+      "bytes": 2098901,
+      "sha256": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77"
+    },
+    "config": {
+      "path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "resolved_path": "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml",
+      "bytes": 1772,
+      "sha256": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+    }
+  },
+  "sha_source": "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k/shard0/request.json",
+  "sha_source_sha256": "962af9dfe3c8078051ce1b4a7746e6a45b99d5028a941850c5d9a46dab04d3e4",
+  "verification_scope": "These asset SHAs were actually computed during sampling and matched the official baseline in the completed audit. This metadata index checks current path/size without hashing the model assets a second time.",
+  "state_key": "ema",
+  "latent_shape": [
+    1024,
+    16,
+    16
+  ],
+  "ig_scale": 1.78,
+  "batch": 8,
+  "steps": 100,
+  "precision": "native BF16 heads/mix, FP32 prewrite/finite Full response/Euler, TF32 on"
+}

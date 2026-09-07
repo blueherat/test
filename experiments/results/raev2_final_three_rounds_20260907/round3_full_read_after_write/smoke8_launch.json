@@ -1,0 +1,23 @@
+{
+  "pid": 511610,
+  "starttime": "215429925",
+  "command": [
+    "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+    "experiments/run_raev2_full_read_after_write.py",
+    "--output",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/smoke8",
+    "--samples",
+    "8",
+    "--seed",
+    "202609072",
+    "--modes",
+    "official",
+    "write_null",
+    "full_read_after_write",
+    "--gpus",
+    "0",
+    "--no-evaluate"
+  ],
+  "created_utc": "2026-09-07T14:37:29.267158+00:00",
+  "purpose": "Only eight-image native and zero-write implementation controls; no quality ranking."
+}

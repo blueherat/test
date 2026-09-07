@@ -1,0 +1,64 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "reason_goal_not_yet_certified": "Discovery bank; independent confirmation and mechanism assessment remain.",
+  "baseline": {
+    "branch": "official",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_20260907/weak_confirm5k/official/samples.npz",
+    "sample_sha256": "2547467d351624f2099ac6e715ec2b43eccd98e5bcf9509883541bd02084e386",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 157.57569732666016,
+    "fid": 6.9497684777115865,
+    "independent_fid": {
+      "fid": 6.949768477712524,
+      "mean_term": 0.08339284871598794,
+      "covariance_term": 6.866375628996536,
+      "sample_covariance_trace": 173.26131863637335,
+      "method": "symmetric reference-root covariance product",
+      "minimum_product_eigenvalue": 6.927673954452891e-07
+    },
+    "feature_sha256": "148b151084d82f04aa961c6c1eeb24bfd5389c8c0e7992b22c27c96b54f1b608",
+    "inference_seconds": 3173.3982818077784
+  },
+  "rows": [
+    {
+      "branch": "full_read_after_write",
+      "sample_path": "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k/full_read_after_write/samples.npz",
+      "sample_sha256": "3d69218d607bdde5f176280537e456069df4457cf5cf3b92164103d0343debbb",
+      "fid_reference": "imagenet_256_fid_stats",
+      "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+      "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+      "inception_score": 156.60934753417968,
+      "fid": 6.970196780913625,
+      "independent_fid": {
+        "fid": 6.9701967809137635,
+        "mean_term": 0.07093792471541954,
+        "covariance_term": 6.899258856198344,
+        "sample_covariance_trace": 174.20768004457057,
+        "method": "symmetric reference-root covariance product",
+        "minimum_product_eigenvalue": 7.084841190522552e-07
+      },
+      "feature_sha256": "680a09a9a6c339c348d241f692d1308ef0121683f1f56ec4cd470665d052c858",
+      "mode": "full_read_after_write",
+      "samples": 5000,
+      "seed": 202609072,
+      "relative_improvement_percent": -0.2939422121406521,
+      "discovery_point_meets_3_percent": false,
+      "inference_seconds": 6319.329641432036,
+      "cost_ratio": 1.9913446344440968,
+      "sample_model_calls": 995000,
+      "main_sample_calls": 500000,
+      "reread_sample_calls": 495000,
+      "inactive_current_reread_calls": 0
+    }
+  ],
+  "paired_all_batch_noise_labels_verified": true,
+  "all_merged_pixels_and_shard_hashes_verified": true,
+  "frozen_sources_verified": true,
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "execution_sha256": "b142d039e986a79a15f6a2132d2f130c6f7208c7bfe23b528b8a70b5ce68a493",
+  "audit_source_sha256": "d2f0ef2f0fc5be91429ca485f90091265dad9a713e6272d0591e11e4dbbdd2e5",
+  "elapsed_seconds": 13.610062916297466
+}

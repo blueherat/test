@@ -2,7 +2,7 @@
   "latest_user_limit": "Approximately three more independent idea rounds; if unsuccessful, stop research and archive theory, experiments, data and Git.",
   "max_rounds": 3,
   "current_round": 3,
-  "rounds_completed": 2,
+  "rounds_completed": 3,
   "round_1": {
     "method": "finite_read_budget_writer",
     "status": "closed_negative",
@@ -24,7 +24,7 @@
   },
   "round_3": {
     "method": "full_read_after_write",
-    "status": "discovery5k_running",
+    "status": "closed_below_target",
     "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
     "unique_candidate": true,
     "remaining_new_idea_rounds_after_this": 0,
@@ -32,8 +32,21 @@
       "pid": 516350,
       "starttime": "215444366"
     },
-    "smoke_verified": true
+    "smoke_verified": true,
+    "fid": 6.970196780913625,
+    "relative_improvement_percent": -0.2939422121406521,
+    "cost_ratio": 1.9913446344440968,
+    "independently_audited": true,
+    "all_sampling_processes_exited": true
   },
   "goal_3_percent_achieved": false,
-  "after_round_3": "Stop expansion and archive even if target is not achieved; do not use automatic goal continuations to add rounds."
+  "after_round_3": "Stop expansion and archive even if target is not achieved; do not use automatic goal continuations to add rounds.",
+  "status": "closed_unmet",
+  "new_idea_rounds_remaining": 0,
+  "research_expansion_stopped": true,
+  "archive_complete": true,
+  "pending_experiments": [],
+  "stop_rule_satisfied": true,
+  "final_report": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_THREE_ROUNDS_CLOSEOUT_20260907_ZH.md",
+  "final_closed_utc": "2026-09-07T15:17:10.566955+00:00"
 }

@@ -1,0 +1,141 @@
+{
+  "complete": true,
+  "pid": 516350,
+  "pid_starttime": "215444366",
+  "args": {
+    "output": "/home/zhoushunyu/data/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+    "samples": 5000,
+    "seed": 202609072,
+    "modes": [
+      "full_read_after_write"
+    ],
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "no_evaluate": false
+  },
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_full_read_after_write.py": "e05eaa4dce3e45e1f211ec79b83aa4ca4de13b6c056ec2fd648b66280bf4f5d6",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py": "d2d2876fee82886d673f8350ace0a6acbb2c635d2d6837e2130d9c903241f8ea",
+    "/home/zhoushunyu/eqvae/experiments/raev2_guidance_quadrature.py": "68a27009d29c819066abe2dbb6b8e4f8282699fedef7711b6c8d1c315d398685",
+    "/home/zhoushunyu/eqvae/experiments/raev2_full_read_after_write.py": "d20f3570b055afd287b5148fbbe8d88c2a4498956773aedb79a68caf1639cc62",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342"
+  },
+  "jobs": [
+    {
+      "rank": 0,
+      "gpu": 0,
+      "pid": 516370,
+      "pid_starttime": "215444377",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "0",
+        "--shards",
+        "4",
+        "--modes",
+        "full_read_after_write"
+      ]
+    },
+    {
+      "rank": 1,
+      "gpu": 1,
+      "pid": 516371,
+      "pid_starttime": "215444377",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "1",
+        "--shards",
+        "4",
+        "--modes",
+        "full_read_after_write"
+      ]
+    },
+    {
+      "rank": 2,
+      "gpu": 2,
+      "pid": 516372,
+      "pid_starttime": "215444378",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "2",
+        "--shards",
+        "4",
+        "--modes",
+        "full_read_after_write"
+      ]
+    },
+    {
+      "rank": 3,
+      "gpu": 3,
+      "pid": 516373,
+      "pid_starttime": "215444378",
+      "command": [
+        "/home/zhoushunyu/miniconda3/envs/myenv/bin/python",
+        "/home/zhoushunyu/eqvae/experiments/sample_raev2_full_read_after_write.py",
+        "--output",
+        "/data/users/zhoushunyu/eqvae/experiments/raev2_full_read_after_write_20260907/discovery5k",
+        "--samples",
+        "5000",
+        "--seed",
+        "202609072",
+        "--shard",
+        "3",
+        "--shards",
+        "4",
+        "--modes",
+        "full_read_after_write"
+      ]
+    }
+  ],
+  "sampling_complete": true,
+  "sampling_seconds": 1648.1767657496966,
+  "merged": {
+    "full_read_after_write": {
+      "complete": true,
+      "samples": 5000,
+      "mode": "full_read_after_write",
+      "seed": 202609072,
+      "sample_sha256": "3d69218d607bdde5f176280537e456069df4457cf5cf3b92164103d0343debbb",
+      "trajectory_seconds_sum": 6301.973121151794,
+      "decode_seconds_sum": 17.356520280241966,
+      "sample_model_calls": 995000,
+      "main_sample_calls": 500000,
+      "reread_sample_calls": 495000,
+      "inactive_current_reread_calls": 0,
+      "paired_noise_labels_sha256": "b59864ce96fcfb63735061f00ecb903b07ad894ffb504a73918d7b704db86cc8"
+    }
+  },
+  "total_seconds": 1661.526279905811
+}

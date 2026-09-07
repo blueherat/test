@@ -1,6 +1,6 @@
 # 最后三轮 guidance 研究：理论、实验与数据收束
 
-2026-09-07。**整理稿：第3轮的唯一配对5K仍在采样，尚未形成最终质量结论。** 用户要求再做约三轮，未成功则收束并Git。第1轮已在预定机制门槛前止步，第2轮完整5K仅改善0.34595%，第3轮结束后不增加想法或超参数试验。执行前公式、门槛与后续结果见[三轮原始记录](RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)。
+2026-09-07。**三轮已完成并停止研究扩展，约3%的配对5K FID目标未达到。** 第1轮未通过预定机制门槛；第2轮FID改善0.34595%；第3轮FID恶化0.29394%。这组可比实验的最好点仍是此前空间协方差的6.90614，较官方6.94977改善0.62779%。归档完成不代表质量目标成功。执行前公式、门槛与完整结果见[三轮原始记录](RAEV2_FINAL_THREE_ROUNDS_20260907_ZH.md)。
 
 ## 从论文到这三轮的机制主线
 
@@ -34,7 +34,16 @@
 ## 质量结果与成本
 
 <!-- FINAL_RESULTS_START -->
-第3轮结果待完成并独立复核。当前不能把归档进度称作质量目标完成。
+| 方法 | FID5K ↓ | 对官方相对改善 | 推理时间比 | 裁决 |
+|---|---:|---:|---:|---|
+| 官方IG | 6.94976848 | — | 1.00000 | 配对基线 |
+| 第1轮：有限读取预算写入 | 未评测 | — | 机制pilot单列 | 4/8组改善，未过6/8门槛 |
+| 第2轮：有限Base响应 | 6.92572559 | +0.34595% | 1.48370 | 未达3%，关闭 |
+| 第3轮：Full读取已写latent | 6.97019678 | -0.29394% | 1.99134 | 恶化，关闭 |
+
+3%目标对应FID≤6.74127542。保留[近期全部可比5K表](../experiments/results/raev2_final_three_rounds_20260907/paired5k.csv)、[图表PDF](../experiments/results/raev2_final_three_rounds_20260907/paired5k.pdf)和[机器可读结论](../experiments/results/raev2_final_three_rounds_20260907/closeout.json)。独立FID重算与官方数值的最大差为1.93e-12。没有消耗预留确认seed202609073。
+
+![配对5K质量与推理成本](../experiments/results/raev2_final_three_rounds_20260907/paired5k.png)
 <!-- FINAL_RESULTS_END -->
 
 第1轮没有FID：128样本中15个发生改变、共20次样本更新被接受，终点投影仅4/8时刻组增加，未通过预定6/8门槛。全部有限预算与单调性由独立NumPy快照复算通过。实际904次B8前向、28次B8输入反向，四worker计算耗时合计52.00秒；这个固定求解器失败不等于不存在更好的可行解。
@@ -68,3 +77,5 @@ OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 \
 ```
 
 第2轮对应`run_raev2_causal_reference.py`与`--modes causal_reference`。两个`audit_raev2_*`脚本接受`--folder`和`--output`重算配对身份与FID；`summarize_raev2_final_three_rounds.py`从完成的审计生成汇总表，`plot_raev2_final_three_rounds.py`生成可导出的PNG/PDF。原生诊断和第1轮机制程序提供已记录的cohort及有限求解协议，见三轮原始记录和数据内PLAN。
+
+本次控制器与四个采样worker已按PID及starttime核对退出。三轮额度耗尽，研究停止；没有第四轮、额外参数候选或待运行的确认任务。采样实现提交为`f8ddfa5`，本报告与最终数据另作收束提交。
