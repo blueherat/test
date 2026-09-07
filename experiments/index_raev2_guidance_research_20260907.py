@@ -28,6 +28,7 @@ DOCS = {
     'paired_ratio_calibrated': 'RAEV2_PAIRED_NOISE_RATIO_20260907_ZH.md',
     'prefix_ratio64k': 'RAEV2_PREFIX_RATIO_20260907_ZH.md',
     'conditional_variance': 'RAEV2_CONDITIONAL_VARIANCE_PROTOCOL_20260907_ZH.md',
+    'directional_variance': 'RAEV2_DIRECTIONAL_VARIANCE_PROTOCOL_20260907_ZH.md',
 }
 
 
@@ -89,7 +90,7 @@ def main():
                  'actual_ratio_bank64k', 'real_ratio_bank64k', 'prefix_ratio64k_features',
                  'prefix_ratio64k_fit', 'prefix_ratio64k_gradient_audit',
                  'prefix_ratio64k_backward_precision_diagnostic', 'prefix_ratio64k_probability_calibration',
-                 'conditional_variance_features', 'conditional_variance_fit']:
+                 'conditional_variance_features', 'conditional_variance_fit', 'directional_variance_moments']:
         path = DATA/name/'execution.json'
         if not path.exists():
             intermediate.append({'name': name, 'execution_present': False})
@@ -98,6 +99,13 @@ def main():
         intermediate.append({'name': name, 'execution_present': True, 'complete': record.get('complete'),
                              'execution': file_record(path), 'stage': record.get('stage'),
                              'validation': record.get('validation'), 'entry_condition_passed': record.get('entry_condition_passed'),
+                             'this_is_not_quality_sampling': True})
+    calibration_path = DATA/'directional_variance_moments/calibration.json'
+    if calibration_path.exists():
+        record = json.loads(calibration_path.read_text())
+        intermediate.append({'name': 'directional_variance_calibration', 'execution_present': True,
+                             'complete': record['complete'], 'execution': file_record(calibration_path),
+                             'validation': record['validation'], 'kappa': record['kappa'],
                              'this_is_not_quality_sampling': True})
     documents = set()
     for pattern in ['RAEV2*.md', 'PFR*.md', 'RAE_RAEV2*.md', 'INTERNAL_GUIDANCE*.md',

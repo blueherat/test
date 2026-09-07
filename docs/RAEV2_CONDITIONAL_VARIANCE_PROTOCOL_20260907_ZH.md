@@ -80,3 +80,9 @@
 1K独立审核完成：FID **38.54711465462702**，原official为38.486773927092486（恶化 .156783%），历史interval为38.3350240324；原global variance为38.5411998671，新头也略差于这个机制控制。每图100次主调用和100次已有特征读取，零额外主干/前缀前向和输入反传，实测推理成本为原official **1.0369487622倍**。图像SHA `fd6221d9fa81846c06bbd2e0b3cbad96b0323f00d26abef5630cf6bb7909e38c`。全部合并像素/初始noise/标签、EMA/config/decoder/stats、同一θ及source快照核验通过；FID另以rank-N Gram谱重算通过。
 
 [1K完整精度审计](../experiments/results/raev2_guidance_20260907/conditional_variance_screen1k_audit.json)。这说明真实forward条件NLL增益尚未转化为这次闭环FID增益，不能仅由1K给5K下结论。相同θ的seed202609072完整5K已启动，所有100个时刻和采样公式保持不变。采样补丁已经在两个旧父进程结束后按SHA应用；锁目录的`applied:false`是应用前不可变计划，实际激活与像素验证见continuation及smoke8记录。
+
+### 第4/8轮：固定5K也未达标
+
+同一头的独立5K完成：FID **6.957439858377654**，对原official6.9497684777115865恶化 **.1103832551%**，对原全局方差6.944996552691919恶化 **.1791693573%**；推理成本 **1.0365203089倍**。独立对称reference-root重算6.957439858376785，误差约8.7e−13；全量样本/噪声/源码身份审核通过。样本SHA `e1747a8af94d3df0d4e6d764377441e9b6c2b7dff33fea25bacf78330239a0ad`。
+
+[完整5K审核](../experiments/results/raev2_guidance_20260907/conditional_variance_confirm5k_audit.json)、[已终止且完成的执行记录](../experiments/results/raev2_guidance_20260907/conditional_variance_complete_execution.json)。真实forward条件NLL改善在两个规模都没有转化为FID改善。本球形方案不再调整强度或重训；其固定头只作为[单标量方向协方差](RAEV2_DIRECTIONAL_VARIANCE_PROTOCOL_20260907_ZH.md)的m基准，原负结果完整保留。

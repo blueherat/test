@@ -1,0 +1,13 @@
+{
+  "complete": true,
+  "goal_achieved": false,
+  "tests_passed": 3,
+  "command": "OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 /home/zhoushunyu/data/eqvae/envs/raev2/bin/python -m unittest experiments.test_raev2_directional_variance -v",
+  "test_source_sha256": "14f6153d1c91060ddc5725f7848011f483a16d2d804f2b7b28d3dec6a6350af3",
+  "implementation_sha256": "ffe28beba32b41ed55fadf53d45167fc982c37f54c7f4c6b6f132274f12cea22",
+  "checks": [
+    "Finite Gaussian bridge1.25 versus unneeded compensation1.2064",
+    "Exact signed-basis covariance quadrature, positive eigenvalues, kappa1 and zero-direction identity",
+    "Gaussian logdet/inverse risk versus rank-one formula; exact sample-mean optimum"
+  ]
+}

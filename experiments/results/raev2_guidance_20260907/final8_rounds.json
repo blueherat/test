@@ -1,11 +1,11 @@
 {
-  "updated_unix": 1788763381.60142,
-  "current_round": 3,
+  "updated_unix": 1788765300.0398052,
+  "current_round": 4,
   "maximum_rounds": 8,
   "count_each_subsequent_research_turn": true,
   "goal_achieved": false,
-  "stage": "conditional_variance1k_audited_slightly_negative_unchanged5k_running",
-  "next_round": 4,
+  "stage": "directional1k_audited_slightly_negative_unchanged5k_running",
+  "next_round": 5,
   "policy_document": "/home/zhoushunyu/eqvae/docs/RAEV2_FINAL_EIGHT_ROUNDS_20260907_ZH.md",
   "no_round_reset_for_debugging_or_waiting": true,
   "round1_evidence": {
@@ -34,5 +34,17 @@
     "conditional_1k5k_complete": false,
     "conditional_1k_audit": "experiments/results/raev2_guidance_20260907/conditional_variance_screen1k_audit.json",
     "conditional_1k_improvement_percent": -0.15678302278294698
+  },
+  "round4_evidence": {
+    "conditional_5k_audit": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/conditional_variance_confirm5k_audit.json",
+    "conditional_5k_improvement_percent": -0.1103832550777728,
+    "directional_protocol": "/home/zhoushunyu/eqvae/docs/RAEV2_DIRECTIONAL_VARIANCE_PROTOCOL_20260907_ZH.md",
+    "directional_moments": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/directional_variance_moments_complete.json",
+    "one_scalar_calibration": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/directional_variance_calibration.json",
+    "analytic_checks": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/directional_variance_analytic_checks.json",
+    "pixel_parity": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/directional_variance_smoke8.json",
+    "directional_quality_complete": false,
+    "directional_1k_audit": "/home/zhoushunyu/eqvae/experiments/results/raev2_guidance_20260907/directional_variance_screen1k_audit.json",
+    "directional_1k_improvement_percent": -0.3211421883956955
   }
 }

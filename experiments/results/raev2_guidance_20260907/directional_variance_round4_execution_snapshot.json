@@ -1,0 +1,99 @@
+{
+  "complete": false,
+  "pid": 3095567,
+  "stage": "sampling_confirm5k",
+  "plan": {
+    "name": "directional_variance",
+    "train": 64000,
+    "validation": 8000,
+    "batch": 8,
+    "steps": 100,
+    "spherical_head_sha256": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+    "direction": "normalize(full.float()-base.float()) in FP64; zero gap uses spherical covariance",
+    "covariance": "m(z,t,c) * (I + (kappa-1) u u^T)",
+    "global_fitted_parameters": 1,
+    "fit": "kappa = train mean((u dot (X-G))^2/m) among nonzero gaps",
+    "entry": "finite positive kappa; validation mean NLL change + 2 class SE < 0",
+    "all100_times": true,
+    "reuse_original64k8k_real_noise_times_and_frozen_spherical_head": true,
+    "native_features_and_total_mse_bitwise_match_previous_extraction": true,
+    "no_optimizer_grid_regularizer_retraining_or_time_coefficients": true,
+    "samples": [
+      1000,
+      5000
+    ],
+    "seeds": [
+      202609071,
+      202609072
+    ],
+    "both_scales_regardless_1k_fid": true,
+    "maximum_research_round": 8,
+    "no_further_covariance_directions_or_scalars_after_this_candidate": true
+  },
+  "preparation_pid": 3083123,
+  "preparation_process_identity": null,
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_directional_variance.py": "0a39f6c4182592f213901abeabbcde50766ee279e96209b1491dc12b2bd4cb56",
+    "/home/zhoushunyu/eqvae/experiments/raev2_conditional_variance.py": "e43a38f629cd1f6acff21bf9f9c34fda9aaef704ce8aa8c97f461fdf7ef1e925",
+    "/home/zhoushunyu/eqvae/experiments/raev2_directional_variance.py": "ffe28beba32b41ed55fadf53d45167fc982c37f54c7f4c6b6f132274f12cea22",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_directional_variance_quality.py": "11865b3771ce844e1a0c59555f5582b7303bcb99d9284747a5fb066ffeaa2c51",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_prefix_ratio64k_quality.py": "fbf5789c86f26af7706f5e90269b0b8bb0d8a6b5f0180d765c424d40f14fe652",
+    "/home/zhoushunyu/eqvae/experiments/audit_raev2_screen_fid_20260907.py": "61fd8eefba06db355bec2ea7be1aa2de8cbcfeeba1d02e1e4b01a2d685e8c5b1",
+    "/home/zhoushunyu/eqvae/experiments/summarize_raev2_guidance_20260907.py": "ae72e9a445e17e31918d54d0512507efb1d5206626ecb05d8a822d470549238e",
+    "/home/zhoushunyu/eqvae/experiments/continue_raev2_guidance_after_5k.py": "19adbed45a6c17178b6ffcf61cfa3fd21fa8a9b0488f5754f2faf0cf9906e9a7",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_directional_variance_20260907/manifest.json": "a73267542d9ec3dbbbbcae2cfb5f88a4588f1520eba75d9b581e9834e42211aa",
+    "/home/zhoushunyu/eqvae/experiments/locks/raev2_directional_variance_20260907/integration.patch": "2260c140807fb278f4aa84fec7ed944880b4b161e9ae218208e561af1acc0403"
+  },
+  "goal_achieved": false,
+  "research_round_limit": 8,
+  "no_automatic_restart_or_parameter_changes": true,
+  "fit_execution_sha256": "1e6da51495be729658abb717190dba6a613872c4b8e2d8d8bc0447993179a019",
+  "checkpoint_sha256": "4b714004cd57addae8c833970574c13fd6f3c3addfb9b119a913ae0767108faa",
+  "kappa": 27921.89940172958,
+  "integration_applied": true,
+  "child_pid": 3106499,
+  "command": [
+    "/home/zhoushunyu/data/eqvae/envs/raev2/bin/python",
+    "/home/zhoushunyu/eqvae/experiments/run_raev2_ancestral_study.py",
+    "--output",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/directional_variance_confirm5k",
+    "--samples",
+    "5000",
+    "--seed",
+    "202609072",
+    "--modes",
+    "directional_variance"
+  ],
+  "parity": [
+    {
+      "mode": "official",
+      "sample_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/ancestral_smoke_v2/shard0/official/samples.npz",
+      "reference_sha256": "de59e181eeb78fc3b36e01040bc543134bc6f5fd76bf1de66e1b92766694d247",
+      "all_pixels_equal": true
+    },
+    {
+      "mode": "conditional_variance",
+      "sample_sha256": "3cd9039bb59589c11a97f3766378d552426549e63e6b0bcd383ca105fb310098",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_smoke8/shard0/conditional_variance/samples.npz",
+      "reference_sha256": "3cd9039bb59589c11a97f3766378d552426549e63e6b0bcd383ca105fb310098",
+      "all_pixels_equal": true
+    },
+    {
+      "mode": "directional_variance_unit",
+      "sample_sha256": "3cd9039bb59589c11a97f3766378d552426549e63e6b0bcd383ca105fb310098",
+      "reference": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/directional_variance_smoke8/shard0/conditional_variance/samples.npz",
+      "reference_sha256": "3cd9039bb59589c11a97f3766378d552426549e63e6b0bcd383ca105fb310098",
+      "all_pixels_equal": true
+    }
+  ],
+  "screen1k": {
+    "audit_sha256": "67d825c9d8be3b16add6c53657f11cd18e44f7c1de916b11b54a884e75c238d1",
+    "fid": 38.610371195124856,
+    "improvement_vs_official_percent": -0.3211421883956955,
+    "improvement_vs_best_control_percent": -0.7182652668989764,
+    "inference_cost_ratio": 1.0130297037516793
+  },
+  "snapshot_note": "Round4 snapshot; inspect live DATA continuation/state.json and actual Linux PID/starttime for newer progress"
+}

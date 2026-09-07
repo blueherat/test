@@ -1,0 +1,114 @@
+--- a/experiments/sample_raev2_ancestral_guidance.py
++++ b/experiments/sample_raev2_ancestral_guidance.py
+@@ -26,6 +26,7 @@
+ from experiments.raev2_paired_ratio_model import PairedRatioCritic
+ from experiments.raev2_prefix_ratio_guidance import PrefixRatioHead
+ from experiments.raev2_conditional_variance import ConditionalVarianceHead, NativePrefixTap
++from experiments.raev2_directional_variance import colored_noise, PLAN as DIRECTIONAL_PLAN
+ from experiments.raev2_image_critic_guidance import ImageCritic, ExchangeablePosterior, PROBE, COVARIANCE, exact_fp32
+ from experiments.raev2_stage1_compat import install_raev2_decoder_config_compat
+ from experiments.sample_raev2_pfr_retiming import DEFAULT_CONFIG, DEFAULT_CHECKPOINT, load_config, shifted_time_grid
+@@ -50,7 +51,7 @@
+ def get_args():
+     p = argparse.ArgumentParser(description=__doc__)
+     p.add_argument('--output', type=Path, required=True)
+-    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated','actual_ratio','prefix_ratio64k','conditional_variance','conditional_variance_zero'])
++    p.add_argument('--modes', nargs='+', default=['official', 'piecewise', 'ancestral', 'partial'], choices=['official','piecewise','ancestral','partial','full','calibrated','velocity_projection','noise_projection','stochastic_weak','mean_weak','critic_isotropic','critic_exchangeable','two_mode','semantic_add','semantic_orthogonal','paired_ratio','paired_ratio_calibrated','actual_ratio','prefix_ratio64k','conditional_variance','conditional_variance_zero','directional_variance','directional_variance_unit'])
+     p.add_argument('--variance-calibration', type=Path, default=Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/guided_reverse_variance/calibration.json'))
+     p.add_argument('--samples', type=int, default=1000)
+     p.add_argument('--seed', type=int, default=202609071)
+@@ -121,7 +122,7 @@
+             raise ValueError('prefix ratio checkpoint identity mismatch')
+         prefix_ratio = PrefixRatioHead(prefix_path).cuda().eval().requires_grad_(False)
+     variance_head = None
+-    if any(m.startswith('conditional_variance') for m in args.modes):
++    if any(m.startswith(('conditional_variance','directional_variance')) for m in args.modes):
+         variance_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/conditional_variance_fit/head.pt')
+         variance_fit = json.loads((variance_path.parent/'execution.json').read_text())
+         if args.steps != 100 or not variance_fit['complete'] or not variance_fit['optimizer_converged']:
+@@ -133,6 +134,16 @@
+         variance_head = ConditionalVarianceHead(variance_path).cuda().eval().requires_grad_(False)
+         if variance_head.calibration_sha256 != file_sha256(args.variance_calibration):
+             raise ValueError('conditional variance calibration identity mismatch')
++    directional_calibration = None
++    if any(m.startswith('directional_variance') for m in args.modes):
++        directional_path = Path('/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_20260907/directional_variance_moments/calibration.json')
++        directional_calibration = json.loads(directional_path.read_text())
++        if not directional_calibration['complete'] or not directional_calibration['validation']['entry_condition_passed']:
++            raise ValueError('directional variance requires the original held-out Gaussian NLL gate')
++        if directional_calibration['plan'] != DIRECTIONAL_PLAN or directional_calibration['spherical_head_sha256'] != file_sha256(variance_path):
++            raise ValueError('directional covariance or frozen spherical head identity mismatch')
++        if 'directional_variance_unit' in args.modes and (args.samples != 8 or args.shards != 1):
++            raise ValueError('unit covariance ratio is only an 8-image parity check')
+     weak_model = SharedPrefixWeak(model) if any(m in args.modes for m in ('stochastic_weak','mean_weak')) else None
+     shift = math.sqrt((cfg.misc.time_dist_shift_dim or math.prod(cfg.misc.latent_size))/cfg.misc.time_dist_shift_base)
+     grid = shifted_time_grid(args.steps,shift,torch.device('cuda')).cpu().tolist()
+@@ -155,7 +166,7 @@
+     request.update(protocol='raev2_gaussian_channel_guidance_v1', checkpoint_sha256=file_sha256(args.checkpoint),
+                    config_sha256=file_sha256(args.config), state_key='ema', time_grid=grid,
+                    torch_version=torch.__version__, gpu=torch.cuda.get_device_name(),
+-                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py','experiments/raev2_paired_ratio_model.py','experiments/raev2_prefix_ratio_guidance.py','experiments/raev2_prefix_ratio_features.py','experiments/raev2_conditional_variance.py']},
++                   source_sha256={p:file_sha256(ROOT/p) for p in ['experiments/sample_raev2_ancestral_guidance.py','experiments/raev2_ancestral_guidance.py','experiments/raev2_transport_projection.py','experiments/raev2_stochastic_weak.py','experiments/raev2_image_critic_guidance.py','experiments/raev2_two_mode_ratio.py','experiments/raev2_semantic_complement.py','experiments/raev2_semantic_quality_guidance.py','experiments/raev2_paired_ratio_model.py','experiments/raev2_prefix_ratio_guidance.py','experiments/raev2_prefix_ratio_features.py','experiments/raev2_conditional_variance.py','experiments/raev2_directional_variance.py']},
+                    decoder_sha256=file_sha256(Path(cfg.stage_1.params['pretrained_decoder_path'])),
+                    stats_sha256=file_sha256(Path(cfg.stage_1.params['normalization_stat_path'])))
+     if calibration is not None:
+@@ -205,6 +216,12 @@
+             'feature_precision': 'native BF16 autocast block7; FP32 pooled statistics',
+             'head_precision': 'FP64 normalization and fixed weights, FP32 final noise coefficient',
+             'zero_head_allowed_only_for_8_image_parity': True}
++    if directional_calibration is not None:
++        request['directional_variance'] = {'calibration_sha256': file_sha256(directional_path),
++            'kappa': directional_calibration['kappa'], 'plan': DIRECTIONAL_PLAN,
++            'spherical_head_sha256': file_sha256(variance_path),
++            'global_fitted_parameters': 1, 'all_100_times': True,
++            'no_extra_model_calls_or_input_backward': True}
+     put(out/'request.json',request)
+     batch_ids = list(range(args.shard,args.samples//args.batch,args.shards))
+     # Shared model/decoder warmup; excluded from per-image timings and disclosed.
+@@ -238,7 +255,8 @@
+         ratio_calls=0
+         prefix_calls=0
+         variance_calls=0
+-        variance_tap=NativePrefixTap(model) if mode.startswith('conditional_variance') else None
++        directional_calls=0
++        variance_tap=NativePrefixTap(model) if mode.startswith(('conditional_variance','directional_variance')) else None
+         critic_records=[]
+         started=time.perf_counter()
+         for batch_id in batch_ids:
+@@ -297,6 +315,9 @@
+                             'gradient_rms':float(grad.square().mean().sqrt()),'correction_rms':float(correction.square().mean().sqrt())})
+                 if variance_tap is not None:
+                     noise=torch.randn(state.shape,device='cuda',generator=refresh)
++                    if mode.startswith('directional_variance'):
++                        noise,_=colored_noise(noise,full,base,1. if mode=='directional_variance_unit' else directional_calibration['kappa'])
++                        directional_calls+=1
+                     euler=state-(t-s)*((state-clean)/t)
+                     coefficient,log_ratio=variance_head.noise_coefficient(variance_features,
+                         calibration['rows'][step]['mse'],(t-s)/t,zero=mode=='conditional_variance_zero')
+@@ -346,6 +367,7 @@
+             'ratio_backward_calls':ratio_calls,'sample_ratio_backward_calls':ratio_calls*args.batch,
+             'prefix_forward_calls':prefix_calls,'sample_prefix_forward_calls':prefix_calls*args.batch,
+             'prefix_backward_calls':prefix_calls,'sample_prefix_backward_calls':prefix_calls*args.batch,
++            'directional_covariance_queries':directional_calls,'sample_directional_covariance_queries':directional_calls*args.batch,
+             'variance_feature_queries':variance_calls,'sample_variance_feature_queries':variance_calls*args.batch,
+             'initial_noise':records,'max_memory_allocated':torch.cuda.max_memory_allocated()})
+ 
+--- a/experiments/run_raev2_ancestral_study.py
++++ b/experiments/run_raev2_ancestral_study.py
+@@ -30,7 +30,7 @@
+     jobs=[]
+     began=time.perf_counter()
+     frozen={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (
+-        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',ROOT/'experiments/raev2_semantic_complement.py',ROOT/'experiments/raev2_semantic_quality_guidance.py',ROOT/'experiments/raev2_paired_ratio_model.py',ROOT/'experiments/raev2_prefix_ratio_guidance.py',ROOT/'experiments/raev2_prefix_ratio_features.py',ROOT/'experiments/raev2_conditional_variance.py',Path(__file__).resolve())}
++        ROOT/'experiments/sample_raev2_ancestral_guidance.py',ROOT/'experiments/raev2_ancestral_guidance.py',ROOT/'experiments/raev2_transport_projection.py',ROOT/'experiments/raev2_stochastic_weak.py',ROOT/'experiments/raev2_image_critic_guidance.py',ROOT/'experiments/raev2_two_mode_ratio.py',ROOT/'experiments/raev2_semantic_complement.py',ROOT/'experiments/raev2_semantic_quality_guidance.py',ROOT/'experiments/raev2_paired_ratio_model.py',ROOT/'experiments/raev2_prefix_ratio_guidance.py',ROOT/'experiments/raev2_prefix_ratio_features.py',ROOT/'experiments/raev2_conditional_variance.py',ROOT/'experiments/raev2_directional_variance.py',Path(__file__).resolve())}
+     state={'complete':False,'pid':os.getpid(),'args':{k:str(v) if isinstance(v,Path) else v for k,v in vars(a).items()},'sources':frozen,'jobs':[]}
+     def save():
+         (out/'execution.json').write_text(json.dumps(state,indent=2)+'\n')
+@@ -89,6 +89,7 @@
+             'extra_sample_unconditional_calls':sum(s.get('extra_sample_unconditional_calls',0) for s in summaries),
+             'sample_prefix_forward_calls':sum(s.get('sample_prefix_forward_calls',0) for s in summaries),
+             'sample_prefix_backward_calls':sum(s.get('sample_prefix_backward_calls',0) for s in summaries),
++            'sample_directional_covariance_queries':sum(s.get('sample_directional_covariance_queries',0) for s in summaries),
+             'sample_variance_feature_queries':sum(s.get('sample_variance_feature_queries',0) for s in summaries),
+             'paired_noise_labels_sha256':hashlib.sha256(json.dumps(records,sort_keys=True).encode()).hexdigest(),
+             'sample_sha256':hashlib.sha256((folder/'samples.npz').read_bytes()).hexdigest()}
