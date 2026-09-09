@@ -1,0 +1,55 @@
+
+=== launch ===
+/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_imagenet100_sit_discriminator_ag_transport_v4.py --worker train-disc --disc-seed 0 --output-root /data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4 --disc-seeds 0,1 --weak-steps 180000,240000,270000,300000,400000,500000,600000 --disc-steps 4000 --disc-batch-size 64 --disc-lr 0.0002 --disc-weight-decay 0.0001 --disc-ema-decay 0.999 --disc-r1-gamma 1.0 --disc-r1-interval 16 --disc-grad-clip 10.0 --disc-log-every 100 --disc-eval-every 1000 --disc-save-every 1000 --disc-val-batches 16 --disc-base-channels 64 --disc-cond-dim 256 --disc-class-dim 128 --disc-time-bands 16 --disc-dt-min 0.025 --disc-dt-max 0.125 --disc-s-max 0.95 --audit-time-centers 0.0625,0.1875,0.3125,0.4375,0.5625,0.6875,0.8125,0.9375 --audit-delta 0.05 --audit-probe-gamma 1.0 --audit-samples-per-bin 128 --audit-batch-size 64 --policy-lookahead 0.05 --policy-gamma-max 8.0 --policy-gap-eps 1e-08 --num-samples 1000 --sample-batch-size 8 --vae-decode-batch-size 2 --num-output-points 250 --atol 1e-06 --rtol 0.001 --fid-batch-size 8 --fid-gpu-memory-fraction 0.25 --cuda-allocator-limit-gib 15.0 --no-strong-bf16
+[D0] CUDA allocator: {'allocator_limit_gib': 15.0, 'allocator_fraction': 0.6378505764429241, 'device_total_memory_bytes': 25250627584}
+[D0] loading v800 strong...
+[D0] loading latent caches...
+[D0] creating discriminator batch=64 R1 every 16 steps...
+[D0] preflight one real/fake batch...
+[D0] preflight OK; allocated=0.16 GiB reserved=0.18 GiB
+[D0] 1/4000 loss=1.3895 acc=0.516
+[D0] 100/4000 loss=1.3877 acc=0.484
+[D0] 200/4000 loss=1.3842 acc=0.523
+[D0] 300/4000 loss=1.3909 acc=0.484
+[D0] 400/4000 loss=1.3859 acc=0.508
+[D0] 500/4000 loss=1.3858 acc=0.484
+[D0] 600/4000 loss=1.3819 acc=0.523
+[D0] 700/4000 loss=1.3870 acc=0.516
+[D0] 800/4000 loss=1.3852 acc=0.516
+[D0] 900/4000 loss=1.3857 acc=0.523
+[D0] 1000/4000 loss=1.3867 acc=0.492
+[D0] val AUC=0.4974
+[D0] 1100/4000 loss=1.3865 acc=0.516
+[D0] 1200/4000 loss=1.3860 acc=0.539
+[D0] 1300/4000 loss=1.3884 acc=0.477
+[D0] 1400/4000 loss=1.3841 acc=0.547
+[D0] 1500/4000 loss=1.3852 acc=0.531
+[D0] 1600/4000 loss=1.3866 acc=0.492
+[D0] 1700/4000 loss=1.3856 acc=0.508
+[D0] 1800/4000 loss=1.3857 acc=0.516
+[D0] 1900/4000 loss=1.3827 acc=0.508
+[D0] 2000/4000 loss=1.3891 acc=0.461
+[D0] val AUC=0.4762
+[D0] 2100/4000 loss=1.3870 acc=0.469
+[D0] 2200/4000 loss=1.3836 acc=0.523
+[D0] 2300/4000 loss=1.3827 acc=0.617
+[D0] 2400/4000 loss=1.3869 acc=0.531
+[D0] 2500/4000 loss=1.3852 acc=0.516
+[D0] 2600/4000 loss=1.3864 acc=0.508
+[D0] 2700/4000 loss=1.3862 acc=0.484
+[D0] 2800/4000 loss=1.3857 acc=0.523
+[D0] 2900/4000 loss=1.3838 acc=0.523
+[D0] 3000/4000 loss=1.3862 acc=0.492
+[D0] val AUC=0.5002
+[D0] 3100/4000 loss=1.3867 acc=0.500
+[D0] 3200/4000 loss=1.3855 acc=0.492
+[D0] 3300/4000 loss=1.3878 acc=0.477
+[D0] 3400/4000 loss=1.3836 acc=0.531
+[D0] 3500/4000 loss=1.3880 acc=0.562
+[D0] 3600/4000 loss=1.3881 acc=0.531
+[D0] 3700/4000 loss=1.3864 acc=0.531
+[D0] 3800/4000 loss=1.3852 acc=0.500
+[D0] 3900/4000 loss=1.3836 acc=0.508
+[D0] 4000/4000 loss=1.3850 acc=0.555
+[D0] val AUC=0.5132
+[D0] complete best AUC=0.5132

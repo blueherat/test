@@ -1,5 +1,1077 @@
 # Research Status
 
+> **Current archive checkpoint (2026-09-09): all JiT follow-up arms complete.**
+> See [whole-workspace archive](WORKSPACE_ARCHIVE_20260909_ZH.md) for current
+> results, portable metadata and raw-data locations. JiT nine alternative PFR
+> arms all lose to selected IG55.480326; best projected rho=.05 gives56.855438.
+> No training/sampling processes were active at status inspection. Lifting's
+> best exploratory1K55.214220 has ~3.59x batch GPU cost and no independent5K.
+> The two initial brainstorm ideas are withdrawn; no mature new method yet.
+> Existing drafts are archived as historical files, not resumed paper writing.
+> **Entries below are chronological research history, not current queue state.**
+
+> **Brainstorm audit: do not relaunch old future-gap or norm-clipping as new ideas.**
+> User requested theory/idea discussion only; current nine PFR arms continue.
+> Earlier suggested future-gap-change overlaps documented SiT decomposition:
+> ordinary64.85216, gap-change66.86920, RMS-matched66.62607; combined weak
+> evolution63.27067. Query differs from some canonical PFR settings, so this
+> is a direct warning against novelty/generalization, not every variant ruled out.
+> Common time/OU-response controls do NOT imply arbitrary common change is
+> beneficial; RAE common response was already found without quality benefit.
+> APG already contains norm rescaling/projection; simple clipping is a control,
+> not an established novel method. Existing endpoint protocol also explicitly
+> warns that depth readouts are not consecutive iterates permitting Aitken.
+
+> **Active follow-up: JiT alternative PFR query/strength/horizon controls.**
+> User requests alternatives after canonical PFR FID110.23. Fixed selected
+> IG early.3/late0, depth4, old noise/labels; no baseline reruns.
+> Nine arms: projected h1/32 rho .05/.1/.25/.5; time-only rho .1/.25/1;
+> projected/time-only h1/128 rho1. Four GPUs per arm, sequential1K.
+> Preflight reproduced first4 canonical PFR and selected IG pixels exactly;
+> rho0 equals IG. No time/sign/conversion mismatch identified in source review.
+> On four fixed IG paths, projected correction RMS / IG velocity RMS averages
+> .157 at t0, .114 at .1, .093 at .4; time-only comparable. No claim that
+> correction-size diagnostic explains quality failure. Queue launched at
+> jit_pfr_variants_20260909; script run_jit_pfr_variants.py.
+
+> **JiT overnight study complete: depth4 IG helps, fixed PFR fails badly.**
+> 86 IG configurations including reused Full, one PFR, six lifting settings;
+> total93 result records,92 newly sampled paired1K candidates. Best IG early.30/
+> late0 FID55.48033 versus Full63.67457 and officialCFG38.77898.
+> Canonical projected PFR h1/32 at selected IG:110.23098, clear negative.
+> Lifting alpha.30 m1=55.22358, m2=55.21422; best improvement only.48%,
+> batch GPU time962.02/1477.87 versus IG411.85 (~2.34x/3.59x).
+> Neither method passed predeclared1% improvement trigger; no independent5K
+> was launched. All are exploratory1K, not evidence of reliable lifting gain.
+> Queue phasecomplete, GPUs idle. Fixed PFR failure also in pixel JiT weakens
+> a universal explanation based solely on RAEv2 encoder-layer averaging;
+> does not prove the cause or rule out all PFR settings/heads.
+
+> **JiT training50K complete; corrected overnight fine sweep running.**
+> User clarified: finish lifting on JiT, NOT add depth8 sampling. Depth4 only.
+> New run_jit_fine_study.py preserves trained heads and runs IG early/late joint
+> grid (0:.15:1.5 x 0:.1:.6), conditional boundary extensions and local .05
+> refinement, then selected-config PFR, then lifting multipliers1/.8/1.2 x m1/m2.
+> If a method beats selected IG by>=1% exploratory FID, freeze settings and
+> run independent paired5K seed202609932; threshold is not statistical significance.
+> All candidates sequential, four GPUs per candidate, baseline reused. Actual
+> status sampling first nonzero IG e.15/l0, trainingcomplete confirmed.
+> New root jit_fine_sweep_20260909; older jit_ordered controller terminated,
+> adopted training was never interrupted. Latest instructions restore JiT lifting
+> only; smallSiT/RAE lifting stays shelved.
+> Theory correction: old strong/weak time-defect controls already show Strong
+> variants improve too. No evidence that weak-only use is theoretically necessary.
+
+> **Latest user direction: shelve lifting; await JiT IG/PFR results.**
+> All new lifting, including pending JiT lifting and RAE tail lifting, paused.
+> Replaced only JiT orchestration controller, preserved active training PID1719837;
+> new controller adopts it, then tunes depth4 IG and compares PFR, no lifting.
+> Verified training step44300/50000 before controller replacement.
+> Do not interpret PFR as training weak to catch strong or removing guidance.
+> Canonical PFR queries weak at a projected future point; original weak anchor
+> remains in G=W(p)+(1+gamma)*(S(p)-W(q)). Quality benefit is empirical.
+
+> **Historical-config SiT lifting complete; JiT resumed and training.**
+> Same historical bank IG64.85130/PFR61.85921. Lifting FID1K (m1/m2):
+> alpha .6/.7=65.28696/65.27038; .7/.8=66.08276/66.13323;
+> .8/.9=66.91876/67.35254. All six negative versus historical IG/PFR.
+> No consistent gain from second half-strength write; greater early alpha
+> worsens quality in this grid. No additional SiT runs queued.
+> JiT controller automatically resumed checkpoint24K; verified step38100/50000,
+> four GPUs active. Latest heldout step35K d4=.094728/d8=.094788,
+> frozen Full=.067599. Continue training then depth4 IG search -> PFR -> lifting.
+
+> **Authorized automatic continuation after SiT: JiT ordered method study.**
+> Controller run_jit_ordered_study.py is waiting for the six-arm SiT study.
+> Resume JiT saved24K->50K, retain original two-head training but sample only
+> depth4. Tune early IG at late0, then late IG, then revisit early; freeze
+> selected observed configuration, compare PFR next, lifting m1/m2 last.
+> Full/official CFG banks reused. New single-depth sampler preserves paired
+> JiT input bank, verifies shared Full/prefix and baseline4 pixel parity before
+> quality sampling. GPU checks deferred until training completes; Python
+> compilation passed. No current claim of new JiT quality or parity checks.
+> Protocol JIT_ORDERED_METHOD_STUDY_20260909_ZH.md. Queue live status:
+> /home/zhoushunyu/data/eqvae/experiments/jit_ordered_20260909/status.json.
+> Latest authorization supersedes earlier 'do not auto-resume JiT'.
+
+> **User correction: validate lifting at historical strong IG/PFR configuration.**
+> Located historical depth4 schedule gamma .6/.7/0 at data-time .25/.5,
+> Dopri5 rtol1e-3 atol1e-6, seed0 per-batch legacy paired bank B8.
+> Exact historical IG64.851298/PFR61.859207 reused. Earlier fixed-.35
+> bank and Euler sweep did NOT establish improvement over historical PFR.
+> Historical-bank lifting anchor launched on four GPUs, .6/.7/0 strengths;
+> global input hashes and Strong/Weak interface parity verified.
+> Main Strong Dopri5 restarts at finite-write boundaries; auxiliary Heun
+> preserves lifting's existing fine grid. Solver restart difference disclosed.
+> User then requested richer early strengths and two iteration counts:
+> .6/.7, .7/.8, .8/.9 each m1/m2, late0; m2 uses alpha/2 per write.
+> Five new arms queued after anchor, no duplicate anchor/IG/PFR sampling.
+> Roots small_sit_best_config_lifting_20260909 and small_sit_best_lifting_sweep_20260909.
+> JiT remains paused, XL deferred. No paper.
+
+> **Two-stage small SiT IG: all eight paired 1K arms complete.**
+> FID cutoff .2 / .5: gamma .35=69.09210/72.32272;
+> .50=70.48061/68.65158; .65=75.66677/66.89813;
+> .78=81.11084/66.45396. Existing full IG71.16979, fixed PFR68.35781 reused.
+> Best observed .78 cut.5 improves FID by1.90385 versus existing fixed PFR,
+> at100 Full/image and78.10 batch GPU seconds. Exploratory selection on same1K,
+> not independent validation or comparison against equivalently tuned PFR.
+> At matched gamma.35 cut.2 lifting68.73780 versus ordinary69.09210, a small
+> .35430 gain at219.56 versus78.09 batch GPU seconds. Strong evidence here
+> for interaction of guidance strength and window, not a lifting breakthrough.
+> GPUs idle; JiT remains paused at24000. No additional experiments launched.
+
+> **Active: small SiT ordinary two-stage IG controls and early-strength sweep.**
+> User requested matching IG tail controls, then noted early gamma need not .35.
+> First gamma .35 at noise cutoffs .2/.5, then gamma .5/.65/.78 each at both
+> cutoffs. All 1K paired with existing bank; only new methods sampled,
+> four GPUs cooperate per arm, arms sequential. No PFR/full-IG reruns.
+> Samplers/queues: sample/run_small_sit_two_stage_ig[_strength]_*.
+> Strength queue waits for .35 queue completion. JiT paused, XL deferred.
+
+> **Small SiT lifting four-arm experiment complete.**
+> Paired FID1K: ordinary reused71.16979; PFR reused68.35781;
+> lifting a035 constant71.07050, a078 constant93.00245,
+> a035 noise cutoff .2=68.73780, cutoff .5=71.13327.
+> All four 1000-image banks and evaluations complete; queue exited.
+> Cutoff .2 improves over continuous lifting by2.33271 FID and reduces
+> measured batch GPU seconds249.26->219.56, but still trails existing PFR
+> and costs more. No matched native-IG cutoff control yet, so the gain
+> cannot be attributed specifically to lifting. No 5K confirmation.
+> Alpha .78 degrades here; RAEv2 coefficient plateau does not transfer.
+> GPUs idle at verification; JiT remains paused at saved step24000.
+
+> **User hypothesis to revisit after JiT: RAEv2 multi-layer latent averaging.**
+> Source check: dinov3mls k7 averages seven encoder-layer patch features,
+> then adds the final selected layer's spatial mean at each patch.
+> This defines the encoded training representation; stage1.RAE.decode only
+> denormalizes and reshapes generated latents before decoder, with no new
+> multi-layer averaging at generation time. Possible representation effects
+> remain hypotheses, not demonstrated cancellation of PFR updates.
+> User wants JiT evidence before a conclusion; small SiT remains current priority.
+
+> **Current execution priority: small SiT lifting; JiT paused by user.**
+> JiT controller/training terminated after preserving last.pt at step24000;
+> optimizer and all four RNG states verified. Do not auto-resume JiT.
+> New small-SiT four-card queue launched: a035_constant, a078_constant,
+> a035_cut02, a035_cut05, sequential candidates. Existing IG and PFR
+> quality banks are reused; user reiterated PFR must NOT be rerun.
+> Only eight old IG images reproduced for pixel parity, passed. Constant-field
+> sign/alpha-zero/grid/cutoff checks passed; new first lifting batch saved.
+> Live status: /home/zhoushunyu/data/eqvae/experiments/small_sit_lifting_20260909/status.json.
+> RAEv2 tail controls remain pending; XL deferred. No manuscript.
+
+> **Latest correction: lifting transfer starts on small SiT; XL deferred.**
+> Use ImageNet-100 SiT-S/2 v800K + depth4 v readout, existing paired
+> seed202609417/B8 ordinary and PFR baselines. Small-model data time runs
+> 0 to 1: noise cutoffs .2/.5 mean native t>=.8/.5. No XL launch.
+> JiT verified live at step21500/50000 (~43%); four GPUs active.
+> At step20K heldout EMA readout errors d4=.11316/d8=.11634 versus
+> frozen Full=.06760. Prediction errors do not establish guidance quality.
+> JiT baseline FID1K: Full Euler100=63.67457, CFG Heun50=38.77898.
+> IG/PFR/OU quality evaluation remains pending readout completion.
+
+> **Additional authorized follow-up: transfer RAEv2 lifting to official SiT-XL.**
+> After JiT and the queued RAEv2 tail controls: constant alpha .35/.78,
+> plus alpha .35 with noise-time cutoff .2/.5. Alpha .35 matches existing
+> SiT IG1.35 to first order. Reuse paired ordinary/PFR baselines; four GPUs
+> per new candidate. Pending, not launched. See SIT_CAPACITY_LIFTING_TRANSFER_20260909_ZH.md.
+
+> **Pending after JiT: user authorized low-noise guidance-off controls.**
+> RAEv2 lifting alpha .65/.78, each with t<=.2 or t<=.5 switched to
+> Strong-only Euler. Reuse completed constant samples and native baseline.
+> Four GPUs cooperate per candidate, candidates sequential. Not launched.
+> Wait for JiT training AND method sampling/evaluation; readouts_ready alone
+> is not completion. See IG_CAPACITY_LIFTING_LOW_NOISE_CONTROLS_20260909_ZH.md.
+
+> **Latest active direction: user requests true JiT reproduction of SiT IG/PFR/OU.**
+> Found official JiT outside worktree; recovered complete B/16 weights from
+> interrupted ZIP with CRC verification. Frozen-backbone depth4/8 clean
+> readout training and first-ever JiT paired baselines launched in queue.
+> Preparation session88772; baseline workerPIDs1540813/1540814/1540815/1540816.
+> FP32/BF16 full-head parity passed; source131320320/readouts3545088 params. See
+> JIT_INTERNAL_GUIDANCE_TRANSFER_20260908_ZH.md. No JiT result yet.
+> Lifting five settings all complete: .5/.65/.78/.85/.9 =
+> 38.737965/38.452305/38.468476/38.456582/38.497212 vs38.264239.
+> No improvement; old228 a078 images reused unchanged. No extra sweep.
+> FK remains paused500 samples. Manuscript stays paused.
+
+> **Latest: user requests append0.78 after .5/.65/.85/.9 constant grid.**
+> Reuse old a078228 saved images with exact frozen sampler/protocol.
+> Dedicated append controller waits for current queue completion, then four
+> GPUs finish only a078 and evaluate. No fade/1.25/FK restart.
+> Current .5/.65/.85 results38.737965/38.452305/38.456582 all above
+> reused native38.264239; .9 still sampling at last verified state.
+
+> **Latest user coefficient grid: .5/.65/.85/.9, constant only.**
+> Old lifting queue terminated; a078 retained228 images. No1.25/fade run.
+> New separate sampler/protocol/root preserve old frozen source hashes.
+> Four constant settings run sequentially, four GPUs cooperate on each1K.
+> FK remains paused at500 images. No baseline reruns; no manuscript.
+> See IG_CAPACITY_LIFTING_CONSTANT_20260908_ZH.md.
+
+> **Latest user steering: pause FK; test finite capacity lifting.**
+> FK saved500 images; four workers and watcher stopped to release GPUs.
+> Exact-request atomic batches retained. Do not restart FK automatically.
+> Implemented partial L=(PhiW)^-1 PhiS then Strong Euler advancement,
+> no additional native IG. Four predeclared alpha/schedule settings, run
+> sequentially with four GPUs per setting. Baseline reused, no manuscript.
+> See IG_CAPACITY_LIFTING_20260908_ZH.md. Smoke passed,11.232s/B4.
+> Four-setting queue launched; process status/log in
+> experiments/results/terminal_defect_20260908/capacity_lifting/.
+
+> **Latest user-authorized experiment: direct stochastic FK path correction.**
+> Read new attachment a11a1076 in full. Same ideal math as existing semigroup
+> derivation; replace failed fitted value approximation with direct antithetic
+> path log-moment input gradients. Protocol IG_FK_PATH_20260908_ZH.md.
+> Smoke passed: 4 images saved, 98.031 s, peak9.216 GB. Four-GPU 1K launched;
+> sessions87390/33267/4613/58259, ranks0/1/2/3, baseline reused.
+> Watcher68956 automatically merges/evaluates after all four summaries.
+> Low-noise two-particle weights concentrate; log this limitation, no gain tuning.
+> No distillation; no manuscript. Older requirement to invent a content/quality
+> decomposition is superseded by the user-provided terminal-preference method.
+
+> **Method reset after explicit user correction — latest:**
+> No distillation or newly guessed algebra/attention variant launched.
+> Re-read AG/FSG and inspected fixed first8 matched images: large temporal
+> interventions often change framing/content in these examples, not merely
+> local quality. This is qualitative scope only, not causal FID evidence.
+> See RESEARCH_METHOD_RESET_AFTER_USER_CORRECTION_20260908_ZH.md.
+> Need a concrete quality-error/content distinction before a new method;
+> no claim of a mature idea yet. Goal remains active, manuscript paused.
+
+> **User rejected response distillation — latest steering:**
+> Stop SiT PFR response distillation. Only scripts were prepared; no
+> training or student sampling was launched. Efficiency preservation on
+> SiT does not solve the unresolved RAEv2 method-quality problem.
+> Do not launch the fit/merge/sampling plan automatically. Prioritize a
+> substantive effective method; no manuscript and no baseline reruns.
+
+> **Three-time PFR completed, negative — 2026-09-08:**
+> FID47.583198 vs reused native38.264239 (24.354% worse); IS68.113455.
+> All four workers and evaluator52649 exited0; no active job.
+>100Full+178prefix/image,1173.550 batch GPU seconds. No expansion,
+> differencing-order, norm, h or strength rescue. Stop this series of
+> temporal-difference algebra variants. See
+> RAEV2_PFR_TEMPORAL_CURVATURE_RESULTS_20260908_ZH.md. Goal unmet; no paper.
+
+> **Three-time temporal PFR candidate launched — 2026-09-08:**
+> R=W_t-2W_(t-h)+W_(t-2h), h=min(1/32,(t-.5)/2), t>.5,
+> nativeIG+1.78R. Standard finite-difference annihilation, no novelty or
+> quality guarantee; distinct from older two-time OU degree2 projection.
+> Four-card single-method1K,100Full+178prefix/image; baseline reused.
+> Sessions97749/95136/13415/27410 launched; check actual handles.
+> Frozen RAEV2_PFR_TEMPORAL_CURVATURE_20260908_ZH.md. No paper.
+
+> **Teacher-reference PFR1K completed — 2026-09-08:**
+> FID38.199289 vs reused native38.264239, only0.1697% exploratory gain.
+> Four workers and evaluator17242 exited0; no jobs remain. No matched
+> same-dose raw comparison, so teacher-target attribution is unproven.
+>100Full+99prefix+198small-head calls/image,1016.511 batch GPU seconds.
+> No5K/parameter search under frozen rule. See
+> RAEV2_PFR_TEACHER_REFERENCE_RESULTS_20260908_ZH.md. Goal unmet; no paper.
+
+> **PFR teacher-reference quality run — 2026-09-08:**
+> Reuse existing ten-noise affine teacher reference; no new training.
+> Native Full/Base IG unchanged; only PFR difference uses teacher head.
+> Historical mild rho.05,h1/32,native interval; four-card paired1K only,
+>100Full+99prefix and198small-head calls/image. No baseline regeneration.
+> This differs from canonical rho1 in both dose and reference, so no
+> single-factor attribution against that bank. Sampling sessions
+>39555/26001/24872/7039 launched; inspect real handles for current state.
+> RAEV2_PFR_TEACHER_REFERENCE_20260908_ZH.md is frozen. No paper.
+
+> **RAE differential PFR completed, negative — 2026-09-08:**
+> New four-card1K FID58.661318 vs native38.264239 and prior raw52.942740.
+> 189Full/image;1500.084 batch GPU seconds. Four workers and evaluator96266
+> exited0; no active job in this experiment. No5K or strength/window rescue.
+> Direct strong temporal-response subtraction did not repair transfer.
+> See RAEV2_PFR_DIFFERENTIAL_RESULTS_20260908_ZH.md. Goal unmet, paper paused.
+
+> **Independent PFR route resumed — 2026-09-08:**
+> Pause AG/FSG carrier variations after the negative history-separated1K.
+> New RAE differential PFR samples only the new method on all four GPUs:
+> nativeIG+1.78*((W-Wfuture)-(S-Sfuture)), same-state temporal queries,
+> h1/32,rho1,t>.5,189Full/image. This operator has negative SiT history,
+> so no generic novelty claim. RAE-specific quality is now being tested.
+> Sessions56614/23822/89934/60499 launched; inspect handles for liveness.
+> Frozen RAEV2_PFR_DIFFERENTIAL_20260908_ZH.md. Reuse existing baselines,
+> no paper, no FSG/PFR hybrid. Earlier route states are historical.
+
+> **History-separated IG completed — 2026-09-08:**
+> Four-card1K FID38.619525 vs reused native38.264239 (0.9285% worse),
+> 198 Full calls/image,1574.962 batch GPU seconds. All four workers and
+> evaluator exited0; no jobs from this method remain. No5K or shadow/reset
+> tuning. See IG_HISTORY_SEPARATED_RESULTS_20260908_ZH.md. The earlier
+> running note below is historical. Goal remains unmet; no manuscript.
+
+> **Latest user constraints and method run — 2026-09-08:**
+> No manuscript drafting: focus on method and idea. Only sample the NEW method,
+> with all four GPUs sharding the same sample set; reuse existing baseline data
+> and metrics. Retain ongoing guidance. Method quality experiments take priority
+> over mechanism-only admission gates in older notes below.
+> Global/coarse/pulled-back query anchors completed paired 1K at FID
+> 38.145579 / 38.146866 / 38.250534, native IG38.264239. None establishes a
+> substantive contribution; no more small anchor variants.
+> New history-separated method is running: current Full prediction plus .78
+> times the Full-Base contrast evaluated at a Full-only shadow state, both paths
+> starting from matched noise. Unlike direct cross-state strong-minus-weak,
+> the contrast is computed at one state. Main trajectory retains IG throughout
+> the original interval. 198 Full calls/image, four-card1K, no baseline rerun.
+> Sessions61615/37528/41199/27182 were launched; do not infer current liveness
+> from this note. Inspect actual handles and result files. Frozen protocol:
+> IG_HISTORY_SEPARATED_20260908_ZH.md. Goal remains unmet; PFR separate/paused.
+
+> **User clarified novelty and two forward routes — 2026-09-08:**
+> Writing class information into noise is known/FSG-related, not our novelty.
+> Routes are a new CFG guidance method or transferring this taste to AG/IG.
+> Prioritize AG/IG research while completing the already-started CFG handoff
+>1K as a reference, not a contribution. Its pilot/native/Full/BF16 smoke
+> gates passed; driver93827 is running quality at entry time.
+> Do not mechanically equate strong/weak future agreement with quality;
+> the repository already has negative AG-FSG and anchored-inverse evidence.
+> Investigate whether useful guided-quality correction can be written into
+> state and retained by the strong sampler after withdrawing weak-model
+> consultation. Weak-only continuation is a possible diagnostic, not a
+> redefinition of the objective as distillation/speed alone. Simply stopping
+> guidance early is also not a novelty claim. PFR remains separate/paused.
+
+> **Condition handoff demonstrated in a64-seed RAE pilot — 2026-09-08:**
+> Two initial t1 true-CFG/null Euler calibrations (H.125,K2,gamma2), then
+>100 entirely null-labelled steps: target top1 48/64 versus52/64 always
+> conditional and0/64 raw null or null-only roundtrip. Wrong-class write
+> yields49/64 donor-class and0/64 original-class top1. Independent ConvNeXt
+> evaluator, no classifier used during sampling. Same-written-state
+> conditional/null endpoint MSE .265926 vs uncalibrated1.395674 (ratio.190536).
+> This supports the user's information-relocation intuition; prior local
+> MSE/cache gates did not answer it. Not full FSG reproduction or new method.
+> One-write internal memory is much weaker:9/64 target; exchanged memory
+>5/64 donor,0/64 original. Zero-memory8 endpoints/pixels bitwise null parity.
+> Drivers14632/9264/72611 and audits17753/71683/85374 all exited0; no live jobs.
+>520 decoded outputs across controls,941.584 seconds sampling+save (~.26155
+> GPU hours), loading/evaluation extra. See FSG_CONDITION_HANDOFF_RESULTS_20260908_ZH.md.
+> No FID or quality/novelty claim yet. PFR and paper writing remain paused.
+
+> **User correction adopted: test condition handoff, not only local risk — 2026-09-08:**
+> FSG relocates external condition into high-noise state; lack of new
+> external information is not an objection to useful relocation. Prior
+> token/MSE results do not establish or refute condition handoff.
+> Running64-seed end-to-end withdrawal experiment: pure initial noise,
+> conditional/null continuations, two-round FSG-style latent calibration
+> followed by null or class, null-only roundtrip and wrong-class write.
+> Separately testing a layer14 class-contrast memory written once at t1,
+> then only null-labelled calls; zero-memory continuation parity required.
+> Sessions14632/9264 live when this entry written. Protocol:
+> FSG_CONDITION_HANDOFF_PROTOCOL_20260908_ZH.md. No new-method claim.
+
+> **Carrier usefulness checked against real clean targets — 2026-09-08:**
+> Same32 existing validation-bank images/noise and4 times as preceding
+> foresight probe. Class-only midpoint14 swaps recover .654/.651/.675/.720
+> of observed null-to-conditional MSE reduction; image-only also helps.
+> Full conditional remains best on average at every time. These are risk
+> ratios on fixed32 images, not information fractions or quality gains.
+> Driver90562/CPU audit24256 exited0;256 split parity checks and128 saved
+> vector Grams passed; input and native residual reproduce prior probe.
+>44.933 seconds compute+save, loading/bank verification/audit extra.
+> No training/FID or live jobs. See FSG_CARRIER_REAL_RISK_20260908_ZH.md.
+> Stop expanding basic token-carrier diagnostics: useful interface exists,
+> but no validated update rule or novel algorithm yet. Paper/PFR paused.
+
+> **Foresight class-token write screened on real noisy data — 2026-09-08:**
+> Fixed32 existing validation-bank images,4 times1/.9/.75/.55,H=.125,
+> midpoint14. Advance z with true conditional Full, replace current class
+> contrast by future contrast while preserving current image/time tokens.
+> Native split and zero-change parity all128 bitwise. Real-clean MSE rises
+> 4.8921%/.02404%/.00748%/.00303%; no positive evidence for this candidate.
+> Driver8027 and CPU residual-vector audit68077 exited0;31.603 seconds
+> compute+save, loading/bank verification/audit extra. No FID or training.
+> Stop this candidate without horizon/gain/layer rescue; not a proof of
+> endpoint deterioration. See FSG_CLASS_TOKEN_FORESIGHT_20260908_ZH.md.
+> Generic attention-space fixed-point/extrapolation already has direct
+> precedent (GAG2603.02531, primary §§2.3–3.2 read). Goal incomplete.
+
+> **One-step carrier persistence tested — 2026-09-08:**
+> Same8 cached RAE trajectories, fixed14th layer, steps1/47/73/87,
+> preceding-step donor only. Conditional-minus-null class-token memory
+> reproduces fresh class-token effects well (cos .99845–.99970), but
+> that effect omits much of the full conditional response. Full-gap relative
+> squared error .325/.721/.477/.432 versus cached velocity-gap
+> .00200/.02285/.00387/.00732. Different-target proxy scores must not be
+> compared as superiority. No trained memory or quality run warranted yet.
+> Driver46154 and CPU audit15068 exited0;128 split-native outputs bitwise,
+> saved32 vector Grams audited.22.619 seconds compute+save, loading extra.
+> Primary RIN abstract and MetaState introduction establish prior persistent
+> latent memory; generic recurrence is not novelty. See
+> FSG_CLASS_TOKEN_PERSISTENCE_20260908_ZH.md. No live jobs; goal incomplete.
+
+> **Independent carrier diagnostics completed — 2026-09-08:**
+> RAE midpoint14,8 cached trajectories ×4 times, FP32 noTF32, true
+> class/null Full only. Class-token swaps carry donor-directed effects;
+> raw tokens from other trajectory states produce large shifts. Donor
+> conditional-minus-null token transport reduces shifts but fails to recover
+> recipient effects at noninitial times (cos .167/.233/.228).
+> All192 native split outputs bitwise; both GPU runs exited0 (69805/28587),
+> CPU vector audits8131/19836 passed, shared controls reproduce exactly.
+> Compute+save59.405 seconds, loading/hash/audit extra. No live jobs or
+> quality claim. See FSG_CLASS_TOKEN_CARRIER_RESULTS_20260908_ZH.md.
+> Same-trajectory persistence remains untested. PFR and paper paused.
+
+> **Current route decision — 2026-09-08, supersedes earlier route statuses below:**
+> Stage-pause PFR extensions and independently reopen the NeurIPS25 FSG
+> information-carrier question, as permitted by the user's two-route instruction.
+> This is our evidence-based prioritization, not a user instruction to reject PFR.
+> Preserve official SiT raw PFR independent5K positive evidence and all RAE
+> negative evidence. No PFR/FSG hybrid, no paper writing, no new GPU job in
+> this route-decision step. Reread FSG §§3.1–3.2/Algorithm1 and inspected RAE
+> sequence/mask implementation. Internal class-token state is a candidate
+> to diagnose, not a validated method or novelty claim. See
+> [route decision and first diagnostic](FSG_INDEPENDENT_CARRIER_ROUTE_20260908_ZH.md).
+
+Earlier entries below retain the decisions applicable when those experiments ran.
+
+> **OU finite-scale interpretation corrected — 2026-09-08:**
+> Exact Gaussian population paths can have collinear finite-h degree1
+> defects with long/short amplitude ratios1.541/1.266 (V64, data times
+> .02/.05), despite zero neural error. Independent relative-score formula
+> and existing OU implementation agree<1e-11 in10 fixed cases;48729 exited0,
+> .008729 CPU seconds. Corrected §16 of PFR_OU_PROBABILITY_WAVELET_THEORY:
+> finite ratios alone do not identify neural semigroup inconsistency.
+> No new quality claim or sampler change. See OU_FINITE_SCALE_RATIO_CORRECTION_20260908_ZH.md.
+
+> **Official SiT-XL raw-versus-OU PFR comparison completed — 2026-09-08:**
+> Fill a positive-evidence gap: small SiT v/x showed OU extra gain, but
+> official XL had only raw PFR independent5K. Fixed two1K arms with
+> identical125 Full+50 prefix/image, inherited high-noise OU direction
+> projection and raw RMS, no new scale/window. Drivers30991/86395 exited0;
+> independent audit5359 passed, all1000 raw pixels reproduce prior bank.
+> Raw FID40.565427, OU40.554934: only.010492 lower, mean improvement
+> .107045 nearly offset by covariance worsening.096553. No reliable
+> additional gain established; no OU5K/parameter rescue. CPU analytic
+> Gaussian interface58724 passed (defect<=1.78e-15), not quality evidence.
+> Sampling.684984 GPU hours plus loading/checks/eval. Same query budget
+> uses padding for raw, so this is not an efficiency gain over fastest raw.
+> See OFFICIAL_SIT_PFR_OU_PROTOCOL_20260908_ZH.md. No live jobs from this
+> comparison; continue PFR only, fixed point and paper paused.
+
+> **PFR adjacent temporal-reference targets screened — 2026-09-08:**
+> Limited primary reading of TAG2510.11057v1 and DiFA2607.17972v1;
+> no full reproduction claim. Exact same-bridge Gaussian example shows
+> oracle time-posterior confidence increases while an already correct
+> marginal is distorted: eta.05 variance1.25→1.223280, KL0→.000125315.
+> Analytic negative variance derivative, positive global Jacobian, finite
+> difference and quadrature checks passed98937 (.028834 CPU seconds).
+> No GPU/quality jobs. Do not adopt time-classification confidence or ideal
+> independent-history variance as a sufficient PFR error certificate; no
+> auxiliary classifier/history-reference training launched. See
+> PFR_TEMPORAL_REFERENCE_READING_20260908_ZH.md. PFR only, core unresolved.
+
+> **PFR working-point intervention completed, negative — 2026-09-08:**
+> RAE Full versus Full+1.78*(W_t-W_r), keeping canonical h1/32, t>.5,
+> rho1 and absolute PFR dose; only ordinary IG removed. Fixed1K native
+> BF16 protocol, same seed413/batch4 as existing IG/raw banks. Drivers
+> 45987/75354 exited0; independent audit78761 passed. Full FID38.874134,
+> Full+PFR54.137366 (mean.269684→5.283816, covariance38.604474→48.853568).
+> Native IG is therefore not necessary for degradation in this fixed
+> protocol; no inference about all strengths or historical mild5K.
+> 100 Full versus100 Full+89 prefix/image; .490316 GPU hours sampling,
+> loading/check/evaluation extra. No live jobs, no5K expansion/scale scan. See
+> PFR_WORKING_POINT_PROTOCOL_20260908_ZH.md. PFR route only; fixed point
+> and paper paused.
+
+> **PFR program time-route attribution checked — 2026-09-08:**
+> Shapley finite switches of feature/readout time (plus RAE clean-to-velocity
+> divisor) on unchanged32 native trajectories/model. Native corners bitwise,
+> original raw energies/endpoints reproduced; sessions75360/95271 and CPU
+> audit16857 exited0. RAE direct-readout signed raw-dot shares only
+> .003713/-.000934/.005960/.000252, energy ratios .0045/.0101/.0258/.1064;
+> feature route dominates raw-direction attribution in both backbones.
+> This lowers priority of a direct-readout-bypass explanation, without
+> establishing small terminal effects or a quality causal refutation.
+> .024146 GPU hours compute, loading/audit extra. No quality intervention;
+> see PFR_TIME_ROUTES_PROTOCOL_20260908_ZH.md. Continue PFR alone, no live
+> jobs from this probe; fixed point and paper remain paused.
+
+> **Latest user clarification: keep PFR and fixed point separate.**
+> Current route is PFR only: finish the direct temporal-component comparison
+> to investigate SiT success versus RAE failure. Suspend internal-feature
+> information relocation speculation and the inverse-noise branch. Do not
+> combine these with fixed point; consider that route independently only
+> after an evidence-based decision to leave PFR. Paper remains paused.
+
+> **PFR direct temporal condition-component pilots completed — 2026-09-08:**
+> Keep native IG; split weak raw time response into unconditional and
+> conditional-interaction components, preserving each component actual size.
+> Two fixed1K arms/model on official SiT and RAE; no OU projection or norm
+> restoration. Equal within-pair cost100 Full+150/267 prefix per image.
+> All four drivers exited0; independent audit42541 passed. SiT conditional
+> interaction/unconditional FID42.166757/40.990556 versus native42.212951
+> and raw40.565427. RAE41.385438/49.223855 versus native38.264239:
+> neither component repairs RAE; both increase mean FID substantially.
+> Sampling1.484196 GPU hours, loading/checks/eval extra. Endpoint mean
+> nonadditivity audited29229 using existing features; no additional sampling.
+> See PFR_CONDITION_COMPONENT_1K_RESULTS_20260908_ZH.md. No live jobs from
+> this experiment, no5K or novelty claim; continue PFR only, paper paused.
+
+> **Full inverse roundtrip checked, branch paused — 2026-09-08:**
+> Four shards exited0; independent CPU audit44691 recomputed800 saved
+> inverse states and8 endpoints.7/8 endpoints recover closely, but all
+> recovered noises have relative MSE .00150–.00195; label0 endpoint
+> relative MSE .007859 and middle-step residual issues.639.719 seconds
+> total compute (.17770 GPU hours),28000 B1 Full calls. No inverse-data
+> bank or auxiliary flow training. See RAEV2_INVERSE_ROUNDTRIP_PROTOCOL_20260908_ZH.md.
+
+> **Discrete inverse prerequisite for a target-anchored noise prior — 2026-09-08:**
+> Read the directly adjacent ICLR2026 Inverse Noise Correction construction
+> (2510.02692v3 §4/5.3/D.8/G); inverse-prior learning itself is not new.
+> Known-preimage RAE native Euler tests at0/47/89/99 reproduce cached
+> steps bitwise. After32 Picard updates, first3 recover near FP precision;
+> last-step median residual ratio3.05e-7 but preimage error ratio.001139.
+> Residual alone cannot certify inverse-noise accuracy. Session70464 exited0,
+> 1216 B1 Full calls,28.477 seconds compute; source/count/stat checks passed.
+> See RAEV2_DISCRETE_INVERSE_PROTOCOL_20260908_ZH.md. No inverse-data bank,
+> training or quality claim. Full-trajectory roundtrip remains unchecked.
+
+> **PFR endpoint displacement random-half check — 2026-09-08:**
+> Existing5K paired feature shifts reproduce across fixed random halves:
+> mean-direction cosine .9424 SiT/.8721 RAE; RAE held-out positive
+> projection fractions .5928/.6032, top1% absolute projection shares
+> .0713/.0745. Feature hashes and available paired sampling records
+> checked, session86679 exited0; no GPU sampling or unseen-class claim.
+> See PFR_MEAN_SHIFT_CROSSFIT_20260908_ZH.md. A separate pushforward
+> argument rules out marginal-preserving inter-sample noise coupling as
+> a repair of population mean bias; it can change finite-bank statistics.
+> Conditional noise assignment is different and lacks a target-derived rule.
+> Core idea remains unresolved; paper paused.
+
+> **Existing 5K endpoint moment comparison — 2026-09-08:** RAE mild PFR
+> raises mean FID .076221→.261877 while covariance FID6.958326→6.962336: 
+> 97.886% of its .189666 deterioration is the mean term. Official SiT PFR
+> improves mean1.281425→.613261 and covariance8.874477→8.678615.
+> Mean displacement points toward target for SiT (cos+.725), away for RAE
+> (cos−.257). All six existing feature/pixel banks and FP64 FIDs checked;
+> no new sampling. Empirical balanced-class mean-bias correction bounds
+> preserve both signs; these are not confidence intervals. Sessions9255/52189
+> exited0. See PFR_ENDPOINT_MOMENTS_20260908_ZH.md. No fitted mean controller,
+> no novelty/quality claim; target-relative displacement remains the next problem.
+
+> **Shared temporal response survives removal of state direction — 2026-09-08:**
+> Fixed 32-trajectory/four-time follow-up preserves all prior raw statistics
+> and exact native endpoints. Transverse response cosines remain
+> SiT .994/.917/.805/.795 and RAE .926/.682/.711/.657; RAE retains
+> .997/.973/.915/.967 of weak response energy. Explicit z/t terms do not
+> explain the consensus or its cross-model gap at these probes.
+> Sessions22829/59486 and independent audit62102 exited0, .02365 GPU
+> hours compute, loading extra. No component deletion or quality expansion.
+> See PFR_HEAD_KINEMATIC_RESPONSE_PROTOCOL_20260908_ZH.md. Paper paused;
+> target-relative utility of shared nonradial response remains unresolved.
+
+> **Official SiT/RAE Full–Base time-response probe completed — 2026-09-08:**
+> Both models have substantial shared raw temporal response: samplewise Full
+> projection explains SiT .989/.853/.677/.671 and RAE .862/.484/.548/.449
+> at four fixed native times near1/.9/.75/.55. RAE consensus is weaker, but
+> shared response alone does not distinguish quality success from failure.
+> Explicit common z/t terms also preclude interpreting consensus as truth.
+> Sessions28945/26709 exited0; unchanged endpoint parity, source hashes,
+> counts and 256 FP64 energy identities independently checked. .02359 GPU
+> hours compute, loading extra. No quality expansion or paper writing.
+> See PFR_HEAD_TIME_RESPONSE_PROTOCOL_20260908_ZH.md. Core idea unresolved.
+
+> **Direct normalized future weak-query 1K completed, negative — 2026-09-08:**
+> FID53.458707 versus native38.264239 and canonical raw52.942740.
+> Independent feature-Gram FID53.458726; paired inputs, captured sources,
+> native8/method8 pixels, prefix parity and actual calls passed audit.
+> Sampling996.688 seconds (.27686 GPU hours), 100 Full+89 prefix/image;
+> loading, smoke and evaluation extra. No5K or parameter rescue for this arm.
+> Norm/time mismatch is measurable but direct query scale matching does not
+> repair transfer. See RAEV2_NORM_QUERY_1K_RESULTS_20260908_ZH.md.
+> No active sampling job from this branch. Core method unresolved; paper paused.
+
+> **RAE norm/noise-time information checked — 2026-09-08:** Real cached
+> clean radii plus exact Gaussian-corruption norm simulation distinguish t from
+> t-1/32 very accurately at high noise; poor near .6. Eight existing native IG
+> trajectories match current norm scale early, while unchanged states evaluated
+> at future times lie ~12–24 norm standard deviations above the future mean.
+> CPU sessions24098/85150 exited0 with cache hashes checked (~21.41s total).
+> This is a query-support clue, not proof the model uses norms or a causal quality
+> explanation. See RAEV2_NORM_TIME_INFORMATION_20260908_ZH.md. No new GPU jobs.
+> Current release code also confirms both backbones' heads use velocity MSE;
+> filenames/default loss-type strings do not establish perceptual/Huber weak loss.
+> Core method remains unresolved; paper paused.
+
+> **RAE posterior weak-reference 1K completed, negative — 2026-09-08:**
+> FID posterior42.801481 versus ordinary10038.264239 and ordinary15038.458631.
+> New sampling .65235 GPU hours; candidate is 3.51% faster than150 steps but
+> worse quality. Drivers68261/57675 and independent audit22721 exited0;
+> native/smoke pixel parity, actual query prefix parity, inputs/sources/calls
+> and FP64 feature-Gram FID passed (max2.53e-5). See
+> RAEV2_POSTERIOR_REFERENCE_1K_RESULTS_20260908_ZH.md. No5K or parameter rescue
+> search. Gaussian cancellation and stable residuals did not give useful quality.
+> No active jobs from this branch; core method unresolved, paper paused.
+
+> **RAE posterior weak-reference fixed 1K exploration running — 2026-09-08:**
+> Repeated-query probe 66102/17602 completed with unchanged endpoint parity;
+> RAE single-pair SNR .72/.63/1.52/8.26 at four fixed times, not quality evidence.
+> A separate fixed pilot now compares 100 Full+178 prefix per image against
+> ordinary150, retaining the whole t>.5 window, h1/32, IG1.78 and seed413.
+> Query seed434 is independent. Drivers 68261/GPU0 and 57675/GPU1 both passed
+> native8 pixel parity and method8 checks; actual +/- future prefix checks pass.
+> Quality 1K is running, estimated total ~.7 GPU hours sampling, loading extra.
+> See RAEV2_POSTERIOR_REFERENCE_1K_PROTOCOL_20260908_ZH.md. Independent audit
+> analyze_raev2_posterior_reference.py prepared, not yet run. Paper remains paused.
+
+> **Posterior-coupled weak-query candidate: CPU operator check — 2026-09-08:**
+> A finite ancestral posterior-mean query with antithetic noise cancels exactly
+> for affine Gaussian denoisers (2304 checks, max1.78e-15). For an exact mixture
+> denoiser, the approximate transition still induces bias .01121 at h1/32 and
+> stochastic variability. Session62422 exited 0, .155 seconds CPU. This builds
+> on existing CDM reverse-martingale theory; no novelty or quality claim and no
+> escape from the existing target-identifiability counterexample. See
+> PFR_POSTERIOR_COUPLING_CANDIDATE_20260908_ZH.md. Next assess estimator noise
+> on real weak heads before considering a quality trial. Paper paused.
+
+> **PFR/IG local direction diagnostic completed — 2026-09-08:** 32 unmodified
+> trajectories per model show per-sample/per-time IG rescaling explains only
+> 2.766% of SiT revision energy and 1.086%/0.472% of RAE energy (dt/dt²).
+> Constant or time-only rescaling explains much less. Sessions 39553/99713
+> passed prefix parity and FP64 projection checks, CPU counts/source/residual
+> audit passed. Total compute .02740 GPU hours, loading extra. See
+> PFR_IG_DIRECTION_PROBE_20260908_ZH.md. This concerns local field energy,
+> not causal quality attribution or a new controller. No automatic quality
+> expansion; core method and RAE breakthrough remain unresolved. Paper paused.
+
+> **Official SiT fixed PFR 5K confirmation completed — 2026-09-08:**
+> Independent new-noise FID ordinary115 10.155902 versus PFR100 9.291876
+> (-0.864026, 8.51%). PFR sampling is 1.56% slower; both total 2.85814 GPU hours,
+> loading/smoke/evaluation extra. Drivers 24082/19607 exited 0; audit 87253
+> passed pixels, inputs, sources, calls and independent FP64 FID (~1e-12 error).
+> Preregistered local paired noise approximation 47703 gives SE .203745,
+> not a calibrated CI. See OFFICIAL_SIT_PFR_5K_RESULTS_20260908_ZH.md.
+> This is existing-method transfer evidence. RAE improvement and core novelty
+> remain unresolved; next examine effective-guidance alternative. Paper paused.
+
+> **Official SiT PFR 1K verified; fresh 5K confirmation running — 2026-09-08:**
+> FID ordinary10042.212951, PFR40.565427, ordinary11542.023907; PFR improves
+> 3.47% over the115-step control at essentially identical measured sampling time.
+> Independent audit88107 passed pixels, inputs, checkpoint/VAE/source/calls and
+> FP64 FID reconstruction (max2.82e-5). Total1K sampling .81607 GPU hours.
+> Fixed seed2026094295K now runs PFR24082/GPU0 and ordinary11519607/GPU1,
+> with only the sampler seed changed, all method settings retained. Expected
+> total sampling2.82 GPU hours, load/smoke/eval extra. See OFFICIAL_SIT_PFR_5K_PROTOCOL_20260908_ZH.md.
+> This remains existing-method transfer evidence, not a core idea; paper paused.
+
+> **Official ImageNet-1K SiT fixed PFR quality test running — 2026-09-08:**
+> Interface40374 passed native Full latent and depth8 prefix parity. Three fixed
+> 1K arms now run smoke/quality/FID: ordinary100 (74246), PFR100 (12449),
+> ordinary115 (45452), GPUs0/1/2. Same seed202609428, labels0..999, scale1.35,
+> FP32 model/VAE, FP64 native Euler, no TF32. PFR uses50 extra depth8 prefixes;
+> 115-step ordinary has slightly greater block compute, actual time to be measured.
+> No quality result yet. See OFFICIAL_SIT_PFR_1K_PROTOCOL_20260908_ZH.md.
+> Existing-method transfer control, not a new-method claim; paper remains paused.
+
+> **Official ImageNet-1K SiT PFR interface check running — 2026-09-08:** Existing
+> SiT-XL/2+IG 800-epoch joint-head weights offer a control for class-count and
+> head-training confounds in the small-SiT/RAE comparison. Session40374 checks
+> native Full Euler latent parity, depth8 prefix parity and8-image PFR paths.
+> No decoder/FID or new-method claim. See OFFICIAL_SIT_PFR_TRANSFER_INTERFACE_20260908_ZH.md.
+> Paper remains paused; core research goal remains unmet.
+
+> **Temporal parity timing correction completed — 2026-09-08:** Checked SiT
+> grid indices 5/10/20 yield Base even/raw ratios .29741/.11021/.01868 versus
+> RAE .34065/.11508/.03061 at nearby native times. Earlier SiT threshold queries
+> had slipped to 6/11/21. The proposed large temporal-even difference weakens
+> further; close this diagnostic without a quality intervention. Session21948
+> exited successfully; input hashes, source, actual times and648 pair calls checked.
+> The ineffective scalar-dtype intermediate run is retained and documented.
+> No active jobs from this branch, paper paused, core method still unresolved.
+
+> **Temporal parity trajectory check completed — 2026-09-08:** On 96 FP32 IG
+> prefixes/model, early Base even/raw energy ratio is RAE .34065 versus SiT
+> .24825, much less separated than Gaussian probes (.86399/.24065). Actual
+> first probe times differ (.05085/.06); no causal model-only interpretation.
+> This weakens the oversized temporal-even explanation; no quality intervention
+> or automatic 1K/5K expansion. Sessions 11742/61885 exited successfully,
+> source/input hashes and call counts checked. See PFR_TEMPORAL_PARITY_PROBE_20260908_ZH.md.
+> No jobs remain from this test; no core method breakthrough, paper paused.
+
+> **PFR cached-adjoint check completed — 2026-09-08:** All eight cached FP32
+> native trajectories reproduced bitwise; baseline endpoint prototype values
+> matched within 1e-12. Mean PFR first variation +5.697072 versus fixed central
+> differences -0.595739 (2^-12) and +2.776445 (2^-13). Finite-response validation
+> is unstable; do not use this derivative for a new controller or quality claim.
+> 4800 B1 Full + 3560 prefix, 40 endpoint evaluations, 140.65 seconds compute;
+> loading/verification extra. Sessions 25516/32413 exited successfully. No jobs
+> remain from this diagnostic. See RAEV2_PFR_CACHED_ADJOINT_RESULTS_20260908_ZH.md.
+> The core method remains unresolved; paper writing remains paused.
+
+> **CFG-FSG query consistency completed — 2026-09-08:** Fixed paired 1K FID
+> ordinary110 40.551168, original asynchronous 54.343048, consistent query
+> 44.283012. Aligning query state and time reduces degradation but does not
+> beat ordinary CFG at the same 220 Full branches/sample. New sampling cost
+> .48685 GPU hours, loading/smoke/evaluation extra. Driver 60150 and independent
+> audit 65403 exited successfully; pixel parity, inputs, actual calls, captured
+> source differences and FP64 FID reconstruction passed (max discrepancy 1.93e-5).
+> No 5K expansion or parameter search. See RAEV2_CFG_FSG_CONSISTENT_RESULTS_20260908_ZH.md.
+> This job is complete; core method breakthrough remains absent, paper paused.
+
+> **CFG-FSG query consistency control running — 2026-09-08:** An8-trajectory
+> FP32 probe compares q=z-hG versus q=z-HG against16-step forward queries.
+> Later-event correction cosines improve .349/.333 to .967/.995; initial
+> approximation remains poor. This is not quality evidence. A fixed matched-state
+> query candidate now runs native8/method8/1K with unchanged actual update h=.025,
+> H=.125 and220 Full branches/sample. No strength/window search or automatic5K.
+> See RAEV2_CFG_FSG_CONSISTENT_PROTOCOL_20260908_ZH.md. Paper remains paused.
+
+> **True-CFG RAE FSG completed — 2026-09-08:** Paired fixed CFG2 1K ordinary110
+> FID40.551168 versus asynchronous54.343048, both220 Full branches/sample.
+> Actual null1000 reference does not rescue this clock-transfer configuration.
+> Drivers and independent FP64 Gram audit passed (max FID discrepancy1.93e-5);
+> native Full-only pixel parity, smoke/quality prefix pixels, hashes and calls
+> verified. Sampling .967516 GPU hours, loading/smoke/eval extra. No5K expansion
+> or parameter search. This is not a full reproduction or refutation of original
+> FSG DDIM/CFG++. See RAEV2_TRUE_CFG_FSG_RESULTS_20260908_ZH.md.
+> Both jobs complete; research breakthrough remains absent, paper stays paused.
+
+> **True-CFG RAE FSG comparison running — 2026-09-08:** Fixed CFG2 from Full
+> conditional/null1000 branches, ordinary Euler110 versus Euler100 + existing
+> 2/2/1 asynchronous calibrations; both 220 Full branches/sample. This separates
+> actual class conditioning from the earlier synthetic Full/Base reference.
+> Both CFG1/native Full-only 8-image pixel parity checks passed. Method smoke
+> checks and paired 1K are running. No quality result yet, no training or paper
+> writing. See RAEV2_TRUE_CFG_FSG_PROTOCOL_20260908_ZH.md.
+
+> **Direct reverse-flow control completed — 2026-09-08:** Same fixed 4-step IG
+> targets, reverse Base Euler 4/16 then forward 4/16/32. Initial 16-reverse/32-forward
+> error ratio is .568474 to frozen target but 1.502270 to refined IG target;
+> midpath refined ratios .002295/.001217. Direct inversion does not remove the
+> initial coarse-target/refined-flow mismatch. 1368 batch4 prefix + 492 batch4
+> Full calls, 37.78s compute, hashes/counts verified. No quality run or method
+> breakthrough. See FSG_ANCHORED_REVERSE_FLOW_20260908_ZH.md.
+
+> **Multistep anchored inverse completed — 2026-09-08:** Fixed 4-step IG target,
+> 4-step Base inverse with Anderson. At step0, inverse residual ratio .057384;
+> jointly refining Base and IG to 8/16 steps leaves error ratios .320941/.551204.
+> Midpath step73/89 16-step ratios .001654/.001116. Initial mapping remains
+> discretization-sensitive. 1128 batch4 prefix + 348 batch4 Full calls, 31.16s
+> compute. Inputs/checkpoint and record counts verified. No FID, training, or
+> quality/efficiency breakthrough. See FSG_ANCHORED_INVERSE_MULTISTEP_20260908_ZH.md.
+
+> **Inverse solver versus transport discretization — 2026-09-08:** Fixed Anderson
+> history4/ridge1e-4 reduces the initial RAE Euler inverse residual ratio from
+> Picard's 23.348795 to .00006525 at k8. But 8-substep Base transport from this
+> solution retains .867424 of the unmodified same-solver target error. Accurate
+> inversion of a coarse map is not accurate latent encoding for refined transport.
+> Original Picard reproduced within 5.43e-8 on identical inputs/checkpoint.
+> 420 batch4 prefix calls plus native path queries, 15.68s compute. No quality
+> claim or FID launch. See FSG_ANCHORED_INVERSE_SOLVER_20260908_ZH.md.
+
+> **Anchored inverse probe completed — 2026-09-08:** On 8 FP32 RAE native
+> trajectories, a fixed H=.125 single-Euler target was inverted through Base
+> Picard iterations. Mean squared residual ratios at k8: step0 23.348795,
+> step73 .005029, step89 .00002093. Early naive iteration is unstable; this is
+> not an audit of FSG's original multi-step operator or a quality result.
+> 54 batch4 prefix calls plus native trajectory queries, 8.95s compute, no training.
+> See FSG_ANCHORED_INVERSE_PROBE_20260908_ZH.md. No quality run launched.
+
+> **SiT clock compensation quality completed — 2026-09-08:** Paired fixed 1K
+> native/smooth/compensated FID = 71.169791/69.803808/71.941799. Independent
+> FP64 feature-Gram audit passed (max difference 3.17e-5), as did native pixel,
+> prefix, paired input/model and actual-call checks. Both candidates use
+> 100 Full + 50 prefix/sample; total sampling .050664 GPU hours. Compensation
+> worsens FID, sFID and IS versus smooth. Do not promote exact-clock cancellation
+> as a quality fix; no coefficient/window search or 5K expansion for this candidate.
+> See SIT_CLOCK_COMPENSATOR_RESULTS_20260908_ZH.md. No jobs remain from this test;
+> paper stays paused and the core research goal remains unmet.
+
+> **Clock compensation check — 2026-09-08:** For a smooth endpoint-fixed clock,
+> raw temporal secants omit the velocity-times-clock-derivative term. CPU exact
+> Gaussian integration confirms first-order endpoint bias becomes second-order
+> after adding that term; exact clock transport preserves the endpoint. This is
+> a basic ODE control, not a new method. Real PFR shifts W while evolving G, so
+> a relative-field perturbation remains and quality improvement is unproven.
+> See PFR_CLOCK_COMPENSATOR_20260908_ZH.md. No GPU jobs launched.
+
+> **Exact-field amplitude audit — 2026-09-08:** A CPU Gaussian linear-flow
+> calculation shows time-only PFR changes the endpoint distribution even with
+> identical exact Bayes strong/weak fields and continuous integration. At
+> gamma=.35, h=1/32, target variance 4 becomes 3.816272 (native exact).
+> Independent direct ODE integration agrees with log-scale quadrature to 2.12e-11
+> across both fixed horizons. This rules out a universal model-error interpretation
+> of raw revision magnitude, not OU projection or the empirical SiT improvement.
+> It does not establish the cause of RAE failure. See
+> PFR_EXACT_GAUSSIAN_AMPLITUDE_20260908_ZH.md. No new GPU job or paper writing.
+
+> **OU condition-direction quality completed — 2026-09-08:** Fixed paired RAEv2
+> 1K FID: native 38.264239, conditional 53.184813, unconditional 48.630232,
+> conditional-minus-unconditional 44.000009. All drivers and independent FP64
+> feature-Gram audit passed (maximum FID discrepancy 2.44e-5). No candidate beats
+> native. Each candidate executes 319 Full + 89 prefix calls per sample; sampling
+> totals 2.306 GPU hours, excluding loading/evaluation. No 5K expansion or bank
+> strength/window search. See RAEV2_OU_CONDITION_DIRECTION_RESULTS_20260908_ZH.md.
+> Direction isolation does not validate the retained raw correction magnitude.
+> Core method breakthrough remains absent; paper writing stays paused.
+
+> **Latest user constraint — 2026-09-08:** “不要写论文，先打磨方法和idea到极致”。
+> Paper writing is paused. Do not advance the existing working draft; focus on
+> method development, causal controls, rigorous comparisons and transfer.
+> The broad research objective remains unmet. Positive new 5K clock results
+> are on SiT, not RAEv2. All five new RAEv2 1K arms are complete and independently
+> audited: native100/native110/short/asynchronous/time-only FID =
+> 38.264239/38.392635/38.939462/48.972310/49.931931. Direct transfer failed;
+> these are not 5K. No new RAEv2 5K confirmation is justified for these arms.
+> SiT common-field IG async 1K = 64.771331 versus original 64.615465: distinct
+> calibration field identity is not established as necessary. CFG differs.
+> A 32-sample RAE native-path decomposition locates strong initial clock effects,
+> but the small native first step inflates relative ratios; latent changes are
+> only about 1–2%. Neither this probe nor the FID results establish the cause.
+> See FSG_COMMON_FIELD_CONTROL_PROTOCOL_20260908_ZH.md and
+> RAEV2_CLOCK_DECOMPOSITION_PROTOCOL_20260908_ZH.md. Paper draft stays paused.
+> Follow-up: matched SiT native-path decomposition completed (32 samples);
+> relative-to-latent initial changes are .687% SiT versus 1.319% RAE, so
+> relative-to-native-step ratios alone do not establish numerical explosion.
+> Fixed RAE early-only and late-only event interventions completed under
+> RAEV2_CLOCK_EVENT_INTERVENTION_20260908_ZH.md, with discarded-event calls
+> retained for compute matching and exact 8-image none/all parity controls.
+> Their 1K FID is 48.659778 and 38.144204 respectively, versus native 38.264239
+> and all-events 48.972310; independently audited. Initial calibration accounts
+> for the principal observed degradation. Late-only's .1200 reduction is not
+> independently validated improvement. Fixed initial-noise shell probes
+> completed: two initial async iterations move the normalized squared radius
+> by 1.815 standard-Gaussian SD in RAE versus .088 in SiT (32 samples each).
+> This is a radial-distribution clue, not yet a cause of quality degradation.
+> No normalization repair or new training has been introduced.
+> Next causal probe completed: initial radial-only and angular-only
+> interventions, each fixed 1K, protocol RAEV2_INITIAL_RADIUS_DIRECTION_PROTOCOL_20260908_ZH.md.
+> Native and full-initial 8-image pixel parity passed; radial direction and
+> angular radius constraint errors are below 2.6e-8 on smoke samples.
+> Independent 1K audit: radial-only FID 38.260656, angular-only 48.703479,
+> versus native 38.264239 and full-initial 48.659778. The radial-cause hypothesis
+> is contradicted: preserving the original radius does not remove degradation.
+> Do not promote shell normalization or launch its 5K based on the prior probe.
+> Angular change retains the failure, but its substantive field mechanism remains
+> unidentified. No new training or paper writing; the research goal remains unmet.
+> Return to original PFR: historical RAE 5K used time-only rho=.05; the existing
+> pathwise RAE branch uses full-velocity Euler displacement, not SiT's forward-ray
+> projection. A fixed rho=1, h=1/32, first-half time-only/projected pair is now
+> completed on native RAE IG. Native pixel and actual future-query prefix/full
+> parity passed. This fills a comparison gap, not a new-idea claim; old negative
+> results remain valid for their actual settings. Protocol:
+> RAEV2_CANONICAL_PFR_QUERY_PROTOCOL_20260908_ZH.md.
+> Fixed RAE rho=1 time-only/projected 1K FID = 52.942740/52.069028 versus
+> native 38.264239. Projection improves the time-only arm but does not resolve
+> transfer failure. No 5K expansion or h/rho rescue sweep for these arms.
+> During that run, existing same-representation SiT-v/x controls completed:
+> fixed gamma=.35 Euler100, PFR 1K FID v 71.169791→68.357811 and x
+> 71.667794→68.449145. All four inputs paired and independently audited.
+> This contradicts clean output alone as a PFR barrier; not a new 5K claim.
+> See SIT_PFR_OUTPUT_PARAMETERIZATION_PROTOCOL_20260908_ZH.md.
+> Reference-target intervention: two frozen-backbone Base readout copies were
+> fitted for exactly 2048 AdamW steps to real clean data or frozen Full outputs.
+> Neither improved its own held-out objective; total fit/validation .07085 GPUh.
+> An exact affine-only control then reached full rank and ~3.6e-15 equation
+> residual, improving training but worsening held-out data risk:
+> original .477276, data-fit .484877, teacher-fit .479392 (.01406 GPUh).
+> This distinguishes finite-bank generalization failure from unconverged SGD;
+> it does not establish a PFR mechanism or imply MSE is a quality criterion.
+> The fixed ten-noise-draw-per-image control completed without validation
+> selection under RAEV2_REFERENCE_MULTINOISE_PROTOCOL_20260908_ZH.md.
+> It retains only 5000 unique training images. Independent CPU Cholesky solve,
+> training-risk reconstruction and source/heldout preservation audits passed.
+> Heldout data risk: original .477276, data .480509, teacher .478104; more noise
+> draws reduce but do not eliminate refit degradation. Cost .12345 GPUh.
+> Teacher-minus-data error alignment remains small and positive (.000090),
+> identified by risk polarization; this is not a normalized explanatory fraction,
+> quality improvement, or justification to repackage prior failed X-F adapters.
+> No further draw-count/optimizer sweep, new-head FID, or paper writing started.
+> Reference-difference norm audit now resolves the small positive alignment:
+> ten-draw training norm²=error inner product=.0023744 (CPU verified), but
+> heldout norm²=.002412 and inner product=.000090. Fixed unit subtraction
+> raises Full risk by .002231; one-draw raises it by .005600. All stored-head
+> validation values reproduce, and direct risk/identity/polarization agree.
+> Thus these fits did not recover a generalizable unit error projection;
+> the positive inner product is insufficient evidence for a method candidate.
+> Cost .00206 GPUh; no new training, scaling search or quality sampling.
+> See RAEV2_REFERENCE_DIFFERENCE_RISK_PROTOCOL_20260908_ZH.md. The research
+> goal and RAEv2 transfer problem remain unresolved; paper writing stays paused.
+> Exact 1D Gaussian-mixture transport audit now gives a concrete counterexample
+> to gap minimization as a distribution-quality target: U^-1 C once gives the
+> exact conditional distribution, but repeated application has no finite fixed
+> point and moves into the tail. On all three fixed separations, endpoint gap
+> falls while W2 grows after the first transport. Sampled local derivative²<1
+> does not establish a global contraction. This violates FSG's global theorem
+> assumptions, rather than refuting its conditional theorem or neural results.
+> See FSG_EXACT_GAUSSIAN_TRANSPORT_20260908_ZH.md. It is a method-design
+> constraint, not a new sampler or an explanation established on RAEv2.
+> Follow-up fixed-budget oracle experiment rejects scalar 1/K rescaling as
+> sufficient to factor that finite transport: m=2 W2² remains .687 at K256,
+> despite total budget=1. Frozen original displacement is exact but trivial
+> and offers no new computational capability. Correct factorization needs
+> the evolving map/inverse, not repeated evaluation of T-id at the new state.
+> PathGuide (arXiv 2608.29107v1, abstract through §4.2 read) already studies
+> on-policy weak transport alignment for scalar CFG; broad path-matching
+> language is not a novelty claim. See FSG_TRANSPORT_BUDGET_20260908_ZH.md.
+> Real RAE causal control launched: same guided field on both calibration legs
+> (R=G), original native IG sampler unchanged; fixed paired 1K, h=.025/H=.125,
+> all original events and 110 Full calls/sample. This tests whether distinct
+> calibration fields are necessary for degradation, not whether Full/Base
+> disappears from the guided field. Driver gates quality on native/original
+> 8-image pixel parity. Protocol:
+> RAEV2_COMMON_FIELD_CALIBRATION_PROTOCOL_20260908_ZH.md.
+> Common-field 1K now completed and independently audited: FID50.002931 versus
+> native38.264239 and original two-field48.972310. Independent Gram error1.70e-5,
+> source/input/call/pixel checks passed. Cost .24485 GPUh sampling. Distinct
+> calibration fields are not necessary for this degradation; the common guided
+> roundtrip is itself harmful here. G still includes native IG. Future-only
+> remains running, so no conclusion yet on its standalone effect or interaction.
+> Complementary future-IG-only arm launched before observing the common-field
+> result: retain only 2h(G'-S') from the exact same-query decomposition of
+> A-z into common roundtrip plus future contrast. Same paired 1K and calls,
+> GPU1, independent native/original pixel gates; protocol
+> RAEV2_FUTURE_IG_CALIBRATION_PROTOCOL_20260908_ZH.md. Together with existing
+> none/all and running common, this tests components and their trajectory
+> interaction. FIDs are not additive; no new-method or 5K claim is implied.
+> Both arms are now complete: future-IG-only FID41.881665 (independent error
+> 2.80e-5), versus none38.264239/common50.002931/all48.972310. Inputs paired,
+> source/model/call/pixel checks passed; combined new sampling .48745 GPUh.
+> Neither isolated component beats native. Deleting the common roundtrip
+> does not turn the remaining future contrast into a successful RAE method.
+> No 5K expansion or strength/event rescue sweep for these arms. All associated
+> jobs finished; the research goal remains unmet and paper writing paused.
+> Best historical SiT OU-polar 5K assets re-audited: CUDA noise banks fully
+> reconstruct seed5/6 manifest hashes; 5000 unique each and zero cross-bank
+> identical samples. Labels reproduce. Independent retained-feature FIDs
+> 36.19015462/35.75879212 agree with reported 36.19015567/35.75879012.
+> Historical image NPZ files are absent, so this is not pixel-to-feature or
+> full sampling reproduction. See PFR_BEST_5K_ASSET_REAUDIT_20260908_ZH.md.
+> Raw PFR's SiT-x success does not yet establish output-parameterization
+> independence of the additional OU direction-selection gain.
+> Fixed SiT-v/x OU direction control launched: constant gamma=.35/Euler100,
+> paired seed202609417/B8 1K, time-only versus strong OU direction/raw norm.
+> Both execute 125 Full and 50 prefix calls/sample, including discarded OU
+> queries in the time-only control. Native and old projected-PFR pixel parity,
+> future-prefix parity all passed on both models; quality runs are active.
+> This is a common-protocol mechanism comparison, not reproduction of the
+> historical best Heun/piecewise-gamma result. Protocol:
+> SIT_OU_OUTPUT_CONTROL_PROTOCOL_20260908_ZH.md. No training or paper writing.
+> All four OU controls now complete and independently audited: v time-only
+> 68.447133→OU65.779885, x68.022327→65.440884. Same input hashes and actual
+> 125 Full+50 prefix/sample, FID reconstruction max3.05e-5. Sampling .12322 GPUh.
+> sFID worsens in both (211.346→213.172,209.602→211.510); not an all-metric win.
+> Clean output alone is not a universal barrier to the extra OU FID gain in
+> this setting. This is one 1K bank, not a new 5K confirmation or causal proof
+> about RAE's joint weak head. All associated jobs finished; paper stays paused.
+> Gaussian rotation stencil probe now tests whether RAE OU is mainly affine:
+> exact affine-annihilation identity verified. At data times .05/.1/.2, residual
+> over pair-difference energy is .105/.084/.097 SiT-v, versus .805/.886/.842
+> RAE BF16 and .800/.881/.827 RAE FP32 on identical RAE inputs. Precision
+> does not explain the pattern; simple affine-covariance dominance is unsupported
+> by this probe. These are Gaussian-coordinate queries, not paired native paths,
+> and the ratio is not a nonlinear energy fraction. No sampler or training added.
+> See OU_AFFINE_RESPONSE_PROBE_20260908_ZH.md; substantive goal remains unmet.
+> Independent SiT-v/x OU confirmation launched: four fixed 5K arms on new
+> seed202609423, unchanged sampler source and common gamma=.35/Euler100
+> protocol, one arm per GPU. Native/prefix/first-batch parity gates precede
+> or validate quality runs. Both FID and sFID will be independently reconstructed;
+> the prior 1K sFID regression must remain visible. Protocol:
+> SIT_OU_OUTPUT_5K_PROTOCOL_20260908_ZH.md. No new training or paper writing.
+> Four independent 5K arms completed: v FID41.510229→39.842740, sFID
+> 71.710647→71.191108; x FID40.556181→39.579555, sFID70.099348→69.243289.
+> Independent FP64 errors max3.60e-6 FID/1.71e-6 sFID, paired input/model/calls
+> and pixel gates passed. Sampling .59975 GPUh; all jobs finished.
+> Protocol erratum: actual reused code draws uniform random labels, not exactly
+> 50/class (5K counts30–68; prior1K counts4–20). All four arms share identical
+> labels and cover100 classes. Frozen original protocol copies retained; do not
+> describe these as exactly class-balanced confirmations. No RAE or new-method
+> breakthrough is implied; the overall objective remains unmet, paper paused.
+> Time×condition OU geometry probe completed (96 Gaussian-coordinate inputs,
+> three times/model): raw versus posterior-difference cosine is .169/.180/.146
+> SiT and .197/.076/.030 RAE, much smaller than raw versus full conditional
+> certificate. Removing unconditional response substantially changes direction;
+> it cannot be treated as harmless noise removal. These are not quality results
+> or evidence that low cosine forbids benefit. No new sampler, strength choice,
+> or training started. See OU_CONDITION_DIFFERENCE_PROBE_20260908_ZH.md.
+> A subsequent fixed quality test is now launched to avoid treating geometry
+> as a quality gate: RAE paired1K directions D_c/D_u/(D_c-D_u), same raw revision
+> norm, nativeIG1.78, Euler100, rho1, first-half PFR and t>.75 OU selection.
+> All arms execute identical extra conditional/null queries; ordinary8 and
+> prefix parity gate sampling. Compare against native as well as each other.
+> Protocol RAEV2_OU_CONDITION_DIRECTION_PROTOCOL_20260908_ZH.md, estimated
+> 2.2 GPUh sampling total. No training, strength sweep, or paper writing.
+
+> **Research reopened by explicit user request — 2026-09-08.**
+> The new goal is a substantive ICLR-level paper, not another archive closeout.
+> A finite temporal-defect pilot did not support the proposed cancellation
+> explanation. A subsequent frozen-head subspace-control pilot has a positive
+> three-seed toy result: learned PCA split gates reach mean ambient SWD 0.074337
+> versus a matched scalar gate 0.098277, with lower normal residual; random
+> subspaces and simple projection do not reproduce the gain. This is only a
+> linear rank-2 D512/H128 toy with a hard bottleneck, not an established novel
+> method or an ImageNet breakthrough. The paper goal remains incomplete.
+> See [the full pilot report](SUBSPACE_GATE_PILOT_RESULTS_20260908_ZH.md).
+> Follow-up: independent 8K banks confirm the narrow result; H512 width
+> controls also retain gains, but base-model convergence remains unproven.
+> A real 450K SiT rank32 time-only split-gate audit shows no meaningful extra
+> held-out local-risk gain. No real-image quality breakthrough is established.
+> Further controls retain the toy gain after 30K training. A curved-support
+> three-seed experiment also improves full-dimensional SWD, while worsening one
+> geometry residual. Coordinate and
+> ball oracles show that PCA geometry is not necessary for oracle headroom;
+> a matched-parameter learned coordinate gate still trails PCA on three seeds.
+> See [maturity and curvature results](SUBSPACE_GATE_MATURITY_CURVATURE_RESULTS_20260908_ZH.md).
+> Real-image state-dependent gates now have paired ADM-FID-5K evidence:
+> native 71.265543, scalar 71.223144, PCA 71.132263, pure epsilon 70.512364.
+> PCA fails to beat the stronger single head; the small native-relative gain
+> is not a breakthrough. Held-out local error deterioration is concentrated
+> near time endpoints. The fixed native-DDO weighting control also failed:
+> scalar FID71.034772, PCA71.223001. Subspace gates are no longer the primary
+> paper direction. Following explicit user steering, research turns to PFR
+> transfer and FSG's condition-bearing latent intuition; the first controlled
+> test erases condition input after a fixed PFR/IG prefix.
+> See [the new protocol](PFR_CONDITION_RETENTION_PROTOCOL_20260908_ZH.md).
+> The first paired condition-erasure pilot is complete on both models.
+> A matched-ImageNet100, 200-sample replication retains the large middle-time
+> contrast: ordinary IG conditional/unconditional top1 is 85%/84.5% on RAEv2
+> and 49.5%/5% on SiT. Paired interactions do not establish that PFR specifically
+> reduces dependence on future conditioning. All three cuts are now complete,
+> with exact within-model noise and cross-model label parity. The late interaction
+> is also inconclusive; conditional retention is not supported as PFR's direct
+> quality mechanism in this intervention.
+> A CPU audit of released FSG code finds nominal versus executed DDIM clock
+> differences in the tested environment; this is not a reproduction or refutation
+> of the authors' image results. See [the audit](FSG_RELEASED_CLOCK_AUDIT_20260908_ZH.md).
+> A fixed CFG/IG Euler clock quality screen is complete: long state/long query,
+> short state/short query, short state/long query, plus closed40/closed50 controls.
+> Both families pass 8-image original-long pixel parity and input/call checks.
+> At paired 1K, CFG closed50/short/asynchronous FID is 61.463529/55.530113/53.403568;
+> IG is 69.147854/66.055254/64.615465. IG long severely degrades to 122.303940.
+> All ten arms share exact noise/label hashes and frozen sampling sources.
+> Independent seed202609412 5K confirmation is complete and independently
+> reconstructed from features: CFG closed50/short/asynchronous is
+> 34.627031/28.960328/28.205314; IG is 41.533513/39.783258/38.395560.
+> All six banks pass input/source/call checks; sampling cost totals 0.514 GPU h.
+> Fixed 1K controls find time-only nearly matches asynchronous in both families;
+> forward state movement is not established as necessary. IG reference gamma
+> also changes at future query boundaries; the fixed-reference-gamma control
+> passes exact short8 pixel parity and gives 1K FID64.482336 versus 64.615465.
+> This coefficient switch is not supported as the sole cause of the gain.
+> All clock quality/control and same-bank reference runs are complete.
+> Ordinary DOPRI5 CFG/IG FID is 33.372389/41.278966; original PFR DOPRI5
+> reaches 37.786383, better than asynchronous IG 38.395560 at higher cost.
+> Budget-derived PFR Euler42 (588 Transformer blocks versus 600) gives
+> 39.591289, suggesting a low-budget advantage for asynchronous calibration.
+> All four reference FIDs independently reconstruct within 3e-6 and paired
+> inputs/checkpoint/head settings pass. This is not a full Pareto curve or
+> a RAEv2 transfer success. See [matched reference protocol](FSG_PFR_MATCHED_BANK_PROTOCOL_20260908_ZH.md).
+> Direct RAEv2 clock transfer is now running under a frozen five-arm 1K protocol:
+> native100/native110/short/asynchronous/time-only, h=.025 and H=.125.
+> Native100 matches the original sampler pixel-for-pixel on eight images;
+> native110/short/asynchronous smoke input and call checks pass.
+> Candidates use 110 shared full/base forwards, matching native110.
+> No RAEv2 clock FID result exists yet. See [transfer protocol](RAEV2_FSG_CLOCK_TRANSFER_PROTOCOL_20260908_ZH.md).
+> No training or parameter search.
+> This is a quality signal, not established novelty or RAEv2 transfer success.
+> See [the frozen quality protocol](FSG_CLOCK_QUALITY_PROTOCOL_20260908_ZH.md).
+> See [real SiT protocol and results](SIT_SUBSPACE_GATE_PROTOCOL_20260908_ZH.md).
+
 > **Latest three-round guidance study complete and closed — 2026-09-07.**
 > The user-imposed final three idea rounds are finished. The3% paired-5K FID
 > target remains unmet: round1 failed its mechanism gate; round2 reached

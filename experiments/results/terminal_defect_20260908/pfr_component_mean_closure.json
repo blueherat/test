@@ -1,0 +1,69 @@
+{
+  "scope": "Same-bank endpoint mean shifts. Field additivity does not imply endpoint additivity; no population inference.",
+  "models": {
+    "sit": {
+      "evidence": {
+        "native": {
+          "pixel_sha256": "b6177af4dd7bb48a5052c5f183273a80513fd8c593efc763ca3442ac8487a30a",
+          "feature_sha256": "1f159651a31a302e9b5a1e0c5a94f0ef9029e710d7d2d15e743b93f062418dce"
+        },
+        "raw": {
+          "pixel_sha256": "4a3729ccbb74b85c9beac8e6446394fd6af51fb068852785fee53b40c65aa44e",
+          "feature_sha256": "ece32846f0d460c67502fdb661c99b0970c5e0d6206c6d8351f865a69d8fef99"
+        },
+        "interaction": {
+          "pixel_sha256": "5c135a4680be01caf0b0c5b5272fd5c41bea831423c2cbc2d13cacc9a713b3a5",
+          "feature_sha256": "30266a7446c7c7e2a92aeb60c613d83e2361138164896d6b8a50f32c0a29e620"
+        },
+        "unconditional": {
+          "pixel_sha256": "a783b61d573dbb0d42b8dd48f30848a1d21d85bab643d64d675f6d0c9a9bda68",
+          "feature_sha256": "52e51069f098f1b94cfcbfd558916e1a81fe3a8b1863f81dd6fc9c6eea015ecf"
+        }
+      },
+      "shift_norm_squared": {
+        "raw": 0.7557970681383926,
+        "interaction": 0.0960353806125342,
+        "unconditional": 0.5920141395427881
+      },
+      "shift_dot_products": {
+        "raw__interaction": 0.024444458909801445,
+        "raw__unconditional": 0.60806275104055,
+        "interaction__unconditional": 0.0034963242745129743
+      },
+      "endpoint_mean_closure_squared": 0.18582481694203817,
+      "endpoint_mean_closure_over_raw_squared": 0.24586601982956108
+    },
+    "raev2": {
+      "evidence": {
+        "native": {
+          "pixel_sha256": "0de7afa03228b6d2bd068368a1e02977de4bc03df6aa9272d7b9b55af16f648e",
+          "feature_sha256": "5f6e08a1214ecf0e86f281df5343d88f23b4af09690911e40d75ae8cfcd3d320"
+        },
+        "raw": {
+          "pixel_sha256": "9ea8b2104d9030d460798ad568c8545b4dcbbda00b205e270d77485115dc6910",
+          "feature_sha256": "c5a3de4550a3ba2e33711d0771857df9660911f4e31c833a570fc78366ad413a"
+        },
+        "interaction": {
+          "pixel_sha256": "b5c42cea83dea7233a38a3f3910fb7cca401f0346459a9a9a3227028e914a8c9",
+          "feature_sha256": "5edc16ab49c490c0d88c1329db9c250703212608fafc421b41027fd1745a977d"
+        },
+        "unconditional": {
+          "pixel_sha256": "9a502450a3b01aa66fd79571348fbfc6d85214a73910d22429d9ff2db19ec209",
+          "feature_sha256": "9352d88636e99e8bcf3007817db032ded226c79e5ca9575168c725a5cdc86561"
+        }
+      },
+      "shift_norm_squared": {
+        "raw": 4.430585005426883,
+        "interaction": 2.5784231342050408,
+        "unconditional": 2.274441130832089
+      },
+      "shift_dot_products": {
+        "raw__interaction": 2.726450159120049,
+        "raw__unconditional": 2.802861084197538,
+        "interaction__unconditional": 1.6748494582674076
+      },
+      "endpoint_mean_closure_squared": 1.5745257003636535,
+      "endpoint_mean_closure_over_raw_squared": 0.35537647927645377
+    }
+  }
+}

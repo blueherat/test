@@ -1,0 +1,75 @@
+{
+  "complete": true,
+  "posthoc": true,
+  "rows": [
+    {
+      "arm": "weak_reference",
+      "control": "global_strength",
+      "delta": 0.060697684285417317,
+      "fit_mse": 5.9456316211330484e-05,
+      "heldout_mse": 5.911116600685079e-05,
+      "heldout_original_displacement_mse": 0.00015181895072199157,
+      "heldout_displacement_explained": 0.6106469862573731,
+      "numerical_200_400_max": 4.789495393175969e-06,
+      "boundary_solution": false
+    },
+    {
+      "arm": "weak_reference",
+      "control": "early_strength",
+      "delta": 2.010682447179854,
+      "fit_mse": 9.955012525717619e-09,
+      "heldout_mse": 9.93426222243027e-09,
+      "heldout_original_displacement_mse": 0.00015181895072199157,
+      "heldout_displacement_explained": 0.9999345650712563,
+      "numerical_200_400_max": 4.748575666235766e-06,
+      "boundary_solution": false
+    },
+    {
+      "arm": "mixture_reference",
+      "control": "global_strength",
+      "delta": 0.03331103396291407,
+      "fit_mse": 2.0276938976921224e-05,
+      "heldout_mse": 1.9950462175497977e-05,
+      "heldout_original_displacement_mse": 4.856055837603004e-05,
+      "heldout_displacement_explained": 0.589163246002836,
+      "numerical_200_400_max": 4.830595255134185e-06,
+      "boundary_solution": false
+    },
+    {
+      "arm": "mixture_reference",
+      "control": "early_strength",
+      "delta": 1.0997765246129096,
+      "fit_mse": 3.736185410470492e-07,
+      "heldout_mse": 3.073687675671305e-07,
+      "heldout_original_displacement_mse": 4.856055837603004e-05,
+      "heldout_displacement_explained": 0.9936704029392123,
+      "numerical_200_400_max": 4.807123291650228e-06,
+      "boundary_solution": false
+    },
+    {
+      "arm": "weak_posterior_relaxed",
+      "control": "global_strength",
+      "delta": 0.03228349601469869,
+      "fit_mse": 1.856876226950912e-05,
+      "heldout_mse": 1.8310607795413705e-05,
+      "heldout_original_displacement_mse": 4.523932121852783e-05,
+      "heldout_displacement_explained": 0.5952501650728886,
+      "numerical_200_400_max": 4.8321092906977725e-06,
+      "boundary_solution": false
+    },
+    {
+      "arm": "weak_posterior_relaxed",
+      "control": "early_strength",
+      "delta": 1.060974086948181,
+      "fit_mse": 1.9582134399356588e-07,
+      "heldout_mse": 1.554204639777494e-07,
+      "heldout_original_displacement_mse": 4.523932121852783e-05,
+      "heldout_displacement_explained": 0.9965644828482949,
+      "numerical_200_400_max": 4.809630161251022e-06,
+      "boundary_solution": false
+    }
+  ],
+  "baseline_endpoint_parity_max": 1.0158315477681867e-07,
+  "seconds": 63.81347708264366,
+  "protocol": "Fit one scalar to calibrated endpoints on every eighth quantile; evaluate remaining quantiles. No true distribution or quality used for fitting. Controls retain AG throughout. This tests endpoint redundancy in one toy family, not novelty or neural quality."
+}

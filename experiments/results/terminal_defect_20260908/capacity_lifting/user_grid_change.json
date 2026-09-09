@@ -1,0 +1,28 @@
+{
+  "reason": "User replaces initial grid with .5/.65/.85/.9 constant only",
+  "stopped": [
+    [
+      1414662,
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.run_raev2_capacity_lifting_queue "
+    ],
+    [
+      1414663,
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_capacity_lifting_shard --rank 0 --arm a078_constant "
+    ],
+    [
+      1414664,
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_capacity_lifting_shard --rank 1 --arm a078_constant "
+    ],
+    [
+      1414665,
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_capacity_lifting_shard --rank 2 --arm a078_constant "
+    ],
+    [
+      1414666,
+      "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_capacity_lifting_shard --rank 3 --arm a078_constant "
+    ]
+  ],
+  "saved_samples": {
+    "a078_constant": 228
+  }
+}

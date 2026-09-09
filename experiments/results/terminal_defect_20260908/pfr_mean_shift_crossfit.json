@@ -1,0 +1,96 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "group": "sit5k",
+      "split_seed": 202609436,
+      "split_sha256": "bface7f92f9e563b0c61b2eb7971b7c46beccebb7495fb5e23133616e085d372",
+      "half_mean_cosine": 0.9423849847277211,
+      "half_mean_squared_norm": [
+        0.748861325505908,
+        0.8837964480176901
+      ],
+      "cross_half_mean_inner_product": 0.7666642014304847,
+      "folds": [
+        {
+          "fit_half": 0,
+          "test_half": 1,
+          "mean_projection": 0.8859403533959037,
+          "projection_quantiles": [
+            -7.4575065382196755,
+            -1.278310049569703,
+            -0.24932636281399215,
+            0.5442876725864438,
+            1.848076867349533,
+            3.5792137660423737,
+            11.088492831430852
+          ],
+          "positive_projection_fraction": 0.6788,
+          "largest_one_percent_share_of_absolute_projection": 0.055588370115714554
+        },
+        {
+          "fit_half": 1,
+          "test_half": 0,
+          "mean_projection": 0.8155095644836203,
+          "projection_quantiles": [
+            -9.784418790242334,
+            -1.5066653361345075,
+            -0.35715516544092857,
+            0.49592836431799225,
+            1.762335470143472,
+            3.70928215891498,
+            13.190193502938541
+          ],
+          "positive_projection_fraction": 0.6624,
+          "largest_one_percent_share_of_absolute_projection": 0.0589930438743434
+        }
+      ]
+    },
+    {
+      "group": "rae5k",
+      "split_seed": 202609436,
+      "split_sha256": "bface7f92f9e563b0c61b2eb7971b7c46beccebb7495fb5e23133616e085d372",
+      "half_mean_cosine": 0.8720772271735739,
+      "half_mean_squared_norm": [
+        0.1555554531259724,
+        0.13064690483166466
+      ],
+      "cross_half_mean_inner_product": 0.12432175393505732,
+      "folds": [
+        {
+          "fit_half": 0,
+          "test_half": 1,
+          "mean_projection": 0.31521328166076656,
+          "projection_quantiles": [
+            -7.34780569243093,
+            -0.9848756485431903,
+            -0.3108993685809749,
+            0.1457497806574708,
+            0.8211287838517273,
+            1.9056390155005778,
+            10.311505238626719
+          ],
+          "positive_projection_fraction": 0.5928,
+          "largest_one_percent_share_of_absolute_projection": 0.07130899249249938
+        },
+        {
+          "fit_half": 1,
+          "test_half": 0,
+          "mean_projection": 0.34395178362350876,
+          "projection_quantiles": [
+            -8.349672336958928,
+            -0.890151377714617,
+            -0.2692983552518333,
+            0.1715675103572185,
+            0.7473295240052988,
+            1.7988049084781605,
+            11.680327444020381
+          ],
+          "positive_projection_fraction": 0.6032,
+          "largest_one_percent_share_of_absolute_projection": 0.07445714090151555
+        }
+      ]
+    }
+  ],
+  "scope": "Fixed random-half validation of existing paired endpoint feature displacement.\n\nDescriptive sample holdout, not unseen-class validation or a generation method.\n"
+}

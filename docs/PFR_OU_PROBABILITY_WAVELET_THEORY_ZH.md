@@ -873,16 +873,24 @@ $t=.05$ 为 `.966--.969`，从 $t=.10$ 起为 `.991--.998`；长尺度相对短�
 振幅比在 $t=.02/.05$ 应约为 `2.06/2.06`；weak 实测只有约
 `1.59--1.60/1.71`，反推的 descriptive effective degree 约为
 `1.13--1.20/1.07--1.11`，小于 degree-1 消去后 population Hermite 模式允许的
-最小 degree 2。因此 finite network 不能被描述成一个纯 Hermite mode：若
+最小 degree 2。因此这些数值不能被描述成一个纯粹的线性化 Hermite mode。
+但这不单独证明偏差来自神经网络：有限时间间隔的精确 population score
+也包含非线性的密度归一化。若引入网络误差记号，仍有
 $\widehat r=r+e$，则实测 defect 还包含
 
 \[
 \widehat D_1=D_1+e_t-\frac{a_t}{a_\tau}e_\tau.
 \]
 
-换言之，跨尺度**方向**高度稳定是真实现象；把它的全部振幅都解释成 covariance
-或某个单一 Hermite degree 则不成立。后续理论必须允许模型的 semigroup
-inconsistency，而不能把 population identity 原封不动贴到 neural field 上。
+换言之，跨尺度**方向**高度稳定是真实现象；把它的全部振幅解释成某个
+单一线性化 Hermite degree 不成立。但不能仅据幅值比排除精确 covariance
+响应，或认定网络 semigroup inconsistency 必须非零。
+
+2026-09-08 补充纠正：精确 N(0,64) 数据端的 OU score，在本节相同
+data-time .02/.05、h=1/32 与2h下，方向cos=1，幅值比分别1.54123和
+1.26586，无任何神经模型误差。参见
+[精确高斯检查](OU_FINITE_SCALE_RATIO_CORRECTION_20260908_ZH.md)。旧观测和
+OU质量结果不变；该纠正只撤回由有限尺度幅值比识别网络误差的过强解释。
 
 ## 十七、方向/幅值交换证明收益不是简单 attenuation
 

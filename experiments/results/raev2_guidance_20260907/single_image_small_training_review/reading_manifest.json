@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-09-07T09:17:18.145174+00:00",
+  "scope": "Bounded primary-source review; no GPU, training, sampling or frozen-code mutation",
+  "files": [
+    {
+      "url": "https://arxiv.org/html/2410.06940v4",
+      "final_url": "https://arxiv.org/html/2410.06940v4",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/repa.html",
+      "sha256": "5ee91743d8f45aa8dfc7f1be97885a93915c1205adc3dbb45509e830f134689c",
+      "size_bytes": 493566,
+      "read_scope": "Sections 3.2-3.3, training setup and Table 2"
+    },
+    {
+      "url": "https://arxiv.org/html/2504.10483v3",
+      "final_url": "https://arxiv.org/html/2504.10483v3",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/repa_e.html",
+      "sha256": "1e6920663124d7b1b566e69282b1b68f137fd51726a1236345e13b8b451bd309",
+      "size_bytes": 352570,
+      "read_scope": "Sections 3-4, Table 8 and Appendix A-B"
+    },
+    {
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.pdf",
+      "final_url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.pdf",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/edm2.pdf",
+      "sha256": "a5765758ae62ebbf58b13b7bb5ce595da7b7d4405dcb49b1c5d63376ff26e90d",
+      "size_bytes": 1200541,
+      "read_scope": "Magnitude preservation and Section 3 post-hoc EMA"
+    },
+    {
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/204fee94c982a19230c39045aa54f977-Paper-Conference.pdf",
+      "final_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/204fee94c982a19230c39045aa54f977-Paper-Conference.pdf",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/lpl.pdf",
+      "sha256": "486804bc48cc8af90d54aa6860100ea5d6a9a034da5dd1e7bb72fbe2217edf5d",
+      "size_bytes": 8979548,
+      "read_scope": "Decoder-feature objective and training scope; repository reproduction and closure audited separately"
+    }
+  ],
+  "conclusion": "No sufficiently evidenced small-training quality bottleneck identified; no new experiment recommended.",
+  "generated_files": [
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/edm2.txt",
+      "sha256": "046f807f2a5eb65255b21365d10fe7b4d8a561fa2799d862d6c8d67dad9c5c9b",
+      "size_bytes": 94657
+    },
+    {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/single_image_small_training_review_v1/lpl.txt",
+      "sha256": "d756c1b1346e0af8df18ddcf6dde98a63c1a12d3c95ef8182bf74a655e555316",
+      "size_bytes": 68092
+    },
+    {
+      "path": "/home/zhoushunyu/eqvae/docs/RAEV2_SINGLE_IMAGE_SMALL_TRAINING_REVIEW_20260907_ZH.md",
+      "sha256": "413612e5da11ee3e8e68e314de415658e0f43b0eea84a55eb912b1ea7ac47152",
+      "size_bytes": 10844
+    }
+  ],
+  "static_norm_parameter_count": {
+    "encoder": 84672,
+    "decoder": 8704,
+    "readout": 3488,
+    "total": 96864,
+    "fraction_of_source": 0.00011067433029427575
+  },
+  "no_gpu_training_sampling_or_checkpoint_load": true
+}

@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "official_full_latent_parity": true,
+  "prefix_parity": true,
+  "full_calls": 800,
+  "prefix_calls": 124,
+  "seconds": 29.380625315010548,
+  "metadata": {
+    "state_key": "ema",
+    "epoch": 799,
+    "steps": 3984208,
+    "stripped_module_prefix": false,
+    "checkpoint": "/data/users/zhoushunyu/eqvae/models/Internal-Guidance/official/SiT/SiT-XL-IG-ImageNet256-800EP.pt",
+    "checkpoint_bytes": 10842729224,
+    "model_name": "SiT-XL/2",
+    "encoder_depth": 8,
+    "parameter_count": 677786144
+  },
+  "checkpoint_sha256": "a7f4eb9f417295a14e5063b70020ab3f55b60a4905ccda7b244343deaf9840cd",
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/audit_official_sit_pfr_interface.py": "75bd7e24b9f2cf1b21ac1025f7bba710b0a25da3d55f28b53dc0986aa6e78902",
+    "/home/zhoushunyu/eqvae/research_repos/internal_guidance_study/Internal-Guidance/SiT/models/sit.py": "205e1b7fabf106d5f720ed03f70bc43b4d3a93330834425ba091431ef7655e51",
+    "/home/zhoushunyu/eqvae/research_repos/internal_guidance_study/Internal-Guidance/SiT/samplers.py": "ae02eb53792fda8ba79e24f4ea738ccf3550a463af2e4b5cafbb210dcf3febf3"
+  },
+  "latent_file_sha256": "2d9101fe10a63bfaddd358234695b63acb16c621ca0d51d5df54db2d76dc5380",
+  "scope": "8-image interface check only. Noise time decreases; FP32 model, FP64 state/native Euler, scale1.35, h1/32 above noise .5. No decoder or quality."
+}

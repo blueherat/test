@@ -1,0 +1,94 @@
+2026-08-18 02:27:06.218494: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-18 02:27:06.232606: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1786991226.249465 3870364 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1786991226.254706 3870364 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1786991226.267905 3870364 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786991226.267923 3870364 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786991226.267925 3870364 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786991226.267926 3870364 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-08-18 02:27:06.272084: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1786991228.007210 3870364 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:b1:00.0, compute capability: 8.9
+I0000 00:00:1786991228.037433 3870364 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:b1:00.0, compute capability: 8.9
+2026-08-18 02:27:08.488681: W tensorflow/core/framework/op_def_util.cc:370] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Warmup...
+
+  0%|          | 0/1 [00:00<?, ?it/s]WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786991229.400842 3870364 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+I0000 00:00:1786991230.796251 3870799 cuda_dnn.cc:529] Loaded cuDNN version 90300
+
+100%|██████████| 1/1 [00:03<00:00,  3.13s/it]
+100%|██████████| 1/1 [00:03<00:00,  3.13s/it]
+Reference statistics...
+Sample activations/statistics...
+
+  0%|          | 0/125 [00:00<?, ?it/s]
+  2%|▏         | 2/125 [00:00<00:06, 18.95it/s]
+  3%|▎         | 4/125 [00:00<00:06, 18.62it/s]
+  5%|▍         | 6/125 [00:00<00:06, 18.61it/s]
+  6%|▋         | 8/125 [00:00<00:06, 18.61it/s]
+  8%|▊         | 10/125 [00:00<00:06, 18.11it/s]
+ 10%|▉         | 12/125 [00:00<00:06, 18.23it/s]
+ 11%|█         | 14/125 [00:00<00:06, 18.31it/s]
+ 14%|█▎        | 17/125 [00:00<00:05, 19.10it/s]
+ 15%|█▌        | 19/125 [00:01<00:05, 18.56it/s]
+ 17%|█▋        | 21/125 [00:01<00:05, 18.16it/s]
+ 19%|█▉        | 24/125 [00:01<00:05, 19.73it/s]
+ 21%|██        | 26/125 [00:01<00:05, 19.45it/s]
+ 22%|██▏       | 28/125 [00:01<00:05, 19.19it/s]
+ 24%|██▍       | 30/125 [00:01<00:04, 19.01it/s]
+ 26%|██▌       | 32/125 [00:01<00:04, 18.79it/s]
+ 27%|██▋       | 34/125 [00:01<00:04, 18.60it/s]
+ 29%|██▉       | 36/125 [00:01<00:04, 18.50it/s]
+ 30%|███       | 38/125 [00:02<00:04, 18.46it/s]
+ 32%|███▏      | 40/125 [00:02<00:04, 18.39it/s]
+ 34%|███▎      | 42/125 [00:02<00:04, 18.01it/s]
+ 35%|███▌      | 44/125 [00:02<00:04, 17.74it/s]
+ 38%|███▊      | 47/125 [00:02<00:04, 19.18it/s]
+ 39%|███▉      | 49/125 [00:02<00:03, 19.02it/s]
+ 41%|████      | 51/125 [00:02<00:03, 18.83it/s]
+ 42%|████▏     | 53/125 [00:02<00:03, 18.72it/s]
+ 44%|████▍     | 55/125 [00:02<00:03, 18.64it/s]
+ 46%|████▌     | 57/125 [00:03<00:03, 18.45it/s]
+ 47%|████▋     | 59/125 [00:03<00:03, 18.46it/s]
+ 49%|████▉     | 61/125 [00:03<00:03, 18.36it/s]
+ 51%|█████     | 64/125 [00:03<00:03, 19.16it/s]
+ 53%|█████▎    | 66/125 [00:03<00:03, 18.61it/s]
+ 54%|█████▍    | 68/125 [00:03<00:03, 18.27it/s]
+ 57%|█████▋    | 71/125 [00:03<00:02, 19.23it/s]
+ 58%|█████▊    | 73/125 [00:03<00:02, 19.03it/s]
+ 60%|██████    | 75/125 [00:04<00:02, 18.86it/s]
+ 62%|██████▏   | 77/125 [00:04<00:02, 18.77it/s]
+ 63%|██████▎   | 79/125 [00:04<00:02, 18.63it/s]
+ 65%|██████▍   | 81/125 [00:04<00:02, 18.55it/s]
+ 66%|██████▋   | 83/125 [00:04<00:02, 18.43it/s]
+ 68%|██████▊   | 85/125 [00:04<00:02, 18.38it/s]
+ 70%|███████   | 88/125 [00:04<00:01, 19.03it/s]
+ 72%|███████▏  | 90/125 [00:04<00:01, 18.45it/s]
+ 74%|███████▍  | 93/125 [00:04<00:01, 19.13it/s]
+ 76%|███████▌  | 95/125 [00:05<00:01, 18.93it/s]
+ 78%|███████▊  | 97/125 [00:05<00:01, 18.42it/s]
+ 79%|███████▉  | 99/125 [00:05<00:01, 18.41it/s]
+ 81%|████████  | 101/125 [00:05<00:01, 18.47it/s]
+ 82%|████████▏ | 103/125 [00:05<00:01, 18.43it/s]
+ 84%|████████▍ | 105/125 [00:05<00:01, 18.40it/s]
+ 86%|████████▌ | 107/125 [00:05<00:00, 18.37it/s]
+ 88%|████████▊ | 110/125 [00:05<00:00, 19.26it/s]
+ 90%|████████▉ | 112/125 [00:05<00:00, 18.64it/s]
+ 91%|█████████ | 114/125 [00:06<00:00, 18.19it/s]
+ 94%|█████████▎| 117/125 [00:06<00:00, 19.72it/s]
+ 95%|█████████▌| 119/125 [00:06<00:00, 19.40it/s]
+ 97%|█████████▋| 121/125 [00:06<00:00, 19.18it/s]
+ 98%|█████████▊| 123/125 [00:06<00:00, 18.93it/s]
+100%|██████████| 125/125 [00:06<00:00, 18.76it/s]
+100%|██████████| 125/125 [00:06<00:00, 18.71it/s]
+{
+  "reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/04_schedule_tuning/v180_v400_v600/samples_n1000.npz",
+  "batch_size": 8,
+  "gpu_memory_fraction": 0.25,
+  "fid": 61.521079242749806,
+  "sfid": 216.43429452330543,
+  "inception_score": 40.5912971496582
+}

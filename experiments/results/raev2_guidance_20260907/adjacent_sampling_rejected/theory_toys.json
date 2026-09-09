@@ -1,0 +1,108 @@
+{
+  "protocol": "analytic_multirate_toys_cpu_v1",
+  "scope": "Analytic mechanism and counterexamples only; no learned-model or FID evidence.",
+  "convergence": {
+    "held_residual": {
+      "macro_steps": [
+        20,
+        40,
+        80,
+        160,
+        320
+      ],
+      "absolute_endpoint_errors": [
+        0.00656693219407245,
+        0.003250829941022604,
+        0.0016173977178494114,
+        0.0008067118682799079,
+        0.0004028613273960313
+      ],
+      "observed_orders": [
+        1.0144114719275026,
+        1.0071336061219238,
+        1.0035490949106094,
+        1.001770160030585
+      ]
+    },
+    "corrected_fresh_anchor": {
+      "macro_steps": [
+        20,
+        40,
+        80,
+        160,
+        320
+      ],
+      "absolute_endpoint_errors": [
+        9.42037744493529e-05,
+        2.317193808465401e-05,
+        5.7463544014257906e-06,
+        1.4308059412826424e-06,
+        3.569815227311146e-07
+      ],
+      "observed_orders": [
+        2.023406150004087,
+        2.0116598375580272,
+        2.0058189584710244,
+        2.0029067063221735
+      ]
+    },
+    "corrected_reused_predicted_anchor": {
+      "macro_steps": [
+        20,
+        40,
+        80,
+        160,
+        320
+      ],
+      "absolute_endpoint_errors": [
+        0.00020383920247135645,
+        5.09723445872301e-05,
+        1.2742954466460343e-05,
+        3.185613260903164e-06,
+        7.963807724942207e-07
+      ],
+      "observed_orders": [
+        1.999644918244615,
+        2.0000149081284726,
+        2.0000567697617195,
+        2.000040837031582
+      ]
+    }
+  },
+  "same_one_parameter_fit": {
+    "M": 100.0,
+    "epsilon": 1.0,
+    "omega": 20.0,
+    "value_fit": {
+      "phi": 67.0,
+      "period_mean_squared_value_error": 3267.0,
+      "period_mean_squared_material_derivative_error": 871200.0,
+      "constant_residual_part": 33.0
+    },
+    "material_derivative_fit": {
+      "phi": 1.0,
+      "period_mean_squared_value_error": 9801.0,
+      "period_mean_squared_material_derivative_error": 0.0,
+      "constant_residual_part": 99.0
+    }
+  },
+  "off_policy_coupling_counterexample": {
+    "lambda": 20.0,
+    "macro_H": 1.0,
+    "microsteps": 32,
+    "teacher_residual_and_material_derivative": 0.0,
+    "exact_full_endpoint": 1.0,
+    "full_Heun_endpoint_error_exact_arithmetic": 0.0,
+    "cheap_Heun_endpoint": -78566.18222599989,
+    "endpoint_residual_corrected_endpoint": 707105.640033999,
+    "corrected_abs_error": 707104.640033999,
+    "first_microstep_error_formula": -0.00030517578125
+  },
+  "checks_passed": 6,
+  "limitations": [
+    "The scalar convergence experiment is not a general stability proof.",
+    "The corrected reuse formula is not exact FSAL: the reused residual is at the predicted state.",
+    "Zero teacher-path derivative loss leaves transverse Jacobians uncontrolled.",
+    "Neither error order nor derivative fitting implies improved generated-distribution FID."
+  ]
+}

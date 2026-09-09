@@ -1,0 +1,20 @@
+
+=== launch ===
+/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_imagenet100_sit_discriminator_ag_transport_v4.py --worker audit --output-root /data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4 --disc-seeds 0,1 --weak-steps 180000,240000,270000,300000,400000,500000,600000 --disc-steps 4000 --disc-batch-size 64 --disc-lr 0.0002 --disc-weight-decay 0.0001 --disc-ema-decay 0.999 --disc-r1-gamma 1.0 --disc-r1-interval 16 --disc-grad-clip 10.0 --disc-log-every 100 --disc-eval-every 1000 --disc-save-every 1000 --disc-val-batches 16 --disc-base-channels 64 --disc-cond-dim 256 --disc-class-dim 128 --disc-time-bands 16 --disc-dt-min 0.025 --disc-dt-max 0.125 --disc-s-max 0.95 --audit-time-centers 0.0625,0.1875,0.3125,0.4375,0.5625,0.6875,0.8125,0.9375 --audit-delta 0.05 --audit-probe-gamma 1.0 --audit-samples-per-bin 128 --audit-batch-size 64 --policy-lookahead 0.05 --policy-gamma-max 8.0 --policy-gap-eps 1e-08 --num-samples 1000 --sample-batch-size 8 --vae-decode-batch-size 2 --num-output-points 250 --atol 1e-06 --rtol 0.001 --fid-batch-size 8 --fid-gpu-memory-fraction 0.25 --cuda-allocator-limit-gib 15.0 --no-strong-bf16
+[audit] v180
+[audit] v240
+[audit] v270
+[audit] v300
+[audit] v400
+[audit] v500
+[audit] v600
+
+=== AUDIT ===
+v180 coeff early/late 8.08612044395779e-06 2.515998901123518e-07 cos 0.0029730290931979653 -0.001146981332425412
+v240 coeff early/late 7.799278605849502e-06 3.1280754001405866e-07 cos -0.0012468167217321025 -0.0018938896773335046
+v270 coeff early/late 9.321808109882465e-06 3.3418152682899646e-07 cos -5.368443811448742e-05 -0.00024509374487990954
+v300 coeff early/late 9.899580586752998e-06 3.2442765891642356e-07 cos -0.0021204735569284594 -0.0014751302596351934
+v400 coeff early/late 1.2273702700710265e-05 4.161867945852698e-07 cos 0.0017832984396477514 0.0003671291952613842
+v500 coeff early/late 1.4327724393421726e-05 4.5662458970962064e-07 cos -0.00025698504913407305 0.00035864973125399047
+v600 coeff early/late 1.5521699081933946e-05 8.154311901176128e-07 cos 0.006004031439971413 0.002160725878265879
+v180 temporal direction supported: True

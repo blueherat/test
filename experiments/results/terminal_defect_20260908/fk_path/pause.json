@@ -1,0 +1,27 @@
+{
+  "user_requested_pause": true,
+  "processes": [
+    {
+      "pid": 1248256,
+      "command": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_fk_path_shard --rank 1 "
+    },
+    {
+      "pid": 1248268,
+      "command": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_fk_path_shard --rank 0 "
+    },
+    {
+      "pid": 1248371,
+      "command": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_fk_path_shard --rank 2 "
+    },
+    {
+      "pid": 1248432,
+      "command": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.sample_raev2_fk_path_shard --rank 3 "
+    },
+    {
+      "pid": 1263263,
+      "command": "/home/zhoushunyu/miniconda3/envs/myenv/bin/python -m experiments.watch_raev2_fk_path "
+    }
+  ],
+  "mode": "Stopped workers to release GPU memory; atomic saved batches retained for exact-request resume.",
+  "saved_samples": 500
+}

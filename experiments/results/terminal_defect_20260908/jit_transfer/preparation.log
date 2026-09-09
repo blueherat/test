@@ -1,0 +1,15 @@
+{"phase": "waiting_for_lifting"}
+{"phase": "baseline_sampling", "arm": "full_euler100", "pids": [1540813, 1540814, 1540815, 1540816]}
+{"phase": "baseline_evaluation", "arm": "full_euler100"}
+[fd_evaluator] extractor inception (inception-v3-compat)
+  extract[inception]: 0it [00:00, ?it/s]  extract[inception]: 1it [00:00,  2.26it/s]  extract[inception]: 6it [00:00, 13.57it/s]  extract[inception]: 11it [00:00, 22.60it/s]  extract[inception]: 16it [00:00, 29.36it/s]  extract[inception]: 21it [00:00, 34.71it/s]  extract[inception]: 26it [00:00, 38.47it/s]  extract[inception]: 31it [00:01, 41.35it/s]  extract[inception]: 32it [00:01, 27.44it/s]
+       branch                                                                              sample_path                                                    sample_sha256          fid_reference                                              evaluator_root                         evaluator_commit  inception_score       fid
+full_euler100 /data/users/zhoushunyu/eqvae/experiments/jit_transfer_20260908/full_euler100/samples.npz 10f628f07b7fdc815271006322285aff51e54250fa9c015396147f674e79bfa0 imagenet_256_fid_stats /data/users/zhoushunyu/eqvae/external_sources/nanogen-evals 19dfb4c2705333eb8b97e454fb354d47d1fe135b        26.550671 63.674574
+{"phase": "baseline_sampling", "arm": "cfg_heun50", "pids": [1545843, 1545844, 1545845, 1545846]}
+{"phase": "baseline_evaluation", "arm": "cfg_heun50"}
+[fd_evaluator] extractor inception (inception-v3-compat)
+  extract[inception]: 0it [00:00, ?it/s]  extract[inception]: 1it [00:00,  3.50it/s]  extract[inception]: 7it [00:00, 21.45it/s]  extract[inception]: 13it [00:00, 31.87it/s]  extract[inception]: 19it [00:00, 39.11it/s]  extract[inception]: 25it [00:00, 42.74it/s]  extract[inception]: 31it [00:00, 45.19it/s]  extract[inception]: 32it [00:00, 33.27it/s]
+    branch                                                                           sample_path                                                    sample_sha256          fid_reference                                              evaluator_root                         evaluator_commit  inception_score       fid
+cfg_heun50 /data/users/zhoushunyu/eqvae/experiments/jit_transfer_20260908/cfg_heun50/samples.npz 8f251ed70a7bbd4e72279b7866efd136f7dcd60c71d99ff1e67adf652fae8bcd imagenet_256_fid_stats /data/users/zhoushunyu/eqvae/external_sources/nanogen-evals 19dfb4c2705333eb8b97e454fb354d47d1fe135b        58.187608 38.778979
+{"phase": "readout_training"}
+{"phase": "readout_training", "pid": 1553615}

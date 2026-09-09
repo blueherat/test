@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "scope": "Local delta approximation; no calibrated CI or p-value; fixed reference and class counts.",
+  "arms": {
+    "pfr": {
+      "fid": 9.29187633092016,
+      "minimum_root_argument_eigenvalue": 7.930998293338157e-07,
+      "root_argument_condition_number": 116450297.61939265,
+      "feature_sha256": "7c3b28dff4fb47e4d954ea40fbb41cd46e2b301ecd7610bb31214fc9e082ee5b"
+    },
+    "ordinary115": {
+      "fid": 10.155902197074965,
+      "minimum_root_argument_eigenvalue": 8.32416919697948e-07,
+      "root_argument_condition_number": 135472219.71788618,
+      "feature_sha256": "5e0eef06b7fd54c1484a125f0fbb50d39988ba56a7105fb2a49e966fac517ae8"
+    }
+  },
+  "fid_difference_pfr_minus_control": -0.8640258661548046,
+  "approximate_paired_noise_se": 0.20374513819350107,
+  "self_check": {
+    "fid": 29.350922848555,
+    "derivative_checks": [
+      {
+        "eps": 0.001,
+        "measured": -1.1898101121587956,
+        "predicted": -1.1898101085238861
+      },
+      {
+        "eps": 0.0005,
+        "measured": -1.1898101093947844,
+        "predicted": -1.1898101085238861
+      }
+    ]
+  },
+  "seconds": 4.739474831148982,
+  "source_sha256": "fb27a34f72433f1a7a853bc247469793de92b8229649484eb23219d0ef06b7e8"
+}

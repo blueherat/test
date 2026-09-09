@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "method": {
+    "branch": "a090_constant",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a090_constant/samples.npz",
+    "sample_sha256": "01cfa36650f08c63d55975e71a2f8ba2028c5972964f0679b972fb25122726dc",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 58.899728775024414,
+    "fid": 38.49721200649702
+  },
+  "reused_baseline": {
+    "branch": "native_ig",
+    "sample_path": "/data/users/zhoushunyu/eqvae/experiments/ig_condition_carrier_20260908/quality/native_ig/samples.npz",
+    "sample_sha256": "0de7afa03228b6d2bd068368a1e02977de4bc03df6aa9272d7b9b55af16f648e",
+    "fid_reference": "imagenet_256_fid_stats",
+    "evaluator_root": "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals",
+    "evaluator_commit": "19dfb4c2705333eb8b97e454fb354d47d1fe135b",
+    "inception_score": 59.07736701965332,
+    "fid": 38.264238946601836
+  },
+  "relative_fid_improvement": -0.0060885324341692915,
+  "samples": 1000,
+  "coverage_verified": true,
+  "smoke_pixels_verified": false,
+  "full_sample_calls": 298000,
+  "prefix_sample_calls": 198000,
+  "sum_batch_gpu_seconds": 2775.2981848013587,
+  "shard_seconds": [
+    702.2114111338742,
+    695.7724793408997,
+    691.0450441669673,
+    691.0866533634253
+  ],
+  "note": "Exploratory paired 1K. Baseline was not regenerated or reevaluated."
+}

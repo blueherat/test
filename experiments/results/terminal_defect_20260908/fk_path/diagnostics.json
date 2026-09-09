@@ -1,0 +1,923 @@
+{
+  "batches": 5,
+  "samples": 20,
+  "sum_batch_gpu_seconds": 515.4526325175539,
+  "median_batch_seconds": 100.57240883493796,
+  "max_peak_memory_bytes": 9215801856,
+  "diagnostics": {
+    "logweight_mean": {
+      "mean": 1078.5420633906317,
+      "median": 37.373891830444336,
+      "max": 49987.828125
+    },
+    "particle_ess": {
+      "mean": 1.7444681311140255,
+      "median": 1.8484848737716675,
+      "max": 2.0
+    },
+    "logweight_difference": {
+      "mean": 2.0049687683516675,
+      "median": 0.5176143646240234,
+      "max": 85.837890625
+    },
+    "gradient_rms": {
+      "mean": 0.02614139309116426,
+      "median": 0.005154321203008294,
+      "max": 1.0758610963821411
+    },
+    "correction_rms": {
+      "mean": 0.03678464418063617,
+      "median": 0.03294713795185089,
+      "max": 0.17565079033374786
+    },
+    "native_rms": {
+      "mean": 1.293575310463808,
+      "median": 1.3170824646949768,
+      "max": 1.4906110763549805
+    }
+  },
+  "by_time": [
+    {
+      "t": 0.9987389445304871,
+      "logweight_mean": 0.0005818894132971764,
+      "particle_ess": 2.0,
+      "logweight_difference": 2.0430670701898634e-05,
+      "gradient_rms": 1.2797244295370546e-07,
+      "correction_rms": 0.00010135244956472888,
+      "native_rms": 1.1075003147125244
+    },
+    {
+      "t": 0.9974554777145386,
+      "logweight_mean": 0.0022054417058825493,
+      "particle_ess": 2.0,
+      "logweight_difference": 0.00015891717630438506,
+      "gradient_rms": 6.425390381537e-07,
+      "correction_rms": 0.00025187598657794297,
+      "native_rms": 1.1085715770721436
+    },
+    {
+      "t": 0.996148943901062,
+      "logweight_mean": 0.004948794655501842,
+      "particle_ess": 2.0,
+      "logweight_difference": 0.00024107671342790126,
+      "gradient_rms": 2.092938666464761e-06,
+      "correction_rms": 0.0005413784412667156,
+      "native_rms": 1.1101089477539063
+    },
+    {
+      "t": 0.9948186874389648,
+      "logweight_mean": 0.009325642418116332,
+      "particle_ess": 1.9999995946884155,
+      "logweight_difference": 0.0006308402167633176,
+      "gradient_rms": 5.528329802473309e-06,
+      "correction_rms": 0.0010614464059472083,
+      "native_rms": 1.1127657651901246
+    },
+    {
+      "t": 0.9934640526771545,
+      "logweight_mean": 0.01671655960381031,
+      "particle_ess": 1.9999973058700562,
+      "logweight_difference": 0.001598947262391448,
+      "gradient_rms": 1.262130663235439e-05,
+      "correction_rms": 0.001918438752181828,
+      "native_rms": 1.1171106576919556
+    },
+    {
+      "t": 0.9920844435691833,
+      "logweight_mean": 0.02866865023970604,
+      "particle_ess": 1.9999881744384767,
+      "logweight_difference": 0.004112975299358368,
+      "gradient_rms": 3.0631546906079166e-05,
+      "correction_rms": 0.0038391591515392065,
+      "native_rms": 1.1235152006149292
+    },
+    {
+      "t": 0.9906790852546692,
+      "logweight_mean": 0.04825476333498955,
+      "particle_ess": 1.9998398303985596,
+      "logweight_difference": 0.010480870679020881,
+      "gradient_rms": 7.167807125370018e-05,
+      "correction_rms": 0.007618347276002168,
+      "native_rms": 1.1313342809677125
+    },
+    {
+      "t": 0.9892473220825195,
+      "logweight_mean": 0.07458621263504028,
+      "particle_ess": 1.9998075246810914,
+      "logweight_difference": 0.010838633589446544,
+      "gradient_rms": 0.00015956388524500652,
+      "correction_rms": 0.014679891895502806,
+      "native_rms": 1.1413724660873412
+    },
+    {
+      "t": 0.9877883195877075,
+      "logweight_mean": 0.11665941923856735,
+      "particle_ess": 1.9991286039352416,
+      "logweight_difference": 0.023583867773413657,
+      "gradient_rms": 0.00017378472693962976,
+      "correction_rms": 0.014057239890098572,
+      "native_rms": 1.153996729850769
+    },
+    {
+      "t": 0.9863013625144958,
+      "logweight_mean": 0.16744557917118072,
+      "particle_ess": 1.9996650457382201,
+      "logweight_difference": 0.018024981021881104,
+      "gradient_rms": 0.0002006021823035553,
+      "correction_rms": 0.014443349465727806,
+      "native_rms": 1.1663233041763306
+    },
+    {
+      "t": 0.9847856163978577,
+      "logweight_mean": 0.23915573358535766,
+      "particle_ess": 1.9979802131652833,
+      "logweight_difference": 0.03738039582967758,
+      "gradient_rms": 0.00032857397163752464,
+      "correction_rms": 0.02126769982278347,
+      "native_rms": 1.1757632732391357
+    },
+    {
+      "t": 0.9832402467727661,
+      "logweight_mean": 0.3136612117290497,
+      "particle_ess": 1.995866870880127,
+      "logweight_difference": 0.05743084251880646,
+      "gradient_rms": 0.0002891377982450649,
+      "correction_rms": 0.01696277391165495,
+      "native_rms": 1.1835681676864624
+    },
+    {
+      "t": 0.9816642999649048,
+      "logweight_mean": 0.4005091845989227,
+      "particle_ess": 1.9980462789535522,
+      "logweight_difference": 0.040452107042074206,
+      "gradient_rms": 0.0004285233997507021,
+      "correction_rms": 0.022942462749779225,
+      "native_rms": 1.1904053688049316
+    },
+    {
+      "t": 0.9800570011138916,
+      "logweight_mean": 0.519826203584671,
+      "particle_ess": 1.993920874595642,
+      "logweight_difference": 0.08095353990793228,
+      "gradient_rms": 0.0006208495993632823,
+      "correction_rms": 0.030510354973375797,
+      "native_rms": 1.19690043926239
+    },
+    {
+      "t": 0.9784172773361206,
+      "logweight_mean": 0.6485145926475525,
+      "particle_ess": 1.9946791648864746,
+      "logweight_difference": 0.07870361059904099,
+      "gradient_rms": 0.0005191118165384978,
+      "correction_rms": 0.023533082194626333,
+      "native_rms": 1.2032562971115113
+    },
+    {
+      "t": 0.9767442345619202,
+      "logweight_mean": 0.8157772541046142,
+      "particle_ess": 1.9922613859176637,
+      "logweight_difference": 0.08627012968063355,
+      "gradient_rms": 0.0006434068433009088,
+      "correction_rms": 0.02702314630150795,
+      "native_rms": 1.209191131591797
+    },
+    {
+      "t": 0.9750366806983948,
+      "logweight_mean": 0.9909913778305054,
+      "particle_ess": 1.9950024366378785,
+      "logweight_difference": 0.0815129667520523,
+      "gradient_rms": 0.0006856568972580135,
+      "correction_rms": 0.0267809197306633,
+      "native_rms": 1.2153927564620972
+    },
+    {
+      "t": 0.9732937812805176,
+      "logweight_mean": 1.1939066052436829,
+      "particle_ess": 1.985616970062256,
+      "logweight_difference": 0.1328808158636093,
+      "gradient_rms": 0.0007594230526592582,
+      "correction_rms": 0.027676764130592345,
+      "native_rms": 1.2207865476608277
+    },
+    {
+      "t": 0.9715142250061035,
+      "logweight_mean": 1.4028821229934691,
+      "particle_ess": 1.9928802967071533,
+      "logweight_difference": 0.09237505793571472,
+      "gradient_rms": 0.0008288043783977628,
+      "correction_rms": 0.028266573324799538,
+      "native_rms": 1.2264753580093384
+    },
+    {
+      "t": 0.9696969985961914,
+      "logweight_mean": 1.6489141464233399,
+      "particle_ess": 1.987082552909851,
+      "logweight_difference": 0.12887086272239684,
+      "gradient_rms": 0.0009152429178357124,
+      "correction_rms": 0.029287801310420036,
+      "native_rms": 1.2312836647033691
+    },
+    {
+      "t": 0.9678407311439514,
+      "logweight_mean": 1.9255483150482178,
+      "particle_ess": 1.9785714149475098,
+      "logweight_difference": 0.15234041810035706,
+      "gradient_rms": 0.0010508333332836628,
+      "correction_rms": 0.03162507452070713,
+      "native_rms": 1.2368532419204712
+    },
+    {
+      "t": 0.9659442901611328,
+      "logweight_mean": 2.259071636199951,
+      "particle_ess": 1.9655265092849732,
+      "logweight_difference": 0.17886242270469666,
+      "gradient_rms": 0.0011609051376581191,
+      "correction_rms": 0.032927507907152175,
+      "native_rms": 1.2414659023284913
+    },
+    {
+      "t": 0.964006245136261,
+      "logweight_mean": 2.615514802932739,
+      "particle_ess": 1.9851025342941284,
+      "logweight_difference": 0.13820622563362123,
+      "gradient_rms": 0.00122925954638049,
+      "correction_rms": 0.032922763004899026,
+      "native_rms": 1.2462469816207886
+    },
+    {
+      "t": 0.9620253443717957,
+      "logweight_mean": 3.047090435028076,
+      "particle_ess": 1.9630026340484619,
+      "logweight_difference": 0.23008458614349364,
+      "gradient_rms": 0.0015199595596641301,
+      "correction_rms": 0.0385056734085083,
+      "native_rms": 1.2510083198547364
+    },
+    {
+      "t": 0.9599999785423279,
+      "logweight_mean": 3.481805181503296,
+      "particle_ess": 1.9744566202163696,
+      "logweight_difference": 0.186195707321167,
+      "gradient_rms": 0.0015011424664407968,
+      "correction_rms": 0.036027397587895395,
+      "native_rms": 1.2561474323272706
+    },
+    {
+      "t": 0.9579287767410278,
+      "logweight_mean": 3.995744562149048,
+      "particle_ess": 1.965505886077881,
+      "logweight_difference": 0.2007679224014282,
+      "gradient_rms": 0.0016428433591499925,
+      "correction_rms": 0.037406256049871446,
+      "native_rms": 1.261225652694702
+    },
+    {
+      "t": 0.9558101296424866,
+      "logweight_mean": 4.597845458984375,
+      "particle_ess": 1.950301957130432,
+      "logweight_difference": 0.23253906965255738,
+      "gradient_rms": 0.0016872895415872336,
+      "correction_rms": 0.036495433747768403,
+      "native_rms": 1.265671443939209
+    },
+    {
+      "t": 0.9536424279212952,
+      "logweight_mean": 5.156592273712159,
+      "particle_ess": 1.9640448570251465,
+      "logweight_difference": 0.20981574058532715,
+      "gradient_rms": 0.0019153074827045202,
+      "correction_rms": 0.039400651678442956,
+      "native_rms": 1.270071768760681
+    },
+    {
+      "t": 0.9514237642288208,
+      "logweight_mean": 5.863094329833984,
+      "particle_ess": 1.9322869539260865,
+      "logweight_difference": 0.2923760533332825,
+      "gradient_rms": 0.0019180243369191885,
+      "correction_rms": 0.037566802278161046,
+      "native_rms": 1.2739532709121704
+    },
+    {
+      "t": 0.9491525292396545,
+      "logweight_mean": 6.573199272155762,
+      "particle_ess": 1.9527077436447144,
+      "logweight_difference": 0.2759312629699707,
+      "gradient_rms": 0.0021312856581062077,
+      "correction_rms": 0.039783989638090135,
+      "native_rms": 1.2778271198272706
+    },
+    {
+      "t": 0.9468267560005188,
+      "logweight_mean": 7.307580757141113,
+      "particle_ess": 1.9654011726379395,
+      "logweight_difference": 0.21985819339752197,
+      "gradient_rms": 0.0021809112280607224,
+      "correction_rms": 0.03883429057896137,
+      "native_rms": 1.2817273139953613
+    },
+    {
+      "t": 0.9444444179534912,
+      "logweight_mean": 8.192907810211182,
+      "particle_ess": 1.9264072179794312,
+      "logweight_difference": 0.34380464553833007,
+      "gradient_rms": 0.0023167635779827835,
+      "correction_rms": 0.03938496336340904,
+      "native_rms": 1.2855764150619506
+    },
+    {
+      "t": 0.9420035481452942,
+      "logweight_mean": 9.030604267120362,
+      "particle_ess": 1.9226831912994384,
+      "logweight_difference": 0.3621190071105957,
+      "gradient_rms": 0.002432682947255671,
+      "correction_rms": 0.03951269127428532,
+      "native_rms": 1.2889427661895752
+    },
+    {
+      "t": 0.9395017623901367,
+      "logweight_mean": 10.010502433776855,
+      "particle_ess": 1.9254167318344115,
+      "logweight_difference": 0.3311543226242065,
+      "gradient_rms": 0.002628613915294409,
+      "correction_rms": 0.04082081690430641,
+      "native_rms": 1.292104959487915
+    },
+    {
+      "t": 0.9369369745254517,
+      "logweight_mean": 11.042202568054199,
+      "particle_ess": 1.9281784296035767,
+      "logweight_difference": 0.3049782752990723,
+      "gradient_rms": 0.002864877670072019,
+      "correction_rms": 0.04256392158567905,
+      "native_rms": 1.2948246240615844
+    },
+    {
+      "t": 0.9343065619468689,
+      "logweight_mean": 12.132137870788574,
+      "particle_ess": 1.911230492591858,
+      "logweight_difference": 0.37565858364105226,
+      "gradient_rms": 0.0030859984923154115,
+      "correction_rms": 0.04388974830508232,
+      "native_rms": 1.2983385086059571
+    },
+    {
+      "t": 0.9316081404685974,
+      "logweight_mean": 13.289114379882813,
+      "particle_ess": 1.9194026947021485,
+      "logweight_difference": 0.3574169158935547,
+      "gradient_rms": 0.0030840521678328512,
+      "correction_rms": 0.04200979620218277,
+      "native_rms": 1.3008511543273926
+    },
+    {
+      "t": 0.9288389086723328,
+      "logweight_mean": 14.508383750915527,
+      "particle_ess": 1.8265145063400268,
+      "logweight_difference": 0.5827256202697754,
+      "gradient_rms": 0.0033207799773663283,
+      "correction_rms": 0.0433448888361454,
+      "native_rms": 1.3034812450408935
+    },
+    {
+      "t": 0.9259962439537048,
+      "logweight_mean": 15.922930145263672,
+      "particle_ess": 1.904957151412964,
+      "logweight_difference": 0.3759765625,
+      "gradient_rms": 0.0033474510535597803,
+      "correction_rms": 0.04188607819378376,
+      "native_rms": 1.3063231229782104
+    },
+    {
+      "t": 0.9230769276618958,
+      "logweight_mean": 17.37706470489502,
+      "particle_ess": 1.831518578529358,
+      "logweight_difference": 0.5673862934112549,
+      "gradient_rms": 0.0034881761763244866,
+      "correction_rms": 0.041858118027448654,
+      "native_rms": 1.3086418628692627
+    },
+    {
+      "t": 0.9200779795646667,
+      "logweight_mean": 18.81719551086426,
+      "particle_ess": 1.8692650318145752,
+      "logweight_difference": 0.47455434799194335,
+      "gradient_rms": 0.003661616798490286,
+      "correction_rms": 0.04215325340628624,
+      "native_rms": 1.311090612411499
+    },
+    {
+      "t": 0.9169960021972656,
+      "logweight_mean": 20.533298873901366,
+      "particle_ess": 1.9103592872619628,
+      "logweight_difference": 0.38347640037536623,
+      "gradient_rms": 0.003660510806366801,
+      "correction_rms": 0.0404399037361145,
+      "native_rms": 1.313184380531311
+    },
+    {
+      "t": 0.913827657699585,
+      "logweight_mean": 22.312198638916016,
+      "particle_ess": 1.8943203449249268,
+      "logweight_difference": 0.43112778663635254,
+      "gradient_rms": 0.00385661032050848,
+      "correction_rms": 0.04089800864458084,
+      "native_rms": 1.3151693105697633
+    },
+    {
+      "t": 0.9105690717697144,
+      "logweight_mean": 24.144935607910156,
+      "particle_ess": 1.8774892568588257,
+      "logweight_difference": 0.45441412925720215,
+      "gradient_rms": 0.003998405626043677,
+      "correction_rms": 0.04071102142333984,
+      "native_rms": 1.3175630569458008
+    },
+    {
+      "t": 0.9072164297103882,
+      "logweight_mean": 26.21416473388672,
+      "particle_ess": 1.8016963481903077,
+      "logweight_difference": 0.6381856441497803,
+      "gradient_rms": 0.00428639748133719,
+      "correction_rms": 0.04191140905022621,
+      "native_rms": 1.3198123693466186
+    },
+    {
+      "t": 0.9037656784057617,
+      "logweight_mean": 28.36569480895996,
+      "particle_ess": 1.8454692363739014,
+      "logweight_difference": 0.523253345489502,
+      "gradient_rms": 0.00444427253678441,
+      "correction_rms": 0.04173751100897789,
+      "native_rms": 1.321750783920288
+    },
+    {
+      "t": 0.9002123475074768,
+      "logweight_mean": 30.735617446899415,
+      "particle_ess": 1.8263262510299683,
+      "logweight_difference": 0.6080232620239258,
+      "gradient_rms": 0.004674094077199697,
+      "correction_rms": 0.0421663124114275,
+      "native_rms": 1.3239754676818847
+    },
+    {
+      "t": 0.8965517282485962,
+      "logweight_mean": 33.13905067443848,
+      "particle_ess": 1.8787655591964723,
+      "logweight_difference": 0.4960883140563965,
+      "gradient_rms": 0.004766712570562959,
+      "correction_rms": 0.041311509907245636,
+      "native_rms": 1.3260589838027954
+    },
+    {
+      "t": 0.8927790522575378,
+      "logweight_mean": 36.014883041381836,
+      "particle_ess": 1.8182787656784059,
+      "logweight_difference": 0.6016087532043457,
+      "gradient_rms": 0.005186548409983516,
+      "correction_rms": 0.04318598099052906,
+      "native_rms": 1.3279322624206542
+    },
+    {
+      "t": 0.8888888955116272,
+      "logweight_mean": 38.76344299316406,
+      "particle_ess": 1.7646665811538695,
+      "logweight_difference": 0.7918782234191895,
+      "gradient_rms": 0.005286119552329183,
+      "correction_rms": 0.04228896126151085,
+      "native_rms": 1.3298978090286255
+    },
+    {
+      "t": 0.8848758339881897,
+      "logweight_mean": 41.889000701904294,
+      "particle_ess": 1.752502965927124,
+      "logweight_difference": 0.7528881072998047,
+      "gradient_rms": 0.005672103120014071,
+      "correction_rms": 0.04359733574092388,
+      "native_rms": 1.3313672542572021
+    },
+    {
+      "t": 0.8807339668273926,
+      "logweight_mean": 45.21475372314453,
+      "particle_ess": 1.7086267232894898,
+      "logweight_difference": 0.9188931465148926,
+      "gradient_rms": 0.0060895317234098915,
+      "correction_rms": 0.0449688583612442,
+      "native_rms": 1.3336624383926392
+    },
+    {
+      "t": 0.8764568567276001,
+      "logweight_mean": 48.89473876953125,
+      "particle_ess": 1.8028287887573242,
+      "logweight_difference": 0.7024959564208985,
+      "gradient_rms": 0.005882611591368913,
+      "correction_rms": 0.04173323810100556,
+      "native_rms": 1.3353448390960694
+    },
+    {
+      "t": 0.8720378875732422,
+      "logweight_mean": 52.693518829345706,
+      "particle_ess": 1.7420623064041139,
+      "logweight_difference": 0.8137649536132813,
+      "gradient_rms": 0.006777434330433607,
+      "correction_rms": 0.04618694894015789,
+      "native_rms": 1.3370782613754273
+    },
+    {
+      "t": 0.8674699068069458,
+      "logweight_mean": 56.778498840332034,
+      "particle_ess": 1.7484436750411987,
+      "logweight_difference": 0.8087699890136719,
+      "gradient_rms": 0.006119598634541035,
+      "correction_rms": 0.040055562183260916,
+      "native_rms": 1.3389350175857544
+    },
+    {
+      "t": 0.8627451062202454,
+      "logweight_mean": 61.28156051635742,
+      "particle_ess": 1.8375251531600951,
+      "logweight_difference": 0.5507255554199219,
+      "gradient_rms": 0.00662512555718422,
+      "correction_rms": 0.041643648967146875,
+      "native_rms": 1.340459394454956
+    },
+    {
+      "t": 0.8578553795814514,
+      "logweight_mean": 66.03815078735352,
+      "particle_ess": 1.7724430322647096,
+      "logweight_difference": 0.7215293884277344,
+      "gradient_rms": 0.006810093391686678,
+      "correction_rms": 0.04109951704740524,
+      "native_rms": 1.3422897338867188
+    },
+    {
+      "t": 0.8527919054031372,
+      "logweight_mean": 71.27875213623047,
+      "particle_ess": 1.702014398574829,
+      "logweight_difference": 0.8770183563232422,
+      "gradient_rms": 0.007984991557896138,
+      "correction_rms": 0.04625789150595665,
+      "native_rms": 1.3439625024795532
+    },
+    {
+      "t": 0.8475452661514282,
+      "logweight_mean": 77.1390625,
+      "particle_ess": 1.8293469667434692,
+      "logweight_difference": 0.5613386154174804,
+      "gradient_rms": 0.006792116072028875,
+      "correction_rms": 0.037759576365351676,
+      "native_rms": 1.345543384552002
+    },
+    {
+      "t": 0.8421052694320679,
+      "logweight_mean": 83.22829132080078,
+      "particle_ess": 1.7855677127838134,
+      "logweight_difference": 0.6676568984985352,
+      "gradient_rms": 0.008731026761233806,
+      "correction_rms": 0.04656547717750072,
+      "native_rms": 1.3470779657363892
+    },
+    {
+      "t": 0.836461067199707,
+      "logweight_mean": 90.16008605957032,
+      "particle_ess": 1.669428777694702,
+      "logweight_difference": 1.0173683166503906,
+      "gradient_rms": 0.010496178176254034,
+      "correction_rms": 0.053685345500707624,
+      "native_rms": 1.34820659160614
+    },
+    {
+      "t": 0.8306010961532593,
+      "logweight_mean": 97.21503143310547,
+      "particle_ess": 1.6762606859207154,
+      "logweight_difference": 1.001348876953125,
+      "gradient_rms": 0.007823634799569846,
+      "correction_rms": 0.038361047953367235,
+      "native_rms": 1.3497140884399415
+    },
+    {
+      "t": 0.8245124816894531,
+      "logweight_mean": 105.26680603027344,
+      "particle_ess": 1.5555086612701416,
+      "logweight_difference": 1.342049789428711,
+      "gradient_rms": 0.009110752865672112,
+      "correction_rms": 0.042806060239672664,
+      "native_rms": 1.3515401363372803
+    },
+    {
+      "t": 0.8181818127632141,
+      "logweight_mean": 114.17067413330078,
+      "particle_ess": 1.7216877698898316,
+      "logweight_difference": 0.9382408142089844,
+      "gradient_rms": 0.008211180847138167,
+      "correction_rms": 0.03695031441748142,
+      "native_rms": 1.3531805515289306
+    },
+    {
+      "t": 0.8115941882133484,
+      "logweight_mean": 123.8367416381836,
+      "particle_ess": 1.70630943775177,
+      "logweight_difference": 0.9526058197021484,
+      "gradient_rms": 0.0084219872020185,
+      "correction_rms": 0.0362793255597353,
+      "native_rms": 1.3542186260223388
+    },
+    {
+      "t": 0.8047336935997009,
+      "logweight_mean": 134.12909851074218,
+      "particle_ess": 1.6488746404647827,
+      "logweight_difference": 1.1561370849609376,
+      "gradient_rms": 0.009926351625472308,
+      "correction_rms": 0.040908589586615564,
+      "native_rms": 1.3561047792434693
+    },
+    {
+      "t": 0.7975830435752869,
+      "logweight_mean": 145.757421875,
+      "particle_ess": 1.7568252563476563,
+      "logweight_difference": 0.7866359710693359,
+      "gradient_rms": 0.00845311265438795,
+      "correction_rms": 0.03330778107047081,
+      "native_rms": 1.3570579051971436
+    },
+    {
+      "t": 0.790123462677002,
+      "logweight_mean": 158.51006469726562,
+      "particle_ess": 1.6889604806900025,
+      "logweight_difference": 1.0261940002441405,
+      "gradient_rms": 0.012323117163032294,
+      "correction_rms": 0.0463929146528244,
+      "native_rms": 1.3584096670150756
+    },
+    {
+      "t": 0.7823343873023987,
+      "logweight_mean": 172.752294921875,
+      "particle_ess": 1.752038598060608,
+      "logweight_difference": 0.7663429260253907,
+      "gradient_rms": 0.010087060928344726,
+      "correction_rms": 0.036254943907260896,
+      "native_rms": 1.3594463109970092
+    },
+    {
+      "t": 0.774193525314331,
+      "logweight_mean": 188.344287109375,
+      "particle_ess": 1.5594764471054077,
+      "logweight_difference": 1.3311126708984375,
+      "gradient_rms": 0.010988390352576972,
+      "correction_rms": 0.037674476578831675,
+      "native_rms": 1.360926079750061
+    },
+    {
+      "t": 0.7656765580177307,
+      "logweight_mean": 205.7480438232422,
+      "particle_ess": 1.678709077835083,
+      "logweight_difference": 1.0052009582519532,
+      "gradient_rms": 0.011579194106161594,
+      "correction_rms": 0.03783623911440372,
+      "native_rms": 1.3617213249206543
+    },
+    {
+      "t": 0.7567567229270935,
+      "logweight_mean": 225.085107421875,
+      "particle_ess": 1.6413890361785888,
+      "logweight_difference": 1.1471908569335938,
+      "gradient_rms": 0.010955506470054388,
+      "correction_rms": 0.03408378958702087,
+      "native_rms": 1.3625054597854613
+    },
+    {
+      "t": 0.7474048137664795,
+      "logweight_mean": 246.59549255371093,
+      "particle_ess": 1.5323734045028687,
+      "logweight_difference": 1.4409004211425782,
+      "gradient_rms": 0.013720457814633847,
+      "correction_rms": 0.0405975129455328,
+      "native_rms": 1.363010573387146
+    },
+    {
+      "t": 0.73758864402771,
+      "logweight_mean": 271.2732269287109,
+      "particle_ess": 1.559251308441162,
+      "logweight_difference": 1.3181503295898438,
+      "gradient_rms": 0.011469123046845197,
+      "correction_rms": 0.03223753459751606,
+      "native_rms": 1.3638256072998047
+    },
+    {
+      "t": 0.7272727489471436,
+      "logweight_mean": 298.41643676757815,
+      "particle_ess": 1.6335641384124755,
+      "logweight_difference": 1.1080207824707031,
+      "gradient_rms": 0.016474275290966033,
+      "correction_rms": 0.04393140636384487,
+      "native_rms": 1.3646310806274413
+    },
+    {
+      "t": 0.7164179682731628,
+      "logweight_mean": 330.10655517578124,
+      "particle_ess": 1.655458688735962,
+      "logweight_difference": 1.0199935913085938,
+      "gradient_rms": 0.01184779517352581,
+      "correction_rms": 0.029931279271841048,
+      "native_rms": 1.3645050764083861
+    },
+    {
+      "t": 0.7049808502197266,
+      "logweight_mean": 365.3192077636719,
+      "particle_ess": 1.6116205215454102,
+      "logweight_difference": 1.23135986328125,
+      "gradient_rms": 0.016539706476032735,
+      "correction_rms": 0.03952345810830593,
+      "native_rms": 1.3650264501571656
+    },
+    {
+      "t": 0.6929134130477905,
+      "logweight_mean": 405.82493896484374,
+      "particle_ess": 1.6045191287994385,
+      "logweight_difference": 1.2849090576171875,
+      "gradient_rms": 0.018417922779917717,
+      "correction_rms": 0.04155839681625366,
+      "native_rms": 1.3649532079696656
+    },
+    {
+      "t": 0.6801619529724121,
+      "logweight_mean": 452.1854736328125,
+      "particle_ess": 1.6142017364501953,
+      "logweight_difference": 1.2559295654296876,
+      "gradient_rms": 0.02302739880979061,
+      "correction_rms": 0.048969661071896556,
+      "native_rms": 1.3648070335388183
+    },
+    {
+      "t": 0.6666666865348816,
+      "logweight_mean": 505.6558776855469,
+      "particle_ess": 1.6055794715881349,
+      "logweight_difference": 1.2354568481445312,
+      "gradient_rms": 0.016523059457540512,
+      "correction_rms": 0.033046121895313266,
+      "native_rms": 1.3652021169662476
+    },
+    {
+      "t": 0.6523604989051819,
+      "logweight_mean": 567.7204345703125,
+      "particle_ess": 1.4875483512878418,
+      "logweight_difference": 1.6336700439453125,
+      "gradient_rms": 0.018308720737695693,
+      "correction_rms": 0.03435710184276104,
+      "native_rms": 1.3652447938919068
+    },
+    {
+      "t": 0.6371681094169617,
+      "logweight_mean": 640.0635620117188,
+      "particle_ess": 1.330565333366394,
+      "logweight_difference": 2.065203857421875,
+      "gradient_rms": 0.019655396789312364,
+      "correction_rms": 0.03451678939163685,
+      "native_rms": 1.3643853664398193
+    },
+    {
+      "t": 0.621004581451416,
+      "logweight_mean": 725.4786010742188,
+      "particle_ess": 1.3926682710647582,
+      "logweight_difference": 2.1770294189453123,
+      "gradient_rms": 0.02219176646322012,
+      "correction_rms": 0.036362414807081224,
+      "native_rms": 1.363374662399292
+    },
+    {
+      "t": 0.6037735939025879,
+      "logweight_mean": 826.4922119140625,
+      "particle_ess": 1.6029548168182373,
+      "logweight_difference": 1.291876220703125,
+      "gradient_rms": 0.023727808333933353,
+      "correction_rms": 0.036156661063432696,
+      "native_rms": 1.3622395753860475
+    },
+    {
+      "t": 0.5853658318519592,
+      "logweight_mean": 946.4058715820313,
+      "particle_ess": 1.5706512689590455,
+      "logweight_difference": 1.3517425537109375,
+      "gradient_rms": 0.026600924134254456,
+      "correction_rms": 0.03755424246191978,
+      "native_rms": 1.360979723930359
+    },
+    {
+      "t": 0.5656565427780151,
+      "logweight_mean": 1090.5772827148437,
+      "particle_ess": 1.4357961177825929,
+      "logweight_difference": 2.14312744140625,
+      "gradient_rms": 0.02505800500512123,
+      "correction_rms": 0.03263367787003517,
+      "native_rms": 1.3589333295822144
+    },
+    {
+      "t": 0.5445026159286499,
+      "logweight_mean": 1263.92900390625,
+      "particle_ess": 1.4324262619018555,
+      "logweight_difference": 2.0126617431640623,
+      "gradient_rms": 0.02848042845726013,
+      "correction_rms": 0.034045569226145746,
+      "native_rms": 1.3545655727386474
+    },
+    {
+      "t": 0.52173912525177,
+      "logweight_mean": 1478.9082275390624,
+      "particle_ess": 1.3036274194717408,
+      "logweight_difference": 3.697210693359375,
+      "gradient_rms": 0.031028010696172715,
+      "correction_rms": 0.03384873978793621,
+      "native_rms": 1.3524775743484496
+    },
+    {
+      "t": 0.4971751570701599,
+      "logweight_mean": 1746.511767578125,
+      "particle_ess": 1.3798607110977172,
+      "logweight_difference": 2.9625,
+      "gradient_rms": 0.03489382565021515,
+      "correction_rms": 0.034501762315630916,
+      "native_rms": 1.349091124534607
+    },
+    {
+      "t": 0.47058823704719543,
+      "logweight_mean": 2081.91962890625,
+      "particle_ess": 1.2523977994918822,
+      "logweight_difference": 4.054510498046875,
+      "gradient_rms": 0.040910191088914874,
+      "correction_rms": 0.03636461533606052,
+      "native_rms": 1.344027042388916
+    },
+    {
+      "t": 0.4417177736759186,
+      "logweight_mean": 2511.4400390625,
+      "particle_ess": 1.2842225790023805,
+      "logweight_difference": 3.602532958984375,
+      "gradient_rms": 0.048827499896287915,
+      "correction_rms": 0.03863274455070496,
+      "native_rms": 1.338178849220276
+    },
+    {
+      "t": 0.41025641560554504,
+      "logweight_mean": 3076.175048828125,
+      "particle_ess": 1.26445529460907,
+      "logweight_difference": 3.24093017578125,
+      "gradient_rms": 0.059763146191835405,
+      "correction_rms": 0.04157436341047287,
+      "native_rms": 1.3294514656066894
+    },
+    {
+      "t": 0.3758389353752136,
+      "logweight_mean": 3829.832568359375,
+      "particle_ess": 1.229880428314209,
+      "logweight_difference": 4.3954833984375,
+      "gradient_rms": 0.07502457201480865,
+      "correction_rms": 0.04517608731985092,
+      "native_rms": 1.3197259664535523
+    },
+    {
+      "t": 0.3380281627178192,
+      "logweight_mean": 4883.374609375,
+      "particle_ess": 1.1761006355285644,
+      "logweight_difference": 6.52918701171875,
+      "gradient_rms": 0.09740621596574783,
+      "correction_rms": 0.04973934441804886,
+      "native_rms": 1.3084453105926515
+    },
+    {
+      "t": 0.29629629850387573,
+      "logweight_mean": 6471.121875,
+      "particle_ess": 1.0787940740585327,
+      "logweight_difference": 10.253369140625,
+      "gradient_rms": 0.13295741379261017,
+      "correction_rms": 0.055982067435979846,
+      "native_rms": 1.2931709051132203
+    },
+    {
+      "t": 0.25,
+      "logweight_mean": 9291.3205078125,
+      "particle_ess": 1.019794774055481,
+      "logweight_difference": 15.4015380859375,
+      "gradient_rms": 0.19746110141277312,
+      "correction_rms": 0.06582036912441254,
+      "native_rms": 1.2734474897384644
+    },
+    {
+      "t": 0.1983470916748047,
+      "logweight_mean": 16230.312890625,
+      "particle_ess": 1.0499255895614623,
+      "logweight_difference": 24.481591796875,
+      "gradient_rms": 0.35210471153259276,
+      "correction_rms": 0.08711868077516556,
+      "native_rms": 1.2698114395141602
+    },
+    {
+      "t": 0.14035087823867798,
+      "logweight_mean": 42348.7359375,
+      "particle_ess": 1.0011910676956177,
+      "logweight_difference": 63.24521484375,
+      "gradient_rms": 0.9185714960098267,
+      "correction_rms": 0.14997085183858871,
+      "native_rms": 1.404776382446289
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "seed": 202609435,
+  "dimension": 262144,
+  "bank": {
+    "path": "/data/users/zhoushunyu/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/summary.json",
+    "sha256": "d17d6e22ea47f7d2603f7c6843145abd6c90caf961b90a146fcc864ddc61333b",
+    "size_bytes": 469118
+  },
+  "train_count": 5000,
+  "validation_count": 1000,
+  "train_clean_norm_mean": 1.0010645628756,
+  "train_clean_norm_variance": 0.037310282675037894,
+  "validation_clean_norm_mean": 1.0002863601086167,
+  "validation_clean_norm_variance": 0.03442152179955106,
+  "rows": [
+    {
+      "noise_time": 1.0,
+      "future_time": 0.96875,
+      "separation_in_pooled_sd": 22.56529525887606,
+      "fixed_midpoint_balanced_accuracy": 1.0,
+      "current_time_mae": 0.0010798834110660556,
+      "current_time_rmse": 0.0013639826037916865,
+      "empirical_current_norm_mean": 1.0000657266704616,
+      "predicted_current_norm_mean": 1.0,
+      "empirical_current_norm_variance": 7.44597048579211e-06,
+      "predicted_current_norm_variance": 7.62939453125e-06
+    },
+    {
+      "noise_time": 0.95,
+      "future_time": 0.91875,
+      "separation_in_pooled_sd": 20.798088857381806,
+      "fixed_midpoint_balanced_accuracy": 1.0,
+      "current_time_mae": 0.001139513680150205,
+      "current_time_rmse": 0.001411207515504696,
+      "empirical_current_norm_mean": 0.9049327729738662,
+      "predicted_current_norm_mean": 0.905002661407189,
+      "empirical_current_norm_variance": 6.4529878939427476e-06,
+      "predicted_current_norm_variance": 6.4818430893506406e-06
+    },
+    {
+      "noise_time": 0.9,
+      "future_time": 0.86875,
+      "separation_in_pooled_sd": 13.731987547612466,
+      "fixed_midpoint_balanced_accuracy": 1.0,
+      "current_time_mae": 0.0013771797614170005,
+      "current_time_rmse": 0.0017763676400614815,
+      "empirical_current_norm_mean": 0.8201320117781704,
+      "predicted_current_norm_mean": 0.820010645628756,
+      "empirical_current_norm_variance": 8.09079159875856e-06,
+      "predicted_current_norm_variance": 8.860401786780099e-06
+    },
+    {
+      "noise_time": 0.75,
+      "future_time": 0.71875,
+      "separation_in_pooled_sd": 2.110827030704934,
+      "fixed_midpoint_balanced_accuracy": 0.915,
+      "current_time_mae": 0.008621315068421186,
+      "current_time_rmse": 0.011322235785694051,
+      "empirical_current_norm_mean": 0.6250426983094914,
+      "predicted_current_norm_mean": 0.625066535179725,
+      "empirical_current_norm_variance": 0.00013593140584569483,
+      "predicted_current_norm_variance": 0.00014869429269177698
+    },
+    {
+      "noise_time": 0.6,
+      "future_time": 0.56875,
+      "separation_in_pooled_sd": 0.3136790281160202,
+      "fixed_midpoint_balanced_accuracy": 0.5780000000000001,
+      "current_time_mae": 0.058138790373465685,
+      "current_time_rmse": 0.06981280122038402,
+      "empirical_current_norm_mean": 0.5200749445446315,
+      "predicted_current_norm_mean": 0.520170330060096,
+      "empirical_current_norm_variance": 0.00087757185465892,
+      "predicted_current_norm_variance": 0.0009570118479131851
+    }
+  ],
+  "seconds": 17.949178248178214,
+  "source_sha256": "71d238fa69821ad4e868d6ac8d564a28b36be5ac525142ddfe3b761675fc9bc0",
+  "scope": "Norm-only information under real cached clean radii plus simulated exact Gaussian corruption. No SiT comparison, model-use or causal quality claim."
+}

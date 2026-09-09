@@ -1,0 +1,42 @@
+
+=== launch ===
+/home/zhoushunyu/miniconda3/envs/myenv/bin/python /home/zhoushunyu/eqvae/experiments/run_imagenet100_sit_discriminator_ag_transport_v4.py --worker sample --condition-json /data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/05_seed1_confirm/seed1_baseline/condition.json --output-root /data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4 --disc-seeds 0,1 --weak-steps 180000,240000,270000,300000,400000,500000,600000 --disc-steps 4000 --disc-batch-size 64 --disc-lr 0.0002 --disc-weight-decay 0.0001 --disc-ema-decay 0.999 --disc-r1-gamma 1.0 --disc-r1-interval 16 --disc-grad-clip 10.0 --disc-log-every 100 --disc-eval-every 1000 --disc-save-every 1000 --disc-val-batches 16 --disc-base-channels 64 --disc-cond-dim 256 --disc-class-dim 128 --disc-time-bands 16 --disc-dt-min 0.025 --disc-dt-max 0.125 --disc-s-max 0.95 --audit-time-centers 0.0625,0.1875,0.3125,0.4375,0.5625,0.6875,0.8125,0.9375 --audit-delta 0.05 --audit-probe-gamma 1.0 --audit-samples-per-bin 128 --audit-batch-size 64 --policy-lookahead 0.05 --policy-gamma-max 8.0 --policy-gap-eps 1e-08 --num-samples 1000 --sample-batch-size 8 --vae-decode-batch-size 2 --num-output-points 250 --atol 1e-06 --rtol 0.001 --fid-batch-size 8 --fid-gpu-memory-fraction 0.25 --cuda-allocator-limit-gib 15.0 --no-strong-bf16
+/home/zhoushunyu/miniconda3/envs/myenv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+[seed1_baseline] 8/1000 elapsed=0.9s
+[seed1_baseline] 256/1000 elapsed=19.0s
+[seed1_baseline] 512/1000 elapsed=37.7s
+[seed1_baseline] 768/1000 elapsed=56.7s
+[seed1_baseline] 1000/1000 elapsed=74.0s
+2026-08-19 19:40:51.091314: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-19 19:40:51.101936: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1787139651.113898  317738 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1787139651.117505  317738 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1787139651.127379  317738 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1787139651.127399  317738 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1787139651.127401  317738 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1787139651.127403  317738 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-08-19 19:40:51.130289: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1787139652.474367  317738 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:4b:00.0, compute capability: 8.9
+I0000 00:00:1787139652.502600  317738 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:4b:00.0, compute capability: 8.9
+2026-08-19 19:40:52.916519: W tensorflow/core/framework/op_def_util.cc:370] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Warmup...
+  0%|          | 0/1 [00:00<?, ?it/s]WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1787139653.728076  317738 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+I0000 00:00:1787139655.045853  317912 cuda_dnn.cc:529] Loaded cuDNN version 90300
+100%|██████████| 1/1 [00:02<00:00,  2.96s/it]100%|██████████| 1/1 [00:02<00:00,  2.96s/it]
+Reference statistics...
+Sample activations/statistics...
+  0%|          | 0/125 [00:00<?, ?it/s]  2%|▏         | 2/125 [00:00<00:06, 18.83it/s]  4%|▍         | 5/125 [00:00<00:06, 18.68it/s]  6%|▌         | 7/125 [00:00<00:06, 17.55it/s]  8%|▊         | 10/125 [00:00<00:06, 18.68it/s] 10%|▉         | 12/125 [00:00<00:06, 18.29it/s] 11%|█         | 14/125 [00:00<00:06, 18.06it/s] 13%|█▎        | 16/125 [00:00<00:06, 17.31it/s] 14%|█▍        | 18/125 [00:01<00:06, 16.23it/s] 16%|█▌        | 20/125 [00:01<00:06, 16.12it/s] 18%|█▊        | 22/125 [00:01<00:06, 15.90it/s] 19%|█▉        | 24/125 [00:01<00:06, 15.95it/s] 21%|██        | 26/125 [00:01<00:06, 15.90it/s] 22%|██▏       | 28/125 [00:01<00:05, 16.48it/s] 24%|██▍       | 30/125 [00:01<00:05, 16.02it/s] 26%|██▌       | 32/125 [00:01<00:06, 15.43it/s] 27%|██▋       | 34/125 [00:02<00:05, 16.34it/s] 29%|██▉       | 36/125 [00:02<00:05, 16.11it/s] 30%|███       | 38/125 [00:02<00:05, 15.94it/s] 32%|███▏      | 40/125 [00:02<00:05, 15.87it/s] 34%|███▎      | 42/125 [00:02<00:05, 15.91it/s] 35%|███▌      | 44/125 [00:02<00:05, 15.88it/s] 37%|███▋      | 46/125 [00:02<00:04, 16.32it/s] 38%|███▊      | 48/125 [00:02<00:04, 16.06it/s] 40%|████      | 50/125 [00:03<00:04, 15.93it/s] 42%|████▏     | 52/125 [00:03<00:04, 16.30it/s] 43%|████▎     | 54/125 [00:03<00:04, 15.56it/s] 45%|████▍     | 56/125 [00:03<00:04, 15.90it/s] 46%|████▋     | 58/125 [00:03<00:04, 16.17it/s] 48%|████▊     | 60/125 [00:03<00:04, 15.99it/s] 50%|████▉     | 62/125 [00:03<00:03, 16.26it/s] 51%|█████     | 64/125 [00:03<00:03, 15.98it/s] 53%|█████▎    | 66/125 [00:04<00:03, 16.03it/s] 54%|█████▍    | 68/125 [00:04<00:03, 16.28it/s] 56%|█████▌    | 70/125 [00:04<00:03, 16.45it/s] 58%|█████▊    | 72/125 [00:04<00:03, 16.54it/s] 59%|█████▉    | 74/125 [00:04<00:03, 16.55it/s] 61%|██████    | 76/125 [00:04<00:02, 16.49it/s] 62%|██████▏   | 78/125 [00:04<00:02, 16.09it/s] 64%|██████▍   | 80/125 [00:04<00:02, 16.36it/s] 66%|██████▌   | 82/125 [00:04<00:02, 16.73it/s] 67%|██████▋   | 84/125 [00:05<00:02, 16.76it/s] 69%|██████▉   | 86/125 [00:05<00:02, 16.77it/s] 70%|███████   | 88/125 [00:05<00:02, 16.79it/s] 72%|███████▏  | 90/125 [00:05<00:02, 16.79it/s] 74%|███████▎  | 92/125 [00:05<00:01, 16.86it/s] 75%|███████▌  | 94/125 [00:05<00:01, 16.45it/s] 77%|███████▋  | 96/125 [00:05<00:01, 16.51it/s] 78%|███████▊  | 98/125 [00:05<00:01, 16.25it/s] 80%|████████  | 100/125 [00:06<00:01, 16.72it/s] 82%|████████▏ | 102/125 [00:06<00:01, 16.25it/s] 83%|████████▎ | 104/125 [00:06<00:01, 15.96it/s] 85%|████████▍ | 106/125 [00:06<00:01, 16.92it/s] 86%|████████▋ | 108/125 [00:06<00:00, 17.19it/s] 88%|████████▊ | 110/125 [00:06<00:00, 17.52it/s] 90%|████████▉ | 112/125 [00:06<00:00, 17.33it/s] 91%|█████████ | 114/125 [00:06<00:00, 16.88it/s] 93%|█████████▎| 116/125 [00:07<00:00, 16.54it/s] 94%|█████████▍| 118/125 [00:07<00:00, 16.37it/s] 96%|█████████▌| 120/125 [00:07<00:00, 16.29it/s] 98%|█████████▊| 122/125 [00:07<00:00, 16.26it/s] 99%|█████████▉| 124/125 [00:07<00:00, 16.81it/s]100%|██████████| 125/125 [00:07<00:00, 16.49it/s]
+{
+  "reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/discriminator_ag_transport_v4/05_seed1_confirm/seed1_baseline/samples_n1000.npz",
+  "batch_size": 8,
+  "gpu_memory_fraction": 0.25,
+  "fid": 88.36291106882334,
+  "sfid": 220.7444357449118,
+  "inception_score": 28.152294158935547
+}
+[complete] seed1_baseline: FID=88.3629 gamma_mean=0.0000

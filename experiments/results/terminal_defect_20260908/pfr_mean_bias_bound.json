@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "group": "sit5k",
+      "observed_mean_change": -0.6681639358915485,
+      "max_plugin_bias": {
+        "ordinary115": 0.0446486404608995,
+        "pfr": 0.04289516506285323
+      },
+      "corrected_change_lower": -0.7110591009544017,
+      "corrected_change_upper": -0.6235152954306491
+    },
+    {
+      "group": "rae5k",
+      "observed_mean_change": 0.18565642795893195,
+      "max_plugin_bias": {
+        "ordinary": 0.04323656664229498,
+        "pfr": 0.04279661743657679
+      },
+      "corrected_change_lower": 0.14285981052235516,
+      "corrected_change_upper": 0.22889299460122692
+    }
+  ],
+  "scope": "Conservative empirical mean-bias correction bounds for balanced 5/class banks.\n\nNo distribution-free confidence bound is claimed. Bounds apply to the usual\nwithin-class plug-in bias correction over every balanced partition of features.\n"
+}

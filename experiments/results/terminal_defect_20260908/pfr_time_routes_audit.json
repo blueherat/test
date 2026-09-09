@@ -1,0 +1,117 @@
+{
+  "complete": true,
+  "scope": "Captured sources and stored Gram/statistic audit; no independent neural forward or full-vector recomputation.",
+  "models": {
+    "sit": {
+      "result_sha256": "84ae57930ae27593cf762aa469a82c9fdc244d467722dc600488d5a760659b27",
+      "rows": 128,
+      "seconds": 29.385337179061025,
+      "summary": [
+        {
+          "step": 0,
+          "energy_ratio": {
+            "features": 0.825162544202916,
+            "readout": 0.05615326727616718
+          },
+          "signed_raw_dot_ratio": {
+            "features": 0.8845046384633739,
+            "readout": 0.11549536153662558
+          }
+        },
+        {
+          "step": 10,
+          "energy_ratio": {
+            "features": 1.1390226524648517,
+            "readout": 0.09913512170701327
+          },
+          "signed_raw_dot_ratio": {
+            "features": 1.0199437653789192,
+            "readout": -0.01994376537891736
+          }
+        },
+        {
+          "step": 25,
+          "energy_ratio": {
+            "features": 1.2782296878119324,
+            "readout": 0.09627479118818248
+          },
+          "signed_raw_dot_ratio": {
+            "features": 1.0909774483118742,
+            "readout": -0.09097744831187375
+          }
+        },
+        {
+          "step": 45,
+          "energy_ratio": {
+            "features": 1.1218437071492555,
+            "readout": 0.062357232438372275
+          },
+          "signed_raw_dot_ratio": {
+            "features": 1.0297432373554396,
+            "readout": -0.02974323735544054
+          }
+        }
+      ]
+    },
+    "raev2": {
+      "result_sha256": "b7bb9d63a7805b9c1b0c8f86066ef5b365b9cfebe604b0c7c2b9edff943711f2",
+      "rows": 128,
+      "seconds": 57.54192251805216,
+      "summary": [
+        {
+          "step": 0,
+          "energy_ratio": {
+            "features": 1.0055063063980991,
+            "readout": 0.004542039687069561,
+            "conversion": 0.007240569968183175
+          },
+          "signed_raw_dot_ratio": {
+            "features": 0.99646717902932,
+            "readout": 0.003712959664762245,
+            "conversion": -0.00018013869408464112
+          }
+        },
+        {
+          "step": 47,
+          "energy_ratio": {
+            "features": 1.1630746163483756,
+            "readout": 0.010061022294806042,
+            "conversion": 0.10065604070788013
+          },
+          "signed_raw_dot_ratio": {
+            "features": 1.0217999887066156,
+            "readout": -0.0009335747710157272,
+            "conversion": -0.02086641393562023
+          }
+        },
+        {
+          "step": 73,
+          "energy_ratio": {
+            "features": 1.4290095155303868,
+            "readout": 0.025759554564011838,
+            "conversion": 0.5187836482774278
+          },
+          "signed_raw_dot_ratio": {
+            "features": 0.9431437507332898,
+            "readout": 0.005960127259986852,
+            "conversion": 0.05089612200669744
+          }
+        },
+        {
+          "step": 87,
+          "energy_ratio": {
+            "features": 2.1306846349747284,
+            "readout": 0.10644275171901312,
+            "conversion": 1.4718907657724323
+          },
+          "signed_raw_dot_ratio": {
+            "features": 0.7951671398234859,
+            "readout": 0.000251769460384961,
+            "conversion": 0.20458109071610472
+          }
+        }
+      ]
+    }
+  },
+  "total_sampling_seconds": 86.92725969711319
+}

@@ -11,6 +11,12 @@ __pycache__/
 
 logs/
 results/
+# Compact evidence for the current research pilot; raw outputs stay external.
+!experiments/results/
+experiments/results/*
+!experiments/results/terminal_defect_20260908/
+experiments/results/terminal_defect_20260908/*
+!experiments/results/terminal_defect_20260908/*.csv
 outputs/
 samples/
 pca_vis/

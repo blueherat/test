@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "full_head_bitwise_parity": {
+    "fp32": true,
+    "bf16": true
+  },
+  "feature_shapes": {
+    "4": [
+      2,
+      256,
+      768
+    ],
+    "8": [
+      2,
+      256,
+      768
+    ],
+    "12": [
+      2,
+      256,
+      768
+    ]
+  },
+  "head_gradient_finite": true,
+  "backbone_frozen": true,
+  "source_parameters": 131320320,
+  "head_parameters": 3545088,
+  "note": "Official model allocates attention bias on CUDA; CPU execution is unsupported without source changes."
+}

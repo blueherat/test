@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "target_data_variance": 4,
+  "current_time": 0.5,
+  "other_time": 0.25,
+  "current_marginal_variance": 1.25,
+  "other_marginal_variance": 2.3125,
+  "initial_variance_derivative": -0.5374024474194391,
+  "derivative_quadrature_error": 2.6410584771940655e-12,
+  "rows": [
+    {
+      "eta": 0.001,
+      "variance": 1.2494626575732866,
+      "time_log_posterior_gain": 6.001000430991891e-05,
+      "kl_to_correct_marginal": 4.9890682776979105e-08,
+      "global_jacobian_lower_bound": 0.9992645927641614,
+      "quadrature_error_estimates": [
+        3.900022510071755e-12,
+        9.144311983942862e-16,
+        9.769629300964827e-16
+      ]
+    },
+    {
+      "eta": 0.01,
+      "variance": 1.2446319775963748,
+      "time_log_posterior_gain": 0.0005991373932461193,
+      "kl_to_correct_marginal": 4.993350674029011e-06,
+      "global_jacobian_lower_bound": 0.9926459276416139,
+      "quadrature_error_estimates": [
+        3.876541552293015e-12,
+        8.960816908065738e-15,
+        9.774699608754228e-15
+      ]
+    },
+    {
+      "eta": 0.05,
+      "variance": 1.223279929393244,
+      "time_log_posterior_gain": 0.002974346814704863,
+      "kl_to_correct_marginal": 0.00012531516577114256,
+      "global_jacobian_lower_bound": 0.9632296382080695,
+      "quadrature_error_estimates": [
+        3.775097591571675e-12,
+        4.033539954299602e-14,
+        4.901377264230197e-14
+      ]
+    }
+  ],
+  "seconds": 0.02883363561704755,
+  "source_sha256": "869ac577432e302a61848c0b9200b6d41bfd6274fd4ee6b84ff306dbb17a6c9b",
+  "scope": "Oracle time-posterior gradient update from an already correct marginal. No full sampler, learned classifier, FID or RAE quality claim."
+}

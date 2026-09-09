@@ -1,0 +1,26 @@
+{
+  "selection": "first 8 global indices, labels0..7; fixed before viewing",
+  "sources": [
+    {
+      "method": "native",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/ig_condition_carrier_20260908/quality/native_ig/samples.npz",
+      "sha256": "0de7afa03228b6d2bd068368a1e02977de4bc03df6aa9272d7b9b55af16f648e"
+    },
+    {
+      "method": "teacher_pfr",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/ig_pfr_teacher_reference_fourcard_20260908/samples.npz",
+      "sha256": "e2a75a87407329364e625ed4116095d2d08f98cd022f1063077dff749550285d"
+    },
+    {
+      "method": "global_anchor",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/ig_global_anchor_fourcard_20260908/samples.npz",
+      "sha256": "fee05d056a1098ad925e2af08854c76a9599250773e6a1db93af99d8483f3584"
+    },
+    {
+      "method": "temporal_curvature",
+      "path": "/home/zhoushunyu/data/eqvae/experiments/ig_pfr_temporal_curvature_fourcard_20260908/samples.npz",
+      "sha256": "6ca3487bde63a99e005ba5a7fb6cd7302a3acf06088de4ea8a6057e7d3f96d7c"
+    }
+  ],
+  "scope": "qualitative examples only, not population quality or causal mechanism"
+}

@@ -1,0 +1,173 @@
+{"phase": "rollout", "done": 8, "total": 128}
+{"phase": "rollout", "done": 16, "total": 128}
+{"phase": "rollout", "done": 24, "total": 128}
+{"phase": "rollout", "done": 32, "total": 128}
+{"phase": "rollout", "done": 40, "total": 128}
+{"phase": "rollout", "done": 48, "total": 128}
+{"phase": "rollout", "done": 56, "total": 128}
+{"phase": "rollout", "done": 64, "total": 128}
+{"phase": "rollout", "done": 72, "total": 128}
+{"phase": "rollout", "done": 80, "total": 128}
+{"phase": "rollout", "done": 88, "total": 128}
+{"phase": "rollout", "done": 96, "total": 128}
+{"phase": "rollout", "done": 104, "total": 128}
+{"phase": "rollout", "done": 112, "total": 128}
+{"phase": "rollout", "done": 120, "total": 128}
+{"phase": "rollout", "done": 128, "total": 128}
+{"phase": "teacher", "done": 8, "total": 128}
+{"phase": "teacher", "done": 16, "total": 128}
+{"phase": "teacher", "done": 24, "total": 128}
+{"phase": "teacher", "done": 32, "total": 128}
+{"phase": "teacher", "done": 40, "total": 128}
+{"phase": "teacher", "done": 48, "total": 128}
+{"phase": "teacher", "done": 56, "total": 128}
+{"phase": "teacher", "done": 64, "total": 128}
+{"phase": "teacher", "done": 72, "total": 128}
+{"phase": "teacher", "done": 80, "total": 128}
+{"phase": "teacher", "done": 88, "total": 128}
+{"phase": "teacher", "done": 96, "total": 128}
+{"phase": "teacher", "done": 104, "total": 128}
+{"phase": "teacher", "done": 112, "total": 128}
+{"phase": "teacher", "done": 120, "total": 128}
+{"phase": "teacher", "done": 128, "total": 128}
+{
+  "event": "complete",
+  "summary": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/00_atlas/summary.json",
+  "gamma_rms_match": {
+    "v180": 3.02626417887487,
+    "v240": 3.3415886092394307,
+    "v270": 3.5,
+    "v300": 3.675428380531981,
+    "v400": 4.402708074597475,
+    "v500": 5.277602369333595,
+    "v600": 6.247786158804374
+  },
+  "teacher_stage": {
+    "early": {
+      "reference": "v600",
+      "score": 0.0041294267326523375,
+      "gamma_ls_positive_mean": 0.9824469004379353,
+      "ranking": [
+        {
+          "reference": "v600",
+          "score": 0.0041294267326523375,
+          "gamma_ls_positive_mean": 0.9824469004379353
+        },
+        {
+          "reference": "v500",
+          "score": 0.004014130970447023,
+          "gamma_ls_positive_mean": 0.7989900865571448
+        },
+        {
+          "reference": "v300",
+          "score": 0.0031773722242330695,
+          "gamma_ls_positive_mean": 0.6173176957527176
+        },
+        {
+          "reference": "v400",
+          "score": 0.003088195789236211,
+          "gamma_ls_positive_mean": 0.6876408188897282
+        },
+        {
+          "reference": "v180",
+          "score": 0.0030450715208858448,
+          "gamma_ls_positive_mean": 0.5393915715054997
+        },
+        {
+          "reference": "v240",
+          "score": 0.0028284215313294503,
+          "gamma_ls_positive_mean": 0.49202212014400476
+        },
+        {
+          "reference": "v270",
+          "score": 0.0026873669641470275,
+          "gamma_ls_positive_mean": 0.5299243896282254
+        }
+      ]
+    },
+    "mid": {
+      "reference": "v400",
+      "score": 0.0002472637485355274,
+      "gamma_ls_positive_mean": 0.057829653645664315,
+      "ranking": [
+        {
+          "reference": "v400",
+          "score": 0.0002472637485355274,
+          "gamma_ls_positive_mean": 0.057829653645664315
+        },
+        {
+          "reference": "v300",
+          "score": 0.00023601524022831555,
+          "gamma_ls_positive_mean": 0.04532711951833335
+        },
+        {
+          "reference": "v240",
+          "score": 0.00022062640857593388,
+          "gamma_ls_positive_mean": 0.037858831082606535
+        },
+        {
+          "reference": "v270",
+          "score": 0.00020883159501246715,
+          "gamma_ls_positive_mean": 0.04078595766986837
+        },
+        {
+          "reference": "v180",
+          "score": 0.00020567721184252172,
+          "gamma_ls_positive_mean": 0.03483599452215458
+        },
+        {
+          "reference": "v500",
+          "score": 0.00019677796683377954,
+          "gamma_ls_positive_mean": 0.07175685444235569
+        },
+        {
+          "reference": "v600",
+          "score": 0.00018214088326414432,
+          "gamma_ls_positive_mean": 0.08553826199628627
+        }
+      ]
+    },
+    "late": {
+      "reference": "v400",
+      "score": 9.745267702883828e-06,
+      "gamma_ls_positive_mean": 0.00753836313864061,
+      "ranking": [
+        {
+          "reference": "v400",
+          "score": 9.745267702883828e-06,
+          "gamma_ls_positive_mean": 0.00753836313864061
+        },
+        {
+          "reference": "v500",
+          "score": 8.592726398008269e-06,
+          "gamma_ls_positive_mean": 0.009412948740949409
+        },
+        {
+          "reference": "v180",
+          "score": 7.393689497592337e-06,
+          "gamma_ls_positive_mean": 0.003928297900832452
+        },
+        {
+          "reference": "v600",
+          "score": 6.15239095358433e-06,
+          "gamma_ls_positive_mean": 0.010360579288241448
+        },
+        {
+          "reference": "v240",
+          "score": 4.324877118951538e-06,
+          "gamma_ls_positive_mean": 0.0026238818553186625
+        },
+        {
+          "reference": "v270",
+          "score": 3.7370538366795123e-06,
+          "gamma_ls_positive_mean": 0.0026063523146149237
+        },
+        {
+          "reference": "v300",
+          "score": 3.716832951491019e-06,
+          "gamma_ls_positive_mean": 0.0027278529267581084
+        }
+      ]
+    }
+  }
+}

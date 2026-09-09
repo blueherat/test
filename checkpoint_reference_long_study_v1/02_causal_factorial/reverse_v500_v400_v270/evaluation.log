@@ -1,0 +1,65 @@
+2026-08-18 01:56:56.578337: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-18 01:56:56.592848: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1786989416.609449 3793128 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1786989416.614681 3793128 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1786989416.628259 3793128 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786989416.628275 3793128 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786989416.628276 3793128 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1786989416.628278 3793128 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-08-18 01:56:56.632277: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1786989418.408540 3793128 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:31:00.0, compute capability: 8.9
+I0000 00:00:1786989418.442058 3793128 gpu_device.cc:2019] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6020 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4090, pci bus id: 0000:31:00.0, compute capability: 8.9
+2026-08-18 01:56:58.983257: W tensorflow/core/framework/op_def_util.cc:370] Op BatchNormWithGlobalNormalization is deprecated. It will cease to work in GraphDef version 9. Use tf.nn.batch_normalization().
+Warmup...
+
+  0%|          | 0/1 [00:00<?, ?it/s]WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786989420.103622 3793128 mlir_graph_optimization_pass.cc:425] MLIR V1 optimization pass is not enabled
+I0000 00:00:1786989421.463677 3793416 cuda_dnn.cc:529] Loaded cuDNN version 90300
+
+100%|██████████| 1/1 [00:02<00:00,  2.76s/it]
+100%|██████████| 1/1 [00:02<00:00,  2.76s/it]
+Reference statistics...
+Sample activations/statistics...
+
+  0%|          | 0/125 [00:00<?, ?it/s]
+  4%|▍         | 5/125 [00:00<00:02, 40.86it/s]
+  8%|▊         | 10/125 [00:00<00:02, 40.01it/s]
+ 12%|█▏        | 15/125 [00:00<00:02, 39.75it/s]
+ 15%|█▌        | 19/125 [00:00<00:02, 39.63it/s]
+ 19%|█▉        | 24/125 [00:00<00:02, 39.78it/s]
+ 22%|██▏       | 28/125 [00:00<00:02, 39.67it/s]
+ 26%|██▌       | 32/125 [00:00<00:02, 39.62it/s]
+ 29%|██▉       | 36/125 [00:00<00:02, 39.55it/s]
+ 32%|███▏      | 40/125 [00:01<00:02, 39.54it/s]
+ 35%|███▌      | 44/125 [00:01<00:02, 39.58it/s]
+ 38%|███▊      | 48/125 [00:01<00:01, 39.61it/s]
+ 42%|████▏     | 52/125 [00:01<00:01, 39.58it/s]
+ 45%|████▍     | 56/125 [00:01<00:01, 38.11it/s]
+ 48%|████▊     | 60/125 [00:01<00:01, 38.44it/s]
+ 51%|█████     | 64/125 [00:01<00:01, 38.67it/s]
+ 54%|█████▍    | 68/125 [00:01<00:01, 38.84it/s]
+ 58%|█████▊    | 72/125 [00:01<00:01, 39.13it/s]
+ 62%|██████▏   | 77/125 [00:01<00:01, 39.40it/s]
+ 65%|██████▍   | 81/125 [00:02<00:01, 39.51it/s]
+ 69%|██████▉   | 86/125 [00:02<00:00, 39.69it/s]
+ 72%|███████▏  | 90/125 [00:02<00:00, 39.72it/s]
+ 75%|███████▌  | 94/125 [00:02<00:00, 39.70it/s]
+ 78%|███████▊  | 98/125 [00:02<00:00, 38.57it/s]
+ 82%|████████▏ | 102/125 [00:02<00:00, 38.76it/s]
+ 85%|████████▍ | 106/125 [00:02<00:00, 39.05it/s]
+ 88%|████████▊ | 110/125 [00:02<00:00, 39.22it/s]
+ 91%|█████████ | 114/125 [00:02<00:00, 37.90it/s]
+ 94%|█████████▍| 118/125 [00:03<00:00, 38.10it/s]
+ 98%|█████████▊| 122/125 [00:03<00:00, 38.50it/s]
+100%|██████████| 125/125 [00:03<00:00, 39.15it/s]
+{
+  "reference": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "samples": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/checkpoint_reference_long_study_v1/02_causal_factorial/reverse_v500_v400_v270/samples_n1000.npz",
+  "batch_size": 8,
+  "gpu_memory_fraction": 0.25,
+  "fid": 69.83676972722725,
+  "sfid": 221.94961654259828,
+  "inception_score": 35.005828857421875
+}

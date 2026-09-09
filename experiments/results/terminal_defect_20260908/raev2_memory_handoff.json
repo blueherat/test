@@ -1,0 +1,141 @@
+{
+  "complete": true,
+  "arms": [
+    {
+      "arm": "memory",
+      "samples": 64,
+      "pixel_sha256": "d486eb19c7011bae1b10f966406a5217989971421cca1ba704e89f9676846284",
+      "endpoint_sha256": "f6e8675bb94f9dc5d37e1be131c82d67af1c5880c13137c42eed4750fd123704",
+      "memory_sha256": "876aa715b4d8e451ec62d301e737da5d82e86b562fa0571f4d321eb0d2f0bb01",
+      "seconds": 109.59583391668275,
+      "counts": {
+        "full": 0,
+        "prefix14": 1632,
+        "suffix14_and_decoder": 1600
+      },
+      "all_continuation_labels_null": true
+    },
+    {
+      "arm": "zero_memory",
+      "samples": 8,
+      "pixel_sha256": "9c062459ed5b16a2811982178c325ec7ca69b568605fdaca9d9c032c9bef60e0",
+      "endpoint_sha256": "e8193d2892013fb3d6d19387396bbd11fbff1acd379ccd9416b3a4f1a4140afe",
+      "memory_sha256": "36bd753facc985aad613c884a2040210d208b1aa520e957b31ba2e1e19cd4185",
+      "seconds": 13.743682473897934,
+      "counts": {
+        "full": 0,
+        "prefix14": 204,
+        "suffix14_and_decoder": 200
+      },
+      "all_continuation_labels_null": true
+    }
+  ],
+  "sources": {
+    "/home/zhoushunyu/eqvae/experiments/probe_raev2_memory_handoff.py": "b0fcf4b110b2c8e9d69d6926dbf157b7d5d63b383d9114b93a0096a64a8e4c50",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2"
+  },
+  "checkpoint_sha256": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+  "seed": 202609442,
+  "noise_sha256": "3eeb32683f236cf58c8ea58301dcc5d97c8a6d7583319af00b646745719d0d79",
+  "labels": [
+    0,
+    15,
+    31,
+    47,
+    63,
+    79,
+    95,
+    111,
+    126,
+    142,
+    158,
+    174,
+    190,
+    206,
+    222,
+    237,
+    253,
+    269,
+    285,
+    301,
+    317,
+    333,
+    348,
+    364,
+    380,
+    396,
+    412,
+    428,
+    444,
+    459,
+    475,
+    491,
+    507,
+    523,
+    539,
+    555,
+    570,
+    586,
+    602,
+    618,
+    634,
+    650,
+    666,
+    681,
+    697,
+    713,
+    729,
+    745,
+    761,
+    777,
+    792,
+    808,
+    824,
+    840,
+    856,
+    872,
+    888,
+    903,
+    919,
+    935,
+    951,
+    967,
+    983,
+    999
+  ],
+  "memory_shape": [
+    8,
+    1440
+  ],
+  "precision": "FP32 no TF32",
+  "batch": 4,
+  "steps": 100,
+  "rule": "write h_c-h_null at layer14 once at t1; each step add same memory to current null class tokens",
+  "classification": [
+    {
+      "arm": "memory",
+      "top1": 0.140625,
+      "top5": 0.234375,
+      "target_probability": 0.10100903362035751
+    },
+    {
+      "arm": "unconditional",
+      "top1": 0.0,
+      "top5": 0.0,
+      "target_probability": 0.00025916853337548673
+    },
+    {
+      "arm": "conditional",
+      "top1": 0.8125,
+      "top5": 0.90625,
+      "target_probability": 0.6031708717346191
+    }
+  ],
+  "zero_memory_parity": "8 entire latent endpoints and decoded uint8 images bitwise",
+  "classifier": "torchvision ConvNeXt_Tiny_Weights.IMAGENET1K_V1 with official preprocessing",
+  "classifier_sha256": "983f1562536e84ff750a1576fb08e54de751dbf2e17c0d8a4a13704341fdcd3d",
+  "probability_file_sha256": "9da168349128c8218f5d0799fc7fb4618156f6835a8342accae95901b9d19dc6",
+  "evaluator_source_sha256": "32d1ae4b07dc8a7fe8853636cea0a81429ed7e40e21d1387f9f9bb767f913bfe"
+}
