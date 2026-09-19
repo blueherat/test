@@ -12,7 +12,7 @@ OUT = ROOT / 'archive/manifests/20260919'
 
 def category(name):
     name = name.lower()
-    if any(s in name for s in ('adversarial_weak', 'adversarial_guidance_endpoint', 'binary_endpoint')):
+    if any(s in name for s in ('classifier_guidance', 'adversarial_weak', 'adversarial_guidance_endpoint', 'binary_endpoint')):
         return 'classifier'
     if any(s in name for s in ('guidance_dynamic', 'guidance_loss_50k', 'weak_reference_loss', 'shallow_ig', 'guidance_complete', 'local_head', 'guidance_distribution', 'guidance_pasted')):
         return 'baselines_and_dependencies'
@@ -47,7 +47,7 @@ def main():
             link = os.path.relpath(p, OUT) if p.is_relative_to(ROOT) else str(p)
             text.append(f"| {row['kind']} | [{p.name}]({link}) |")
         text.append('')
-    (OUT/'catalog.md').write_text('\n'.join(text)+'\n')
+    (OUT/'catalog.md').write_text('\n'.join(text).rstrip()+'\n')
     inventory=[]
     excluded={'.git','__pycache__','.pytest_cache','external','research_repos','readings','archive'}
     for current, dirs, files in os.walk(ROOT, followlinks=False):
@@ -80,7 +80,7 @@ def main():
         if not p.is_symlink(): p.symlink_to(target,target_is_directory=True)
         assert p.resolve()==target.resolve()
     (OUT/'data_locations.json').write_text(json.dumps({k:str(v) for k,v in links.items()},indent=2)+'\n')
-    (project/'README.md').write_text('# 分类器方法数据入口\n\n这些链接指向已有数据原件，没有复制或删除。新优化基准放在 `performance_20260919/`。\n')
+    (project/'README.md').write_text('# 分类器方法数据入口\n\n这些链接指向已有数据原件，没有复制或删除。首轮优化基准在 `performance_20260919/`；理论审计、进一步优化探测和短训验证在 `refinement_20260919/`。\n')
     print(json.dumps(dict(catalog_entries=len(items),inventory_entries=len(inventory),external_data_entries=sum(i['kind']=='external_data' for i in items))))
 
 

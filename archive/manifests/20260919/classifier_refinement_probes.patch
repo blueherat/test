@@ -1,0 +1,607 @@
+diff --git a/classifier_guidance/adapters.py b/classifier_guidance/adapters.py
+index e76f3a6..a8beb30 100644
+--- a/classifier_guidance/adapters.py
++++ b/classifier_guidance/adapters.py
+@@ -51,7 +51,10 @@ class RAEAdapter:
+                     denominator_floor=float(self.rt.cfg.transport.t_eps))
+ 
+     def full(self, state, time, labels):
+-        clean, _ = self.model(state, time.expand(len(state)), context=labels, attn_mask=None)
++        if hasattr(self, 'strong_forward'):
++            clean = self.strong_forward(state, time.expand(len(state)), context=labels, attn_mask=None)
++        else:
++            clean, _ = self.model(state, time.expand(len(state)), context=labels, attn_mask=None)
+         # Match the deployed RAE sampler: convert both predictions before mixing.
+         return self.clean_to_velocity(clean, state, time), None
+ 
+diff --git a/classifier_guidance/benchmark_train.py b/classifier_guidance/benchmark_train.py
+index 4adfbf4..eb6407b 100644
+--- a/classifier_guidance/benchmark_train.py
++++ b/classifier_guidance/benchmark_train.py
+@@ -16,7 +16,7 @@ def main(args):
+     fcntl.flock(lease,fcntl.LOCK_EX|fcntl.LOCK_NB)
+     assert eligible(next(r for r in gpu_snapshot() if r['uuid']==gpu['uuid']))
+     os.environ['CUDA_VISIBLE_DEVICES']=gpu['uuid']
+-    os.environ['TORCH_COMPILE_DISABLE']='1'
++    os.environ['TORCH_COMPILE_DISABLE']='0' if args.compile_backbone else '1'
+     import gc
+     import statistics
+     import numpy as np
+@@ -39,12 +39,22 @@ def main(args):
+         head.load_state_dict(state['head']);critic.load_state_dict(state['critic'])
+     if args.precast:
+         materialize_autocast_weights(adapter)
++    if args.skip_native_head:
++        from .invariants import skip_unused_rae_head
++        skip_unused_rae_head(adapter)
+     feature=DifferentiableInception2048().cuda().eval().requires_grad_(False)
+     decode=image_decoder(adapter)
+     if args.checkpoint_feedback:
+         enable_feedback_checkpointing(adapter,feature)
+     if args.checkpoint_backbone:
+         enable_backbone_checkpointing(adapter)
++    if args.compile_backbone:
++        if args.model != 'sit_small':
++            raise ValueError('Compilation is an unvalidated SiT-only experiment')
++        import torch._dynamo
++        torch._dynamo.config.recompile_limit = 64
++        for block in adapter.model.blocks:
++            block.forward = torch.compile(block.forward, fullgraph=True, dynamic=False)
+     if args.channels_last:
+         adapter.rt.vae.to(memory_format=torch.channels_last)
+         feature.to(memory_format=torch.channels_last)
+@@ -60,7 +70,8 @@ def main(args):
+     if args.mode=='baseline':
+         sample=lambda z,y:reference_sample(adapter,head,z,y,coefficient)
+     else:
+-        sample=for_adapter(adapter,head,noise,labels,coefficient,graphs=True)
++        sample=for_adapter(adapter,head,noise,labels,coefficient,graphs=True,
++                           trajectory_graph=args.trajectory_graph,cache_time=args.cache_time)
+     torch.cuda.synchronize()
+     setup=time.perf_counter()-start
+     args.output.mkdir(parents=True,exist_ok=True)
+@@ -77,7 +88,8 @@ def main(args):
+         start=time.perf_counter()
+         metrics=step(head=head,critic=critic,optimizer_w=ow,optimizer_d=od,sample=sample,
+                      decode=decode,feature=feature,real=real,noise=noise,labels=labels,
+-                     feature_chunk=0 if args.mode=='baseline' else args.chunk)
++                     feature_chunk=0 if args.mode=='baseline' else args.chunk,
++                     staged_feedback=args.staged_feedback)
+         torch.cuda.synchronize()
+         row=dict(seconds=time.perf_counter()-start,peak_allocated_gib=torch.cuda.max_memory_allocated()/1024**3,
+                  peak_reserved_gib=torch.cuda.max_memory_reserved()/1024**3,metrics=metrics.tolist())
+@@ -91,6 +103,10 @@ def main(args):
+     result=dict(complete=True,kind='paired_full_binary_gan_update',model=args.model,batch=args.batch,
+                 mode=args.mode,chunk=args.chunk,channels_last=args.channels_last,
+                 checkpoint_feedback=args.checkpoint_feedback,checkpoint_backbone=args.checkpoint_backbone,
++                trajectory_graph=args.trajectory_graph,
++                compile_backbone=args.compile_backbone,
++                cache_time=args.cache_time,skip_native_head=args.skip_native_head,
++                staged_feedback=args.staged_feedback,
+                 precast=args.precast,gpu=gpu,torch=torch.__version__,
+                 checkpoint=str(checkpoint) if checkpoint else None,head_provenance=provenance,
+                 setup_seconds=setup,iterations=rows,
+@@ -113,6 +129,11 @@ if __name__=='__main__':
+     p.add_argument('--checkpoint-feedback',action='store_true')
+     p.add_argument('--precast',action='store_true')
+     p.add_argument('--checkpoint-backbone',action='store_true')
++    p.add_argument('--trajectory-graph',action='store_true')
++    p.add_argument('--compile-backbone',action='store_true')
++    p.add_argument('--cache-time',action='store_true')
++    p.add_argument('--skip-native-head',action='store_true')
++    p.add_argument('--staged-feedback',action='store_true')
+     p.add_argument('--repeats',type=int,default=3)
+     p.add_argument('--output',type=Path,required=True)
+     main(p.parse_args())
+diff --git a/classifier_guidance/features.py b/classifier_guidance/features.py
+index 846e0d9..a645fef 100644
+--- a/classifier_guidance/features.py
++++ b/classifier_guidance/features.py
+@@ -35,6 +35,35 @@ def chunked_features(decode, feature, latents, chunk=1):
+     return _ChunkedFeatures.apply(decode, feature, chunk, latents)
+ 
+ 
++class _StagedFeatures(torch.autograd.Function):
++    @staticmethod
++    def forward(ctx, decode, feature, latents):
++        images = decode(latents)
++        ctx.decode, ctx.feature = decode, feature
++        ctx.save_for_backward(latents, images)
++        return feature(images)
++
++    @staticmethod
++    @once_differentiable
++    def backward(ctx, gradient):
++        latents, images = ctx.saved_tensors
++        with torch.enable_grad():
++            images = images.detach().requires_grad_(True)
++            features = ctx.feature(images)
++            pixels_gradient, = torch.autograd.grad(features, images, gradient)
++        del features, images
++        with torch.enable_grad():
++            x = latents.detach().requires_grad_(True)
++            decoded = ctx.decode(x)
++            latent_gradient, = torch.autograd.grad(decoded, x, pixels_gradient)
++        return None, None, latent_gradient
++
++
++def staged_features(decode, feature, latents):
++    """Apply J_decode.T @ J_feature.T in separate, full-batch recomputations."""
++    return _StagedFeatures.apply(decode, feature, latents)
++
++
+ def enable_feedback_checkpointing(adapter, feature):
+     """Keep the full batch and eval behavior, recomputing frozen block activations.
+ 
+@@ -56,6 +85,8 @@ def enable_feedback_checkpointing(adapter, feature):
+         'Conv2d_3b_1x1', 'Conv2d_4a_3x3', 'Mixed_5b', 'Mixed_5c', 'Mixed_5d',
+         'Mixed_6a', 'Mixed_6b', 'Mixed_6c', 'Mixed_6d', 'Mixed_6e', 'Mixed_7a', 'Mixed_7b', 'Mixed_7c')]
+     for module in modules:
++        if any(m.training for m in module.modules()) or any(p.requires_grad for p in module.parameters()):
++            raise ValueError('Feedback recomputation requires frozen eval-mode modules')
+         if hasattr(module, '_classifier_original_forward'):
+             continue
+         original = module.forward
+@@ -72,6 +103,8 @@ def enable_feedback_checkpointing(adapter, feature):
+ def enable_backbone_checkpointing(adapter):
+     """Optional lower-memory tradeoff, also captured inside field VJP graphs."""
+     for module in adapter.model.blocks:
++        if any(m.training for m in module.modules()) or any(p.requires_grad for p in module.parameters()):
++            raise ValueError('Backbone recomputation requires frozen eval-mode modules')
+         if hasattr(module, '_classifier_original_forward'):
+             continue
+         original = module.forward
+diff --git a/classifier_guidance/sampler.py b/classifier_guidance/sampler.py
+index cdacf91..3797a58 100644
+--- a/classifier_guidance/sampler.py
++++ b/classifier_guidance/sampler.py
+@@ -40,7 +40,9 @@ class FieldReplay:
+         self.field, self.parameters = field, tuple(parameters)
+         self.graphs = graphs
+         self.shape = example.shape
+-        self.signature = tuple((p.data_ptr(), p.shape, p.dtype) for p in self.parameters)
++        self.input_signature = (example.shape, example.dtype, example.device, labels.shape, labels.dtype, labels.device)
++        self.stream = torch.cuda.current_stream(example.device) if graphs else None
++        self.signature = tuple((id(p), p.data_ptr(), p.shape, p.dtype) for p in self.parameters)
+         self.x = example.detach().clone().requires_grad_(True)
+         self.labels = labels.clone()
+         self.time = torch.full((), .25, device=example.device)
+@@ -48,7 +50,9 @@ class FieldReplay:
+         self.cotangent = torch.ones_like(example)
+         self.captures = {}
+         if graphs:
+-            # Share scratch storage: replays are sequential and outputs are cloned.
++            # Independent captures, no cross-graph intermediates; every output
++            # is cloned before another replay. This is the independent-graph
++            # pool-sharing case documented in PyTorch CUDA semantics.
+             pool = torch.cuda.graph_pool_handle()
+             stream = torch.cuda.Stream()
+             stream.wait_stream(torch.cuda.current_stream())
+@@ -72,8 +76,9 @@ class FieldReplay:
+                                        self.cotangent, allow_unused=True)
+ 
+     def run(self, state, time, labels, amount, active, gradient=None):
+-        if state.shape != self.shape:
+-            raise ValueError(f'Captured shape {self.shape}, received {state.shape}')
++        signature = (state.shape, state.dtype, state.device, labels.shape, labels.dtype, labels.device)
++        if signature != self.input_signature:
++            raise ValueError('Field inputs must match captured shape, dtype and device')
+         if not self.graphs:
+             with torch.enable_grad() if gradient is not None else torch.no_grad():
+                 x = state.detach().requires_grad_(gradient is not None)
+@@ -82,6 +87,8 @@ class FieldReplay:
+                     return out.detach()
+                 return torch.autograd.grad(out, (x, *self.parameters), gradient, allow_unused=True)
+         with torch.no_grad():
++            if torch.cuda.current_stream(state.device) != self.stream:
++                raise RuntimeError('Field replay is bound to one CUDA stream')
+             self.x.copy_(state)
+             self.time.copy_(time)
+             self.labels.copy_(labels)
+@@ -120,6 +127,7 @@ class _Rollout(torch.autograd.Function):
+     @once_differentiable
+     def backward(ctx, gradient):
+         e = ctx.engine
++        e.check_parameters(e.parameters)
+         saved = ctx.saved_tensors  # Also validates parameter/tensor version counters.
+         n = len(e.active)
+         labels, states = saved[0], saved[1:1+n]
+@@ -156,8 +164,10 @@ class Sampler:
+         self.parameters = tuple(head.parameters())
+         if any(not p.requires_grad for p in self.parameters):
+             raise ValueError('Sampler expects a trainable weak head')
++        if grid.requires_grad or (torch.is_tensor(amounts) and amounts.requires_grad):
++            raise ValueError('Learned time grids or guidance coefficients require a different autograd contract')
+         self.grid = grid.detach().clone()
+-        self.amounts = torch.as_tensor(amounts, device=example.device, dtype=example.dtype)
++        self.amounts = torch.as_tensor(amounts, device=example.device, dtype=example.dtype).detach().clone()
+         self.active = tuple(active)
+         if len(self.grid) != len(self.active)+1 or len(self.amounts) != len(self.active):
+             raise ValueError('Inconsistent schedule lengths')
+@@ -165,7 +175,7 @@ class Sampler:
+         self.replay = FieldReplay(field, example, labels, self.parameters, graphs=graphs)
+ 
+     def check_parameters(self, parameters):
+-        current = tuple((p.data_ptr(), p.shape, p.dtype) for p in self.head.parameters())
++        current = tuple((id(p), p.data_ptr(), p.shape, p.dtype) for p in self.head.parameters())
+         if current != self.replay.signature:
+             raise RuntimeError('Head parameter storage changed; rebuild sampler')
+ 
+@@ -173,7 +183,12 @@ class Sampler:
+         return _Rollout.apply(self, noise, labels, *self.parameters)
+ 
+ 
+-def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
++def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True, trajectory_graph=False,
++                cache_time=False):
++    if any(p.requires_grad for p in adapter.model.parameters()):
++        raise ValueError('The strong model must be frozen')
++    if any(m.training for root in (adapter.model, head) for m in root.modules()):
++        raise ValueError('Replay/recomputation requires eval-mode strong model and head')
+     if adapter.name == 'jit':
+         # Preserve upstream FP32 attention logits and BF16 output multiplication.
+         # Its zero bias was allocated on CPU then copied on every attention call.
+@@ -213,5 +228,14 @@ def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
+         left = grid[:-1].cpu().tolist()
+         active = [t < .5 and coefficient != 0 for t in left]
+         amounts = [coefficient*(6/7 if adapter.name == 'sit_small' and t < .25 else 1.) for t in left]
+-    return Sampler(Field(adapter, head), head, example, labels, grid, amounts, active,
+-                   heun=adapter.name == 'sit_small', graphs=graphs)
++    if cache_time:
++        from .invariants import cache_time_embedding
++        cache_time_embedding(adapter, grid, len(example))
++    engine = Sampler(Field(adapter, head), head, example, labels, grid, amounts, active,
++                     heun=adapter.name == 'sit_small', graphs=graphs and not trajectory_graph)
++    if trajectory_graph:
++        if not graphs:
++            raise ValueError('Trajectory replay requires CUDA field graphs')
++        from .trajectory import TrajectoryReplay
++        return TrajectoryReplay(engine, example, labels)
++    return engine
+diff --git a/classifier_guidance/training.py b/classifier_guidance/training.py
+index bf34d47..46d3dcd 100644
+--- a/classifier_guidance/training.py
++++ b/classifier_guidance/training.py
+@@ -2,7 +2,7 @@
+ import torch
+ import torch.distributed as dist
+ from experiments.adversarial_weak_training_20260915.binary_critic import discriminator_loss, weak_loss
+-from .features import chunked_features
++from .features import chunked_features, staged_features
+ 
+ 
+ def average_gradients(module):
+@@ -21,7 +21,7 @@ def average_gradients(module):
+ 
+ 
+ def step(*, head, critic, optimizer_w, optimizer_d, sample, decode, feature,
+-         real, noise, labels, r1=1., feature_chunk=1, update_head=True):
++         real, noise, labels, r1=1., feature_chunk=1, update_head=True, staged_feedback=False):
+     """Exactly one D update, then one W update against the updated D.
+ 
+     Features, decoder and frozen generator keep input derivatives, not weight
+@@ -32,8 +32,13 @@ def step(*, head, critic, optimizer_w, optimizer_d, sample, decode, feature,
+         real_features = torch.cat([feature(x) for x in real.split(feature_chunk or len(real))])
+     with torch.set_grad_enabled(update_head):
+         generated = sample(noise, labels)
+-        generated_features = (chunked_features(decode, feature, generated, feature_chunk)
+-                              if feature_chunk else feature(decode(generated)))
++        if staged_feedback:
++            if feature_chunk:
++                raise ValueError('Staged feedback preserves the whole batch; use feature_chunk=0')
++            generated_features = staged_features(decode, feature, generated)
++        else:
++            generated_features = (chunked_features(decode, feature, generated, feature_chunk)
++                                  if feature_chunk else feature(decode(generated)))
+ 
+     critic.train().requires_grad_(True)
+     optimizer_d.zero_grad(set_to_none=True)
+diff --git a/tests/test_classifier_guidance.py b/tests/test_classifier_guidance.py
+index 8be2b6e..cdb6644 100644
+--- a/tests/test_classifier_guidance.py
++++ b/tests/test_classifier_guidance.py
+@@ -2,7 +2,7 @@ import pytest
+ import torch
+ import os
+ from classifier_guidance.sampler import Sampler
+-from classifier_guidance.features import chunked_features
++from classifier_guidance.features import chunked_features, staged_features
+ 
+ 
+ @pytest.mark.parametrize('heun', [False, True])
+@@ -37,6 +37,9 @@ def test_full_discrete_gradient_including_frozen_suffix(heun):
+     torch.testing.assert_close(actual, expected, atol=0, rtol=0)
+     for a, b in zip(actual_g, expected_g):
+         torch.testing.assert_close(a, b, atol=1e-12, rtol=1e-12)
++    # Independent finite differences, not just another autograd expression.
++    assert torch.autograd.gradcheck(lambda x, *parameters: engine(x, labels), params,
++                                    eps=1e-6, atol=1e-6, rtol=1e-4)
+     # Two outstanding trajectories must not overwrite each other's saved states.
+     first, second = engine(noise, labels), engine(noise*.5, labels)
+     torch.autograd.grad(first.sum()+second.sum(), params)
+@@ -46,13 +49,14 @@ def test_full_discrete_gradient_including_frozen_suffix(heun):
+         value.sum().backward()
+ 
+ 
+-def test_chunked_feedback_chain_rule_with_uneven_last_chunk():
++@pytest.mark.parametrize('staged', [False, True])
++def test_feedback_chain_rule_with_frozen_networks(staged):
+     torch.manual_seed(8)
+     decode = torch.nn.Sequential(torch.nn.Linear(3, 5), torch.nn.Tanh()).double().eval().requires_grad_(False)
+     feature = torch.nn.Sequential(torch.nn.Linear(5, 4), torch.nn.Sigmoid()).double().eval().requires_grad_(False)
+     x = torch.randn(5, 3, dtype=torch.double, requires_grad=True)
+     expected = feature(decode(x))
+-    actual = chunked_features(decode, feature, x, chunk=2)
++    actual = staged_features(decode, feature, x) if staged else chunked_features(decode, feature, x, chunk=2)
+     torch.testing.assert_close(actual, expected, rtol=1e-12, atol=1e-12)
+     g1, = torch.autograd.grad(expected.square().sum(), x)
+     g2, = torch.autograd.grad(actual.square().sum(), x)
+@@ -61,10 +65,12 @@ def test_chunked_feedback_chain_rule_with_uneven_last_chunk():
+ 
+ 
+ @pytest.mark.skipif(os.environ.get('CLASSIFIER_TEST_CUDA') != '1', reason='requires explicitly leased CUDA GPU')
+-def test_cuda_replay_refreshes_labels_weights_and_saved_trajectories():
++@pytest.mark.parametrize('trajectory', [False, True])
++@pytest.mark.parametrize('heun', [False, True])
++def test_cuda_replay_refreshes_labels_weights_and_saved_trajectories(trajectory, heun):
+     torch.manual_seed(14)
+     head = torch.nn.Linear(3, 3).cuda()
+-    x = torch.randn(2, 3, device='cuda')
++    x = torch.randn(2, 3, device='cuda', requires_grad=True)
+     labels = torch.tensor([1, 2], device='cuda')
+     grid = torch.linspace(0, 1, 5, device='cuda')
+     amount = torch.tensor([.4, .7, 0, 0], device='cuda')
+@@ -74,8 +80,11 @@ def test_cuda_replay_refreshes_labels_weights_and_saved_trajectories():
+         strong = torch.sin(x*.7+t+y[:, None]*.1)
+         return strong+a*(strong-head(x)) if enabled else strong
+ 
+-    graph = Sampler(field, head, x, labels, grid, amount, active, heun=True, graphs=True)
+-    eager = Sampler(field, head, x, labels, grid, amount, active, heun=True, graphs=False)
++    graph = Sampler(field, head, x, labels, grid, amount, active, heun=heun, graphs=not trajectory)
++    if trajectory:
++        from classifier_guidance.trajectory import TrajectoryReplay
++        graph = TrajectoryReplay(graph, x, labels)
++    eager = Sampler(field, head, x, labels, grid, amount, active, heun=heun, graphs=False)
+     for i in range(2):
+         # Interleave outstanding trajectories: static capture buffers get reused.
+         y = labels+i
+@@ -83,11 +92,80 @@ def test_cuda_replay_refreshes_labels_weights_and_saved_trajectories():
+         ea, eb = eager(x, y), eager(x*.5, y.flip(0))
+         torch.testing.assert_close(ga, ea, rtol=0, atol=0)
+         torch.testing.assert_close(gb, eb, rtol=0, atol=0)
+-        gg = torch.autograd.grad(ga.square().sum()+gb.sin().sum(), tuple(head.parameters()))
+-        eg = torch.autograd.grad(ea.square().sum()+eb.sin().sum(), tuple(head.parameters()))
++        gg = torch.autograd.grad(ga.square().sum()+gb.sin().sum(), (x, *head.parameters()))
++        eg = torch.autograd.grad(ea.square().sum()+eb.sin().sum(), (x, *head.parameters()))
+         for a,b in zip(gg,eg): torch.testing.assert_close(a,b,rtol=1e-5,atol=1e-6)
+         with torch.no_grad():
+-            for p,g in zip(head.parameters(),gg):p.add_(g,alpha=-.01)
++            for p,g in zip(head.parameters(),gg[1:]):p.add_(g,alpha=-.01)
++    value = graph(x, labels)
++    with torch.no_grad(): head.weight.add_(.01)
++    with pytest.raises(RuntimeError, match='modified by an inplace operation'):
++        value.sum().backward()
+     with torch.no_grad(): head.weight.data = head.weight.detach().clone()
+     with pytest.raises(RuntimeError,match='storage changed'):
+         graph(x, labels)
++
++
++@pytest.mark.parametrize('heun', [False, True])
++def test_binary_gan_update_matches_direct_unroll_with_updated_critic(heun):
++    """Check full first-order GAN update, feature R1 and frozen-input derivatives."""
++    import copy
++    from torch.nn import functional as F
++    from classifier_guidance.training import step
++    from experiments.adversarial_weak_training_20260915.binary_critic import BinaryCritic
++
++    torch.manual_seed(21)
++    head = torch.nn.Linear(3, 3).double()
++    direct_head = copy.deepcopy(head)
++    critic = BinaryCritic(dimension=4, hidden=5, classes=2).double()
++    direct_critic = copy.deepcopy(critic)
++    decode = torch.nn.Sequential(torch.nn.Linear(3, 5), torch.nn.Tanh()).double().eval().requires_grad_(False)
++    feature = torch.nn.Sequential(torch.nn.Linear(5, 4), torch.nn.Sigmoid()).double().eval().requires_grad_(False)
++    frozen = torch.randn(3, 3, dtype=torch.double)
++    noise = torch.randn(4, 3, dtype=torch.double)
++    real = torch.randn(4, 5, dtype=torch.double)
++    labels = torch.tensor([0, 1, 0, 1])
++    grid = torch.tensor([0., .15, .45, .7, 1.], dtype=torch.double)
++    amounts, active = [.7, 1.1, 0., 0.], [True, True, False, False]
++
++    def field(w, x, t, y, amount, enabled):
++        s = torch.tanh(x@frozen+t+y[:, None]*.1)
++        # Shared frozen features depend on x and must NOT be detached.
++        weak = w(torch.sin(x@frozen+t))
++        return s+amount*(s-weak) if enabled else s
++
++    engine = Sampler(lambda *args: field(head, *args), head, noise, labels, grid,
++                     amounts, active, heun=heun, graphs=False)
++    ow = torch.optim.Adam(head.parameters(), lr=1e-3, betas=(.9, .99))
++    od = torch.optim.Adam(critic.parameters(), lr=1e-3, betas=(0., .99))
++    rw = torch.optim.Adam(direct_head.parameters(), lr=1e-3, betas=(.9, .99))
++    rd = torch.optim.Adam(direct_critic.parameters(), lr=1e-3, betas=(0., .99))
++    actual = step(head=head, critic=critic, optimizer_w=ow, optimizer_d=od,
++                  sample=engine, decode=decode, feature=feature, real=real, noise=noise,
++                  labels=labels, r1=.7, feature_chunk=0)
++
++    x = noise
++    for i, enabled in enumerate(active):
++        h = grid[i+1]-grid[i]
++        v = field(direct_head, x, grid[i], labels, amounts[i], enabled)
++        p = x+h*v
++        x = x+h/2*(v+field(direct_head, p, grid[i+1], labels, amounts[i], enabled)) if heun else p
++    generated_features = feature(decode(x))
++    features = torch.cat([feature(real).detach(), generated_features.detach()]).requires_grad_(True)
++    logits = direct_critic(features, labels.repeat(2))
++    ce = F.softplus(-logits[:4]).mean()+F.softplus(logits[4:]).mean()
++    r1 = torch.autograd.grad(logits[:4].sum(), features, create_graph=True)[0][:4].square().sum(1).mean()
++    (ce+.35*r1).backward()
++    torch.nn.utils.clip_grad_norm_(direct_critic.parameters(), 10.)
++    rd.step()
++    direct_critic.eval().requires_grad_(False)
++    loss = F.softplus(-direct_critic(generated_features, labels)).mean()
++    loss.backward()
++    norm = torch.nn.utils.clip_grad_norm_(direct_head.parameters(), 1.)
++    rw.step()
++    torch.testing.assert_close(actual[:4], torch.stack([ce.detach(), r1.detach(), loss.detach(), norm]),
++                               rtol=1e-12, atol=1e-12)
++    for left, right in ((head, direct_head), (critic, direct_critic)):
++        for key, value in left.state_dict().items():
++            torch.testing.assert_close(value, right.state_dict()[key], rtol=1e-12, atol=1e-12)
++    assert all(p.grad is None for module in (decode, feature) for p in module.parameters())
+diff --git a/classifier_guidance/invariants.py b/classifier_guidance/invariants.py
+new file mode 100644
+--- /dev/null
++++ b/classifier_guidance/invariants.py
+@@ -0,0 +1,43 @@
++"""Reuse deterministic frozen computations that do not depend on the state."""
++import torch
++
++
++def cache_time_embedding(adapter, grid, batch):
++    """Cache each fixed sampler time using the original batch shape and dtype.
++
++    Only valid inside this fixed-grid sampler: time is not a learned variable.
++    Labels are never cached. Per-time (not stacked-time) evaluation preserves
++    the original GEMM shapes and autocast rounding.
++    """
++    module = adapter.model.t_embedder
++    if module.training or any(p.requires_grad for p in module.parameters()):
++        raise ValueError('Time embedding must be frozen and in eval mode')
++    if hasattr(module, '_classifier_time_forward'):
++        raise ValueError('Build a fresh adapter before changing the cached grid')
++    original = module.forward
++    times = grid.detach().unique(sorted=True)
++    rae = adapter.name == 'raev2'
++    with torch.no_grad(), adapter.autocast():
++        outputs = [original(t.expand(batch), **({'return_base_embed': True} if rae else {})) for t in times]
++        tables = tuple(torch.stack([value[i] for value in outputs]) for i in range(2)) if rae else (torch.stack(outputs),)
++
++    def forward(t, return_base_embed=False):
++        if t.requires_grad or t.shape != (batch,):
++            raise ValueError('Cached embedding requires fixed-batch, fixed sampler times')
++        index = torch.searchsorted(times, t[:1].contiguous())
++        values = tuple(table.index_select(0, index).squeeze(0) for table in tables)
++        return values if rae and return_base_embed else values[-1]
++
++    module._classifier_time_forward = original
++    module.forward = forward
++    return sum(table.numel()*table.element_size() for table in tables)
++
++
++def skip_unused_rae_head(adapter):
++    """Use the upstream strong forward; the unused native IG output is dead code."""
++    if adapter.name != 'raev2':
++        raise ValueError('Only RAEv2 computes an unused native head here')
++    parent = type(adapter.model).__mro__[1]
++    if parent.__name__ != 'DiTwDDTHead':
++        raise ValueError('Unrecognized RAEv2 hierarchy')
++    adapter.strong_forward = lambda *args, **kwargs: parent.forward(adapter.model, *args, **kwargs)
+diff --git a/classifier_guidance/trajectory.py b/classifier_guidance/trajectory.py
+new file mode 100644
+--- /dev/null
++++ b/classifier_guidance/trajectory.py
+@@ -0,0 +1,103 @@
++"""Capture the existing discrete rollout and reverse sweep as graph launches.
++
++The eager field operations are captured across the entire loop. The same
++Euler/Heun operations and VJPs run, with the same summation order and dtypes.
++Only CPU dispatch is removed; no derivative or sampling step is dropped.
++"""
++import torch
++from torch.autograd.function import once_differentiable
++from .sampler import _Rollout
++
++
++class _Saved:
++    """Minimal capture-time context for the existing rollout implementation."""
++    needs_input_grad = (False, True)
++
++    def save_for_backward(self, *tensors):
++        self.saved_tensors = tensors
++
++
++class _GraphRollout(torch.autograd.Function):
++    @staticmethod
++    def forward(ctx, owner, noise, labels, *parameters):
++        owner.check(noise, labels)
++        owner.noise.copy_(noise)
++        owner.labels.copy_(labels)
++        owner.forward_graph.replay()
++        # Save *copies*: a second forward must not overwrite the first tape.
++        ctx.owner = owner
++        ctx.save_for_backward(labels, owner.tape.clone(), *parameters)
++        return owner.output.clone()
++
++    @staticmethod
++    @once_differentiable
++    def backward(ctx, gradient):
++        labels, tape, *_ = ctx.saved_tensors  # parameter version checks
++        owner = ctx.owner
++        owner.check_stream()
++        owner.labels.copy_(labels)
++        owner.tape.copy_(tape)
++        owner.cotangent.copy_(gradient)
++        owner.backward_graph.replay()
++        values = tuple(None if x is None else x.clone() for x in owner.derivatives)
++        return (None, values[0] if ctx.needs_input_grad[1] else None, None, *values[1:])
++
++
++class TrajectoryReplay:
++    """Fixed-shape, single-stream replay with independently saved call tapes.
++
++    A graph's outputs never escape without a clone. Forward/backward use
++    separate private pools. Parameters
++    may be updated in place between completed forward/backward pairs.
++    """
++
++    def __init__(self, engine, example, labels):
++        if engine.replay.graphs:
++            raise ValueError('Capture eager fields, not nested PyTorch graph replays')
++        self.engine = engine
++        self.noise, self.labels = example.detach().clone(), labels.clone()
++        self.cotangent = torch.ones_like(example)
++        self.stream = torch.cuda.current_stream(example.device)
++        n = len(engine.active)
++        self.tape = example.new_empty((n*(2 if engine.heun else 1), *example.shape))
++        self.forward_graph, self.backward_graph = torch.cuda.CUDAGraph(), torch.cuda.CUDAGraph()
++        capture_stream = torch.cuda.Stream()
++        capture_stream.wait_stream(self.stream)
++
++        def forward():
++            saved = _Saved()
++            result = _Rollout.forward(saved, engine, self.noise, self.labels, *engine.parameters)
++            for target, source in zip(self.tape.unbind(), saved.saved_tensors[1:1+len(self.tape)]):
++                target.copy_(source)
++            return result
++
++        def backward():
++            saved = _Saved()
++            saved.engine = engine
++            saved.saved_tensors = (self.labels, *self.tape.unbind(), *engine.parameters)
++            result = _Rollout.backward(saved, self.cotangent)
++            return (result[1], *result[3:])
++
++        with torch.cuda.stream(capture_stream), torch.no_grad():
++            # Warm all forward and reverse operators before capture.
++            forward()
++            backward()
++            with torch.cuda.graph(self.forward_graph, stream=capture_stream):
++                self.output = forward()
++            with torch.cuda.graph(self.backward_graph, stream=capture_stream):
++                self.derivatives = backward()
++        self.stream.wait_stream(capture_stream)
++
++    def check_stream(self):
++        if torch.cuda.current_stream(self.noise.device) != self.stream:
++            raise RuntimeError('Trajectory replay is bound to one CUDA stream')
++
++    def check(self, noise, labels):
++        self.check_stream()
++        self.engine.check_parameters(self.engine.parameters)
++        for actual, expected in ((noise, self.noise), (labels, self.labels)):
++            if (actual.shape, actual.dtype, actual.device) != (expected.shape, expected.dtype, expected.device):
++                raise ValueError('Trajectory inputs must match captured shape, dtype and device')
++
++    def __call__(self, noise, labels):
++        return _GraphRollout.apply(self, noise, labels, *self.engine.parameters)

@@ -70,6 +70,7 @@
 | report | [ADVERSARIAL_WEAK_RESULTS_INDEX_20260915_ZH.md](../../../docs/ADVERSARIAL_WEAK_RESULTS_INDEX_20260915_ZH.md) |
 | report | [ADVERSARIAL_WEAK_TRAINING_20260915_ZH.md](../../../docs/ADVERSARIAL_WEAK_TRAINING_20260915_ZH.md) |
 | report | [BINARY_ENDPOINT_GAN_REVIEW_20260915_ZH.md](../../../docs/BINARY_ENDPOINT_GAN_REVIEW_20260915_ZH.md) |
+| report | [classifier_guidance](../../../docs/classifier_guidance) |
 | external_data | [adversarial_guidance_endpoint_20260915](/home/zhoushunyu/data/eqvae/experiments/adversarial_guidance_endpoint_20260915) |
 | external_data | [adversarial_weak_training_20260915](/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915) |
 
@@ -954,7 +955,6 @@
 | report | [Z_SAMPLING_IDENTITY_RESULTS_20260913_ZH.md](../../../docs/Z_SAMPLING_IDENTITY_RESULTS_20260913_ZH.md) |
 | report | [Z_SAMPLING_IDENTITY_SCREEN_20260913_ZH.md](../../../docs/Z_SAMPLING_IDENTITY_SCREEN_20260913_ZH.md) |
 | report | [archive](../../../docs/archive) |
-| report | [classifier_guidance](../../../docs/classifier_guidance) |
 | report | [data](../../../docs/data) |
 | report | [figures](../../../docs/figures) |
 | report | [research](../../../docs/research) |

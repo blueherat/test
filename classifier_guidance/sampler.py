@@ -36,19 +36,23 @@ class FieldReplay:
     but must rebuild this object after replacing parameter objects/storage.
     """
 
-    def __init__(self, field, example, labels, parameters, *, graphs=True):
+    def __init__(self, field, example, labels, parameters, *, graphs=True, time_dtype=None):
         self.field, self.parameters = field, tuple(parameters)
         self.graphs = graphs
         self.shape = example.shape
-        self.signature = tuple((p.data_ptr(), p.shape, p.dtype) for p in self.parameters)
+        self.input_signature = (example.shape, example.dtype, example.device, labels.shape, labels.dtype, labels.device)
+        self.stream = torch.cuda.current_stream(example.device) if graphs else None
+        self.signature = tuple((id(p), p.data_ptr(), p.shape, p.dtype) for p in self.parameters)
         self.x = example.detach().clone().requires_grad_(True)
         self.labels = labels.clone()
-        self.time = torch.full((), .25, device=example.device)
-        self.amount = torch.full((), 1., device=example.device)
+        self.time = torch.full((), .25, device=example.device, dtype=time_dtype or example.dtype)
+        self.amount = torch.full((), 1., device=example.device, dtype=example.dtype)
         self.cotangent = torch.ones_like(example)
         self.captures = {}
         if graphs:
-            # Share scratch storage: replays are sequential and outputs are cloned.
+            # Independent captures, no cross-graph intermediates; every output
+            # is cloned before another replay. This is the independent-graph
+            # pool-sharing case documented in PyTorch CUDA semantics.
             pool = torch.cuda.graph_pool_handle()
             stream = torch.cuda.Stream()
             stream.wait_stream(torch.cuda.current_stream())
@@ -72,8 +76,9 @@ class FieldReplay:
                                        self.cotangent, allow_unused=True)
 
     def run(self, state, time, labels, amount, active, gradient=None):
-        if state.shape != self.shape:
-            raise ValueError(f'Captured shape {self.shape}, received {state.shape}')
+        signature = (state.shape, state.dtype, state.device, labels.shape, labels.dtype, labels.device)
+        if signature != self.input_signature:
+            raise ValueError('Field inputs must match captured shape, dtype and device')
         if not self.graphs:
             with torch.enable_grad() if gradient is not None else torch.no_grad():
                 x = state.detach().requires_grad_(gradient is not None)
@@ -82,6 +87,8 @@ class FieldReplay:
                     return out.detach()
                 return torch.autograd.grad(out, (x, *self.parameters), gradient, allow_unused=True)
         with torch.no_grad():
+            if torch.cuda.current_stream(state.device) != self.stream:
+                raise RuntimeError('Field replay is bound to one CUDA stream')
             self.x.copy_(state)
             self.time.copy_(time)
             self.labels.copy_(labels)
@@ -120,6 +127,7 @@ class _Rollout(torch.autograd.Function):
     @once_differentiable
     def backward(ctx, gradient):
         e = ctx.engine
+        e.check_parameters(e.parameters)
         saved = ctx.saved_tensors  # Also validates parameter/tensor version counters.
         n = len(e.active)
         labels, states = saved[0], saved[1:1+n]
@@ -156,16 +164,18 @@ class Sampler:
         self.parameters = tuple(head.parameters())
         if any(not p.requires_grad for p in self.parameters):
             raise ValueError('Sampler expects a trainable weak head')
+        if grid.requires_grad or (torch.is_tensor(amounts) and amounts.requires_grad):
+            raise ValueError('Learned time grids or guidance coefficients require a different autograd contract')
         self.grid = grid.detach().clone()
-        self.amounts = torch.as_tensor(amounts, device=example.device, dtype=example.dtype)
+        self.amounts = torch.as_tensor(amounts, device=example.device, dtype=example.dtype).detach().clone()
         self.active = tuple(active)
         if len(self.grid) != len(self.active)+1 or len(self.amounts) != len(self.active):
             raise ValueError('Inconsistent schedule lengths')
         self.heun = heun
-        self.replay = FieldReplay(field, example, labels, self.parameters, graphs=graphs)
+        self.replay = FieldReplay(field, example, labels, self.parameters, graphs=graphs, time_dtype=self.grid.dtype)
 
     def check_parameters(self, parameters):
-        current = tuple((p.data_ptr(), p.shape, p.dtype) for p in self.head.parameters())
+        current = tuple((id(p), p.data_ptr(), p.shape, p.dtype) for p in self.head.parameters())
         if current != self.replay.signature:
             raise RuntimeError('Head parameter storage changed; rebuild sampler')
 
@@ -174,6 +184,10 @@ class Sampler:
 
 
 def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
+    if any(p.requires_grad for p in adapter.model.parameters()):
+        raise ValueError('The strong model must be frozen')
+    if any(m.training for root in (adapter.model, head) for m in root.modules()):
+        raise ValueError('Replay/recomputation requires eval-mode strong model and head')
     if adapter.name == 'jit':
         # Preserve upstream FP32 attention logits and BF16 output multiplication.
         # Its zero bias was allocated on CPU then copied on every attention call.

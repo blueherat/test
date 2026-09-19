@@ -56,6 +56,8 @@ def enable_feedback_checkpointing(adapter, feature):
         'Conv2d_3b_1x1', 'Conv2d_4a_3x3', 'Mixed_5b', 'Mixed_5c', 'Mixed_5d',
         'Mixed_6a', 'Mixed_6b', 'Mixed_6c', 'Mixed_6d', 'Mixed_6e', 'Mixed_7a', 'Mixed_7b', 'Mixed_7c')]
     for module in modules:
+        if any(m.training for m in module.modules()) or any(p.requires_grad for p in module.parameters()):
+            raise ValueError('Feedback recomputation requires frozen eval-mode modules')
         if hasattr(module, '_classifier_original_forward'):
             continue
         original = module.forward
@@ -72,6 +74,8 @@ def enable_feedback_checkpointing(adapter, feature):
 def enable_backbone_checkpointing(adapter):
     """Optional lower-memory tradeoff, also captured inside field VJP graphs."""
     for module in adapter.model.blocks:
+        if any(m.training for m in module.modules()) or any(p.requires_grad for p in module.parameters()):
+            raise ValueError('Backbone recomputation requires frozen eval-mode modules')
         if hasattr(module, '_classifier_original_forward'):
             continue
         original = module.forward

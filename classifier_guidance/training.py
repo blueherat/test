@@ -21,7 +21,7 @@ def average_gradients(module):
 
 
 def step(*, head, critic, optimizer_w, optimizer_d, sample, decode, feature,
-         real, noise, labels, r1=1., feature_chunk=1, update_head=True):
+         real, noise, labels, r1=1., feature_chunk=0, update_head=True):
     """Exactly one D update, then one W update against the updated D.
 
     Features, decoder and frozen generator keep input derivatives, not weight

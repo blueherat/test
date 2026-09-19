@@ -82,6 +82,9 @@ def main(args):
         row=dict(seconds=time.perf_counter()-start,peak_allocated_gib=torch.cuda.max_memory_allocated()/1024**3,
                  peak_reserved_gib=torch.cuda.max_memory_reserved()/1024**3,metrics=metrics.tolist())
         rows.append(row)
+        if args.audit_repeat_gradients:
+            np.save(args.output/f'head_gradient_repeat_{repeat}.npy',
+                    torch.cat([p.grad.flatten() for p in head.parameters()]).cpu().numpy())
         print(repeat,row,flush=True)
         (args.output/'progress.json').write_text(json.dumps(rows,indent=2)+'\n')
     np.save(args.output/'head_gradient.npy',torch.cat([p.grad.flatten() for p in head.parameters()]).cpu().numpy())
@@ -92,6 +95,7 @@ def main(args):
                 mode=args.mode,chunk=args.chunk,channels_last=args.channels_last,
                 checkpoint_feedback=args.checkpoint_feedback,checkpoint_backbone=args.checkpoint_backbone,
                 precast=args.precast,gpu=gpu,torch=torch.__version__,
+                audit_repeat_gradients=args.audit_repeat_gradients,
                 checkpoint=str(checkpoint) if checkpoint else None,head_provenance=provenance,
                 setup_seconds=setup,iterations=rows,
                 median_seconds=statistics.median(r['seconds'] for r in rows[1:]),
@@ -113,6 +117,7 @@ if __name__=='__main__':
     p.add_argument('--checkpoint-feedback',action='store_true')
     p.add_argument('--precast',action='store_true')
     p.add_argument('--checkpoint-backbone',action='store_true')
+    p.add_argument('--audit-repeat-gradients',action='store_true')
     p.add_argument('--repeats',type=int,default=3)
     p.add_argument('--output',type=Path,required=True)
     main(p.parse_args())

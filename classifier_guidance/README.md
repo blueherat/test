@@ -18,6 +18,7 @@
 | 模型/解码/精度适配 | [`adapters.py`](adapters.py) |
 | 真实训练 RGB 数据 | [`data.py`](data.py) |
 | 完整训练迭代性能及数值对照 | [`benchmark_train.py`](benchmark_train.py) |
+| 动态输入、参数更新后的真实模型梯度审计 | [`audit_replay.py`](audit_replay.py) |
 
 整理前的实现保留在原命名空间，作为对照并兼容旧路径和哈希：
 
@@ -44,6 +45,12 @@
 保留显存包含 CUDA 图内存池；表中包含采样、图像反馈、D/W backward 和 Adam，排除首次加载、捕获与保存。
 JiT 使用已有 3K MLP 作为工程测试夹具，不是完成了新的 50K 对抗训练。
 
+进一步核对了[理论兼容性](../docs/classifier_guidance/THEORY_AUDIT_20260919_ZH.md)，并完成
+[后续优化试验](../docs/classifier_guidance/REFINEMENT_20260919_ZH.md)。当前默认路径保留完整的一阶离散梯度。
+RAEv2 可选 `--checkpoint-backbone`：batch1 的保留显存约 3.25 GiB，代价是每步约 3.96 秒。
+利用剩余显存，SiT 每卡 batch12、JiT 每卡 batch12、RAEv2 每卡 batch4 的吞吐分别比先前测试档提高约 17%、14%、47%；
+部署时须通过设备分配保持全局 batch 和 D/W 更新频率，不能直接增大全局 batch 后宣称训练设置相同。
+
 ## 启动与恢复
 
 以下是后续正式训练的命令示例，本次没有启动这些长训练。选择实际空闲卡；启动器遇到占用会退出。
@@ -52,7 +59,7 @@ JiT 使用已有 3K MLP 作为工程测试夹具，不是完成了新的 50K 对
 $HOME/miniconda3/envs/myenv/bin/python -m classifier_guidance.launch \
   --gpus 1,3 \
   --output "$HOME/data/eqvae/projects/classifier_guidance/training/sit_rgb_next" -- \
-  --model sit_small --updates 800 --global-batch 12 --coefficient 1.05 \
+  --model sit_small --updates 800 --global-batch 24 --coefficient 1.05 \
   --resume "$HOME/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_rgb_v2/checkpoint_001456.pt"
 ```
 
@@ -64,6 +71,7 @@ $HOME/miniconda3/envs/myenv/bin/python -m classifier_guidance.launch \
 - checkpoint 保存 head、EMA、D、两个 Adam、各 rank 数据 RNG；改变 GPU 数会记录 `exact_global_stream=false`。
 - 每个进程只暴露一张卡，启动器使用 `torchrun --virtual-local-rank`；不要自行改成多卡均可见的普通启动。
 - `--eager` 可关闭 CUDA 图，保留相同离散求导实现用于诊断。
+- 采样器绑定输入形状、精度、单一 CUDA stream 和参数存储；替换参数对象或迁移存储需重新创建采样器。当前不支持对时间网格/外推系数求导或高阶元梯度。
 - `--feedback chunk --feature-chunk 1` 是可选极省显存档。SiT 测试中有约 5% 梯度差异，不是默认配置，也未作生成质量验证。
 - 输出的 `head`/`ema` 权重结构兼容原 SiT 评测器的 `--checkpoint`；本次未改动 5K 评测器、噪声或参考统计。
 
