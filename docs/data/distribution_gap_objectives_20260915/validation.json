@@ -1,0 +1,98 @@
+{
+  "kind": "mathematical_validation_not_image_training",
+  "squared_distance_repulsion": {
+    "0.2": {
+      "grid_minimizer": -0.25,
+      "analytic_minimizer": -0.25
+    },
+    "0.5": {
+      "grid_minimizer": -1.0,
+      "analytic_minimizer": -1.0
+    },
+    "0.8": {
+      "grid_minimizer": -4.0,
+      "analytic_minimizer": -4.000000000000001
+    }
+  },
+  "true_metric_repulsion": {
+    "0.2": {
+      "grid_minimizer": 0.0
+    },
+    "0.5": {
+      "grid_minimizer": 0.0
+    },
+    "0.8": {
+      "grid_minimizer": 0.0
+    }
+  },
+  "restricted_family_counterexample": {
+    "means": [
+      0.1,
+      -0.2
+    ],
+    "losses": [
+      -0.35,
+      -0.39999999999999997
+    ]
+  },
+  "metric_triangle_bound_min_slack": 0.0035701115414699808,
+  "kl_anchor_identity": {
+    "value_abs_error": 0.0,
+    "gradient_max_abs_error": 8.326672684688674e-17
+  },
+  "kl_target_by_beta": {
+    "0.5": [
+      0.023255813953488382,
+      0.10465116279069768,
+      0.872093023255814
+    ],
+    "1.0": [
+      0.2,
+      0.29999999999999993,
+      0.5
+    ],
+    "2.0": [
+      0.39816483785203755,
+      0.3448208644735763,
+      0.2570142976743863
+    ]
+  },
+  "static_ratio_reward_only": {
+    "p": [
+      0.2,
+      0.3,
+      0.5
+    ],
+    "g": [
+      0.6,
+      0.3,
+      0.1
+    ],
+    "reward": [
+      -1.0986122886681096,
+      0.0,
+      1.6094379124341003
+    ],
+    "maximizing_delta_atom": 2,
+    "real_distribution_is_not_reward_maximizer": true
+  },
+  "shared_logit_cycle_max_abs_error": 4.440892098500626e-16,
+  "directional_gain_identity_abs_error": 1.4210854715202004e-14,
+  "paired_control_variate_example": {
+    "trials": 20000,
+    "batch": 24,
+    "true_gradient": 3.6480000000000006,
+    "paired_mean": 3.6485094721425675,
+    "ordinary_mean": 3.6781833009443754,
+    "paired_std": 0.2784760122051482,
+    "ordinary_std": 2.267469227156714,
+    "variance_ratio": 0.015083175310895546,
+    "warning": "One quadratic-feature Gaussian example; no universal variance or image-quality claim."
+  },
+  "naive_squared_batch_mean_gradient_bias": {
+    "paired_observed": -0.06642898222337434,
+    "paired_expected": -0.06666666666666665,
+    "ordinary_observed": 0.3001557614731647,
+    "ordinary_expected": 0.26666666666666666
+  }
+}

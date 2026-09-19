@@ -37,3 +37,11 @@ research_repos/
 *.npz
 *.safetensors
 *.log
+
+# Research archive: previously tracked evidence is explicitly retained on moves.
+# New raw runs, downloaded PDFs, and local storage links do not belong in Git.
+/archive/results/**
+/readings
+/data
+/runs
+/classifier_guidance/local/

@@ -1,0 +1,81 @@
+{
+  "release": {
+    "cases": 64,
+    "maximum_errors": {
+      "release_semigroup": 1.887379141862766e-14,
+      "passive_conservation": 4.965068306494546e-16,
+      "release_derivative": 2.934952433223426e-11,
+      "semantic_derivative": 1.220001877300092e-11
+    }
+  },
+  "geometry": {
+    "cases": 128,
+    "apg_curl_error": 1.2554149386723168e-10,
+    "finite_norm_identity_error": 3.774758283725532e-15,
+    "symmetric_growth_identity_error": 3.552713678800501e-15,
+    "apg_curl_at_1_1": -0.5,
+    "gaussian_weighted_divergence_over_density": {
+      "isotropic": 0.0,
+      "anisotropic": 0.75
+    },
+    "zero_curl_error_example": "d(x) = M e_1 for any M",
+    "high_curl_small_error": [
+      {
+        "epsilon": 0.1,
+        "uniform_field_bound": 0.1,
+        "curl_at_origin": -10.0
+      },
+      {
+        "epsilon": 0.01,
+        "uniform_field_bound": 0.01,
+        "curl_at_origin": -100.0
+      },
+      {
+        "epsilon": 0.001,
+        "uniform_field_bound": 0.001,
+        "curl_at_origin": -1000.0
+      }
+    ]
+  },
+  "momentum": {
+    "beta": -0.5,
+    "clean_memory_equivalence_max_error": 2.482534153247273e-16,
+    "naive_velocity_memory_final_error": 0.05595486234507218,
+    "constant_signal_limit": 0.6666666666666666,
+    "alternating_signal_amplitude_limit": 2.0
+  },
+  "units": {
+    "output_rescaling": 10.0,
+    "unchanged_zero_set": true,
+    "criterion_multiplier": 100.0,
+    "fixed_state_cfg_ratio_invariance_max_error": 0.0
+  },
+  "random_curl_estimator": {
+    "exhaustive_probe_pairs": 256,
+    "expectation": 3.9453893785547325,
+    "exact_frobenius_squared": 3.9453893785547343
+  },
+  "gauge_mixing": {
+    "cases": 12,
+    "weighted_divergence_identity_max_error": 2.1316282072803006e-14,
+    "example": {
+      "omega": 1.0,
+      "scale": 2.0,
+      "ideal_mean_x": 1.3333333333333333,
+      "ideal_mean_y": 0.0,
+      "stationary_mean_x": 1.2307692307692308,
+      "stationary_mean_y": 0.15384615384615383,
+      "mean_error": 0.18490006540840961,
+      "stationary_variance_x": 0.3333333333333333,
+      "stationary_variance_y": 0.3333333333333333
+    },
+    "compatible_joint": "C~N(0,I/2), X|C=c~N(c,I/2)",
+    "discrete_mixture_weighted_divergence_over_density": -2.0,
+    "scope": "Exact stationary Langevin counterexample, not a claim that general CFG has tempered marginals"
+  },
+  "rotation_cases": 64,
+  "passed": true,
+  "scope": "CPU analytic/numerical identities only; no neural model or image-quality experiment",
+  "script_sha256": "83bf32ba80aa20ef041bb4fba72e001b8c77898c0c604e1969d21bd15653b943",
+  "numpy_version": "2.2.6"
+}

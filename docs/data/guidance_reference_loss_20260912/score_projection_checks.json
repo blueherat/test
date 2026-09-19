@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "mean": 2.0,
+      "sigma": 1.0,
+      "score_fit_coefficient": -0.19999999999999993,
+      "expected_coefficient": -0.2,
+      "fourth_cumulant_p": -31.999999999999986,
+      "fourth_cumulant_q": 0.0,
+      "extra_guidance": 0.0,
+      "original_center_log_curvature": null,
+      "powered_center_log_curvature": null,
+      "splitting_threshold": null,
+      "powered_normalizer": null
+    },
+    {
+      "mean": 0.8,
+      "sigma": 1.0,
+      "score_fit_coefficient": -0.6097560975609757,
+      "expected_coefficient": -0.6097560975609756,
+      "fourth_cumulant_p": -0.8192000000000004,
+      "fourth_cumulant_q": 0.0,
+      "extra_guidance": 2.0,
+      "original_center_log_curvature": -0.3599999999999999,
+      "powered_center_log_curvature": 0.13951219512195157,
+      "splitting_threshold": 1.4414062499999996,
+      "powered_normalizer": 1.0154734630249451
+    }
+  ],
+  "gaussian_convolution_preserves_fourth_cumulant": true,
+  "caveat": "Fixed-noise-level normalized score potentials, not actual guided ODE endpoint densities. Not an identification of an IG head.",
+  "source_sha256": "1aa9f28fdee34ce8b140161a91821d482c7bc218b1f3551ec787a06ac3d9559d"
+}

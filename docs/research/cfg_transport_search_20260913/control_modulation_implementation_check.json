@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "gpu_used": false,
+  "scope": "Constant-gap legacy endpoints; zero K/alpha complete trajectories; packet algebra and count/snapshot/cutoff checks",
+  "source_sha256": "a2cda5038333b401db345f46e4816dd243b4b1d5b45303653f078ad5cd10dcf8",
+  "baseline_sha256": "40468591b9cbbf90b01ebf5bf5c142c3b82b7ca93944929c6f690beb8cf66130",
+  "rows": [
+    {
+      "dtype": "torch.float32",
+      "rho_records": {
+        "0": {
+          "constant_gap_endpoint_max_abs": 3.725290298461914e-08,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        },
+        "1": {
+          "constant_gap_endpoint_max_abs": 3.725290298461914e-08,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        },
+        "-1": {
+          "constant_gap_endpoint_max_abs": 3.725290298461914e-08,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        }
+      },
+      "zero_K_equals_CFG_bitwise": true,
+      "zero_alpha_equals_conditional_bitwise": true,
+      "packet_mean_and_energy": true
+    },
+    {
+      "dtype": "torch.float64",
+      "rho_records": {
+        "0": {
+          "constant_gap_endpoint_max_abs": 6.245004513516506e-17,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        },
+        "1": {
+          "constant_gap_endpoint_max_abs": 1.1102230246251565e-16,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        },
+        "-1": {
+          "constant_gap_endpoint_max_abs": 6.245004513516506e-17,
+          "counts": {
+            "full": 224,
+            "prefix": 0
+          }
+        }
+      },
+      "zero_K_equals_CFG_bitwise": true,
+      "zero_alpha_equals_conditional_bitwise": true,
+      "packet_mean_and_energy": true
+    }
+  ],
+  "source_files": [
+    "/home/zhoushunyu/eqvae/experiments/cfg_transport_search_20260913/baselines.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_pasted_20260912/common.py",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "completed": true,
+  "positions": [
+    0,
+    1,
+    16,
+    17
+  ],
+  "ids": [
+    713,
+    3623,
+    2797,
+    2744
+  ],
+  "times": [
+    0.15,
+    0.5,
+    0.9
+  ],
+  "num_classes": 100,
+  "device": "cpu",
+  "dtype": "float32",
+  "threads": 4,
+  "input_manifest_sha256": "b5a96fbc6b060af56bcc84e362d1b3ab6d10ec25888e6e2ad384ccee0e609d8c",
+  "input_sha256": "cb15d5309740a7904ff70dbc565386cf355c4300ee6313f39125f56ac3ad0c1e",
+  "script_sha256": "2c0448fc4fddee862a1917df65372ca10b2885e53eee2ce48bc19eeadcbac9f2",
+  "protocol_sha256": "b88119d702b77734fa7321dd761daaf1a191f31ae54477701646f871db3376cf",
+  "wall_seconds": 44.10481639392674,
+  "model_calls": 48,
+  "equivalent_single_sample_forwards": 1212,
+  "model": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "weights": "ema",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "denominator_floor": 0.001,
+    "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373"
+  },
+  "cuda_initialized": false,
+  "observations": {
+    "time_0_position_1.npz": "707fb91630c1fd8ff571559f2edd542ddd9ed9af5f4fb518a7f8e540fd3975c8",
+    "time_1_position_17.npz": "4061d9a728bf2fe44b37090a186c7e03281a7b546e85b053cb6e4ee2033a0828",
+    "time_2_position_0.npz": "eae07f1b3e0877da3e8d7596aa711481ca2e7a6dd0c6d36a0ee7c337667c6468",
+    "time_2_position_17.npz": "9d0498f1a607c307afa6ba806e8c37c605c1e5387876fbd76c75fc2917829aef",
+    "time_0_position_16.npz": "7d2c1174c0c43cc55cd4f351d6b969984603da408ff7b36019b99567da5d4102",
+    "time_1_position_1.npz": "342c83d5aadd296e25436269aec0dbb653e0cce8165cb1be9f4dd0f86c306f51",
+    "time_1_position_16.npz": "ba7fded287105f4a397b97c89ed39b5a027befa6092170125afbdde85d296c46",
+    "time_0_position_0.npz": "ec0ed1b52b90a197da9b296e17eb3ef39a062851b9798185670cfa8b8b744eb4",
+    "time_0_position_17.npz": "a37ea7d401627cb285e36ca785adfa8083bf0134997317ecde7944d585a7bf4f",
+    "time_2_position_16.npz": "179249b507a00d881a07a66ba17ef78c7c4cbaf16141d3dba964e0a46fcaa4e8",
+    "time_1_position_0.npz": "8720df72d78d464ac944e395950e4d9fa09455d941000429f61bb324dd4e2b1e",
+    "time_2_position_1.npz": "711417bf47ccdd0f11285e514d21b295d4d7054a2844cb0e44ad3a286bcec6cb"
+  }
+}

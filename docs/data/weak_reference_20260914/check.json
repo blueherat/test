@@ -1,0 +1,20 @@
+{
+  "cpu_passed": true,
+  "gaussian_fp64_max_error": 1.4210854715202004e-14,
+  "checks": [
+    "affine_null",
+    "zero_strength_and_radius_bitwise",
+    "same_time_symmetric_queries",
+    "per_image_probe_rng_batch_invariance",
+    "repeatable",
+    "actual_forward_counts"
+  ],
+  "model_passed": true,
+  "native_zero_bitwise": true,
+  "counts": {
+    "full": 240,
+    "prefix": 0
+  },
+  "max_memory_allocated": 991602688,
+  "latent_delta_rms": 0.06059809774160385
+}

@@ -1,0 +1,51 @@
+{
+  "model": "raev2",
+  "depth": 4,
+  "steps": 50000,
+  "batch": 8,
+  "seed": 2026091431,
+  "lr": 0.0003,
+  "weight_decay": 0.0001,
+  "ema": 0.995,
+  "time_distribution": "Uniform(.01,.99)",
+  "target": "real clean latent MSE",
+  "normalization_batches": 32,
+  "head_architectures": {
+    "native": "exact DDTFinalLayer(1440,1,1024), original zero initialization and norm ones",
+    "mlp": "repository Context Head(1440,1024,16), train-only feature standardization"
+  },
+  "initialization": "Both fresh, not copied fitted depth8 weights; same data/noise/time sequence",
+  "validation": "1000 disjoint real cases, fixed noise/time; monitor only, final step50K EMA is selected",
+  "sources": {
+    "/home/zhoushunyu/eqvae/docs/RAEV2_SHALLOW_IG_50K_PROTOCOL_20260914_ZH.md": "0023a8843b9f971ee26ef0a5c525511559200234de06dabe8b6eb26b90d58a65",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py": "88ac819b8683497051820a2161d7918d655a61a2ef674416b09676e22c44c96b",
+    "/home/zhoushunyu/eqvae/experiments/guidance_pasted_20260912/common.py": "387185883eb02876e320cae880bbc4030d0f89499df1049b0fd5c3fcba90e5db",
+    "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_internal_v_head.py": "32ec3c8704d147e926e07afcf53c30a1b8959947981d66f1d84e76f35310abe9",
+    "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/raev2_context_20k_20260914/train.py": "128617a047addf670506fd60c0012983b2c60c300a27e5dfb73a67b4b221737e",
+    "/home/zhoushunyu/eqvae/experiments/raev2_pfr_retiming.py": "be4339468cb183aa468ebbc817dcde0b33980086f6937a720dbfa1e8a86c0577",
+    "/home/zhoushunyu/eqvae/experiments/raev2_shallow_ig_20260914/core.py": "fc86b00d1b2b77dad3a2cbabffae29429d3e0c99f99e722ad0ca048fe8db2c5b",
+    "/home/zhoushunyu/eqvae/experiments/raev2_shallow_ig_20260914/train.py": "942046eddd1001ce0e3da9982e83aeea7f14334798e7a7ceadd1146b27e6dab6",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/train_raev2_observable_potential.py": "d0750939786ce15f4fc8b5cb6097902b614ac96852cae33525dce5134dbe0590",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/model_utils.py": "a5e53dd88614798f9b573d946d007fdaae90d36193afae1b2661ec0faa2466f5"
+  },
+  "assets": {
+    "/home/zhoushunyu/data/eqvae/models/RAEv2/stage2/imagenet/dinov3l-k7/checkpoint.pt": "723c56d7fa77ace9613909f7e38cb2386b898608218dc9b52649bb373d513c9a",
+    "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/decoder.pt": "779871dc7e81d4c31cc5dc80824760c79b40e4a8b90e0d743d1e79c10d515d87",
+    "/home/zhoushunyu/data/eqvae/models/RAEv2/stage1/imagenet/dinov3l-k7/stats.pt": "40e57d9d38a267dc258043c081094d276382c29ebccc1bd8c38f4dd11e81ba77"
+  },
+  "data": {
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/summary.json": "d17d6e22ea47f7d2603f7c6843145abd6c90caf961b90a146fcc864ddc61333b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/latents.npy": "b0283d24ab47214983d4904a2c08b62cfc81efb19b6d1459d68e9cea79702f11",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/train/metadata.npz": "96c29e0bc34fbaa74a344430474818cc67ba9a3ef5bdbd8747a1c9e05ef04769",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/validation/latents.npy": "41ff1e73b2ce9ce580aee921a0129d6d32bb8b085c07f79752e3106afc834ad0",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_guidance_restart_20260906/potential_clean_bank_fp32_v1/validation/metadata.npz": "cad448afe0390da17c109e23c755aa1f426aea4851f9896e96e69b71a4ef943d"
+  }
+}

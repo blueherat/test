@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "scope": "CPU nonlinear fake model, full 64-step old sampler equivalence; not a real-model execution check",
+  "cuda_used": false,
+  "source_sha256": "40468591b9cbbf90b01ebf5bf5c142c3b82b7ca93944929c6f690beb8cf66130",
+  "records": [
+    {
+      "kind": "cfg",
+      "dtype": "torch.float32",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "kind": "apg",
+      "dtype": "torch.float32",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "kind": "ctrl",
+      "dtype": "torch.float32",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "dtype": "torch.float32",
+      "steps": 96,
+      "three_zero_alpha_limits_exact": true,
+      "nonzero_counts": {
+        "full": 336,
+        "prefix": 0
+      }
+    },
+    {
+      "kind": "cfg",
+      "dtype": "torch.float64",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "kind": "apg",
+      "dtype": "torch.float64",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "kind": "ctrl",
+      "dtype": "torch.float64",
+      "steps": 64,
+      "trajectory_bitwise_exact": true,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      }
+    },
+    {
+      "dtype": "torch.float64",
+      "steps": 96,
+      "three_zero_alpha_limits_exact": true,
+      "nonzero_counts": {
+        "full": 336,
+        "prefix": 0
+      }
+    }
+  ]
+}

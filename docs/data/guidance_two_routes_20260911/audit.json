@@ -1,0 +1,109 @@
+{
+  "all_checks_passed": true,
+  "script": "/home/zhoushunyu/eqvae/experiments/audit_guidance_two_routes_20260911.py",
+  "script_sha256": "c69aa9531d7882d5a8e6ebc7461c270aaad2f57f80f3dd534d18800d3d6d458f",
+  "bch": {
+    "unconditional_matrix": [
+      [
+        -0.2,
+        1.5
+      ],
+      [
+        -0.4,
+        0.1
+      ]
+    ],
+    "conditional_matrix": [
+      [
+        0.3,
+        0.2
+      ],
+      [
+        0.8,
+        -0.15
+      ]
+    ],
+    "x": [
+      0.7,
+      -0.4
+    ],
+    "local_generator": [
+      [
+        0.5,
+        -1.3
+      ],
+      [
+        1.2000000000000002,
+        -0.25
+      ]
+    ],
+    "bracket_matrix": [
+      [
+        -1.2800000000000002,
+        0.735
+      ],
+      [
+        -0.060000000000000046,
+        1.2800000000000002
+      ]
+    ],
+    "local_error_orders": [
+      0.9959472503282737,
+      0.9979162926766296,
+      0.9989438287197105
+    ],
+    "bracket_corrected_error_orders": [
+      1.9954463581618098,
+      1.9976463733191643,
+      1.998804028442466
+    ],
+    "note": "Exact linear flows. Future loss is normalized by H squared. Local loss is raw gap energy, not the full history-dependent CTRL sliding variable."
+  },
+  "selected_contraction_examples": [
+    {
+      "alpha": 0.5,
+      "beta": 1.0,
+      "iterations": 4,
+      "local_error_squared": 0.0078125,
+      "future_error_squared": 0.001953125,
+      "retained_tangent_std": 1.0,
+      "target_wasserstein_squared": 0.0078125,
+      "excess_tangent_wasserstein_squared": 0.0,
+      "log_abs_calibration_jacobian": -2.772588722239781,
+      "log_abs_tangent_jacobian": 0.0
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.8,
+      "iterations": 4,
+      "local_error_squared": 0.0078125,
+      "future_error_squared": 0.001953125,
+      "retained_tangent_std": 0.4096000000000001,
+      "target_wasserstein_squared": 0.3563846599999999,
+      "excess_tangent_wasserstein_squared": 0.3485721599999999,
+      "log_abs_calibration_jacobian": -3.66516292749662,
+      "log_abs_tangent_jacobian": -0.8925742052568388
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "iterations": 4,
+      "local_error_squared": 0.0078125,
+      "future_error_squared": 0.001953125,
+      "retained_tangent_std": 0.0625,
+      "target_wasserstein_squared": 0.88671875,
+      "excess_tangent_wasserstein_squared": 0.87890625,
+      "log_abs_calibration_jacobian": -5.545177444479562,
+      "log_abs_tangent_jacobian": -2.772588722239781
+    }
+  ],
+  "volume_identity_max_error": 1.9949319973733282e-16,
+  "outputs": {
+    "local_future_audit.json": "8a427bd1cdb12a65c9006a72eb428901fbf04733b528ee7a2ad80d4e97493ea8",
+    "local_future_identifiability.csv": "b30199a7512918e6c091ca2d2a051835e916743116a5986a9a7c420fa86a350a",
+    "map_density_identity.csv": "0bd7dd1b5f3d1b6cc6286220c53ee0aa510f435339cdf0a0573d9288f26388f7",
+    "matched_finite_interventions.csv": "7aa82dafa6634b6c69da88a796c58ee751c9adddd4fd6bb7c9e9dc06eedb0c52",
+    "selective_contraction.csv": "fda784d7e8ed5599265e0597190c4b977f370968fac73b8837fa61261e8727aa",
+    "selective_contraction_scope.json": "e7bc281b11df5294ae0001aebe54e61a21a7d3fc91c6aceebf80cb1a71480ee0"
+  }
+}

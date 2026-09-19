@@ -1,0 +1,800 @@
+可以，而且这个假设比“weak 是 strong 的平滑版”自然很多。最漂亮的是：**它会精确推出 AutoGuidance 的形式，但 guidance 系数不是常数，而是一个 state-dependent feedback 系数。**
+
+我会把假设写成同一个噪声层级 \(t\) 上：
+
+$$
+\boxed{
+p_s=(1-\alpha_t)p_t^\star+\alpha_t p_t^e
+}
+$$
+
+$$
+\boxed{
+p_w=(1-\beta_t)p_t^\star+\beta_t p_t^e,
+\qquad
+0\le \alpha_t<\beta_t\le1
+}
+\tag{1}
+$$
+
+其中：
+
+* \(p_t^\star\)：理想模型在当前 \(t\) 应该有的分布；
+* \(p_t^e\)：某一种**共同的系统性 error distribution**；
+* strong 也有这种误差，只是比例 \(\alpha_t\) 小；
+* weak 犯同一种错误，但更严重，比例 \(\beta_t>\alpha_t\)。
+
+这正好是 AG 所说的 compatible degradation 的一个明确概率版本：原 AG 就强调 weak 的错误应该和 strong “性质相同但更严重”，而不是任意坏模型。([arXiv][1])
+
+---
+
+## 1. 先直接把理想分布解出来
+
+两个式子相减消元：
+
+$$
+\beta p_s-\alpha p_w
+=
+(\beta-\alpha)p^\star.
+$$
+
+所以
+
+$$
+\boxed{
+p^\star
+=
+\frac{\beta p_s-\alpha p_w}
+{\beta-\alpha}.
+}
+\tag{2}
+$$
+
+更漂亮的是，令
+
+$$
+\kappa_t=\frac{\alpha_t}{\beta_t},
+$$
+
+那么
+
+$$
+\boxed{
+p^\star
+=
+\frac{p_s-\kappa_t p_w}
+{1-\kappa_t}.
+}
+\tag{3}
+$$
+
+所以其实不需要分别知道 \(\alpha,\beta\)，只需要：
+
+$$
+\boxed{\kappa_t=\alpha_t/\beta_t.}
+$$
+
+这已经和 Feedback Guidance 非常像了：它也是假设 observed distribution 是 desired distribution 与 error distribution 的线性混合，然后“去污染”得到目标分布。FBG 原文明确就是用 additive mixture error model 推出 state-dependent guidance。([arXiv][1])
+
+---
+
+# 2. 对它求 score，AutoGuidance 直接出来了
+
+记：
+
+$$
+s^\star=\nabla\log p^\star,
+\qquad
+s_s=\nabla\log p_s,
+\qquad
+s_w=\nabla\log p_w.
+$$
+
+由 (3)：
+
+$$
+s^\star
+=
+\frac{
+p_s s_s-\kappa p_w s_w
+}{
+p_s-\kappa p_w
+}.
+$$
+
+整理：
+
+$$
+\boxed{
+s^\star
+=
+s_s+
+\frac{\kappa p_w}
+{p_s-\kappa p_w}
+(s_s-s_w).
+}
+$$
+
+定义 strong/weak density ratio：
+
+$$
+r_t(x)=\frac{p_s(x,t)}{p_w(x,t)}.
+$$
+
+于是：
+
+$$
+\boxed{
+s^\star
+=
+s_s+
+\underbrace{
+\frac{\kappa_t}
+{r_t(x)-\kappa_t}
+}_{\gamma^\star(x,t)}
+(s_s-s_w).
+}
+\tag{4}
+$$
+
+这就是 AutoGuidance：
+
+$$
+\boxed{
+s_{\rm AG}
+=
+s_s+\gamma(s_s-s_w)
+}
+$$
+
+但现在 \(\gamma\) 不再是拍脑袋 grid search 的常数，而是：
+
+$$
+\boxed{
+\gamma^\star(x,t)
+=
+\frac{\kappa_t}
+{p_s(x,t)/p_w(x,t)-\kappa_t}.
+}
+\tag{5}
+$$
+
+这个结果我觉得非常漂亮。
+
+---
+
+# 3. 它实际上解释了“为什么 strong−weak 方向是对的”
+
+还可以从另一个角度看，会更直观。
+
+定义当前位置属于 error component 的 posterior responsibility：
+
+$$
+\eta_s(x)
+=
+\frac{\alpha p_e(x)}
+{p_s(x)},
+$$
+
+$$
+\eta_w(x)
+=
+\frac{\beta p_e(x)}
+{p_w(x)}.
+$$
+
+那么 mixture score 有：
+
+$$
+s_s
+=
+(1-\eta_s)s^\star+\eta_s s_e,
+$$
+
+$$
+s_w
+=
+(1-\eta_w)s^\star+\eta_w s_e.
+$$
+
+因为 weak contamination 更大，可以证明：
+
+$$
+\eta_w>\eta_s.
+$$
+
+于是：
+
+$$
+s_s-s_w
+=
+(\eta_w-\eta_s)(s^\star-s_e),
+$$
+
+而 strong 真正到 ideal 的误差：
+
+$$
+s^\star-s_s
+=
+\eta_s(s^\star-s_e).
+$$
+
+所以：
+
+$$
+\boxed{
+s^\star-s_s
+=
+\frac{\eta_s}
+{\eta_w-\eta_s}
+(s_s-s_w).
+}
+\tag{6}
+$$
+
+这句话非常重要：
+
+> **如果 strong 和 weak 只是“同一种错误污染比例不同”，那么 strong−weak gap 与 strong→ideal correction 在每一个 \(x,t\) 上严格同方向。**
+
+但比例：
+
+$$
+\frac{\eta_s}{\eta_w-\eta_s}
+$$
+
+是随 \(x,t\) 变化的。
+
+所以这和你之前发现的：
+
+> “不能用一个固定线性比例描述 weak→strong→ideal”
+
+并不矛盾。
+
+它不是：
+
+$$
+s^\star-s_s=\rho(s_s-s_w),
+\qquad \rho=\text{constant},
+$$
+
+而是：
+
+$$
+\boxed{
+s^\star-s_s
+=
+\rho(x,t)(s_s-s_w).
+}
+$$
+
+这是一个**非线性的 density-mixture 机制**。
+
+---
+
+# 4. 这个模型给 AG 一个特别清楚的物理解释
+
+考虑：
+
+$$
+r(x)=\frac{p_s(x)}{p_w(x)}.
+$$
+
+把
+
+$$
+z(x)=\frac{p_e(x)}{p^\star(x)}
+$$
+
+记为“这里有多 error-like”。
+
+由 (1)：
+
+$$
+r(z)
+=
+\frac{1-\alpha+\alpha z}
+{1-\beta+\beta z}.
+$$
+
+求导：
+
+$$
+\boxed{
+\frac{dr}{dz}<0
+}
+$$
+
+因为 \(\beta>\alpha\)。
+
+所以：
+
+### 好区域
+
+$$
+p^\star\gg p_e,
+\qquad z\rightarrow0,
+$$
+
+那么：
+
+$$
+r\text{ 大}.
+$$
+
+也就是 strong 相对 weak 更喜欢这里。
+
+### 坏区域
+
+$$
+p_e\gg p^\star,
+\qquad z\rightarrow\infty,
+$$
+
+那么：
+
+$$
+r\rightarrow\frac{\alpha}{\beta}=\kappa.
+$$
+
+也就是 strong/weak 越来越难区分。
+
+然后看 (5)：
+
+$$
+\gamma^\star
+=
+\frac{\kappa}{r-\kappa}.
+$$
+
+所以：
+
+$$
+\boxed{
+\text{越 error-like 的位置}
+\Rightarrow
+r\downarrow
+\Rightarrow
+\gamma^\star\uparrow.
+}
+$$
+
+这几乎就是 Feedback Guidance 的 AG 版本：
+
+> 当前状态还深受 weak-type error contamination 影响 → 加强 AutoGuidance；
+
+> 当前状态已经明显 strong/ideal-like → 减少 AutoGuidance。
+
+---
+
+# 5. 这能非常自然地解释你 low-noise \(\gamma^\star\approx0\) 的现象
+
+这点我觉得特别值得注意。
+
+如果低噪阶段 strong model 已经非常准确，那么：
+
+$$
+\alpha_t\rightarrow0.
+$$
+
+而 weak 仍然有一些误差：
+
+$$
+\beta_t>0.
+$$
+
+于是：
+
+$$
+\kappa_t=\frac{\alpha_t}{\beta_t}
+\rightarrow0.
+$$
+
+代入：
+
+$$
+\boxed{
+\gamma^\star(x,t)
+=
+\frac{\kappa_t}
+{r_t(x)-\kappa_t}
+\rightarrow0.
+}
+\tag{7}
+$$
+
+所以完全不需要假设：
+
+$$
+s_s-s_w\rightarrow0.
+$$
+
+strong 和 depth4 在低噪阶段甚至仍然可以差很多。
+
+只是 strong 本身的 contamination 已经：
+
+$$
+\alpha_t\simeq0,
+$$
+
+因此：
+
+$$
+\boxed{
+\text{没有什么 strong error 可以再通过 weak reference 去消除了。}
+}
+$$
+
+所以最优外推就是 0。
+
+这比“low noise 时 gap 小”强很多，也和你的实际观察更吻合。
+
+---
+
+# 6. 它还能解释为什么 weak 不能和 strong 太接近
+
+从 density decontamination：
+
+$$
+p^\star
+=
+\frac{
+\beta p_s-\alpha p_w
+}{
+\beta-\alpha
+}.
+$$
+
+如果：
+
+$$
+\beta\approx\alpha,
+$$
+
+也就是 weak 和 strong 一样好，
+
+那么：
+
+$$
+\beta-\alpha\rightarrow0.
+$$
+
+整个反演会变得**病态**：
+
+$$
+\boxed{
+\text{两个几乎一样的模型无法可靠告诉你共同误差是什么。}
+}
+$$
+
+这给“为什么更浅的 weak 往往更好”提供一个很自然的解释：
+
+浅层：
+
+$$
+\beta-\alpha
+$$
+
+更大，
+
+strong/weak contrast 更有辨识度。
+
+深层比如 depth10：
+
+$$
+\beta\approx\alpha,
+$$
+
+差异更多是噪声/随机 prediction error，
+
+所以外推价值弱。
+
+但这里必须补一句：
+
+$$
+\boxed{\beta\text{ 不是越大越好}.}
+$$
+
+因为 weak 太差以后，“共享同一个 \(p_e\)”这个假设很可能就崩了。
+
+所以理论上应该存在：
+
+$$
+\boxed{
+\text{足够差，但 error type 仍 compatible}
+}
+$$
+
+的 sweet spot。
+
+这其实非常贴原始 AutoGuidance 的观察。([Aalto 用户][2])
+
+---
+
+# 7. 这比 FBG 原假设其实还多了一层
+
+FBG 的 conditional 情况是：
+
+$$
+p_{\theta,c}
+=
+(1-\pi)p_u+\pi p_c^\star,
+$$
+
+即只有一个 observed conditional mixture。([arXiv][1])
+
+我们这里是：
+
+$$
+\boxed{
+\begin{aligned}
+p_s&=(1-\alpha)p^\star+\alpha p_e,\\
+p_w&=(1-\beta)p^\star+\beta p_e.
+\end{aligned}
+}
+$$
+
+也就是**两个不同污染程度的 observation**。
+
+从统计上看，这反而更像一个 two-mixture decontamination problem。
+
+并且因为有两个 mixture，我们可以消掉 unknown error density \(p_e\)。
+
+这是非常好的性质。
+
+---
+
+# 8. 但是最大的理论风险也非常明确：共同的 \(p_e\) 假设很强
+
+Checkpoint strong/weak 真有可能：
+
+$$
+p_s=(1-\alpha)p^\star+\alpha p_e,
+$$
+
+$$
+p_w=(1-\beta)p^\star+\beta p_e
+$$
+
+吗？
+
+这意味着：
+
+> strong 和 weak 所有系统性错误，都可以归结成**同一个 error distribution**，只差一个 mixture proportion。
+
+这比 AG 原论文的：
+
+> “similar errors, weak errors larger”
+
+要严格很多。AG 原论文确实只主张 smaller/undertrained model 的错误与 main model 类似但更严重，并没有提出精确的共享混合分布模型。([arXiv][1])
+
+对 IG depth4 来说也一样：
+
+shallow predictor 可能：
+
+* 漏结构；
+* 有不同 frequency bias；
+* 有不同 semantic bias；
+
+未必都能用同一个 \(p_e\) 表示。
+
+所以这个是一个**非常好的 hypothesis**，但不能直接当事实。
+
+---
+
+# 9. 它有一个特别强、而且非常容易 falsify 的预测
+
+如果共享 \(p_e\) 模型成立，那么前面的 score mixture 给出：
+
+$$
+s_i
+=
+(1-\eta_i)s^\star+\eta_i s_e.
+$$
+
+所以对同一个：
+
+$$
+x_t,t
+$$
+
+任何不同质量等级的 predictor：
+
+$$
+s_4,\quad s_8,\quad s_{\rm full},\ldots
+$$
+
+理论上都应该落在：
+
+$$
+\boxed{
+s^\star\leftrightarrow s_e
+}
+$$
+
+这一条线上。
+
+因此例如三个 predictor：
+
+$$
+s_4,\quad s_8,\quad s_s
+$$
+
+应该满足：
+
+$$
+\boxed{
+s_s-s_8
+\parallel
+s_8-s_4.
+}
+\tag{8}
+$$
+
+注意：
+
+不是固定比例。
+
+只要求**逐样本、逐 timestep 共线**。
+
+比例完全可以：
+
+$$
+\rho=\rho(x,t).
+$$
+
+所以验证时不要再做你之前那种全局：
+
+$$
+d_2=\rho d_1,\quad \rho=\text{constant}.
+$$
+
+而是只看：
+
+$$
+\boxed{
+\cos
+(s_s-s_8,\,
+s_8-s_4).
+}
+$$
+
+如果 shared-error-mixture 理论很准，应该大量接近：
+
+$$
++1.
+$$
+
+如果大量：
+
+$$
+0,\quad -1,
+$$
+
+这个精确 mixture hypothesis 就直接被否掉。
+
+这个实验成本非常低。
+
+---
+
+# 10. 但有一点需要结合你之前的实验谨慎
+
+你已经发现多 depth 的线性递推整体并不靠谱，并且 depth4 单独充分调参后更好。
+
+所以我**不预期这个严格 one-error-distribution 模型会完美成立**。
+
+更可能出现的是：
+
+$$
+\boxed{
+p_s=(1-\alpha)p^\star+\alpha p_e^s,
+}
+$$
+
+$$
+\boxed{
+p_w=(1-\beta)p^\star+\beta p_e^w,
+}
+$$
+
+其中：
+
+$$
+p_e^s\approx p_e^w
+$$
+
+但不完全相同。
+
+这时：
+
+$$
+s_s-s_w
+$$
+
+只是**近似** ideal correction。
+
+而且这种 approximation quality 本身就可以定义 weak compatibility。
+
+也许这才是最后能做方法的地方。
+
+---
+
+# 11. 一个更现实的 relaxation
+
+把 error density 写成：
+
+$$
+p_e^w=p_e+\delta_w,
+$$
+
+$$
+p_e^s=p_e+\delta_s.
+$$
+
+那么刚才精确公式会变成：
+
+$$
+\boxed{
+s^\star
+=
+s_s+
+\gamma^\star(x,t)(s_s-s_w)
++
+\varepsilon_{\rm mismatch}(x,t).
+}
+\tag{9}
+$$
+
+这里：
+
+$$
+\varepsilon_{\rm mismatch}
+$$
+
+就是“weak 与 strong 的 failure mode 不 compatible”造成的项。
+
+这就非常接近 AG 真正的现实：
+
+> guidance 能否成功，取决于 strong−weak contrast 是否主要来自**共同 error mode 的幅度差**，而不是来自完全不同的错误。
+
+---
+
+# 12. 这条线我觉得比我们前面很多想法都更值得先验证
+
+因为它同时解释了四件事：
+
+$$
+\boxed{
+\begin{array}{ll}
+1.&\text{为什么 strong−weak 可以外推：共同 error 被差分消掉;}\\
+2.&\text{为什么 scale 应 state-dependent：density ratio }r(x,t);\\
+3.&\text{为什么 low noise 关闭：}\alpha_t/\beta_t\to0;\\
+4.&\text{为什么 weak 需要足够弱但 compatible：避免 }\beta\approx\alpha
+\text{ 又不能换 error mode.}
+\end{array}}
+$$
+
+而且它不是“weak 是 Gaussian smoothing”，也不是“模型质量轴固定线性”。
+
+真正的核心是：
+
+$$
+\boxed{
+\textbf{shared error distribution + different contamination strengths}.
+}
+$$
+
+如果这个成立，我甚至觉得可以把 AG 重新解释成一种 **two-model error decontamination**：
+
+$$
+\boxed{
+\text{AutoGuidance is not extrapolation;
+it is decontamination from a shared failure distribution.}
+}
+$$
+
+这个 story 要比“strong 比 weak 好，所以继续往 strong−weak 方向走”完整得多。
+
+最先做的实验我会非常简单：**先检查多 depth 的逐状态 gap 是否具有明显的一维 shared-error structure**，而不是马上写新 sampler。如果连这个必要条件都完全不成立，就说明一个共同 \(p_e\) 太强，需要直接升级成“低维 error subspace”版本，而不是硬撑单一 error distribution。
+
+[1]: https://arxiv.org/abs/2506.06085 "Feedback Guidance of Diffusion Models"
+[2]: https://users.aalto.fi/~laines9/publications/karras2024autoguidance_paper.pdf?utm_source=chatgpt.com "a worse fit to the data.¹ This difference in accuracy is apparent in respective plots of the learned densities in Figures 2a and 2b."

@@ -1,0 +1,59 @@
+{
+  "rows": [
+    {
+      "kernel": "white",
+      "weights": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.427524118044623
+      ],
+      "baseline_validation_mse": 0.8043996524588658,
+      "validation_mse": 0.8044001186752212,
+      "delta": 4.6621635527282636e-07,
+      "cluster_image_se": 6.392672452862872e-07
+    },
+    {
+      "kernel": "lowpass",
+      "weights": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8836029970938295
+      ],
+      "baseline_validation_mse": 0.8043996524588658,
+      "validation_mse": 0.8043999749649197,
+      "delta": 3.2250605378257773e-07,
+      "cluster_image_se": 4.075272132238057e-07
+    },
+    {
+      "kernel": "band",
+      "weights": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5288816822686329
+      ],
+      "baseline_validation_mse": 0.8043996524588658,
+      "validation_mse": 0.8044002996533804,
+      "delta": 6.471945145036853e-07,
+      "cluster_image_se": 6.975597264117144e-07
+    }
+  ],
+  "selected_kernel": "lowpass",
+  "seconds": 60.236474541947246,
+  "image_metrics_used": false,
+  "request_sha256": "95a8c134b92c4d8bd46696cc0bc723cc45e2f15ebd9265468927d68819f70984"
+}

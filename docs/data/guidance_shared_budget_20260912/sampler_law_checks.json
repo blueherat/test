@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "pde_checks": [
+    {
+      "t": 0.13,
+      "a": 0.8,
+      "max_pde_difference": 2.6645352591003757e-15
+    },
+    {
+      "t": 0.41,
+      "a": 1.25,
+      "max_pde_difference": 1.1102230246251565e-15
+    },
+    {
+      "t": 0.73,
+      "a": 0.8,
+      "max_pde_difference": 4.440892098500626e-16
+    }
+  ],
+  "endpoint_vs_path": [
+    {
+      "t": 0.0,
+      "actual_rollout_variance": 1.0,
+      "renoised_endpoint_variance": 1.0
+    },
+    {
+      "t": 0.25,
+      "actual_rollout_variance": 0.5066701692604727,
+      "renoised_endpoint_variance": 0.5831173111058264
+    },
+    {
+      "t": 0.5,
+      "actual_rollout_variance": 0.24022488679628623,
+      "renoised_endpoint_variance": 0.3324692444233059
+    },
+    {
+      "t": 0.75,
+      "actual_rollout_variance": 0.21944143676328717,
+      "renoised_endpoint_variance": 0.24805579995243826
+    },
+    {
+      "t": 1.0,
+      "actual_rollout_variance": 0.32987697769322355,
+      "renoised_endpoint_variance": 0.32987697769322355
+    }
+  ],
+  "scope": "Continuous exact-density identities at t>0; no empirical IG/CFG density claim or new FID result.",
+  "source_sha256": "07d037540ccedb63e2560af4859851ef0ea1e622a38129357e5ab6500758f761"
+}

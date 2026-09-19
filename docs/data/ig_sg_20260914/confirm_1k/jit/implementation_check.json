@@ -1,0 +1,31 @@
+{
+  "cpu_passed": true,
+  "raw_strong_reference": true,
+  "symmetric_same_time_probes": true,
+  "repeatable": true,
+  "model": "jit",
+  "model_passed": true,
+  "native_baseline_bitwise": true,
+  "zero_strength_bitwise": true,
+  "actual_block_hook_matches_counts": true,
+  "raw_source_counts": 100,
+  "checks": {
+    "sg": {
+      "full": 199,
+      "delta_rms": 0.11736294627189636
+    },
+    "log": {
+      "full": 300,
+      "delta_rms": 0.09430574625730515
+    }
+  },
+  "runtime_sources": {
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/jit_internal_guidance.py": "b68534fec95dd9b08b93625364960945e25bb2b5d077cb27f900130305704304",
+    "/data/users/zhoushunyu/research_repos/JiT/model_jit.py": "0293a23c01312317701c96704b85e7fe00b15d9261aa845731ea434103fd7563",
+    "/data/users/zhoushunyu/research_repos/JiT/util/model_util.py": "f4f35cc86a41b374d9e3654c8a2cddc12fbb11d41a28d24f05cf667c008b912e"
+  },
+  "maximum_allocated_bytes": 608505344,
+  "raev2_prior_implementation_bitwise": false
+}

@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "request_sha256": "6df8d86f15b33c1dba11d3e6fe2d5ee4207d5b3d24c53910ffe1b6f7256c5974",
+  "results": 1,
+  "samples_per_config": 5000,
+  "metadata_and_coverage_all_complete_arms": true,
+  "covered_batch_indices": 625,
+  "raw_and_metric_audits": [
+    {
+      "arm": "ig_local_residual_11",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "279ab9bb3c47a10fb4af969dccaa4e0ed7e54a3cdbfe48d2b79c77a290c53929",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 39.33046969495331,
+        "sfid": 75.52050654540983,
+        "samples": 5000
+      },
+      "independent_fid": 39.33046999715183,
+      "independent_sfid": 75.52050703044908,
+      "fid_absolute_error": 3.02198522206254e-07,
+      "sfid_absolute_error": 4.850392514299529e-07
+    }
+  ],
+  "feature_extraction_repeated": false,
+  "raw_bytes_rehashed_for_selected_only": true,
+  "independent_confirmation": true
+}

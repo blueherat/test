@@ -1,0 +1,43 @@
+{
+  "complete": true,
+  "generated_images": 34000,
+  "image_arms": 34,
+  "sheet_rows": {
+    "Readme": 10,
+    "ImageMetrics": 35,
+    "ImageAudits": 35,
+    "DSM_calibration": 7,
+    "DSM_time_bins": 49,
+    "Sources": 40,
+    "LogPairedBootstrap": 3,
+    "LogBootstrapReplicates": 201,
+    "BandPairedBootstrap": 5,
+    "BandBootstrapReplicates": 201,
+    "ToyRisk": 65,
+    "ToyODE": 9,
+    "ToyDSM": 10,
+    "RingDiagnostics": 6,
+    "AttachmentCheck": 4,
+    "one_dimensional_curves": 12002,
+    "ODE_endpoints": 4097,
+    "two_dimensional_fields": 58082
+  },
+  "workbook_sha256": "a222d5509188a91091bc056ae00a8e3acc98d43620380fcb9a1e2a3626455a2d",
+  "calibration_checks": [
+    {
+      "experiment": "calibration",
+      "passed": true,
+      "selected_moments_and_labels_verified": true,
+      "weights_and_heldout_deltas_recomputed": true,
+      "request_sha256": "95a8c134b92c4d8bd46696cc0bc723cc45e2f15ebd9265468927d68819f70984"
+    },
+    {
+      "experiment": "calibration_strong",
+      "passed": true,
+      "selected_moments_and_labels_verified": true,
+      "weights_and_heldout_deltas_recomputed": true,
+      "request_sha256": "984aa1bf7e16e18e028b0e1cd27bde69a492e94d7aeddd0ba016111a5b8a2bed"
+    }
+  ],
+  "report_requires_separate_final_review": true
+}

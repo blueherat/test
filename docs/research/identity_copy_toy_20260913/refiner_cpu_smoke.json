@@ -1,0 +1,94 @@
+{
+  "synthetic_cpu_smoke_only": true,
+  "temporary_outputs": "/tmp/inverse_copy_refiner_cpu_smoke_u3cg9g6o",
+  "zero_initialization_bitwise_identity": true,
+  "three_cpu_updates_finite": true,
+  "output_layer_receives_gradient": true,
+  "checkpoint_roundtrip_load": true,
+  "initial_identity_in_best_selection": true,
+  "overwrite_rejected": true,
+  "cross_split_source_leakage_rejected": true,
+  "generic_M4_shape_only_evaluation": true,
+  "production_model_parameters": 592100,
+  "smoke_summary": {
+    "complete": true,
+    "steps": 3,
+    "best_step": 3,
+    "best_heldout": {
+      "repair_mse": 0.017368081957101822,
+      "identity_mse": 8.268917736131698e-05,
+      "objective": 0.017533460311824456,
+      "repair_mse_by_tau": [
+        0.011801844462752342,
+        0.02293432131409645
+      ],
+      "repair_mse_by_corruption": [
+        0.011801844462752342,
+        0.02293432131409645
+      ],
+      "sources": 2
+    },
+    "last_heldout": {
+      "repair_mse": 0.017368081957101822,
+      "identity_mse": 8.268917736131698e-05,
+      "objective": 0.017533460311824456,
+      "repair_mse_by_tau": [
+        0.011801844462752342,
+        0.02293432131409645
+      ],
+      "repair_mse_by_corruption": [
+        0.011801844462752342,
+        0.02293432131409645
+      ],
+      "sources": 2
+    },
+    "zero_p_baseline": {
+      "fit": {
+        "repair_mse": 0.017799999564886093,
+        "identity_mse": 0.0,
+        "objective": 0.017799999564886093,
+        "repair_mse_by_tau": [
+          0.010000001639127731,
+          0.025599997490644455
+        ],
+        "repair_mse_by_corruption": [
+          0.010000001639127731,
+          0.025599997490644455
+        ],
+        "sources": 8
+      },
+      "heldout": {
+        "repair_mse": 0.017799999564886093,
+        "identity_mse": 0.0,
+        "objective": 0.017799999564886093,
+        "repair_mse_by_tau": [
+          0.010000001639127731,
+          0.025599999353289604
+        ],
+        "repair_mse_by_corruption": [
+          0.010000001639127731,
+          0.025599999353289604
+        ],
+        "sources": 2
+      }
+    },
+    "model_parameters": 37612,
+    "model_config": {
+      "num_classes": 3,
+      "width": 8,
+      "context_dim": 16
+    },
+    "elapsed_seconds": 0.5701610702089965,
+    "source_sha256": {
+      "/home/zhoushunyu/eqvae/experiments/inverse_copy_refiner_20260913/train.py": "a4405c4fc1662a252a44fe449d3f2ce541508dcdd32e79efe15eb0da9dd1ae9c",
+      "/home/zhoushunyu/eqvae/experiments/inverse_copy_refiner_20260913/model.py": "3e4cafb7b05b83552066981c6df02165f4d2cfbef12617a37f8703c9035fc1f4"
+    },
+    "pairs_sha256": "0a02649fe57c2c6283674d94238c0600bc763c1629919f79a4a42e96fce86ebb",
+    "limitation": "Heldout reconstruction selects the refiner. It does not establish improved generation quality or FID."
+  },
+  "source_sha256": {
+    "model.py": "3e4cafb7b05b83552066981c6df02165f4d2cfbef12617a37f8703c9035fc1f4",
+    "train.py": "a4405c4fc1662a252a44fe449d3f2ce541508dcdd32e79efe15eb0da9dd1ae9c",
+    "smoke.py": "7110a0fb0deb4430c72982a8f025b348e77346b7e374ad3976fc9e54c1bc0615"
+  }
+}

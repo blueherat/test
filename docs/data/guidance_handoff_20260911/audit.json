@@ -1,0 +1,15 @@
+{
+  "model": "Y in {-1,1} equally likely; X|Y ~ N(2Y,0.5^2); X_t=tX+(1-t)Z; Z~N(0,1) independent",
+  "semantic_event": "endpoint > 0 (not the latent mixture component label)",
+  "target_negative_tail_probability": 3.167124183311986e-05,
+  "n_midpoint_quantiles": 8192,
+  "target_grid_mean": 1.9999999999999998,
+  "target_grid_std": 0.4999597818324999,
+  "mixture_velocity_identity_max_error": 8.881784197001252e-16,
+  "null_ode_quantile_max_error": 4.6915804574609865e-12,
+  "inverse_null_written_endpoint_max_error": 2.0838886172214188e-13,
+  "conditional_prefix_conditional_tail_w2_squared_max": 2.8690337640293604e-32,
+  "strong_prefix_ode_nfe": 335,
+  "scope": "Exact fields, numerical CPU integration/quadrature. No learned image model, no FID, no GPU runs.",
+  "status": "PASS"
+}

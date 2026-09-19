@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "phase": "review_complete",
+  "results_sha256": "585a572aa09c43f547707110da782deda8b54731243f882e6c348a1ba19d040d",
+  "audit_sha256": "dcdc9e8495a068b405f8c3ab4ca8ebb5b9fc3c415334117a4041b96d3d97acb1",
+  "candidate": 84.78022251082933,
+  "cfg": 45.70743398809668,
+  "apg": 44.50397055503828,
+  "linear_attention": 84.3084177692528,
+  "temperature": 261.6241908354938,
+  "embedding_extrapolation": 86.97991611863557,
+  "manual_kernel": 87.07733888558107,
+  "decision": "end_this_attention_proxy_no_strength_or_layer_expansion",
+  "reason": "The probability proxy fails against CFG/APG and provides no gain over direct linear attention; local simplex preservation does not establish quality.",
+  "next_stage": "cycle03_internal_coarse",
+  "old_broad_queue_paused": true,
+  "created_unix": 1789157960.22809
+}

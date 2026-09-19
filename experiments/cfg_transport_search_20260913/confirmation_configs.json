@@ -1,0 +1,7 @@
+[
+  {"arm":"parallel_e.5","kind":"blend_parallel","eta":0.5,"apg_alpha":2,"ctrl_alpha":2.75,"steps":64,"cutoff":0.75},
+  {"arm":"apg_time_gain","kind":"apg_time_gain","alpha":2,"beta":-0.5,"steps":64,"cutoff":0.75},
+  {"arm":"apg_a2_s64","kind":"apg","alpha":2,"beta":-0.5,"steps":64,"cutoff":0.75},
+  {"arm":"ctrl_a2.75_s64","kind":"ctrl","alpha":2.75,"lambda_ctrl":5,"K":0.2,"steps":64,"cutoff":0.75},
+  {"arm":"cfg_a1.25_s64","kind":"cfg","alpha":1.25,"steps":64,"cutoff":0.75}
+]

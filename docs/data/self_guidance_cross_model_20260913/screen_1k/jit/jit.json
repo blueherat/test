@@ -1,0 +1,26 @@
+{
+  "cpu_passed": true,
+  "noisier_query_direction": true,
+  "same_state": true,
+  "raw_conditional_history": true,
+  "history_reset": true,
+  "zero_scale_exact": true,
+  "model": "jit",
+  "model_passed": true,
+  "baseline_bitwise": true,
+  "zero_scale_bitwise": true,
+  "records": {
+    "sg": {
+      "full": 299,
+      "rms": 0.45692840218544006
+    },
+    "sg_prev": {
+      "full": 200,
+      "rms": 0.5607801079750061
+    }
+  },
+  "batch": 8,
+  "sg_sample_decode_seconds": 5.1651577008888125,
+  "peak_memory_gb": 0.71002368,
+  "t_floor": 0.05
+}

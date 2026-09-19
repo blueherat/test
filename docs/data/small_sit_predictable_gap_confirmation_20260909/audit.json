@@ -1,0 +1,451 @@
+{
+  "status": {
+    "phase": "complete",
+    "results": 2,
+    "wall_seconds": 368.6379164336249,
+    "numerical_failures": 0,
+    "worker_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "controller_pid": 3977765,
+    "worker_pids": [
+      3977773,
+      3977774,
+      3977775,
+      3977776
+    ],
+    "research_goal_achieved": false
+  },
+  "request_sha256": "b5f8837245e84cff2ce0d9c57a212ea057dc05f46cf48ca1db9f8064d3c58aa0",
+  "rows": [
+    {
+      "arm": "ig_restarted",
+      "fid": 41.50342023638416,
+      "sfid": 70.23348008901985,
+      "inception_score": 36.827980041503906,
+      "full_calls_per_image": 114.688,
+      "reader_calls_per_image": 0.0,
+      "sum_batch_gpu_seconds": 472.7715687593445,
+      "raw_residual_relative_norm": 0.0,
+      "predictable_part_relative_norm": 0.0,
+      "residual_gap_cosine": 0.0,
+      "normalized_orthogonal_energy_ratio": 0.0,
+      "fallback_fraction": 0.0
+    },
+    {
+      "arm": "residual_norm",
+      "fid": 40.97562691090042,
+      "sfid": 70.31266541549189,
+      "inception_score": 36.73794174194336,
+      "full_calls_per_image": 115.0624,
+      "reader_calls_per_image": 71.8688,
+      "sum_batch_gpu_seconds": 487.3199867485091,
+      "raw_residual_relative_norm": 0.9452269258659085,
+      "predictable_part_relative_norm": 0.32461465882443286,
+      "residual_gap_cosine": 0.9408480133243435,
+      "normalized_orthogonal_energy_ratio": 0.1133283969357007,
+      "fallback_fraction": 0.0
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "arm": "ig_restarted",
+      "batch_coverage_passed": true,
+      "key": {
+        "activations_sha256": "ec9d6cabce97f88ad0fe9e47cb76b11176078490d4ed03cb3e63090f1d5760e3",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 41.50342023638416,
+        "sfid": 70.23348008901985
+      },
+      "independent_fid": 41.50341916036783,
+      "independent_sfid": 70.23348082482592,
+      "fid_absolute_error": 1.0760163320355787e-06,
+      "sfid_absolute_error": 7.358060685191958e-07
+    },
+    {
+      "arm": "residual_norm",
+      "batch_coverage_passed": true,
+      "key": {
+        "activations_sha256": "f07929578574a2d88829cdbe78101ca0825f7c20f7481e53fb1cf8e8c40808f6",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 40.97562691090042,
+        "sfid": 70.31266541549189
+      },
+      "independent_fid": 40.97562937222539,
+      "independent_sfid": 70.31266428524118,
+      "fid_absolute_error": 2.4613249749450006e-06,
+      "sfid_absolute_error": 1.1302507090249492e-06
+    }
+  ],
+  "preflights": [
+    {
+      "passed": true,
+      "rank": 0,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.3053956678398269e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.0973445006715616e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.2109508614773805e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.186913313830587e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "c061e4c3b1f09ee71d30cde6e2b274fe6c7a75de937019fbbe86ee9481d687eb",
+      "per_query_seconds": {
+        "native": 0.006808550655841827,
+        "residual_raw": 0.007554167509078979,
+        "residual_norm": 0.006013174432640275,
+        "parallel_norm": 0.005621724901720882
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      },
+      "new_noise_norm_identity": true,
+      "both_old_endpoints_exact": [
+        {
+          "arm": "ig_restarted",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_carrier_flow_20260909/ig_restarted/rank0/batch0000.npz",
+          "sha256": "c061e4c3b1f09ee71d30cde6e2b274fe6c7a75de937019fbbe86ee9481d687eb",
+          "exact": true
+        },
+        {
+          "arm": "residual_norm",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_predictable_gap_20260909/residual_norm/rank0/batch0000.npz",
+          "sha256": "227bddd518c188af63f7ac12780c9ed7cc295fc2dc1f10f52667e7ad90f2c108",
+          "exact": true
+        }
+      ],
+      "fresh_noise_sha256": "ae8f2026c0874390a010677bb413b82944c53c5b2489196c853ea81f8e30d5b0",
+      "fresh_labels_sha256": "afa050ae96238d1738ca4abfc0d910b0a8a5bf171811cb50a2f500493055c4c4"
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.8797411232885095e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.0354003056204393e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.330929034151998e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.279643104343478e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "3182aa7a32f2f05091f3b1a3a3c612270f018fc6356c304acecce266e18a34f5",
+      "per_query_seconds": {
+        "native": 0.005087835264081756,
+        "residual_raw": 0.005587188061326742,
+        "residual_norm": 0.005607898424689968,
+        "parallel_norm": 0.005574374195809166
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      },
+      "new_noise_norm_identity": true,
+      "both_old_endpoints_exact": [
+        {
+          "arm": "ig_restarted",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_carrier_flow_20260909/ig_restarted/rank1/batch0008.npz",
+          "sha256": "3182aa7a32f2f05091f3b1a3a3c612270f018fc6356c304acecce266e18a34f5",
+          "exact": true
+        },
+        {
+          "arm": "residual_norm",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_predictable_gap_20260909/residual_norm/rank1/batch0008.npz",
+          "sha256": "e2546b77e7bf267d7d8cdec220bf8ac1072bbf32bf898f7c82f6ee3f68e4c8b7",
+          "exact": true
+        }
+      ],
+      "fresh_noise_sha256": "3ac8da99dae55234b8d86f246d572946d6679fce11323580f77e00f6fb1c5076",
+      "fresh_labels_sha256": "d12d99fd7b4fcef72eb9de1de63537059d8183a5869b10b940aa708ae2d44177"
+    },
+    {
+      "passed": true,
+      "rank": 2,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 3.1903341013786446e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.216503464964493e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 3.864710563933338e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 3.6579960677185497e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "eb5cdd0f727167146dfa3a34bbc737bd5f20ec3dd7cf77bbdfbe96a8cb5615fd",
+      "per_query_seconds": {
+        "native": 0.0050650104725112515,
+        "residual_raw": 0.005559677025303245,
+        "residual_norm": 0.005577444098889828,
+        "parallel_norm": 0.005565325527762373
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      },
+      "new_noise_norm_identity": true,
+      "both_old_endpoints_exact": [
+        {
+          "arm": "ig_restarted",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_carrier_flow_20260909/ig_restarted/rank2/batch0016.npz",
+          "sha256": "eb5cdd0f727167146dfa3a34bbc737bd5f20ec3dd7cf77bbdfbe96a8cb5615fd",
+          "exact": true
+        },
+        {
+          "arm": "residual_norm",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_predictable_gap_20260909/residual_norm/rank2/batch0016.npz",
+          "sha256": "d2f0263c39c100eec65149faa8819dcd75927460f19ceebe252cb81254eb67bb",
+          "exact": true
+        }
+      ],
+      "fresh_noise_sha256": "60fbab22136847ddb5bac5a998de5637bb906e2aa05943a5a5c394f203d02098",
+      "fresh_labels_sha256": "516b0427b014b8451bbd4a7755ec59bd728124952da43e3160bb2166ca755b95"
+    },
+    {
+      "passed": true,
+      "rank": 3,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.516368629301713e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 2.9179735094864157e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.146871681598441e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.4910778340678803e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "08c2e39697b543c4a0969b15600c9490795db45c59f3587797d7b2db5e19567e",
+      "per_query_seconds": {
+        "native": 0.007175788702443242,
+        "residual_raw": 0.007678786727289359,
+        "residual_norm": 0.007627654091144602,
+        "parallel_norm": 0.0076173090065519014
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      },
+      "new_noise_norm_identity": true,
+      "both_old_endpoints_exact": [
+        {
+          "arm": "ig_restarted",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_carrier_flow_20260909/ig_restarted/rank3/batch0024.npz",
+          "sha256": "08c2e39697b543c4a0969b15600c9490795db45c59f3587797d7b2db5e19567e",
+          "exact": true
+        },
+        {
+          "arm": "residual_norm",
+          "path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_predictable_gap_20260909/residual_norm/rank3/batch0024.npz",
+          "sha256": "7f024dd20ef72e39229447c750f72d7877a287d256ed17ecbab7f8480bf7dd5a",
+          "exact": true
+        }
+      ],
+      "fresh_noise_sha256": "a91007a5d5779d580fa32f3920c19816f7e0e02a31ae59faf8317f620fe5f12c",
+      "fresh_labels_sha256": "7a8bb4db2e56c9ea37abd3385782afe1218cb16dc2cfe059f263f98390534598"
+    }
+  ],
+  "balanced_class_counts": [
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50,
+    50
+  ],
+  "fixed_examples": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "selection": "first eight input indices, fixed without quality selection",
+    "path": "/home/zhoushunyu/eqvae/docs/data/small_sit_predictable_gap_confirmation_20260909/paired_first8.png",
+    "sha256": "bdb203d7817970649bb62df7a4752c80c2daad427c21af982f50efb9baacc962"
+  },
+  "new_noise_confirmation": true,
+  "independent_feature_extraction": false,
+  "independent_training": false,
+  "independent_reference": false,
+  "research_goal_achieved": false
+}

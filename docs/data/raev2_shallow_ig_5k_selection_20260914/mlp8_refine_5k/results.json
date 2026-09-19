@@ -1,0 +1,83 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "arm": "mlp8_w1p2500",
+      "kind": "mlp8",
+      "w": 1.25,
+      "stage": "mlp8_refine_5k",
+      "samples": 5000,
+      "fid": 7.112037512384404,
+      "inception_score": 152.62396545410155,
+      "full_calls": 100,
+      "prefix_calls": 0,
+      "head_calls": 99,
+      "seconds": 3206.351684096735,
+      "source_output": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p2500"
+    },
+    {
+      "arm": "mlp8_w1p3000",
+      "kind": "mlp8",
+      "w": 1.2999999999999998,
+      "stage": "mlp8_refine_5k",
+      "samples": 5000,
+      "fid": 7.058280012515297,
+      "inception_score": 154.6864471435547,
+      "full_calls": 100,
+      "prefix_calls": 0,
+      "head_calls": 99,
+      "seconds": 3230.6945583168417,
+      "source_output": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3000"
+    },
+    {
+      "arm": "mlp8_w1p3500",
+      "kind": "mlp8",
+      "w": 1.35,
+      "stage": "mlp8_refine_5k",
+      "samples": 5000,
+      "fid": 7.050632190207239,
+      "inception_score": 156.30923919677736,
+      "full_calls": 100,
+      "prefix_calls": 0,
+      "head_calls": 99,
+      "seconds": 3220.7669855854474,
+      "source_output": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3500"
+    }
+  ],
+  "audits": [
+    {
+      "arm": "mlp8_w1p2500",
+      "passed": true,
+      "coverage": 5000,
+      "fid_fp64": 7.112037512386394,
+      "error": 1.9895196601282805e-12,
+      "independent_extractor": false,
+      "samples_sha256": "200ca4e545de4a3488a30ca987c0b0842e247418d8c6a9db248ba2db4fb8ddbd",
+      "features_sha256": "d73660e900422336eb4bf5d7f48cdf00f069009b7931391a4d76fd0035d0053d"
+    },
+    {
+      "arm": "mlp8_w1p3000",
+      "passed": true,
+      "coverage": 5000,
+      "fid_fp64": 7.058280012517514,
+      "error": 2.2168933355715126e-12,
+      "independent_extractor": false,
+      "samples_sha256": "1f2c5ed052e2bbf8ae4d524ae7969fd9361b3741c3d7121ff3a4428cea790823",
+      "features_sha256": "91dd4e91f8660723bf4482e0bfcc685f0b0fbc6875677c0171bfdd575b6838ab"
+    },
+    {
+      "arm": "mlp8_w1p3500",
+      "passed": true,
+      "coverage": 5000,
+      "fid_fp64": 7.050632190207409,
+      "error": 1.7053025658242404e-13,
+      "independent_extractor": false,
+      "samples_sha256": "850a3af003895a2ab7f698d669e70fe1372657c0311898db5e1bed4db99ff667",
+      "features_sha256": "8256538be3ce8eb58a384f18111a9893ce674b68bd3b4597df2e32b8915b503e"
+    }
+  ],
+  "request_sha256": "e752877a80d3f91932120ddc4b102a9c58f25591566b8cd122faf895c7c94574",
+  "audit_scope": "explicit_completed_subset",
+  "requested_config_count": 9,
+  "audited_config_count": 3
+}

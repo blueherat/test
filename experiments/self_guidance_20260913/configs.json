@@ -1,0 +1,114 @@
+[
+  {
+    "arm": "strong_e64",
+    "kind": "baseline",
+    "alpha": 0.0,
+    "omega": 0.0,
+    "steps": 64,
+    "solver": "euler"
+  },
+  {
+    "arm": "strong_sg_w1",
+    "kind": "sg",
+    "alpha": 0.0,
+    "omega": 1.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "strong_sg_w3",
+    "kind": "sg",
+    "alpha": 0.0,
+    "omega": 3.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "strong_sg_prev_w1",
+    "kind": "sg_prev",
+    "alpha": 0.0,
+    "omega": 1.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "strong_sg_prev_w3",
+    "kind": "sg_prev",
+    "alpha": 0.0,
+    "omega": 3.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "cfg_e64",
+    "kind": "baseline",
+    "alpha": 1.25,
+    "omega": 0.0,
+    "steps": 64,
+    "solver": "euler"
+  },
+  {
+    "arm": "cfg_sg_w1",
+    "kind": "sg",
+    "alpha": 1.25,
+    "omega": 1.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "cfg_sg_w3",
+    "kind": "sg",
+    "alpha": 1.25,
+    "omega": 3.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "cfg_sg_prev_w1",
+    "kind": "sg_prev",
+    "alpha": 1.25,
+    "omega": 1.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "cfg_sg_prev_w3",
+    "kind": "sg_prev",
+    "alpha": 1.25,
+    "omega": 3.0,
+    "steps": 64,
+    "solver": "euler",
+    "shift": 0.01,
+    "prev_start": 0.5
+  },
+  {
+    "arm": "cfg_e100",
+    "kind": "baseline",
+    "alpha": 1.25,
+    "omega": 0.0,
+    "steps": 100,
+    "solver": "euler"
+  },
+  {
+    "arm": "cfg_h64",
+    "kind": "baseline",
+    "alpha": 1.25,
+    "omega": 0.0,
+    "steps": 64,
+    "solver": "heun"
+  }
+]

@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "request_sha256": "34c1c3f8ab029471cc81b0d62a963152d4d7e5d94317610d48e492d20217dcb1",
+  "results": 184,
+  "samples_per_config": 1000,
+  "metadata_and_coverage_all_complete_arms": true,
+  "covered_batch_indices": 23000,
+  "raw_and_metric_audits": [
+    {
+      "arm": "ig_dopri_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "72580903338da9a440eb405c664efca6516fa486673ab1a905dfcf7aa80f3a4c",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 66.8319972511946,
+        "sfid": 208.19194179696922,
+        "samples": 1000
+      },
+      "independent_fid": 66.83202760911007,
+      "independent_sfid": 208.19196283623646,
+      "fid_absolute_error": 3.035791547745248e-05,
+      "sfid_absolute_error": 2.1039267238620596e-05
+    },
+    {
+      "arm": "ig_native_03",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "c91d804389e32ca1436a75ae8bdf9abe73a160a0eca981d512ec599dd2bf11d6",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 66.5801194351024,
+        "sfid": 209.15693654484483,
+        "samples": 1000
+      },
+      "independent_fid": 66.58014964378035,
+      "independent_sfid": 209.15695839656055,
+      "fid_absolute_error": 3.020867794134574e-05,
+      "sfid_absolute_error": 2.1851715729326315e-05
+    },
+    {
+      "arm": "ig_adg_03",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "973ccefc2591b22bbeea35b4dc3ebb77f03d1bc52f8112d0c315ff399a7e223c",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 66.02117865210744,
+        "sfid": 208.81045074012354,
+        "samples": 1000
+      },
+      "independent_fid": 66.0212092579636,
+      "independent_sfid": 208.81047156396608,
+      "fid_absolute_error": 3.0605856167653656e-05,
+      "sfid_absolute_error": 2.0823842532990966e-05
+    },
+    {
+      "arm": "ig_local_residual_11",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "4e6581a020c9d2a73f283778a9d6b13c84c38a2d3f4f2c0e3e2a76cdb330f3b7",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.54483857832923,
+        "sfid": 211.36736353805657,
+        "samples": 1000
+      },
+      "independent_fid": 65.5448677806204,
+      "independent_sfid": 211.3673868927774,
+      "fid_absolute_error": 2.9202291159435845e-05,
+      "sfid_absolute_error": 2.3354720838142384e-05
+    },
+    {
+      "arm": "cfg_native_02",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "f596df67bd073f6aa391ce6c3684243651656718ba1f87e893a349d277f32375",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 45.534006984695964,
+        "sfid": 208.65351215665657,
+        "samples": 1000
+      },
+      "independent_fid": 45.53403537755356,
+      "independent_sfid": 208.6535338640209,
+      "fid_absolute_error": 2.839285759392851e-05,
+      "sfid_absolute_error": 2.1707364311396304e-05
+    },
+    {
+      "arm": "cfg_apg_04",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "5f9a9280aa5ab568d2b56c8deec856f8f2b4a0c68fc05056534ad96b4f6bc943",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 44.85292744465556,
+        "sfid": 211.90320673925453,
+        "samples": 1000
+      },
+      "independent_fid": 44.85295588113396,
+      "independent_sfid": 211.90322825728475,
+      "fid_absolute_error": 2.8436478395121867e-05,
+      "sfid_absolute_error": 2.1518030223433016e-05
+    },
+    {
+      "arm": "cfg_secant_apg_rescale_11",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "50c7d0fc73fd45b68f647a053e48dab3ad2344b176eb24e05e06c8a4ad8ca49a",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 43.890771339935384,
+        "sfid": 211.05498165208394,
+        "samples": 1000
+      },
+      "independent_fid": 43.89079889772048,
+      "independent_sfid": 211.0550034953608,
+      "fid_absolute_error": 2.755778509566653e-05,
+      "sfid_absolute_error": 2.1843276869049078e-05
+    }
+  ],
+  "feature_extraction_repeated": false,
+  "raw_bytes_rehashed_for_selected_only": true,
+  "independent_confirmation": false
+}

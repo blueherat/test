@@ -1,0 +1,215 @@
+{
+  "status": {
+    "phase": "complete",
+    "wall_seconds": 183.31544749904424,
+    "results": 3,
+    "numerical_failures": 0,
+    "worker_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "controller_pid": 3982950,
+    "worker_pids": [
+      3983035,
+      3983036,
+      3983037,
+      3983038
+    ],
+    "research_goal_achieved": false
+  },
+  "request_sha256": "1fa203149e4ea26c930055db24559d9a51d7c60295f5328b283d4ad7df43ac32",
+  "source_and_asset_hashes_passed": true,
+  "completed_arms": 3,
+  "arithmetic_checks": [
+    {
+      "arm": "ig_restarted",
+      "key": {
+        "request_sha256": "1fa203149e4ea26c930055db24559d9a51d7c60295f5328b283d4ad7df43ac32",
+        "activations_sha256": "349e9247320b8a4a01bc769e246bc2f144cfcd036924df3c53716d254db4d3f8",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.13932039644499,
+        "sfid": 208.80662834522775
+      },
+      "independent_fid": 65.13934988676958,
+      "independent_sfid": 208.80664910392449,
+      "fid_absolute_error": 2.9490324592984507e-05,
+      "sfid_absolute_error": 2.0758696734901605e-05,
+      "independent_arithmetic_only": true,
+      "independent_feature_extraction": false
+    },
+    {
+      "arm": "write_before",
+      "key": {
+        "request_sha256": "1fa203149e4ea26c930055db24559d9a51d7c60295f5328b283d4ad7df43ac32",
+        "activations_sha256": "e892ac5b653fe2490675bd99f1aa2f1e0e6893cd8041195848295c8997f63ff4",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.97269836485259,
+        "sfid": 207.06165353123697
+      },
+      "independent_fid": 65.97272989159025,
+      "independent_sfid": 207.0616746958759,
+      "fid_absolute_error": 3.152673765782765e-05,
+      "sfid_absolute_error": 2.1164638923210077e-05,
+      "independent_arithmetic_only": true,
+      "independent_feature_extraction": false
+    },
+    {
+      "arm": "write_after",
+      "key": {
+        "request_sha256": "1fa203149e4ea26c930055db24559d9a51d7c60295f5328b283d4ad7df43ac32",
+        "activations_sha256": "08f27355f86392b14747b08016bf3d5865380bbf5d1997d91f6ac8bbf0a3d2b6",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 66.6256740996941,
+        "sfid": 211.01732026357126
+      },
+      "independent_fid": 66.62570552481667,
+      "independent_sfid": 211.01734124473413,
+      "fid_absolute_error": 3.142512257170438e-05,
+      "sfid_absolute_error": 2.09811628621992e-05,
+      "independent_arithmetic_only": true,
+      "independent_feature_extraction": false
+    }
+  ],
+  "paired_endpoints": [
+    {
+      "first": "ig_restarted",
+      "second": "write_before",
+      "mean_endpoint_difference_rms": 0.09596927167367525,
+      "median_endpoint_difference_rms": 0.06508384943511145,
+      "relative_rms_to_first": 0.15009414396407778,
+      "exact_latent_match": false
+    },
+    {
+      "first": "ig_restarted",
+      "second": "write_after",
+      "mean_endpoint_difference_rms": 0.08602646415747636,
+      "median_endpoint_difference_rms": 0.059940405268794725,
+      "relative_rms_to_first": 0.13231136696542908,
+      "exact_latent_match": false
+    },
+    {
+      "first": "write_before",
+      "second": "write_after",
+      "mean_endpoint_difference_rms": 0.12297631981275653,
+      "median_endpoint_difference_rms": 0.10086642344843158,
+      "relative_rms_to_first": 0.16651910609622864,
+      "exact_latent_match": false
+    }
+  ],
+  "fixed_examples": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "selection": "first eight input indices, fixed without quality selection",
+    "path": "/home/zhoushunyu/eqvae/docs/data/small_sit_carrier_flow_20260909/paired_first8.png",
+    "sha256": "0b51559819f635563eb85d5cd55a79697483b8de4a3e62c66432bee7f1a5dcc5"
+  },
+  "rows": [
+    {
+      "arm": "ig_restarted",
+      "fid": 65.13932039644499,
+      "sfid": 208.80662834522775,
+      "inception_score": 35.6368522644043,
+      "full_calls_per_image": 113.776,
+      "auxiliary_full_calls_per_image": 0.0,
+      "trajectory_gpu_seconds": 77.06603227648884,
+      "decode_gpu_seconds": 14.531456159427762,
+      "sum_batch_gpu_seconds": 91.5974884359166,
+      "mean_full_calls_by_block": [
+        19.952,
+        14.816,
+        17.216,
+        19.808,
+        41.984
+      ],
+      "mean_write_rms_by_block": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_state_rms_by_block": [
+        0.8806190254535836,
+        0.778293453660408,
+        0.7008933445537637,
+        0.6599949647827187,
+        0.8607134887539969
+      ]
+    },
+    {
+      "arm": "write_before",
+      "fid": 65.97269836485259,
+      "sfid": 207.06165353123697,
+      "inception_score": 36.014774322509766,
+      "full_calls_per_image": 139.344,
+      "auxiliary_full_calls_per_image": 32.0,
+      "trajectory_gpu_seconds": 93.80807195510715,
+      "decode_gpu_seconds": 14.318340377882123,
+      "sum_batch_gpu_seconds": 108.12641233298928,
+      "mean_full_calls_by_block": [
+        25.888,
+        22.0,
+        22.768,
+        26.032,
+        42.656
+      ],
+      "mean_write_rms_by_block": [
+        0.007947985922299424,
+        0.012308398721976307,
+        0.020995876082485463,
+        0.028726937486879038,
+        0.0
+      ],
+      "mean_state_rms_by_block": [
+        0.8793649456923486,
+        0.7777477947005675,
+        0.6996032487889008,
+        0.6571267926578149,
+        0.8496036247296439
+      ]
+    },
+    {
+      "arm": "write_after",
+      "fid": 66.6256740996941,
+      "sfid": 211.01732026357126,
+      "inception_score": 35.0761833190918,
+      "full_calls_per_image": 138.432,
+      "auxiliary_full_calls_per_image": 32.0,
+      "trajectory_gpu_seconds": 93.75322465226054,
+      "decode_gpu_seconds": 14.324381751939654,
+      "sum_batch_gpu_seconds": 108.0776064042002,
+      "mean_full_calls_by_block": [
+        25.84,
+        22.0,
+        22.816,
+        25.984,
+        41.792
+      ],
+      "mean_write_rms_by_block": [
+        0.01237890648541762,
+        0.0179665413414642,
+        0.028569032363931376,
+        0.03795158457045187,
+        0.0
+      ],
+      "mean_state_rms_by_block": [
+        0.8811378437151954,
+        0.7778533637802227,
+        0.7007280641802796,
+        0.6599558994127879,
+        0.8653062019685354
+      ]
+    }
+  ],
+  "research_goal_achieved": false
+}

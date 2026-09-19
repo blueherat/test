@@ -1,0 +1,479 @@
+{
+  "passed": true,
+  "sources": [
+    {
+      "passed": true,
+      "model": "sit_small",
+      "source_feature_files": 300,
+      "source_seed_pairs": 1200,
+      "train_seed_ids": [
+        0,
+        999
+      ],
+      "calibration_seed_ids": [
+        1000,
+        1099
+      ],
+      "audit_seed_ids": [
+        1100,
+        1199
+      ],
+      "split_by_whole_seed": true,
+      "previous_aggregate_validation_seen": true,
+      "query_rows_per_source": 76800,
+      "same_initial_features_all_pairs_exact": true,
+      "source_seconds": 68.80569438589737,
+      "head_training_seconds": 3.825383230112493,
+      "raw_head_sha256": "895408cd2b9d6275102d4ab078379412ef8db0e03483833a7bb97bc30c07b6d3",
+      "calibrated_head_sha256": "7b9d0dfdee8c03830aaeb5242f3f0d13ce02e5061acfc97aa056f5fbbb8e71fa",
+      "temperature_only_change_exact": true,
+      "source_request_sha256": "46723f9e7d8f09e4c6989981f0a8e5831a3175eee890a90c564898599c363f28"
+    },
+    {
+      "passed": true,
+      "model": "raev2",
+      "source_feature_files": 600,
+      "source_seed_pairs": 1200,
+      "train_seed_ids": [
+        0,
+        999
+      ],
+      "calibration_seed_ids": [
+        1000,
+        1099
+      ],
+      "audit_seed_ids": [
+        1100,
+        1199
+      ],
+      "split_by_whole_seed": true,
+      "previous_aggregate_validation_seen": true,
+      "query_rows_per_source": 118800,
+      "same_initial_features_all_pairs_exact": true,
+      "source_seconds": 1186.278916921001,
+      "head_training_seconds": 5.960881435312331,
+      "raw_head_sha256": "89f4e9531eaddc1cc62bfb8ce2af4aac80b92183e4d3a5b47e5dfdfbf121fe65",
+      "calibrated_head_sha256": "5df4628b81ffc3a4d1b9674cad1f29991d43d19efbde30566103b574221b1ab9",
+      "temperature_only_change_exact": true,
+      "source_request_sha256": "a35f96e360babe0327ae45c8a170ce2228a57fa36df1bef1966a9f32ca54c2f6"
+    }
+  ],
+  "sample_grids": [
+    {
+      "model": "sit_small",
+      "stage": "cfg_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/sit_small_cfg_screen_400_first4.png",
+      "sha256": "77bc9984abbc7ed91c3a15cf4e9689eaf7373888bc494a8ce16dde7544c4c069",
+      "rows": [
+        {
+          "arm": "independent_base",
+          "samples_sha256": "df9220e7ea764f4dc1d71aa90830a38a465f4c545415eba78804368440ce026c",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_independent_base",
+          "samples_sha256": "d0d043518c94302cfd545d09e59eff29486d647af51e0eb902131dd954932ff7",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_antithetic_base",
+          "samples_sha256": "f7874ac6959ecc8dc6593968c222eebde40d452bd3c8d913d6a4e96fd24e516f",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "independent_half",
+          "samples_sha256": "9d88a118ef438db76879b9244025a666c44bd5bc3fa717dd646b157c6e7a985f",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_independent_half",
+          "samples_sha256": "e12d85c51e9d857f868f1ee7453d04e96016ae910b05f524c79ed0e424a312b8",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_antithetic_half",
+          "samples_sha256": "0b74175250d4c1935088f5764f9008fbd603962af123a2d4fe7f3e00d5a4b1f8",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "model": "sit_small",
+      "stage": "ig_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/sit_small_ig_screen_400_first4.png",
+      "sha256": "e14d5858fbe2d4f4e84eced40f4e7d829fa73703d0f5a58ce2c14af5a7c40157",
+      "rows": [
+        {
+          "arm": "native_base",
+          "samples_sha256": "cd4a4a30327a2b3e42220df62cb972ec3117912c80ccfa6ff5e3b8e76fd09406",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "posterior",
+          "samples_sha256": "e0e3fa02afef171bc83387e04ce5ee9d7526f202fc487700afa4f8e356360864",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "time_mean",
+          "samples_sha256": "b38f87fed556fcdc5afa43ca244fa303c1c7ca74a6d00e67e8567b06d24a3b7a",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "permuted",
+          "samples_sha256": "e2201e918bee81a6a4d4c0ab7b628fb6521afcbe0d0eaa5ab6af3f8597f2902d",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "reversed",
+          "samples_sha256": "12c6b9266595987d84cc6d48d0ff7a296bc1295723ed1af4770fce0907098937",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "native_half",
+          "samples_sha256": "4b22195208778e226562fee8bb2a9777a8f48219ae74c1fe3b32bf2cc62f8945",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "native_double",
+          "samples_sha256": "b04340d92f8df4741685ba21da59ce5d352abf0a5d44f29423bc0082c38da7d4",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "model": "sit_small",
+      "stage": "ig_calibrated_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/sit_small_ig_calibrated_screen_400_first4.png",
+      "sha256": "af5a2a60366a505f9c94f5e2721e3ba2d1f3a9d737d17e1cffe5b70d4ff8e69d",
+      "rows": [
+        {
+          "arm": "native_base",
+          "samples_sha256": "cd4a4a30327a2b3e42220df62cb972ec3117912c80ccfa6ff5e3b8e76fd09406",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "posterior",
+          "samples_sha256": "05916df4f6dceeae30943ab5a84b9459749b5f305fbd38c59ae3fdce6111ec3f",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "time_mean",
+          "samples_sha256": "2e1d7e7aa53bb901332093739a2227de87d6376f589b87aa4bf9ed284d655062",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "permuted",
+          "samples_sha256": "b8cea8b4c5ac05f2d23a789dba0511f237cd4c3c1c38cbdd6a438be4444ac9eb",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "reversed",
+          "samples_sha256": "2a18609adcc755fdafd8b954e944ff46294829acaacec97089058ddf45e02755",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "model": "raev2",
+      "stage": "cfg_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/raev2_cfg_screen_400_first4.png",
+      "sha256": "287a2f390dd0c65bf72042babeea14d1423087ea81aee7119f5a7f2c792b09fb",
+      "rows": [
+        {
+          "arm": "independent_base",
+          "samples_sha256": "d0b3e106bc1f60d1f6d6452445d61c3e33ec6facdfab4d7c02411ea4a5c5fe50",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_independent_base",
+          "samples_sha256": "5fbb87d21aad8eb926152695f256cb8f1aa3386fc1e255d1138a542b66f5e0a3",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_antithetic_base",
+          "samples_sha256": "7c6ddf4496bcc6a91ff4fc710eb0d73393ab87f815baf7b7416cba6508a6e27e",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "independent_half",
+          "samples_sha256": "5198045c15622d067cb98bf808ab57bd5bb8fa226b919574c153060265c18d49",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_independent_half",
+          "samples_sha256": "bf8e69ff353e9aa1bfb1f0b0b57c8362c8604ec4367f1451a3863a081dbd02b4",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "shared_antithetic_half",
+          "samples_sha256": "63a55b90e55788c6e28cbeedffd11feaaa1eb33be7ea620d19c9aa68b2d7b459",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "model": "raev2",
+      "stage": "ig_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/raev2_ig_screen_400_first4.png",
+      "sha256": "91e851b4673f850dc23acc1d1a6dffb512e6c7b6c2d42dbbbe889090449a3b31",
+      "rows": [
+        {
+          "arm": "native_base",
+          "samples_sha256": "f9e0a5f60d312295f1c23be9891ef503a3ee0ba5b3de9fb1b67e920bb4e773a2",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "posterior",
+          "samples_sha256": "d73a9471944ee31ee724e9a796056788c1e666f42ae6683e99896b1e2d4826fc",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "time_mean",
+          "samples_sha256": "505994e5ac91cbe520c6f2f0bf76e74567cd4789498495753c182594fabc361f",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "permuted",
+          "samples_sha256": "3f7f12d5169cfa9df0e1c08d18bcaa4c3047c672d50d512930f91eb9fdd9ed8b",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "reversed",
+          "samples_sha256": "4d25625915fcf34583963e0b32b61af49e81e3ca3362bd05512a112c662fb89a",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "native_half",
+          "samples_sha256": "22e1324ad33eb6dcacfa9f51e0a89fdbfd2960cc33c478d4e7633fa6e6551156",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "native_double",
+          "samples_sha256": "24e909b62e1e150cab09b8606588223ff9e16b3017618167aa003a1257011ddf",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "model": "raev2",
+      "stage": "ig_calibrated_screen_400",
+      "file": "/home/zhoushunyu/eqvae/docs/data/guidance_pasted_20260912/raev2_ig_calibrated_screen_400_first4.png",
+      "sha256": "bcd11c329fb951c5cc9ccaceb9b476342d9dabb649928262f59f59b309d0b9bc",
+      "rows": [
+        {
+          "arm": "native_base",
+          "samples_sha256": "f9e0a5f60d312295f1c23be9891ef503a3ee0ba5b3de9fb1b67e920bb4e773a2",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "posterior",
+          "samples_sha256": "6f5fdfe6d620fbd8d1907b1a722a448623c64cfcc01ff78e8658e1aa7bfe8338",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "time_mean",
+          "samples_sha256": "04e7e1d0059e64b553d5027ba307c1f0b1a3a4212e34c5f289e94855bb7dc4bf",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "permuted",
+          "samples_sha256": "1d63fcb3b13a093a0b71b514ba71d90a7f4a817ca31bc3eb23d07a3326105697",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "arm": "reversed",
+          "samples_sha256": "9ed9eda4620ed974b4ae9809851820a4f7ade1838ebe979e6f670042d23d3bc9",
+          "primary_ids": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "all_six_sample_grids_complete": true,
+  "old_stop_markers_unchanged": {
+    "/home/zhoushunyu/data/eqvae/experiments/sit_refined_priority_20260911/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_control_output_50ideas_20260910/STOP_AFTER_CURRENT": "b43aef680652b33cc5a199cecb355a717ae50af5e058cecaa83d4f91aa180ce1",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_broad_resume_20260912/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_reference_aggregation_20260912/STOP_AFTER_CURRENT": "f17cc7a0cb994382cf856a190d0603caa6d452cbd62211c06075a16d60b7a09d"
+  }
+}

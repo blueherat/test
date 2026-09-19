@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "request_sha256": "b1bc9e8192c7f1b9b1b5f43653e96cdb4b35bffc2e90cf3cb93ef54ba1ed39e2",
+  "inputs": {
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank0/curl_rows.json": "9e57a93f9b2698075b9f333c8703ed36d13c7fb6dd89491cf88075938f1e4db5",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank0/effect_rows.json": "208b55b861a8885b5e31dc3702a973b4d3444a75f0857ccd7469150a8c14a45a",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank1/curl_rows.json": "11c894ed672ee743b679e9fa6920ae1f79e1dfcda03c303936b19657920dc248",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank1/effect_rows.json": "23809486200fef73230abd4d239ae744b1cb2e11426f5e64d96fd0bc46c4829f",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank2/curl_rows.json": "ead7ffe5031ceb85142ac37e63c27d265104f5d6da6073fdc62a88c183dba3ac",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank2/effect_rows.json": "d47933e7be78a3657f4919bcc4d3bbc24fe05df0d10f74e86fba7b00830b3329",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank3/curl_rows.json": "6622107c5151577640e2113201838be02c2763624b9f6cd75a35106cdd608818",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/mechanism/rank3/effect_rows.json": "fb03770ae3ff79e16db09c5c20bfa7e0ca2b906a014ca2df1e519ddbb3e805a9"
+  },
+  "independent_seed_class_pairs": 32,
+  "state_observations": 480,
+  "random_bilinear_probes_per_state": 4,
+  "archived_state_batches": 120,
+  "bootstrap": "4000 resamples of independent seed/class pairs; repeated states kept together; descriptive, unadjusted intervals",
+  "estimator": "ratio of aggregated estimates of ||J-J^T||_F^2 and ||J||_F^2; finite-probe ratio is biased; neither spectral norm nor probability",
+  "fd_median": 0.0019435739377510002,
+  "fd_p90": 0.05649025663733441,
+  "fd_p99": 0.39071354120969704,
+  "fd_above_10pct": 39,
+  "clean_gap_norm_median": 3.87318205833435,
+  "published_clean_apg_radius_center": 5.0,
+  "radius_grid": [
+    2.5,
+    5.0,
+    10.0
+  ],
+  "parallel_q_gain": {
+    "mean": 0.003176944549045306,
+    "ci_low": 0.00097008752474507,
+    "ci_high": 0.005798241622127186,
+    "seeds": 32,
+    "observations": 480
+  },
+  "orthogonal_q_gain": {
+    "mean": 0.013634510553780694,
+    "ci_low": 0.010597408640985798,
+    "ci_high": 0.016875810925928922,
+    "seeds": 32,
+    "observations": 480
+  },
+  "parallel_positive_fraction": 0.6208333333333333,
+  "all_full_calls": 57248,
+  "all_decoder_images": 6240,
+  "all_classifier_images": 6240,
+  "max_worker_wall_seconds": 95.3295953660272,
+  "no_fid": true,
+  "no_sweep_results_read": true,
+  "no_claim_of_image_quality_improvement": true,
+  "source_hashes": {
+    "/home/zhoushunyu/eqvae/experiments/sit_apg_mechanism_20260911/analyze.py": "268b25ebaa96601db80be7b47cec55d387fb87a7c9e5c3bfa458c60002cdde07"
+  }
+}

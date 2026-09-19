@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "affine_jvp": [
+    {
+      "horizon": 0.0009765625,
+      "finite_difference_vs_exact_discrete_jvp": 9.397349529457393e-14,
+      "discrete_vs_continuous_jvp": 3.4488631815195423e-13
+    },
+    {
+      "horizon": 0.03125,
+      "finite_difference_vs_exact_discrete_jvp": 8.921582231911732e-15,
+      "discrete_vs_continuous_jvp": 1.1453303988306767e-08
+    },
+    {
+      "horizon": 0.125,
+      "finite_difference_vs_exact_discrete_jvp": 7.065222727549232e-14,
+      "discrete_vs_continuous_jvp": 7.604313240765585e-07
+    },
+    {
+      "horizon": 0.25,
+      "finite_difference_vs_exact_discrete_jvp": 1.0831917450376222e-13,
+      "discrete_vs_continuous_jvp": 6.4041385522896e-06
+    }
+  ],
+  "constant_field_weight_w_equals_1_plus_a": true
+}

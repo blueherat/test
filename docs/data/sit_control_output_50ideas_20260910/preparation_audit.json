@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "request_sha256": "073b1c9b69f3294556aaf8d8b0c32868af4e25c48448222dca8dcdd5b8a1c631",
+  "configs": 709,
+  "sources": 40,
+  "assets": 12,
+  "old_frozen_manifests": [
+    {
+      "root": "/home/zhoushunyu/data/eqvae/experiments/sit_fsg_followup_20ideas_20260910",
+      "sources": 33,
+      "assets": 10,
+      "unchanged": true
+    },
+    {
+      "root": "/home/zhoushunyu/data/eqvae/experiments/sit_fsg_pasted_followup_20260910",
+      "sources": 38,
+      "assets": 13,
+      "unchanged": true
+    }
+  ],
+  "bank": {
+    "samples": 1000,
+    "batch": 8,
+    "noise_seed": 202610100,
+    "label_seed": 202610101,
+    "noise_sha256": "ce4f48e589a64f6bf8570a11496791763d6485299e7cb3d8bbcd3741ee327dca",
+    "label_sha256": "1a00060ee2bdc21fc6951f392854bfe88ffd832279dbe2b5122c68becc2da8e0",
+    "classes_balanced": true,
+    "noise_generation": "continuous CUDA generator; sequential B8"
+  },
+  "verified_unix": 1789057680.3799465,
+  "no_fid_samples_generated": true
+}

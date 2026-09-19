@@ -1,0 +1,38 @@
+{
+  "script": "/home/zhoushunyu/eqvae/experiments/analyze_guidance_fundamental_20260911.py",
+  "script_sha256": "4d69d36287f610355aa2b184eeb28779d8fca6cbadfc6fdcc07229bc14d6578c",
+  "diagnostic_source": {
+    "source": "/home/zhoushunyu/eqvae/docs/data/sit_fsg_pasted_followup_20260910/diagnostics.csv",
+    "sha256": "d02daf591b7f851b66913f9696270858e22be7f55a11e8d43d9ebde817392b06",
+    "rows": 960,
+    "unique_seeds": 64,
+    "note": "Teacher groups are observational strata defined before intervention. Repeated times are not independent; no causal attribution to teacher correctness or significance test."
+  },
+  "geometry_checks_passed": true,
+  "density": {
+    "density_checks_passed": true,
+    "max_identity_error": 5.416040949057788e-09,
+    "coupling_example": {
+      "initial_distribution": "N(0, I_2)",
+      "U": "identity",
+      "C": "90-degree rotation",
+      "same_terminal_law": true,
+      "expected_paired_squared_residual": 4.0,
+      "terminal_wasserstein_squared": 0.0,
+      "caveat": "Demonstrates coupling dependence for arbitrary smooth flows; rotation is outside the canonical Gaussian-FM gradient-field parameterization."
+    }
+  },
+  "outputs": {
+    "coupling_example.json": "0e3c1427e4953e80c64c5b70c7029622a4c6a8b6c5b969cb65caa6a9f5d5b047",
+    "density_transport_identity.csv": "a69500908b82ca4d5f4f7a5cf90a6afe5730ee5dc137d721a1a5b0099fb053e1",
+    "diagnostic_group_means.csv": "d7387e3abfb2ac6dca69eb26165b3ad702e0a24191399a3f411e2af635fe7832",
+    "family_best_snapshot.csv": "5d2bc0ea1f5e8f7acaff25554b5a3e2fcf15f5b2593c89cebdf7fb21ffb9362f",
+    "geometry_audit.json": "abb0aa4bfb189c9b007d55a88b158dd5d7861ff02369ed4bd2e8ed8215a7f114",
+    "nonlinear_geodesic.csv": "0b7bcd733df9bc8b87730ae79a8f2be8fee50a081eabfe9ec3cadbd3f1865842",
+    "progress_snapshot.json": "578e8f3fae1eaab80463d90b766afd20b7fe15f0eea80e7b28bea682ec1eb8c7",
+    "root4_paired_changes.csv": "f4228db8408d9c8917e3ae610344eeffe44cda761edbf96ea9a2a44884a8d3ac",
+    "root4_teacher_stratification.csv": "8c76d382c5ccb565520a3514ef4318c15054c0187fb5476b828233bfbe040067",
+    "screening_results_snapshot.csv": "63448809391a28abd1b779feb29f1e75076aeb93f76759c03f75f9935059cf3a",
+    "short_horizon_generator.csv": "cde22b67992509a99a0f7499c40d476a491fc98153c9810a5c26f93cc8a3c979"
+  }
+}

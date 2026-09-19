@@ -1,0 +1,12 @@
+{
+  "launched_unix": 1789057744.6773124,
+  "request_sha256": "073b1c9b69f3294556aaf8d8b0c32868af4e25c48448222dca8dcdd5b8a1c631",
+  "tmux": "sit_control53_0911",
+  "dependency_tmux": "sit_fsg7_0910",
+  "resumed_tmux": "sit_fsg20_0910",
+  "resumed_after_completed": 202,
+  "all_previous_results_unchanged": true,
+  "preflight_stop_archived": true,
+  "new_command": "exec env OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 /home/zhoushunyu/miniconda3/envs/myenv/bin/python -u -m experiments.run_sit_control_50ideas_20260910 --pipeline >> /home/zhoushunyu/data/eqvae/experiments/sit_control_output_50ideas_20260910/controller.log 2>&1",
+  "resume_command": "exec env OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 /home/zhoushunyu/miniconda3/envs/myenv/bin/python -u -m experiments.run_sit_fsg_20ideas_20260910 --pipeline >> /home/zhoushunyu/data/eqvae/experiments/sit_fsg_followup_20ideas_20260910/controller.log 2>&1"
+}

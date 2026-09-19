@@ -1,0 +1,87 @@
+{
+  "phase": "strong_band_confirm_1k",
+  "samples": 1000,
+  "seed": 2026091409,
+  "batch": 16,
+  "sampler": "experiments.weak_reference_20260914.calibrated",
+  "configs": [
+    {
+      "arm": "strong_e320",
+      "kind": "baseline",
+      "alpha": 0,
+      "omega": 0,
+      "steps": 320
+    },
+    {
+      "arm": "strong_band_w1",
+      "kind": "calibrated",
+      "alpha": 0,
+      "kernel": "band",
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "steps": 64,
+      "weight_source": "fixed; not fitted by DSM"
+    },
+    {
+      "arm": "strong_log_k04_e64_w1",
+      "kind": "log",
+      "alpha": 0,
+      "omega": 1,
+      "kappa": 0.4,
+      "steps": 64
+    },
+    {
+      "arm": "strong_log_k04_e106_w1",
+      "kind": "log",
+      "alpha": 0,
+      "omega": 1,
+      "kappa": 0.4,
+      "steps": 106
+    },
+    {
+      "arm": "strong_log_k04_e106_w075",
+      "kind": "log",
+      "alpha": 0,
+      "omega": 0.75,
+      "kappa": 0.4,
+      "steps": 106
+    }
+  ],
+  "sources": {
+    "/home/zhoushunyu/data/eqvae/baselines/Self-Guidance/models/flux/pipeline_flux.py": "13a1b8e6c4e329a84a6cbdda13f8ebad9439c8affe771f942c62d5a8a5b34c9c",
+    "/home/zhoushunyu/data/eqvae/baselines/Self-Guidance/models/stable_diffusion_3/pipeline_sd_3.py": "be4caa4f02a4bd4cb42f9f1a92707cb54a2be9bef74c50b43d13a4ff4326c494",
+    "/home/zhoushunyu/eqvae/experiments/cfg_transport_search_20260913/runner.py": "36b4f93dfec897fb3a83a0ba59ec6ee47b05bb4fb65527100abd69660493d896",
+    "/home/zhoushunyu/eqvae/experiments/guidance_pasted_20260912/common.py": "387185883eb02876e320cae880bbc4030d0f89499df1049b0fd5c3fcba90e5db",
+    "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/check.py": "7647c2e61bfafa30283a28fed52ea4bd096d4439e11087dd9c8a6b8e8037c219",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/run.py": "8e9d5ea5147aaf5df51d1450ac8a2d1ff911924aa127a1daee0ac57164526676",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/sampler.py": "e2818b9a78e8422104bd5a07d028293fdc80086bc5d523674cdeef0deb07747b",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/calibrated.py": "2c4cb1be27926a1b12ae50f7c98bcfc6e264f526bf4006ca27800fd9dc7b1a73",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/check.py": "6ad90f5e1b970f047c8524e67ba609e0f913fdc0c6715c6fd558eb7842e12d69",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/run.py": "19a4f1c86851a50bdf962468dfa2fdd42eef4d415b35e4f49463aa74051029e7",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/sampler.py": "e768b8eed4711a3fd6118d05d15da4c591220e2472eb91fe103c94f7ab926263"
+  },
+  "assets": {
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1/runs/depth4_v/checkpoints/step_00050000.pt": "f33fca87577ad2f5e70470f05c1834811a28e7912aedcc26a3fdb8ae8c4fc5ad",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a"
+  },
+  "inputs_sha256": "37e60b434925727ee94dedd0ffd86f29db2a9300f7ed4abea9debbad7db34a27",
+  "noise_sha256": "a8ad5f5e29e0276f7b2f9e0cfa7fc08a5656efc4d65f8f50abd27a08b5ab332d",
+  "labels_sha256": "65aa2039d7178931c6bfd209072cb6d008edb8822dff1e05ea00bbb547b51736",
+  "reference": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "model": "SiT-S/2 ImageNet100 EMA",
+  "interpretation": "Paired search stage; choose settings here, confirm on a new independent bank.",
+  "cost": "Single-branch model evaluations per image; sampling/decode batch GPU seconds, evaluation separate."
+}

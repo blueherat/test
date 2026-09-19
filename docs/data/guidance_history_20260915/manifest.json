@@ -1,0 +1,914 @@
+{
+  "snapshot": "2026-09-15T21:33:47+08:00",
+  "rows": 378,
+  "groups": {
+    "SiT_readout_1K": 6,
+    "SiT_readout_5K": 4,
+    "SiT_matched_3K": 4,
+    "JiT_readout_1K": 6,
+    "JiT_readout_5K": 4,
+    "RAE_3K_20K_400": 6,
+    "RAE_context_5K": 2,
+    "RAE_heads50K": 48,
+    "RAE_heads5K_scan": 22,
+    "IG_SG_SiT": 5,
+    "IG_SG_JiT": 5,
+    "IG_SG_RAE": 5,
+    "IG_SG_JiT_confirm": 3,
+    "SG_initial_SiT": 12,
+    "SG_confirm_SiT": 4,
+    "SG_initial_JiT": 9,
+    "SG_initial_RAE": 8,
+    "SG_log_and_extensions": 34,
+    "SiT_smallbank_fixed": 16,
+    "SiT_smallbank_scan": 61,
+    "Full_data_50K": 55,
+    "Endpoint_training": 59
+  },
+  "source_files": {
+    "/home/zhoushunyu/eqvae/docs/data/context_reference_5k_20260912/selection_1k.csv": "891d4025fcda8cd5416a22849ffb637d3cda2bbfef11e531c6238ebf262807d0",
+    "/home/zhoushunyu/eqvae/docs/data/context_reference_5k_20260912/quality.csv": "53a7bf2b14bff519e826116ab6bea05808e3c0f2d967c48e9039e12594b4eb07",
+    "/home/zhoushunyu/eqvae/docs/data/ig_readout_matched_control_20260913/quality.csv": "7bc0bd627996096b1399e1e4544a0bb05e5ed94c0a9ab2a7271b467957b4bf9f",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/raw/metrics.json": "9d02b4ba26cf3d20423356b9dbf417b26fb0d15ab361d65b5f87616c221499cc",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_readout_matched_control_20260913/sit_small/matched_1000/native_fresh/metrics.json": "569939e10bb0770012e3b7d4b4f410d38cc89add2f7e0a1e33d009fae3e58a2b",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/native_base/metrics.json": "9748d5553adb4ab6f8291281aeef8ba13c787df6df61e51ccd11b2df9b93707a",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/adg/metrics.json": "fb72dbee32a5901465b0f6ab078e1dde157fccd9217f6cfed031065886cfd7d1",
+    "/home/zhoushunyu/eqvae/docs/data/jit_readout_transfer_20260913/quality.csv": "bd8fd479533c998e8c7a0a871249e621678377ead375ba05a05a1f4cb290bf05",
+    "/home/zhoushunyu/eqvae/docs/data/jit_readout_confirm_20260913/quality.csv": "57d7ab8de3ad7c90947fdf556fe84678a0f130ac33aa0359826985883d2ec758",
+    "/home/zhoushunyu/eqvae/docs/data/raev2_context_20k_20260914/quality.csv": "bc83ec721d34946e238559cba67612a28656646c5e5b4f734c6ab6d1cc3c2f34",
+    "/home/zhoushunyu/eqvae/docs/data/raev2_context_5k_20260914/quality.csv": "d9fba2edad7e8086b4d702888486a6c3abce6f3d0735cac379d91d529c63626c",
+    "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv": "d9f1383d0ddb4e4f634a8dfac9e0bd5a48b2cb7a6e7ed139317bf52f811376bc",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p0000/metrics.json": "2c4491f4bbdf8bd303011dbe533aceb805f595fd2000abbcbd7ef2f42467d0b0",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p2000/metrics.json": "5842bbcebf9f56f5bfc8c560d1792a69e1b0d043d54bddad33890c0a43c3c674",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p4000/metrics.json": "a917c7a8593c66988f5297438de3e4b59acdb1d7057b2d5cced70a793e39839d",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p6000/metrics.json": "a02617ccf4cd6bd96495f949633784ce6033b1b50af55b56654c8ab5005de74e",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p7800/metrics.json": "b560a7514800170c455e60c4f53f832496ff28e52f598aa3a24878a8699d24b5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w2p0000/metrics.json": "1af7ab943bba81bf8ffdb7029ea11a3e01168bef1baaf91a566a8f1deeb57443",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w2p4000/metrics.json": "eedc475caed9fd70ca8b65d934b4dc8e28d2de2a4aa66faed1e8d64042f3bfc4",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w3p0000/metrics.json": "38f0cdc377f4c0bd28196f061f07301617a240410e871a96bed891c396b8f44b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p0000/metrics.json": "e11a07da87e8fd7d34f55f820d95b166722a9265cb28e718efc83b1122654a62",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p2000/metrics.json": "6c11a9295c8aca61be10b0ec5c92322832fd0634d34e210e0f29e092a4f3b491",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p4000/metrics.json": "00cb9bbd20e05d4a4bdb50f345572dd6d08a3656aaa395b7f58cb52e7995f3f5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p6000/metrics.json": "68da61a2d9ebdda0b50181ac39d0f0b96ca01e9933ad1e311c2d5e27672cf820",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p7800/metrics.json": "4f84ec09f6c474f6d09ba63b22b9cd3a6a7a29e1e0257270f195faacf018b303",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w2p0000/metrics.json": "62fbb54216110c69ab580a9e137a1d91eaac52dcd91a22fb5e6e628e3b75ac2c",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w2p4000/metrics.json": "cbe1a122810f6c2d86d482aa1565c0cf4a2a9d0ad6ae7a95dbc820384f4a5134",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w3p0000/metrics.json": "5263fca1c0cba17f87104ae6e6b5fa50f9e831065f0a522ba2ac3f8f9517f532",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p2000/metrics.json": "604260201c796761acb3d225f675e0e343c2334e8c7615e48d3fe51b5b13a1af",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p4000/metrics.json": "f80d3e8ee1b54d2fd86e2eac533842ace64090b799cff5b7bc266ea37e6cb5a5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p6000/metrics.json": "76e96737c75d570abb41233e4bebf1b86da18d27cd37466170f49dfb9c97c464",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p7800/metrics.json": "51bf1f9f19f6264beda9368bb93cb7657b9b35b88a58cb1050f12564af76cf1f",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w2p0000/metrics.json": "c00731efee083c00b498d35104a5ee759f27c2b55fcf8590b2cc4c0897e140ab",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w2p4000/metrics.json": "6188ae3fb669b8ea374663e5921681418739c9c6e8badb5cb7cc0e8d29d688a9",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p2000/metrics.json": "6f3f03f839ef51a40ec31753c76c855d0f9918f59a551f955ba96455bc00d4f6",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p4000/metrics.json": "f21702d1ce3c0ee05bee25115b82e58639f48c2f96d93a2e5ef9967390c8335f",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p6000/metrics.json": "d1fd7b228aa07d4deb5377cb34c4342754df61830dd3dbb407bdcd3e8e42efe9",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p7800/metrics.json": "e5541e541c133cd5deefc46b21e16d21d6f89bf82d7ecd567aa62064a1ded277",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w2p0000/metrics.json": "ca68b9c3a8cd594ba18e38e92f5a8ef84fb16a5ceec41f7b678d593130efa29e",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w2p4000/metrics.json": "bcd940e3328c33664e38b004e25b389343400633248f18201124f49dcceab11d",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w3p0000/metrics.json": "08f1b5b2a7a17cf3e0a83d15bb29f0286301839560519dc29121d54595ae0e7e",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p2000/metrics.json": "fe57bb8ed93077431baf61e166d13fbe8350189ba842e0964d0039c66758e41f",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p4000/metrics.json": "ea71a6d8734fa24b6f5c92732e57307de454b7a3e378bd0ccf912a5589bf2555",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p6000/metrics.json": "019a9d5ab9fc1efd8c5692030035cca531620f05b9a06d868434aad68d8c4476",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p7800/metrics.json": "e21a20c8e86786b796417f487fae02d91618d9e12a97c91c1eb619d53f47396b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w2p0000/metrics.json": "0dc0f6368f4ef21f261bbf7c9cdba274810089c1245e5578d12194ae0be1528a",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w2p4000/metrics.json": "342e788654a3b965f84938d446d5d65b26863b398fa5c5e7ae20383e57f3b65b",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w3p0000/metrics.json": "1ed9040c86ad30aa073ad00d91f12b2e3dbe69c78c1556c6d13c089d80bd07e3",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/incumbent_w1p1000/metrics.json": "204a8a9bab75fd56fb8fd999d4f6ee990cec81c96f2a8f8664c7e03a86d88662",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/incumbent_w1p3000/metrics.json": "0df68120b109adc5c50c57973db8f77b4ddedeaf5a3cf12780a32269461cccc9",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/native4_w1p1000/metrics.json": "cade556b9d5cc1fc17e1564243c65bad46f5de5c60cdfd4fba804d68b01c7fb3",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/native4_w1p3000/metrics.json": "cb3e080a97f88fc152cf4f704ce79a1a1d23089258b2eb37d6a0497b0e1428b5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp4_w1p1000/metrics.json": "f98b363061ed6a03438b0cdaa09a798fbbfe1339ce37445bf18f265a8b6c2d45",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp4_w1p3000/metrics.json": "bd6c8b3b2ccd4a9c337f962444439796a969c233f954090278390201cb038fcc",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp8_w1p1000/metrics.json": "ec67691762579093562a3253f2c04ce55cdb0dd75a31e9e18e0b18a7b9321143",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp8_w1p3000/metrics.json": "fb1dfd6ed5f6e368e5ef6cee7353a627d2434d94e33a48f5c1af223b0ce20f70",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/incumbent_w1p2000/metrics.json": "0b3c80d66989d874c2fb61b20ef54b232c82a3d1dad09648a8d52d4d2fbbe524",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/native4_w1p1000/metrics.json": "2e520b3a237dc594288e0461f561a5790d289c65c660db0fe01e58d070aaacfd",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/mlp4_w1p1000/metrics.json": "844a3227e3e4bafd3f242d662c2c57b4fba85458c3c72d44299ffe6761fc6c82",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/mlp8_w1p3000/metrics.json": "b50bfaa4b615a04a4bcfd1c490e5d4b7ec04fc9ae59921f3fe121995c8c0c6e8",
+    "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv": "df126b325b3fb5ffaca8acd9787caf785837a24441d98817e6306edd270fc2b7",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p0000/metrics.json": "f558aeefc4432eb810ff9e225289830eea3d27d7eb14e29928e9a96d97549b25",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p2000/metrics.json": "0b3c80d66989d874c2fb61b20ef54b232c82a3d1dad09648a8d52d4d2fbbe524",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p4000/metrics.json": "89bedf29cfdcac773c16a3b8d81b744a9fae2f3a074c94302c0aaa8c42e708c3",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p6000/metrics.json": "045a0c7e8a61a2031db5bcd1ae08cebbebf9763541a44443e36525e44276eaa6",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p8000/metrics.json": "8bfdb6b63877652c9ea846ae51fa3b56ec50008fd11a1cee1584ad9b05994f3e",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w2p0000/metrics.json": "cecd4e7b2b59ad1df5031e4a8343b861072e1808d2cc6c6c6b74e64c7493bbbb",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p2000/metrics.json": "82ef0832f1412c5b4045c44c56e9f66d59798a40ba0ed381f8472da2814f714d",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p4000/metrics.json": "2c29d61f50e62b3dbf226275743850f2b2c1da3319457b45bf98f65a5c6e6876",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p6000/metrics.json": "56afbde29146e294affe16b95fef0b8fd8fb6688acb02397199ecc292c7157f2",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p8000/metrics.json": "7069b061edee206be379f1dad45f8b7c3faca820096917607f00ac40e59d363a",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w2p0000/metrics.json": "5cceb6a1c0b47fee4e0a7299e38d8e3cb378f80b36f1403f0c002cb2c5e2e8e5",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p2000/metrics.json": "0114ab9f7844679b6814cf2acc8612306adf101f371a26fc39276cdc02b2cb40",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p4000/metrics.json": "9a48aef68190e27e577bbee5ae98273c2f04ef90311d3af1d91e40e5e3c643b6",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p6000/metrics.json": "b8c3ee87098a292c4df5cec2c71bd91576b0f52da3db13e361b14e7cf39c6dbc",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p8000/metrics.json": "c6ff1a621e04dc0cad2bdbbb913f052a29899486074ac66844704614ce2122a8",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p2000/metrics.json": "c5a589921a551604a6e66c619d238582fabde44491c72c42e605588f2110cbdc",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p4000/metrics.json": "838c4e381d36a6dc6d6d262870d11c2e7655c51bdcafae4b99ebebdaf076bf30",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p6000/metrics.json": "27faf1a00fa1bc21fbedab0411d5bf946efd0ef39667eb53ae969d2e0576c7f9",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p8000/metrics.json": "3ee85961114cd5d86a129d04cc80ac6ce12bcf5967d779428e688b0ca1526acf",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p2500/metrics.json": "9c1f15a7a49525b8f0f273b777edc0d51e729c4be9ee1332750d80b4aa49e7a3",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3000/metrics.json": "b50bfaa4b615a04a4bcfd1c490e5d4b7ec04fc9ae59921f3fe121995c8c0c6e8",
+    "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3500/metrics.json": "9607d338d19037e7641353854a6d0f6135cd151e8667adac9a98e0e9257e7331",
+    "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv": "421dffe1186d4e498ede670e3de60e788bcf65f0f4b1b3d19d007110bd1b9d33",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig/metrics.json": "f348bb3338d383a8a070548463fd450eb1f8991bca0ae61b06eb37b4c64dea38",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_sg_w1/metrics.json": "529f3b6fff19339ddaa85302460f2d116855fb9018065a99c519f478bec7485a",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_log_k02_w1/metrics.json": "816c5bb4a9daa5f8dd3da69697e6e6ec2103f098b03a71be0322bc6d93aacc62",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_sg_cost/metrics.json": "20c0121132331e3bcade32cfa40097cce87e0272614b2d5fb8da4dd3debaa090",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_log_cost/metrics.json": "b3ce780fa02f63f79e17123c8c335978ea3989fedca9ffecad0d0e3e85b8f742",
+    "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv": "f3faf6b5666f08ba8b941a7a2bf369925427db4b5edf6855bfbb48bac052901a",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig/metrics.json": "9f8a94ba195e50134ec8a38fe4523776235910a00c5dc3685ee71cb920854037",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_sg_w1/metrics.json": "fd376b77dd49a1f9dd28543d6abc4deb35c43e96cf5d369a31291fab2d76d409",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_log_k02_w1/metrics.json": "87989f1311d95561f8f9258189c6791da838c2b69d1e4147c92323528a6384bf",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_sg_cost/metrics.json": "39ba8cf10299a505762ec75bc215625a3413c1d4700a2d61ac44821b84a317c4",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_log_cost/metrics.json": "c71ee557f0b62a81f471c67446bd20c89d907f167e07685c2671d0e549d70376",
+    "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv": "f2d0a60a9293921360279b10478397a5f52b99c0a674b99341c881426c8de464",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig/metrics.json": "3c64cea6e4975272b01a45b2762b06b728bf13842299552a2f09b902dfb23182",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/raev2/ig_sg_w1/metrics.json": "661d440462f2a45802b262206cdb75cf85fc133b72bebd2ef662ffb6b36b698d",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig_log_k02_w1/metrics.json": "f6eadadd0482acd9cf7a3355f619669d0c258598d6595c715966fc83654fad58",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/raev2/ig_sg_cost/metrics.json": "3fd25c18be0c29d8cbd71e4630d4fb2ebaf5e7a4df2bc79c025657eeef6321d3",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig_equal_nfe/metrics.json": "5cd29826e73cc646d11a22e94188889b95b9e27c3c44f61ee42353fb450caaf1",
+    "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/confirm_1k/jit/results.csv": "1641cfb57d4aac3322d5432cc6bbefa7987b7a609b96f2f0f5f943babfda4a87",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig/metrics.json": "bdcb68332849d7a177e83267f48cddb18b99f4896098fc5f40a6e11301a8b68e",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig_sg_w1/metrics.json": "afaab002f37bda4c6c0951a9b0d1657ede9f0ebeff772c421a8ce15f2a6f78ed",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig_sg_cost/metrics.json": "aaaac5b2025cb5c27833e946b826af792076fe707296f42c62cc9b4fc78049a0",
+    "/home/zhoushunyu/eqvae/docs/data/self_guidance_20260913/screen_1k/results.csv": "832fcfd9448331e565e305990c0058af562625d3b0054151ec0d6157bd468e94",
+    "/home/zhoushunyu/eqvae/docs/data/self_guidance_20260913/confirm_1k/results.csv": "5b09523f81449073040678e893f6cf3f888612c7838f322f97ed3eb85a11e12f",
+    "/home/zhoushunyu/eqvae/docs/data/self_guidance_cross_model_20260913/screen_1k/jit/results.csv": "edbc646292f4251e788384415a565f26e2844c88d9f0ac953f1c6eaa3194482e",
+    "/home/zhoushunyu/eqvae/docs/data/self_guidance_cross_model_20260913/screen_1k/raev2/results.csv": "7e49621002f6fc05d5a45aef9afa2a6ba2a817abfaaeaefda2bc9ca82f19dcac",
+    "/home/zhoushunyu/eqvae/docs/data/weak_reference_20260914/all_image_results.csv": "ca0eec441d279c45e56ff9661bede62264de0c969a6182180f446f9f93b60db7",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/cfg_native/metrics.json": "db1a552e1a4aea09f719804365c7aeed5601459a6d43af033755f58d94fe0162",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/context/metrics.json": "c5a609377ef15f3cfd97161378cd50ed518623e32e212dceb62575e126184517",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/contrast_m/metrics.json": "909ff3d5f9291568209b751b91633cc5a7048e4fe829401a16c52aeb7cd9e291",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/contrast_null/metrics.json": "fb1dc32db1c8a933c731d1f7b9f04b7e0ee6a6b9b18089116ca7de561b7e557c",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/contrast_s/metrics.json": "521003ee0277b35d108c0d2b8f7732907583e6bae20dd516c28baa32802743d0",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/covariance/metrics.json": "66762af6b6a80fa41a2b7ac8b348ae7625c8bbc8c634a0062efae7be4ded318e",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/excess/metrics.json": "3764d96011e87ab1e19090d39470c126ee3734b33986d9b0330724731c26d057",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/gaussian/metrics.json": "3d5df0717be2bc095b48af50271888588c42814fa8e0d3c48d5b348938f4805f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/gaussian_half/metrics.json": "70698c098e463b840910e63ce6f4677070a388f0b8bb508008bde393fced7132",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/guided_weak/metrics.json": "238428e07456af3ab62c6d46ef8bbabe02e91ec8c0552f3b6c58bcdb6c574fc2",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/mixture/metrics.json": "2c75774a63a692977cc51a3ebf17066557b978f50659312ef6364751d1e42743",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/native/metrics.json": "2496e7f799ea0790f12d9ad17acdc51bbc8f0f6dad9834a52dfedb6638156552",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/real/metrics.json": "54b5f2de7d884d57d4d4412c09c8da6b2fedc23831cc8df811deb9a3fd53231e",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/real_residual/metrics.json": "77d09cdea845e71eda5285484740ee26522c4b40670f87fcfee9cd16e2b86477",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/self/metrics.json": "ecd75ebecff74f09e26aeb92366c29ab685f1830385796663bb8de3e37598d3d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_loss_50k_20260914/sit_small/screen1000/shuffled/metrics.json": "806e9d718cf1e093f5a3923a45965acec8b6104cf9c80d90cc0f19b348584d43",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0016/metrics.json": "14902eb33f01567e85ee8d9145113fdc8a1ad5d09e7875864bab7e0f7bb5e48a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0024/metrics.json": "2549460077a757c6fc4dbbf1389336b5e4db8bab2749ae7d07916421f6f97d5b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0025/metrics.json": "95c3db1887e359f3d1d34df564f1359456b56d2f5f9606fca2353aa6d83ce374",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0026/metrics.json": "2dcdc5e80378494def9da5d5d91025d310cac39c676cbcd7d4e0083ab61926f9",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0027/metrics.json": "40a308d45d341822eab958f11eceddca84b6e491db1d2636b90b7befda0b366a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0028/metrics.json": "69b955a0cd907b900f7d2bf208266c620cdc4ceefbe50d390e2c9ee5a27fd38d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0029/metrics.json": "263002971f43949191c5ae3f0826cc3a41b474936a7a45a7e9abb8388852b9e8",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0030/metrics.json": "2dc5396daeaadd46d32ce31ed5940338a4e5d15825e991774a7b22fead734e5d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0031/metrics.json": "e34bbd05f91a6d85a9b7c30a4a4927099739e3d4ed0e257ccb8617f76ecfbf58",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0032/metrics.json": "39dad4e2902b9b4ed75f36ac57f15551f3f634f31e6a141de164910d934541e4",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0036/metrics.json": "43d798b140c262fbbbf952bbb68320897352b741917980b3949342b8c2437b86",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0040/metrics.json": "eb4cc1656984829cda8d0b7a4b58641b8cdc526eed111078eaf365bd85294bcd",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0048/metrics.json": "3b6ae090e64332adcec364273b0689f9aa9963ad69bfd02c50410877da0315b5",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0064/metrics.json": "8dda3591ed7b1adf30a584570354c087695bd7a6d431988d40eb6c5c7dd7629d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/gaussian__c0080/metrics.json": "b32315d41daf9bd043489f996a8c5694a3af2abebf29207b11074cd85737803f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0016/metrics.json": "2e38763a5201155d78116665694ce3a2ead17fa87109611588207f7c1a1085ce",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0032/metrics.json": "47c60fce901f621950cdce8d290b0c8735a9bac7128831b74d8438dee8ff2d5a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0040/metrics.json": "985f5dfd66e5aa0b2e2c41545f29084457357dc5b526810afdaaac0cafed3ea6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0041/metrics.json": "6e54c2fa374686702af3994a40d3c3f7f4f1bf289d338824dcfe5ec4209a0985",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0042/metrics.json": "d5cf8c79bf2887bc01bb09ee5c80c3c49544c90ced17a0a59f9e25e62008994b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0043/metrics.json": "27b010e61f82031522ad963d488e09c44ff3d525b2f84fdf8c4d28297741fbe8",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0044/metrics.json": "61525d43501a91f9a941712fd6f0a33f39119371a4db8fc5770d04ab1c56c760",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0045/metrics.json": "2863a0b7172ae73cd9d22c4a965b38281c3b92de7c3f2d6abfd36be2f556045d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0046/metrics.json": "debe6348618f1c9abe5cd07bb0a7befe6cec55f7a7606e7cf0f93b0689311c24",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0047/metrics.json": "4238b50c178984b559d5c533f191390e9931273498133b9229e7ce92ded9acee",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0048/metrics.json": "d08754d30313cf869081eb8a6d32cfc115f05ebd1c88f232ff9b82bb4a818abc",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0052/metrics.json": "0dfd63bcf2c77e9d147324d57442ad4ef1f871145a45f936cd78aa8eca461929",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0056/metrics.json": "996e635971ebf532f7b125a028f13bd38572b149e88915d3769b5fd76b2f60b8",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0064/metrics.json": "32c2a6b24c765ee0d126f90c281f66e89af30570b367d55c1510c65cf8a2e0e6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/guided_weak__c0080/metrics.json": "1b6652b51474fd6fc393431431759965bed5677abf5245478a21bb9f409ac08a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0016/metrics.json": "6a0cd995f4bdf8901712ca49e6d37396d08609c94927de1a3e6375fd489e88bd",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0024/metrics.json": "eaa8977ce1d4948df2818f56fcdd477380c0381156591920292e048fd7889cc6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0032/metrics.json": "3197d0c44e3055e80198524b08aa1a2e028ffc19ab9eddcd9f2895cc9f9ea40a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0036/metrics.json": "c3cbe89d07c50748497598a8238f6ef994c203f72fbf2ffaad407358c83a625b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0037/metrics.json": "b336dd7ce318b2a05fbfd3ec72ec58fefc08e4ef496c3b648403c17b310be524",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0038/metrics.json": "1d210524ec7965564c3fc557e386ce18a9bec735cf589a345b5a69ef1819e872",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0039/metrics.json": "60340784d0376ee9917593b9253eee1af4c5a4186024f685b32f2a2f89477c94",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0040/metrics.json": "0039fe02ba92c3e879cd190b864a13e70db50b011e668903ff308c08bfd82bbd",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0041/metrics.json": "2dd2717772a42a01eff18dfc793ef59b0edaa8d6236d03d4f0b3e963ab0e60ed",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0042/metrics.json": "0adf9a0b86b07583fee5a148258cf9ceb110ee2bd3047eed89ddc2f92e339906",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0043/metrics.json": "c690519e26eb5649412ced784dbd9269617d8fe9e956109b49a6d63df042e8c0",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0044/metrics.json": "048ea1fdaf886fe65109a967b1cb9f5d6535b3fd12ff154709e0d2f103fb8928",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0048/metrics.json": "662dae62032ba15c3c10cedf3b76e3ea5a658ea94b71eb486a909ca76e409a1f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0064/metrics.json": "df46ba90808ef4c5a76b605defd7f7823bd0b3c353d19d85659951c597f9dbe0",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/mixture__c0080/metrics.json": "dd53711ca3418d7b3473ec9c56375d52f4eb74275d146b7ec2ff1722238b8c1d",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0016/metrics.json": "0ead48cfd3f5de059d3e4f8652950cb76f8e7839254750007e99d61cc0870a58",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0032/metrics.json": "0d85d4bff5ad017e0deb4213443606177483bb4d31b0429f7857eedd4e111b40",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0036/metrics.json": "e8607c3035465ac00bb9bc12f21383c7d7800def0a2df0c6db54b9d540c65a9f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0037/metrics.json": "23d44559539872c5f1c812b1b80f0413105ebc3b14afbc0076773877ed6d2a84",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0038/metrics.json": "1edf58932282d7b754e0f2c676fb982b65737ee15681e460aed77b21a73ed62f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0039/metrics.json": "d583c8d85983306c79bf8df4cdb2cc987228a78b7e6cbc02c377f9b367fadc8f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0040/metrics.json": "abded44a86f122998adcfcfb1e53245b3f6c23f9d3159988cfe1864612485d6a",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0041/metrics.json": "2e1b267adce12c931433039810bfe2b2471465d6764a10f47baba887d1937eff",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0042/metrics.json": "fbd1c98d9a78b3eeb05d521022c636f1c2704bb7a0234463306cc76afedf56cd",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0043/metrics.json": "68e86105e0ada0c8e0272a741f134cda880bfd31d54704bb5c1383037e663184",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0044/metrics.json": "3bdd556cdf5e8a16a6c430f22856f6d0b32d25d7a126e56b047d54dc8d9f5604",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0048/metrics.json": "5dc689ac0f6414e80853c79fc5de17f80830655ead98dabf8874a9b803bb886b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0056/metrics.json": "226f63c1e96c05028cb03cda834e90f2b97d937a9beee134b1205856ed5e1247",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0064/metrics.json": "d7786c6e7db5ee84d9360355cb5ef85541a9aa8b32c61248119732273eaeb5a3",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/self__c0080/metrics.json": "1109175f51e4c3cd79b1584f7a479f2418db55a894a4c32846464da8673f02a7",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_strength_sweep_20260915/points/strong__c0000/metrics.json": "d375b70ad32c165b8e1f2bda58c81b551c12ee7fb4abeb9dd28b94a5f6e8dbf7",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0016/n1000/metrics.json": "99a4feb2f4441819dd9bb40704573e05640daecb1ffbf3bb36acd28e15597578",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0032/n1000/metrics.json": "d6bb245bbabdfd8ba449cfaa32a5128ae1f183ff0e5c15180d16dca0e90e25ce",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0040/n1000/metrics.json": "c334b4f36ea68126607eaf49a2c24ad1d0abca132f4d1c53583493e7dcf2404c",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0041/n1000/metrics.json": "dc5ebceaede5c4d8afb03a9165d77ef06ec40b2a962b5f73a9b834b0c5742942",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0042/n1000/metrics.json": "3bd541f7bd98073ae316669e11acd8d48cc8d384a805b10685731a7f82107588",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0042/n5000/metrics.json": "97fa25689e0cca689a646540293fced964bd9ea835bf4deeeb7274432232daec",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0043/n1000/metrics.json": "6ae9022528b30bdba9535746e4ba7cbadaa6b4ce75eb7bc1290ea8caba474cbd",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0043/n5000/metrics.json": "5ad61158bb56cb545496984cfedaa4fb64f7b27aa1f0ce9010e9446e4fed3228",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0044/n1000/metrics.json": "3e1c6d37a6b27554c479322729b0f41dadbf88a435665d7b79432dbb4fa258b4",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0045/n1000/metrics.json": "45b12f8adb828df5ea63ad2c21e4229222842c8431a8e70f08a3c17d4a4bdb03",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0046/n1000/metrics.json": "6128eb63579b134d6bcb87603ae6c294813c03d116aa78d308187628d49ab048",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0047/n1000/metrics.json": "ea8395063e3caba42a9a7b2785374ec969c162da5c3da169150e067b93d0cb02",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0048/n1000/metrics.json": "473cf84c29398d061a1606e5be3f9569a1049405373282094ad04f49d9177754",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0052/n1000/metrics.json": "73415d12c83bfdab50594d2caea364c2ef6f91883074922e4521176c9a5f0c80",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0056/n1000/metrics.json": "5a611af0a47d8553262e30f8db746394d857f7709b43b9157034ec61ea7248d9",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0064/n1000/metrics.json": "6a7b208f1255f7631fb07d4586cce0635c1738b760bb877cbc2b9edf7fd038d7",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0080/n1000/metrics.json": "6ab5d103f3c7fd7fdb867e3334a61422f7feccaeb4d0d5211236ca36d09b24f5",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0016/n1000/metrics.json": "1d23e970fc1575bdaf008a09065988cfa06b7d1939dd2141c02e5829c25138f6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0032/n1000/metrics.json": "1d7be09260cd6971e2c49f14f3f0788829f82221e7b1a80aa936bcb7426862b6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0036/n1000/metrics.json": "bcd831832926c52ebe699f9ade57071f7fd2bfdfb2dedc73d555cae8816d2b2f",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0037/n1000/metrics.json": "8a000a510267c5ef85354c064ae0c7213f20fe2eb97a18f2f87e1edf81b0ca29",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0038/n1000/metrics.json": "31cabc5bd0ec4f67b9a2a3f5eadf7676a8a7f6570b54d5b0ce92690198f43886",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0039/n1000/metrics.json": "a7787c454bce815d6aa560a7f857ac55d8ccac90ef1841752f57eca07d1c29ae",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0040/n1000/metrics.json": "033da8243e89f7a3aed2af641bbb6e78de8fd9f63731672419ed9f732d4c3b82",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0040/n5000/metrics.json": "f6c3d01c34f63cfa720115fb1f90a5bcecb17e214dc12c7eb27bb21d759e5fe3",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0041/n1000/metrics.json": "070ae6696c8ea1fd6880e5e6c856fe16453b164c05ac34c07969f3816b09ebff",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0041/n5000/metrics.json": "ecc329f4ed5a85c4fe967e0fe202bde2a0791ca277c21ba40f8426a3bd599473",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0042/n1000/metrics.json": "e76843f2127b5bc232441bd40220372941232f07bab47c038dd5923ede5e76b0",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0043/n1000/metrics.json": "1c9d21155da4b035622f733d1686447f3cf6d5ad4224dd14a7737d64a870d7b9",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0044/n1000/metrics.json": "e371fd734928fdccf13a2644fc52c3294226bdfcca8747f6f08dc2da3abeccf6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0048/n1000/metrics.json": "01760a484876c83376b7990009ea78b674a453b1dc605848434b9de3bb224fa9",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0056/n1000/metrics.json": "8244cd0327184db12e787ef8446352bdcbafe1c4127ed7ff091b7bd7db3e7b8c",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0064/n1000/metrics.json": "064f0004ee20bbf05f3f4bf6ba99e293ae860e3986fa77c279f0c8ac6de48ae7",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak_deployed__c0080/n1000/metrics.json": "89b965059fa7f9e97b9d5af1c4f2a35206f7be5d4282f9ad49e925b8fc6cb0c5",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0016/n1000/metrics.json": "11729077ed4e5e538f062ec51fa6eb8285fd2df254e9d86a0d83a5a4f5ea43bb",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0032/n1000/metrics.json": "a0d63fe55cefc78eb67f71584c808eec89e1b9455fe98c5a1b361cccfebd3a9c",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0036/n1000/metrics.json": "5eb0be1552b4e0cb0c9431e7c2a0292ed754774ee8489cf8183ad5518c777659",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0037/n1000/metrics.json": "648b51c2559e6c9eb57a00eba11ce5ddcbbd22e7add4e9021966d82ddee2f7ab",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0038/n1000/metrics.json": "8b6f434760cd76ed838057945c510f244593fd0167082439a80f55cfed3ae494",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0039/n1000/metrics.json": "a859cb24a4c4d28978af2b71ee33e31ee1f1f7815bcabe64148eb9aafd4ae895",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0039/n5000/metrics.json": "b0244ff7b0809acb0c88d1dfbf6baca4fcbea60a74a867f1ae8b0c894eca8ce6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0040/n1000/metrics.json": "e3dca0fa067d5106fdb36c70a8abbd9b1a4788a960621635ee62d4f947ac7e2e",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0040/n5000/metrics.json": "1004b4850865d1f992317216b33b58c875eb18d945b4650de831194ab5cf41d6",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0041/n1000/metrics.json": "9fff8c0c293008d60bc822f86e5f5e84ce578f4ad4ed1a7939d5cb1c5a28fb46",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0042/n1000/metrics.json": "7cd7a8e90a2accf34a8bd713616b3cbb4a0fdc64c4c28054a124cb40628e8e92",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0043/n1000/metrics.json": "100547e56f9a475d1457e45b707e0791be545a87b32c4445e657e5af24f66046",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0044/n1000/metrics.json": "b50ff05afee725c13dc5550f5f9b827bdc72f0b0123b448152a2dc6bc4f86c21",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0048/n1000/metrics.json": "ccea594551530a42205602b089b9c3c60ca29ff889bae681c4b8224fc2cb8de0",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0056/n1000/metrics.json": "aef14e1f775196022f79c8711104b08fabf01b1baffe8f804668c151f1a5dcf2",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0064/n1000/metrics.json": "cbd3e94c1b637765bf74824615271627d9cd42bd603d9d751dfc3e849d005ace",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/real__c0080/n1000/metrics.json": "7fe2e4bbaa2a1f9b60bf592f74dee60b69113388465630d49b9cc7cd4f80133b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/self__c0016/n1000/metrics.json": "a55c1effa44bbc4cf5693cc58c074de0fe1e5ecb5dca0f3631735b222139fb76",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/self__c0032/n1000/metrics.json": "9cb2e38e0b5990b334cc8db0d517b8b0038dd054fe33ec2d90b6917bf78b63cb",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/self__c0048/n1000/metrics.json": "291d8aeb79b3b14c49a6c7fc1f771eba1ae40b46e181341e35b8c727cdd67d65",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/strong__c0000/n1000/metrics.json": "f4c2b03d6c5faf750849cea2055856a9eebfab10048b6c7ba19ce16f9c4e5913",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0000/n1000/metrics.json": "5ebdeaf042d2ac69f83f4e12daebb6898a51124fcc1fb6b819dea4147a557e0c",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0016/n1000/metrics.json": "a9ef6249da97710c7e0dcab2ffc4d935ac75ab320ae856ab3511f85ca3826fe3",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0032/n1000/metrics.json": "0372b0a071623e1edf6ba9f8494252691107ee4bc406262a054be074fe13dc1c",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0036/n1000/metrics.json": "4448ca9ec69d77e70e661a83ef167cbc06f08503f4bed15dac5836db5c21f49c",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0040/n1000/metrics.json": "c7aeb25d2bb566da41656559d06c6f87c2ef63a778d4b92d64aa7ee2bbba5190",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0041/n1000/metrics.json": "b767d29d1791b4255437c4156c4b92fe1d542179c10fea9a47cfb242803bba4b",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0042/n1000/metrics.json": "46de3c49917586c2aafdcb92e932b5bb8a86e0bd87b5da32a50719aa0aaf105c",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0043/n1000/metrics.json": "12fc68fe3a441b0a77b97cb2a32973099e9b214facf469030de10ec9cd056930",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0044/n1000/metrics.json": "7960f1c6d9af572ded35f3cff1c38ae027af0c707033df33007013fffcbd9d61",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0045/n1000/metrics.json": "9ddbecad767c2f1adfe2890b749a1a999c4286a416319570cbb27189239bc88e",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0046/n1000/metrics.json": "9a0ca4070833a54621f6e3a80aab5a8da42b293339c17d79dde2618381ad4de6",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0047/n1000/metrics.json": "69825c829274bdd15f4791cef418e419a1335c81b5282c1a6a50ecdd248389ad",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0048/n1000/metrics.json": "030d89a9a4914dbc756f665662d1389bad8dc1913e72e4e67479177f0ef9c93c",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0056/n1000/metrics.json": "5e8d8198e325487b235178668b1c2c24864ea80f6ad4226a09fecdb1f51b84e5",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0064/n1000/metrics.json": "60c6c096535ac4b2d5bcbd1ff6b5b0fb248996bf296346bb33e0f20d828a4754",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_ema/c0080/n1000/metrics.json": "2e09090151bd0634c617df1fecaf25a7a82fd207463d5ef97a89647b887959ce",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/quality/step000416_head/c0040/n1000/metrics.json": "0ee6c108984e7045437b2bc8b6b70175ca19210e19d967c4cb75bc905fcf82ad",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v1/quality/step000200_ema/c0040/n1000/metrics.json": "f6ddb81ab205eda1751088ce130d8d8ed40476b69c2c1adddfa4e6ad9351d9f9",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v1/quality/step000200_head/c0040/n1000/metrics.json": "33e822c394ed0cd0c8bf0d2730e1128bace694d8f7dcfabecc7a4db54e43f57b",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v2/quality/step000600_ema/c0040/n1000/metrics.json": "57910c4239c4d7e4fbf16589f2c39a777e9312307ae097f773a88694569118b3",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v2/quality/step000600_head/c0040/n1000/metrics.json": "a25ec1846e86a47b5405ebf22d487075cfde0f79eb2a5346c5cad27ce63ebacc",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0000/n1000/metrics.json": "5561183a876944c7fa1236c8e9ab2fa9c68f9e0d745b3a41b298469326705fbf",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0016/n1000/metrics.json": "f4d1ce135a540a82b0ad53a0b94fb97960316184bebe86aa49593dcd3d92dc23",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0032/n1000/metrics.json": "ff462906709adea1599087cc26adaf396e9ac7601d27778e7640adc6a89becaf",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0040/n1000/metrics.json": "b04880120d4d39aed8a790fcd6855f682d1867e033770be6c34f4160a3c945d2",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0041/n1000/metrics.json": "e34668807194ff90bd489f678df8675af4e65f8be2bda65770a7cea942fda8c1",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0042/n1000/metrics.json": "02e787e08b96bbdc03e336875d76f1d9d882b65384fec75bb05f7d9688c675ae",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0043/n1000/metrics.json": "d50c284a415f9ca7bb162f2d485894d1d7766205f1fc2aff856dd5bb7881b952",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0044/n1000/metrics.json": "c3eaf19542913e49f6eae4f04581eaa8b0d154417f6aef2a276951337d6f7880",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0045/n1000/metrics.json": "f2fd7cbb2a9fa623afd17f013ed65fb900dcff90aa2c50d7c48ebc7f7db0cfbb",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0045/n5000/metrics.json": "89df0cd6f26b6a4b26bfeb4969f30d3d2fd65815ea29e7210b4e078a3f84f02a",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0046/n1000/metrics.json": "f447ac30277c9b39ef945189a5b83d00784910d36e0175faa85b80dfeebca167",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0047/n1000/metrics.json": "77a15865da1e4b18f46fe7eb370f2825deb6ec812aadb8ddf829c3d4591af71f",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0047/n5000/metrics.json": "158309c94fc7d3aa3d39981e2e4fda3f82decd9b122df218e08a2f23134936f1",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0048/n1000/metrics.json": "0594e35069a6ac437d4c81dfaae65b8a92e975aa3c275b8abd5d30787c4e85d5",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0052/n1000/metrics.json": "fac84804706c31b79f226f5c238c338a8c469c8de2f5ef3dd62247f5fa8549ac",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0056/n1000/metrics.json": "96760bb4d92f1f5362bd31909f6b189ed1f6aa53ab59aa7cfd7cc4aa5afe5d60",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0064/n1000/metrics.json": "501481b854c50a1f770137086e0aab535707c7ac5261d5dfaf2e0ddce43b9b33",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_ema/c0080/n1000/metrics.json": "41613e1debb9cb61de41b4e0451ddbb3c7f7939c1f0420514d3f5d4437954d7a",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/quality/step001000_head/c0040/n1000/metrics.json": "f3f5f70ed6a8bac5cdcadf70e7dbf8121b7b4800fe1df02eae9d7f7e04745bb2",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_ema/c0040/n1000/metrics.json": "8416595d6bda32988b78d71c3ed3531eb3bbf9b3f2d785e78df4f5db1f7bf7c6",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0000/n1000/metrics.json": "649f3a767163669122bfd357988829ea06ef0155ac8a9e277ddb73d152631960",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0016/n1000/metrics.json": "cf4be7dd98148658e7259b44921b8fe1c7aecc87ed7cce2f08c5cc3db0c63020",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0032/n1000/metrics.json": "d159507f3f0a1573a834175f04d7c9d1c6b5d5e77212d3fc3ef01cece9ea5bbd",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0040/n1000/metrics.json": "a436e1f5d3b8def97a7b1f3db7a3247abb79c77e71ac879a099382ebf521b0e1",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0044/n1000/metrics.json": "4c0c347a375dc7a36b712155c793d51618a1712a8595a9abb79b10c9c3c2e51e",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0045/n1000/metrics.json": "811ecac53508fdec807aacb1cd7dedd349f08f38c7e29475ff8354a94d67a95f",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0046/n1000/metrics.json": "4168cc81403b0a77b38609443e48e1a7b6a7ae5253129cc1ab8a9a39337251dd",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0047/n1000/metrics.json": "e95ba98a30e5cd9007a28c33273d65b3fff3242fafd99d8f95d7531bc369ffb2",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0047/n5000/metrics.json": "56a33c1f8e6c0bf919c65622ba40d84c277ae90213c2b252ea077870dd2a99aa",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0048/n1000/metrics.json": "c1f9427cef2287b3f2696914c56e7dab0c89516d600d36981e48ab217d261ef3",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0048/n5000/metrics.json": "f9fc05a1009bcad7a9cda5e5501b499d9d87a312ea748dd4c15a22549c818ced",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0049/n1000/metrics.json": "87b2fddbd42496891576d477546f988cd70db8687fbee113d9762ee81374ba52",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0050/n1000/metrics.json": "a17e8dfc425b738eac6beeaa1822a3cda74caae5d872d4d9a4b8645d6e3cce7e",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0051/n1000/metrics.json": "7a78cf0b81c512b415b345e262f5f3c3aafc77f36b793400780e11a65855b039",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0052/n1000/metrics.json": "e51818da699df4ae5c8623cb6f3108a186d47dc16d4d35057513bff1d297bdf8",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0056/n1000/metrics.json": "28435445a65dde39c056520db51cfea15787363a0d75312dddd125a84f3eeb41",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0064/n1000/metrics.json": "26c2a84c92459f298b1fbc33ff92131ce3d636c15efca694e2ceaa997b219102",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/quality/step000600_head/c0080/n1000/metrics.json": "62f237a1100595a62342cc4669599329159eb238a9b23984199694450cc80a39",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/progress.json": "de5d8ab1ecf2ea2d84481371fec25b8454023f4dd530c83e67ab7a94d3bc47ae",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_energy_guided_v1/complete.json": "d276cab66816d9f17591949de0a9e2940a11567bac4444b40d8e6e4725245d00",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v1/progress.json": "78cf34b5613f92b0009d1a8641a255823dd42fb1866803330e53e698cf919a98",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v1/complete.json": "e6fbb45ab6870adae0be412ecdf5b3966215da023d74f4decb3dcc05de7d21dc",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v2/progress.json": "18cb74dfaf53159b4ab068278141078e50e666924fdc5b53afcb02a6094cbcfa",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v2/complete.json": "a32fb6268f317f99bb8b192a5c04e4d3d120066e640962b3dae674192d8bde15",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/progress.json": "a925b7b09b024dab268eef6687fdf5920a253975377bb8b6ca3e69dae34be516",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_joint_moments_v1/complete.json": "b00a5ed48ff0bfbcde086bda8b6db80d4dd9e4dae9a5d37513c9f87ad742b192",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moment_prepared/progress.json": "7bae2a141accca596b8949640b456d38a689a0ced616de88b5f634f488a7a82f",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moment_prepared/complete.json": "8c3318ef48fe20c4db4b88cb68152dbeea9c4500b90ef28baaf2b0a56d4d1fb2",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/progress.json": "38af39e5eb581f2690ef539e1fee0740f1031f38dd5d8002d6788ec6c554129d",
+    "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_moments_v1/complete.json": "5feb3615b9ea8e2c11d54e93dcf8ff04d73c903b20ec7bd6ad46a416349d7048",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/training/guided_weak/complete.json": "e84ec84098b0e9ebb4835570676aa9f8679b75bd4e529d03b0101865f75ad925",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/training/guided_weak_deployed/complete.json": "dff2602da41228851d4c10668b93eb287627f3973aad12e37ba502312ae9ed36",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/training/real/complete.json": "d615d08eb688e4a3cee389310fa12780b12f77362e4b77ffe242a5dbbde3ee36",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/training/self/complete.json": "58aa6b1e90944b7d922e8eb98288e0aba01e1024641c4aa2f9a7739c240b0d98",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_5k_20260914/pause_snapshot.json": "20d66c904cbeefac03a974fd3dd652fffa3053d317f6d85c07a73ddf31251c85"
+  },
+  "csv_raw_cross_checks": [
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_readout_matched_control_20260913/quality.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/raw/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_readout_matched_control_20260913/quality.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_readout_matched_control_20260913/sit_small/matched_1000/native_fresh/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_readout_matched_control_20260913/quality.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/native_base/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_readout_matched_control_20260913/quality.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_readout_normalization_20260912/sit_small/check_1000/adg/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 6,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w1p7800/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 7,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 8,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w2p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 9,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/tune_native/incumbent_w3p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 10,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 11,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 12,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 13,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 14,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w1p7800/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 15,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 16,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w2p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 17,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/incumbent_w3p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 18,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 19,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 20,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 21,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w1p7800/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 22,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 23,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/native4_w2p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 24,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 25,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 26,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 27,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w1p7800/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 28,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 29,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w2p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 30,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp4_w3p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 31,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 32,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 33,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 34,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w1p7800/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 35,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 36,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w2p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 37,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_1000/mlp8_w3p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 38,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/incumbent_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 39,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/incumbent_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 40,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/native4_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 41,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/native4_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 42,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp4_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 43,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp4_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 44,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp8_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 45,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/balanced_refine_1000/mlp8_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 46,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/incumbent_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 47,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/native4_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 48,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/mlp4_w1p1000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_50k_20260914/results.csv",
+      "row": 49,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/confirm_5k/mlp8_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 6,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w1p8000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 7,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/incumbent_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 8,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 9,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 10,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 11,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w1p8000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 12,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/native4_w2p0000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 13,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 14,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 15,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 16,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp4_w1p8000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 17,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p2000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 18,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p4000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 19,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p6000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 20,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/grid_5k/mlp8_w1p8000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 21,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p2500/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 22,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3000/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/raev2_shallow_ig_5k_selection_20260914/results.csv",
+      "row": 23,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/mlp8_refine_5k/mlp8_w1p3500/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_sg_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_log_k02_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_sg_cost/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/sit_small/results.csv",
+      "row": 6,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/ig_log_cost/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_sg_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_log_k02_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_sg_cost/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/jit/results.csv",
+      "row": 6,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/jit/ig_log_cost/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/raev2/ig_sg_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig_log_k02_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv",
+      "row": 5,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/raev2/ig_sg_cost/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/raev2/results.csv",
+      "row": 6,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/raev2/ig_equal_nfe/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/confirm_1k/jit/results.csv",
+      "row": 2,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/confirm_1k/jit/results.csv",
+      "row": 3,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig_sg_w1/metrics.json",
+      "fid_abs_error": 0.0
+    },
+    {
+      "source": "/home/zhoushunyu/eqvae/docs/data/ig_sg_20260914/confirm_1k/jit/results.csv",
+      "row": 4,
+      "raw_metric": "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/confirm_1k/jit/ig_sg_cost/metrics.json",
+      "fid_abs_error": 0.0
+    }
+  ],
+  "validation": {
+    "all_finite_valid_fids": true,
+    "workbook_roundtrip_rows": 378,
+    "regenerated_images": 0
+  },
+  "outputs": {
+    "/home/zhoushunyu/eqvae/docs/GUIDANCE_COMPLETE_RESULTS_20260915_ZH.md": "140c8f7a2ba16554736cb5c7800d47cd83fe0219377c8018f643ddb5ac696b32",
+    "/home/zhoushunyu/eqvae/docs/data/guidance_history_20260915/all_results.csv": "edbc961c8ca4b520fb2ea2c52b9c4939365d58245e75c18b45d546fd8ac0ab6e",
+    "/home/zhoushunyu/eqvae/docs/data/guidance_history_20260915/all_results.json": "613040825bf5b8bf06f0f2d27ce8987c60568af90aa7d79abdb8c1818bebed96",
+    "/home/zhoushunyu/eqvae/docs/data/guidance_history_20260915/results.xlsx": "6e769f8da8eea9abaf44e3fd411d27fbbf3c599b8616115691ee6f0d24a53b63",
+    "/home/zhoushunyu/eqvae/docs/data/guidance_history_20260915/status.json": "26ee018ffae5a8416f7dc023b90231e04aede6196c15b533a9ea9969aa820e74"
+  }
+}

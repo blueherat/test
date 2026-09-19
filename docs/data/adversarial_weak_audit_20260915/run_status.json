@@ -1,0 +1,69 @@
+{
+  "checked_utc": "2026-09-15T10:10:19.025136+00:00",
+  "runs": {
+    "endpoint_gan_v1": {
+      "arguments": [
+        "--updates",
+        "200",
+        "--warmup",
+        "16",
+        "--global-batch",
+        "24",
+        "--save-every",
+        "50"
+      ],
+      "source_changes_at_audit_end": [
+        "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/launch.py"
+      ],
+      "progress.json": {
+        "phase": "training",
+        "step": 200,
+        "target_step": 200,
+        "updated_utc": "2026-09-15T09:55:51.821396+00:00",
+        "world_size": 3,
+        "global_batch": 24
+      },
+      "complete.json": {
+        "step": 200,
+        "updated_utc": "2026-09-15T09:55:51.960940+00:00"
+      },
+      "latest.json": {
+        "phase": "complete",
+        "step": 200,
+        "updated_utc": "2026-09-15T09:55:51.957947+00:00",
+        "replicas_identical": true
+      },
+      "training/status.json": {
+        "phase": "complete",
+        "updated_utc": "2026-09-15T09:55:56.647885+00:00"
+      }
+    },
+    "endpoint_gan_v2": {
+      "arguments": [
+        "--updates",
+        "400",
+        "--warmup",
+        "0",
+        "--global-batch",
+        "24",
+        "--save-every",
+        "200",
+        "--resume",
+        "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_gan_v1/checkpoint_000200.pt"
+      ],
+      "source_changes_at_audit_end": [],
+      "progress.json": {
+        "phase": "training",
+        "step": 230,
+        "target_step": 600,
+        "updated_utc": "2026-09-15T10:10:17.558590+00:00",
+        "world_size": 3,
+        "global_batch": 24
+      },
+      "training/status.json": {
+        "phase": "running",
+        "updated_utc": "2026-09-15T10:10:16.997141+00:00"
+      }
+    }
+  }
+}

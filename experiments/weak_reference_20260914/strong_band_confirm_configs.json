@@ -1,0 +1,7 @@
+[
+  {"arm":"strong_e320","kind":"baseline","alpha":0,"omega":0,"steps":320},
+  {"arm":"strong_band_w1","kind":"calibrated","alpha":0,"kernel":"band","weights":[1,1,1,1,1,1,1,1],"steps":64,"weight_source":"fixed; not fitted by DSM"},
+  {"arm":"strong_log_k04_e64_w1","kind":"log","alpha":0,"omega":1,"kappa":0.4,"steps":64},
+  {"arm":"strong_log_k04_e106_w1","kind":"log","alpha":0,"omega":1,"kappa":0.4,"steps":106},
+  {"arm":"strong_log_k04_e106_w075","kind":"log","alpha":0,"omega":0.75,"kappa":0.4,"steps":106}
+]

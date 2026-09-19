@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "phase": "review_complete",
+  "results_sha256": "51c0c4af7df07b62d5bb3f64cecaf93747d9d2a41795199785352aaa9b949e35",
+  "audit_sha256": "39811fc42b6308723116ab1c23d94db6b0f0bf2a52ebfcf1392396c0c69dc5a5",
+  "results": {
+    "ig_internal_original": 65.4028139649493,
+    "ig_internal_native": 65.000022387777,
+    "ig_internal_clt": 65.65136162395311
+  },
+  "decision": "end_fixed_head_variant_one_bounded_trainable_prefix_test",
+  "reason": "Coarsened readout fails against both original and matched native heads. Affine regression depends only on preserved first two moments; this limiting case motivates one fixed-depth weak-feature adaptation test but does not prove why nonlinear heads failed.",
+  "next_stage": "cycle04_weak_prefix_adaptation",
+  "old_broad_queue_paused": true,
+  "created_unix": 1789158795.3964868
+}

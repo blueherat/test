@@ -1,0 +1,69 @@
+{
+  "model": "jit",
+  "phase": "cross_screen_1k",
+  "samples": 1000,
+  "seed": 2026091407,
+  "batch": 32,
+  "configs": [
+    {
+      "arm": "cfg",
+      "base": "cfg",
+      "kind": "baseline",
+      "omega": 0,
+      "steps": 100
+    },
+    {
+      "arm": "cfg_log_k02_w1",
+      "base": "cfg",
+      "kind": "log",
+      "omega": 1,
+      "kappa": 0.2,
+      "steps": 100
+    },
+    {
+      "arm": "cfg_equal_nfe",
+      "base": "cfg",
+      "kind": "baseline",
+      "omega": 0,
+      "steps": 200
+    }
+  ],
+  "sources": {
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/__init__.py": "385630034f09db270034d2320530b72c61b26edaee71c21897abb222a6e3daee",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/api.py": "f3f71b6c22a09b94c09033379467914f402b27658cd918bdb84776f7a39c8800",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/catalogue.yaml": "7be4f5be46f1f48d3e9e77eabf1cafb286a0480240623b09bb8e70b5eda01589",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/cli.py": "9496faf1d5db157b90038780381b6675d0336f72ec9ba09e72b0c6ec4ba26baa",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/extractors.py": "ccf3d5cf5610565a9fef9cdd1e687d35af83ca3fcc50243f6299239a15e15a1a",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/format.py": "0755520180dfabf9fe00c85e89039bf289ef189a1dcff2b1ea3a8a78a426510c",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/frechet.py": "6e77d93b80559f9801e21d7fa723e3d6e6e7180c443bd49cfb3d3d7a3bdcff7f",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/mind.py": "ed259c295797204eda71d8ae62773310cbd5697ebdb732588f3356d70242c015",
+    "/data/users/zhoushunyu/eqvae/external_sources/nanogen-evals/fd_evaluator/fd_evaluator/stats.py": "6e4aa7310888a14d594e2ed821627597e92aec0997c0bb9eaece87cc45cf02a4",
+    "/data/users/zhoushunyu/research_repos/JiT/denoiser.py": "3649319428f758080828b164266284a75dcd73b53ce81827302be0824bca91a4",
+    "/data/users/zhoushunyu/research_repos/JiT/model_jit.py": "0293a23c01312317701c96704b85e7fe00b15d9261aa845731ea434103fd7563",
+    "/data/users/zhoushunyu/research_repos/JiT/util/model_util.py": "f4f35cc86a41b374d9e3654c8a2cddc12fbb11d41a28d24f05cf667c008b912e",
+    "/home/zhoushunyu/eqvae/experiments/evaluate_raev2_official_samples.py": "177e58d284e2c60d980db03c95c15928bb9c0c5dfc588332980841c860a4ddf2",
+    "/home/zhoushunyu/eqvae/experiments/jit_internal_guidance.py": "b68534fec95dd9b08b93625364960945e25bb2b5d077cb27f900130305704304",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/sampler.py": "e2818b9a78e8422104bd5a07d028293fdc80086bc5d523674cdeef0deb07747b",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_cross_model_20260913/core.py": "bf33db633bbbfcad491eeee8c09b1acfcf4ecf4e60514465bdfd3de1d6f4ad37",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/check.py": "6ad90f5e1b970f047c8524e67ba609e0f913fdc0c6715c6fd558eb7842e12d69",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/cross_check.py": "6d6cc6a840fc3447060ffaf6e2cf942d725dacb20ff8bf769c6497ad5c97c737",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/cross_core.py": "8e597f559cbc77a31803c1469c154e888a130725c888a70ee9ad7911dce83865",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/cross_run.py": "501ef975197cfc1bcfd88532228c875dd1d807b45e0626e5f4677d120ac4cfb6",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/sampler.py": "e768b8eed4711a3fd6118d05d15da4c591220e2472eb91fe103c94f7ab926263"
+  },
+  "assets": {
+    "/home/zhoushunyu/data/eqvae/models/JiT/jit-b-16/checkpoint-last.pth": "4ebcf24698748548d13bef1b4c3b26c72c6ec2bc633002b3f558697920cb2695",
+    "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+    "/home/zhoushunyu/.cache/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+    "/home/zhoushunyu/.cache/torch/hub/checkpoints/pt_inception-2015-12-05-6726825d.pth": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2"
+  },
+  "inputs": {
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/jit/noise.npy": "67207291eed37210310ac2b6e7f1cceb438e78dde48b2cedf64f3d6829586dd7",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/cross_screen_1k/jit/labels.npy": "f8a33e4dd81dc3aa57b9cee7e4229ce684cdba47f20c9ae295d099a7da237f5a"
+  },
+  "reference": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+  "precision": "FP32 weights/state, BF16 autocast, TF32 on",
+  "upstream_commit": "843bda799bb531ccf8d98164d8ccf1a3b8ce3f6d",
+  "scope": "Same-time antithetic log-density smoothing extrapolation; sigma=.2*path noise std; raw conditional contrast added to fixed CFG/IG; paired 1K pilot"
+}

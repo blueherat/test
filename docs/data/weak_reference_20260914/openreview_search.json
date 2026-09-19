@@ -1,0 +1,747 @@
+[
+  {
+    "url": "https://api2.openreview.net/notes/search?term=Self-Guidance%3A+Boosting+Flow+and+Diffusion+Generation+on+Their+Own&limit=10",
+    "status": 200,
+    "notes": [
+      {
+        "id": "2GxTTGObuJ",
+        "forum": "2GxTTGObuJ",
+        "content": {
+          "venue": {
+            "value": "IEEE Trans. Pattern Anal. Mach. Intell. 2026"
+          },
+          "pdf": {
+            "value": "https://ieeexplore.ieee.org/iel8/34/11275622/11172684.pdf"
+          },
+          "venueid": {
+            "value": "dblp.org/journals/PAMI/2026"
+          },
+          "paperhash": {
+            "value": "li|selfguidance_boosting_flow_and_diffusion_generation_on_their_own"
+          },
+          "authorids": {
+            "value": [
+              "https://dblp.org/search/pid/api?q=author:Tiancheng_Li:",
+              "~Weijian_Luo1",
+              "https://dblp.org/search/pid/api?q=author:Zhiyang_Chen_0002:",
+              "https://dblp.org/search/pid/api?q=author:Liyuan_Ma:",
+              "https://dblp.org/search/pid/api?q=author:Guo-Jun_Qi:"
+            ]
+          },
+          "html": {
+            "value": "https://doi.org/10.1109/TPAMI.2025.3611831"
+          },
+          "_bibtex": {
+            "value": "@article{DBLP:journals/pami/LiLCMQ26,\n  author={Tiancheng Li and Weijian Luo and Zhiyang Chen and Liyuan Ma and Guo-Jun Qi},\n  title={Self-Guidance: Boosting Flow and Diffusion Generation on Their Own},\n  year={2026},\n  month={January},\n  cdate={1767225600000},\n  journal={IEEE Trans. Pattern Anal. Mach. Intell.},\n  volume={48},\n  number={1},\n  pages={781-791},\n  url={https://doi.org/10.1109/TPAMI.2025.3611831}\n}\n"
+          },
+          "abstract": {
+            "value": "Proper guidance strategies are essential to achieve high-quality generation results without retraining diffusion and flow-based text-to-image models. Existing guidance either requires specific training or strong inductive biases of diffusion model networks, which potentially limits their ability and application scope. Motivated by the observation that artifact outliers can be detected by a significant decline in the density from a noisier to a cleaner noise level, we propose Self-Guidance (SG), which can significantly improve the quality of the generated image by suppressing the generation of low-quality samples. The biggest difference from existing guidance is that SG only relies on the sampling score function of the original diffusion or flow model at different noise levels, with no need for any tricky and expensive guidance-specific training. This makes SG highly flexible to be used in a plug-and-play manner by any diffusion or flow models. We also introduce an efficient variant of SG, named SG-prev, which reuses the output from the immediately previous diffusion step to avoid additional forward passes of the diffusion network. We conduct extensive experiments on text-to-image and text-to-video generation with different architectures, including UNet and transformer models. With open-sourced diffusion models such as Stable Diffusion 3.5 and FLUX, SG exceeds existing algorithms on multiple metrics, including both FID and Human Preference Score. SG-prev also achieves strong results over both the baseline and the SG, with 50 percent more efficiency. Moreover, we find that SG and SG-prev both have a surprisingly positive effect on the generation of physiologically correct human body structures such as hands, faces, and arms, showing their ability to eliminate human body artifacts with minimal efforts."
+          },
+          "title": {
+            "value": "Self-Guidance: Boosting Flow and Diffusion Generation on Their Own"
+          },
+          "authors": {
+            "value": [
+              "Tiancheng Li",
+              "Weijian Luo",
+              "Zhiyang Chen",
+              "Liyuan Ma",
+              "Guo-Jun Qi"
+            ]
+          }
+        }
+      },
+      {
+        "id": "YRnT5cu4TQ",
+        "forum": "YRnT5cu4TQ",
+        "content": {
+          "venue": {
+            "value": "CoRR 2024"
+          },
+          "pdf": {
+            "value": "http://arxiv.org/pdf/2412.05827v1"
+          },
+          "venueid": {
+            "value": "dblp.org/journals/CORR/2024"
+          },
+          "paperhash": {
+            "value": "li|selfguidance_boosting_flow_and_diffusion_generation_on_their_own"
+          },
+          "authorids": {
+            "value": [
+              "https://dblp.org/search/pid/api?q=author:Tiancheng_Li:",
+              "~Weijian_Luo1",
+              "~Zhiyang_Chen2",
+              "https://dblp.org/search/pid/api?q=author:Liyuan_Ma:",
+              "https://dblp.org/search/pid/api?q=author:Guo-Jun_Qi:"
+            ]
+          },
+          "html": {
+            "value": "https://doi.org/10.48550/arXiv.2412.05827"
+          },
+          "_bibtex": {
+            "value": "@article{DBLP:journals/corr/abs-2412-05827,\n  publtype={informal},\n  author={Tiancheng Li and Weijian Luo and Zhiyang Chen and Liyuan Ma and Guo-Jun Qi},\n  title={Self-Guidance: Boosting Flow and Diffusion Generation on Their Own},\n  year={2024},\n  cdate={1704067200000},\n  journal={CoRR},\n  volume={abs/2412.05827},\n  url={https://doi.org/10.48550/arXiv.2412.05827}\n}\n"
+          },
+          "abstract": {
+            "value": "Proper guidance strategies are essential to get optimal generation results without re-training diffusion and flow-based text-to-image models. However, existing guidances either require specific training or strong inductive biases of neural network architectures, potentially limiting their applications. To address these issues, in this paper, we introduce Self-Guidance (SG), a strong diffusion guidance that neither needs specific training nor requires certain forms of neural network architectures. Different from previous approaches, the Self-Guidance calculates the guidance vectors by measuring the difference between the velocities of two successive diffusion timesteps. Therefore, SG can be readily applied for both conditional and unconditional models with flexible network architectures. We conduct intensive experiments on both text-to-image generation and text-to-video generations across flexible architectures including UNet-based models and diffusion transformer-based models. On current state-of-the-art diffusion models such as Stable Diffusion 3.5 and FLUX, SG significantly boosts the image generation performance in terms of FID, and Human Preference Scores. Moreover, we find that SG has a surprisingly positive effect on the generation of high-quality human bodies such as hands, faces, and arms, showing strong potential to overcome traditional challenges on human body generations with minimal effort. We will release our implementation of SG on SD 3.5 and FLUX models along with this paper."
+          },
+          "title": {
+            "value": "Self-Guidance: Boosting Flow and Diffusion Generation on Their Own"
+          },
+          "authors": {
+            "value": [
+              "Tiancheng Li",
+              "Weijian Luo",
+              "Zhiyang Chen",
+              "Liyuan Ma",
+              "Guo-Jun Qi"
+            ]
+          }
+        }
+      },
+      {
+        "id": "v2KcFCe9CP",
+        "forum": "qgv56R2YJ7",
+        "content": {
+          "summary": {
+            "value": "This paper introduces diffusion self-guidance, an inference-time technique for controllable image generation using pre-trained text-to-image diffusion models. The key finding is that internal representations of the denoiser network carry meaningful information about the scene, and one can build custom energy functions around these representations to align image generation with user-defined scene properties, including object location, size, shape and appearance. Further, an appealing property of self-guidance is that the energy functions can be flexibly composed to support the simultaneous manipulation of multiple image attributes. Extensive experiments are conducted to demonstrate the effectiveness of self-guidance across a broad spectrum of image manipulation tasks."
+          },
+          "presentation": {
+            "value": "3 good"
+          },
+          "contribution": {
+            "value": "3 good"
+          },
+          "soundness": {
+            "value": "4 excellent"
+          },
+          "strengths": {
+            "value": "- The proposed method enables controllable image generation / manipulation using existing text-to-image diffusion model checkpoints without costly fine-tuning. As a training-free method, it achieves controllability by steering the generation towards matching the desired internal representations at inference time. This guidance-based design is conceptually simple, easy to implement, computationally efficient and highly flexible.\n\n- The method represents object properties using aggregated statistics of denoiser representations. It thus reveals the internal working of the generative process. To this end, the impact of the paper goes beyond controllable image generation / manipulation.\n\n- Self-guidance enables several edits that are not possible with concurrent methods. These include change in object location, size and modification of scene layout. In the meantime, self-guidance allows the composition of multiple edits in a single generation pass. This is another unique property that is rarely seen in previous and concurrent works.\n\n- Finally, self-guidance offers compelling editing capabilities and supports a wide range of image manipulation needs. Among them are the mixing of objects and layout from multiple source images, transfer of attributes defined by non-object words, and the editing of real images."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "I do not have major concerns about the proposed method. Some minor concerns are as follows.\n\n- The main text presents self-guidance in its generic form and provides the ingredients for defining a specific energy function. However, all concrete examples are left to the supplement. I understand that space is limited and the authors want to make room for the results (which are indeed compelling). However, it is awkward to alternate between the main text and the supplement in order to decipher how those edits are actually achieved. One possibility is to organize all instantiations of self-guidance in a big table and put them in the main text for the ease of understanding.\n\n- I did not find ablation experiments on hyper-parameters such as the number of inference steps, guidance strength and the range of steps to apply guidance. In practice, the editing quality is often quite sensitive to these hyper-parameters. While their choices are briefly discussed in the supplement, some visual examples will help visualize their effects.\n\n- The experiments are conducted using Imagen, whose design is substantially different from the publicly available Stable Diffusion (cascaded vs. latent diffusion). It is a well-known fact that an editing method may not work equally well on different diffusion models. Given that most players in the space of controllable image generation rely on Stable Diffusion, I would encourage the authors to showcase a few editing examples using Stable Diffusion in order to calibrate the performance of self-guidance."
+          },
+          "confidence": {
+            "value": "5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully."
+          },
+          "questions": {
+            "value": "Please find my comments in the section above."
+          },
+          "rating": {
+            "value": "6: Weak Accept: Technically solid, moderate-to-high impact paper, with no major concerns with respect to evaluation, resources, reproducibility, ethical considerations."
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "limitations": {
+            "value": "This paper includes a discussion on the limitations and potential societal impact of the proposed method."
+          }
+        }
+      },
+      {
+        "id": "LwZVniJeWO",
+        "forum": "9OKt1Vy9nF",
+        "content": {
+          "summary": {
+            "value": "The paper proposed momentum flow matching, a novel generative model that combines diffusion model and rectified flow. In the forward process, data is perturbed via diffusion process, and rectified flow is trained to match velocity between anchor pairs on a smaller time scale. At inference time, repeated ODE integration on the small time scale leads to the final generation. The method improves generation diversity compared to rectified flow, and efficiency compared to diffusion model. It's effectiveness is demonstrated through experiments on high-resolution image and protein backbone generation."
+          },
+          "soundness": {
+            "value": 2
+          },
+          "confidence": {
+            "value": 4
+          },
+          "questions": {
+            "value": "Questions follows from the weakness.\n1. Is it possible that the authors compare with stochastic interpolants for generation diversity? \n2. Is it possible to justify why multi-scale noisy scheduling is advantageous?\n3. Is it possible to compare with Hierarchical Rectified Flow?\n4. Can the authors explain why FID of rectified flow is much higher than in the original RF paper? \n5. Can the authors explain how they used NanoFlow to generate images?\n6. Can the authors add a step length \\Delta_t to all ODE discretization? The current time lags are all of unit length which is hardly reasonable.\n7. Can the authors fix typos in Algorithms 2 Step 4?"
+          },
+          "rating": {
+            "value": 4
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": 2
+          },
+          "contribution": {
+            "value": 2
+          },
+          "strengths": {
+            "value": "1. Momentum flow matching finds a middle ground between rectified flow with straight path and diffusion model with noisy path. Aiming for a piecewise straight path on a multi-scale noise model, momentum flow matching enhances the generation diversity of rectified flow and improves the inference speed of diffusion model.\n2. The protein backbone generation experiments, i.e. generation on SE(3), successfully supported the author's argument."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "1. Lack of motivation: The paper aims to tackle two concerns of rectified flow, namely generation diversity and multi-scale modeling. The first concern, according to the authors, is due to the fact that rectified flow is too \"straight\". However the general form of stochastic interpolants [1], a concurrent work of rectified flow, has introduced methods of matching velocities of noisy trajectories, which solves the issue of straightness in flow matching. Comparing merely to rectified flow without mentioning stochastic interpolants substantially weakens the motivation. For the second concern, it is never clearly explained in the paper why multi-scale modeling is essential.\n2. Lack of novelty: Momentum flow matching essentially takes two consecutive points on a diffusion trajectory and learns a rectified flow to match them, resulting in a piecewise-straight diffusion trajectory. Without further insights, the method seems to be a concatenation of diffusion model and rectified flow. The authors should consider explaining the rationale and advantage of modeling the momentum, and compare with methods of similar idea [2][4].\n3. Experiment: FID score in Table 1 & 2 seems unreasonably high across all experiments. Visual qualities of the generated images can't match state-of-the-art. For the baseline NanoFlow [3], a paper that concerns parallel computing of large language models, there seems to be no connection to any of the experiments carried out in the momentum flow matching paper.\n\n[1] Albergo, Michael S., Nicholas M. Boffi, and Eric Vanden-Eijnden. \"Stochastic interpolants: A unifying framework for flows and diffusions.\" arXiv preprint arXiv:2303.08797 (2023).\n\n[2] Zhang, Yichi, et al. \"Towards Hierarchical Rectified Flow.\" The Thirteenth International Conference on Learning Representations.\n\n[3] Zhu, Kan, et al. \"NanoFlow: Towards Optimal Large Language Model Serving Throughput.\" CoRR (2024).\n\n[4] Yan, Hanshu, et al. \"Perflow: Piecewise rectified flow as universal plug-and-play accelerator.\" Advances in Neural Information Processing Systems 37 (2024): 78630-78652."
+          }
+        }
+      },
+      {
+        "id": "Uowi0YtaYk",
+        "forum": "qgv56R2YJ7",
+        "content": {
+          "summary": {
+            "value": "The paper introduces a new method for detailed and versatile image editing and controlled image synthesis with large-scale text-to-image diffusion models. In particular, the authors propose self-guidance: Self-guidance uses the internal representations of the denoiser neural network of diffusion models for guidance. The work finds that the attention and feature maps of the denoiser network encode properties like objects' size, shape, position and appearance in an interpretable way. This is, some heuristics on the internal attention/feature maps can be defined that represent these properties well and then we can do guidance, leveraging these internal representations (note that this works only for objects and words that were mentioned in the text prompts driving generation). Hence, given an image (either generated by the diffusion model itself or a real one, reconstructed by the diffusion model), the novel self-guidance technique enables editing operations such as freely modifying objects' size, shape, position and appearance, without introducing noticeable artifacts. Importantly, this does not require any additional training or use of auxiliary models, and no additional paired data for training, which makes this a very powerful technique. The authors convincingly validate their proposed editing method mostly qualitatively by showing lots of interesting editing examples."
+          },
+          "soundness": {
+            "value": "3 good"
+          },
+          "confidence": {
+            "value": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work."
+          },
+          "questions": {
+            "value": "I also have a variety of questions that did not significantly impact the rating of the paper:\n- I believe the paper intrinsically relies on a typical U-Net architecture for the denoiser network that gives rise to the useful attention and feature maps. There are various recent works that use pure vision transformer denoiser networks or advanced architectures like recurrent interface networks. Can the approach be extended to these architectures, too? I would be interested in the authors' thoughts on this.\n- In a similar spirit, do the authors believe that similar techniques can also be used in diffusion models that model video, 3D, audio, graph/molecule data, etc.?\n- While centroid, size and shape leverage all cross attention maps, the appearance term uses only the activations of the penultimate layer in the decoder as well as the final cross-attention operation. Why is that? Can the authors provide more intuitions for the qualitative differences in how the attention/activations are used in the different operations?\n- The paper entirely leverages DDPM-style sampling. Does the method also work with deterministic probability flow/DDIM sampling? Moreover, when using given real images, could there be an alternative way of editing when probability flow ODE/DDIM is used to deterministically encode a given image and then re-generate again while introducing the desired edits? I would be curious about the authors' perspective on this.\n\nVery Minor nitpick: \n- Please properly introduce the data $x$ as well as the noise schedule $\\alpha_t$, $\\sigma_t$ around equation 1.\n- I would suggest to properly introduce and define the indices in Line 155 and below, this is, what exactly is $i$, etc. to avoid any potential confusion."
+          },
+          "rating": {
+            "value": "7: Accept: Technically solid paper, with high impact on at least one sub-area, or moderate-to-high impact on more than one areas, with good-to-excellent evaluation, resources, reproducibility, and no unaddressed ethical considerations."
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": "4 excellent"
+          },
+          "contribution": {
+            "value": "3 good"
+          },
+          "strengths": {
+            "value": "Generally, the main strength of the paper is the introduction of the novel self-guidance technique, which it then uses for detailed and advanced image editing and controllable image synthesis. To the best of my knowledge no previous image editing methods with text-to-image diffusion models reach this level of fine control with respect to objects' shape, size, position, appearance, layout, and composition, while introducing almost no artifacts.\n\n**Clarity:** The paper is very well written and easy to follow and understand. It is very clear.\n\n**Originality:** The main idea of self-guidance leveraging the model's internal representations is novel and original. That said, it is closely related to, and probably inspired by, existing technique such as Prompt-to-prompt editing (Hertz et al. \"Prompt-to-Prompt Image Editing with Cross Attention Control\") and paint-with-words (Balaji et al. \"eDiff-I: Text-to-Image Diffusion Models with an Ensemble of Expert Denoisers\").\n\n**Significance:** Controllable image generation and image editing with large-scale text-to-image diffusion is an important direction with many relevant applications. The paper proposes a very powerful and versatile method with little requirements, which makes this a significant contribution.\n\n**Quality:** The overall quality of the paper is high. It is clear, well written, all claims are supported, limitations and societal impacts are appropriately discussed, background is provided, and related work is thoroughly discussed."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "While the paper has few major issues, there are some concerns:\n- Editing and control is limited with respect to objects (and words more generally) that appear in the text prompt. This also means that given real images require an appropriate caption to be editable. Note that this limitation is acknowledged by the authors.\n- The method comes with a ton of hyperparameters: The guidance weights for the different edits need to be chosen manually and it seems like some trial and error can be necessary. Also, more detailed ablations on this would be helpful, like showing different guidance weights for same image/seed/prompt/edit, etc.\n- When performing a simple edit like moving a single object, we actually require a lot more guidance terms for keeping all the other objects in place and preserving their appearance. This means that even edits that may appear simple are actually quite complicated and require guidance weights for all different terms.\n- The way the different edits and controls are defined is largely heuristic (how size, shape, appearance, etc. is calculated from the attention/feature maps). It seems to work well, but in theory it would be great if there was a more principled approach to this.  \n- The way the cross-attention maps are leveraged in self-guidance is related to the \"paint-with-words\" technique introduced in eDiff-I (Balaji et al. \"eDiff-I: Text-to-Image Diffusion Models with an Ensemble of Expert Denoisers\"). I believe this should be acknowledged and cited.\n- The approach is validated only in pixel-space text-to-image diffusion models. Can the same method also work in latent diffusion models? The most popular, and publicly available, large-scale text-to-image model is Stable Diffusion. It would be great to see the method also applied there, if possible.\n\nIn conclusion, there are concerns, weaknesses and routes for further improving the paper. However, the strengths outweigh these weaknesses. Consequently, I am leaning towards suggesting acceptance of the paper. I am looking forward to the rebuttal by the authors."
+          },
+          "limitations": {
+            "value": "Limitations and potential negative societal impact have been appropriately discussed and are well addressed. There are no concerns in that regard."
+          }
+        }
+      },
+      {
+        "id": "D0BXU0djJ1",
+        "forum": "MKvQH1ekeY",
+        "content": {
+          "summary": {
+            "value": "The paper presents a novel sampling method, Zigzag Diffusion Sampling (Z-Sampling), designed to enhance the generation quality of text-to-image diffusion models. The key contribution lies in leveraging the guidance gap between the denoising and inversion processes to accumulate semantic information throughout the generation process. This leads to improved image quality and prompt-image alignment, especially for challenging prompts. Z-Sampling is a plug-and-play method that can be easily integrated into various diffusion models. Extensive experiments demonstrate its superior performance across different datasets, models, and evaluation metrics."
+          },
+          "soundness": {
+            "value": 3
+          },
+          "confidence": {
+            "value": 3
+          },
+          "questions": {
+            "value": "- Would you compare Z-sampling with other training-free enhancement techniques?\n- Would you compare Z-sampling with \"Text-to-Image Rectified Flow as Plug-and-Play Priors\"?"
+          },
+          "rating": {
+            "value": 6
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": 3
+          },
+          "contribution": {
+            "value": 3
+          },
+          "strengths": {
+            "value": "- Clear and well-organized paper: The paper is well-structured, making it easy to follow the authors' arguments.\n- Theoretical and empirical analysis: The authors provide a strong theoretical foundation for the guidance gap between the denoising and inversion processesand  their approach and support it with extensive empirical evidence.\n-  Z-Sampling is a unique contribution to the field of diffusion models, offering a new way to improve generation quality.\n- Plug-and-play nature: The method's simplicity and ease of integration make it attractive for researchers and practitioners.\n- Strong experimental results: The authors demonstrate the effectiveness of Z-Sampling through comprehensive experiments."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "- Comparison to other training-free enhancement techniques: While the paper mentions other training-free enhancement techniques, a more in-depth comparison with methods like SAG[1], SEG[2], and CFG++[3] would strengthen the paper. This would provide a clearer understanding of Z-Sampling's unique advantages.\n- Comparision to \"Text-to-Image Rectified Flow as Plug-and-Play Priors\"[4]: The proposed method has similarity with this paper in terms of utilizing the forwad and reverse process to enhance the quality. \n\n\n[1] Hong, Susung, et al. \"Improving sample quality of diffusion models using self-attention guidance.\" Proceedings of the IEEE/CVF International Conference on Computer Vision. 2023.\n\n[2] Hong, Susung. \"Smoothed Energy Guidance: Guiding Diffusion Models with Reduced Energy Curvature of Attention.\" arXiv preprint arXiv:2408.00760 (2024).\n\n[3] Chung, Hyungjin, et al. \"CFG++: Manifold-constrained Classifier Free Guidance for Diffusion Models.\" arXiv preprint arXiv:2406.08070 (2024).\n\n[4] Yang, Xiaofeng, et al. \"Text-to-Image Rectified Flow as Plug-and-Play Priors.\" arXiv preprint arXiv:2406.03293 (2024)."
+          }
+        }
+      },
+      {
+        "id": "khcIDlwvi4",
+        "forum": "yDo1ynArjj",
+        "content": {
+          "summary": {
+            "value": "The authors introduce Diffusion Forcing (DF), a method for diffusion of sequential data where the noise level at each token can be different (“independent”). The authors show that DF provides more flexible steerability properties and more stable rollouts compared to full-sequence diffusion and teacher forcing. Experimentally, these enable stable video prediction along several timesteps, improved performance on planning tasks, and more robust robotic visuomotor control, relative to the respective relevant baselines.\n\nThe following is a more detailed summary.\n\n### Overview of the method\n\nDiffusion Forcing (DF) denoises a sequence of noisy tokens $x^k\\_1, \\cdots, x^k\\_T$ at noise level $k$, starting at $k=K$ (maximum noise) and finishing at $k = 0$. A sequence of hidden states $z\\_1, \\cdots, z\\_T$ is also maintained throughout. Importantly, different tokens can be denoised by different amounts at each denoising step.\n\nThe architecture has two main components: \nan encoder $p\\_\\theta(z\\_t | z\\_{t-1}, x^{k\\_t}\\_t, k\\_t)$ mapping the previous hidden state $z\\_{t-1}$, the current noisy token $x^{k\\_t}\\_t$ and the noise level $k$ to the new value of the current hidden state $z\\_t$;\na denoiser $\\epsilon\\_\\theta(z\\_t, x^{k\\_t}\\_t, k\\_t)$, which is used to denoise $x^{k\\_t}\\_t$.\n\nAt training time, the noise levels $(k\\_t)\\_{1 \\leq t \\leq T}$ are sampled independently, and the encoder and denoiser are trained jointly using the usual diffusion loss on the output of $\\epsilon\\_\\theta$.\n\nAt inference time, the tokens are initialized with independent Gaussians. They are then denoised by first computing hidden states from left to right (via an RNN, in this case) using $p\\_\\theta$, and then by updating the values of the tokens using their current values and the hidden states.\n\nThe authors provide an ELBO interpretation for their loss function in the appendix.\n\n### Features of Diffusion Forcing \n\n- The authors highlight the following features of DF:\n- It supports classifier guidance, like ordinary diffusion;\n- It allows for keeping the noise level higher for future tokens. This makes intuitive sense in an auto-regressive setting, where future tokens depend on past tokens.\n- It supports a flexible planning horizon, as tokens are denoised sequentially.\n- It supports a more flexible form of classifier guidance (or reward guidance): past tokens can be guided by rewards that depend on future tokens, due to DF’s autoregressive architecture.\n\nWhen doing reward guidance, the authors propose drawing many samples of possible future trajectories, and averaging their rewards, rather than using a single sample as in ordinary classifier guidance. They term this approach Monte Carlo Tree Guidance (MCTG).\n\n### Overview of experimental findings\n\n- The authors evaluate Diffusion Forcing on video prediction, planning and robotics tasks. Their findings can be summarized as:\n- In video prediction (datasets: Minecraft gameplay and DMLab), DF provides more stable rollouts than full-sequence diffusion and teacher forcing. In particular, DF’s rollouts do not diverge as the number of tokens increases.\n- In planning (environment: Maze2d from D4RL), DF produces more more consistent trajectories, and executing the generated actions indeed produces a trajectory similar to that given by the generated states. - In addition, DF with MCTG significantly outperforms Diffuser on Maze2d environments.\n- In robotics, DF is robust to missing or noisy observations and can perform imitation learning with memory (as it maintains a hidden state, rather than directly mapping observations to actions).\nIn the appendix, the authors provide additional experiments on compositionality and time series prediction."
+          },
+          "soundness": {
+            "value": 4
+          },
+          "confidence": {
+            "value": 4
+          },
+          "questions": {
+            "value": "1. Does the flexible planning horizon (line 209) of Diffusion Forcing not derive from the choice of an RNN as the architecture, rather than e.g. a UNet? Would implementing existing methods such as Diffuser (Janner et al. 2022) not allow for a similar property?\n\n1. In the paragraph “Benefit of Modeling Causality”, the authors highlight that states and actions produced by DF are causally related, which does not hold in practice for Diffuser. Do the authors claim this is due to DF explicitly incorporating temporal structure into its architecture? Could it not also be due to the use of an observation model $p\\_\\theta(x^0\\_t|z\\_t)$ to predict the noise-free token $x^0\\_t$ from a hidden state $z\\_t$?\n\n1. At first sight and in its current form, the method seems tailored to the use of an RNN architecture, rather than a Transformer. For example, the denoiser is applied token-wise, with the information from previous tokens affecting the current token only via the hidden states $z\\_t$. How would the method have to be adapted, if at all, to work with transformers, in case one wants to scale up Diffusion Forcing?\n\n1. Janner et al. (2022) showcase in Section 5.4 show how to apply Diffuser with a variable planning budget, and study how the resulting performance varies with the planning budget. Can Diffusion Forcing also be run with a variable planning budget, through warm-starting (as for Diffuser) or otherwise? If so, it would strengthen the paper if the authors described how, and included a similar budget vs. performance analysis, especially in planning and robotics tasks."
+          },
+          "rating": {
+            "value": 8
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": 4
+          },
+          "contribution": {
+            "value": 4
+          },
+          "strengths": {
+            "value": "1. The authors propose an original and performant method combining strengths of diffusion (steerability, robustness to noise, high-quality gradual sample generation) and auto-regressive sequence modelling (flexible horizons, temporal causality, memory in the case of RNNs).\n\n1. In addition, the authors provide a theoretical justification of their loss function in terms of an evidence lower bound (ELBO).\n\n1. The paper is written clearly, providing a clear motivation for the authors’ approach, contextualizing DF relative to existing work (especially Diffuser, AR-Diffusion and Diffusion Policy), and highlighting the main contributions of the method conceptually and experimentally.\n\n1. Trajectory inconsistency is a major limitation of Diffuser, which I have contended with in my own research. Mitigating this limitation is an important enabler of bringing the strengths of diffusion to bear in sequential decision making.\n\n1. Monte Carlo Tree Guidance can be seen as maximizing an empirical estimate of the expected future reward. From a policy optimization perspective, this seems more principled than doing gradient ascent on the realized cumulative reward of a given trajectory, as is done in full-sequence diffusion (e.g. Diffuser). As the authors explain in Appendix B.3, this technique relies on the architecture of DF to be effective.\n\n1. The results on video prediction, available in an anonymized project website provided in the abstract, are particularly impressive in terms of stability and 3D consistency. This, together with results on planning and robotics, indicates DF might contribute to advances in diffusion world models; a research area of established relevance that has received significant attention recently."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "1. Clarification on classifier guidance term $\\nabla\\_x \\log c (x^{\\textrm{new}}\\_{1:H})$: If this term is to be understood as the gradient of $x \\mapsto \\log c(x)$ evaluated at $x^{\\textrm{new}}\\_{1:H}$, then the gradients of $c$ on future tokens would not flow to previous tokens, as the inputs $x$ are “frozen” before being fed into $\\log c$. It seems that what the authors mean to say is that future tokens are treated as a differentiable function of  past tokens when computing the gradients. It would strengthen the exposition if the authors either clarify this point in the paper, or update the notation to avoid confusion, as the current notation might lead the reader to believe that the gradients from future tokens do not flow into past ones.\n\n1. The naming of Monte Carlo Tree Guidance seems to misleadingly suggest a similarity with Monte Carlo Tree Search (MCTS). However, the method consists of sampling several future trajectories independently and averaging their guidance gradients, which seems quite divorced from MCTS, which involves actual search on a tree of states and actions and backpropagation of rewards through this tree. As such, I believe naming the technique Monte Carlo Guidance would be more appropriate.\n\n1. High-dimensional control evaluation: Janner et al. (2022) evaluate Diffuser on high-dimensional control locomotion tasks from D4RL. It would be interesting to see an evaluation of Diffusion Forcing in this setting, in particular regarding the consistency between states and actions. I recall from my own experience that executing longer plans from Diffuser in these locomotion environments in an open-loop fashion (i.e. no re-planning) led to trajectories diverging from the generated states, as noted by the authors. It would be interesting to see whether this is addressed by Diffusion Forcing on these higher-dimensional environments.\n\n1. The compositional generation environment referenced in Section 4.3 is very similar (if not identical) to the one used by Janner et al. (2022) in Figure 1b of their paper. I believe it is likely worth mentioning this in Section 4.3.\n\n1. Minor formatting problems\n    \n    1. Line 186: $x^{K/2\\_3}$ -> $x^{K/2}\\_3$\n        \n    1. Table 1 caption: “Diffusion Forcingkeeps” -> “Diffusion Forcing keeps”; “Diffusion Forcingachieves” -> “Diffusion Forcing achieves”\n        \n    1. Line 495: “in full abstraction” -> “in full generality”\n    Line 503: “likelihood for likelihood of all” -> “likelihood for all”\n        \n    1. Equation A.3: superscript $k\\_2$ on the LHS should be $k\\_s$\n    Line 516: revise the bracketing of the expression involving $p\\_\\theta$.\n        \n    1. Line 522: “under uniform levels” -> “under uniformly sampled levels”\n        \n    1. Line 524: “in the sequel” -> “in the following section”\n    Equation A.5: $s \\leq T$ -> $1 \\leq s \\leq T$\n        \n    1. Line 592: specify range for $s$ on the first expectation\n        \n    1. Line 598: correct superscripts $t\\_k$ to $k\\_t$\n        \n    1. Line 608: revise bracketing of the numerator inside the $\\ln$\n        \n    1. Line 616: In the last and penultimate lines, replace $\\frac{\\ln p(...)}{q(...)}$ by $\\ln \\frac{p(...)}{q(...)}$\n        \n    1. Line 628: “we” -> “we have”\n        \n    1. Line 631: correct superscript of $x\\_t$ on the second line\n        \n    1. Line 634: expression with $p\\_\\theta$ broken between lines\n        \n    1. Line 635: capitalize Dirac\n        \n    1. Equation B.1: include \\left[ \\right] in the brackets\n        \n    1. Line 664: “we are” -> “we use”"
+          },
+          "limitations": {
+            "value": "The authors address relevant limitations in Section 5 and social impacts in the checklist."
+          }
+        }
+      },
+      {
+        "id": "rrPe5x9VYv",
+        "forum": "KuPixIqPiq",
+        "content": {
+          "summary": {
+            "value": "This work proposes a novel approach called SELF-DEBUGGING that enables a large language model to debug its own predicted program via few-shot demonstrations. The approach achieves state-of-the-art performance on several code generation benchmarks, including the Spider dataset for text-to-SQL generation, TransCoder for C++-to-Python translation, and MBPP for text-to-Python generation. The paper also discusses the possibilities of leveraging feedback messages and reusing failed predictions to improve the sample efficiency."
+          },
+          "presentation": {
+            "value": "3 good"
+          },
+          "contribution": {
+            "value": "3 good"
+          },
+          "soundness": {
+            "value": "3 good"
+          },
+          "strengths": {
+            "value": "1. Proposing a novel approach called SELF-DEBUGGING that enables a large language model to debug its own predicted program via few-shot demonstrations.\n2. Demonstrating that SELF-DEBUGGING can teach the large language model to perform rubber duck debugging, i.e., identifying its mistakes by investigating the execution results and explaining the generated code in natural language.\n3. Achieving state-of-the-art performance on several code generation benchmarks, including the Spider dataset for text-to-SQL generation, TransCoder for C++-to-Python translation, and MBPP for text-to-Python generation.\n4. Discuss the ethics of using large language models for automated code generation and the importance of analyzing their capabilities and limitations before deploying them for real-world programming applications."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "I do not find obvious weaknesses in this work. I only have a concern about the proposed approach. Since I'm not an expert in the code generation field, please correct me if I have some misunderstandings. This kind of \"self-debug\" or \"self-refine\" requires LLMs to inspect their own outputs based on the unit test results and generate some explanation in an autoregressive manner. So a concern is the additional latency in the inference time, especially for extremely large language models. This extra computational time is not reported or discussed in this paper."
+          },
+          "confidence": {
+            "value": "3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked."
+          },
+          "questions": {
+            "value": "None"
+          },
+          "rating": {
+            "value": "6: marginally above the acceptance threshold"
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          }
+        }
+      },
+      {
+        "id": "ZoqNPGoeak",
+        "forum": "mMK9pvQJxf",
+        "content": {
+          "summary": {
+            "value": "This paper analyzes the effect of using guidance schedules in discrete diffusion models and how such schedules can improve performance compared to constant guidance. Drawing inspiration from continuous diffusion models, the authors note that high guidance scales are necessary to enhance sample quality and condition alignment; however, using a constant high guidance scale results in suboptimal performance due to large changes during the early sampling stages. They first demonstrate that transition matrices should be normalized (via SoftMax) in the presence of guidance. Then, using a low-dimensional setup, they show that a constant guidance scale leads to poor performance, reducing diversity and increasing bias in the final generation. To address this, the authors propose an increasing weight schedule to balance the effect of guidance across sampling steps, leading to improved performance across various diffusion models for both image and text generation."
+          },
+          "soundness": {
+            "value": 3
+          },
+          "confidence": {
+            "value": 4
+          },
+          "questions": {
+            "value": "1. Do normalization and time-dependent schedules also improve the performance of Simple Guidance?\n\n2. Could you provide additional metrics, such as Precision and Recall, to separately evaluate diversity and quality, rather than relying solely on FID?"
+          },
+          "rating": {
+            "value": 6
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": 2
+          },
+          "contribution": {
+            "value": 3
+          },
+          "strengths": {
+            "value": "- Since guidance in discrete diffusion models is underexplored, this paper bridges an important gap between CFG in continuous diffusion models and discrete diffusion models. The results have potential implications for all systems that rely on discrete diffusion.\n\n- The proposed method is simple and can be easily integrated into existing sampling pipelines.\n\n- The theoretical results provide intuition and reasoning behind the method, although their presentation could be significantly improved.\n\n- Experiments are conducted on both image and text generation benchmarks."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "- In my opinion, the main weakness of the paper is its presentation. Several parameters are either misused in notation or not defined prior to their introduction in the text. This makes the paper difficult to follow and obscures the intuition and analysis behind the proposed method.\n\n- Section 3.4 appears to contradict the main message of the paper. It states that “effective schedules have higher guidance in the beginning and middle phases of generation,” whereas the best performance is reported for “schedules that apply stronger guidance during the middle and later stages of the sampling process, while keeping early guidance small.”\n\n**Minor**:\n- There might be a typo in Equation 6.\n- Table 1 indicates that the increasing schedule has one parameter, while Table 2 shows it has two parameters ($w$ and $r$).\n- The theoretical analysis could also consider the effect of guidance on condition alignment, in addition to its impact on diversity and stability."
+          }
+        }
+      },
+      {
+        "id": "tbRygS0ad1",
+        "forum": "k3ylkWMJAc",
+        "content": {
+          "summary": {
+            "value": "The paper introduces a novel paradigm called Self-Aware RL, which allows the LLM to learn and improve with minimal external data by creating a self-task generation-solver design. To make sure the self-generated tasks are valid, this paper proposes two strategies to strengthen the usefulness of the generated samples. First, Self-Aware Difficulty Prediction: The LLM not only generates its own training tasks but also predicts the difficulty of that task relative to its current ability. It then learns to align this difficulty estimate with its actual success rate, enabling an adaptive curriculum that prioritizes tasks that are appropriately challenging, yet solvable (\"just right\"). Second, Self-Aware Limit Breaking: The model identifies its own capability limits and proactively seeks external guidance only when necessary to surpass its inherent capability limits."
+          },
+          "soundness": {
+            "value": 2
+          },
+          "confidence": {
+            "value": 4
+          },
+          "questions": {
+            "value": "Please see weakness."
+          },
+          "rating": {
+            "value": 6
+          },
+          "code_of_conduct": {
+            "value": "Yes"
+          },
+          "presentation": {
+            "value": 3
+          },
+          "contribution": {
+            "value": 2
+          },
+          "strengths": {
+            "value": "1. This paper counts as a pioneer work on \"zero-data\" self-improving language models, directly comparing to Absolute Zero and showing decent performance improvement.\n\n2. They validate their approach on a good amount of downstream tasks spanning from math to coding, showing steady improvement and good generalization.\n\n3. They have a good cognitive science motivation behind by explicitly connecting LLM self-improvement to the concept of self-awareness provides a novel theoretical framing for future research into self-evolving agents."
+          },
+          "flag_for_ethics_review": {
+            "value": [
+              "No ethics review needed."
+            ]
+          },
+          "weaknesses": {
+            "value": "- The entire system's success depends on the LLM first being able to accurately gauge its own difficulty, and we all know LLMs tend to overestimate their confidence for task difficulties. A poor start in self-awareness could easily cause the RL process to settle on an unproductive local minimum. There is currently no mechanism to break this local minimum loop.\n\n- For the second component design, Self-Aware Limit Breaking, external knowledge guidance is used, which is basically a larger-sized LLM. However, this paper completely ignores a straightforward baseline where directly distilling a very small amount of data from this teacher model could yield competitive performance gain.\n\n- The paper is missing experimental comparison with some closely related literature.\n\nWang et al. Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning.Zhou \nZhou et all. Self-Challenging Language Model Agent\n\n\n- Some typos and grammar should be better polished (for example, line 223 \"self-aware self-aware RL\") and references need to be made more professional."
+          }
+        }
+      }
+    ],
+    "count": 10000,
+    "error": null
+  },
+  {
+    "url": "https://api.openreview.net/notes/search?term=Self-Guidance%3A+Boosting+Flow+and+Diffusion+Generation+on+Their+Own&limit=10",
+    "status": 200,
+    "notes": [
+      {
+        "id": "9X_AZydQfir",
+        "forum": "9X_AZydQfir",
+        "content": {
+          "title": "Unsupervised Controllable Generation with Score-based Diffusion Models: Disentangled Latent Code Guidance",
+          "authorids": [
+            "~Yeongmin_Kim1",
+            "~Dongjun_Kim1",
+            "~HyeonMin_Lee1",
+            "~Il-chul_Moon1"
+          ],
+          "authors": [
+            "Yeongmin Kim",
+            "Dongjun Kim",
+            "HyeonMin Lee",
+            "Il-chul Moon"
+          ],
+          "keywords": [
+            "Score-based Diffusion Model",
+            "Disentanglement",
+            "Controllable generation"
+          ],
+          "TL;DR": "We propose Latent Code Guidance Diffusion Model (LCG-DM), enabling unsupervised controllable generation in Score-based diffusion model.",
+          "abstract": " From the impressive empirical success of Score-based diffusion models, it is recently spotlighted in generative models. In real-world applications, the controllable generation enriches the impact of diffusion models. This paper aims to solve the challenge by presenting the method of control in an unsupervised manner. We propose the Latent Code Guidance Diffusion Model (LCG-DM), which is the first approach to apply disentanglement on Score-based diffusion models. Disentangled latent code can be considered as a pseudo-label, since it separately expresses semantic information in each dimension. LCG-DM is a Score-based diffusion model that reflects disentangled latent code as the condition. LCG-DM shows the best performance among baselines in terms of both sample quality and disentanglement on dSprites dataset. LCG-DM can manipulate images on CelebA dataset, with comparable FID performance compared to non-disentangling Score-based diffusion models. Furthermore, we provide experimental results of scaling method that reflects more on pseudo-label with MNIST dataset.",
+          "pdf": "/pdf/42edd28be60b6cd7a3759bd64227c043ea43959d.pdf",
+          "student_paper": "Yes",
+          "paperhash": "kim|unsupervised_controllable_generation_with_scorebased_diffusion_models_disentangled_latent_code_guidance",
+          "venue": "SBM 2022 Poster",
+          "venueid": "NeurIPS.cc/2022/Workshop/SBM",
+          "_bibtex": "@inproceedings{\nkim2022unsupervised,\ntitle={Unsupervised Controllable Generation with Score-based Diffusion Models: Disentangled Latent Code Guidance},\nauthor={Yeongmin Kim and Dongjun Kim and HyeonMin Lee and Il-chul Moon},\nbooktitle={NeurIPS 2022 Workshop on Score-Based Methods},\nyear={2022},\nurl={https://openreview.net/forum?id=9X_AZydQfir}\n}"
+        }
+      },
+      {
+        "id": "OpzV3lp3IMC",
+        "forum": "OpzV3lp3IMC",
+        "content": {
+          "title": "Self-conditioned Embedding Diffusion for Text Generation",
+          "authorids": [
+            "~Robin_Strudel1",
+            "~Corentin_Tallec2",
+            "~Florent_Altché1",
+            "~Yilun_Du1",
+            "~Yaroslav_Ganin1",
+            "~Arthur_Mensch1",
+            "~Will_Sussman_Grathwohl2",
+            "~Nikolay_Savinov1",
+            "~Sander_Dieleman1",
+            "~Laurent_Sifre1",
+            "~Rémi_Leblond1"
+          ],
+          "authors": [
+            "Robin Strudel",
+            "Corentin Tallec",
+            "Florent Altché",
+            "Yilun Du",
+            "Yaroslav Ganin",
+            "Arthur Mensch",
+            "Will Sussman Grathwohl",
+            "Nikolay Savinov",
+            "Sander Dieleman",
+            "Laurent Sifre",
+            "Rémi Leblond"
+          ],
+          "keywords": [
+            "language models",
+            "diffusion models",
+            "generative models"
+          ],
+          "TL;DR": "Our continuous diffusion framework operates on word embeddings, enabling flexible and scalable diffusion models for text generation.",
+          "abstract": "Can continuous diffusion models bring the same performance breakthrough on natural language they did for image generation? To circumvent the discrete nature of text data, we can simply project tokens in a continuous space of embeddings, as is standard in language modeling. We propose Self-conditioned Embedding Diffusion (SED), a continuous diffusion mechanism that operates on token embeddings and allows to learn flexible and scalable diffusion models for both conditional and unconditional text generation. Through qualitative and quantitative evaluation, we show that our text diffusion models generate samples comparable with those produced by standard autoregressive language models — while being in theory more efficient on accelerator hardware at inference time.  Our work paves the way for scaling up diffusion models for text, similarly to autoregressive models, and for improving performance with recent refinements to continuous diffusion.",
+          "anonymous_url": "I certify that there is no URL (e.g., github page) that could be used to find authors’ identity.",
+          "no_acknowledgement_section": "I certify that there is no acknowledgement section in this submission for double blind review.",
+          "code_of_ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+          "submission_guidelines": "Yes",
+          "resubmission": "",
+          "student_author": "",
+          "Please_choose_the_closest_area_that_your_submission_falls_into": "Generative models",
+          "paperhash": "strudel|selfconditioned_embedding_diffusion_for_text_generation",
+          "pdf": "/pdf/11ef7dddb6afa574c5155ad2ab939d2003119399.pdf",
+          "_bibtex": "@misc{\nstrudel2023selfconditioned,\ntitle={Self-conditioned Embedding Diffusion for Text Generation},\nauthor={Robin Strudel and Corentin Tallec and Florent Altch{\\'e} and Yilun Du and Yaroslav Ganin and Arthur Mensch and Will Sussman Grathwohl and Nikolay Savinov and Sander Dieleman and Laurent Sifre and R{\\'e}mi Leblond},\nyear={2023},\nurl={https://openreview.net/forum?id=OpzV3lp3IMC}\n}",
+          "venue": "Submitted to ICLR 2023",
+          "venueid": "ICLR.cc/2023/Conference"
+        }
+      },
+      {
+        "id": "qw8AKxfYbI",
+        "forum": "qw8AKxfYbI",
+        "content": {
+          "title": "Classifier-Free Diffusion Guidance",
+          "authorids": [
+            "~Jonathan_Ho1",
+            "~Tim_Salimans1"
+          ],
+          "authors": [
+            "Jonathan Ho",
+            "Tim Salimans"
+          ],
+          "keywords": [
+            "diffusion",
+            "score"
+          ],
+          "TL;DR": "Classifier guidance without a classifier",
+          "abstract": "Classifier guidance is a recently introduced method to trade off mode coverage and sample fidelity in conditional diffusion models post training, in the same spirit as low temperature sampling or truncation in other types of generative models. This method combines the score estimate of a diffusion model with the gradient of an image classifier and thereby requires training an image classifier separate from the diffusion model. We show that guidance can be performed by a pure generative model without such a classifier: we jointly train a conditional and an unconditional diffusion model, and find that it is possible to combine the resulting conditional and unconditional scores to attain a trade-off between sample quality and diversity similar to that obtained using classifier guidance.",
+          "pdf": "/pdf/ea628d03c92a49b54bc2d757d209e024e7885980.pdf",
+          "paperhash": "ho|classifierfree_diffusion_guidance",
+          "_bibtex": "@inproceedings{\nho2021classifierfree,\ntitle={Classifier-Free Diffusion Guidance},\nauthor={Jonathan Ho and Tim Salimans},\nbooktitle={NeurIPS 2021 Workshop on Deep Generative Models and Downstream Applications},\nyear={2021},\nurl={https://openreview.net/forum?id=qw8AKxfYbI}\n}",
+          "venueid": "NeurIPS.cc/2021/Workshop/DGMs_Applications",
+          "venue": "DGMs and Applications @ NeurIPS 2021 Poster"
+        }
+      },
+      {
+        "id": "AykEgQNPJEK",
+        "forum": "AykEgQNPJEK",
+        "content": {
+          "title": "Score-Based Graph Generative Modeling with Self-Guided Latent Diffusion",
+          "authorids": [
+            "~Ling_Yang1",
+            "~Zhilong_Zhang1",
+            "~Wentao_Zhang1",
+            "~Shenda_Hong1"
+          ],
+          "authors": [
+            "Ling Yang",
+            "Zhilong Zhang",
+            "Wentao Zhang",
+            "Shenda Hong"
+          ],
+          "keywords": [
+            "Generative Model",
+            "Diffusion Model",
+            "Graph Generation"
+          ],
+          "TL;DR": "We propose a novel and unified latent-based framework Score-Based Graph Generative Model powered by Self-Guided Latent Diffusion to promote graph generation in different scenarios.",
+          "abstract": "Graph generation is a fundamental task in machine learning, and it is critical for numerous real-world applications, biomedical discovery and social science. Existing diffusion-based graph generation methods have two limitations: (i) they conduct diffusion process directly in complex graph space (i.e., node feature, adjacency matrix, or both), resulting in hard optimization with network evaluations; (ii) they usually neglect to sufficiently cover the whole distribution of target unlabeled graph set and thus fail to make semantic controllable generation. In this paper, we first propose a unified latent-based graph generative framework, Score-Based Graph Generative Model (SGGM), powered by Self-Guided Latent Diffusion (SLD) to address both limitations. Specifically, we pretrain a variational graph autoencoder to map raw graph of high-dimensional discrete space to low-dimensional topology-injected latent space, and apply score-based generative model there, yielding a smoother, faster and more expressive graph generation procedure. To sufficiently cover the whole semantical distribution of unlabeled graph set, we propose SLD to make controllable self-guidance of the sample generation with gradients from the designed assigning function towards the hierarchical pseudo label, produced by iteratively clustering on the latent embeddings. In addition, we conduct periodic update on the pseudo label in training process to achieve mutual adaptation between self-guidance and score-based generation. Experiments show that our SGGM powered by SLD outperforms previous graph generation baselines on both generic and molecular graph datasets, demonstrating the generality and extensibility along with further theoretical proofs.",
+          "anonymous_url": "I certify that there is no URL (e.g., github page) that could be used to find authors’ identity.",
+          "no_acknowledgement_section": "I certify that there is no acknowledgement section in this submission for double blind review.",
+          "code_of_ethics": "I acknowledge that I and all co-authors of this work have read and commit to adhering to the ICLR Code of Ethics",
+          "submission_guidelines": "Yes",
+          "resubmission": "",
+          "student_author": "",
+          "Please_choose_the_closest_area_that_your_submission_falls_into": "Generative models",
+          "paperhash": "yang|scorebased_graph_generative_modeling_with_selfguided_latent_diffusion",
+          "pdf": "/pdf/14a6af3ea8c3b9492e17cbc10eac048660a22c09.pdf",
+          "supplementary_material": "/attachment/0e3bc91e32710f6e2a5d1137e926e4dcfd6751f9.zip",
+          "_bibtex": "@misc{\nyang2023scorebased,\ntitle={Score-Based Graph Generative Modeling with Self-Guided Latent Diffusion},\nauthor={Ling Yang and Zhilong Zhang and Wentao Zhang and Shenda Hong},\nyear={2023},\nurl={https://openreview.net/forum?id=AykEgQNPJEK}\n}",
+          "venue": "",
+          "venueid": ""
+        }
+      },
+      {
+        "id": "xz0mkLn9VX1",
+        "forum": "xz0mkLn9VX1",
+        "content": {
+          "venue": "CoRR 2022",
+          "venueid": "dblp.org/journals/CORR/2022",
+          "_bibtex": "@article{DBLP:journals/corr/abs-2210-00939,\n  publtype={informal},\n  author={Susung Hong and Gyuseong Lee and Wooseok Jang and Seungryong Kim},\n  title={Improving Sample Quality of Diffusion Models Using Self-Attention Guidance},\n  year={2022},\n  cdate={1640995200000},\n  journal={CoRR},\n  volume={abs/2210.00939},\n  url={https://doi.org/10.48550/arXiv.2210.00939}\n}\n",
+          "authors": [
+            "Susung Hong",
+            "Gyuseong Lee",
+            "Wooseok Jang",
+            "Seungryong Kim"
+          ],
+          "authorids": [
+            "https://dblp.org/search/pid/api?q=author:Susung_Hong:",
+            "https://dblp.org/search/pid/api?q=author:Gyuseong_Lee:",
+            "~Wooseok_Jang2",
+            "https://dblp.org/search/pid/api?q=author:Seungryong_Kim:"
+          ],
+          "html": "https://doi.org/10.48550/arXiv.2210.00939",
+          "title": "Improving Sample Quality of Diffusion Models Using Self-Attention Guidance",
+          "paperhash": "hong|improving_sample_quality_of_diffusion_models_using_selfattention_guidance",
+          "abstract": "Denoising diffusion models (DDMs) have attracted attention for their exceptional generation quality and diversity. This success is largely attributed to the use of class- or text-conditional diffusion guidance methods, such as classifier and classifier-free guidance. In this paper, we present a more comprehensive perspective that goes beyond the traditional guidance methods. From this generalized perspective, we introduce novel condition- and training-free strategies to enhance the quality of generated images. As a simple solution, blur guidance improves the suitability of intermediate samples for their fine-scale information and structures, enabling diffusion models to generate higher quality samples with a moderate guidance scale. Improving upon this, Self-Attention Guidance (SAG) uses the intermediate self-attention maps of diffusion models to enhance their stability and efficacy. Specifically, SAG adversarially blurs only the regions that diffusion models attend to at each iteration and guides them accordingly. Our experimental results show that our SAG improves the performance of various diffusion models, including ADM, IDDPM, Stable Diffusion, and DiT. Moreover, combining SAG with conventional guidance methods leads to further improvement.",
+          "pdf": "http://arxiv.org/pdf/2210.00939v5"
+        }
+      },
+      {
+        "id": "0x0EogHZFLn",
+        "forum": "0x0EogHZFLn",
+        "content": {
+          "title": "Conditional Diffusion with Less Explicit Guidance via Model Predictive Control",
+          "authorids": [
+            "NeurIPS.cc/2022/Workshop/SBM/Paper33/Authors"
+          ],
+          "authors": [
+            "Anonymous"
+          ],
+          "keywords": [
+            "conditional diffusion",
+            "conditional sampling",
+            "model predictive control",
+            "guidance"
+          ],
+          "TL;DR": "Improved conditional diffusion sampling quality at just 5 time steps with conditional guidance",
+          "abstract": "How much explicit guidance is necessary for conditional diffusion? We consider the problem of conditional sampling using an unconditional diffusion model and limited explicit guidance (e.g., a noised classifier, or a conditional diffusion model) that is restricted to a small number of time steps. We explore a model predictive control (MPC)-like approach to approximate guidance by simulating unconditional diffusion forward, and backpropagating explicit guidance feedback. MPC-approximated guides have high cosine similarity to real guides, even over large simulation distances. Adding MPC steps improves generative quality when explicit guidance is limited to five time steps",
+          "pdf": "/pdf/54283fc065de8300017881cd6747e496130bf167.pdf",
+          "student_paper": "No",
+          "paperhash": "anonymous|conditional_diffusion_with_less_explicit_guidance_via_model_predictive_control",
+          "venue": "Submitted to SBM 2022",
+          "venueid": "NeurIPS.cc/2022/Workshop/SBM",
+          "_bibtex": "@misc{\nanonymous2022conditional,\ntitle={Conditional Diffusion with Less Explicit Guidance via Model Predictive Control},\nauthor={Anonymous},\nyear={2022},\nurl={https://openreview.net/forum?id=0x0EogHZFLn}\n}"
+        }
+      },
+      {
+        "id": "mX6GOhlWLA2",
+        "forum": "AAWuCvzaVt",
+        "content": {
+          "rating": "7: Good paper, accept",
+          "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+          "summary": "The authors explore advances in large scale diffusion models for image generation, and with guidance from an image classifier gradient, demonstrate that diffusion models can outperform state of the art GAN models on image synthesis at different resolutions with respect to standard metrics such as Inception Score, FID. The Classifier guidance also offers a trade-off between sample quality and diversity for diffusion models. ",
+          "main_review": "- The authors take existing diffusion models, and classifier guidance techniques, and along with few architecture modifications motivated from previous works and show that such a combination on large scale can beat state of the art GAN based models. \n- The paper is clearly written and easy to follow. The experiments are well conducted, with detailed ablation studies. \n- The paper can be of significance to the generative modeling community in establishing the capability of large scale likelihood based diffusion models on the challenging task of image generation.\n- Few questions:\n  - I will be interested to compare the degree of memorization of the model as a function of the scale factor of the classifier guidance. \n    The authors do show some handful samples for scale factor 1.0 and 2.5, but it would be nice to use some form of automated \n    metric (e.g. minimum or average min-K Inception distance between each image and dataset). It might be the case, that for some \n    classes, memorization is more likely than other classes. Also what happens at a scale factor of 10, does the model start \n    memorizing at these scale factors?\n  - Did the authors explore the benefit of classifier guidance as a function of classifier's performance on the validation set? In general \n     how strong is the classifier that the authors trained using the UNet backbone? ",
+          "limitations_and_societal_impact": "The authors adequately address the limitations and potential negative societal impact of their work.\n\n",
+          "needs_ethics_review": "No",
+          "ethics_review_area": [],
+          "time_spent_reviewing": "3",
+          "code_of_conduct": "While performing my duties as a reviewer (including writing reviews and participating in discussions), I have and will continue to abide by the NeurIPS code of conduct."
+        }
+      },
+      {
+        "id": "x1Lp2bOlVIo",
+        "forum": "x1Lp2bOlVIo",
+        "content": {
+          "title": "Diffusion Normalizing Flow",
+          "authorids": [
+            "~Qinsheng_Zhang1",
+            "~Yongxin_Chen1"
+          ],
+          "authors": [
+            "Qinsheng Zhang",
+            "Yongxin Chen"
+          ],
+          "keywords": [
+            "normalizing flow",
+            "diffusion probabilistic models",
+            "density estimation",
+            "generative models"
+          ],
+          "abstract": "We present a novel generative modeling method called diffusion normalizing flow based on stochastic differential equations (SDEs). The algorithm consists of two neural SDEs: a forward SDE that gradually adds noise to the data to transform the data into Gaussian random noise, and a backward SDE that gradually removes the noise to sample from the data distribution. By jointly training the two neural SDEs to minimize a common cost function that quantifies the difference between the two, the backward SDE converges to a diffusion process the starts with a Gaussian distribution and ends with the desired data distribution. Our method is closely related to normalizing flow and diffusion probabilistic models, and can be viewed as a combination of the two. Compared with normalizing flow, diffusion normalizing flow is able to learn distributions with sharp boundaries. Compared with diffusion probabilistic models, diffusion normalizing flow requires fewer discretization steps and thus has better sampling efficiency. Our algorithm demonstrates competitive performance in both high-dimension data density estimation and image generation tasks.",
+          "submission_history": "",
+          "checklist": "",
+          "code_of_conduct": "I certify that all co-authors of this work have read and commit to adhering to the NeurIPS Statement on Ethics, Fairness, Inclusivity, and Code of Conduct.",
+          "paperhash": "zhang|diffusion_normalizing_flow",
+          "pdf": "/pdf/46ddcab2baa7b2f8ae5410b7c012c959404d5cb8.pdf",
+          "supplementary_material": "/attachment/06e4fcf2037ac599dfe23795abe6438b2d3f1e0c.pdf",
+          "TL;DR": "Diffusion models with learnable drift",
+          "code": "https://github.com/qsh-zh/DiffFlow",
+          "thumbnail": "",
+          "community_implementations": "[![CatalyzeX](/images/catalyzex_icon.svg) 1 code implementation](https://www.catalyzex.com/paper/diffusion-normalizing-flow/code)",
+          "submission_history_-_venue_and_year": "",
+          "submission_history_-_improvements_made": "",
+          "_bibtex": "@inproceedings{\nzhang2021diffusion,\ntitle={Diffusion Normalizing Flow},\nauthor={Qinsheng Zhang and Yongxin Chen},\nbooktitle={Advances in Neural Information Processing Systems},\neditor={A. Beygelzimer and Y. Dauphin and P. Liang and J. Wortman Vaughan},\nyear={2021},\nurl={https://openreview.net/forum?id=x1Lp2bOlVIo}\n}",
+          "venue": "NeurIPS 2021 Poster",
+          "venueid": "NeurIPS.cc/2021/Conference"
+        }
+      },
+      {
+        "id": "LhL80pl7AM",
+        "forum": "OU98jZWS3x_",
+        "content": {
+          "rating": "7: Good paper, accept",
+          "confidence": "4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.",
+          "summary": "This paper introduces a variety of architecture changes based on Ho et al. proposed UNet architecture for diffusion models, and shows that diffusion models can achieve better image generation quality than the state-of-the-art generative models, including StyelGAN2. Besides, the classifier guidance, which needs to train a time-variant classifier, is proposed to further improve the sample quality in the conditional image synthesis setting. In particular, the classifier guidance can trade off diversity for fidelity by tuning the classifier gradient strength. Experiments show its better image generation quality than state-of-the-art conditional generative models, such as Big-GANs.\n",
+          "main_review": "Strengths:\n+ This paper is well-written, the proposed improvements are easy to follow and well-motivated, and the experiment settings are clearly stated.\n+ A combination of simple architecture improvements achieves state-of-the-art image generation performance when evaluating more complex datasets, such as LSUN, ImageNet 64/128/256/512. This result shows the power of diffusion models in image generation while avoiding the drawbacks of GAN-based models, which I think could add value to the generative modeling community.\n+ A new conditional generation method for diffusion models, called classifier guidance, achieves better image quality by trading off the image diversity, and it can be applied to a pre-trained unconditional diffusion model. \n+ The comparison with other baselines has been well evaluated on extensive datasets together with good ablation studies and good analysis of experimental results. \n\n\nWeaknesses:\n- When comparing with StyleGAN2, only LSUN datasets with resolution 256x256 are considered. As FFHQ is a more commonly used dataset in StyleGAN2, I wonder how the proposed ADM compares to StyleGAN2 on FFHQ of resolution 1024x1024? \n- Since the proposed method is mainly based on diffusion sampling [59] and DDIM sampling [60], I wonder how the architecture improvements apply to the SDE version of score-based models [63] and the corresponding conditional SDEs? \n- The introduction mentions that diffusion models have better “scalability” than GANs. What does “scalability” mean?\n\n\n================\n\nPost-rebuttal update:\n\nI thank the authors for clarifying my concerns. I have also read the authors' rebuttals and other reviews. This is a good paper where the architecture improvements and good empirical results will escalate the wider use of diffusion models. Thus, I recommend an acceptance. ",
+          "limitations_and_societal_impact": "The authors  have adequately addressed the limitations and potential negative societal impact of their work",
+          "ethical_concerns": "N/A",
+          "needs_ethics_review": "No",
+          "ethics_review_area": [],
+          "time_spent_reviewing": "4",
+          "code_of_conduct": "While performing my duties as a reviewer (including writing reviews and participating in discussions), I have and will continue to abide by the NeurIPS code of conduct."
+        }
+      },
+      {
+        "id": "UYfFEKCQ7WM",
+        "forum": "UYfFEKCQ7WM",
+        "content": {
+          "venue": "CoRR 2022",
+          "venueid": "dblp.org/journals/CORR/2022",
+          "_bibtex": "@article{DBLP:journals/corr/abs-2210-00939,\n  publtype={informal},\n  author={Susung Hong and Gyuseong Lee and Wooseok Jang and Seungryong Kim},\n  title={Improving Sample Quality of Diffusion Models Using Self-Attention Guidance},\n  year={2022},\n  cdate={1640995200000},\n  journal={CoRR},\n  volume={abs/2210.00939},\n  url={https://doi.org/10.48550/arXiv.2210.00939}\n}\n",
+          "authors": [
+            "Susung Hong",
+            "Gyuseong Lee",
+            "Wooseok Jang",
+            "Seungryong Kim"
+          ],
+          "authorids": [
+            "https://dblp.org/search/pid/api?q=author:Susung_Hong:",
+            null,
+            "https://dblp.org/search/pid/api?q=author:Wooseok_Jang:",
+            "https://dblp.org/search/pid/api?q=author:Seungryong_Kim:"
+          ],
+          "html": "https://doi.org/10.48550/arXiv.2210.00939",
+          "title": "Improving Sample Quality of Diffusion Models Using Self-Attention Guidance",
+          "paperhash": "hong|improving_sample_quality_of_diffusion_models_using_selfattention_guidance",
+          "abstract": "Following generative adversarial networks (GANs), a de facto standard model for image generation, denoising diffusion models (DDMs) have been actively researched and attracted strong attention due to their capability to generate images with high quality and diversity. However, the way the internal self-attention mechanism works inside the UNet of DDMs is under-explored. To unveil them, in this paper, we first investigate the self-attention operations within the black-boxed diffusion models and build hypotheses. Next, we verify the hypotheses about the self-attention map by conducting frequency analysis and testing the relationships with the generated objects. In consequence, we find out that the attention map is closely related to the quality of generated images. On the other hand, diffusion guidance methods based on additional information such as labels are proposed to improve the quality of generated images. Inspired by these methods, we present label-free guidance based on the intermediate self-attention map that can guide existing pretrained diffusion models to generate images with higher fidelity. In addition to the enhanced sample quality when used alone, we show that the results are further improved by combining our method with classifier guidance on ImageNet 128x128.",
+          "pdf": "http://arxiv.org/pdf/2210.00939v2"
+        }
+      }
+    ],
+    "count": 10000,
+    "error": null
+  }
+]

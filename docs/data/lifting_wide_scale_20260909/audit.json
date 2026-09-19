@@ -1,0 +1,1257 @@
+{
+  "status": {
+    "phase": "paused_after_review",
+    "reason": "User requested reassessment of remaining scan and return to IG fixed-point theory. Complete SiT-XL and RAEv2 curves do not support sustained benefit sufficient to prioritize the remaining width sweep.",
+    "completed_new": 23,
+    "planned_new": 43,
+    "complete_models": [
+      "sit_xl",
+      "raev2"
+    ],
+    "deferred_models": [
+      "jit",
+      "sit_small"
+    ],
+    "interrupted_arm": "jit/lifting_a0.250",
+    "partial_batch_files": {
+      "lifting_a0.250": {
+        "0": 21,
+        "1": 20,
+        "2": 19,
+        "3": 19
+      }
+    },
+    "all_owned_processes_stopped": true,
+    "decision_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/early_stop/20260909T113033Z/decision.json",
+    "research_goal_achieved": false,
+    "partial_images_by_rank": {
+      "0": {
+        "batch_files": 21,
+        "images": 84
+      },
+      "1": {
+        "batch_files": 20,
+        "images": 80
+      },
+      "2": {
+        "batch_files": 19,
+        "images": 76
+      },
+      "3": {
+        "batch_files": 19,
+        "images": 76
+      }
+    },
+    "partial_images_total": 316
+  },
+  "completed_new": 23,
+  "planned_new": 43,
+  "reused": 25,
+  "request_sha256": "6563f5d43b3c52f1ebded624076135d583cf9e932f54e4c224d9e642412a05db",
+  "arithmetic_audits": {
+    "sit_xl/ig_a0.000": {
+      "passed": true,
+      "hashes": {
+        "features": "f82f56b708c249e81a79402bb34d9701bad1024e5ff4f1735d4e4d103ee45432",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "48c4f27d0aff4062139b146aff960698e3604be39bc7b25801daaa398d157f16"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a0.000/features/sit_xl_ig_a0.000-48c4f27d0aff4062-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 48.01338382150328,
+      "mean_term": 3.8420755818753136,
+      "covariance_term": 44.171337267510296,
+      "independently_recomputed_fid": 48.01341284938561,
+      "absolute_error": 2.9027882327170573e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a0.250": {
+      "passed": true,
+      "hashes": {
+        "features": "7146b6c86e51d1ad8c469ee2f61d858c9566b35bcdb3ad2329850abd8418b855",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "e77b6af860d339642a215c36e64b0c63041bd250b448ad3aff196655713d0d91"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a0.250/features/sit_xl_ig_a0.250-e77b6af860d33964-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 43.548706778288874,
+      "mean_term": 1.756463654762458,
+      "covariance_term": 41.79227145797296,
+      "independently_recomputed_fid": 43.548735112735415,
+      "absolute_error": 2.8334446540156932e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a0.350": {
+      "passed": true,
+      "hashes": {
+        "features": "0029c4e8f3a5a3ad7daa4420f695a1574e915b1c0cb301f85201265124e816e0",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "b6177af4dd7bb48a5052c5f183273a80513fd8c593efc763ca3442ac8487a30a"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a0.350/features/sit_xl_ig_a0.350-b6177af4dd7bb48a-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 42.212951488942224,
+      "mean_term": 1.2628858998607508,
+      "covariance_term": 40.95009373035566,
+      "independently_recomputed_fid": 42.21297963021641,
+      "absolute_error": 2.8141274185600196e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a0.500": {
+      "passed": true,
+      "hashes": {
+        "features": "8823bfabe5776c9f9bae9ad976bb3272bb4dae02a712d8a3a4365d43cb4373d6",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "5ba46cfeb0328ea93b2d55b570a5d6c9af8258ab5545d2961a137b29b0396193"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a0.500/features/sit_xl_ig_a0.500-5ba46cfeb0328ea9-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 40.479076311651,
+      "mean_term": 0.7230076254281107,
+      "covariance_term": 39.75609602869622,
+      "independently_recomputed_fid": 40.47910365412433,
+      "absolute_error": 2.734247333080475e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a1.000": {
+      "passed": true,
+      "hashes": {
+        "features": "09a2e5bd01b733b18cd4379dab911fd3c30b47a666f28b9f0bcd35eb2f57a96d",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "a12ae3fce25ace361d5100b73ba94369e2161e827425ced3ec63a8906ebe19b3"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a1.000/features/sit_xl_ig_a1.000-a12ae3fce25ace36-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.19028621446495,
+      "mean_term": 0.2499031669510572,
+      "covariance_term": 37.940408358255524,
+      "independently_recomputed_fid": 38.19031152520658,
+      "absolute_error": 2.5310741634143596e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a1.500": {
+      "passed": true,
+      "hashes": {
+        "features": "032dbb8a4214c54822a3fa16b673d2347bc6ce412fd1561e750ae41159e51190",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "071df3086d6152c4875e38ff33cd48d951b4e3047f9baf6e173a96ee7588c9fa"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a1.500/features/sit_xl_ig_a1.500-071df3086d6152c4-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.057372334580236,
+      "mean_term": 0.33243648365334094,
+      "covariance_term": 37.724960252918095,
+      "independently_recomputed_fid": 38.057396736571434,
+      "absolute_error": 2.4401991197464667e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/ig_a2.000": {
+      "passed": true,
+      "hashes": {
+        "features": "7153fc32ca37830693b5fb4b6ad0f995538fc703d025f8e8f9ed2f9e56d5d184",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "31940f3db36bae5403ec7c78ab49afaf7d0e0410223addf11df5701af1fc9c26"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a2.000/features/sit_xl_ig_a2.000-31940f3db36bae54-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.615971002977176,
+      "mean_term": 0.4928359889216446,
+      "covariance_term": 38.12315838519277,
+      "independently_recomputed_fid": 38.615994374114415,
+      "absolute_error": 2.3371137238825668e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a0.250": {
+      "passed": true,
+      "hashes": {
+        "features": "cb8be388b91441ce9c2fb2c382b9630c3f8db66911119f5d68eed3d34dffffd0",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "8e115c28296e9af7c571affcd3c87fc5c3d02e1243b03e292b9eee7f32dc89ff"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a0.250/features/sit_xl_lifting_a0.250-8e115c28296e9af7-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 43.18441392150504,
+      "mean_term": 1.5923637487222324,
+      "covariance_term": 41.59207849010693,
+      "independently_recomputed_fid": 43.18444223882916,
+      "absolute_error": 2.8317324122895116e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a0.350": {
+      "passed": true,
+      "hashes": {
+        "features": "ea7f7143b8c6fcce3673b7c6c998f6370b420052aedc630a566cb20669578d4b",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "147cce4b6024c128302eada6f170c4518d94eadb26ec404caf3527b0bc467219"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a0.350/features/sit_xl_lifting_a0.350-147cce4b6024c128-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 41.55014753176988,
+      "mean_term": 1.0975155853702094,
+      "covariance_term": 40.45265961268535,
+      "independently_recomputed_fid": 41.55017519805556,
+      "absolute_error": 2.7666285681959835e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a0.500": {
+      "passed": true,
+      "hashes": {
+        "features": "00e4f42d6e17dd990fc6f040cba0b9de4592ada1dcaa80f078bc1a8ed0e79263",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "ba235028cf5834100b9102050c707def903df8245f0cc2a89644d2d561a1631c"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a0.500/features/sit_xl_lifting_a0.500-ba235028cf583410-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 40.309155733480054,
+      "mean_term": 0.6598257442609318,
+      "covariance_term": 39.649357391717274,
+      "independently_recomputed_fid": 40.30918313597821,
+      "absolute_error": 2.7402498155026933e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a1.000": {
+      "passed": true,
+      "hashes": {
+        "features": "a4a43a4c503f49f73a307e0d55134ca5440711a34df88f45b93772531ccc59bc",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "59b20a6d0a03ee2663a2971812cbfb2b15e767717d3aa58457738ad230ad01c0"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a1.000/features/sit_xl_lifting_a1.000-59b20a6d0a03ee26-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.20819063305521,
+      "mean_term": 0.25948105036571234,
+      "covariance_term": 37.94873463068967,
+      "independently_recomputed_fid": 38.208215681055385,
+      "absolute_error": 2.5048000175331708e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a1.500": {
+      "passed": true,
+      "hashes": {
+        "features": "49a4a79257291c614be81c03497ddd2ead9cdffd3dcc9da509800fd9b5742579",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "89851ed420ab6da9280dce5d41477d490811148228bf786cc5de06efeb57cfa3"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a1.500/features/sit_xl_lifting_a1.500-89851ed420ab6da9-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.06559167579633,
+      "mean_term": 0.35479817467361824,
+      "covariance_term": 37.71081762606144,
+      "independently_recomputed_fid": 38.06561580073506,
+      "absolute_error": 2.4124938732938972e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_xl/lifting_a2.000": {
+      "passed": true,
+      "hashes": {
+        "features": "77a4741804c6ded2919b3bbb5766d9206e97f8fd4039985b7e09ad9730166980",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "dd75c02eb66fae952cea124f114a30072194259599c301075ac051863df1ca96"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a2.000/features/sit_xl_lifting_a2.000-dd75c02eb66fae95-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.381284720088786,
+      "mean_term": 0.5209963507141786,
+      "covariance_term": 37.860311153456905,
+      "independently_recomputed_fid": 38.38130750417108,
+      "absolute_error": 2.278408229727802e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a0.000": {
+      "passed": true,
+      "hashes": {
+        "features": "57da11a910d41e33bbf33a8f5e42d6fc864518324191fcf9086f0c7890f027c8",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "50086f4b301bdd6a8e983e2fb931cc07ec2a9f42105afcc65fe23d6dc3c31d4c"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a0.000/features/raev2_ig_a0.000-50086f4b301bdd6a-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.874133972672894,
+      "mean_term": 0.26968447870811857,
+      "covariance_term": 38.60447375115871,
+      "independently_recomputed_fid": 38.87415822986683,
+      "absolute_error": 2.425719393528425e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a0.250": {
+      "passed": true,
+      "hashes": {
+        "features": "f952265fc5fe5e0bcb1eb72799461d31b7ac9e51264d5561d8094f8295a21422",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "933a6c6d133b1800501879e38b848ebfbef7fe5e993f02cc3230445ed4fc6ec7"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a0.250/features/raev2_ig_a0.250-933a6c6d133b1800-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.70297738644109,
+      "mean_term": 0.22151981896720396,
+      "covariance_term": 38.48148177831871,
+      "independently_recomputed_fid": 38.70300159728591,
+      "absolute_error": 2.421084482051583e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a0.500": {
+      "passed": true,
+      "hashes": {
+        "features": "104aeac9afadb4e379b6a92ae2c206970abd17e2768b8ef62cc425b863b11ed9",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "1157d0f6ff4806e3df51af811f4a1c2c1595373348cce07daa36f9e18e1072d5"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a0.500/features/raev2_ig_a0.500-1157d0f6ff4806e3-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.60686400339398,
+      "mean_term": 0.16168446247535653,
+      "covariance_term": 38.445204097690976,
+      "independently_recomputed_fid": 38.60688856016633,
+      "absolute_error": 2.455677235246867e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a0.780": {
+      "passed": true,
+      "hashes": {
+        "features": "2d2dd6dd71f528cfa9221042ac0dca8e9d6d251f02abf5c6867ec96cbd5620ee",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "0de7afa03228b6d2bd068368a1e02977de4bc03df6aa9272d7b9b55af16f648e"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_condition_carrier_20260908/quality/features/native_ig-0de7afa03228b6d2-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.264238946601836,
+      "mean_term": 0.1523737952685248,
+      "covariance_term": 38.11188946237991,
+      "independently_recomputed_fid": 38.26426325764843,
+      "absolute_error": 2.4311046594505115e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a1.000": {
+      "passed": true,
+      "hashes": {
+        "features": "350b2216e5d95400e8da39cda7dfab0e388b1cc66d6feec2d60882eed5764cbf",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "e376703b12725c8f762f3cba7b2111115f1169018bf4de6632288eaf382b8153"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a1.000/features/raev2_ig_a1.000-e376703b12725c8f-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.64247951914791,
+      "mean_term": 0.1499348173235176,
+      "covariance_term": 38.49256866954403,
+      "independently_recomputed_fid": 38.64250348686755,
+      "absolute_error": 2.3967719634754303e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a1.500": {
+      "passed": true,
+      "hashes": {
+        "features": "2d13ebf6f37507b9ce6d53435fabe999efda8d344429dedb3fcb0ab9ab0b34de",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "ffd89d341ddaf7adaa35b4f3e2f5de75b8a3ed9db16bd4b8f45202f179189a83"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a1.500/features/raev2_ig_a1.500-ffd89d341ddaf7ad-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 39.15158871568599,
+      "mean_term": 0.23319268585575503,
+      "covariance_term": 38.918420552307964,
+      "independently_recomputed_fid": 39.15161323816372,
+      "absolute_error": 2.452247773021554e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/ig_a2.000": {
+      "passed": true,
+      "hashes": {
+        "features": "ed40b45d080cb8b9ec50ba65ab70a3f6cc501e69fcf6a9a55303dbac30ef45ac",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "4ec220e4ab0af132e5a66bc1b4337fd1a6235c797f29604ddf6a3d5b143f1ab7"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a2.000/features/raev2_ig_a2.000-4ec220e4ab0af132-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 40.72684464711688,
+      "mean_term": 0.6467836206675307,
+      "covariance_term": 40.08008581843984,
+      "independently_recomputed_fid": 40.72686943910737,
+      "absolute_error": 2.4791990490768967e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.250": {
+      "passed": true,
+      "hashes": {
+        "features": "b66ebf39931b521db88d114e6e5dc0ab2e9b6a801ac450c9e66c3c112cda6ffa",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "04cc4df0920e4ae679ebf16752a7464671ec0c0b852356d81395588470a347eb"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/lifting_a0.250/features/raev2_lifting_a0.250-04cc4df0920e4ae6-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.81327178460731,
+      "mean_term": 0.2141902110799745,
+      "covariance_term": 38.59910594384411,
+      "independently_recomputed_fid": 38.81329615492408,
+      "absolute_error": 2.4370316772603928e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.500": {
+      "passed": true,
+      "hashes": {
+        "features": "4b2ed716f5b95ce24f05525cf3bd9bf51cfb70b0f5b7929e494fe756c31107fb",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "8d687e166e1c541c538588ed2880636fd30a415f63aebfa6461e386d3ba17506"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a050_constant/features/a050_constant-8d687e166e1c541c-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.737965117464455,
+      "mean_term": 0.15749955885297365,
+      "covariance_term": 38.58049023969011,
+      "independently_recomputed_fid": 38.73798979854308,
+      "absolute_error": 2.468107862796387e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.650": {
+      "passed": true,
+      "hashes": {
+        "features": "b4ea67306b511f4a3534b8bbc724c69318bbce0e2cb93f5a3a252100c2052f56",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "44c2be24788aed1b77a062fcd7cef09b53c056f0f2feae8d5546d7d77419d7ee"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a065_constant/features/a065_constant-44c2be24788aed1b-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.45230460148116,
+      "mean_term": 0.14164547968963917,
+      "covariance_term": 38.310683317411815,
+      "independently_recomputed_fid": 38.45232879710145,
+      "absolute_error": 2.419562029132294e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.780": {
+      "passed": true,
+      "hashes": {
+        "features": "ac822c9269444bdf66706591b8fa1999b9e63e349cd4d3464a0add4d37897095",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "44bd2b38881f4d183459f4a570c76365d7be40f76b9f238b5c726b6ea27da771"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_fourcard_20260908/a078_constant/features/a078_constant-44bd2b38881f4d18-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.46847639944872,
+      "mean_term": 0.14775421901478847,
+      "covariance_term": 38.320746302045734,
+      "independently_recomputed_fid": 38.46850052106052,
+      "absolute_error": 2.4121611801319887e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.850": {
+      "passed": true,
+      "hashes": {
+        "features": "aaec523856b096a1c59c74395844b2fd1b2a0ffdca47f7dd0c47ee8eb677f163",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "e9a0cb461ab7ff99a1cdc028e641cfeddb02d7a00f519d18a7bc679277e05989"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a085_constant/features/a085_constant-e9a0cb461ab7ff99-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.45658160575664,
+      "mean_term": 0.134799740723181,
+      "covariance_term": 38.32180592413647,
+      "independently_recomputed_fid": 38.45660566485965,
+      "absolute_error": 2.4059103012064043e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a0.900": {
+      "passed": true,
+      "hashes": {
+        "features": "5b65f802168a6fbede32dac270248db3525dd7aadd59143f2c1db1717f3d2cfc",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "01cfa36650f08c63d55975e71a2f8ba2028c5972964f0679b972fb25122726dc"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a090_constant/features/a090_constant-01cfa36650f08c63-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.49721200649702,
+      "mean_term": 0.13668274667958313,
+      "covariance_term": 38.360553483355034,
+      "independently_recomputed_fid": 38.497236230034616,
+      "absolute_error": 2.4223537593570654e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a1.000": {
+      "passed": true,
+      "hashes": {
+        "features": "ee4d898bd2dbcc8d261d6cb6ca7141638521f9a58f89f38b1d902c8c9b892ad8",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "96079e0d5cc93d6fceadb172c18b8c34c50617ab61e2405f5cec5e8be27ae214"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/lifting_a1.000/features/raev2_lifting_a1.000-96079e0d5cc93d6f-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 38.57010928227879,
+      "mean_term": 0.1407750090484979,
+      "covariance_term": 38.429358320860786,
+      "independently_recomputed_fid": 38.57013332990928,
+      "absolute_error": 2.4047630489576477e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a1.500": {
+      "passed": true,
+      "hashes": {
+        "features": "add5d97ae91df402b2b7a2576fb2960756b609ffca9af4886b583bff8c7d35c0",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "a682151bdf8572f5331df2da98e6e6a4f58c3622e9426bb0c4aff45e533da147"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/lifting_a1.500/features/raev2_lifting_a1.500-a682151bdf8572f5-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 39.48150132784963,
+      "mean_term": 0.2892673389152619,
+      "covariance_term": 39.192258808658664,
+      "independently_recomputed_fid": 39.48152614757392,
+      "absolute_error": 2.4819724295355172e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "raev2/lifting_a2.000": {
+      "passed": true,
+      "hashes": {
+        "features": "a526902f698fba82437ed51294c2dec9b2770621434065b58d42562a54521d62",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "22de2922c4ebabcbe367066d40a81c83a6c674f35b253f5004b64e9f91996425"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/lifting_a2.000/features/raev2_lifting_a2.000-22de2922c4ebabcb-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 40.92065443906472,
+      "mean_term": 0.7048210732364495,
+      "covariance_term": 40.21585778075013,
+      "independently_recomputed_fid": 40.92067885398658,
+      "absolute_error": 2.4414921860227423e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.000": {
+      "passed": true,
+      "hashes": {
+        "features": "390571d554b53befb0b5c049194f38304671595d9c5cffd4960b08011509717c",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "10f628f07b7fdc815271006322285aff51e54250fa9c015396147f674e79bfa0"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_transfer_20260908/full_euler100/features/full_euler100-10f628f07b7fdc81-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 63.674574320406634,
+      "mean_term": 11.213916864823702,
+      "covariance_term": 52.46068437445541,
+      "independently_recomputed_fid": 63.67460123927911,
+      "absolute_error": 2.6918872478631783e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.150": {
+      "passed": true,
+      "hashes": {
+        "features": "48ab56435c805cb2e49c25db2a97fa5c6b38ce3428f4401bf6f8bd14ff9ca036",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "52ec546b6458422ef7e38022f40a7c8fabbf21deb09b6b13134236c353c9b828"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.150_l0.000_m1_n1000_s202609831/features/ig_e0.150_l0.000_m1_n1000_s202609831-52ec546b6458422e-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 57.55908947019668,
+      "mean_term": 7.794562376565118,
+      "covariance_term": 49.76455399776029,
+      "independently_recomputed_fid": 57.559116374325406,
+      "absolute_error": 2.690412872397019e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.200": {
+      "passed": true,
+      "hashes": {
+        "features": "b6e7941b195d857485f512315aa2cbcf67a71e0281148f26696950176cf6677f",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "4aba66e91fdc1455586a90aff0b3160ee3742e39dfb421ee8258cebf4b675fc7"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.200_l0.000_m1_n1000_s202609831/features/ig_e0.200_l0.000_m1_n1000_s202609831-4aba66e91fdc1455-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 56.1398487956385,
+      "mean_term": 7.073865381360838,
+      "covariance_term": 49.06601001991817,
+      "independently_recomputed_fid": 56.139875401279006,
+      "absolute_error": 2.66056405067161e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.250": {
+      "passed": true,
+      "hashes": {
+        "features": "38e8af6b15f2412829de6fe7c6e12f09b613c096d33cba74d2895e949073dea3",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "d309877c64c07c133d8ebd1e9a2833724432aa353a27ce3f795ebf8438ebb1cf"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.250_l0.000_m1_n1000_s202609831/features/ig_e0.250_l0.000_m1_n1000_s202609831-d309877c64c07c13-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.62257906856962,
+      "mean_term": 6.764838237734228,
+      "covariance_term": 48.857767399701004,
+      "independently_recomputed_fid": 55.62260563743523,
+      "absolute_error": 2.6568865607146108e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.300": {
+      "passed": true,
+      "hashes": {
+        "features": "cfc37d2b197e73455aa58dd01d76518d739ec88aad4cdf52a63c8891082d0254",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "078b882faa0c83762e025690c305c65f218fcf9ea8699d39ab08a67137b6fa51"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.300_l0.000_m1_n1000_s202609831/features/ig_e0.300_l0.000_m1_n1000_s202609831-078b882faa0c8376-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.48032592279077,
+      "mean_term": 6.600285923463678,
+      "covariance_term": 48.880066573629676,
+      "independently_recomputed_fid": 55.48035249709336,
+      "absolute_error": 2.657430258778959e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.350": {
+      "passed": true,
+      "hashes": {
+        "features": "f9a408789d9d1d2d00503b1abe9fc4317fa307f4912d614907abada30a82c327",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "9008e44da093445a8721c7194234696ed3f6c6d2590959edc6d49da1e249a94e"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.350_l0.000_m1_n1000_s202609831/features/ig_e0.350_l0.000_m1_n1000_s202609831-9008e44da093445a-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.793213479051246,
+      "mean_term": 6.604203237181361,
+      "covariance_term": 49.1890365888645,
+      "independently_recomputed_fid": 55.793239826045856,
+      "absolute_error": 2.6346994609127705e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.400": {
+      "passed": true,
+      "hashes": {
+        "features": "a2ccdbe85b90970476a17d4e733526acb8d9e6bbfab322f6f4ee64f9188aa975",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "3d404843539e12e1e622f6c166e9510ea54635741445ad8631d70eddeca8fc95"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.400_l0.000_m1_n1000_s202609831/features/ig_e0.400_l0.000_m1_n1000_s202609831-3d404843539e12e1-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.862666757338445,
+      "mean_term": 6.442055508747929,
+      "covariance_term": 49.42063741101782,
+      "independently_recomputed_fid": 55.86269291976575,
+      "absolute_error": 2.6162427303688673e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.450": {
+      "passed": true,
+      "hashes": {
+        "features": "6d36830a9ca5902b960818870f608137185c8dae677e25821bbdbcd923962151",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "f46bef6766fe3ce657586113cc6b667d4fb1dd23b974b139c70fdae9f09766e6"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.450_l0.000_m1_n1000_s202609831/features/ig_e0.450_l0.000_m1_n1000_s202609831-f46bef6766fe3ce6-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 56.7798097009275,
+      "mean_term": 6.680481229996977,
+      "covariance_term": 50.09935450906477,
+      "independently_recomputed_fid": 56.779835739061745,
+      "absolute_error": 2.6038134244288358e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.600": {
+      "passed": true,
+      "hashes": {
+        "features": "e001d75bd71dd3b23145c6d9999cb2fb3f89613d08e2e66861796afdb9a8c437",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "d8353f0c5df46268eb5811da3b596beafefc94351f0f2c6d93dcaf1bd9bdcad0"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.600_l0.000_m1_n1000_s202609831/features/ig_e0.600_l0.000_m1_n1000_s202609831-d8353f0c5df46268-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 58.52993569001683,
+      "mean_term": 7.042767215405167,
+      "covariance_term": 51.48719351826952,
+      "independently_recomputed_fid": 58.529960733674685,
+      "absolute_error": 2.504365785682694e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.750": {
+      "passed": true,
+      "hashes": {
+        "features": "c60bf01e686c67fbd693a7a2cd17ca15a86cfef30c31de7b826713cdb26a0324",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "6dfd212d4cff08c77671b5325e80da262517ee35d1e8bf4493c7863cd7fd5c73"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.750_l0.000_m1_n1000_s202609831/features/ig_e0.750_l0.000_m1_n1000_s202609831-6dfd212d4cff08c7-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 61.25827101046332,
+      "mean_term": 7.948573226236746,
+      "covariance_term": 53.30972219271166,
+      "independently_recomputed_fid": 61.25829541894841,
+      "absolute_error": 2.440848508911131e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a0.900": {
+      "passed": true,
+      "hashes": {
+        "features": "19070ade2529ef075dbb921a9c7fd611f3a2b8ec400ca891985dd5202c14466f",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "fb9d1c0d243cc13137a00eb1e956adec76d26f5857cf93bccb42b0bfdc63b12f"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.900_l0.000_m1_n1000_s202609831/features/ig_e0.900_l0.000_m1_n1000_s202609831-fb9d1c0d243cc131-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 64.06198684280577,
+      "mean_term": 8.838194890457117,
+      "covariance_term": 55.22381575027407,
+      "independently_recomputed_fid": 64.06201064073119,
+      "absolute_error": 2.3797925422286426e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a1.050": {
+      "passed": true,
+      "hashes": {
+        "features": "685f62e8f9f72124ec0ee320629822686c370b6367411c157e8771396bce96ca",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "ca984d6cba8c3d417bb1fb797e3ac31ff38af82a26f142a84aa861000253e039"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e1.050_l0.000_m1_n1000_s202609831/features/ig_e1.050_l0.000_m1_n1000_s202609831-ca984d6cba8c3d41-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 66.3361463882182,
+      "mean_term": 9.471248196297282,
+      "covariance_term": 56.86492117041388,
+      "independently_recomputed_fid": 66.33616936671116,
+      "absolute_error": 2.2978492964398356e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a1.200": {
+      "passed": true,
+      "hashes": {
+        "features": "36ec0a77fc91ea638bcebd4402664632447d27152bd07cbcd9c47a2767669535",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "f4dce7f927b63828e991c40c7a867ab73e4853d641309abd99aa1566517c02bc"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e1.200_l0.000_m1_n1000_s202609831/features/ig_e1.200_l0.000_m1_n1000_s202609831-f4dce7f927b63828-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 69.21218218625529,
+      "mean_term": 10.532898129403268,
+      "covariance_term": 58.67930666439224,
+      "independently_recomputed_fid": 69.21220479379551,
+      "absolute_error": 2.260754021676803e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a1.350": {
+      "passed": true,
+      "hashes": {
+        "features": "f0272bc4c706ef157939a9cfeb1d7a4035fe91923170541ad8da3df08aa6f8e2",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "19578667bba7ff507e38e6c7cd1fd90e54e8a7e55a63f0582d7752c704217643"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e1.350_l0.000_m1_n1000_s202609831/features/ig_e1.350_l0.000_m1_n1000_s202609831-19578667bba7ff50-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 73.42527934765639,
+      "mean_term": 12.111383512358557,
+      "covariance_term": 61.31391867333173,
+      "independently_recomputed_fid": 73.42530218569028,
+      "absolute_error": 2.283803389957484e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/ig_a1.500": {
+      "passed": true,
+      "hashes": {
+        "features": "0bb1379e7beaa47d0190b4b59e4adc5027585d7688da115c27415c16fbe57dd7",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "3124d65cfa4fbf6002929bc586e93a570030c7ed3fefa8de8d7e691a596e9390"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e1.500_l0.000_m1_n1000_s202609831/features/ig_e1.500_l0.000_m1_n1000_s202609831-3124d65cfa4fbf60-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 78.30883771626821,
+      "mean_term": 13.957147969576347,
+      "covariance_term": 64.3517123509883,
+      "independently_recomputed_fid": 78.30886032056463,
+      "absolute_error": 2.2604296418649028e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/lifting_a0.240": {
+      "passed": true,
+      "hashes": {
+        "features": "aae21951812e03f86a68dfd66d914e3f4d133f1b48610f294df4d2eb632f64ed",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "1be8256327a6aa40a594d40152816157a00b995aee49274758838e75306e08e1"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/lifting_e0.240_l0.000_m1_n1000_s202609831/features/lifting_e0.240_l0.000_m1_n1000_s202609831-1be8256327a6aa40-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.455825366230385,
+      "mean_term": 6.753962337740089,
+      "covariance_term": 48.7018893629957,
+      "independently_recomputed_fid": 55.45585170073579,
+      "absolute_error": 2.6334505406566677e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/lifting_a0.300": {
+      "passed": true,
+      "hashes": {
+        "features": "b750a25bac3e0950588c141aa845599e8224b999ec7d72f7734619b4b028936e",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "6436f58e435768598fc785da639e0682caf6a64b410c51c9fbccb0c55e94e3a1"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/lifting_e0.300_l0.000_m1_n1000_s202609831/features/lifting_e0.300_l0.000_m1_n1000_s202609831-6436f58e43576859-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 55.22358127203728,
+      "mean_term": 6.473673365378164,
+      "covariance_term": 48.74993399380969,
+      "independently_recomputed_fid": 55.22360735918785,
+      "absolute_error": 2.608715057306199e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "jit/lifting_a0.360": {
+      "passed": true,
+      "hashes": {
+        "features": "90d60e61d559d9aea2b47905ac4b00346a0666e92d0ee5265f5969eaec5bf973",
+        "reference": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "pixels": "8612499da7036fc5f0702a3595af3af35d45300912c97b947b816243a487b737"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/lifting_e0.360_l0.000_m1_n1000_s202609831/features/lifting_e0.360_l0.000_m1_n1000_s202609831-8612499da7036fc5-inception.features.pt",
+      "reference_path": "/home/zhoushunyu/.cache/nanogen-evals/stats/datasets--nanovisionx--nanogen-evals-stats/snapshots/0227134b29f25704c3856ec002ce4a2183cc7419/imagenet_256_fid_stats.npz",
+      "reported_fid": 56.03854783878603,
+      "mean_term": 6.576940549142331,
+      "covariance_term": 49.46163317857872,
+      "independently_recomputed_fid": 56.03857372772105,
+      "absolute_error": 2.588893502064593e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    },
+    "sit_small/lifting_a0.700": {
+      "passed": true,
+      "hashes": {
+        "features": "7374c52e38a4d1f7d5521c7f8c2b74301d3aad1b8f2e481dcbf031543a0b89c2",
+        "reference": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "pixels": "8eea1d3b605d3383e34bf56867f96e9274318e9cfc8723f8f4891ce7724d2de9"
+      },
+      "features_path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_best_config_lifting_20260909/lifting_best_schedule/activations.npz",
+      "reference_path": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+      "reported_fid": 65.28696393135095,
+      "mean_term": 7.735643165692908,
+      "covariance_term": 57.551351386764054,
+      "independently_recomputed_fid": 65.28699455245696,
+      "absolute_error": 3.0621106006378795e-05,
+      "scope": "Same cached features; independent FP64 arithmetic, not new sampling or feature extraction."
+    }
+  },
+  "comparisons": {
+    "sit_xl": {
+      "paired": [
+        {
+          "alpha": 0.0,
+          "ig_fid": 48.01338382150328,
+          "lifting_fid": 48.01338382150328,
+          "relative_fid_gain_percent": 0.0
+        },
+        {
+          "alpha": 0.25,
+          "ig_fid": 43.548706778288874,
+          "lifting_fid": 43.18441392150504,
+          "relative_fid_gain_percent": 0.8365181970580338
+        },
+        {
+          "alpha": 0.35,
+          "ig_fid": 42.212951488942224,
+          "lifting_fid": 41.55014753176988,
+          "relative_fid_gain_percent": 1.570143602363283
+        },
+        {
+          "alpha": 0.5,
+          "ig_fid": 40.479076311651,
+          "lifting_fid": 40.309155733480054,
+          "relative_fid_gain_percent": 0.41977385270037804
+        },
+        {
+          "alpha": 1.0,
+          "ig_fid": 38.19028621446495,
+          "lifting_fid": 38.20819063305521,
+          "relative_fid_gain_percent": -0.04688212727632646
+        },
+        {
+          "alpha": 1.5,
+          "ig_fid": 38.057372334580236,
+          "lifting_fid": 38.06559167579633,
+          "relative_fid_gain_percent": -0.021597237832993166
+        },
+        {
+          "alpha": 2.0,
+          "ig_fid": 38.615971002977176,
+          "lifting_fid": 38.381284720088786,
+          "relative_fid_gain_percent": 0.6077440934226352
+        }
+      ],
+      "common_grid_best": {
+        "ig": {
+          "model": "sit_xl",
+          "method": "ig",
+          "alpha": 1.5,
+          "arm": "ig_a1.500",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.057372334580236,
+          "sum_batch_gpu_seconds": 890.2432155241258,
+          "full_calls_per_image": 100.0,
+          "prefix_calls_per_image": 0.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a1.500/samples.npz",
+          "sample_sha256": "071df3086d6152c4875e38ff33cd48d951b4e3047f9baf6e173a96ee7588c9fa",
+          "status": "complete",
+          "is_score": 56.85202522277832,
+          "mean_term": 0.33243648365334094,
+          "covariance_term": 37.724960252918095,
+          "arithmetic_error": 2.4401991197464667e-05
+        },
+        "lifting": {
+          "model": "sit_xl",
+          "method": "lifting",
+          "alpha": 1.5,
+          "arm": "lifting_a1.500",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.06559167579633,
+          "sum_batch_gpu_seconds": 3170.9326848746277,
+          "full_calls_per_image": 300.0,
+          "prefix_calls_per_image": 200.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a1.500/samples.npz",
+          "sample_sha256": "89851ed420ab6da9280dce5d41477d490811148228bf786cc5de06efeb57cfa3",
+          "status": "complete",
+          "is_score": 56.66005630493164,
+          "mean_term": 0.35479817467361824,
+          "covariance_term": 37.71081762606144,
+          "arithmetic_error": 2.4124938732938972e-05
+        }
+      },
+      "all_observed_best": {
+        "ig": {
+          "model": "sit_xl",
+          "method": "ig",
+          "alpha": 1.5,
+          "arm": "ig_a1.500",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.057372334580236,
+          "sum_batch_gpu_seconds": 890.2432155241258,
+          "full_calls_per_image": 100.0,
+          "prefix_calls_per_image": 0.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/ig_a1.500/samples.npz",
+          "sample_sha256": "071df3086d6152c4875e38ff33cd48d951b4e3047f9baf6e173a96ee7588c9fa",
+          "status": "complete",
+          "is_score": 56.85202522277832,
+          "mean_term": 0.33243648365334094,
+          "covariance_term": 37.724960252918095,
+          "arithmetic_error": 2.4401991197464667e-05
+        },
+        "lifting": {
+          "model": "sit_xl",
+          "method": "lifting",
+          "alpha": 1.5,
+          "arm": "lifting_a1.500",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.06559167579633,
+          "sum_batch_gpu_seconds": 3170.9326848746277,
+          "full_calls_per_image": 300.0,
+          "prefix_calls_per_image": 200.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/sit_xl/lifting_a1.500/samples.npz",
+          "sample_sha256": "89851ed420ab6da9280dce5d41477d490811148228bf786cc5de06efeb57cfa3",
+          "status": "complete",
+          "is_score": 56.66005630493164,
+          "mean_term": 0.35479817467361824,
+          "covariance_term": 37.71081762606144,
+          "arithmetic_error": 2.4124938732938972e-05
+        }
+      },
+      "common_grid_points": {
+        "ig": [
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "lifting": [
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ]
+      },
+      "complete": true
+    },
+    "raev2": {
+      "paired": [
+        {
+          "alpha": 0.0,
+          "ig_fid": 38.874133972672894,
+          "lifting_fid": 38.874133972672894,
+          "relative_fid_gain_percent": 0.0
+        },
+        {
+          "alpha": 0.25,
+          "ig_fid": 38.70297738644109,
+          "lifting_fid": 38.81327178460731,
+          "relative_fid_gain_percent": -0.28497652019108255
+        },
+        {
+          "alpha": 0.5,
+          "ig_fid": 38.60686400339398,
+          "lifting_fid": 38.737965117464455,
+          "relative_fid_gain_percent": -0.33957980647936203
+        },
+        {
+          "alpha": 0.78,
+          "ig_fid": 38.264238946601836,
+          "lifting_fid": 38.46847639944872,
+          "relative_fid_gain_percent": -0.5337554292714319
+        },
+        {
+          "alpha": 1.0,
+          "ig_fid": 38.64247951914791,
+          "lifting_fid": 38.57010928227879,
+          "relative_fid_gain_percent": 0.18728155586719142
+        },
+        {
+          "alpha": 1.5,
+          "ig_fid": 39.15158871568599,
+          "lifting_fid": 39.48150132784963,
+          "relative_fid_gain_percent": -0.8426544694250415
+        },
+        {
+          "alpha": 2.0,
+          "ig_fid": 40.72684464711688,
+          "lifting_fid": 40.92065443906472,
+          "relative_fid_gain_percent": -0.47587725891149457
+        }
+      ],
+      "common_grid_best": {
+        "ig": {
+          "model": "raev2",
+          "method": "ig",
+          "alpha": 0.5,
+          "arm": "ig_a0.500",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.60686400339398,
+          "sum_batch_gpu_seconds": 800.0062385136262,
+          "full_calls_per_image": 100.0,
+          "prefix_calls_per_image": 0.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/ig_a0.500/samples.npz",
+          "sample_sha256": "1157d0f6ff4806e3df51af811f4a1c2c1595373348cce07daa36f9e18e1072d5",
+          "status": "complete",
+          "is_score": 58.69573822021484,
+          "mean_term": 0.16168446247535653,
+          "covariance_term": 38.445204097690976,
+          "arithmetic_error": 2.455677235246867e-05
+        },
+        "lifting": {
+          "model": "raev2",
+          "method": "lifting",
+          "alpha": 1.0,
+          "arm": "lifting_a1.000",
+          "reused": false,
+          "samples": 1000,
+          "fid": 38.57010928227879,
+          "sum_batch_gpu_seconds": 2779.403079574462,
+          "full_calls_per_image": 298.0,
+          "prefix_calls_per_image": 198.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/lifting_wide_scale_20260909/raev2/lifting_a1.000/samples.npz",
+          "sample_sha256": "96079e0d5cc93d6fceadb172c18b8c34c50617ab61e2405f5cec5e8be27ae214",
+          "status": "complete",
+          "is_score": 58.91564102172852,
+          "mean_term": 0.1407750090484979,
+          "covariance_term": 38.429358320860786,
+          "arithmetic_error": 2.4047630489576477e-05
+        }
+      },
+      "all_observed_best": {
+        "ig": {
+          "model": "raev2",
+          "method": "ig",
+          "alpha": 0.78,
+          "arm": "ig_a0.780",
+          "reused": true,
+          "samples": 1000,
+          "fid": 38.264238946601836,
+          "sum_batch_gpu_seconds": null,
+          "full_calls_per_image": 100,
+          "prefix_calls_per_image": 0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/ig_condition_carrier_20260908/quality/native_ig/samples.npz",
+          "sample_sha256": "0de7afa03228b6d2bd068368a1e02977de4bc03df6aa9272d7b9b55af16f648e",
+          "status": "complete",
+          "is_score": 59.07736701965332,
+          "mean_term": 0.1523737952685248,
+          "covariance_term": 38.11188946237991,
+          "arithmetic_error": 2.4311046594505115e-05
+        },
+        "lifting": {
+          "model": "raev2",
+          "method": "lifting",
+          "alpha": 0.65,
+          "arm": "lifting_a0.650",
+          "reused": true,
+          "samples": 1000,
+          "fid": 38.45230460148116,
+          "sum_batch_gpu_seconds": 2773.0012731906027,
+          "full_calls_per_image": 298,
+          "prefix_calls_per_image": 198,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/ig_capacity_lifting_constant_fourcard_20260908/a065_constant/samples.npz",
+          "sample_sha256": "44c2be24788aed1b77a062fcd7cef09b53c056f0f2feae8d5546d7d77419d7ee",
+          "status": "complete",
+          "is_score": 59.0549674987793,
+          "mean_term": 0.14164547968963917,
+          "covariance_term": 38.310683317411815,
+          "arithmetic_error": 2.419562029132294e-05
+        }
+      },
+      "common_grid_points": {
+        "ig": [
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "lifting": [
+          0.0,
+          0.25,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ]
+      },
+      "complete": true
+    },
+    "jit": {
+      "paired": [
+        {
+          "alpha": 0.0,
+          "ig_fid": 63.674574320406634,
+          "lifting_fid": 63.674574320406634,
+          "relative_fid_gain_percent": 0.0
+        },
+        {
+          "alpha": 0.3,
+          "ig_fid": 55.48032592279077,
+          "lifting_fid": 55.22358127203728,
+          "relative_fid_gain_percent": 0.46276701962923994
+        }
+      ],
+      "common_grid_best": {
+        "ig": {
+          "model": "jit",
+          "method": "ig",
+          "alpha": 0.25,
+          "arm": "ig_a0.250",
+          "reused": true,
+          "samples": 1000,
+          "fid": 55.62257906856962,
+          "sum_batch_gpu_seconds": 421.3640992050059,
+          "full_calls_per_image": 100.0,
+          "prefix_calls_per_image": 0.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.250_l0.000_m1_n1000_s202609831/samples.npz",
+          "sample_sha256": "d309877c64c07c133d8ebd1e9a2833724432aa353a27ce3f795ebf8438ebb1cf",
+          "status": "complete",
+          "is_score": 31.5776798248291,
+          "mean_term": 6.764838237734228,
+          "covariance_term": 48.857767399701004,
+          "arithmetic_error": 2.6568865607146108e-05
+        },
+        "lifting": {
+          "model": "jit",
+          "method": "lifting",
+          "alpha": 0.0,
+          "arm": "ig_a0.000",
+          "reused": true,
+          "samples": 1000,
+          "fid": 63.674574320406634,
+          "sum_batch_gpu_seconds": null,
+          "full_calls_per_image": 100,
+          "prefix_calls_per_image": 0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/jit_transfer_20260908/full_euler100/samples.npz",
+          "sample_sha256": "10f628f07b7fdc815271006322285aff51e54250fa9c015396147f674e79bfa0",
+          "status": "complete",
+          "is_score": 26.550671195983888,
+          "mean_term": 11.213916864823702,
+          "covariance_term": 52.46068437445541,
+          "arithmetic_error": 2.6918872478631783e-05,
+          "shared_zero": true
+        }
+      },
+      "all_observed_best": {
+        "ig": {
+          "model": "jit",
+          "method": "ig",
+          "alpha": 0.3,
+          "arm": "ig_a0.300",
+          "reused": true,
+          "samples": 1000,
+          "fid": 55.48032592279077,
+          "sum_batch_gpu_seconds": 411.8460606154986,
+          "full_calls_per_image": 100.0,
+          "prefix_calls_per_image": 0.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/ig_e0.300_l0.000_m1_n1000_s202609831/samples.npz",
+          "sample_sha256": "078b882faa0c83762e025690c305c65f218fcf9ea8699d39ab08a67137b6fa51",
+          "status": "complete",
+          "is_score": 31.629965019226074,
+          "mean_term": 6.600285923463678,
+          "covariance_term": 48.880066573629676,
+          "arithmetic_error": 2.657430258778959e-05
+        },
+        "lifting": {
+          "model": "jit",
+          "method": "lifting",
+          "alpha": 0.3,
+          "arm": "lifting_a0.300",
+          "reused": true,
+          "samples": 1000,
+          "fid": 55.22358127203728,
+          "sum_batch_gpu_seconds": 962.0236492156982,
+          "full_calls_per_image": 200.0,
+          "prefix_calls_per_image": 100.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/jit_fine_sweep_20260909/lifting_e0.300_l0.000_m1_n1000_s202609831/samples.npz",
+          "sample_sha256": "6436f58e435768598fc785da639e0682caf6a64b410c51c9fbccb0c55e94e3a1",
+          "status": "complete",
+          "is_score": 31.337440490722656,
+          "mean_term": 6.473673365378164,
+          "covariance_term": 48.74993399380969,
+          "arithmetic_error": 2.608715057306199e-05
+        }
+      },
+      "common_grid_points": {
+        "ig": [
+          0.0,
+          0.25,
+          1.5
+        ],
+        "lifting": [
+          0.0
+        ]
+      },
+      "complete": false
+    },
+    "sit_small": {
+      "paired": [],
+      "common_grid_best": {
+        "ig": null,
+        "lifting": null
+      },
+      "all_observed_best": {
+        "ig": null,
+        "lifting": {
+          "model": "sit_small",
+          "method": "lifting",
+          "alpha": 0.7,
+          "arm": "lifting_a0.700",
+          "reused": true,
+          "samples": 1000,
+          "fid": 65.28696393135095,
+          "sum_batch_gpu_seconds": 223.27925177197903,
+          "full_calls_per_image": 292.864,
+          "prefix_calls_per_image": 100.0,
+          "sample_path": "/home/zhoushunyu/data/eqvae/experiments/small_sit_best_config_lifting_20260909/lifting_best_schedule/samples_n1000.npz",
+          "sample_sha256": "8eea1d3b605d3383e34bf56867f96e9274318e9cfc8723f8f4891ce7724d2de9",
+          "status": "complete",
+          "is_score": 35.5956916809082,
+          "mean_term": 7.735643165692908,
+          "covariance_term": 57.551351386764054,
+          "arithmetic_error": 3.0621106006378795e-05
+        }
+      },
+      "common_grid_points": {
+        "ig": [],
+        "lifting": []
+      },
+      "complete": false
+    }
+  },
+  "numerical_failures": [],
+  "research_goal_achieved": false
+}

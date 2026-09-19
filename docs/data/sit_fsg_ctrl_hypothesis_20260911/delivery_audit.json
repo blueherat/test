@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "finished_unix": 1789134343.731199,
+  "reports": {
+    "/home/zhoushunyu/eqvae/docs/SIT_FSG_AUTHOR_CODE_AUDIT_20260911_ZH.md": "04ab90447d7245a65678d4519ffd9296d049df9975255c04651164a4bd554f92",
+    "/home/zhoushunyu/eqvae/docs/SIT_FSG_JACOBIAN_AUDIT_RESULTS_20260911_ZH.md": "f82519bcdce9ebd8e99961b1b409e2353a5fa08c6c67349635e51aec1eb959b2",
+    "/home/zhoushunyu/eqvae/docs/SIT_GOLDEN_PATH_DIRECT_RESULTS_20260911_ZH.md": "a5ce0939c1818e24b2da13cfb29b83a706909879943e1b64986a2c694c1293ed",
+    "/home/zhoushunyu/eqvae/docs/SIT_FSG_CTRL_HYPOTHESIS_RESULTS_20260911_ZH.md": "87c2c3a4488201c23c39a0e2a16d7975cac869b306b33e940e80901d666024c0"
+  },
+  "mechanism_coverage": {
+    "complete": {
+      "trajectories": true,
+      "interventions": true,
+      "jacobian": true
+    },
+    "trajectory_rows": 23400,
+    "trace_rows": 86400,
+    "intervention_rows": 5376,
+    "jacobian_rows": 8832,
+    "quality_rows": 36,
+    "quality_complete": true,
+    "source_and_asset_hashes_verified": true
+  },
+  "direct_coverage": {
+    "complete": true,
+    "rows": 1344,
+    "trace_rows": 9216,
+    "unique_noises": 16,
+    "fine_equality_ratio_mean": 0.10894050464654963
+  },
+  "local_report_links_verified": 38,
+  "quality_configurations": 36,
+  "new_quality_configurations": 32,
+  "reused_verified_controls": 4,
+  "all_quality_feature_hashes_and_pixel_readout_receipts_verified": 36,
+  "independently_recomputed_metric_configurations": 6,
+  "independent_fid_sfid_max_absolute_error": 3.010562166849695e-05,
+  "image_gallery_audit_sha256": "1c07557c18243177ef4e4f3b1a5f5df48f79e5fee5523e08fe30a0510317c260",
+  "full_png_decode_repeated": false,
+  "browser_layout_rendered": false,
+  "priority_queue_resume_receipt": "/home/zhoushunyu/data/eqvae/experiments/sit_refined_priority_20260911/resume_after_hypothesis_20260911.json"
+}

@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "samples": 8,
+  "scope": "Real SiT-S/2 source field/full vs pair/full and complete 64-step legacy CFG/APG/CTRL trajectories",
+  "seconds_including_loading": 16.5932229552418,
+  "cuda_visible_devices": "0",
+  "source_sha256": "40468591b9cbbf90b01ebf5bf5c142c3b82b7ca93944929c6f690beb8cf66130",
+  "check_script_sha256": "29d22ab76029d60954d07b0fd0badf923375e8a6436494da8b10a71edd2ede85",
+  "bank": "/home/zhoushunyu/data/eqvae/experiments/cfg_transport_search_20260913/baseline_1k/inputs.npz",
+  "bank_sha256": "a6c704d7ad8a8c7258702bdb17a79573463405ce502f94e7d4053e5a438c90f3",
+  "field_checks": [
+    {
+      "t": 0.0,
+      "null": false,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    },
+    {
+      "t": 0.0,
+      "null": true,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    },
+    {
+      "t": 0.375,
+      "null": false,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    },
+    {
+      "t": 0.375,
+      "null": true,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    },
+    {
+      "t": 0.75,
+      "null": false,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    },
+    {
+      "t": 0.75,
+      "null": true,
+      "bitwise_exact": true,
+      "max_abs": 0.0
+    }
+  ],
+  "trajectory_checks": [
+    {
+      "kind": "cfg",
+      "config": {
+        "kind": "cfg",
+        "alpha": 1.25,
+        "steps": 64,
+        "cutoff": 0.75,
+        "beta": -0.5,
+        "lambda_ctrl": 5.0,
+        "K": 0.2
+      },
+      "latent_bitwise_exact": true,
+      "latent_max_abs": 0.0,
+      "pixel_bitwise_exact": true,
+      "pixel_max_abs": 0,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      },
+      "old_full_calls": 224,
+      "old_prefix_calls": 0
+    },
+    {
+      "kind": "apg",
+      "config": {
+        "kind": "apg",
+        "alpha": 2.0,
+        "steps": 64,
+        "cutoff": 0.75,
+        "beta": -0.5,
+        "lambda_ctrl": 5.0,
+        "K": 0.2
+      },
+      "latent_bitwise_exact": true,
+      "latent_max_abs": 0.0,
+      "pixel_bitwise_exact": true,
+      "pixel_max_abs": 0,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      },
+      "old_full_calls": 224,
+      "old_prefix_calls": 0
+    },
+    {
+      "kind": "ctrl",
+      "config": {
+        "kind": "ctrl",
+        "alpha": 2.75,
+        "steps": 64,
+        "cutoff": 0.75,
+        "beta": -0.5,
+        "lambda_ctrl": 5.0,
+        "K": 0.2
+      },
+      "latent_bitwise_exact": true,
+      "latent_max_abs": 0.0,
+      "pixel_bitwise_exact": true,
+      "pixel_max_abs": 0,
+      "counts": {
+        "full": 224,
+        "prefix": 0
+      },
+      "old_full_calls": 224,
+      "old_prefix_calls": 0
+    }
+  ],
+  "limitation": "Implementation equivalence only; no new quality evaluation, timing claim, or statistical inference.",
+  "old_unused_diagnostics": "Queries.h supplied a dummy tensor, assets an empty dict; neither is read by these three selected operators."
+}

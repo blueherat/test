@@ -1,0 +1,134 @@
+[
+  {
+    "cycle": "cycle01",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_measure_guidance_20260912",
+    "request_sha256": "5dbe04ad07356b19131ded4ac8f6318b21c6fb5221d0ba5861c91c0c3cfc270a",
+    "results_sha256": "50b619eb6cd4339ab708c74b3112538b24df4bd1ffc94c06b4869b64d76ad306",
+    "committed": 59,
+    "planned": 59,
+    "bank": {
+      "samples": 1000,
+      "batch": 8,
+      "noise_seed": 202610100,
+      "label_seed": 202610101,
+      "noise_sha256": "ce4f48e589a64f6bf8570a11496791763d6485299e7cb3d8bbcd3741ee327dca",
+      "label_sha256": "1a00060ee2bdc21fc6951f392854bfe88ffd832279dbe2b5122c68becc2da8e0",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 1000,
+    "independent_confirmation": false,
+    "same_bank_incumbent_supplement": false,
+    "final_audit_passed": true
+  },
+  {
+    "cycle": "cycle02",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_posterior_guidance_20260912",
+    "request_sha256": "523e8c22f0c4e566021e4b83fe3cd5b751b97460d56872889f6d33cf45149fe6",
+    "results_sha256": "585a572aa09c43f547707110da782deda8b54731243f882e6c348a1ba19d040d",
+    "committed": 9,
+    "planned": 9,
+    "bank": {
+      "samples": 1000,
+      "batch": 8,
+      "noise_seed": 202610100,
+      "label_seed": 202610101,
+      "noise_sha256": "ce4f48e589a64f6bf8570a11496791763d6485299e7cb3d8bbcd3741ee327dca",
+      "label_sha256": "1a00060ee2bdc21fc6951f392854bfe88ffd832279dbe2b5122c68becc2da8e0",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 1000,
+    "independent_confirmation": false,
+    "same_bank_incumbent_supplement": false,
+    "final_audit_passed": true
+  },
+  {
+    "cycle": "cycle03",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_internal_coarse_20260912",
+    "request_sha256": "7048d24af0c77bf68929186660ca511aa13ec5f91c5370ce3c228e3cfaf67377",
+    "results_sha256": "51c0c4af7df07b62d5bb3f64cecaf93747d9d2a41795199785352aaa9b949e35",
+    "committed": 3,
+    "planned": 3,
+    "bank": {
+      "samples": 1000,
+      "batch": 8,
+      "noise_seed": 202610100,
+      "label_seed": 202610101,
+      "noise_sha256": "ce4f48e589a64f6bf8570a11496791763d6485299e7cb3d8bbcd3741ee327dca",
+      "label_sha256": "1a00060ee2bdc21fc6951f392854bfe88ffd832279dbe2b5122c68becc2da8e0",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 1000,
+    "independent_confirmation": false,
+    "same_bank_incumbent_supplement": false,
+    "final_audit_passed": true
+  },
+  {
+    "cycle": "cycle04",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_prefix_coarse_20260912",
+    "request_sha256": "439f12298d7121e7f10bdab95ba8eae23fc8a9f2929831c9ffa1f17843b84743",
+    "results_sha256": "a3adcba4f1d574374f6b73d4f8a0998272a5dff0d68f6c176a0568b1f0d9aae8",
+    "committed": 4,
+    "planned": 4,
+    "bank": {
+      "samples": 1000,
+      "batch": 8,
+      "noise_seed": 202610100,
+      "label_seed": 202610101,
+      "noise_sha256": "ce4f48e589a64f6bf8570a11496791763d6485299e7cb3d8bbcd3741ee327dca",
+      "label_sha256": "1a00060ee2bdc21fc6951f392854bfe88ffd832279dbe2b5122c68becc2da8e0",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 1000,
+    "independent_confirmation": false,
+    "same_bank_incumbent_supplement": false,
+    "final_audit_passed": true
+  },
+  {
+    "cycle": "cycle05",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_prefix_confirmation_20260912",
+    "request_sha256": "a020a1fdb733502538d6f7a4000aa5ebe272995cee9c8b08d1204d3b708e6168",
+    "results_sha256": "840747e08b413d6d51798607b964a42c4f47f3da745b70b325c4d467725d5ba6",
+    "committed": 3,
+    "planned": 3,
+    "bank": {
+      "samples": 5000,
+      "batch": 8,
+      "noise_seed": 2026091205,
+      "label_seed": 2026091206,
+      "noise_sha256": "3d9645354bba8eccaa6881ab3be62843d7996264e74d4d454d1a094f5b2f65e4",
+      "label_sha256": "fcc529b9a70133a5841cc889be26bf8ce8e45ea1cfb079502137ad262ff4e291",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 5000,
+    "independent_confirmation": true,
+    "same_bank_incumbent_supplement": false,
+    "final_audit_passed": true
+  },
+  {
+    "cycle": "cycle06",
+    "root": "/home/zhoushunyu/data/eqvae/experiments/sit_prefix_incumbent_20260912",
+    "request_sha256": "6df8d86f15b33c1dba11d3e6fe2d5ee4207d5b3d24c53910ffe1b6f7256c5974",
+    "results_sha256": "4bf434740927b99aa713429f7f66d70b792828eb6741606d835e83c4ad911288",
+    "committed": 1,
+    "planned": 1,
+    "bank": {
+      "samples": 5000,
+      "batch": 8,
+      "noise_seed": 2026091205,
+      "label_seed": 2026091206,
+      "noise_sha256": "3d9645354bba8eccaa6881ab3be62843d7996264e74d4d454d1a094f5b2f65e4",
+      "label_sha256": "fcc529b9a70133a5841cc889be26bf8ce8e45ea1cfb079502137ad262ff4e291",
+      "classes_balanced": true,
+      "noise_generation": "continuous CUDA generator; sequential B8"
+    },
+    "samples": 5000,
+    "independent_confirmation": true,
+    "same_bank_incumbent_supplement": true,
+    "final_audit_passed": true
+  }
+]

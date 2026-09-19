@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "quality_arms": 24,
+  "source_endpoint_arms": 6,
+  "quality_images": 9600,
+  "source_endpoint_images": 6000,
+  "new_cfg_partial_source_paths": 3200,
+  "total_full_generated_images": 15600,
+  "source_files": 600,
+  "max_cached_feature_fid_recalculation_error": 5.1995851208630484e-05,
+  "independent_feature_reextraction": false,
+  "source_audits": [
+    {
+      "passed": true,
+      "source_files": 200,
+      "seeds_per_source": 800,
+      "queries_per_seed": 96,
+      "exact_initial_features_for_all_seeds": true,
+      "noise_labels_and_frozen_request_verified": true,
+      "full_and_prefix_counts_verified": true,
+      "source_seconds": 113.94522956712171,
+      "request_sha256": "f93dbe9ec239c9e1f6620b78d7f4ff7959ab92e1241ed43644a840c2678450d3"
+    },
+    {
+      "passed": true,
+      "source_files": 400,
+      "seeds_per_source": 800,
+      "queries_per_seed": 100,
+      "exact_initial_features_for_all_seeds": true,
+      "noise_labels_and_frozen_request_verified": true,
+      "full_and_prefix_counts_verified": true,
+      "source_seconds": 1427.561206810642,
+      "request_sha256": "5c8c7a249f23f2be40018ea9472fb459031ecd81b09bcc1c20b49e035762c5c8"
+    }
+  ],
+  "old_stops_unchanged": {
+    "/home/zhoushunyu/data/eqvae/experiments/sit_refined_priority_20260911/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_apg_mechanism_extension_20260911/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_broad_resume_20260912/STOP_AFTER_CURRENT": "c8227c2a9aa9ccf49003bdb1652a4a6cce870fb79ae8066a7a475811e3bb3635",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_control_output_50ideas_20260910/STOP_AFTER_CURRENT": "b43aef680652b33cc5a199cecb355a717ae50af5e058cecaa83d4f91aa180ce1",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_reference_aggregation_20260912/STOP_AFTER_CURRENT": "f17cc7a0cb994382cf856a190d0603caa6d452cbd62211c06075a16d60b7a09d"
+  },
+  "input_local_quality_arms": 0,
+  "source_workbook_valid": true,
+  "quality_sample_decode_gpu_batch_seconds": 6436.8980927318335,
+  "endpoint_sample_decode_gpu_batch_seconds": 2067.712192644831,
+  "cfg_source_gpu_batch_seconds": 1541.5064363777637,
+  "eligible_for_fresh_1k": [],
+  "benchmark_native_pixel_parity": true,
+  "long_term_goal_achieved": false,
+  "visual_inspection_pending": false,
+  "visual_inspection": {
+    "files": [
+      "quality_comparison.png",
+      "contamination_evidence.png",
+      "sit_small_ig_first4.png",
+      "sit_small_cfg_first4.png",
+      "raev2_ig_first4.png",
+      "raev2_cfg_first4.png"
+    ],
+    "checks": "All rendered; chart text and legends visible; fixed first-four sample grids retain all six arms. No image-quality success inferred from four examples."
+  }
+}

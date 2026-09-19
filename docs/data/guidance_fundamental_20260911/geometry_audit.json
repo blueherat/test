@@ -1,0 +1,96 @@
+{
+  "linear": {
+    "U_matrix": [
+      [
+        2.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.5
+      ]
+    ],
+    "residual": [
+      1.0,
+      1.0
+    ],
+    "negative_euclidean_gradient": [
+      2.0,
+      1.5
+    ],
+    "negative_natural_gradient": [
+      -0.5,
+      2.0
+    ],
+    "inverse_displacement": [
+      -0.5,
+      2.0
+    ],
+    "identity_max_abs_error": 0.0,
+    "euclidean_inverse_cosine": 0.38805700005813276
+  },
+  "nonlinear": {
+    "x": [
+      0.7,
+      -0.4
+    ],
+    "conditional_anchor": [
+      1.5,
+      -0.10000000000000003
+    ],
+    "initial_null_output": [
+      0.7,
+      -0.1060000000000001
+    ],
+    "natural_gradient_tangent": [
+      0.8,
+      -0.6659999999999999
+    ],
+    "exact_inverse_state": [
+      1.5,
+      -1.45
+    ],
+    "finite_displacement": [
+      0.8,
+      -1.0499999999999998
+    ],
+    "loss_identity_max_abs_error": 1.1102230246251565e-16,
+    "tangent_finite_difference_error": 8.326672684688674e-13,
+    "final_anchor_loss": 1.5407439555097887e-33
+  },
+  "moving_target_example": {
+    "U": "identity",
+    "C": "x + H * b",
+    "residual": "H * b, independent of x",
+    "moving_target_loss_gradient": "0",
+    "frozen_target_negative_gradient": "H * b",
+    "fsg_displacement": "H * b"
+  },
+  "noncommuting_future_power": {
+    "h1_at_zero": 0.5,
+    "h2_at_zero": 0.35,
+    "h1_squared": 0.25,
+    "local_log_h1_gradient": 0.0,
+    "true_log_h2_gradient": 0.07142857142428127,
+    "caveat": "Abstract finite future kernel, not a diffusion image-quality experiment."
+  },
+  "initial_normalization": {
+    "h_initial": [
+      1.2000000000000002,
+      2.6000000000000005
+    ],
+    "target_terminal_tilt": [
+      0.2894736842105263,
+      0.7105263157894737
+    ],
+    "fixed_initial_h_transform_terminal": [
+      0.4134615384615384,
+      0.5865384615384615
+    ],
+    "reweighted_initial_h_transform_terminal": [
+      0.28947368421052627,
+      0.7105263157894737
+    ]
+  },
+  "all_checks_passed": true
+}

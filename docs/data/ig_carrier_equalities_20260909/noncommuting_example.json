@@ -1,0 +1,74 @@
+{
+  "A": [
+    [
+      -0.7,
+      0.0
+    ],
+    [
+      0.0,
+      -1.8
+    ]
+  ],
+  "B": [
+    [
+      0.25,
+      0.8
+    ],
+    [
+      -0.35,
+      -0.15
+    ]
+  ],
+  "horizon": 0.8,
+  "innovation_matrix": [
+    [
+      0.0,
+      -0.8800000000000002
+    ],
+    [
+      -0.385,
+      0.0
+    ]
+  ],
+  "pulled_back_integral": [
+    [
+      0.20000000000000007,
+      0.42561242786794085
+    ],
+    [
+      -0.4489226338600213,
+      -0.11999999999999998
+    ]
+  ],
+  "quadrature_error": 2.2317197461947366e-14,
+  "best_scalar_of_current_gap": 0.667389810201015,
+  "relative_residual_after_best_scalar": 0.36924886735098794,
+  "checks": [
+    {
+      "alpha": 0.1,
+      "first_order_carrier_error": 0.0013109434190021496,
+      "exact_conjugacy_endpoint_error": 6.230303665313188e-14
+    },
+    {
+      "alpha": 0.05,
+      "first_order_carrier_error": 0.00032793880079199007,
+      "exact_conjugacy_endpoint_error": 6.397977796305824e-14
+    },
+    {
+      "alpha": 0.025,
+      "first_order_carrier_error": 8.20090749639818e-05,
+      "exact_conjugacy_endpoint_error": 6.429613033725757e-14
+    },
+    {
+      "alpha": 0.0125,
+      "first_order_carrier_error": 2.0505253277144088e-05,
+      "exact_conjugacy_endpoint_error": 6.454237488691807e-14
+    }
+  ],
+  "remainder_orders": [
+    1.99910690689522,
+    1.9995711379382226,
+    1.9997900006975944
+  ],
+  "scope": "Obstructs a scalar multiple of the current gap as a single initial write. Does not assert impossibility of reproducing ordinary IG with an IG schedule."
+}

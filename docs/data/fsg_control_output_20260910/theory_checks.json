@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "checks": {
+    "horizon_derivative": {
+      "time_direction": "noise to data, increasing t",
+      "formula": "partial_h (Phi_c(t,t+h)-Phi_u(t,t+h)) at h=0 = v_c-v_u",
+      "horizons": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "errors": [
+        0.0026943457673339936,
+        0.00026929001836308866,
+        2.692756021015078e-05,
+        2.6927309342180918e-06
+      ]
+    },
+    "controlled_fixed_terminal_residual": {
+      "cases": 128,
+      "max_error": 1.1087409036410701e-10,
+      "formula": "Rdot = -J_C(v_c-v_u) + (J_C-J_U) B u",
+      "consequence": "The control response is (J_C-J_U)B, not J_C alone."
+    },
+    "moving_terminal_boundary": {
+      "cases": 128,
+      "max_correct_error": 4.8598411451325484e-11,
+      "max_error_without_boundary": 2.869500226188848,
+      "extra_term": "Tprime(t) * [v_c(C,T)-v_u(U,T)]"
+    },
+    "fixed_semantic_target_output": {
+      "cases": 128,
+      "max_error": 7.93668084978156e-11,
+      "formula": "edot = D Psi(U) J_U B u for e=Psi(U_t(x))-y_ref, fixed T,y_ref",
+      "consequence": "No passive drift under the same deterministic U flow."
+    },
+    "no_local_endpoint_total_order": {
+      "local_zero_endpoint_nonzero": {
+        "v_c": "t",
+        "v_u": "0",
+        "initial_gap": 0.0,
+        "terminal_residual": 0.5
+      },
+      "endpoint_zero_local_nonzero": {
+        "v_c": "cos(2*pi*t)",
+        "v_u": "0",
+        "initial_gap": 1.0,
+        "terminal_residual": 0.0
+      },
+      "future_sensitivity_at_initial_time_zero_does_not_imply_current_residual_zero": true
+    },
+    "invertible_future_jacobian_zero_set": {
+      "cases": 128,
+      "min_singular_across_cases": 0.3870307283079946,
+      "implication": "J_C*g=0 iff g=0 for invertible J_C; approximate weighting can still differ.",
+      "scope": "Smooth finite-time ODE flow. Semantic projection or singular limits need separate analysis."
+    },
+    "terminal_collapse_and_uncontrollable_residual": {
+      "v_c": "1",
+      "v_u": "0",
+      "terminal_time": 1.0,
+      "residual": "1-t",
+      "V": "(1-t)^2/2",
+      "Vdot": "-(1-t)",
+      "decay_bound": "Vdot <= -2V on [0,1]",
+      "state_jacobian_of_R": 0.0,
+      "initial_x": -2.0,
+      "actual_null_terminal": -2.0,
+      "target_event": "terminal > 0",
+      "target_success": false,
+      "horizon_normalized_residual": 1.0,
+      "consequence": "Decay of this full-future residual does not certify task success."
+    },
+    "perfect_model_class_gap": {
+      "identity": "v_c-v_u = (sigma^2*alpha_prime/alpha - sigma*sigma_prime) * grad log p_t(c|x)",
+      "assumption": "Canonical conditional-expectation velocity for the same Gaussian interpolation and joint law.",
+      "cases": 10,
+      "max_error": 4.440892098500626e-16,
+      "exact_example": {
+        "class_means": [
+          -1,
+          1
+        ],
+        "within_class_variance": 1.0,
+        "t": 0.5,
+        "x": 0.0,
+        "conditional_velocity": 1.0,
+        "null_velocity": 0.0,
+        "posterior_target": 0.5,
+        "model_approximation_error": 0.0
+      }
+    },
+    "parameterization_and_decay": {
+      "cases": 128,
+      "max_velocity_conversion_error": 1.7763568394002505e-15,
+      "epsilon_factor": "sigma_prime - alpha_prime*sigma/alpha",
+      "scaled_error_derivative": "(k e)dot = kdot e + k edot",
+      "rate_counterexample": "e=exp(-t), k=exp(2t), k*e=exp(t)",
+      "warning": "Zero-set equivalence does not allow copying gains, time signs or Lyapunov rates."
+    },
+    "vp_marginal_coupling_is_not_ddpm_path": {
+      "alpha_bar_s": 0.8,
+      "alpha_bar_t": 0.5,
+      "covariance_using_one_shared_epsilon": 0.3162277660168379,
+      "covariance_true_forward_markov": 0.15811388300841894,
+      "fixed_pair_state_plane_ellipse_axes": [
+        0.8740320488976422,
+        2.288245611270737
+      ],
+      "consequence": "A coefficient-circle coupling is not an individual Markov DDPM noise trajectory."
+    },
+    "straight_bridges_curved_exact_marginal_flow": {
+      "training_path": "X_t=t*Y+(1-t)*epsilon with independent Gaussian endpoints",
+      "target_variances": [
+        4.0,
+        0.25
+      ],
+      "initial": [
+        1.0,
+        1.0
+      ],
+      "midpoint": [
+        1.118033988749895,
+        0.5590169943749475
+      ],
+      "terminal": [
+        2.0,
+        0.5
+      ],
+      "noncollinearity_determinant": 0.3819660112501051,
+      "exact_velocity": "v_i=(t*variance_i-(1-t))/(t^2*variance_i+(1-t)^2)*x_i",
+      "model_approximation_error": 0.0
+    },
+    "bounded_disturbance_and_unobserved_ideal": {
+      "scalar_system": "edot=-k*e+d, constant d",
+      "k": 2.0,
+      "d": 0.4,
+      "steady_tracking_error": 0.2,
+      "error_at_t20": 0.2,
+      "learned_field": "v_hat=0 in both worlds",
+      "compatible_ideal_fields": [
+        "+1",
+        "-1"
+      ],
+      "error_bound_in_both_worlds": 1.0,
+      "minimax_unidentified_bias_error": 1.0,
+      "scope": "Ideal-field errors hidden behind the same learned sampler are not measured physical disturbances."
+    },
+    "stable_state_can_collapse_correct_distribution": {
+      "desired_distribution": "N(0,1)",
+      "control": "xdot=-2*x",
+      "initial_distribution": "N(0,1)",
+      "terminal_variance": 0.018315638888734182,
+      "terminal_w2_squared": 0.7476450724155088,
+      "state_exponentially_stable": true,
+      "correct_target_law": false
+    },
+    "bounded_input_output_feasibility": {
+      "cases": 256,
+      "max_error": 1.7763568394002505e-15,
+      "feasible_random_examples": 100,
+      "formula": "e^T*a + D*||e|| - Umax*||(D_x e B)^T e|| <= -lambda*V",
+      "scope": "Illustrates the exact pointwise robust CLF feasibility test, not a neural controllability claim."
+    },
+    "conditional_success_committor": {
+      "event": "Brownian X_1>0",
+      "q": "NormalCDF(x/sqrt(1-t))",
+      "passive_equation": "(partial_t+L_u)q=0",
+      "conditioned_drift": "b_c=b_u+a*grad(log q)",
+      "conditioned_probability_drift": "grad(q)^T a grad(q)/q >= 0",
+      "cases": 20,
+      "max_passive_generator_error": 0.0,
+      "min_conditioned_drift": 0.005430714886414473,
+      "scope": "Common true SDE and exact terminal event; not a claim about a clean-image classifier or arbitrary neural C/U pair."
+    }
+  },
+  "no_neural_quality_claim": true,
+  "source_sha256": "0700c0a03953bf3be90a5218e93ae2a9a413ce2911186895b5aff24fc9692d3a"
+}

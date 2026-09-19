@@ -1,0 +1,62 @@
+{
+  "phase": "moment_screen_1k",
+  "samples": 1000,
+  "seed": 2026091407,
+  "batch": 16,
+  "sampler": "experiments.weak_reference_20260914.moment",
+  "configs": [
+    {
+      "arm": "cfg_e64",
+      "kind": "baseline",
+      "alpha": 1.25,
+      "omega": 0,
+      "steps": 64
+    },
+    {
+      "arm": "cfg_moment_k02_w1",
+      "kind": "moment",
+      "alpha": 1.25,
+      "omega": 1,
+      "kappa": 0.2,
+      "steps": 64
+    },
+    {
+      "arm": "cfg_e100",
+      "kind": "baseline",
+      "alpha": 1.25,
+      "omega": 0,
+      "steps": 100
+    }
+  ],
+  "sources": {
+    "/home/zhoushunyu/data/eqvae/baselines/Self-Guidance/models/flux/pipeline_flux.py": "13a1b8e6c4e329a84a6cbdda13f8ebad9439c8affe771f942c62d5a8a5b34c9c",
+    "/home/zhoushunyu/data/eqvae/baselines/Self-Guidance/models/stable_diffusion_3/pipeline_sd_3.py": "be4caa4f02a4bd4cb42f9f1a92707cb54a2be9bef74c50b43d13a4ff4326c494",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/moment_stats.npz": "98a7d0c5a357307c42f75cb95b819a136b3bc6fbe47cc269074d7d9736e98b5d",
+    "/home/zhoushunyu/eqvae/experiments/cfg_transport_search_20260913/runner.py": "36b4f93dfec897fb3a83a0ba59ec6ee47b05bb4fb65527100abd69660493d896",
+    "/home/zhoushunyu/eqvae/experiments/guidance_pasted_20260912/common.py": "387185883eb02876e320cae880bbc4030d0f89499df1049b0fd5c3fcba90e5db",
+    "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/check.py": "7647c2e61bfafa30283a28fed52ea4bd096d4439e11087dd9c8a6b8e8037c219",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/run.py": "8e9d5ea5147aaf5df51d1450ac8a2d1ff911924aa127a1daee0ac57164526676",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/sampler.py": "e2818b9a78e8422104bd5a07d028293fdc80086bc5d523674cdeef0deb07747b",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/check.py": "6ad90f5e1b970f047c8524e67ba609e0f913fdc0c6715c6fd558eb7842e12d69",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/moment.py": "9deae87c239278d11eb1c7d1577c5bda0b5e015ae283c09d7122216350669df0",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/moment_check.py": "508539f711ad39c1cc437bc5b0053be190e0074e75a8404434a10161da15c0c0",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/run.py": "19a4f1c86851a50bdf962468dfa2fdd42eef4d415b35e4f49463aa74051029e7",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/sampler.py": "e768b8eed4711a3fd6118d05d15da4c591220e2472eb91fe103c94f7ab926263"
+  },
+  "assets": {
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1/runs/depth4_v/checkpoints/step_00050000.pt": "f33fca87577ad2f5e70470f05c1834811a28e7912aedcc26a3fdb8ae8c4fc5ad",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a"
+  },
+  "inputs_sha256": "43e66d7b689567ff975e5b327dfda8aa3d899c0ea175042b5eb53c5f787e563b",
+  "noise_sha256": "15d23190067b7061f27acf910981618d0f61e343270cc5e55225e3765afabeed",
+  "labels_sha256": "5b1b619e0b37293c275f232d7b16773ea2c39d19fb197209baa90557c6b864ea",
+  "reference": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "model": "SiT-S/2 ImageNet100 EMA",
+  "interpretation": "Paired search stage; choose settings here, confirm on a new independent bank.",
+  "cost": "Single-branch model evaluations per image; sampling/decode batch GPU seconds, evaluation separate."
+}

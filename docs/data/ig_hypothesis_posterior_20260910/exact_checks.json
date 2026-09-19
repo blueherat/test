@@ -1,0 +1,192 @@
+{
+  "passed": true,
+  "arithmetic": "exact fractions",
+  "model_calls": 0,
+  "generated_images": 0,
+  "shared_bias_and_common_likelihood": [
+    {
+      "eta_s": 1,
+      "eta_w": 2,
+      "alpha": 1,
+      "likelihood": [
+        "1",
+        "1",
+        "1"
+      ],
+      "posterior": [
+        "1/2",
+        "1/3",
+        "1/6"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 1,
+      "eta_w": 2,
+      "alpha": 1,
+      "likelihood": [
+        "2",
+        "3",
+        "4"
+      ],
+      "posterior": [
+        "3/8",
+        "3/8",
+        "1/4"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 1,
+      "eta_w": 2,
+      "alpha": 1,
+      "likelihood": [
+        "1/7",
+        "2/11",
+        "3/5"
+      ],
+      "posterior": [
+        "165/536",
+        "35/134",
+        "231/536"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 1,
+      "eta_w": 2,
+      "alpha": 1,
+      "likelihood": [
+        "8",
+        "1/13",
+        "1/17"
+      ],
+      "posterior": [
+        "5304/5351",
+        "34/5351",
+        "13/5351"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 2,
+      "eta_w": 3,
+      "alpha": 2,
+      "likelihood": [
+        "1",
+        "1",
+        "1"
+      ],
+      "posterior": [
+        "1/2",
+        "1/3",
+        "1/6"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 2,
+      "eta_w": 3,
+      "alpha": 2,
+      "likelihood": [
+        "2",
+        "3",
+        "4"
+      ],
+      "posterior": [
+        "3/8",
+        "3/8",
+        "1/4"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 2,
+      "eta_w": 3,
+      "alpha": 2,
+      "likelihood": [
+        "1/7",
+        "2/11",
+        "3/5"
+      ],
+      "posterior": [
+        "165/536",
+        "35/134",
+        "231/536"
+      ],
+      "exact": true
+    },
+    {
+      "eta_s": 2,
+      "eta_w": 3,
+      "alpha": 2,
+      "likelihood": [
+        "8",
+        "1/13",
+        "1/17"
+      ],
+      "posterior": [
+        "5304/5351",
+        "34/5351",
+        "13/5351"
+      ],
+      "exact": true
+    }
+  ],
+  "off_affine_line": {
+    "strong_mean": [
+      "1/3",
+      "1/6"
+    ],
+    "weak_mean": [
+      "1/3",
+      "1/3"
+    ],
+    "guided_mean": [
+      "2/7",
+      "1/14"
+    ],
+    "determinant": "-1/126"
+  },
+  "insufficient_first_two_moments": {
+    "support": [
+      "-2",
+      "-1",
+      "0",
+      "1",
+      "2"
+    ],
+    "weak": [
+      "1/5",
+      "1/5",
+      "1/5",
+      "1/5",
+      "1/5"
+    ],
+    "strong_a": [
+      "1/10",
+      "3/20",
+      "1/5",
+      "1/4",
+      "3/10"
+    ],
+    "strong_b": [
+      "13/100",
+      "3/100",
+      "19/50",
+      "13/100",
+      "33/100"
+    ],
+    "common_strong_moments": [
+      "1/2",
+      "7/4"
+    ],
+    "weak_moments": [
+      "0",
+      "2"
+    ],
+    "guided_mean_a": "8/9",
+    "guided_mean_b": "25/36"
+  },
+  "research_goal_achieved": false
+}

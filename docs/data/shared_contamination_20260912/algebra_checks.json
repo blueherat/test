@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checks": {
+    "density_recovery_max_abs": 5.551115123125783e-17,
+    "score_recovery_max_abs": 8.881784197001252e-16,
+    "responsibility_gap_max_abs": 6.938893903907228e-16,
+    "strong_continuity_max_abs": 3.469446951953614e-17,
+    "weak_continuity_max_abs": 2.7755575615628914e-17,
+    "recovered_continuity_max_abs": 6.938893903907228e-17,
+    "time_weight_source_identity_max_abs": 6.700369425960417e-17,
+    "space_weight_score_identity_max_abs": 7.35089072945172e-16,
+    "mismatch_density_identity_max_abs": 5.551115123125783e-17,
+    "mismatch_score_identity_max_abs": 7.840950111415168e-16
+  },
+  "points": 256,
+  "dtype": "float64",
+  "device": "cpu",
+  "constant_weight_flow_example": {
+    "common_initial_density": "N(0,I)",
+    "a": 0.2,
+    "b": 0.6,
+    "noncanonical_velocity_error_cosine_mean": -0.6985397639593608,
+    "noncanonical_velocity_error_cosine_min": -0.9999997182360036,
+    "noncanonical_velocity_error_cosine_max": 0.9999535230750435,
+    "mean_orthogonal_fraction": 0.3391362303362939,
+    "negative_logratio_input_coefficient_fraction": 0.41015625,
+    "meaning": "Exact density recovery without matching the canonical target velocity."
+  },
+  "time_varying_weight_source_max_abs": 0.0029875495646922105,
+  "limitations": "Constructed identity checks only; no model-density identification, sampler convergence or FID claim."
+}

@@ -1,0 +1,95 @@
+{
+  "papers": [
+    {
+      "key": "cfg_ctrl",
+      "title": "CFG-Ctrl: Control-Based Classifier-Free Diffusion Guidance",
+      "version": "CVPR 2026 published PDF",
+      "local_path": "readings/fsg_ctrl_mp_comparison_20260911/cfg_ctrl.pdf",
+      "sha256": "bb41b074d9c6347cdac64e60cb0f0ffa3c6154a50d815d81d51534f1c8733e68",
+      "accessed": "2026-09-11"
+    },
+    {
+      "key": "cfg_ctrl_supp",
+      "title": "CFG-Ctrl Supplementary Material",
+      "version": "CVPR 2026 supplementary",
+      "local_path": "readings/fsg_ctrl_mp_comparison_20260911/cfg_ctrl_supp.pdf",
+      "sha256": "9a7b59cb689637c919569409e49ede4a2ae89431710de4dc36d17d597cd054bd",
+      "accessed": "2026-09-11"
+    },
+    {
+      "key": "cfg_mp",
+      "title": "Improving Classifier-Free Guidance of Flow Matching via Manifold Projection",
+      "version": "arXiv v2 2026-05-13; ICML 2026 per authors",
+      "local_path": "readings/fsg_ctrl_mp_comparison_20260911/cfg_mp.pdf",
+      "sha256": "b6b58a9e34ea0fb07dfc57bc581ba124a4a71aea1466767450c86f8c4dd16dec",
+      "accessed": "2026-09-11"
+    },
+    {
+      "key": "fsg",
+      "title": "Towards a Golden Classifier-Free Guidance Path via Foresight Fixed Point Iterations",
+      "version": "NeurIPS 2025; arXiv v1 2025-10-24",
+      "local_path": "readings/fsg_ctrl_mp_comparison_20260911/fsg.pdf",
+      "sha256": "3f49e09e785b3bf4c926701d2cb692a765408968368964d022c2efd85324842b",
+      "accessed": "2026-09-11"
+    }
+  ],
+  "code": [
+    {
+      "repo": "LeonSuZhengYi/CFG-MP",
+      "commit": "ab848f97284075aba3bcdd7c6047a61a0aeec7a1",
+      "date": "2026-05-27T09:08:35Z",
+      "files": [
+        ".gitignore",
+        "CFG-MP_DiT/LICENSE",
+        "CFG-MP_DiT/demo_dit.py",
+        "CFG-MP_DiT/requirements.txt",
+        "CFG-MP_DiT/utils_dit.py",
+        "CFG-MP_SD/LICENSE",
+        "CFG-MP_SD/demo_SD.py",
+        "CFG-MP_SD/requirements.txt",
+        "CFG-MP_SD/utils_SD.py",
+        "LICENSE",
+        "README.md"
+      ]
+    },
+    {
+      "repo": "hanyang-21/CFG-Ctrl",
+      "commit": "490a628fb0999b9269541e89820e1c26b71931bc",
+      "date": "2026-03-04T03:08:01Z",
+      "files": [
+        ".gitignore",
+        "LICENSE",
+        "README.md",
+        "environment.yml",
+        "examples/flux_cfg_ctrl_example.py",
+        "examples/qwen_cfg_ctrl_example.py",
+        "examples/sd3_cfg_ctrl_example.py",
+        "examples/wan_video_cfg_ctrl_example.py",
+        "pipeline/__init__.py",
+        "pipeline/common_cfg_ctrl.py",
+        "pipeline/flux_image_new_cfg_ctrl.py",
+        "pipeline/qwen_image_cfg_ctrl.py",
+        "pipeline/sd3_image_cfg_ctrl.py",
+        "pipeline/wan_video_cfg_ctrl.py",
+        "requirements.txt"
+      ]
+    },
+    {
+      "repo": "Ka1b0/Foresight-Guidance",
+      "commit": "012398fae56912f88fd8fec588b4ceb92800d9d6",
+      "date": "2025-11-24T06:41:05Z",
+      "files": [
+        "LICENSE",
+        "configs/NFE-100.yaml",
+        "configs/NFE-150.yaml",
+        "configs/NFE-50.yaml",
+        "fig/overview.png",
+        "fig/teaser.jpeg",
+        "infer.py",
+        "readme.md",
+        "requirements.txt",
+        "utils/pipeline_stable_diffusion_xl.py"
+      ]
+    }
+  ]
+}

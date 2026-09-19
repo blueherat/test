@@ -1,0 +1,161 @@
+--- v3
+
++++ v4
+
+@@ -1,75 +1,72 @@
+
+-                                                  Self-Guidance: Boosting Flow and Diffusion Generation on Their Own
+-
+-                                                    Tiancheng Li1,2 Weijian Luo1,3,∗ Zhiyang Chen1,4 Liyuan Ma1,4 Guo-Jun Qi1,4,∗
+-                                                         1
+-                                                           MAPLE Lab, Westlake University, 2 Zhejiang University, 3 Peking University
+-                                                           4
+-                                                             Institute of Advanced Technology, Westlake Institute for Advanced Study
+-                                                                              {litiancheng, chenzhiyang, maliyuan}@westlake.edu.cn
+-
+-
+-
+-
+-arXiv:2412.05827v3 [cs.CV] 25 May 2025
+-                                                                                  luoweijian@stu.pku.edu.cn, guojunq@gmail.com
+-
+-
+-
+-                                                                     Abstract                                         9, 14, 17, 21, 22, 25, 26, 36–38, 40, 42, 44, 45, 48]. Among
+-                                                                                                                      them, diffusion models [12, 58, 60] and flow-based models
+-                                         Proper guidance strategies are essential to achieve high-                    [2, 8, 29] have notably excelled in producing high-resolution,
+-                                         quality generation results without retraining diffusion and                  text-driven data such as images [50, 51, 54], videos [4, 14,
+-                                         flow-based text-to-image models. Existing guidance either                    67], and others [7, 20, 28, 39, 45, 56, 62, 68], pushing the
+-                                         requires specific training or strong inductive biases of diffu-              boundaries of Artificial Intelligence Generated Contents.
+-                                         sion model networks, potentially limiting their applications.                    In simple terms, diffusion models learn a multi-step tran-
+-                                         Motivated by the observation that artifact outliers can be                   sition from a prior distribution pT (xT ) to a real data dis-
+-                                         detected by a significant decline in the density from a noisier              tribution p0 (x0 ). However, default sampling methods for
+-                                         to a cleaner noise level, we propose Self-Guidance (SG),                     diffusion and flow-based models often lead to unsatisfactory
+-                                         which improves the image quality by suppressing the genera-                  generation quality, such as broken human hands and faces,
+-                                         tion of low-quality samples. SG only relies on the sampling                  and images with bad foreground and background. To ad-
+-                                         probabilities of its own diffusion model at different noise                  dress these issues, various guidance strategies have emerged
+-                                         levels with no need of any guidance-specific training. This                  as cheap yet effective ways to guide the generation process
+-                                         makes it flexible to be used in a plug-and-play manner with                  for better generation quality. For instance, classifier-free
+-                                         other sampling algorithms. We also introduce a more effi-                    guidance (CFG) [11] modifies the velocity of diffusion and
+-                                         cient approximation of SG, named SG-prev, which reuses                       flow-based generative models by adding a delta term be-
+-                                         the output from the immediately previous diffusion step to                   tween class-conditional and unconditional velocities, which
+-                                         avoid doubling sampling time. We conduct experiments                         pushes generated samples to have high class probabilities.
+-                                         on text-to-image and text-to-video generation with differ-
+-                                                                                                                          Though these existing guidance have shown impressive
+-                                         ent architectures, including UNet and transformer models.
+-                                                                                                                      performance improvements, they have various individual re-
+-                                         With open-sourced diffusion models such as Stable Diffusion
+-                                                                                                                      strictions. For instance, the CFG relies on computing an ad-
+-                                         3.5 and FLUX, SG exceeds existing algorithms on multiple
+-                                                                                                                      ditional unconditional velocity, which requires training the
+-                                         metrics, including both FID and Human Preference Score.
+-                                                                                                                      diffusion model under both conditional and unconditional
+-                                         SG-prev also achieves strong results over both the baseline
+-                                                                                                                      settings, therefore, harms the modeling performances[1].
+-                                         and the SG with only one forward pass. Moreover, we find
+-                                                                                                                      Auto-Guidance (AG) pays a significant price that requires
+-                                         that SG and SG-prev both have a surprisingly positive effect
+-                                                                                                                      training an additional bad-version model, which is tricky
+-                                         on the generation of physiologically correct human body
+-                                                                                                                      as well as requiring more memory costs. Other guidance,
+-                                         structures such as hands, faces, and arms, showing their
+-                                                                                                                      such as Perturbed-attention Guidance (PAG [1]), and self-
+-                                         ability of eliminating human body artifacts with minimal
+-                                                                                                                      attention guidance (SAG [16]), do not rely on additional
+-                                         efforts. We will release our code along with this paper.
+-                                                                                                                      training. However, as the PAG paper described, the effec-
+-                                                                                                                      tiveness of PAG is highly sensitive to the selection of per-
+-                                                                                                                      turbed attention layers inside the neural network, making
+-                                         1. Introduction
+-                                                                                                                      it less flexible to enhance models in general applications.
+-                                         Over the past decade, deep generative models have achieved                   We notice that all these guidance variants focus on diffusion
+-                                         remarkable advancements across various applications [5, 6,                   sampling strategies at a single timestep, while neglecting
+-                                              This project was initiated and supported by MAPLE Lab at Westlake
+-                                                                                                                      how diffusion sampling at various timesteps could be ex-
+-                                         University.                                                                  plored to improve the generation quality. Furthermore, we
+-                                              ∗ Corresponding author.                                                 find that without explicitly retraining or perturbing an exist-
+-
+-
+-                                                                                                                  1
++                                                 Self-Guidance: Boosting Flow and Diffusion Generation on Their Own
++
++                                                   Tiancheng Li1,2 Weijian Luo1,3,∗ Zhiyang Chen1,4 Liyuan Ma1,4 Guo-Jun Qi1,4,∗
++                                                        1
++                                                          MAPLE Lab, Westlake University, 2 Zhejiang University, 3 Peking University
++                                                          4
++                                                            Institute of Advanced Technology, Westlake Institute for Advanced Study
++                                                                             {litiancheng, chenzhiyang, maliyuan}@westlake.edu.cn
++                                                                                 luoweijian@stu.pku.edu.cn, guojunq@gmail.com
++
++
++
++
++arXiv:2412.05827v4 [cs.CV] 3 Jul 2025
++                                                                    Abstract                                         9, 14, 17, 21, 22, 25, 26, 36–38, 40, 42, 44, 45, 48]. Among
++                                                                                                                     them, diffusion models [12, 58, 60] and flow-based models
++                                        Proper guidance strategies are essential to achieve high-                    [2, 8, 29] have notably excelled in producing high-resolution,
++                                        quality generation results without retraining diffusion and                  text-driven data such as images [50, 51, 54], videos [4, 14,
++                                        flow-based text-to-image models. Existing guidance either                    67], and others [7, 20, 28, 39, 45, 56, 62, 68], pushing the
++                                        requires specific training or strong inductive biases of diffu-              boundaries of Artificial Intelligence Generated Contents.
++                                        sion model networks, potentially limiting their applications.                    In simple terms, diffusion models learn a multi-step tran-
++                                        Motivated by the observation that artifact outliers can be                   sition from a prior distribution pT (xT ) to a real data dis-
++                                        detected by a significant decline in the density from a noisier              tribution p0 (x0 ). However, default sampling methods for
++                                        to a cleaner noise level, we propose Self-Guidance (SG),                     diffusion and flow-based models often lead to unsatisfactory
++                                        which improves the image quality by suppressing the genera-                  generation quality, such as broken human hands and faces,
++                                        tion of low-quality samples. SG only relies on the sampling                  and images with bad foreground and background. To ad-
++                                        probabilities of its own diffusion model at different noise                  dress these issues, various guidance strategies have emerged
++                                        levels with no need of any guidance-specific training. This                  as cheap yet effective ways to guide the generation process
++                                        makes it flexible to be used in a plug-and-play manner with                  for better generation quality. For instance, classifier-free
++                                        other sampling algorithms. We also introduce a more effi-                    guidance (CFG) [11] modifies the velocity of diffusion and
++                                        cient approximation of SG, named SG-prev, which reuses                       flow-based generative models by adding a delta term be-
++                                        the output from the immediately previous diffusion step to                   tween class-conditional and unconditional velocities, which
++                                        avoid doubling sampling time. We conduct experiments                         pushes generated samples to have high class probabilities.
++                                        on text-to-image and text-to-video generation with differ-
++                                                                                                                         Though these existing guidance have shown impressive
++                                        ent architectures, including UNet and transformer models.
++                                                                                                                     performance improvements, they have various individual re-
++                                        With open-sourced diffusion models such as Stable Diffusion
++                                                                                                                     strictions. For instance, the CFG relies on computing an ad-
++                                        3.5 and FLUX, SG exceeds existing algorithms on multiple
++                                                                                                                     ditional unconditional velocity, which requires training the
++                                        metrics, including both FID and Human Preference Score.
++                                                                                                                     diffusion model under both conditional and unconditional
++                                        SG-prev also achieves strong results over both the baseline
++                                                                                                                     settings, therefore, harms the modeling performances[1].
++                                        and the SG with only one forward pass. Moreover, we find
++                                                                                                                     Auto-Guidance (AG) pays a significant price that requires
++                                        that SG and SG-prev both have a surprisingly positive effect
++                                                                                                                     training an additional bad-version model, which is tricky
++                                        on the generation of physiologically correct human body
++                                                                                                                     as well as requiring more memory costs. Other guidance,
++                                        structures such as hands, faces, and arms, showing their
++                                                                                                                     such as Perturbed-attention Guidance (PAG [1]), and self-
++                                        ability of eliminating human body artifacts with minimal
++                                                                                                                     attention guidance (SAG [16]), do not rely on additional
++                                        efforts. We will release our code along with this paper.
++                                                                                                                     training. However, as the PAG paper described, the effec-
++                                                                                                                     tiveness of PAG is highly sensitive to the selection of per-
++                                                                                                                     turbed attention layers inside the neural network, making
++                                        1. Introduction
++                                                                                                                     it less flexible to enhance models in general applications.
++                                        Over the past decade, deep generative models have achieved                   We notice that all these guidance variants focus on diffusion
++                                        remarkable advancements across various applications [5, 6,                   sampling strategies at a single timestep, while neglecting
++                                             This project was initiated and supported by MAPLE Lab at Westlake
++                                                                                                                     how diffusion sampling at various timesteps could be ex-
++                                        University.                                                                  plored to improve the generation quality. Furthermore, we
++                                             ∗ Corresponding author.                                                 find that without explicitly retraining or perturbing an exist-
++
++
++                                                                                                                 1
+ 
+                                                                                                                                  Ground Truth
+@@ -460,6 +457,6 @@
+
+                    CFG+SG                  22.70      31.74     29.50    32.57   31.52    31.33     0.3132        5.6532
+                    CFG+SG-prev             20.74      31.41     28.93    32.07   31.24    30.91     0.3162        5.6013
+-                    CFG[11]                29.74      31.14     29.91 32.72      31.55    31.33     0.3080        5.7527
+-         Flux.1[29] CFG+SG                 28.59      31.26     29.87 32.80      31.78    31.43     0.3084        5.7845
++                    CFG[11]                29.74      31.26     29.87 32.80      31.78    31.43     0.3080        5.7527
++         Flux.1[29] CFG+SG                 28.59      31.32     30.02 32.89      31.81    31.51     0.3084        5.7845
+                     CFG+SG-prev            25.54      31.54     29.71 32.92      32.06    31.56     0.3129        5.7391
+ 

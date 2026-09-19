@@ -1,0 +1,77 @@
+{
+  "model": "raev2",
+  "head": "context",
+  "training_steps": 3000,
+  "training_batch": 8,
+  "source_history_points": 31,
+  "log_grain": "Single online-model training batch before its update; every 100 steps, plus step 1.",
+  "block_mean_grain": "Arithmetic mean of five recorded batches; not the mean of all 500 training steps.",
+  "blocks": [
+    {
+      "first_logged_step": 100,
+      "last_logged_step": 500,
+      "recorded_batches": 5,
+      "mean_logged_step": 300.0,
+      "context_mean": 0.7251536846160889,
+      "context_batch_sd": 0.11117346369104082
+    },
+    {
+      "first_logged_step": 600,
+      "last_logged_step": 1000,
+      "recorded_batches": 5,
+      "mean_logged_step": 800.0,
+      "context_mean": 0.5381297826766968,
+      "context_batch_sd": 0.08373012281905702
+    },
+    {
+      "first_logged_step": 1100,
+      "last_logged_step": 1500,
+      "recorded_batches": 5,
+      "mean_logged_step": 1300.0,
+      "context_mean": 0.42832082509994507,
+      "context_batch_sd": 0.047480237622056214
+    },
+    {
+      "first_logged_step": 1600,
+      "last_logged_step": 2000,
+      "recorded_batches": 5,
+      "mean_logged_step": 1800.0,
+      "context_mean": 0.40124339461326597,
+      "context_batch_sd": 0.05036219392205481
+    },
+    {
+      "first_logged_step": 2100,
+      "last_logged_step": 2500,
+      "recorded_batches": 5,
+      "mean_logged_step": 2300.0,
+      "context_mean": 0.3437554597854614,
+      "context_batch_sd": 0.010850629074196193
+    },
+    {
+      "first_logged_step": 2600,
+      "last_logged_step": 3000,
+      "recorded_batches": 5,
+      "mean_logged_step": 2800.0,
+      "context_mean": 0.33802900910377504,
+      "context_batch_sd": 0.04005489049222162
+    }
+  ],
+  "last_block_relative_decrease": 0.016658501032275286,
+  "previous_block_relative_decrease": 0.14327447030801266,
+  "final_ema_validation_mse": 0.30519207660108805,
+  "validation_evaluations": 1,
+  "validation_batches": 32,
+  "validation_batch": 8,
+  "validation_draws": 256,
+  "validation_unique_cases_unknown": true,
+  "historical_validation_curve_available": false,
+  "interpretation": "Late logged training loss is flatter, but convergence is not established. Sparse changing batches and one final EMA validation evaluation do not establish a validation plateau.",
+  "training_performed": false,
+  "generated_images": 0,
+  "source_hashes": {
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py": "88ac819b8683497051820a2161d7918d655a61a2ef674416b09676e22c44c96b",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_distribution_20260912/raev2/input_local_training/summary.json": "64d33c6f3a005ec73110c669f5395a72818d24d74715670c4cc253318bf7a048",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_distribution_20260912/raev2/input_local_training/request.json": "763441b4746ad0e329297855294245b063c24f71c92a3533ca196469ea2fa4b9",
+    "/home/zhoushunyu/data/eqvae/experiments/guidance_distribution_20260912/raev2/input_local_training/head.pt": "3b567f51b022413f18badcb2f6d9cdde94faf037d2cceff852a886e8385f8d5b"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "status": "research_prototype_not_enqueued",
+  "hypothesis_family": "linear_density_extrapolation",
+  "independent_new_distribution_mechanism": false,
+  "equivalent_exact_target": "P = G + a (G - Q), with a = kappa / (1 - kappa)",
+  "algorithmic_addition": "three-source sample-based fitting with positive-weight EM feedback from the actual weak sampler",
+  "unresolved_link": "arithmetic density extrapolation does not imply exact fixed-coefficient score guidance or correct sampler endpoints",
+  "objective": "Fit the actual weak endpoint distribution Q so that (1-kappa) P + kappa Q explains the frozen strong endpoint distribution G",
+  "primary_method": "endpoint_em",
+  "models_in_order": ["sit_small", "jit"],
+  "weak_head": "existing frozen-depth4 Context MLP",
+  "total_weak_optimizer_steps": 50000,
+  "warmup": {
+    "source": "strong endpoint bank, ordinary native FM loss",
+    "steps": 20000,
+    "reuse": "exact matching full-data self baseline step020000 checkpoint, including optimizer state",
+    "counted_in_total_steps": true
+  },
+  "feedback_rounds": [
+    {
+      "actual_weak_snapshot_step": 20000,
+      "weak_endpoint_bank_size": "same as the real training split",
+      "classifier_sources": ["real", "strong", "current_weak_snapshot"],
+      "classifier_conditioning": "class label",
+      "classifier_source_priors": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333],
+      "classifier_crossfit_folds": 2,
+      "weight_application": "strong endpoint IDs, frozen across the FM round",
+      "normalization": "complete training bank, separately per class",
+      "continue_weak_training_until_step": 50000,
+      "new_time_and_noise_each_training_step": true
+    }
+  ],
+  "kappa": {
+    "rule": "guidance_anchor / (1 + guidance_anchor)",
+    "sit_small_guidance_anchor": 0.8,
+    "jit_guidance_anchor": 0.3,
+    "limitation": "first-order calibration for the limiting reference; not a promise about the optimal finite-round inference coefficient"
+  },
+  "evaluation": {
+    "reuse_existing_self_50k_control": true,
+    "other_existing_comparison": "guided_weak",
+    "initial_samples": 1000,
+    "coefficient_steps": [0.4, 0.2, 0.1, 0.025],
+    "connected_intervals": true,
+    "top_two_extend_to_samples_each": 5000,
+    "extension_contains_selection_samples": true,
+    "same_architecture_sampler_and_window_as_existing_protocol": true,
+    "discriminator_at_guided_inference": false
+  },
+  "not_yet_implemented": [
+    "end-to-end three-source conditional discriminator fitting",
+    "actual round-specific weak endpoint bank generation with checkpoint provenance",
+    "training-stage continuation and weight attachment",
+    "four-GPU runtime verification and integration with sequential idea evaluation"
+  ],
+  "secondary_theory_variant": {
+    "name": "common_noising_observation_em",
+    "core_log_weight_function_implemented": true,
+    "weight_application": "current weak endpoint bank",
+    "full_training_implemented": false,
+    "enqueued": false
+  },
+  "evidence": "CPU identities and convex probability optimization only; no generated-image result for this candidate",
+  "prior_art": [
+    "https://proceedings.neurips.cc/paper_files/paper/2017/file/d0010a6f34908640a4a6da2389772a78-Paper.pdf",
+    "https://papers.nips.cc/paper_files/paper/2020/file/29405e2a4c22866a205f557559c7fa4b-Paper.pdf",
+    "https://arxiv.org/html/2503.16117"
+  ]
+}

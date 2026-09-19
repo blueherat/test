@@ -1,3 +1,13 @@
+# 当前研究：分类器训练弱引导头
+
+当前主线入口：[代码与运行说明](classifier_guidance/README.md)、[结果与报告](docs/classifier_guidance/README.md)、[历史档案](archive/README.md)。
+
+旧实验代码保留在 `experiments/` 以兼容复现；根目录旧结果已归入 `archive/results/`，数据与权重保存在 `$HOME/data/eqvae/`。
+
+以下保留原 EQ-VAE 项目说明。
+
+---
+
 <!--
 <style>
   .texttt {

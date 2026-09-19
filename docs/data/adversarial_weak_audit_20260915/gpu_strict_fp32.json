@@ -1,0 +1,37 @@
+{
+  "kind": "real_model_full_64_step_gradient_audit_not_quality_trial",
+  "gpu": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+  "checkpoint_sha256": "0f8f54ced7f5139f0a817f857100933465d43e0078c8dc25ba1c9ae370d968a7",
+  "head_weights": "online_head",
+  "discriminator": "trained_200_step_critic",
+  "coefficient": 1.0,
+  "batch": 1,
+  "seed": 2026091599,
+  "class_label": 17,
+  "strict_fp32": true,
+  "full64_checkpoint_reference_relative_gradient_error": 0.00035736142308451235,
+  "head_gradient_cosine": 1.0,
+  "gradient_relative_error_under_2e_minus4": false,
+  "initial_noise_gradient_relative_error": 0.0001293854438699782,
+  "head_gradient_norm": 16.530609130859375,
+  "forward_bitwise_equal": true,
+  "deployed_forward_bitwise_equal": true,
+  "loss": 0.8221327066421509,
+  "no_module_changed": true,
+  "fingerprints": {
+    "strong": "47138dd6059fd29fd681182939a5aa511d3e83e9c30dbbd269ffa02096e4fe60",
+    "vae": "f456f02321b44c337e00c15bfec49144fe76896e2496316b04e14f0314aefb95",
+    "head": "252e05a79bc36d1e9953afbca7f7ced3794a4bfd865e26c8d9ed5b2d561fdad2",
+    "critic": "b096b1883115098c5dcc7f17b32d57b9a994a909e07eefe8cce443d1e6225499",
+    "inception": "613233b7b83af8f905c841b68284f63e4b4761ab794c3998629deeb9ad188021"
+  },
+  "pixel_clamp_single_sample": {
+    "fraction": 1.0172526344831567e-05,
+    "pixel_min": -0.0013218522071838379,
+    "pixel_max": 1.0012377500534058,
+    "feature_relative_change": 3.596423994167708e-05,
+    "loss_continuous": 0.8221327066421509,
+    "loss_clamped": 0.8221338391304016
+  },
+  "peak_allocated_gib": 2.2376208305358887
+}

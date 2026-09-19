@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "arm": "strong_sg_e64_w1",
+      "kind": "sg",
+      "alpha": 0,
+      "omega": 1,
+      "shift": 0.01,
+      "steps": 64,
+      "model": "sit",
+      "samples": 1000,
+      "fid": 88.98376667015765,
+      "sfid": 226.59070066797403,
+      "inception_score": 27.407089233398438,
+      "full_calls_per_output": 127,
+      "seconds": 67.11991707934067
+    },
+    {
+      "arm": "strong_sg_e96_w1",
+      "kind": "sg",
+      "alpha": 0,
+      "omega": 1,
+      "shift": 0.01,
+      "steps": 96,
+      "model": "sit",
+      "samples": 1000,
+      "fid": 88.2001623936464,
+      "sfid": 226.0122902686171,
+      "inception_score": 27.560455322265625,
+      "full_calls_per_output": 191,
+      "seconds": 93.51080542104319
+    }
+  ],
+  "audits": [
+    {
+      "arm": "strong_sg_e64_w1",
+      "passed": true,
+      "fid_fp64": 88.9837985004549,
+      "fid_difference": 3.183029724596054e-05,
+      "independent_extractor": false,
+      "features_sha256": "1635354101e2540e3737c67362aba7430fa4e0b5078dca24a3c530d731cbb618",
+      "samples_sha256": "7ce024bc7ec0d139221653bc13d5c4ab5fdbeb867f4f64452da6ff230fdab2a3"
+    },
+    {
+      "arm": "strong_sg_e96_w1",
+      "passed": true,
+      "fid_fp64": 88.2001927003119,
+      "fid_difference": 3.0306665507850994e-05,
+      "independent_extractor": false,
+      "features_sha256": "6b2801aa8895e68cc3ecf132f6d16b494d61b566da320b567ad0c41db5643e8d",
+      "samples_sha256": "aef463a16171df54f1c92eeece078fcf81634d89c3b8b9ecaee5aa625274fc8a"
+    }
+  ],
+  "complete": true,
+  "raw_root": "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_sg_1k",
+  "request_sha256": "f31b80e791528340534860a08c8a042bfa69c1613877d21d96988487f1a3d9d9"
+}

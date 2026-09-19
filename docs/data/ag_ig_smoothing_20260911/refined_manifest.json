@@ -1,0 +1,47 @@
+{
+  "completed": true,
+  "extra_deltas": [
+    0.001,
+    0.003,
+    0.005,
+    0.02,
+    0.05,
+    0.075,
+    0.15,
+    0.2,
+    0.35,
+    0.75,
+    1.5,
+    3.0,
+    6.0,
+    8.0,
+    12.0,
+    16.0,
+    32.0,
+    64.0
+  ],
+  "script_sha256": "7eb085c1e399c207388c9b897617058b84c3d6b22389919544efb30eb2eeb69c",
+  "amendment_sha256": "7a7e16c3c135c21f624f68f485de66e1b25d9f8442f3607d55c2815e20f42abf",
+  "wall_seconds": 87.36505657620728,
+  "model_calls": 90,
+  "strong": {
+    "checkpoint": "/data/users/zhoushunyu/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt",
+    "checkpoint_sha256": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "checkpoint_step": 800000,
+    "weights": "ema",
+    "protocol": "imagenet100_sit_linear_flow_v1",
+    "model_name": "SiT-S/2",
+    "prediction_target": "velocity",
+    "denominator_floor": 0.001,
+    "data_manifest_sha256": "b911e47640333974d145896f4f5851f7876f1035745dbf397e1ddd8c74bae373"
+  },
+  "cuda_initialized": false,
+  "observations": {
+    "time_1.npz": "26d00b733ec9149aa8f5f9b2dcee1ecaf51ec40f57cf5fcd6771c43e33536d2b",
+    "time_0.npz": "ff1233b050da954ef9b390770be6a2ccc401978a8f4b2ddb226a3b8e8845a0a0",
+    "time_3.npz": "0aeb09697c4e49ede1bf0052b605efee284c09c974847977764da0ab54e9d000",
+    "time_2.npz": "d4bf755fa1ef93c5ee09bcccf5b99dd93f4d437d7194b0f7036d6a1bbf3a3745",
+    "time_4.npz": "eac7b728c811e4b845981cf5bcbeff647e933c19d81db844c32a4ab33c13a1f4"
+  },
+  "original_manifest_sha256": "b5a96fbc6b060af56bcc84e362d1b3ab6d10ec25888e6e2ad384ccee0e609d8c"
+}

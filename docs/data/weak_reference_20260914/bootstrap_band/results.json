@@ -1,0 +1,74 @@
+{
+  "seed": 2026091419,
+  "replicates": 200,
+  "class_stratified": true,
+  "paired": true,
+  "arms": [
+    "strong_e320",
+    "strong_band_w1",
+    "strong_log_k04_e64_w1",
+    "strong_log_k04_e106_w1",
+    "strong_log_k04_e106_w075"
+  ],
+  "observed_fids": [
+    85.16551559813337,
+    80.4528532645682,
+    82.25156770273509,
+    81.09073510116491,
+    80.05249501826074
+  ],
+  "rows": [
+    {
+      "contrast": "strong_band_w1 minus strong_e320",
+      "observed_delta": -4.712662333565163,
+      "bootstrap_mean": -4.865137802001787,
+      "percentile_95_interval": [
+        -7.014514072373447,
+        -2.6542483915500066
+      ],
+      "bootstrap_fraction_below_zero": 1.0
+    },
+    {
+      "contrast": "strong_band_w1 minus strong_log_k04_e64_w1",
+      "observed_delta": -1.7987144381668827,
+      "bootstrap_mean": -1.7498130814648536,
+      "percentile_95_interval": [
+        -2.87612803300793,
+        -0.3842055617921346
+      ],
+      "bootstrap_fraction_below_zero": 1.0
+    },
+    {
+      "contrast": "strong_band_w1 minus strong_log_k04_e106_w1",
+      "observed_delta": -0.6378818365967049,
+      "bootstrap_mean": -0.5261590876340495,
+      "percentile_95_interval": [
+        -1.9368470259961854,
+        0.7110645398197639
+      ],
+      "bootstrap_fraction_below_zero": 0.78
+    },
+    {
+      "contrast": "strong_band_w1 minus strong_log_k04_e106_w075",
+      "observed_delta": 0.4003582463074622,
+      "bootstrap_mean": 0.2927991981030905,
+      "percentile_95_interval": [
+        -0.33541102482659535,
+        0.999056477472181
+      ],
+      "bootstrap_fraction_below_zero": 0.22
+    }
+  ],
+  "hashes": {
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/inputs.npz": "37e60b434925727ee94dedd0ffd86f29db2a9300f7ed4abea9debbad7db34a27",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/strong_e320/inception_activations.npz": "d4029eebf16922715d4a79359bcc0710672502bba017c45c4447205adb35ff01",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/strong_band_w1/inception_activations.npz": "5449e28dc6e59cc47f4d6116223bb5596a6daeab81a3a9e50f7ce8fc53ca6928",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/strong_log_k04_e64_w1/inception_activations.npz": "fab5713eacd964acfa752b8022bd3c133304030b4a1cd063a32c9314f5e2b4fa",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/strong_log_k04_e106_w1/inception_activations.npz": "523a029c8e117d2aadace9a9e72dbf8cd6415d6cd463857aa5945907e8c0c6fc",
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/strong_band_confirm_1k/strong_log_k04_e106_w075/inception_activations.npz": "b799520dcb776885afd29ce569c6309f8ce0c3d61fb5886a1a9b412adcf4c058"
+  },
+  "seconds": 25.70199553715065,
+  "source_sha256": "09a74fe1037cbf5e0fc68f1ff9a1408a91336d116de038729bd7f0452de6e954",
+  "scope": "Conditional bootstrap uncertainty for fixed 1K generated samples and reference. FID bias persists; does not establish generalization to other models or datasets."
+}

@@ -1,0 +1,11 @@
+{
+  "initial": "N(0,I_2)",
+  "target": "delta(x_1-1) times N(x_2;0,1)",
+  "transformation": "T(x)=(1+alpha*(x1-1), beta*x2)",
+  "local_error": "g=(-(x1-1),0)",
+  "future_error": "R=C_H-U=(-0.5*(x1-1),0), H=log(2)",
+  "fields": "u=0, c=(-(x1-1),0); U=id and C_H=(1+exp(-H)*(x1-1),x2)",
+  "caveat": "An exact linear control example, not a canonical Gaussian FM pair or the author image samplers. beta=1 is the exact ideal forward-backward map here; beta<1 adds an independent tangent contraction. The target is deliberately singular; a positive-thickness target also requires preserving its normal variance.",
+  "manifold_tangent_identity": "A differentiable map fixing every point of M must satisfy DT(x)v=v for v in T_xM.",
+  "global_contraction_bound": "For a shared r-Lipschitz map, E||T^K(X)-T^K(Xprime)||^2 <= r^(2K) E||X-Xprime||^2. No new noise and the same map are required."
+}

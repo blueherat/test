@@ -1,0 +1,27 @@
+{
+  "biased_reference_aggregate_prior_W2_squared": 0.06009216106228117,
+  "selected": {
+    "cfg": {
+      "selected_alpha": 1.5,
+      "heldout_W2_squared": 0.049959316058822076,
+      "reduction_fraction": 0.5400171857294167
+    },
+    "same_target_ag": {
+      "selected_alpha": 1.5,
+      "heldout_W2_squared": 0.0004723490299734862,
+      "reduction_fraction": 0.9956510125985438
+    }
+  },
+  "high_dimensional_rank_counterexample": {
+    "true_target": "N(0,I_2), true inverse identity",
+    "G_A=90degree_rotation": {
+      "one_pass_copy_mse": 4.0,
+      "generation_W2_squared": 0.0
+    },
+    "G_B=.9I": {
+      "one_pass_copy_mse": 0.02,
+      "generation_W2_squared": 0.02
+    },
+    "scope": "Learned ODEs can include a rotation; not two distinct exact minimizers of the same canonical FM regression."
+  }
+}

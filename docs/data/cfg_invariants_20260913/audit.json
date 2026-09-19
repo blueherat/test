@@ -1,0 +1,195 @@
+{
+  "cpu_only": true,
+  "is_quality_experiment": false,
+  "algebra": {
+    "common_complement_error": 0.0,
+    "affine_equivariance_error": 1.6653345369377348e-16,
+    "multiplicative_composition_error": 0.0,
+    "idempotence_counterexample_distance": 4.4721359549995805
+  },
+  "conditioning": {
+    "hard_idempotence_error": 5.551115123125783e-17,
+    "repeated_soft_likelihood_l1": 0.33430404235821193,
+    "hard_positive_power_max_error": 0.0,
+    "likelihood_fiber_conditional_max_error": 1.1102230246251565e-16,
+    "prior": [
+      0.1,
+      0.2,
+      0.15,
+      0.05,
+      0.3,
+      0.2
+    ],
+    "likelihood": [
+      0.8,
+      0.8,
+      0.2,
+      0.2,
+      0.05,
+      0.05
+    ],
+    "soft_once": [
+      0.26229508196721313,
+      0.5245901639344263,
+      0.0983606557377049,
+      0.03278688524590164,
+      0.04918032786885245,
+      0.03278688524590164
+    ],
+    "soft_twice": [
+      0.31801242236024846,
+      0.6360248447204969,
+      0.029813664596273288,
+      0.009937888198757764,
+      0.003726708074534161,
+      0.002484472049689441
+    ]
+  },
+  "terminal_tilt_corruption": {
+    "tower_max_error": 0.0,
+    "w2_variance_identity_max_error": 5.551115123125783e-17,
+    "exact_noisy_tilt_max_error": 1.1102230246251565e-16,
+    "naive_power_of_mean_l1": 0.2671515020190233,
+    "h2": [
+      0.35409395973154373,
+      0.11051792828685263
+    ],
+    "q_squared": [
+      0.24003423269222113,
+      0.03811050618244156
+    ],
+    "posterior_variance": [
+      0.11405972703932266,
+      0.07240742210441106
+    ],
+    "note": "Finite class-independent corruption checks the conditional-expectation algebra, not an ODE terminal-distribution claim."
+  },
+  "bayes": {
+    "states": 18,
+    "first_order_max": 2.1720452098998078e-16,
+    "second_order_max": 4.440892098500626e-16,
+    "independent_finite_difference_max": 1.345450417744587e-10,
+    "pointwise_first_order_zero_but_second_order_wrong": {
+      "first_order_max": 5.440014411022894e-17,
+      "second_order_residual": [
+        [
+          0.19999999999999973,
+          0.0
+        ],
+        [
+          0.0,
+          -0.1499999999999999
+        ]
+      ],
+      "expected_B": [
+        [
+          0.2,
+          0.0
+        ],
+        [
+          0.0,
+          -0.15
+        ]
+      ]
+    },
+    "w2_guided_gap_residual_max": 2.1083871323926346,
+    "guided_gap_must_not_be_tested_against_original_posterior": true
+  },
+  "controller": {
+    "source": "/home/zhoushunyu/eqvae/readings/fsg_ctrl_mp_comparison_20260911/code/cfg_ctrl/pipeline/common_cfg_ctrl.py",
+    "source_sha256": "0fdbcd66b819f91a32abd6b519413489e76e81af3c89cfb2eb1b307e2df0b2e8",
+    "raw_gap": [
+      2.0,
+      1.0
+    ],
+    "first_output": [
+      3.4,
+      1.4
+    ],
+    "common_complement_leakage": 0.2683281572999749,
+    "rotation_reexpression_error": 0.581916875773797,
+    "same_K_scale_reexpression_error": 0.42426406871192873,
+    "zero_raw_gap_with_nonzero_history_output": [
+      0.6,
+      0.6
+    ],
+    "interpretation": "Differences from standard CFG algebra; not a quality verdict or universal physical impossibility."
+  },
+  "trajectory": {
+    "rows": [
+      {
+        "t": 0.0,
+        "z": 1.2,
+        "posterior_clean_mean": 0.0,
+        "remaining_endpoint": 1.2
+      },
+      {
+        "t": 0.25,
+        "z": 0.9486832980505138,
+        "posterior_clean_mean": 0.37947331922020544,
+        "remaining_endpoint": 1.2
+      },
+      {
+        "t": 0.5,
+        "z": 0.848528137423857,
+        "posterior_clean_mean": 0.8485281374238568,
+        "remaining_endpoint": 1.2
+      },
+      {
+        "t": 0.75,
+        "z": 0.9486832980505138,
+        "posterior_clean_mean": 1.1384199576606162,
+        "remaining_endpoint": 1.2
+      },
+      {
+        "t": 1.0,
+        "z": 1.2,
+        "posterior_clean_mean": 1.2,
+        "remaining_endpoint": 1.2
+      }
+    ],
+    "endpoint_max_error": 0.0,
+    "posterior_clean_mean_is_constant": false
+  },
+  "pure_noise_endpoint": {
+    "z": 0.4,
+    "conditional_mean": 1.0,
+    "unconditional_mean": 0.0,
+    "conditional_score": -0.4,
+    "unconditional_score": -0.4,
+    "conditional_velocity": 0.6,
+    "unconditional_velocity": -0.4,
+    "velocity_gap": 1.0
+  },
+  "local_vs_trajectory": {
+    "local_gap": [
+      1.0,
+      0.0
+    ],
+    "conditional_endpoint": [
+      1.0,
+      0.5
+    ],
+    "cfg_w2_endpoint": [
+      2.0,
+      1.0
+    ],
+    "explanation": "The second velocity component is shared at the same state; first-coordinate intervention changes its later input."
+  },
+  "potential_feedback": {
+    "normalized_gap_antisymmetric_01": 0.17888543822064393,
+    "normalized_gap_expected_01": 0.17888543819998318,
+    "posterior_value_feedback_antisymmetric_max": 6.938893903907228e-13
+  },
+  "density_preservation": {
+    "standard_gaussian": true,
+    "rotation_weighted_divergence_max": 1.3322676295501878e-17,
+    "radial_weighted_divergence": [
+      0.0,
+      -2.25,
+      1.3199999999999998
+    ],
+    "note": "Both ODEs push forward normalized measures; only rotation preserves this reference Gaussian density."
+  },
+  "script_sha256": "8802b9ef4e3fc526a8612269796410c01f97bd33a425e2b9d14103b42922f99f"
+}

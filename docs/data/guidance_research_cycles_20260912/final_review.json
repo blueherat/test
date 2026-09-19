@@ -1,0 +1,68 @@
+{
+  "phase": "research_round_review_complete",
+  "completed_screen_arms": 75,
+  "completed_confirmation_arms": 4,
+  "distinct_confirmation_banks": 1,
+  "all_stages_audited": true,
+  "numerical_failures": 0,
+  "retained_engineering_candidate": "native independently trained depth-four weak prefix",
+  "source_checkpoint": "/home/zhoushunyu/data/eqvae/experiments/sit_prefix_coarse_20260912/training/native/model.pt",
+  "source_checkpoint_sha256": "a677fa52e56952b2a48b9e2096c573cae74154c5881187bfbc928f76abf5b1f3",
+  "confirmation": [
+    {
+      "method": "原IG",
+      "arm": "ig_prefix_original_00",
+      "samples": 5000,
+      "fid": 40.43180629759911,
+      "sfid": 71.73860658777994,
+      "inception_score": 37.710079193115234,
+      "full": 128.0,
+      "prefix": 64.0,
+      "sum_batch_gpu_seconds": 545.191853354685,
+      "request_sha256": "a020a1fdb733502538d6f7a4000aa5ebe272995cee9c8b08d1204d3b708e6168"
+    },
+    {
+      "method": "局部IG",
+      "arm": "ig_prefix_local_00",
+      "samples": 5000,
+      "fid": 39.17674145001888,
+      "sfid": 72.48399363521105,
+      "inception_score": 38.308902740478516,
+      "full": 128.0,
+      "prefix": 64.0,
+      "sum_batch_gpu_seconds": 610.8688684366643,
+      "request_sha256": "a020a1fdb733502538d6f7a4000aa5ebe272995cee9c8b08d1204d3b708e6168"
+    },
+    {
+      "method": "历史融合IG",
+      "arm": "ig_local_residual_11",
+      "samples": 5000,
+      "fid": 39.33046969495331,
+      "sfid": 75.52050654540983,
+      "inception_score": 37.33943176269531,
+      "full": 128.0,
+      "prefix": 64.0,
+      "sum_batch_gpu_seconds": 638.5467952275649,
+      "request_sha256": "6df8d86f15b33c1dba11d3e6fe2d5ee4207d5b3d24c53910ffe1b6f7256c5974"
+    },
+    {
+      "method": "原分布弱前缀",
+      "arm": "ig_prefix_native_00",
+      "samples": 5000,
+      "fid": 36.17320749730209,
+      "sfid": 65.0194800455879,
+      "inception_score": 40.25846862792969,
+      "full": 128.0,
+      "prefix": 64.0,
+      "sum_batch_gpu_seconds": 548.8057189821266,
+      "request_sha256": "a020a1fdb733502538d6f7a4000aa5ebe272995cee9c8b08d1204d3b708e6168"
+    }
+  ],
+  "clt_construction_chain_terminated": true,
+  "attention_proxy_terminated": true,
+  "paper_core_established": false,
+  "cross_model_confirmation": false,
+  "old_broad_queue_paused": true,
+  "no_automatic_parameter_expansion": true,
+  "created_unix": 1789187124.7281432
+}

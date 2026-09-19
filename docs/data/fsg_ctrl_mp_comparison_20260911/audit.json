@@ -1,0 +1,169 @@
+{
+  "scope": "CPU mathematical and archived-code audit; published-table extraction; no new image benchmark",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "tables": {
+    "extracted_metric_values": 339,
+    "within_sampler_comparisons": 18
+  },
+  "mixture": {
+    "model": "X1|Y ~ N(2Y, 0.5^2); P(Y=+1)=P(Y=-1)=0.5; X0 ~ N(0,1)",
+    "flow": "Xt=(1-t)X0+tX1, exact conditional and compatible marginal velocities",
+    "t": 0.5,
+    "midpoint_quantile_nodes": 4096,
+    "time_quadrature_nodes": 96,
+    "CDF_map_vs_independent_ODE_max_error": 1.3737011528291987e-11,
+    "intervention": "positive latent translation, followed by exact conditional flow",
+    "caveat": "Exact W2 of 1D Gaussian distributions; not an image-FID experiment or a three-algorithm ranking.",
+    "result": [
+      {
+        "latent_translation": 0.0,
+        "current_raw_gap_squared_mean": 1.1284526231166698,
+        "future_endpoint_residual_squared_mean": 0.1616772737622714,
+        "cumulative_raw_gap_squared_mean": 0.07422323463146971,
+        "true_conditional_W2_squared": 0.0,
+        "generated_conditional_mean": 2.0
+      },
+      {
+        "latent_translation": 0.1,
+        "current_raw_gap_squared_mean": 0.7589502090347212,
+        "future_endpoint_residual_squared_mean": 0.10727366916762764,
+        "cumulative_raw_gap_squared_mean": 0.047224676012601406,
+        "true_conditional_W2_squared": 0.008000000000000002,
+        "generated_conditional_mean": 2.0894427190999916
+      },
+      {
+        "latent_translation": 0.25,
+        "current_raw_gap_squared_mean": 0.3994347557174203,
+        "future_endpoint_residual_squared_mean": 0.05501902735757596,
+        "cumulative_raw_gap_squared_mean": 0.02289026422289546,
+        "true_conditional_W2_squared": 0.05,
+        "generated_conditional_mean": 2.223606797749979
+      },
+      {
+        "latent_translation": 0.5,
+        "current_raw_gap_squared_mean": 0.1206830587308519,
+        "future_endpoint_residual_squared_mean": 0.015689195410442613,
+        "cumulative_raw_gap_squared_mean": 0.00599835099466399,
+        "true_conditional_W2_squared": 0.2,
+        "generated_conditional_mean": 2.447213595499958
+      },
+      {
+        "latent_translation": 1.0,
+        "current_raw_gap_squared_mean": 0.006087688669466987,
+        "future_endpoint_residual_squared_mean": 0.0009540943495355133,
+        "cumulative_raw_gap_squared_mean": 0.000179097933497183,
+        "true_conditional_W2_squared": 0.8,
+        "generated_conditional_mean": 2.8944271909999157
+      }
+    ]
+  },
+  "transport": {
+    "identity_residual_norm": 8.775357927134602e-14,
+    "endpoint_difference": [
+      -0.40678068544494794,
+      -0.4887196732095853
+    ],
+    "transported_gap_integral": [
+      -0.40678068544498036,
+      -0.48871967320950377
+    ],
+    "cancellation_example": {
+      "vu": "0",
+      "vc": "2t-1",
+      "interval": [
+        0,
+        1
+      ],
+      "terminal_difference": 0,
+      "integrated_gap_squared": 0.3333333333333333
+    },
+    "instantaneous_zero_example": {
+      "vu": "0",
+      "vc": "t",
+      "initial_gap": 0,
+      "terminal_difference": 0.5
+    }
+  },
+  "operators": {
+    "common_field_split": {
+      "vc_equals_vu": "2x",
+      "a": 0.1,
+      "x": 1.0,
+      "G_x": 0.9600000000000001,
+      "true_Euclidean_projection": 1.0,
+      "raw_gap": 0
+    },
+    "ctrl_main_text_counterexample": {
+      "Gamma": -1.0,
+      "sigma_min_Gamma": 1.0,
+      "drift": 0,
+      "K": 1.0,
+      "s": 1.0,
+      "V_dot": 1.0,
+      "scope": "Refutes main-paper Eq.26 from a singular-value bound alone; excluded by the supplementary nominal-direction-dominance assumption."
+    },
+    "potential_descent": {
+      "F": "-x^2/2",
+      "before_x": 1.0,
+      "after_x": 1.1,
+      "F_before": -0.5,
+      "F_after": -0.6050000000000001,
+      "gradient_norm_before": 1.0,
+      "gradient_norm_after": 1.1
+    },
+    "least_squares_identity_at_different_states": [
+      {
+        "gap_norm": 1.0,
+        "approximation_error_squared": 1.0
+      },
+      {
+        "gap_norm": 0.1,
+        "approximation_error_squared": 100.0
+      }
+    ],
+    "least_squares_changing_optimum_with_zero_orthogonal_error": [
+      {
+        "gap": 0.5,
+        "w": 2.0,
+        "w_star": 2.0,
+        "approximation_error_squared": 0.0
+      },
+      {
+        "gap": 0.05,
+        "w": 2.0,
+        "w_star": 20.0,
+        "approximation_error_squared": 0.81
+      }
+    ]
+  },
+  "official_ctrl_history": [
+    {
+      "step": 0,
+      "raw_gap": 1.0,
+      "stored_modified_gap": 0.7,
+      "guided_prediction": 1.4
+    },
+    {
+      "step": 1,
+      "raw_gap": 0.7,
+      "stored_modified_gap": 0.39999999999999997,
+      "guided_prediction": 0.7999999999999999
+    },
+    {
+      "step": 2,
+      "raw_gap": 0.6,
+      "stored_modified_gap": 0.3,
+      "guided_prediction": 0.6
+    }
+  ],
+  "source_sha256": {
+    "cfg_ctrl_supp.pdf": "9a7b59cb689637c919569409e49ede4a2ae89431710de4dc36d17d597cd054bd",
+    "cfg_ctrl.pdf": "bb41b074d9c6347cdac64e60cb0f0ffa3c6154a50d815d81d51534f1c8733e68",
+    "fsg.pdf": "3f49e09e785b3bf4c926701d2cb692a765408968368964d022c2efd85324842b",
+    "cfg_mp.pdf": "b6b58a9e34ea0fb07dfc57bc581ba124a4a71aea1466767450c86f8c4dd16dec"
+  },
+  "script_sha256": "755b76d832355bd0c67cabfc4de57f8daaf2feb1a7b525ee6bc757d6305bf63c"
+}

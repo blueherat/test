@@ -1,0 +1,9 @@
+[
+  {"arm":"blend_e.25","kind":"blend","eta":0.25,"apg_alpha":2,"ctrl_alpha":2.75,"steps":64,"cutoff":0.75},
+  {"arm":"blend_e.5","kind":"blend","eta":0.5,"apg_alpha":2,"ctrl_alpha":2.75,"steps":64,"cutoff":0.75},
+  {"arm":"blend_e.75","kind":"blend","eta":0.75,"apg_alpha":2,"ctrl_alpha":2.75,"steps":64,"cutoff":0.75},
+  {"arm":"parallel_e.5","kind":"blend_parallel","eta":0.5,"apg_alpha":2,"ctrl_alpha":2.75,"steps":64,"cutoff":0.75},
+  {"arm":"apg_a2.25_s64","kind":"apg","alpha":2.25,"steps":64,"cutoff":0.75,"beta":-0.5},
+  {"arm":"ctrl_a2.5_s64","kind":"ctrl","alpha":2.5,"steps":64,"cutoff":0.75,"lambda_ctrl":5,"K":0.2},
+  {"arm":"ctrl_a3_s64","kind":"ctrl","alpha":3,"steps":64,"cutoff":0.75,"lambda_ctrl":5,"K":0.2}
+]

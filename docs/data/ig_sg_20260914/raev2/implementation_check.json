@@ -1,0 +1,33 @@
+{
+  "cpu_passed": true,
+  "raw_strong_reference": true,
+  "symmetric_same_time_probes": true,
+  "repeatable": true,
+  "model": "raev2",
+  "model_passed": true,
+  "native_baseline_bitwise": true,
+  "zero_strength_bitwise": true,
+  "actual_block_hook_matches_counts": true,
+  "raw_source_counts": 100,
+  "checks": {
+    "sg": {
+      "full": 199,
+      "delta_rms": 0.7012063264846802
+    },
+    "log": {
+      "full": 300,
+      "delta_rms": 0.41273683309555054
+    }
+  },
+  "runtime_sources": {
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/sample_raev2_pfr_retiming.py": "a4d4560001ec05411103bb417138e6ac5ef6a0b315343c1e323eb984f0ab6eaa",
+    "/home/zhoushunyu/eqvae/experiments/raev2_pfr_retiming.py": "be4339468cb183aa468ebbc817dcde0b33980086f6937a720dbfa1e8a86c0577",
+    "/home/zhoushunyu/eqvae/experiments/raev2_stage1_compat.py": "4e10a709448e3514b76ac9e23bbc735d2e8bc980f0510b7a090aecb38f7b7e2f",
+    "/home/zhoushunyu/eqvae/experiments/configs/raev2_strict_lpl_dinov3l_k7.yaml": "3062762f2f0f12e0d4b64b074fc5b45628e5022937bbf7857cc6dc6e2720d342",
+    "/home/zhoushunyu/eqvae/external/RAEv2/src/stage2/models/DDT.py": "604e559a0283ec4cbfb99619aabec8d961182a8b4753b5c769dbb8de1ef09ac2"
+  },
+  "maximum_allocated_bytes": 6465178112,
+  "raev2_prior_implementation_bitwise": true
+}

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "research_goal_achieved": false,
+  "sampling_bank_role": "reused_1k_discovery",
+  "request_sha256": "aaac05a2918bd528087316258ef0667d61ae7776e3f6939d2fa71cfba5f226ce",
+  "source_sha256": "b774336a4a02b0b7716a5aa94dbb0557a3905c6e9c7e8a7c5bff12cb437d4763",
+  "fid_helper_sha256": "af83ee82e43d9e6867a970ee76cd9e05dd363cccb9e7f272db3127d6796ed7a9",
+  "previous_csv_sha256": "1f2a151233acbd7e34aed192c13c463f0306a47ee3a3e6cd9b0fa956499938db",
+  "previous_audit_sha256": "4fd81de2699068ce7f40385a162c254de0784a23ad3a9e0d6f28f54b33fa2d50",
+  "new_feature_sha256": {
+    "ordinary200": "34c482dd7f0ac7b26c27cbf3238893616beb699b0d16e993de51582f49657836",
+    "time200": "5e7983dce154f9bd43174e466bf074de651bf5a72981c3e4f52a71336ba5792f",
+    "projected200": "258639a29e5599ca86ee15c3c8399997fb4201362f66019c5a777b728b4c3f1c",
+    "ordinary250": "6c8971442f2080dd5183ee0a535366c8105b336b380f1d2cc92c0f05e40020ab",
+    "time250": "3d2960c1d52125f44ee708cd1d504fbaa82c13fd70d70b98b22d85fec96fb151",
+    "projected250": "43be56c660745a54fedc13421ff71c2e93aea09db5d24d792b875337782f76bc"
+  },
+  "new_point_count": 6,
+  "previous_verified_point_count": 12,
+  "maximum_fid_reconstruction_error": 2.7976192306766734e-05,
+  "selected_by_method": {
+    "ordinary": {
+      "arm": "ordinary250",
+      "scale": 2.5,
+      "fid": 38.18548153881869,
+      "inception_score": 56.39754981994629
+    },
+    "time_only": {
+      "arm": "time200",
+      "scale": 2.0,
+      "fid": 38.637821556587255,
+      "inception_score": 58.17766189575195
+    },
+    "projected": {
+      "arm": "projected200",
+      "scale": 2.0,
+      "fid": 38.489649906688896,
+      "inception_score": 58.84817619323731
+    }
+  },
+  "grid_minimum_is_interior": {
+    "ordinary": false,
+    "time_only": true,
+    "projected": true
+  },
+  "best_pfr_minus_best_ordinary": {
+    "time_only": 0.45234001776856303,
+    "projected": 0.3041683678702043
+  },
+  "limitation": "One reused discovery bank; selection is not independent confirmation or a new mechanism. Endpoint minima leave tuning incomplete."
+}

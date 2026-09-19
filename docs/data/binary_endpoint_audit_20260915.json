@@ -1,0 +1,272 @@
+{
+  "created_utc": "2026-09-15T13:55:46.758327+00:00",
+  "run": "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_v1",
+  "request_sha256": "7651930eca0bfd5af80775b1163a31667962959680183da28fc50aa62f94c958",
+  "source_checks": {
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/__init__.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/discrete_adjoint.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/objectives.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/preflight.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/sampler.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/validate.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/__init__.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/adm_gpu_entry.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/audit_result.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/binary_critic.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/binary_data.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/check_adm_gpu.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/common.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/confirm.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/critic.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/data.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/energy_objective.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/evaluate.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/gallery.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/jit_parity_case.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/jit_preflight.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/joint_moment_objective.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/launch.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/moment_objective.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/promote.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/reuse_strong.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/score.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/search.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/train.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/train_binary.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/train_energy.py": true,
+    "/home/zhoushunyu/eqvae/experiments/adversarial_weak_training_20260915/train_moments.py": true,
+    "/home/zhoushunyu/eqvae/experiments/advfd_cleanroom/core.py": true,
+    "/home/zhoushunyu/eqvae/experiments/advfd_cleanroom/feature_extractors.py": true,
+    "/home/zhoushunyu/eqvae/experiments/compute_adm_fid.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/__init__.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/checks.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/config.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/data.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/endpoints.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/models.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/pipeline.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/sampling.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/training.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/weights.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/worker.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_loss_50k_20260914/components.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_loss_50k_20260914/config.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_pasted_20260912/common.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_strength_sweep_20260915/planning.py": true,
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": true,
+    "/home/zhoushunyu/eqvae/experiments/train_imagenet100_sit_flow.py": true,
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_loss_20260914/idle.py": true
+  },
+  "initial_head_sha_verified": true,
+  "initial_baseline_parity": {
+    "passed": true,
+    "baseline_batch": "/home/zhoushunyu/data/eqvae/experiments/guidance_dynamic_50k_20260915/sit_small/points/guided_weak__c0042/batches/00000.npz",
+    "baseline_batch_sha256": "b652600aadf972aabf5c7ea5cc8ad9386eb0cd454386430befc21b3717893557",
+    "coefficient": 1.05,
+    "initial_head_fingerprint": "dbb3bfa55c977f3f5d5c368b5f29c589a1e71f7a598b14d30724aa94116e0323",
+    "same_latents": true,
+    "same_pixels": true,
+    "adjoint_forward_exact": true,
+    "counts": {
+      "full": 128,
+      "head": 64,
+      "native_head": 0,
+      "blocks": [
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128
+      ]
+    },
+    "checked_utc": "2026-09-15T13:43:21.168331+00:00"
+  },
+  "scope": "New CPU algebra/gradient tests; no new real-model GPU backward test or image generation",
+  "data_check": {
+    "train_samples": 126689,
+    "classes": 100,
+    "labels_match_source_indices": true,
+    "numeric_index_overlap_across_distinct_split_namespaces": 50,
+    "overlapping_numeric_ids_identical_moments": 0,
+    "source_index_namespace": "train and validation are independently indexed source splits; numeric intersection does not identify shared images"
+  },
+  "loss_signs": {
+    "discriminator_real_up": true,
+    "discriminator_fake_down": true,
+    "generator_fake_logit_up": true,
+    "extrapolation_minus_sign_correct": true
+  },
+  "checkpoint": {
+    "path": "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_v1/checkpoint_000100.pt",
+    "sha256": "38649bd557050ae70d2985ef6342089104a07596feb2fbdea3ecd38e76380b0f",
+    "step": 100,
+    "optimizer_d_steps": [
+      100
+    ],
+    "optimizer_w_steps": [
+      84
+    ],
+    "head_relative_parameter_changes": {
+      "head": 0.00022927769168745726,
+      "ema": 9.379045513924211e-05
+    }
+  },
+  "production_solver_cpu_test": {
+    "steps": 64,
+    "coefficient": 1.05,
+    "forward_exact": true,
+    "full_chain_gradient_relative_error": 2.2272035070742168e-17,
+    "directional_derivative": -0.0012550903783972956,
+    "finite_difference_checks": [
+      {
+        "epsilon": 0.01,
+        "finite_difference": -0.0012408791673329533,
+        "abs_error": 1.4211211064342304e-05
+      },
+      {
+        "epsilon": 0.003,
+        "finite_difference": -0.0012293070615065904,
+        "abs_error": 2.5783316890705225e-05
+      },
+      {
+        "epsilon": 0.001,
+        "finite_difference": -0.001237739992193676,
+        "abs_error": 1.735038620361961e-05
+      },
+      {
+        "epsilon": 0.0003,
+        "finite_difference": -0.0012551130879982313,
+        "abs_error": 2.270960093564943e-08
+      },
+      {
+        "epsilon": 0.0001,
+        "finite_difference": -0.0012550962044666214,
+        "abs_error": 5.826069325760852e-09
+      },
+      {
+        "epsilon": 3e-05,
+        "finite_difference": -0.001254998075831774,
+        "abs_error": 9.230256552161288e-08
+      },
+      {
+        "epsilon": 1e-05,
+        "finite_difference": -0.0012542900551526515,
+        "abs_error": 8.003232446441785e-07
+      }
+    ],
+    "finite_difference_tolerance": 2.5101807567945916e-07,
+    "two_adjacent_finite_difference_steps_agree": true,
+    "float32_prediction_cast_requires_finite_difference_step_size_check": true,
+    "uses_real_binary_critic_checkpoint": true,
+    "backbone": "nonlinear CPU surrogate"
+  },
+  "four_rank_discriminator_mean_test": {
+    "global_batch": 24,
+    "local_batch": 6,
+    "includes_r1": true,
+    "relative_gradient_error": 3.6220598182488234e-16
+  },
+  "optimizer_isolation": {
+    "d_step_does_not_update_weak": true,
+    "weak_step_does_not_update_discriminator": true,
+    "weak_input_gradient_preserved": true
+  },
+  "live_log_snapshot": {
+    "step": 238,
+    "weak_updates": 222,
+    "nonfinite": false,
+    "gradient_clip_count": 222,
+    "gradient_min": 12.535648345947266,
+    "gradient_median": 48.08745002746582,
+    "gradient_max": 403.0965270996094,
+    "last20": {
+      "d_ce": 1.0872352235019207,
+      "g_loss": 1.0911834411323071,
+      "r1": 0.1891704499721527,
+      "real_accuracy": 0.8437500212341547,
+      "fake_accuracy": 0.6687500160187483,
+      "endpoint_rms": 0.886902867257595,
+      "seconds": 3.20732811964117
+    },
+    "progress": {
+      "step": 238,
+      "d_ce": 1.1455811262130737,
+      "r1": 0.15860215947031975,
+      "g_loss": 0.9029162675142288,
+      "head_gradient_norm": 35.83100509643555,
+      "real_accuracy": 0.9166666865348816,
+      "fake_accuracy": 0.5833333507180214,
+      "endpoint_rms": 0.8778346925973892,
+      "seconds": 3.04246163694188,
+      "updated_utc": "2026-09-15T13:55:46.882931+00:00",
+      "generator_updated": true,
+      "peak_allocated_gib": 10.04803991317749,
+      "phase": "training",
+      "target_step": 416,
+      "world_size": 4,
+      "global_batch": 24,
+      "elapsed_seconds": 743.8797787278891
+    },
+    "training_status": {
+      "phase": "running",
+      "updated_utc": "2026-09-15T13:55:46.506458+00:00",
+      "pid": 2135892,
+      "holder_pid": 2135757,
+      "gpu_indices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "replica_receipt": {
+    "phase": "training",
+    "step": 200,
+    "checkpoint": "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_v1/checkpoint_000200.pt",
+    "checkpoint_sha256": "1c3ae1c940a909bf01c57112362e593bc5840cf03084b0a4903350f5bd5d53b6",
+    "updated_utc": "2026-09-15T13:53:44.085929+00:00",
+    "replicas_identical": true,
+    "replica_signatures": [
+      {
+        "head": "75f3457b199db5f33a08c3611ae46e13486d07434c9b619b9118c70dc65f3a2a",
+        "ema": "dd739c8e00d2a2c444f029bc0be8387bd7a2222afbc2246ac7ac0f9ee414e3a6",
+        "critic": "801936f8286e475cc0a386dfab19b34bf00d0ade2f553dc5487efb0d893a952b"
+      },
+      {
+        "head": "75f3457b199db5f33a08c3611ae46e13486d07434c9b619b9118c70dc65f3a2a",
+        "ema": "dd739c8e00d2a2c444f029bc0be8387bd7a2222afbc2246ac7ac0f9ee414e3a6",
+        "critic": "801936f8286e475cc0a386dfab19b34bf00d0ade2f553dc5487efb0d893a952b"
+      },
+      {
+        "head": "75f3457b199db5f33a08c3611ae46e13486d07434c9b619b9118c70dc65f3a2a",
+        "ema": "dd739c8e00d2a2c444f029bc0be8387bd7a2222afbc2246ac7ac0f9ee414e3a6",
+        "critic": "801936f8286e475cc0a386dfab19b34bf00d0ade2f553dc5487efb0d893a952b"
+      },
+      {
+        "head": "75f3457b199db5f33a08c3611ae46e13486d07434c9b619b9118c70dc65f3a2a",
+        "ema": "dd739c8e00d2a2c444f029bc0be8387bd7a2222afbc2246ac7ac0f9ee414e3a6",
+        "critic": "801936f8286e475cc0a386dfab19b34bf00d0ade2f553dc5487efb0d893a952b"
+      }
+    ]
+  },
+  "past_real_model_gradient_audit_dependencies_unchanged": {
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/models.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/sampling.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/data.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/endpoints.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/config.py": true,
+    "/home/zhoushunyu/eqvae/experiments/advfd_cleanroom/feature_extractors.py": true,
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py": true
+  },
+  "current_sources_still_match": true,
+  "completed_utc": "2026-09-15T13:55:48.256465+00:00"
+}

@@ -1,0 +1,222 @@
+{
+  "request_sha256": "3f4f36bd12c1cda4bf8245497c526193e8d335d7ac8f6e2256ca6aa05afdf3fc",
+  "source_sha256": "bd1160ba206624958c97279f9a90a02a83821b1346b2cf7559af77c2aece4e33",
+  "fixed_state": "first 8 original noise tensors queried at t=.25, alpha=.6",
+  "batch": 8,
+  "repetitions": 50,
+  "rounds": 6,
+  "cyclic_order": [
+    "native_unobserved",
+    "native_observed",
+    "strong_only_pure",
+    "strong_gap_pure",
+    "strong_only_instrumented",
+    "strong_gap_instrumented"
+  ],
+  "pure_outputs_equal_instrumented": {
+    "strong_only": true,
+    "strong_gap": true
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "medians_seconds": {
+    "native_unobserved": 0.005883774221874773,
+    "native_observed": 0.0058558648219332095,
+    "strong_only_pure": 0.006467678085900843,
+    "strong_gap_pure": 0.006490731388330459,
+    "strong_only_instrumented": 0.006802159063518047,
+    "strong_gap_instrumented": 0.0066380053572356705
+  },
+  "ratios_to_native": {
+    "native_unobserved": 1.0,
+    "native_observed": 0.9952565481119582,
+    "strong_only_pure": 1.0992396788196297,
+    "strong_gap_pure": 1.1031577935467225,
+    "strong_only_instrumented": 1.1560877095230626,
+    "strong_gap_instrumented": 1.128188320441802
+  },
+  "rows": [
+    {
+      "round": 0,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.0052486687153577806
+    },
+    {
+      "round": 0,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.005265002259984612
+    },
+    {
+      "round": 0,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.005945177106186747
+    },
+    {
+      "round": 0,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.006108830701559782
+    },
+    {
+      "round": 0,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.0067340540420264
+    },
+    {
+      "round": 0,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006608422137796879
+    },
+    {
+      "round": 1,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.00591143592260778
+    },
+    {
+      "round": 1,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.0064890187792479995
+    },
+    {
+      "round": 1,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.006220561657100916
+    },
+    {
+      "round": 1,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.006900321757420898
+    },
+    {
+      "round": 1,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006687572160735726
+    },
+    {
+      "round": 1,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.006039532618597149
+    },
+    {
+      "round": 2,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.006320480983704329
+    },
+    {
+      "round": 2,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.006800575321540237
+    },
+    {
+      "round": 2,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.006690941359847784
+    },
+    {
+      "round": 2,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006643431708216668
+    },
+    {
+      "round": 2,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.0059797619841992855
+    },
+    {
+      "round": 2,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.006106716096401215
+    },
+    {
+      "round": 3,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.006470403773710132
+    },
+    {
+      "round": 3,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.006745679322630167
+    },
+    {
+      "round": 3,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006632579006254673
+    },
+    {
+      "round": 3,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.005814543822780251
+    },
+    {
+      "round": 3,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.0057327258866280316
+    },
+    {
+      "round": 3,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.006665883576497436
+    },
+    {
+      "round": 4,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.006873645298182965
+    },
+    {
+      "round": 4,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006673055756837129
+    },
+    {
+      "round": 4,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.0059530046209692955
+    },
+    {
+      "round": 4,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.006000844743102789
+    },
+    {
+      "round": 4,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.006448535537347197
+    },
+    {
+      "round": 4,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.006511059002950788
+    },
+    {
+      "round": 5,
+      "method": "strong_gap_instrumented",
+      "seconds_per_batch_query": 0.006589783979579806
+    },
+    {
+      "round": 5,
+      "method": "native_unobserved",
+      "seconds_per_batch_query": 0.005748868025839329
+    },
+    {
+      "round": 5,
+      "method": "native_observed",
+      "seconds_per_batch_query": 0.00580029372125864
+    },
+    {
+      "round": 5,
+      "method": "strong_only_pure",
+      "seconds_per_batch_query": 0.006486820634454489
+    },
+    {
+      "round": 5,
+      "method": "strong_gap_pure",
+      "seconds_per_batch_query": 0.0065245107281953095
+    },
+    {
+      "round": 5,
+      "method": "strong_only_instrumented",
+      "seconds_per_batch_query": 0.0068586388044059275
+    }
+  ],
+  "replaces_no_generation": false,
+  "quality_sampling_changed": false,
+  "limitation": "isolated fixed-state latency; not an independent end-to-end throughput trial"
+}

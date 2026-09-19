@@ -1,0 +1,39 @@
+{
+  "indices": [
+    0,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875
+  ],
+  "selection": "Every 125th class, fixed before image inspection; no image filtering.",
+  "sources": {
+    "IG 1.35": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/official_sit_pfr_20260908/ordinary115/quality/samples.npz",
+      "sha256": "ccbc97842a8bde222b4eed972f275337893e841b609db0b40d241ffe3ec93460",
+      "selected_pixel_sha256": "fc42985d0d991dc35d79787d850cec367efcae5ee82c056570523243e7089efb"
+    },
+    "IG 1.75": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/official_sit_baseline_control_20260909/ig175_all/samples.npz",
+      "sha256": "6f0bc69b89c6359d94cbacb6e6d72b5e308a07efbedcbd48a5ebadea37006986",
+      "selected_pixel_sha256": "b534e3b79d73010eb49af98070e02a677df6357eb8816edb581fa37af84566d7"
+    },
+    "PFR time 1.75": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/official_sit_pfr_symmetric_20260909/time175/samples.npz",
+      "sha256": "eb5d53e6dcf90486c17dae3a7939574cac79355f144b6c86b86985879cff4120",
+      "selected_pixel_sha256": "a7d279e81b987f55d1543e79fd47baf4c7331d1eaa5ad7038d6874fc6eb9dd8e"
+    },
+    "PFR projected 1.75": {
+      "path": "/home/zhoushunyu/data/eqvae/experiments/official_sit_pfr_symmetric_20260909/projected175/samples.npz",
+      "sha256": "efcdea9e64635e876dd8051be8bd738f12337905bcd962b57dd0a1a3443cce25",
+      "selected_pixel_sha256": "c65fd439d2cf3d210b67b29f5d45bbd5d68a60edbbb07d998079026e25c69093"
+    }
+  },
+  "figure": "/home/zhoushunyu/eqvae/docs/data/guidance_goal_20260909/official_sit_pfr_fixed_examples.png",
+  "figure_sha256": "a257dc5eda0de23fc2a34e7c82edff61dd4f22ff9c9af4db09482b779d9e6562",
+  "source_sha256": "4bfff6ec63eed20bb41109b14712ed735e410e3ec57cf8dc115f5f4c4608bea8",
+  "limitation": "Eight illustrative paired examples; no population-level visual-quality or mechanism claim."
+}

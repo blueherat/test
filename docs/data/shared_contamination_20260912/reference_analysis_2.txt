@@ -1,0 +1,916 @@
+可以，而且我觉得这是目前把 **“shared error distribution” + AG + 自适应控制** 串起来最自洽的一种方式。不过关键不是笼统地说“有扰动，所以自适应控制”，而是要把扰动分成 **matched mismatch** 和 **unmatched mismatch**。这样才能知道自适应控制究竟能解决多少。
+
+原始 AG 自己强调 weak model 应该和 strong model 犯“相似但更严重”的错误，这正是 compatible degradation 的直觉；它没有要求错误完全相同。([NeurIPS Proceedings][1]) 而 Feedback Guidance 则说明，“先写一个 nominal contamination model，再由此解析推出 guidance”这种研究路线本身是成立的。([NeurIPS Proceedings][2])
+
+## 先从我们刚才的理想模型开始
+
+理想情况下：
+
+$$
+p_s=(1-\alpha)p^\star+\alpha p_e,
+$$
+
+$$
+p_w=(1-\beta)p^\star+\beta p_e,
+\qquad \beta>\alpha.
+$$
+
+令
+
+$$
+\kappa=\frac{\alpha}{\beta}.
+$$
+
+我们刚才推出来：
+
+$$
+p^\star
+=
+\frac{p_s-\kappa p_w}{1-\kappa}.
+$$
+
+因此
+
+$$
+\boxed{
+s^\star
+=
+s_s+
+\gamma_0(x,t)(s_s-s_w)
+}
+$$
+
+其中
+
+$$
+\boxed{
+\gamma_0(x,t)
+=
+\frac{\kappa}
+{r(x,t)-\kappa},
+\qquad
+r=\frac{p_s}{p_w}.
+}
+$$
+
+这是 **nominal model**。
+
+如果世界真这么完美，根本不需要 adaptive control，解析式已经给出了最优 AG scale。
+
+---
+
+# 现实情况：strong 和 weak 的 error distribution 不完全一样
+
+写成：
+
+$$
+p_s
+=
+(1-\alpha)p^\star+\alpha p_e^s,
+$$
+
+$$
+p_w
+=
+(1-\beta)p^\star+\beta p_e^w.
+$$
+
+然后：
+
+$$
+p_e^w=p_e^s+\Delta_e.
+$$
+
+这里
+
+$$
+\boxed{\Delta_e}
+$$
+
+就是你说的 mismatch。
+
+重新做一次消元：
+
+$$
+\frac{p_s-\kappa p_w}{1-\kappa}
+=
+p^\star
+-
+\frac{\alpha}{1-\kappa}\Delta_e.
+$$
+
+所以 nominal decontamination 得到的其实不是 \(p^\star\)，而是：
+
+$$
+p_{\rm nom}
+=
+p^\star-\delta p.
+$$
+
+即：
+
+$$
+\boxed{
+p^\star=p_{\rm nom}+\delta p,
+\qquad
+\delta p=
+\frac{\alpha}{1-\kappa}\Delta_e.
+}
+$$
+
+因此 score 上严格有：
+
+$$
+s^\star
+=
+s_{\rm nom}
++
+d_{\rm mis},
+$$
+
+其中
+
+$$
+\boxed{
+d_{\rm mis}
+=
+\nabla
+\log
+\frac{p^\star}{p_{\rm nom}}
+}
+\tag{1}
+$$
+
+而 nominal score 是：
+
+$$
+s_{\rm nom}
+=
+s_s+\gamma_0g,
+\qquad
+g=s_s-s_w.
+$$
+
+于是整个问题变成：
+
+$$
+\boxed{
+s^\star
+=
+s_s+\gamma_0g+d_{\rm mis}.
+}
+\tag{2}
+$$
+
+这正好就是一个“nominal dynamics + unknown uncertainty”的形式。
+
+---
+
+# 但是最关键的一步来了：AG 只有一个控制方向
+
+我们的实际 AG 只能做：
+
+$$
+s_{\rm AG}
+=
+s_s+u\,g.
+$$
+
+所以无论控制器多高级，我们只有：
+
+$$
+\boxed{g=s_s-s_w}
+$$
+
+这一个 control direction。
+
+把未知 mismatch 分解：
+
+$$
+d_{\rm mis}
+=
+d_\parallel+d_\perp,
+$$
+
+其中
+
+$$
+d_\parallel
+=
+\rho(x,t)g,
+$$
+
+$$
+\rho
+=
+\frac{
+g^\top d_{\rm mis}
+}{
+\|g\|^2
+},
+$$
+
+以及
+
+$$
+g^\top d_\perp=0.
+$$
+
+代回式 (2)：
+
+$$
+\boxed{
+s^\star
+=
+s_s+
+\left[
+\gamma_0+\rho
+\right]g
++
+d_\perp.
+}
+\tag{3}
+$$
+
+现在整个问题突然变得特别清楚。
+
+我们实际使用：
+
+$$
+s_{\rm AG}=s_s+u g.
+$$
+
+所以：
+
+$$
+\boxed{
+s^\star-s_{\rm AG}
+=
+(\gamma_0+\rho-u)g+d_\perp.
+}
+\tag{4}
+$$
+
+这就是标准控制理论里的结构：
+
+$$
+\boxed{
+\rho g=\text{matched uncertainty}
+}
+$$
+
+而
+
+$$
+\boxed{
+d_\perp=\text{unmatched uncertainty}.
+}
+$$
+
+---
+
+# 这意味着自适应控制确实能自然进来
+
+理想 shared-error model 告诉我们 nominal gain：
+
+$$
+\gamma_0.
+$$
+
+现实 mismatch 又额外改变了真正应该用的 gain：
+
+$$
+\gamma^\star
+=
+\gamma_0+\rho.
+$$
+
+但：
+
+$$
+\rho(x,t)
+$$
+
+未知、随：
+
+* timestep；
+* state；
+* seed；
+* weak depth；
+* prompt；
+
+变化。
+
+于是：
+
+$$
+\boxed{
+u(t)
+=
+\gamma_0(x,t)+\hat\rho(t)
+}
+$$
+
+就是非常自然的 adaptive AG。
+
+可以把它理解成：
+
+> 概率模型给 nominal controller，自适应项在线补偿“strong/weak failure mode 不完全一致”造成的误差。
+
+这比：
+
+> “不知道最佳 AG scale，所以在线调一下”
+
+理论故事强得多。
+
+---
+
+# 但自适应控制只能消掉 \(d_\parallel\)
+
+这是最不能忽略的一点。
+
+即使：
+
+$$
+\hat\rho=\rho
+$$
+
+完全估对了，
+
+式 (4) 最后仍然剩：
+
+$$
+\boxed{
+s^\star-s_{\rm AG}=d_\perp.
+}
+$$
+
+因为一个标量 \(u\) 乘：
+
+$$
+g
+$$
+
+无论怎么调，也不可能产生与 \(g\) 垂直的 correction。
+
+所以如果：
+
+$$
+\|d_\perp\|\ll\|d_\parallel\|,
+$$
+
+这个故事很好：
+
+$$
+\boxed{\text{AG direction 基本正确，只是 gain 不确定。}}
+$$
+
+但如果：
+
+$$
+\|d_\perp\|\gg\|d_\parallel\|,
+$$
+
+那么：
+
+$$
+\boxed{\text{weak model 根本不 compatible}}
+$$
+
+调任何 \(\gamma\) 都救不了。
+
+这其实给 **compatible degradation** 一个很好的控制论定义：
+
+$$
+\boxed{
+\text{good weak model}
+\Longleftrightarrow
+\text{model mismatch mostly lies in span}(s_s-s_w).
+}
+$$
+
+我觉得这一点非常有研究价值。
+
+控制文献里也正是这样区分 matched 和 mismatched uncertainty：滑模/自适应滑模对输入通道内的不确定性尤其自然，而输入通道外的 mismatched uncertainty 需要额外结构，通常不能靠单纯增加控制增益完全抵消。([科学在线][3])
+
+---
+
+# 那“自适应”究竟自适应什么？
+
+这里要再谨慎一层。
+
+如果：
+
+$$
+\rho(t)
+$$
+
+是未知常量或慢变参数，可以用经典 parameter adaptation：
+
+$$
+\dot{\hat\rho}
+\propto
+\text{tracking error}\times\text{regressor}.
+$$
+
+如果我们只知道：
+
+$$
+|\rho(t)|\le D
+$$
+
+但连 \(D\) 都不知道，更接近 adaptive sliding-mode control：
+
+> 不去精确辨识 \(\rho(t)\)，而是在线调 robustness gain，使控制能力刚好覆盖未知 disturbance。
+
+这种“未知扰动界 → 自适应 switching gain”在控制里是成熟问题，甚至有不要求先验已知扰动上界的 ASMC。([科学在线][4])
+
+所以控制律本身不是最大的新意。
+
+**真正的论文贡献必须是前面的 generative-model formulation。**
+
+---
+
+# 但我们还缺一件决定性的东西：反馈误差是什么？
+
+这又回到了你前面一直强调的：
+
+> 稳定什么？
+
+不能说：
+
+$$
+s^\star-s_{\rm AG}\rightarrow0,
+$$
+
+因为：
+
+$$
+s^\star
+$$
+
+根本不可观测。
+
+所以如果没有一个 observable output，
+
+$$
+\hat\rho
+$$
+
+没有东西可以根据它更新。
+
+这就是这条线下一步真正的难点。
+
+---
+
+# 我现在最看好的 observable 是 strong/weak density ratio
+
+定义：
+
+$$
+\boxed{
+\ell(x,t)
+=
+\log\frac{p_s(x,t)}{p_w(x,t)}.
+}
+$$
+
+而：
+
+$$
+\boxed{
+\nabla_x\ell=s_s-s_w=g.
+}
+$$
+
+这特别漂亮。
+
+在我们精确的 shared-error model 中：
+
+$$
+\frac{p_s}{p_w}
+$$
+
+和当前位置有多“error-like”存在严格单调关系。
+
+记：
+
+$$
+z=\frac{p_e}{p^\star}.
+$$
+
+有：
+
+$$
+r(z)
+=
+\frac{1-\alpha+\alpha z}
+{1-\beta+\beta z}.
+$$
+
+因为：
+
+$$
+\beta>\alpha,
+$$
+
+所以：
+
+$$
+\boxed{
+\frac{dr}{dz}<0.
+}
+$$
+
+也就是说：
+
+$$
+\boxed{
+\ell\text{ 大}
+\Rightarrow
+\text{更 ideal-like}
+}
+$$
+
+而：
+
+$$
+\boxed{
+\ell\text{ 小}
+\Rightarrow
+\text{更 error-like}.
+}
+$$
+
+于是 AG 其实就是沿：
+
+$$
+\nabla\ell
+$$
+
+走。
+
+换句话说：
+
+$$
+\boxed{
+\text{AutoGuidance = gradient ascent on strong-vs-weak evidence}.
+}
+$$
+
+---
+
+# 这时控制问题就可以真正成立了
+
+假设 score guidance 换算成 velocity 后：
+
+$$
+\dot x
+=
+v_s+c_tu\,g.
+$$
+
+沿轨迹：
+
+$$
+\dot\ell
+=
+\partial_t\ell
++
+\nabla\ell^\top\dot x.
+$$
+
+由于：
+
+$$
+\nabla\ell=g,
+$$
+
+所以：
+
+$$
+\boxed{
+\dot\ell
+=
+\partial_t\ell
++
+g^\top v_s
++
+c_tu\|g\|^2.
+}
+\tag{5}
+$$
+
+现实 mismatch 再加入：
+
+$$
+\boxed{
+\dot\ell
+=
+a(x,t)
++
+b(x,t)u
++
+d_\ell(x,t),
+}
+\tag{6}
+$$
+
+其中：
+
+$$
+b(x,t)=c_t\|g\|^2.
+$$
+
+如果我们把时间方向符号统一好：
+
+$$
+b
+$$
+
+的符号是已知的。
+
+这就是一个特别标准的 uncertain control-affine scalar system。
+
+---
+
+## 可以定义一个 contamination threshold
+
+比如要求：
+
+$$
+\ell\ge\ell_{\rm target}.
+$$
+
+意思是：
+
+> 当前 latent 已经足够 strong-like，不再像 weak model 的 failure region。
+
+定义：
+
+$$
+e
+=
+\ell_{\rm target}-\ell.
+$$
+
+于是：
+
+$$
+e>0
+$$
+
+继续 AG，
+
+而：
+
+$$
+e\le0
+$$
+
+关闭 AG。
+
+这就变成一个真正的：
+
+$$
+\boxed{\text{event-triggered adaptive AutoGuidance}.}
+$$
+
+而不是 timestep schedule。
+
+---
+
+# mismatch 在这里怎么办？
+
+式 (6) 中：
+
+$$
+d_\ell
+$$
+
+就是：
+
+* shared-error assumption 不精确；
+* strong/weak error mode 不完全一致；
+* 网络 score 近似；
+* 离散采样；
+
+统一造成的未知 disturbance。
+
+我们可以不要求知道：
+
+$$
+|d_\ell|
+$$
+
+的准确上界。
+
+采用 adaptive robust gain：
+
+$$
+k(t)
+$$
+
+让它根据：
+
+$$
+|e|
+$$
+
+自动增减。
+
+例如概念上：
+
+$$
+u
+=
+u_{\rm nominal}
++
+k(t)\operatorname{sat}(e/\phi),
+$$
+
+$$
+\dot k
+=
+\eta|e|-\sigma k.
+$$
+
+误差长期大：
+
+$$
+k\uparrow,
+$$
+
+达到目标附近：
+
+$$
+k\downarrow.
+$$
+
+这就是你原先“有限未知扰动 + adaptive control”的想法，现在终于有了一个比较完整的落脚点。
+
+---
+
+# 但最大工程问题是：\(\ell=\log p_s/p_w\) 怎么得到？
+
+score 模型只给：
+
+$$
+\nabla\ell,
+$$
+
+不直接给：
+
+$$
+\ell.
+$$
+
+所以这是目前最大的实际障碍。
+
+我觉得有三个可能方案，按可信程度排序：
+
+1. **same-noise-level strong-vs-weak discriminator**
+   在每个 \(t\) 收集 strong 和 weak 的 \(x_t\)，训练一个 timestep-conditioned classifier。Bayes optimal 时
+
+   $$
+   \operatorname{logit}D(x,t)
+   =
+   \log\frac{p_s^t(x)}{p_w^t(x)}+C_t.
+   $$
+
+   这是最干净的实验 oracle。
+
+2. **随机 sampler 的 strong/weak transition evidence**
+   类似 FBG，每一步比较 observed transition 在 strong kernel 和 weak kernel 下的 likelihood。不过要注意：累计得到的是 **path likelihood ratio**，一般不能未经证明就叫 marginal \(p_s(x_t)/p_w(x_t)\)。
+
+3. **沿 \(g=\nabla\ell\) 做 line integration**
+   理论上能恢复 density-ratio difference，但高维 inference 很不实际，更适合 toy validation。
+
+所以第一阶段我不会直接写 adaptive controller，而会先训练一个很小的 \(D(x_t,t)\) 做 oracle。
+
+---
+
+# 这条线最好的 paper story 大概是这样
+
+$$
+\boxed{
+\textbf{Nominal theory}
+}
+$$
+
+strong / weak：
+
+$$
+p_s=(1-\alpha)p^\star+\alpha p_e,
+$$
+
+$$
+p_w=(1-\beta)p^\star+\beta p_e
+$$
+
+推出：
+
+$$
+\boxed{
+\text{AutoGuidance 是精确的 error decontamination}.
+}
+$$
+
+然后：
+
+$$
+\boxed{
+\textbf{Reality}
+}
+$$
+
+$$
+p_e^s\neq p_e^w
+$$
+
+产生：
+
+$$
+d_{\rm mis}.
+$$
+
+再分：
+
+$$
+\boxed{
+d_{\rm mis}=d_{\rm matched}+d_{\rm unmatched}.
+}
+$$
+
+接着：
+
+$$
+\boxed{
+\textbf{Adaptive robustness}
+}
+$$
+
+在线补偿 matched mismatch，
+
+并给出类似：
+
+$$
+\|e\|\rightarrow0
+$$
+
+或 practical stability bound。
+
+这时“控制理论”不是硬套。
+
+它负责的是：
+
+> **概率模型不精确以后，如何让 nominal decontamination 对未知 model mismatch 仍然可靠。**
+
+这就很自然。
+
+---
+
+## 不过我目前会给它一个明确的生死条件
+
+这条线真正值不值得继续，首先看一个实验：
+
+$$
+\boxed{
+\text{strong/weak density ratio 是否真的能区分 good/bad regions？}
+}
+$$
+
+以及：
+
+$$
+\boxed{
+\text{depth4 是否比 depth6/8/... 提供更好的 ratio signal？}
+}
+$$
+
+如果答案是 yes：
+
+shared-error + mismatch + adaptive control 是一个非常顺的下一步。
+
+如果答案是 no，
+
+那就说明：
+
+$$
+p_e^s\approx p_e^w
+$$
+
+连近似都很差，
+
+这时候再拿 adaptive control 去“修 mismatch”就会变成：
+
+> nominal model 基本不对，但用 robust controller 硬救。
+
+这种故事我不会建议继续。
+
+所以我的判断是：**理论上非常可以，而且 matched/mismatched decomposition 反而让这个 idea 变严谨了；但先验证 nominal shared-error structure 仍然占主导，再上 adaptive control。** 自适应控制应该是第二层，而不是用来替代第一层机制。
+
+[1]: https://proceedings.neurips.cc/paper_files/paper/2024/file/5ee7ed60a7e8169012224dec5fe0d27f-Paper-Conference.pdf?utm_source=chatgpt.com "a worse fit to the data.¹ This difference in accuracy is apparent in respective plots of the learned densities in Figures 2a and 2b."
+[2]: https://proceedings.neurips.cc/paper_files/paper/2025/hash/73c90c0c16fe835bc58a815d4a8f28be-Abstract-Conference.html?utm_source=chatgpt.com "Feedback Guidance of Diffusion Models"
+[3]: https://www.sciencedirect.com/science/article/abs/pii/S0016003221007328?utm_source=chatgpt.com "Adaptive sliding mode control for persistent dwell-time switched nonlinear systems with matched/mismatched uncertainties and its application - ScienceDirect"
+[4]: https://www.sciencedirect.com/science/article/pii/S0005109819305114?utm_source=chatgpt.com "On adaptive sliding mode control without a priori bounded uncertainty - ScienceDirect"

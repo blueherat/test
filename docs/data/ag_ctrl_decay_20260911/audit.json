@@ -1,0 +1,73 @@
+{
+  "scope": "CPU mathematics and existing SiT trace reanalysis; no new AG image generation or FID",
+  "checks": "passed",
+  "gaussian_max_identity_error": 8.881784197001252e-16,
+  "hierarchy_max_target_l2_error": 1.9563251226435534e-15,
+  "common_bias_counterexample": {
+    "true_target": 0.0,
+    "strong": 0.1,
+    "weak": 1.1,
+    "weaker": 3.1,
+    "gamma": 1.0,
+    "extrapolated": -0.9,
+    "strong_squared_error": 0.01,
+    "extrapolated_squared_error": 0.81,
+    "equality_residual": 0.0,
+    "warning": "Exact hierarchy equality does not identify the true limit; common bias can make extrapolation worse."
+  },
+  "gaussian_constant_endpoint_fit": 1.0141616954506818,
+  "ctrl_examples": [
+    {
+      "k": 0,
+      "progress": 0.0,
+      "n_samples": 200,
+      "raw_gap_rms_mean": 0.14483505165204402,
+      "modified_gap_rms_mean": 0.13141472786664962,
+      "orthogonal_fraction_median": 0.9341815127836282,
+      "orthogonal_fraction_p10": 0.7555645321039599,
+      "orthogonal_fraction_p90": 0.9958028894852513,
+      "best_scalar_alpha_median": -0.17639854472273736
+    },
+    {
+      "k": 16,
+      "progress": 0.25,
+      "n_samples": 200,
+      "raw_gap_rms_mean": 0.114365697260946,
+      "modified_gap_rms_mean": 0.20355780757963657,
+      "orthogonal_fraction_median": 0.9502167064465723,
+      "orthogonal_fraction_p10": 0.9022106591805509,
+      "orthogonal_fraction_p90": 0.9765117938898571,
+      "best_scalar_alpha_median": 0.5552817102298119
+    },
+    {
+      "k": 32,
+      "progress": 0.5,
+      "n_samples": 200,
+      "raw_gap_rms_mean": 0.09928329188376661,
+      "modified_gap_rms_mean": 0.20248243100941182,
+      "orthogonal_fraction_median": 0.9633499796332767,
+      "orthogonal_fraction_p10": 0.9390210094758891,
+      "orthogonal_fraction_p90": 0.9738332887571304,
+      "best_scalar_alpha_median": 0.5674047388708656
+    },
+    {
+      "k": 47,
+      "progress": 0.734375,
+      "n_samples": 200,
+      "raw_gap_rms_mean": 0.0674797754734754,
+      "modified_gap_rms_mean": 0.20491102330386637,
+      "orthogonal_fraction_median": 0.9694287550827125,
+      "orthogonal_fraction_p10": 0.9615916417615822,
+      "orthogonal_fraction_p90": 0.9786181977508662,
+      "best_scalar_alpha_median": 0.7450749380785446
+    }
+  ],
+  "ctrl_actual_source_sha256": "0fdbcd66b819f91a32abd6b519413489e76e81af3c89cfb2eb1b307e2df0b2e8",
+  "ctrl_input_trace_sha256": "9ddee5df0b36b6d770034fc700530d982b927e708a7ed4cf5461e7b22c780667",
+  "versions": {
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "torch": "2.11.0+cu130",
+    "pandas": "2.3.3"
+  }
+}

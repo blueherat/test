@@ -1,0 +1,81 @@
+{
+  "existing_validation_rerun": {
+    "kind": "engineering_validation_not_generation_quality",
+    "complete": true,
+    "discrete_adjoint_max_abs_error": 0.0,
+    "directional_finite_difference_abs_error": 2.7843380379088956e-11,
+    "head_gradient_norm": 0.7292859735730332,
+    "truncated_suffix_head_gradient_is_none": true,
+    "auxiliary_source_pair_probability_max_error": 1.1102230246251565e-16,
+    "sources": {
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/__init__.py": "3e190fcd0cea31df21ee0a0207e4598f5f5b72b47d21d19d3e2f9cca1feb03df",
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/discrete_adjoint.py": "63799683c452297b50009397a2fae084eac27afe2868eb9f91b07d7c84f9e216",
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/objectives.py": "ab58a7dfd8b84ae758046b80ac0ec8fa7c891bee86382f38bad0797bdde3d6ce",
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/preflight.py": "be09877864f58690bdc5d51ddd97e4b0cd6ac783ac2ad7edf742bf5e82f54598",
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/sampler.py": "00c4e6366663e01fb0bacad883d78ec3a5a072d25dcb0205a92c90d09f6902e2",
+      "/home/zhoushunyu/eqvae/experiments/adversarial_guidance_endpoint_20260915/validate.py": "3ee9f7ba77f21af6b664bafc48f46c685640049b52c912765ded1a7c0cadb723"
+    }
+  },
+  "frozen_sources_match": true,
+  "snapshot_sources": 14,
+  "core_dependencies_absent_from_run_snapshot": [
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/models.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/sampling.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/data.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/endpoints.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/config.py",
+    "/home/zhoushunyu/eqvae/experiments/advfd_cleanroom/feature_extractors.py",
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py"
+  ],
+  "dependency_hashes_at_audit": {
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/models.py": "8b91d5d1c38271aac79504ffad625a355bf2541c582324aa60dbc3da198d384b",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/sampling.py": "caf7149476bf88f67eac16ca4ddb605bf42ed419b8739be88af47730a25f0a13",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/data.py": "9487604a874fda0a3316e730a0a483a754ce2bd4322da3279634ba5573cbd177",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/endpoints.py": "d064acf7f1cd5056457e40ff17563d6e3d53faa6506630a6bff8244db15757aa",
+    "/home/zhoushunyu/eqvae/experiments/guidance_dynamic_50k_20260915/config.py": "90662034bfecef53ce49342c7e2d0a58391fd0aadc02340c34469f191036ee1d",
+    "/home/zhoushunyu/eqvae/experiments/advfd_cleanroom/feature_extractors.py": "3104e1d80e302644035285b248ffd0f564fac47de4bf9bc0f38348b9c74507f9",
+    "/home/zhoushunyu/eqvae/experiments/guidance_distribution_20260912/local_head.py": "88ac819b8683497051820a2161d7918d655a61a2ef674416b09676e22c44c96b"
+  },
+  "checkpoint_sha_matches_latest": true,
+  "checkpoint_step": 200,
+  "optimizer_w_steps": [
+    184
+  ],
+  "optimizer_d_steps": [
+    200
+  ],
+  "head_changes": {
+    "head": {
+      "l2": 0.007348924409598112,
+      "relative_l2": 0.0002798388886731118,
+      "max_abs": 6.598979234695435e-05
+    },
+    "ema": {
+      "l2": 0.004688634071499109,
+      "relative_l2": 0.00017853797180578113,
+      "max_abs": 3.760308027267456e-05
+    }
+  },
+  "head_buffers_identical_to_initial": true,
+  "analytic_generator_sign": {
+    "dloss_dweak": 0.6200510326447706,
+    "endpoint_increases": true
+  },
+  "training": {
+    "rows": 200,
+    "weak_updates": 184,
+    "clipping_count": 184,
+    "gradient_min": 6.200034141540527,
+    "gradient_median": 27.228787422180176,
+    "gradient_max": 199.83648681640625
+  },
+  "progress_phase": "training",
+  "complete_marker": true,
+  "data": {
+    "train_samples": 126689,
+    "train_classes": 100,
+    "eval_1k_class_counts": [
+      10
+    ]
+  }
+}

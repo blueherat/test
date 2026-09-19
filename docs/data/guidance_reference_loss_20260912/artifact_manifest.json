@@ -1,0 +1,41 @@
+{
+  "inputs": {
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/status.json": "3bcab12e954bdfdf9cafa5125c4d92ad705f366c20312e7b5e6e9c2854c3b37e",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/strong_reference_screen_1k/request.json": "d2d4d0871f0c6a5a828d9b8880993ef314b63cfb9840a2098cbf0f7ee11f4084",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/strong_reference_screen_1k/results.json": "2819db43446cffab6de5c5a7e4b4ebcf8895b1f41b916dce9ad189efa3e5bdba",
+    "/home/zhoushunyu/eqvae/docs/data/strong_reference_screen_1k/audit.json": "5d44d92d077dd2df96e97cdfa9c708ee8e8e20439994bba18cb22e69753f44ec",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/screen_review.json": "f4d3250953223f9d0d61b07efc3ebc92a217411d137326883faad7a6fa0d2b56",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/training/ig_teacher/complete.json": "1063f8ed0a5908a5ebbdc190ef0209234809d200d4cc9bb8189a6c9539caa45a",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/training/ig_strong/complete.json": "5627ead765b86ffcfac259f943915b12f5d00c17eb8929dea8202e65a430eb83",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/training/ig_teacherstrong/complete.json": "8fde09c9b7bd84a8e3884f209d4091c253ffb670054387133a7c3f52a3cdeace",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/training/cfg_strong/complete.json": "67bd089310fede017b8d75abd3141ca5cc4136e870510dde61269f836b104f12",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/status.json": "7009f323bb90877fd922b4e7eb20186372d01c840a996ea0f275788742cf1142",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/posterior_reference_screen_1k/request.json": "77f5dc2b094b92ff6cddcd20b433bef47f714c81802e57f94640097faa018cbc",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/posterior_reference_screen_1k/results.json": "c370307025a473dbd235d8e69fd41e452925abd379215db7e663d122792bbaee",
+    "/home/zhoushunyu/eqvae/docs/data/posterior_reference_screen_1k/audit.json": "85bbdc66429268aae7d2923196080b893a9f2ef5acc3f70cf90df5d5b91916fc",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/screen_review.json": "478de05583f55c1939a2e2cedda789b82ace862547d5f07e62b7a86290281c69",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/training/cfg_posterior/complete.json": "c36e87bf0741a8e06790debaf0ab04d94e6cfea356ebf917b38ce82510e07685",
+    "/home/zhoushunyu/data/eqvae/experiments/cfg_posterior_reference_20260912/training/cfg_independent/complete.json": "a8b02d4e573ff41930517705bdb0e5d17d2fe4b9b17c61f0bc80d40e9e3f6164",
+    "/home/zhoushunyu/data/eqvae/experiments/sit_strong_reference_20260912/data/complete.json": "258cd59d561e196536754852c056eb0dcca30ac326f2d727aee3153ea04be2e5"
+  },
+  "source_sha256": "252ed2d6a72edb97ba374ca504a38f10c84da61ee6f9efde501acdafb0ec0beb",
+  "all_rounds_complete_and_audited": true,
+  "rows": 21,
+  "training_runs": 6,
+  "promotion": {
+    "strong_reference": {
+      "eligible_for_fixed_5k": [],
+      "threshold": 0.5,
+      "request_sha256": "d2d4d0871f0c6a5a828d9b8880993ef314b63cfb9840a2098cbf0f7ee11f4084",
+      "results_sha256": "2819db43446cffab6de5c5a7e4b4ebcf8895b1f41b916dce9ad189efa3e5bdba",
+      "no_parameter_expansion": true
+    },
+    "cfg_posterior": {
+      "eligible_for_fixed_5k": [],
+      "threshold": 0.5,
+      "request_sha256": "77f5dc2b094b92ff6cddcd20b433bef47f714c81802e57f94640097faa018cbc",
+      "results_sha256": "c370307025a473dbd235d8e69fd41e452925abd379215db7e663d122792bbaee",
+      "no_parameter_expansion": true
+    }
+  }
+}

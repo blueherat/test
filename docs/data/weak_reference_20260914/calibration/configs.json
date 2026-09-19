@@ -1,0 +1,63 @@
+[
+  {
+    "arm": "cfg_e64",
+    "kind": "baseline",
+    "alpha": 1.25,
+    "omega": 0,
+    "steps": 64
+  },
+  {
+    "arm": "cfg_cal_white",
+    "kind": "calibrated",
+    "alpha": 1.25,
+    "kernel": "white",
+    "weights": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.427524118044623
+    ],
+    "steps": 64,
+    "calibration_sha256": "014b4ef4a0f2fce930cb15864bb076174d8a342796dd10b884a18cc91ff6f8bd"
+  },
+  {
+    "arm": "cfg_cal_lowpass",
+    "kind": "calibrated",
+    "alpha": 1.25,
+    "kernel": "lowpass",
+    "weights": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.8836029970938295
+    ],
+    "steps": 64,
+    "calibration_sha256": "014b4ef4a0f2fce930cb15864bb076174d8a342796dd10b884a18cc91ff6f8bd"
+  },
+  {
+    "arm": "cfg_cal_band",
+    "kind": "calibrated",
+    "alpha": 1.25,
+    "kernel": "band",
+    "weights": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5288816822686329
+    ],
+    "steps": 64,
+    "calibration_sha256": "014b4ef4a0f2fce930cb15864bb076174d8a342796dd10b884a18cc91ff6f8bd"
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "rows": [
+    {
+      "arm": "cfg_e64",
+      "kind": "baseline",
+      "alpha": 1.25,
+      "omega": 0,
+      "steps": 64,
+      "model": "sit",
+      "samples": 1000,
+      "fid": 45.48103107132408,
+      "sfid": 207.70133989010264,
+      "inception_score": 60.49470138549805,
+      "full_calls_per_output": 112,
+      "seconds": 60.71785434242338,
+      "baseline": "cfg_e64",
+      "delta_fid": 0.0,
+      "relative_seconds": 1.0
+    },
+    {
+      "arm": "cfg_moment_k02_w1",
+      "kind": "moment",
+      "alpha": 1.25,
+      "omega": 1,
+      "kappa": 0.2,
+      "steps": 64,
+      "model": "sit",
+      "samples": 1000,
+      "fid": 45.42897072670246,
+      "sfid": 207.5079680237884,
+      "inception_score": 60.08082962036133,
+      "full_calls_per_output": 175,
+      "seconds": 86.5624757008627,
+      "baseline": "cfg_e64",
+      "delta_fid": -0.05206034462162279,
+      "relative_seconds": 1.4256510978251378
+    },
+    {
+      "arm": "cfg_e100",
+      "kind": "baseline",
+      "alpha": 1.25,
+      "omega": 0,
+      "steps": 100,
+      "model": "sit",
+      "samples": 1000,
+      "fid": 45.362347565874074,
+      "sfid": 207.57152095302774,
+      "inception_score": 60.80072021484375,
+      "full_calls_per_output": 175,
+      "seconds": 86.6898948228918,
+      "baseline": "cfg_e64",
+      "delta_fid": -0.11868350545000794,
+      "relative_seconds": 1.42774964237038
+    }
+  ],
+  "audits": [
+    {
+      "arm": "cfg_e64",
+      "passed": true,
+      "fid_fp64": 45.48106036870513,
+      "fid_difference": 2.929738104739954e-05,
+      "independent_extractor": false,
+      "features_sha256": "f0d14cf60e2af46ccc7a3cd7bb9da4820e4a037a1155cccacc1969787e1dc51c",
+      "samples_sha256": "7af1d61e50172072048f40f6e3671ebf2a606e2fad6cb3ad60bb8eb050eb8eac"
+    },
+    {
+      "arm": "cfg_moment_k02_w1",
+      "passed": true,
+      "fid_fp64": 45.42900058132051,
+      "fid_difference": 2.985461804883016e-05,
+      "independent_extractor": false,
+      "features_sha256": "30d3fa07c0f4d6d3826b5b23bcb87f3f65fc91696ba561514ff75f4859e8784d",
+      "samples_sha256": "51353335e0acecfdb00cffbba5d02b41dd81e02547ee95816915aec0f3b80fa7"
+    },
+    {
+      "arm": "cfg_e100",
+      "passed": true,
+      "fid_fp64": 45.36237681307904,
+      "fid_difference": 2.9247204963667173e-05,
+      "independent_extractor": false,
+      "features_sha256": "1dde64f66f32b1c8a9ab5ea42ea7796a514fa185c900260949573d2acbd13c8d",
+      "samples_sha256": "ad53ed25720ed79745efeb2fd4d6f44eb00c9ddc7e9ed94fd953ed5851f7451a"
+    }
+  ],
+  "complete": true,
+  "raw_root": "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/moment_screen_1k",
+  "request_sha256": "201572d18ce0cfb577fe6e24b02225dc6cd45b2cebddb518fe512c30e8238212"
+}

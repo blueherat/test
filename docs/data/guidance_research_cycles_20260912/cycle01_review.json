@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "phase": "review_complete",
+  "results_sha256": "50b619eb6cd4339ab708c74b3112538b24df4bd1ffc94c06b4869b64d76ad306",
+  "audit_sha256": "0d685f89bbeede9666885e1404f1ec132c0f91c15985b4c59cd58a9d6488bf27",
+  "metadata_arms": 59,
+  "independent_metric_audits": 18,
+  "decisions": [
+    {
+      "family": "i59_clt",
+      "best_arm": "i59_clt_01",
+      "fid": 70.211132842594,
+      "decision": "one_internal_head_refinement",
+      "reason": "Beats matched native weak training; loses to original IG. Test an internal readout implementation at fixed strength."
+    },
+    {
+      "family": "i60_factor",
+      "best_arm": "i60_factor_00",
+      "fid": 71.16481721228956,
+      "decision": "no_extension_of_this_construction",
+      "reason": "Does not beat ordinary IG; no additional region or strength scan."
+    },
+    {
+      "family": "i61_local_label",
+      "best_arm": "i61_local_label_03",
+      "fid": 54.89498534706081,
+      "decision": "no_extension_of_this_construction",
+      "reason": "Does not beat CFG/APG or random-label control within the prescribed grid; semantic topology has no demonstrated advantage."
+    },
+    {
+      "family": "i62_conditional_refresh",
+      "best_arm": "i62_conditional_refresh_03",
+      "fid": 45.47168547373553,
+      "decision": "no_extension_of_this_construction",
+      "reason": "Small advantage over CFG, worse than APG, with 480 vs 224 full calls; unguided stochastic controls also change 1K FID."
+    },
+    {
+      "family": "i63_defensive",
+      "best_arm": "i63_defensive_03",
+      "fid": 71.23452103465598,
+      "decision": "no_extension_of_this_construction",
+      "reason": "Worse than original IG; at exact density level it only rescales the CLT score difference."
+    }
+  ],
+  "old_broad_queue_paused": true,
+  "created_unix": 1789157469.0505967
+}

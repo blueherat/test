@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "phase": "review_complete",
+  "results_sha256": "840747e08b413d6d51798607b964a42c4f47f3da745b70b325c4d467725d5ba6",
+  "audit_sha256": "dab429a707ba1f7a8125f48b8350ef3458822c1dc07bca438d29a95c19a62d23",
+  "results": {
+    "ig_prefix_original": 40.43180629759911,
+    "ig_local": 39.17674145001888,
+    "ig_prefix_native": 36.17320749730209
+  },
+  "decision": "fixed_native_prefix_confirmed_add_one_known_incumbent",
+  "delta_vs_original": -4.2585988002970225,
+  "delta_vs_local": -3.0035339527167935,
+  "sampling_time_ratio_vs_local": 0.8984018458603565,
+  "interpretation": "The promoted training control improves both original and local IG on independent paired 5K. This does not validate CLT coarsening or establish method novelty.",
+  "next_stage": "cycle06_known_incumbent",
+  "old_broad_queue_paused": true,
+  "created_unix": 1789186650.2046018
+}

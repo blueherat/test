@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "request_sha256": "7048d24af0c77bf68929186660ca511aa13ec5f91c5370ce3c228e3cfaf67377",
+  "results": 3,
+  "samples_per_config": 1000,
+  "metadata_and_coverage_all_complete_arms": true,
+  "covered_batch_indices": 375,
+  "raw_and_metric_audits": [
+    {
+      "arm": "ig_internal_original_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "b0715a12bb83ec11f50c7065936242c9a66f83bd8ee895396ba15678c02c6a14",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.4028139649493,
+        "sfid": 207.9557986678983,
+        "samples": 1000
+      },
+      "independent_fid": 65.4028438440098,
+      "independent_sfid": 207.95581975389393,
+      "fid_absolute_error": 2.9879060491566634e-05,
+      "sfid_absolute_error": 2.1085995626890508e-05
+    },
+    {
+      "arm": "ig_internal_native_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "4f8cc7d3d430883799357f3bc180f9d8e5e92eb95de55ba008c12bcbf8886e6a",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.000022387777,
+        "sfid": 208.12351408841891,
+        "samples": 1000
+      },
+      "independent_fid": 65.00005246005422,
+      "independent_sfid": 208.1235359159055,
+      "fid_absolute_error": 3.0072277226622646e-05,
+      "sfid_absolute_error": 2.182748659151912e-05
+    },
+    {
+      "arm": "ig_internal_clt_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "033e3e0d56d2f106de95b441c5a7e3033539903cbbf08a36bbd25606cf800e6a",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.65136162395311,
+        "sfid": 208.81703357514516,
+        "samples": 1000
+      },
+      "independent_fid": 65.65139050225643,
+      "independent_sfid": 208.8170534932638,
+      "fid_absolute_error": 2.887830332554131e-05,
+      "sfid_absolute_error": 1.9918118653095007e-05
+    }
+  ],
+  "feature_extraction_repeated": false,
+  "raw_bytes_rehashed_for_selected_only": true,
+  "independent_confirmation": false
+}

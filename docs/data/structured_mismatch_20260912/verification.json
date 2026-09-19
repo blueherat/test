@@ -1,0 +1,54 @@
+{
+  "sit_small": {
+    "projection_fp64_max_error": 5.040055839344859e-07,
+    "unit_directions": true,
+    "finite_source_coverage": true,
+    "frozen_request_matches": true
+  },
+  "raev2": {
+    "projection_fp64_max_error": 5.935812623647507e-07,
+    "unit_directions": true,
+    "finite_source_coverage": true,
+    "frozen_request_matches": true
+  },
+  "structured_mismatch_20260912": {
+    "workbook_sheets": {
+      "heldout": 9,
+      "parameters": 5,
+      "residual_bounds": 5,
+      "Sources": 7
+    }
+  },
+  "guidance_distribution_20260912": {
+    "workbook_sheets": {
+      "quality": 25,
+      "moments": 5,
+      "source_events": 5,
+      "endpoint_filter": 5,
+      "endpoint_sources": 7,
+      "cfg_classifier": 3,
+      "inference_timing": 5,
+      "Sources": 6
+    }
+  },
+  "report": {
+    "sha256": "6e621cc2f4effecab15b4db0663399a4bb78fae626c867268b44075461601596",
+    "algebra_checks": {
+      "passed": true,
+      "max_absolute_errors": {
+        "density": 7.025630077706069e-16,
+        "score": 1.4955051086396054e-14,
+        "additive_field": 1.4955051086396054e-14,
+        "eliminated_operator": 6.661338147750939e-16,
+        "characteristic_residual": 3.042322009590925e-17
+      },
+      "finite_frequency_pole": 5.464673624331794,
+      "purpose": "Numerical verification of identities only; no toy performance experiment."
+    }
+  },
+  "visual_inspection": {
+    "passed": true,
+    "file": "heldout_comparison.png",
+    "checks": "Labels placed away from reference lines; all four groups and both held-out direction sets present."
+  }
+}

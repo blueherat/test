@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "observed_local": "2026-09-11 00:33:08",
+  "request_sha256": "073b1c9b69f3294556aaf8d8b0c32868af4e25c48448222dca8dcdd5b8a1c631",
+  "old_queue": {
+    "stage": "fsg_screen_1k",
+    "phase": "sampling",
+    "completed": 203,
+    "total": 256,
+    "run_id": "20260911T002907_acf22055",
+    "controller_pid": 3012473,
+    "worker_pids": [
+      3016795,
+      3016796,
+      3016797,
+      3016798
+    ],
+    "run_wall_seconds": 176.559176068753,
+    "arm": "f15_orbit_agreement_07",
+    "family": "f15_orbit_agreement"
+  },
+  "old_progress": [
+    {
+      "arm": "f15_orbit_agreement_07",
+      "rank": 0,
+      "images": 168,
+      "run_id": "20260911T002907_acf22055"
+    },
+    {
+      "arm": "f15_orbit_agreement_07",
+      "rank": 1,
+      "images": 160,
+      "run_id": "20260911T002907_acf22055"
+    },
+    {
+      "arm": "f15_orbit_agreement_07",
+      "rank": 2,
+      "images": 168,
+      "run_id": "20260911T002907_acf22055"
+    },
+    {
+      "arm": "f15_orbit_agreement_07",
+      "rank": 3,
+      "images": 160,
+      "run_id": "20260911T002907_acf22055"
+    }
+  ],
+  "seven_queue": {
+    "phase": "waiting_for_fsg20_final",
+    "controller_pid": 2629874,
+    "dependency": {
+      "stage": "fsg_screen_1k",
+      "phase": "sampling",
+      "completed": 203,
+      "total": 256,
+      "run_id": "20260911T002907_acf22055",
+      "controller_pid": 3012473,
+      "worker_pids": [
+        3016795,
+        3016796,
+        3016797,
+        3016798
+      ],
+      "run_wall_seconds": 176.559176068753,
+      "arm": "f15_orbit_agreement_07",
+      "family": "f15_orbit_agreement"
+    },
+    "total_arms": 140,
+    "candidate_arms": 70,
+    "control_arms": 70
+  },
+  "new_queue": {
+    "phase": "waiting_for_fsg7_final",
+    "controller_pid": 3012470,
+    "dependency": {
+      "phase": "waiting_for_fsg20_final",
+      "controller_pid": 2629874,
+      "dependency": {
+        "stage": "fsg_screen_1k",
+        "phase": "sampling",
+        "completed": 203,
+        "total": 256,
+        "run_id": "20260911T002907_acf22055",
+        "controller_pid": 3012473,
+        "worker_pids": [
+          3016795,
+          3016796,
+          3016797,
+          3016798
+        ],
+        "run_wall_seconds": 176.559176068753,
+        "arm": "f15_orbit_agreement_07",
+        "family": "f15_orbit_agreement"
+      },
+      "total_arms": 140,
+      "candidate_arms": 70,
+      "control_arms": 70
+    },
+    "total_arms": 709,
+    "candidate_arms": 636,
+    "control_arms": 73
+  },
+  "resumed_preflight_passed": true,
+  "runtime_sources_verified": true,
+  "sources_frozen": 40,
+  "assets_frozen": 12,
+  "existing_results_audited": 202,
+  "no_new_quality_arms_started": true
+}

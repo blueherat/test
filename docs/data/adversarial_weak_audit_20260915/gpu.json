@@ -1,0 +1,38 @@
+{
+  "kind": "real_model_full_64_step_gradient_audit_not_quality_trial",
+  "gpu": "GPU-9788ab52-30a0-cb65-0d18-3069b199620e",
+  "checkpoint_sha256": "0f8f54ced7f5139f0a817f857100933465d43e0078c8dc25ba1c9ae370d968a7",
+  "head_weights": "online_head",
+  "discriminator": "trained_200_step_critic",
+  "coefficient": 1.0,
+  "batch": 1,
+  "seed": 2026091599,
+  "class_label": 17,
+  "strict_fp32": false,
+  "math_attention": false,
+  "full64_checkpoint_reference_relative_gradient_error": 0.002987814601510763,
+  "head_gradient_cosine": 0.9999955892562866,
+  "gradient_relative_error_under_2e_minus4": false,
+  "initial_noise_gradient_relative_error": 0.0012156268348917365,
+  "head_gradient_norm": 15.78105640411377,
+  "forward_bitwise_equal": true,
+  "deployed_forward_bitwise_equal": true,
+  "loss": 0.8226361274719238,
+  "no_module_changed": true,
+  "fingerprints": {
+    "strong": "47138dd6059fd29fd681182939a5aa511d3e83e9c30dbbd269ffa02096e4fe60",
+    "vae": "f456f02321b44c337e00c15bfec49144fe76896e2496316b04e14f0314aefb95",
+    "head": "252e05a79bc36d1e9953afbca7f7ced3794a4bfd865e26c8d9ed5b2d561fdad2",
+    "critic": "b096b1883115098c5dcc7f17b32d57b9a994a909e07eefe8cce443d1e6225499",
+    "inception": "613233b7b83af8f905c841b68284f63e4b4761ab794c3998629deeb9ad188021"
+  },
+  "pixel_clamp_single_sample": {
+    "fraction": 1.0172526344831567e-05,
+    "pixel_min": -0.0011453628540039062,
+    "pixel_max": 1.001244306564331,
+    "feature_relative_change": 0.0005216242279857397,
+    "loss_continuous": 0.8226361274719238,
+    "loss_clamped": 0.8227061033248901
+  },
+  "peak_allocated_gib": 2.050600528717041
+}

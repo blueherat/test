@@ -1,0 +1,85 @@
+{
+  "model": "sit_small",
+  "phase": "screen_1k",
+  "samples": 1000,
+  "seed": 2026091407,
+  "batch": 16,
+  "configs": [
+    {
+      "arm": "ig",
+      "kind": "baseline",
+      "omega": 0,
+      "steps": 64,
+      "solver": "heun"
+    },
+    {
+      "arm": "ig_sg_w1",
+      "kind": "sg",
+      "omega": 1,
+      "shift": 0.01,
+      "steps": 64,
+      "solver": "heun"
+    },
+    {
+      "arm": "ig_log_k02_w1",
+      "kind": "log",
+      "omega": 1,
+      "kappa": 0.2,
+      "steps": 64,
+      "solver": "heun"
+    },
+    {
+      "arm": "ig_sg_cost",
+      "kind": "baseline",
+      "omega": 0,
+      "steps": 128,
+      "solver": "heun"
+    },
+    {
+      "arm": "ig_log_cost",
+      "kind": "baseline",
+      "omega": 0,
+      "steps": 191,
+      "solver": "heun"
+    }
+  ],
+  "sources": {
+    "/data/users/zhoushunyu/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89",
+    "/home/zhoushunyu/eqvae/experiments/compute_adm_fid.py": "3bd3053decc8dc2ec735b1e950722e5376803d2fd5c472886787f137100dab6f",
+    "/home/zhoushunyu/eqvae/experiments/ig_sg_20260914/check.py": "1a337884a0ef43050a5607b485cdc26ddb4cf01a7c0d375f4fb74115d5d9d9a5",
+    "/home/zhoushunyu/eqvae/experiments/ig_sg_20260914/core.py": "8a8f05fc555c6cfe98e724791d564ac23f1058f3fe3ce322e044513dea0ef222",
+    "/home/zhoushunyu/eqvae/experiments/ig_sg_20260914/run.py": "89ca445d3efb87b6ad17bb6837ab6915843beff7656ba535bbd9c0b4921be3bd",
+    "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+    "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+    "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+    "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+    "/home/zhoushunyu/eqvae/experiments/self_guidance_20260913/sampler.py": "e2818b9a78e8422104bd5a07d028293fdc80086bc5d523674cdeef0deb07747b",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/cross_run.py": "501ef975197cfc1bcfd88532228c875dd1d807b45e0626e5f4677d120ac4cfb6",
+    "/home/zhoushunyu/eqvae/experiments/weak_reference_20260914/sampler.py": "e768b8eed4711a3fd6118d05d15da4c591220e2472eb91fe103c94f7ab926263",
+    "/home/zhoushunyu/eqvae/train_gen/evaluator.py": "a46409a6f8323ae790b66113234cb16ac47eaa7249aa463715a27f13b124ee8c"
+  },
+  "assets": {
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/runs/sit-s-2_seed0/checkpoints/step_00800000.pt": "b7f7d7318ee4b480fe591bc451c2aceb09efaf4111e57fd9dbefcd1bcfd88caa",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/multiscale_guidance_study_v1/runs/depth4_v/checkpoints/step_00050000.pt": "f33fca87577ad2f5e70470f05c1834811a28e7912aedcc26a3fdb8ae8c4fc5ad",
+    "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+    "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+    "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/blobs/0db26717579be63eb0ddbf15b43faa43700dfe5a": "92d3dfb746fca211a2c9e019e285f8597412211728dce3c5bcf4eda0f2d62e7e",
+    "/home/zhoushunyu/.cache/huggingface/hub/models--stabilityai--sd-vae-ft-mse/refs/main": "09afed3031ce614589c7942eb2799a898fa28775dea6c1ad57bea7850a527d06",
+    "/data/shared/adm_refs/classify_image_graph_def.pb": "009d6814d1bc560d4e7b236e170e9b2d5ca6f4b57bd8037f6db05776204415c6"
+  },
+  "inputs": {
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/noise.npy": "5ac3cd9c13485213a3c878ff1c651650707c44d2eee0bb33741cc7cd7c0f3147",
+    "/home/zhoushunyu/data/eqvae/experiments/ig_sg_20260914/screen_1k/sit_small/labels.npy": "7ab8a901853780c02940cf2f56232baf34c6e7fd3b83d4655f0f4c25dd179c37"
+  },
+  "input_origin": {
+    "/home/zhoushunyu/data/eqvae/experiments/weak_reference_20260914/sit_screen_1k/inputs.npz": "43e66d7b689567ff975e5b327dfda8aa3d899c0ea175042b5eb53c5f787e563b"
+  },
+  "reused_arms": {},
+  "checks_sha256": "87bad16844e15c46100f5d3e221a8f1ebefdc358963092b0f01d7b6d62ecbec0",
+  "reference": "/home/zhoushunyu/data/eqvae/imagenet_sit_flow/adm_reference_stats/imagenet100_validation_n5000_adm_stats.npz",
+  "ig_schedule": "SiT: alpha .8*6/7 for t<.25, .8 for t<.5; JiT: .3 for t<.5; RAE: weak+1.78*(full-weak) for .1<=t<=1",
+  "precision": "FP32 weights/state; SiT no autocast; JiT/RAE BF16 autocast; TF32 enabled",
+  "definition": "IG field plus raw strong residual. Paper SG shift .01 toward noisy time. Log SG antithetic probes kappa .2 times path noise std. omega 1. No CFG.",
+  "cost": "Observed full transformer traversals; weak head shares trunk. SiT SG 255 vs control256; other controls exact NFE. GPU batch sampling/decode seconds, evaluation excluded.",
+  "scope": "Paired 1K pilot, fixed prior coefficients, same seed as prior screen; reused arms are not new independent replications."
+}

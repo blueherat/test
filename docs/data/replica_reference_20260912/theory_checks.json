@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "resolvent_max_error": 4.440892098500626e-16,
+  "detailed_balance_max_error": 3.469446951953614e-18,
+  "direct_risk_derivative_max": 2.775557561562891e-11,
+  "operator_eigenvalue_range": [
+    -1.1710637127081188e-16,
+    0.9999999999999998
+  ],
+  "gaussian_covariance_identity_max_error": 1.6653345369377348e-16,
+  "averaged_loss_identity_max_error": 5.551115123125783e-17,
+  "no_general_density_smoothing_claim": true,
+  "gaussian_corruption_curl_counterexample": [
+    {
+      "quadrature_order": 60,
+      "consistent_score_curl": -0.005320988753709514,
+      "average_score_curl": 0.006344478634126811,
+      "detailed_balance_error": 5.227798541285189e-10
+    },
+    {
+      "quadrature_order": 100,
+      "consistent_score_curl": -0.005320989046873943,
+      "average_score_curl": 0.006344478991364918,
+      "detailed_balance_error": 1.884631339876819e-12
+    }
+  ],
+  "two_point_guidance_support_overshoot": 0.18682150566116662,
+  "interpretation": "Risk identities are exact. Function regularization need not yield a conservative score or any fixed smoothed prior."
+}

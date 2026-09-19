@@ -1,0 +1,78 @@
+{
+  "observed_unix": 1789057319.558808,
+  "completed": 202,
+  "total": 256,
+  "numerical_failures": 0,
+  "request_sha256": "25c42cfbbb44a58c3823cbbf8bfb4105b5da694009b2f2dda21178f491b0c730",
+  "native_cfg": {
+    "arm": "cfg_native_04",
+    "fid": 45.03860422486213,
+    "sum_batch_gpu_seconds": 165.14787172758952
+  },
+  "best_control": {
+    "arm": "cfg_apg_09",
+    "fid": 44.11646725738899,
+    "sum_batch_gpu_seconds": 170.64492068439722
+  },
+  "best_candidates": [
+    {
+      "arm": "f07_condition_continuum_02",
+      "idea_id": 7,
+      "fid": 44.346355730175105,
+      "strength": 1.25,
+      "theta": 0.25,
+      "improvement_vs_native_percent": 1.5370114296412551,
+      "delta_vs_best_control": 0.22988847278611502,
+      "cost_vs_native": 2.377965407904822
+    },
+    {
+      "arm": "f03_horizon_consensus_02",
+      "idea_id": 3,
+      "fid": 44.37923323952134,
+      "strength": 1.25,
+      "theta": 0.25,
+      "improvement_vs_native_percent": 1.4640129211126895,
+      "delta_vs_best_control": 0.2627659821323505,
+      "cost_vs_native": 2.7245881111568493
+    },
+    {
+      "arm": "f04_neighborhood_root_03",
+      "idea_id": 4,
+      "fid": 44.469090889129575,
+      "strength": 1.25,
+      "theta": 0.02,
+      "improvement_vs_native_percent": 1.2645004114451908,
+      "delta_vs_best_control": 0.35262363174058464,
+      "cost_vs_native": 2.5650425139433684
+    },
+    {
+      "arm": "f05_patch_bottleneck_02",
+      "idea_id": 5,
+      "fid": 44.48111411192497,
+      "strength": 1.25,
+      "theta": 1.0,
+      "improvement_vs_native_percent": 1.2378050397694462,
+      "delta_vs_best_control": 0.36464685453597667,
+      "cost_vs_native": 2.0175633834827167
+    },
+    {
+      "arm": "f03_horizon_consensus_03",
+      "idea_id": 3,
+      "fid": 44.50338893848857,
+      "strength": 1.25,
+      "theta": 0.75,
+      "improvement_vs_native_percent": 1.188347853102667,
+      "delta_vs_best_control": 0.3869216810995795,
+      "cost_vs_native": 2.7430467374749394
+    }
+  ],
+  "candidate_arms_better_than_native": 17,
+  "candidate_arms_better_than_best_control": 0,
+  "inspected_commit_and_metric_sha256": [
+    "cfg_native_04",
+    "cfg_apg_09",
+    "f07_condition_continuum_02",
+    "f03_horizon_consensus_02",
+    "f04_neighborhood_root_03"
+  ]
+}

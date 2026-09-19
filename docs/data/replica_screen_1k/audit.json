@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "request_sha256": "31eecde6e47bf40438a30554c9802f858434b82eff807181f8018b53ca3c360a",
+  "results": 7,
+  "samples_per_config": 1000,
+  "metadata_and_coverage_all_complete_arms": true,
+  "covered_batch_indices": 875,
+  "raw_and_metric_audits": [
+    {
+      "arm": "ig_pair_mse_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "5269b20d4fa38336aa861ab9ae76050d454e4de0697df1b347ebd51f789a1223",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.4998615420044,
+        "sfid": 208.71249088627735,
+        "samples": 1000
+      },
+      "independent_fid": 65.49989162240496,
+      "independent_sfid": 208.71251171526592,
+      "fid_absolute_error": 3.0080400563292642e-05,
+      "sfid_absolute_error": 2.0828988567700435e-05
+    },
+    {
+      "arm": "ig_pair_consistent_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "2062b2b55e9607339030a724edd0ce43666b8e81571bd0db5649957c90898b63",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 74.26866612735836,
+        "sfid": 215.41497656884542,
+        "samples": 1000
+      },
+      "independent_fid": 74.26869677779548,
+      "independent_sfid": 215.41499669863992,
+      "fid_absolute_error": 3.0650437125245844e-05,
+      "sfid_absolute_error": 2.0129794506829057e-05
+    },
+    {
+      "arm": "ig_pair_average_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "ba8aa663d9a9147ff2bf6341a7aca42b3779e9b1700edbd1f17a781360c3f512",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 81.59837835888413,
+        "sfid": 221.08824648474445,
+        "samples": 1000
+      },
+      "independent_fid": 81.59840692816661,
+      "independent_sfid": 221.08826600876395,
+      "fid_absolute_error": 2.8569282477519664e-05,
+      "sfid_absolute_error": 1.952401950688909e-05
+    },
+    {
+      "arm": "ig_pair_shuffled_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "f88495ceb06e70346e02afc498e95a0667e933bbc69d59ba02a729762e3c4199",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.72103580637332,
+        "sfid": 208.63361556085556,
+        "samples": 1000
+      },
+      "independent_fid": 65.72106427095119,
+      "independent_sfid": 208.63363714240498,
+      "fid_absolute_error": 2.8464577866316176e-05,
+      "sfid_absolute_error": 2.1581549418669965e-05
+    },
+    {
+      "arm": "ig_original_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "a6929817d3a939a7e85300af9ee5dd9fc3c0b2da6643ea1dfda8236938294ef3",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.67604865742493,
+        "sfid": 208.48534646134897,
+        "samples": 1000
+      },
+      "independent_fid": 65.676078138719,
+      "independent_sfid": 208.4853677841015,
+      "fid_absolute_error": 2.9481294077982056e-05,
+      "sfid_absolute_error": 2.1322752530750222e-05
+    },
+    {
+      "arm": "ig_ig_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "fd291279357df82a745820b404a9ade4c1b27ad4b4ce30f300357bc6e9c0ebae",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 64.46639181018656,
+        "sfid": 208.53900826393817,
+        "samples": 1000
+      },
+      "independent_fid": 64.46642082812953,
+      "independent_sfid": 208.5390302021437,
+      "fid_absolute_error": 2.901794296406024e-05,
+      "sfid_absolute_error": 2.1938205520655174e-05
+    },
+    {
+      "arm": "ig_adg_reference_00",
+      "raw_batch_and_aggregate_hashes_verified": true,
+      "costs_reconciled": true,
+      "identity": {
+        "activations_sha256": "0849016a2313c4f22e9ed08effb7e39bdcd0de55d41fb95a7867b57a010813f6",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 64.62927574784385,
+        "sfid": 207.56195793546385,
+        "samples": 1000
+      },
+      "independent_fid": 64.62930360944205,
+      "independent_sfid": 207.5619794089057,
+      "fid_absolute_error": 2.7861598198342108e-05,
+      "sfid_absolute_error": 2.1473441847774666e-05
+    }
+  ],
+  "feature_extraction_repeated": false,
+  "raw_bytes_rehashed_for_selected_only": true,
+  "independent_confirmation": false
+}

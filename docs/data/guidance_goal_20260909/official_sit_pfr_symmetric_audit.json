@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "research_goal_achieved": false,
+  "sampling_bank_role": "reused_1k_discovery",
+  "source_sha256": "af83ee82e43d9e6867a970ee76cd9e05dd363cccb9e7f272db3127d6796ed7a9",
+  "request_sha256": "a2d62ce259287630af12366b101604a4b0ab9d28ea56c74f5c91d7a380bae5a3",
+  "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+  "feature_sha256": {
+    "ordinary135": "39a39b2fc3fa97a71563da0c5babb2c30da5190d1286cb04dc405d7b498b30d8",
+    "time135": "ece32846f0d460c67502fdb661c99b0970c5e0d6206c6d8351f865a69d8fef99",
+    "ordinary140": "942d0e856ab39ce27fe5355a01fc250fa71606cc2f828b9632a81dd0d9116e35",
+    "ordinary150": "73046e65bedd62dc387f9498a7c35c276d2e86165c3370d0f8f8960be460a803",
+    "ordinary175": "283e06eb278f8ef843423c7b6f1cf4f498eb062e0e286ce4e25215f32fec0dfe",
+    "projected135": "1652a4640212ce4fe79b52209a3633df2bc2b748ec389dc7075ce029a6e12b2d",
+    "time140": "36ff39b477ce25098c84d7261e266b36226ea1eb787d44dbe5da80da535ac0b7",
+    "projected140": "79d6bd0317458a5c0e9f20b55e1a2ed408368f78187697a8b1dd86766dc23c80",
+    "time150": "8837e914bd4eae5ec64217b2cb41eb858dd99d1ce6ab6cd411a639d445b8fe17",
+    "projected150": "49d43b701325da8507ed71b0477fd6cef7388dbfe6ef32101740aadab52de645",
+    "time175": "6320173d3219e05364141cbb7f6ff3aa9bd58c7c503b5a12220b7d39a5396a52",
+    "projected175": "a0e621d0419fe857a452a0a55aa5463d43df4370ab4b787c9d653871055519a6"
+  },
+  "maximum_fid_reconstruction_error": 2.7976192306766734e-05,
+  "selected_by_method": {
+    "ordinary": {
+      "arm": "ordinary175",
+      "scale": 1.75,
+      "fid": 39.27349181963996,
+      "inception_score": 52.6382869720459
+    },
+    "time_only": {
+      "arm": "time175",
+      "scale": 1.75,
+      "fid": 38.83823187051411,
+      "inception_score": 57.583193969726565
+    },
+    "projected": {
+      "arm": "projected175",
+      "scale": 1.75,
+      "fid": 38.7733879020667,
+      "inception_score": 57.43829498291016
+    }
+  },
+  "best_pfr_minus_best_ordinary": {
+    "time_only": -0.4352599491258502,
+    "projected": -0.5001039175732558
+  },
+  "matched_scale_pfr_minus_ordinary": {
+    "time_only": {
+      "1.35": -1.4584799124463075,
+      "1.4": -0.9151880010434184,
+      "1.5": -0.7465470333899589,
+      "1.75": -0.4352599491258502
+    },
+    "projected": {
+      "1.35": -1.421762103960475,
+      "1.4": -0.9715583948848234,
+      "1.5": -0.7695658544037656,
+      "1.75": -0.5001039175732558
+    }
+  },
+  "limitation": "One reused discovery bank; grid selection is not independent confirmation or global tuning. No new-method or causal-mechanism claim."
+}

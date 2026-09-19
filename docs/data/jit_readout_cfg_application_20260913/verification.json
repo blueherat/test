@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "samples": 4000,
+  "arms": 4,
+  "labels_balanced": true,
+  "per_class_per_arm": 1,
+  "source_files": {
+    "/home/zhoushunyu/eqvae/docs/JIT_READOUT_CFG_APPLICATION_PROTOCOL_20260913_ZH.md": "759265079d0d1bd3fc8bc0ddd21e4c4a0e9144e2b7379615f7b0cb7df6e34cc5",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_transfer_20260913/training/summary.json": "2e19d70ea80ad361fc58cb42e9df5a7079f6f470cd06736d5f026cf83d75b4bc",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/inference_benchmark.json": "0c9b79ddd3e34078ce92385e3f6006a9123fcfbe97ff33062c0e52c6db8562c8",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/status.json": "4cefacbea4a200d17f43dc6614d1decc66c7bc4ad4aba7fb4c6d3c32ee13649f",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/decision.json": "2c13e64d53b8d7662c51787560fadfee810b3ae3cbd62178393a83c234889842",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/request.json": "71c1c5b64ea578c960a1b3e25cab9420ad00fdda23ec266041c68b14350f4737",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/results.json": "73a3c14277290af4a1383110956a1072b103c541ba3bc346e2ffad6d4a72317e",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/metrics.json": "4c9cd4a977ad7c2680089466102a6df4d81aaff73b3fab46a36d570dd21ea602",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/audit.json": "883a96ad0775bf7ddb51542be538c8c4470c33bfa1ba54b3f4cfb6d48e46668a",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/checks0.json": "9e46e2cece80cce7a693de370e623b4c640947929bc528c8520f0be4ba286dbd",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/checks1.json": "9e46e2cece80cce7a693de370e623b4c640947929bc528c8520f0be4ba286dbd",
+    "/home/zhoushunyu/data/eqvae/experiments/jit_readout_cfg_application_20260913/screen_1000/checks2.json": "9e46e2cece80cce7a693de370e623b4c640947929bc528c8520f0be4ba286dbd"
+  },
+  "audit": {
+    "passed": true,
+    "arms": [
+      {
+        "passed": true,
+        "arm": "cfg_reference",
+        "samples": 1000,
+        "samples_sha256": "5433a658c36316bbe1bdcb56ea237a785023cda66ab3075cb9e7aab7f4bfd4c4",
+        "features_sha256": "c261deeaf5715908b2eced503db6564eef031ba9585c1a3f07194d5a84a3bbf5",
+        "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "fid_reported": 39.27150249912978,
+        "fid_fp64_same_features": 39.27150887493883,
+        "absolute_error": 6.375809050496173e-06,
+        "independent_feature_extraction": false,
+        "method": "symmetric_fp64_covariance",
+        "raw_images_labels_states_and_counts_verified": true
+      },
+      {
+        "passed": true,
+        "arm": "cfg_more",
+        "samples": 1000,
+        "samples_sha256": "b08dc1ecf2c4f68d689d2165e0fb93fde9298bcbf796190a90d9adb01c7443c9",
+        "features_sha256": "359c1faf77dca124ca629865533978a7915ce21de494affeb6153e5011871ee6",
+        "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "fid_reported": 38.69092396886629,
+        "fid_fp64_same_features": 38.69093002652829,
+        "absolute_error": 6.057662005787279e-06,
+        "independent_feature_extraction": false,
+        "method": "symmetric_fp64_covariance",
+        "raw_images_labels_states_and_counts_verified": true
+      },
+      {
+        "passed": true,
+        "arm": "cfg_native",
+        "samples": 1000,
+        "samples_sha256": "eac56618d4a0eb7b6834cfc3607cda7fd604b23adeef30ddd718570e088acba4",
+        "features_sha256": "0ece984da5fd4bd22f4e8f00b731cfbef0f533fe82a19479d04398357a42c860",
+        "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "fid_reported": 39.914608213938436,
+        "fid_fp64_same_features": 39.91461440805659,
+        "absolute_error": 6.194118157054618e-06,
+        "independent_feature_extraction": false,
+        "method": "symmetric_fp64_covariance",
+        "raw_images_labels_states_and_counts_verified": true
+      },
+      {
+        "passed": true,
+        "arm": "cfg_mlp",
+        "samples": 1000,
+        "samples_sha256": "d9b8e2bd326910e3b5c9f913a989b063e23c965ce3d24f31f07eaf2969915f73",
+        "features_sha256": "3f47ceafe2813d83b5adf136cd689a39507e014be5b12e5cc2f19244d30363dc",
+        "reference_sha256": "925e8b5b4ced42137f9847f97a63250a2bd59b70f33f3f356e03453d0775f1ac",
+        "fid_reported": 39.40833710367622,
+        "fid_fp64_same_features": 39.40834310233174,
+        "absolute_error": 5.99865552430856e-06,
+        "independent_feature_extraction": false,
+        "method": "symmetric_fp64_covariance",
+        "raw_images_labels_states_and_counts_verified": true
+      }
+    ],
+    "request_sha256": "71c1c5b64ea578c960a1b3e25cab9420ad00fdda23ec266041c68b14350f4737",
+    "max_fid_error": 6.375809050496173e-06,
+    "controller_sha256": "5f355378333d99b14096348ca61318ab78387318f99630935b684edefbe99a9d",
+    "fid_recalculation_source_sha256": "e06b96bd6c1879c19c15266647870e0cbea21d0654d6012272c0d24e3280d721"
+  },
+  "visual_inspection_pending": false,
+  "independent_feature_extraction": false,
+  "goal_complete": false,
+  "workbook_tables_reconciled": [
+    "quality",
+    "decision",
+    "timing",
+    "timing_repeats",
+    "source_files",
+    "Sources"
+  ],
+  "local_links_verified": [
+    "data/jit_readout_cfg_application_20260913/quality_comparison.png",
+    "data/jit_readout_cfg_application_20260913/first4.png",
+    "JIT_READOUT_CFG_APPLICATION_PROTOCOL_20260913_ZH.md",
+    "JIT_READOUT_CONFIRM_RESULTS_20260913_ZH.md",
+    "data/jit_readout_cfg_application_20260913/source_data.xlsx",
+    "data/jit_readout_cfg_application_20260913/verification.json"
+  ],
+  "inspected_figures": {
+    "quality_comparison.png": "617db854c8cd44f3f79a9002d9144c031cc71ffd2ddba6d03c35e84126b74df6",
+    "first4.png": "02ee548b32fbd021c939dd51a13ba72b8f433849b6fbca1aaa7e573d4bb09613"
+  },
+  "visual_notes": "Displayed both PNG figures; checked readable labels, values and fixed sample order."
+}

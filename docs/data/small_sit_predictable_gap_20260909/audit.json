@@ -1,0 +1,383 @@
+{
+  "status": {
+    "phase": "complete",
+    "results": 3,
+    "wall_seconds": 158.19293371681124,
+    "numerical_failures": 0,
+    "worker_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "controller_pid": 3947099,
+    "worker_pids": [
+      3947141,
+      3947142,
+      3947143,
+      3947144
+    ],
+    "research_goal_achieved": false
+  },
+  "request_sha256": "6295b85fa6cfed4181e359740df7b42dd2265164dfbc6ae9ec9811debcd84f2d",
+  "fit": {
+    "complete": true,
+    "seconds": 0.22335564391687512,
+    "parameters": 6160,
+    "fitted_tokens": 131072,
+    "relative_normal_equation_error": 4.128369623343271e-15,
+    "checkpoint": "/home/zhoushunyu/data/eqvae/experiments/small_sit_predictable_gap_20260909/projection.pt",
+    "sha256": "c155623aa914ccfcea16732ad0fe346afd04976c9fd9092230ba0a44d29455b9",
+    "equation_sha256": "9461da88e37886e2919453bdda48e768ff9773ea98db1352c52e4a00dbdb995f",
+    "metrics": [
+      {
+        "split": "train",
+        "tokens": 131072,
+        "native_gap_mean_square": 0.06612906567753488,
+        "residual_mean_square": 0.06077534373744821,
+        "residual_energy_ratio": 0.9190413188930716,
+        "prediction_energy_ratio": 0.07915875008908616,
+        "residual_prediction_inner_product": 5.9513879663399696e-05
+      },
+      {
+        "split": "validation",
+        "tokens": 16384,
+        "native_gap_mean_square": 0.0666903760259017,
+        "residual_mean_square": 0.06210748231122574,
+        "residual_energy_ratio": 0.9312810335197987,
+        "prediction_energy_ratio": 0.07783120541195905,
+        "residual_prediction_inner_product": -0.00030384932158631224
+      }
+    ],
+    "fit_request_sha256": "44908dc2e8ec7bf19aa6669f6b02eac34a15eece3391ef2731b965dda5527666"
+  },
+  "regression_coefficient_max_error": 3.164135620181696e-15,
+  "source_asset_cache_hashes_passed": true,
+  "arithmetic_checks": [
+    {
+      "arm": "ig_restarted",
+      "coverage_passed": true,
+      "key": {
+        "activations_sha256": "349e9247320b8a4a01bc769e246bc2f144cfcd036924df3c53716d254db4d3f8",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.13932039644499,
+        "sfid": 208.80662834522775
+      },
+      "independent_fid": 65.13934988676958,
+      "independent_sfid": 208.80664910392449,
+      "fid_absolute_error": 2.9490324592984507e-05,
+      "sfid_absolute_error": 2.0758696734901605e-05
+    },
+    {
+      "arm": "residual_raw",
+      "coverage_passed": true,
+      "key": {
+        "activations_sha256": "fa09dec0b694ab383f7986566e496d8630e4e59a62083a36b33e7f806fcb0dd6",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.24690334578213,
+        "sfid": 209.8469899806529
+      },
+      "independent_fid": 65.24693369209453,
+      "independent_sfid": 209.84701168339194,
+      "fid_absolute_error": 3.0346312399842645e-05,
+      "sfid_absolute_error": 2.170273904766873e-05
+    },
+    {
+      "arm": "residual_norm",
+      "coverage_passed": true,
+      "key": {
+        "activations_sha256": "d1985482853fe3c02ca1ef8e1ced56b4e44e137f76c8e4b95a256a8bfd78d509",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 64.97227789373267,
+        "sfid": 209.6902031016973
+      },
+      "independent_fid": 64.97230791302424,
+      "independent_sfid": 209.6902240064062,
+      "fid_absolute_error": 3.0019291571647955e-05,
+      "sfid_absolute_error": 2.0904708890157053e-05
+    },
+    {
+      "arm": "parallel_norm",
+      "coverage_passed": true,
+      "key": {
+        "activations_sha256": "7bd99b1254c62d5102614d6972bed69b36ecd05dacd36275e3d8ee5f3b84b28d",
+        "reference_sha256": "4af18161d8b1532460e35df2fa887808826f8d6ca05fa93dad5fb5219aedfa1a",
+        "fid": 65.5672905890222,
+        "sfid": 208.90388220034004
+      },
+      "independent_fid": 65.56732184528123,
+      "independent_sfid": 208.9039035118087,
+      "fid_absolute_error": 3.125625902100637e-05,
+      "sfid_absolute_error": 2.1311468657359e-05
+    }
+  ],
+  "rows": [
+    {
+      "arm": "ig_restarted",
+      "fid": 65.13932039644499,
+      "sfid": 208.80662834522775,
+      "inception_score": 35.6368522644043,
+      "full_calls_per_image": 113.776,
+      "reader_calls_per_image": 0.0,
+      "sum_batch_gpu_seconds": 91.5974884359166,
+      "raw_residual_relative_norm": 0.0,
+      "predictable_part_relative_norm": 0.0,
+      "residual_gap_cosine": 0.0,
+      "normalized_orthogonal_energy_ratio": 0.0,
+      "fallback_fraction": 0.0
+    },
+    {
+      "arm": "residual_raw",
+      "fid": 65.24690334578213,
+      "sfid": 209.8469899806529,
+      "inception_score": 35.460662841796875,
+      "full_calls_per_image": 113.92,
+      "reader_calls_per_image": 71.792,
+      "sum_batch_gpu_seconds": 95.48282550135627,
+      "raw_residual_relative_norm": 0.9453816646139248,
+      "predictable_part_relative_norm": 0.32513047461855615,
+      "residual_gap_cosine": 0.940704777283029,
+      "normalized_orthogonal_energy_ratio": 0.11361694190470238,
+      "fallback_fraction": 0.0
+    },
+    {
+      "arm": "residual_norm",
+      "fid": 64.97227789373267,
+      "sfid": 209.6902031016973,
+      "inception_score": 35.16997528076172,
+      "full_calls_per_image": 113.344,
+      "reader_calls_per_image": 71.84,
+      "sum_batch_gpu_seconds": 96.40286492090672,
+      "raw_residual_relative_norm": 0.9451766186599144,
+      "predictable_part_relative_norm": 0.32435458522706906,
+      "residual_gap_cosine": 0.9409098470961065,
+      "normalized_orthogonal_energy_ratio": 0.11321957215812226,
+      "fallback_fraction": 0.0
+    },
+    {
+      "arm": "parallel_norm",
+      "fid": 65.5672905890222,
+      "sfid": 208.90388220034004,
+      "inception_score": 35.6241340637207,
+      "full_calls_per_image": 113.248,
+      "reader_calls_per_image": 71.216,
+      "sum_batch_gpu_seconds": 95.89618057245389,
+      "raw_residual_relative_norm": 0.9454570870977912,
+      "predictable_part_relative_norm": 0.3261614347672267,
+      "residual_gap_cosine": 0.9404086562275712,
+      "normalized_orthogonal_energy_ratio": 0.11417994617581649,
+      "fallback_fraction": 0.0
+    }
+  ],
+  "preflights": [
+    {
+      "passed": true,
+      "rank": 0,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.3053956678398269e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.0973445006715616e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.2109508614773805e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.186913313830587e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "c061e4c3b1f09ee71d30cde6e2b274fe6c7a75de937019fbbe86ee9481d687eb",
+      "per_query_seconds": {
+        "native": 0.004794243738676111,
+        "residual_raw": 0.005276699193442861,
+        "residual_norm": 0.005255771273126205,
+        "parallel_norm": 0.005249623954296112
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      }
+    },
+    {
+      "passed": true,
+      "rank": 1,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.8797411232885095e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.0354003056204393e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.330929034151998e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.279643104343478e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "3182aa7a32f2f05091f3b1a3a3c612270f018fc6356c304acecce266e18a34f5",
+      "per_query_seconds": {
+        "native": 0.006870453261459867,
+        "residual_raw": 0.007552690136556824,
+        "residual_norm": 0.007534907897934318,
+        "parallel_norm": 0.007524475300063689
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      }
+    },
+    {
+      "passed": true,
+      "rank": 2,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 3.1903341013786446e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 3.216503464964493e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 3.864710563933338e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 3.6579960677185497e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "eb5cdd0f727167146dfa3a34bbc737bd5f20ec3dd7cf77bbdfbe96a8cb5615fd",
+      "per_query_seconds": {
+        "native": 0.0051752851655085886,
+        "residual_raw": 0.005667436836908261,
+        "residual_norm": 0.005662140995264053,
+        "parallel_norm": 0.00565919183815519
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      }
+    },
+    {
+      "passed": true,
+      "rank": 3,
+      "checks": [
+        {
+          "t": 0.0,
+          "projection_numpy_max_error": 2.516368629301713e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.125,
+          "projection_numpy_max_error": 2.9179735094864157e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.375,
+          "projection_numpy_max_error": 4.146871681598441e-07,
+          "fallback_count": 0
+        },
+        {
+          "t": 0.875,
+          "projection_numpy_max_error": 4.4910778340678803e-07,
+          "fallback_count": 0
+        }
+      ],
+      "ordinary_ig_latents_exact": true,
+      "zero_alpha_exact": true,
+      "norm_and_projection_identities": true,
+      "original_weak_readout_exact": true,
+      "golden_sha256": "08c2e39697b543c4a0969b15600c9490795db45c59f3587797d7b2db5e19567e",
+      "per_query_seconds": {
+        "native": 0.00481582535430789,
+        "residual_raw": 0.005277762794867158,
+        "residual_norm": 0.0052666716743260625,
+        "parallel_norm": 0.005302756031354269
+      },
+      "runtime_sources": {
+        "/home/zhoushunyu/eqvae/experiments/lifting_scale_sweep_20260909.py": "fdff04cf182c7a64a073df2b77b8d7cb81c65a67f1930e6b892a18ef6343c8ac",
+        "/home/zhoushunyu/eqvae/experiments/raev2_capacity_lifting.py": "34738ffedc351016223102ce04c06c0a397defae3c9855a6247e32eac0ad05e8",
+        "/home/zhoushunyu/eqvae/experiments/sample_imagenet100_sit_foresight_fixed_point.py": "852f63b30c11a11d0e0fcfb3921111a912fad704ee900a47f271bdaa4d19d96b",
+        "/home/zhoushunyu/eqvae/experiments/imagenet100_sit_multiscale_models.py": "894d29e97e18a45b087e858f5abe6aa51406248349bdf8686f6982d98ef64dfa",
+        "/home/zhoushunyu/data/research_repos/SiT/models.py": "677cfa2cf5a7db122abd014d6d92d7ac5f39745f571773a6adcc26c7d2f33d89"
+      }
+    }
+  ],
+  "fixed_examples": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "selection": "first eight input indices, fixed without quality selection",
+    "path": "/home/zhoushunyu/eqvae/docs/data/small_sit_predictable_gap_20260909/paired_first8.png",
+    "sha256": "5feef7894cefbac2330881b5573124e38bfd02c3fde47f5d709fa349e75d3e0d"
+  },
+  "fixed_rhs_timing_ratios": {
+    "residual_raw": 1.0976104235783168,
+    "residual_norm": 1.0951701262344447,
+    "parallel_norm": 1.0950891099715658
+  },
+  "precision_amendment": {
+    "source_path": "/home/zhoushunyu/eqvae/experiments/small_sit_predictable_gap_20260909.py",
+    "source_before_sha256": "92c87e5dfa32a83ef6b1c4a2e1ab526bafefb74fc52e7b178d7fdd0f69f8fd0a",
+    "source_after_sha256": "22061b8dcf811756872c7c15b14f92474dcc0049e6769d1789e67e4a2e748c21",
+    "unchanged_projection_sha256": "c155623aa914ccfcea16732ad0fe346afd04976c9fd9092230ba0a44d29455b9",
+    "original_fit_request_sha256": "44908dc2e8ec7bf19aa6669f6b02eac34a15eece3391ef2731b965dda5527666",
+    "original_sampling_request_sha256": "75fbfe2abe271570f8ba19ec784916deeda34a01b10773c75f7da896e9f2fa01",
+    "quality_batches_before_fix": 0,
+    "reason": "TF32 projection vs FP64 NumPy exceeded the original 3e-4 absolute threshold; use full FP32 for the small projection only, restoring original backbone TF32 flag."
+  },
+  "independent_confirmation": false,
+  "independent_feature_extraction": false,
+  "research_goal_achieved": false
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "phase": "review_complete",
+  "results_sha256": "a3adcba4f1d574374f6b73d4f8a0998272a5dff0d68f6c176a0568b1f0d9aae8",
+  "audit_sha256": "5b76eb18dce66fc45d008d6637dc58d98314a20110cd189e153d752e3d1382ce",
+  "results": {
+    "ig_prefix_original": 65.40232732007235,
+    "ig_local": 63.20538209251242,
+    "ig_prefix_native": 61.81969558119994,
+    "ig_prefix_clt": 66.30026792032919
+  },
+  "decision": "terminate_current_clt_chain_confirm_native_control",
+  "reason": "CLT loses to original, local and matched native references. Native training control improves both original and local IG; confirm unchanged configuration on a new 5K bank. This posthoc control promotion does not validate coarsening or establish novelty.",
+  "next_stage": "cycle05_native_prefix_confirmation",
+  "old_broad_queue_paused": true,
+  "created_unix": 1789159417.5622873
+}
