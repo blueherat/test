@@ -1,6 +1,7 @@
 # 研究报告导航
 
 - **当前方向**：[分类器方法](classifier_guidance/README.md)，[代码](../classifier_guidance/README.md)。
+- **训练优化**：[SiT / JiT / RAEv2 速度、显存及数值验证](classifier_guidance/PERFORMANCE_20260919_ZH.md)。
 - **最新完整数据**：[8 个头各 8 点的 5K 扫参](ADVERSARIAL_HEADS_5K_NEIGHBORHOOD_20260916_ZH.md)。
 - **基线与之前尝试**：[IG、MLP 等完整结果](GUIDANCE_COMPLETE_RESULTS_20260915_ZH.md)。
 - **所有历史报告**：[按研究线分类的目录](../archive/manifests/20260919/catalog.md)。

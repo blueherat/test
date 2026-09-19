@@ -1,0 +1,942 @@
+{
+  "rows": [
+    {
+      "model": "SiT",
+      "batch": 6,
+      "baseline_seconds": 3.0293063861317933,
+      "optimized_seconds": 1.6578989592380822,
+      "speedup": 1.8271960237697276,
+      "baseline_allocated_gib": 10.053348064422607,
+      "optimized_allocated_gib": 4.983766078948975,
+      "baseline_reserved_gib": 12.1171875,
+      "optimized_reserved_gib": 6.619140625,
+      "reserved_reduction": 0.4537395228884591,
+      "gradient_relative_error": 0.00040469655940015246,
+      "gradient_cosine": 0.999999918110355
+    },
+    {
+      "model": "JiT speed",
+      "batch": 4,
+      "baseline_seconds": 6.608446822036058,
+      "optimized_seconds": 1.7508977400138974,
+      "speedup": 3.774319122705364,
+      "baseline_allocated_gib": 1.842137336730957,
+      "optimized_allocated_gib": 0.8892507553100586,
+      "baseline_reserved_gib": 2.076171875,
+      "optimized_reserved_gib": 1.859375,
+      "reserved_reduction": 0.10442144873000936,
+      "gradient_relative_error": 0.0022926551540249176,
+      "gradient_cosine": 0.9999974093503732
+    },
+    {
+      "model": "JiT memory",
+      "batch": 4,
+      "baseline_seconds": 6.608446822036058,
+      "optimized_seconds": 2.165925628039986,
+      "speedup": 3.0510959085960163,
+      "baseline_allocated_gib": 1.842137336730957,
+      "optimized_allocated_gib": 0.8876609802246094,
+      "baseline_reserved_gib": 2.076171875,
+      "optimized_reserved_gib": 1.24609375,
+      "reserved_reduction": 0.3998118532455315,
+      "gradient_relative_error": 0.0024815899332767738,
+      "gradient_cosine": 0.9999979295066357
+    },
+    {
+      "model": "RAEv2",
+      "batch": 1,
+      "baseline_seconds": 11.831706007942557,
+      "optimized_seconds": 3.172941619064659,
+      "speedup": 3.72893908190797,
+      "baseline_allocated_gib": 7.3588690757751465,
+      "optimized_allocated_gib": 2.828864574432373,
+      "baseline_reserved_gib": 7.49609375,
+      "optimized_reserved_gib": 3.677734375,
+      "reserved_reduction": 0.5093798853569568,
+      "gradient_relative_error": 0.007557124195894774,
+      "gradient_cosine": 0.9999714449381292
+    }
+  ],
+  "evidence": [
+    {
+      "name": "SiT",
+      "baseline": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "sit_small",
+        "batch": 6,
+        "mode": "baseline",
+        "chunk": 1,
+        "channels_last": false,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_rgb_v2/checkpoint_001456.pt",
+        "setup_seconds": 0.00015174876898527145,
+        "iterations": [
+          {
+            "seconds": 3.5392102068290114,
+            "peak_allocated_gib": 10.05265998840332,
+            "peak_reserved_gib": 12.123046875,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.22967529296875,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 3.0293063861317933,
+            "peak_allocated_gib": 10.051002025604248,
+            "peak_reserved_gib": 12.1171875,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.24297332763672,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 2.8646998913027346,
+            "peak_allocated_gib": 10.053348064422607,
+            "peak_reserved_gib": 12.107421875,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.23408508300781,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 3.6382957813329995,
+            "peak_allocated_gib": 10.05214262008667,
+            "peak_reserved_gib": 12.1171875,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.2432632446289,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          }
+        ],
+        "median_seconds": 3.0293063861317933,
+        "peak_allocated_gib": 10.053348064422607,
+        "peak_reserved_gib": 12.1171875,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "precision, batch, 64 Heun steps, loss, R1, alternating update, full input Jacobians"
+      },
+      "optimized": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "sit_small",
+        "batch": 6,
+        "mode": "optimized",
+        "chunk": 0,
+        "channels_last": false,
+        "checkpoint_feedback": true,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": "/home/zhoushunyu/data/eqvae/experiments/adversarial_weak_training_20260915/endpoint_binary_gan_rgb_v2/checkpoint_001456.pt",
+        "setup_seconds": 0.7807608800940216,
+        "iterations": [
+          {
+            "seconds": 2.1274164742790163,
+            "peak_allocated_gib": 4.983765602111816,
+            "peak_reserved_gib": 6.609375,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.24581909179688,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 1.6844761879183352,
+            "peak_allocated_gib": 4.983576774597168,
+            "peak_reserved_gib": 6.619140625,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.2340087890625,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 1.6578989592380822,
+            "peak_allocated_gib": 4.983766078948975,
+            "peak_reserved_gib": 6.609375,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.19734954833984,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          },
+          {
+            "seconds": 1.6565575781278312,
+            "peak_allocated_gib": 4.983576774597168,
+            "peak_reserved_gib": 6.619140625,
+            "metrics": [
+              1.056344985961914,
+              0.2977226674556732,
+              1.3066620826721191,
+              119.19833374023438,
+              0.5,
+              0.8333333730697632,
+              0.7905435562133789
+            ]
+          }
+        ],
+        "median_seconds": 1.6578989592380822,
+        "peak_allocated_gib": 4.983766078948975,
+        "peak_reserved_gib": 6.619140625,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "precision, batch, 64 Heun steps, loss, R1, alternating update, full input Jacobians"
+      },
+      "checks": {
+        "head_gradient": {
+          "relative_error": 0.00040469655940015246,
+          "cosine": 0.999999918110355,
+          "max_error": 1.393631100654602e-05
+        },
+        "head_after": {
+          "relative_error": 6.658658363085227e-09,
+          "cosine": 1.0000000000000002,
+          "max_error": 2.9802322387695312e-08
+        },
+        "critic_after": {
+          "relative_error": 0.0,
+          "cosine": 1.0,
+          "max_error": 0.0
+        }
+      },
+      "paths": {
+        "baseline": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/train_baseline",
+        "optimized": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/train_graph_checkpoint"
+      }
+    },
+    {
+      "name": "JiT speed",
+      "baseline": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "jit",
+        "batch": 4,
+        "mode": "baseline",
+        "chunk": 1,
+        "channels_last": false,
+        "checkpoint_feedback": false,
+        "precast": false,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "engineering_fixture",
+          "steps": 3000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/jit_readout_transfer_20260913/training/head.pt"
+        },
+        "setup_seconds": 0.00013890303671360016,
+        "iterations": [
+          {
+            "seconds": 8.132809755858034,
+            "peak_allocated_gib": 1.842918872833252,
+            "peak_reserved_gib": 2.037109375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8290203809738159,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 7.37443472398445,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8293532729148865,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 6.608446822036058,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8295081257820129,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 6.58280545193702,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8293518424034119,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          }
+        ],
+        "median_seconds": 6.608446822036058,
+        "peak_allocated_gib": 1.842137336730957,
+        "peak_reserved_gib": 2.076171875,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "optimized": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "jit",
+        "batch": 4,
+        "mode": "optimized",
+        "chunk": 0,
+        "channels_last": false,
+        "checkpoint_feedback": true,
+        "precast": true,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "engineering_fixture",
+          "steps": 3000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/jit_readout_transfer_20260913/training/head.pt",
+          "sha256": "2a67f0c431871a0eff3d121b371313eadea5931c353cddca746641f51b8a59b6"
+        },
+        "setup_seconds": 1.6765692410990596,
+        "iterations": [
+          {
+            "seconds": 2.2520847539417446,
+            "peak_allocated_gib": 0.88848876953125,
+            "peak_reserved_gib": 1.833984375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8292468190193176,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 1.7508977400138974,
+            "peak_allocated_gib": 0.8892507553100586,
+            "peak_reserved_gib": 1.859375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8288393020629883,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 1.7499997173435986,
+            "peak_allocated_gib": 0.8892507553100586,
+            "peak_reserved_gib": 1.859375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8294092416763306,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 1.7510148878209293,
+            "peak_allocated_gib": 0.8892507553100586,
+            "peak_reserved_gib": 1.859375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8295767903327942,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          }
+        ],
+        "median_seconds": 1.7508977400138974,
+        "peak_allocated_gib": 0.8892507553100586,
+        "peak_reserved_gib": 1.859375,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "checks": {
+        "head_gradient": {
+          "relative_error": 0.0022926551540249176,
+          "cosine": 0.9999974093503732,
+          "max_error": 5.458667874336243e-05
+        },
+        "head_after": {
+          "relative_error": 2.7495712054271925e-06,
+          "cosine": 0.9999999999962198,
+          "max_error": 1.996755599975586e-06
+        },
+        "critic_after": {
+          "relative_error": 0.0,
+          "cosine": 1.0,
+          "max_error": 0.0
+        }
+      },
+      "paths": {
+        "baseline": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/jit_train_baseline",
+        "optimized": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/jit_train_optimized"
+      }
+    },
+    {
+      "name": "JiT memory",
+      "baseline": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "jit",
+        "batch": 4,
+        "mode": "baseline",
+        "chunk": 1,
+        "channels_last": false,
+        "checkpoint_feedback": false,
+        "precast": false,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "engineering_fixture",
+          "steps": 3000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/jit_readout_transfer_20260913/training/head.pt"
+        },
+        "setup_seconds": 0.00013890303671360016,
+        "iterations": [
+          {
+            "seconds": 8.132809755858034,
+            "peak_allocated_gib": 1.842918872833252,
+            "peak_reserved_gib": 2.037109375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8290203809738159,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 7.37443472398445,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8293532729148865,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 6.608446822036058,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8295081257820129,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 6.58280545193702,
+            "peak_allocated_gib": 1.842137336730957,
+            "peak_reserved_gib": 2.076171875,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8293518424034119,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          }
+        ],
+        "median_seconds": 6.608446822036058,
+        "peak_allocated_gib": 1.842137336730957,
+        "peak_reserved_gib": 2.076171875,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "optimized": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "jit",
+        "batch": 4,
+        "mode": "optimized",
+        "chunk": 0,
+        "channels_last": false,
+        "checkpoint_feedback": true,
+        "checkpoint_backbone": true,
+        "precast": true,
+        "gpu": {
+          "index": 1,
+          "uuid": "GPU-b247e08a-7e70-2142-8e39-391d0732bafc",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "engineering_fixture",
+          "steps": 3000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/jit_readout_transfer_20260913/training/head.pt",
+          "sha256": "2a67f0c431871a0eff3d121b371313eadea5931c353cddca746641f51b8a59b6"
+        },
+        "setup_seconds": 1.7740820297040045,
+        "iterations": [
+          {
+            "seconds": 2.675315956119448,
+            "peak_allocated_gib": 0.8880906105041504,
+            "peak_reserved_gib": 1.2578125,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.829638659954071,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 2.165925628039986,
+            "peak_allocated_gib": 0.8876609802246094,
+            "peak_reserved_gib": 1.24609375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8285999894142151,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 2.163465242367238,
+            "peak_allocated_gib": 0.8876609802246094,
+            "peak_reserved_gib": 1.24609375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8287708163261414,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          },
+          {
+            "seconds": 2.198334238026291,
+            "peak_allocated_gib": 0.8876609802246094,
+            "peak_reserved_gib": 1.24609375,
+            "metrics": [
+              1.3885936737060547,
+              0.04334966838359833,
+              0.7643914222717285,
+              0.8281722068786621,
+              0.25,
+              0.75,
+              0.5407954454421997
+            ]
+          }
+        ],
+        "median_seconds": 2.165925628039986,
+        "peak_allocated_gib": 0.8876609802246094,
+        "peak_reserved_gib": 1.24609375,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "checks": {
+        "head_gradient": {
+          "relative_error": 0.0024815899332767738,
+          "cosine": 0.9999979295066357,
+          "max_error": 4.406273365020752e-05
+        },
+        "head_after": {
+          "relative_error": 2.5226953097026285e-06,
+          "cosine": 0.9999999999968181,
+          "max_error": 1.9955914467573166e-06
+        },
+        "critic_after": {
+          "relative_error": 0.0,
+          "cosine": 1.0,
+          "max_error": 0.0
+        }
+      },
+      "paths": {
+        "baseline": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/jit_train_baseline",
+        "optimized": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/jit_train_low_memory"
+      }
+    },
+    {
+      "name": "RAEv2",
+      "baseline": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "raev2",
+        "batch": 1,
+        "mode": "baseline",
+        "chunk": 1,
+        "channels_last": false,
+        "checkpoint_feedback": false,
+        "precast": false,
+        "gpu": {
+          "index": 3,
+          "uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "50k_depth8",
+          "steps": 50000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/depth8_continuation/raev2/training/head.pt"
+        },
+        "setup_seconds": 0.00012449687346816063,
+        "iterations": [
+          {
+            "seconds": 12.364397136028856,
+            "peak_allocated_gib": 7.359471321105957,
+            "peak_reserved_gib": 7.4921875,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.1773877143859863,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 11.831706007942557,
+            "peak_allocated_gib": 7.3588690757751465,
+            "peak_reserved_gib": 7.49609375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.171931028366089,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 11.57727414323017,
+            "peak_allocated_gib": 7.3588690757751465,
+            "peak_reserved_gib": 7.49609375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.1718263626098633,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 12.19191122893244,
+            "peak_allocated_gib": 7.3588690757751465,
+            "peak_reserved_gib": 7.49609375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.171462059020996,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          }
+        ],
+        "median_seconds": 11.831706007942557,
+        "peak_allocated_gib": 7.3588690757751465,
+        "peak_reserved_gib": 7.49609375,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "optimized": {
+        "complete": true,
+        "kind": "paired_full_binary_gan_update",
+        "model": "raev2",
+        "batch": 1,
+        "mode": "optimized",
+        "chunk": 0,
+        "channels_last": false,
+        "checkpoint_feedback": true,
+        "precast": true,
+        "gpu": {
+          "index": 3,
+          "uuid": "GPU-7d3e4e7d-abfa-e06e-c264-796052797949",
+          "memory_mib": 18,
+          "utilization": 0,
+          "compute_pids": []
+        },
+        "torch": "2.11.0+cu130",
+        "checkpoint": null,
+        "head_provenance": {
+          "kind": "50k_depth8",
+          "steps": 50000,
+          "path": "/home/zhoushunyu/data/eqvae/experiments/raev2_shallow_ig_20260914/depth8_continuation/raev2/training/head.pt"
+        },
+        "setup_seconds": 2.0916977180168033,
+        "iterations": [
+          {
+            "seconds": 3.5867358869872987,
+            "peak_allocated_gib": 2.827887535095215,
+            "peak_reserved_gib": 3.67578125,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.1705515384674072,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 3.173840085044503,
+            "peak_allocated_gib": 2.828864574432373,
+            "peak_reserved_gib": 3.677734375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.1673948764801025,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 3.172941619064659,
+            "peak_allocated_gib": 2.828864574432373,
+            "peak_reserved_gib": 3.677734375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.167287826538086,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          },
+          {
+            "seconds": 3.1509606610052288,
+            "peak_allocated_gib": 2.828864574432373,
+            "peak_reserved_gib": 3.677734375,
+            "metrics": [
+              1.3331753015518188,
+              0.031562916934490204,
+              0.7789829969406128,
+              3.168365240097046,
+              1.0,
+              1.0,
+              1.0524182319641113
+            ]
+          }
+        ],
+        "median_seconds": 3.172941619064659,
+        "peak_allocated_gib": 2.828864574432373,
+        "peak_reserved_gib": 3.677734375,
+        "excludes": "one-time model/data loading, graph capture, checkpoint writes",
+        "unchanged": "operator compute precision, batch, deployed step count/solver, loss, R1, alternating update, full input Jacobians"
+      },
+      "checks": {
+        "head_gradient": {
+          "relative_error": 0.007557124195894774,
+          "cosine": 0.9999714449381292,
+          "max_error": 7.358752191066742e-05
+        },
+        "head_after": {
+          "relative_error": 3.828918780806765e-06,
+          "cosine": 0.99999999999267,
+          "max_error": 2.000480890274048e-06
+        },
+        "critic_after": {
+          "relative_error": 0.0,
+          "cosine": 1.0000000000000002,
+          "max_error": 0.0
+        }
+      },
+      "paths": {
+        "baseline": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/raev2_train_baseline",
+        "optimized": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/raev2_train_optimized"
+      }
+    }
+  ],
+  "training_checks": {
+    "sit_ddp_smoke": {
+      "complete": {
+        "complete": true,
+        "step": 1460,
+        "model": "sit_small",
+        "updated_utc": "2026-09-19T09:09:08.411200+00:00"
+      },
+      "latest": {
+        "phase": "complete",
+        "step": 1460,
+        "checkpoint": "/data/users/zhoushunyu/eqvae/projects/classifier_guidance/performance_20260919/sit_ddp_smoke/checkpoint_001460.pt",
+        "sha256": "0bc11d538079e3ff5a34e2d28fc8c8f8455c26439de8f026ee7c731c1cc34e8f",
+        "replicas_identical": true
+      },
+      "exit": {
+        "exit_code": 0,
+        "finished_utc": "2026-09-19T09:09:10.204393+00:00"
+      },
+      "path": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/sit_ddp_smoke"
+    },
+    "sit_resume_smoke": {
+      "complete": {
+        "complete": true,
+        "step": 1462,
+        "model": "sit_small",
+        "updated_utc": "2026-09-19T09:13:34.047515+00:00"
+      },
+      "latest": {
+        "phase": "complete",
+        "step": 1462,
+        "checkpoint": "/data/users/zhoushunyu/eqvae/projects/classifier_guidance/performance_20260919/sit_resume_smoke/checkpoint_001462.pt",
+        "sha256": "3f63c45cbc6a6d29dfd6871eee5f2dc1e161dd91ec78ec601e21df6a783ef71d",
+        "replicas_identical": true
+      },
+      "exit": {
+        "exit_code": 0,
+        "finished_utc": "2026-09-19T09:13:35.438714+00:00"
+      },
+      "path": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/sit_resume_smoke"
+    },
+    "jit_train_smoke": {
+      "complete": {
+        "complete": true,
+        "step": 2,
+        "model": "jit",
+        "updated_utc": "2026-09-19T09:19:15.825247+00:00"
+      },
+      "latest": {
+        "phase": "complete",
+        "step": 2,
+        "checkpoint": "/data/users/zhoushunyu/eqvae/projects/classifier_guidance/performance_20260919/jit_train_smoke/checkpoint_000002.pt",
+        "sha256": "af898db690ac40ddfb37d58da27ed3614497a9ae4561535a083e5c5b1ae1f720",
+        "replicas_identical": true
+      },
+      "exit": {
+        "exit_code": 0,
+        "finished_utc": "2026-09-19T09:19:17.174364+00:00"
+      },
+      "path": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/jit_train_smoke"
+    },
+    "raev2_train_smoke": {
+      "complete": {
+        "complete": true,
+        "step": 2,
+        "model": "raev2",
+        "updated_utc": "2026-09-19T09:18:41.521307+00:00"
+      },
+      "latest": {
+        "phase": "complete",
+        "step": 2,
+        "checkpoint": "/data/users/zhoushunyu/eqvae/projects/classifier_guidance/performance_20260919/raev2_train_smoke/checkpoint_000002.pt",
+        "sha256": "39ee03dfd83f5b78ae483f741d13d71d8f1464298b8d2974c07ba71a8c489c64",
+        "replicas_identical": true
+      },
+      "exit": {
+        "exit_code": 0,
+        "finished_utc": "2026-09-19T09:18:43.001745+00:00"
+      },
+      "path": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/performance_20260919/raev2_train_smoke"
+    }
+  }
+}
