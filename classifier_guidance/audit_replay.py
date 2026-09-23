@@ -21,10 +21,13 @@ def main(args):
     from .sampler import for_adapter
     from .reference import sample
     from .features import enable_backbone_checkpointing
+    from .heads import deepen, architecture
     from experiments.guidance_loss_50k_20260914.config import sha
 
     torch.manual_seed(2026091902)
-    adapter, head, provenance = load(args.model)
+    adapter, head, provenance = load(args.model, args.head_checkpoint, args.head_key)
+    if args.extra_hidden_layer:
+        head = deepen(head)
     if args.model != 'sit_small':
         materialize_autocast_weights(adapter)
     if args.checkpoint_backbone:
@@ -50,6 +53,13 @@ def main(args):
                    gradient_cosine=float(torch.nn.functional.cosine_similarity(g, r, dim=0)))
         assert row['endpoint_max_error'] == 0, row
         assert row['gradient_relative_error'] < .005 and row['gradient_cosine'] > .9999, row
+        row['extra_gradients'] = {}
+        for (name, _), value, expected_gradient in zip(head.named_parameters(), derivatives, reference):
+            if name.startswith('hidden_residual.'):
+                norm = float(expected_gradient.norm())
+                error = float((value-expected_gradient).norm())/(norm+1e-12)
+                assert norm > 0 and error < .005, (name, norm, error)
+                row['extra_gradients'][name] = dict(reference_norm=norm, relative_error=error)
         print(row, flush=True)
         rows.append(row)
         with torch.no_grad():
@@ -62,7 +72,7 @@ def main(args):
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(dict(complete=True, model=args.model, batch=args.batch,
         checkpoint_backbone=args.checkpoint_backbone, gpu=gpu, torch=torch.__version__,
-        head_provenance=provenance, sources=sources, checks=rows), indent=2)+'\n')
+        head_provenance=provenance, head_architecture=architecture(head), sources=sources, checks=rows), indent=2)+'\n')
 
 
 if __name__ == '__main__':
@@ -71,5 +81,8 @@ if __name__ == '__main__':
     p.add_argument('--model', choices=('sit_small', 'jit', 'raev2'), required=True)
     p.add_argument('--batch', type=int, required=True)
     p.add_argument('--checkpoint-backbone', action='store_true')
+    p.add_argument('--head-checkpoint', type=Path)
+    p.add_argument('--head-key', default='ema')
+    p.add_argument('--extra-hidden-layer', action='store_true')
     p.add_argument('--output', type=Path, required=True)
     main(p.parse_args())

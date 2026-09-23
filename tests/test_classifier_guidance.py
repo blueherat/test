@@ -130,7 +130,8 @@ def test_parameter_replacement_and_capture_contracts_fail_explicitly():
 
 
 @pytest.mark.parametrize('heun', [False, True])
-def test_binary_gan_update_matches_direct_unroll_with_updated_critic(heun):
+@pytest.mark.parametrize('observe', [False, True])
+def test_binary_gan_update_matches_direct_unroll_with_updated_critic(heun, observe):
     """Check full first-order GAN update, feature R1 and frozen-input derivatives."""
     import copy
     from torch.nn import functional as F
@@ -163,9 +164,10 @@ def test_binary_gan_update_matches_direct_unroll_with_updated_critic(heun):
     od = torch.optim.Adam(critic.parameters(), lr=1e-3, betas=(0., .99))
     rw = torch.optim.Adam(direct_head.parameters(), lr=1e-3, betas=(.9, .99))
     rd = torch.optim.Adam(direct_critic.parameters(), lr=1e-3, betas=(0., .99))
+    diagnostics = {} if observe else None
     actual = step(head=head, critic=critic, optimizer_w=ow, optimizer_d=od,
                   sample=engine, decode=decode, feature=feature, real=real, noise=noise,
-                  labels=labels, r1=.7, feature_chunk=0)
+                  labels=labels, r1=.7, feature_chunk=0, diagnostics=diagnostics)
 
     x = noise
     for i, enabled in enumerate(active):
@@ -192,3 +194,10 @@ def test_binary_gan_update_matches_direct_unroll_with_updated_critic(heun):
         for key, value in left.state_dict().items():
             torch.testing.assert_close(value, right.state_dict()[key], rtol=1e-12, atol=1e-12)
     assert all(p.grad is None for module in (decode, feature) for p in module.parameters())
+    if observe:
+        for key in ('d_gradient_norm', 'd_update_norm', 'head_update_norm',
+                    'g_feature_gradient_norm_mean', 'g_endpoint_gradient_norm_mean'):
+            assert diagnostics[key] > 0
+        assert 0 < diagnostics['g_logit_gradient_mean'] < 1
+        assert diagnostics['head_zero_gradient_fraction'] == 0
+        assert all(not v.requires_grad and torch.isfinite(v).all() for v in diagnostics.values())

@@ -19,6 +19,7 @@ from .data import ImageNetData
 from .features import enable_feedback_checkpointing, enable_backbone_checkpointing
 from .sampler import for_adapter
 from .training import step as train_step
+from .heads import deepen, load_weights, architecture, restore_head_optimizer
 
 
 def main(args):
@@ -40,6 +41,9 @@ def main(args):
             raise RuntimeError(f'Source changed since launch: {path}')
     torch.manual_seed(args.seed)
     adapter, head, provenance = load(args.model, args.head_checkpoint, args.head_key)
+    state = torch.load(args.resume, map_location='cpu', weights_only=False) if args.resume else None
+    if args.extra_hidden_layer or (state is not None and 'hidden_residual.weight' in state['head']):
+        head = deepen(head)
     if args.precast:
         materialize_autocast_weights(adapter)
     if args.model == 'jit' and not args.resume and provenance['steps'] < 50000 and not args.engineering_fixture:
@@ -57,12 +61,12 @@ def main(args):
     od = torch.optim.Adam(critic.parameters(),lr=args.lr_d,betas=(0.,.99))
     start = 0
     if args.resume:
-        state = torch.load(args.resume,map_location='cpu',weights_only=False)
         assert state['objective'] == 'binary_gan'
         assert state.get('model','sit_small') == args.model
         assert state.get('data_protocol') == 'real_rgb_official_continuous_v2'
-        head.load_state_dict(state['head']);ema.load_state_dict(state['ema']);critic.load_state_dict(state['critic'])
-        ow.load_state_dict(state['optimizer_w']);od.load_state_dict(state['optimizer_d'])
+        load_weights(head,state['head']);load_weights(ema,state['ema']);critic.load_state_dict(state['critic'])
+        new_parameters = restore_head_optimizer(ow,state['optimizer_w'],head,state['head'],state.get('head_parameter_names'))
+        od.load_state_dict(state['optimizer_d'])
         for group in ow.param_groups: group['lr'] = args.lr_w
         for group in od.param_groups: group['lr'] = args.lr_d
         start = int(state['step'])
@@ -71,7 +75,8 @@ def main(args):
                           steps=start,initial_fixture=provenance)
         if rank == 0:
             c.atomic(run/'resume.json',dict(checkpoint=str(args.resume),sha256=c.sha(args.resume),
-                saved_world_size=len(state['rngs']),world_size=world,exact_global_stream=len(state['rngs'])==world))
+                saved_world_size=len(state['rngs']),world_size=world,exact_global_stream=len(state['rngs'])==world,
+                head_architecture=architecture(head),new_optimizer_parameters=new_parameters))
         del state
     else:
         total=torch.zeros(2048,device='cuda',dtype=torch.float64);squares=torch.zeros_like(total)
@@ -94,7 +99,7 @@ def main(args):
         c.atomic(run/'initial_state.json',dict(head=fingerprint(head),critic=fingerprint(critic),
             head_provenance=provenance,data=data.provenance,setup_seconds=time.perf_counter()-setup,
             model=args.model,steps=64 if args.model=='sit_small' else 100,world_size=world,
-            precision='original',feedback=args.feedback))
+            precision='original',feedback=args.feedback,head_architecture=architecture(head)))
     del example,labels
     adapter.values.clear()
     c.barrier()
@@ -111,6 +116,7 @@ def main(args):
             state=dict(step=step,objective='binary_gan',model=args.model,data_protocol='real_rgb_official_continuous_v2',
                 head=cpu(head),ema=cpu(ema),critic=cpu(critic),optimizer_w=ow.state_dict(),optimizer_d=od.state_dict(),
                 rngs=[r['rng'] for r in replicas],args={k:str(v) if isinstance(v,Path) else v for k,v in vars(args).items()},
+                head_architecture=architecture(head),head_parameter_names=[name for name,_ in head.named_parameters()],
                 request_sha256=c.sha(run/'request.json'))
             path=run/f'checkpoint_{step:06d}.pt';temporary=path.with_suffix('.tmp')
             torch.save(state,temporary);temporary.replace(path)
@@ -162,6 +168,7 @@ if __name__=='__main__':
     p.add_argument('--resume',type=Path)
     p.add_argument('--head-checkpoint',type=Path,help='Explicit initial MLP head checkpoint')
     p.add_argument('--head-key',default='ema',help='Nested state key, e.g. ema.mlp or ema.context')
+    p.add_argument('--extra-hidden-layer',action='store_true',help='Add one zero-initialized hidden residual layer to the existing MLP')
     p.add_argument('--coefficient',type=float,required=True,help='Extra coefficient a: S + a f(t) (S-W); for RAE total w=1+a')
     p.add_argument('--feedback',choices=('checkpoint','chunk','direct'),default='checkpoint')
     p.add_argument('--feature-chunk',type=int,default=1)

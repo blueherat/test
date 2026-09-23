@@ -41,6 +41,9 @@ def main(args):
         c.atomic(run / "quality" / branch / "baseline_parity.json", dict(passed=True,
             preserved_baseline_batch=str(previous), checkpoint_sha256=digest,
             same_noise=True, same_solver=True, same_pixels=True, checked_utc=c.now()))
+    if 'hidden_residual.weight' in state[args.weights]:
+        from classifier_guidance.heads import deepen
+        head = deepen(head)
     head.load_state_dict(state[args.weights])
     c.barrier()
     scores = []

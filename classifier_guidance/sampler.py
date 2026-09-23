@@ -36,7 +36,8 @@ class FieldReplay:
     but must rebuild this object after replacing parameter objects/storage.
     """
 
-    def __init__(self, field, example, labels, parameters, *, graphs=True, time_dtype=None):
+    def __init__(self, field, example, labels, parameters, *, graphs=True, time_dtype=None,
+                 active_values=(False, True)):
         self.field, self.parameters = field, tuple(parameters)
         self.graphs = graphs
         self.shape = example.shape
@@ -57,7 +58,7 @@ class FieldReplay:
             stream = torch.cuda.Stream()
             stream.wait_stream(torch.cuda.current_stream())
             with torch.cuda.stream(stream):
-                for active in (False, True):
+                for active in active_values:
                     for backward in (False, True):
                         for _ in range(3):
                             self._execute(active, backward)
@@ -116,6 +117,7 @@ class _Rollout(torch.autograd.Function):
             predicted = state + h*first
             if engine.heun:
                 predictors.append(predicted)
+            if engine.heun_steps[i]:
                 second = engine.replay.run(predicted, u, labels, amount, active)
                 state = state + (h/2)*(first+second)
             else:
@@ -145,7 +147,7 @@ class _Rollout(torch.autograd.Function):
         for i in reversed(range(n)):
             t, u, a = e.grid[i], e.grid[i+1], e.amounts[i]
             h = u-t
-            if e.heun:
+            if e.heun_steps[i]:
                 second = e.replay.run(predictors[i], u, labels, a, e.active[i], gradient*(h/2))
                 accumulate(second[1:])
                 first = e.replay.run(states[i], t, labels, a, e.active[i], gradient*(h/2)+h*second[0])
@@ -171,8 +173,12 @@ class Sampler:
         self.active = tuple(active)
         if len(self.grid) != len(self.active)+1 or len(self.amounts) != len(self.active):
             raise ValueError('Inconsistent schedule lengths')
-        self.heun = heun
-        self.replay = FieldReplay(field, example, labels, self.parameters, graphs=graphs, time_dtype=self.grid.dtype)
+        self.heun_steps = (heun,)*len(self.active) if isinstance(heun, bool) else tuple(heun)
+        if len(self.heun_steps) != len(self.active) or any(not isinstance(v, bool) for v in self.heun_steps):
+            raise ValueError('Specify one boolean Heun/Euler choice per interval')
+        self.heun = any(self.heun_steps)
+        self.replay = FieldReplay(field, example, labels, self.parameters, graphs=graphs,
+                                 time_dtype=self.grid.dtype, active_values=tuple(sorted(set(self.active))))
 
     def check_parameters(self, parameters):
         current = tuple((id(p), p.data_ptr(), p.shape, p.dtype) for p in self.head.parameters())
@@ -183,7 +189,7 @@ class Sampler:
         return _Rollout.apply(self, noise, labels, *self.parameters)
 
 
-def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
+def prepare_adapter(adapter, head, device):
     if any(p.requires_grad for p in adapter.model.parameters()):
         raise ValueError('The strong model must be frozen')
     if any(m.training for root in (adapter.model, head) for m in root.modules()):
@@ -206,7 +212,7 @@ def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
         # Compute on CPU once (preserving its rounding), then keep a GPU buffer.
         embed = adapter.model.t_embedder
         dim = embed.frequency_embedding_size
-        frequencies = torch.exp(-math.log(10000) * torch.arange(dim//2, dtype=torch.float32)/(dim//2)).to(example.device)
+        frequencies = torch.exp(-math.log(10000) * torch.arange(dim//2, dtype=torch.float32)/(dim//2)).to(device)
 
         def timestep_embedding(t, dimension, max_period=10000):
             if dimension != dim or max_period != 10000:
@@ -216,6 +222,10 @@ def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
             return torch.cat([result, torch.zeros_like(result[:, :1])], dim=-1) if dim % 2 else result
 
         embed.timestep_embedding = timestep_embedding
+
+
+def for_adapter(adapter, head, example, labels, coefficient, *, graphs=True):
+    prepare_adapter(adapter, head, example.device)
     if adapter.name == 'raev2':
         grid = adapter.rt.grid
         left = grid[:-1].cpu().tolist()

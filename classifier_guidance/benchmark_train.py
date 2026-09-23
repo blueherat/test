@@ -29,6 +29,7 @@ def main(args):
     from .sampler import for_adapter
     from .training import step
     from .features import enable_feedback_checkpointing,enable_backbone_checkpointing
+    from .heads import deepen,architecture,restore_head_optimizer
 
     torch.manual_seed(2026091901)
     adapter,head,provenance=load(args.model)
@@ -37,6 +38,9 @@ def main(args):
     if args.model=='sit_small':
         state=torch.load(checkpoint,map_location='cpu',weights_only=False)
         head.load_state_dict(state['head']);critic.load_state_dict(state['critic'])
+    if args.extra_hidden_layer:
+        shallow_head=head
+        head=deepen(head)
     if args.precast:
         materialize_autocast_weights(adapter)
     feature=DifferentiableInception2048().cuda().eval().requires_grad_(False)
@@ -51,11 +55,25 @@ def main(args):
     real,noise,labels=ImageNetData(args.model,2026091901).draw(args.batch)
     ow=torch.optim.Adam(head.parameters(),lr=1e-6,betas=(.9,.99))
     od=torch.optim.Adam(critic.parameters(),lr=1e-4,betas=(0.,.99))
+    if args.model=='sit_small' and args.extra_hidden_layer:
+        restore_head_optimizer(ow,state['optimizer_w'],head,state['head'])
+        # The benchmark resets all D/W/Adam states before each paired update.
+        state=dict(state,head={k:v.detach().cpu().clone() for k,v in head.state_dict().items()},
+                   optimizer_w=ow.state_dict())
     if args.model!='sit_small':
         cpu=lambda m:{k:v.detach().cpu().clone() for k,v in m.state_dict().items()}
         state=dict(head=cpu(head),critic=cpu(critic),optimizer_w=ow.state_dict(),optimizer_d=od.state_dict())
         checkpoint=None
     coefficient=1.05 if args.model=='sit_small' else .3 if args.model=='jit' else .35
+    initial_parity=None
+    if args.extra_hidden_layer:
+        with torch.no_grad():
+            old_endpoint=reference_sample(adapter,shallow_head,noise,labels,coefficient)
+            new_endpoint=reference_sample(adapter,head,noise,labels,coefficient)
+        torch.testing.assert_close(new_endpoint,old_endpoint,rtol=0,atol=0)
+        initial_parity=dict(exact=True,max_abs_difference=float((new_endpoint-old_endpoint).abs().max()))
+        del old_endpoint,new_endpoint,shallow_head
+        adapter.values.clear()
     start=time.perf_counter()
     if args.mode=='baseline':
         sample=lambda z,y:reference_sample(adapter,head,z,y,coefficient)
@@ -97,6 +115,8 @@ def main(args):
                 precast=args.precast,gpu=gpu,torch=torch.__version__,
                 audit_repeat_gradients=args.audit_repeat_gradients,
                 checkpoint=str(checkpoint) if checkpoint else None,head_provenance=provenance,
+                head_architecture=architecture(head),
+                initial_shallow_endpoint_parity=initial_parity,
                 setup_seconds=setup,iterations=rows,
                 median_seconds=statistics.median(r['seconds'] for r in rows[1:]),
                 peak_allocated_gib=max(r['peak_allocated_gib'] for r in rows[1:]),
@@ -119,5 +139,6 @@ if __name__=='__main__':
     p.add_argument('--checkpoint-backbone',action='store_true')
     p.add_argument('--audit-repeat-gradients',action='store_true')
     p.add_argument('--repeats',type=int,default=3)
+    p.add_argument('--extra-hidden-layer',action='store_true')
     p.add_argument('--output',type=Path,required=True)
     main(p.parse_args())

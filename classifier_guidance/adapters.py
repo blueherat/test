@@ -86,6 +86,9 @@ def load(model, head_checkpoint=None, head_key='ema'):
         weights = state
         for key in head_key.split('.'):
             weights = weights[key]
+        if 'hidden_residual.weight' in weights:
+            from .heads import deepen
+            head = deepen(head)
         head.load_state_dict(weights, strict=True)
         provenance = dict(kind='explicit_checkpoint', path=str(head_checkpoint), key=head_key,
                           steps=state.get('steps', state.get('step', 0)))
