@@ -1,5 +1,16 @@
 # Research experiments
 
+## Current workspace entry points (2026-09-23)
+
+- Training, capacity comparisons, signed schedules and checkpoint evaluation: [classifier guidance](../classifier_guidance/README.md).
+- Current reports and theory index: [classifier guidance reports](../docs/classifier_guidance/README.md).
+- Small classifier/control checks: [2026-09-19 analytical checks](classifier_guidance_theory_20260919/README.md).
+- Self-guidance theory, schedule shape and backward audits: [2026-09-22/23 scripts and evidence](theory_self_guidance_20260922/README.md).
+
+The dated sections below retain their original research context. Historical module
+paths remain in place for imports and source-hash checks. Large local outputs and
+checkpoints live under `$HOME/data/eqvae/`; see [storage and archives](../archive/README.md).
+
 ## 2026-09-07: renewed RAEv2 guidance study
 
 The latest **three additional idea rounds are complete and closed**. The 3%

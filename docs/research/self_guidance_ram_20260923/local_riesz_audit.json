@@ -1,0 +1,91 @@
+{
+  "kind": "CPU Gaussian/Heun population identities; not image training",
+  "interval": 1,
+  "exact_discrete_gradient": -0.11791125586207858,
+  "exact_density_response_gradient": -0.1179112558620786,
+  "polynomial_Riesz_fit_L2_error": 1.584624401773881e-16,
+  "Riesz_coefficients": [
+    0.01008239194467672,
+    -5.456173579851825e-18,
+    9.296067487270446e-18,
+    0.02254534219411997,
+    0.1267584861022769,
+    -0.05121940622117014
+  ],
+  "local_finite_difference": [
+    {
+      "epsilon": 0.4,
+      "contrast": -0.11795000249043175,
+      "derivative_error": 3.8746628353167334e-05
+    },
+    {
+      "epsilon": 0.2,
+      "contrast": -0.11792094251916796,
+      "derivative_error": 9.68665708937777e-06
+    },
+    {
+      "epsilon": 0.1,
+      "contrast": -0.11791367752634896,
+      "derivative_error": 2.421664270377266e-06
+    },
+    {
+      "epsilon": 0.05,
+      "contrast": -0.11791186127815267,
+      "derivative_error": 6.054160740925907e-07
+    },
+    {
+      "epsilon": 0.025,
+      "contrast": -0.11791140721609583,
+      "derivative_error": 1.5135401724986064e-07
+    }
+  ],
+  "doubly_robust_finite_contrast": {
+    "epsilon": 0.1,
+    "true_contrast": -0.11791367752634896,
+    "cases": [
+      {
+        "value_error": 0.0,
+        "response_error": 0.4,
+        "estimate": -0.11791367752634851,
+        "actual_bias": 4.440892098500626e-16,
+        "product_bias": 0.0
+      },
+      {
+        "value_error": 0.4,
+        "response_error": 0.0,
+        "estimate": -0.11791367752634752,
+        "actual_bias": 1.4432899320127035e-15,
+        "product_bias": 0.0
+      },
+      {
+        "value_error": 0.4,
+        "response_error": 0.4,
+        "estimate": -0.6211527714378503,
+        "actual_bias": -0.5032390939115013,
+        "product_bias": -0.5032390939115029
+      },
+      {
+        "value_error": 0.2,
+        "response_error": 0.2,
+        "estimate": -0.2437234510042237,
+        "actual_bias": -0.12580977347787475,
+        "product_bias": -0.12580977347787572
+      },
+      {
+        "value_error": 0.1,
+        "response_error": 0.1,
+        "estimate": -0.1493661208958172,
+        "actual_bias": -0.03145244336946823,
+        "product_bias": -0.03145244336946893
+      }
+    ]
+  },
+  "incorrect_marginal_score": {
+    "actual_density": "N(0,I)",
+    "substituted_score": "-diag(1,2)x",
+    "control": "rotation Jx",
+    "reward": "x0*x1",
+    "correct_gradient": 0.0,
+    "wrong_score_gradient": 1.0
+  }
+}

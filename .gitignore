@@ -45,3 +45,13 @@ research_repos/
 /data
 /runs
 /classifier_guidance/local/
+
+# Live training monitors keep refreshing these local previews. Commit dated
+# snapshots under figures/snapshots/ instead; static evaluation figures remain tracked.
+/docs/classifier_guidance/figures/jit_gan_schedule.png
+/docs/classifier_guidance/figures/jit_gan_health.png
+/docs/classifier_guidance/figures/sit_joint_schedule.png
+/docs/classifier_guidance/figures/sit_joint_guidance.png
+/docs/classifier_guidance/figures/sit_joint_gan_health.png
+/docs/classifier_guidance/figures/sit_joint_status.json
+/docs/classifier_guidance/figures/*.tmp

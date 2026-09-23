@@ -1,0 +1,61 @@
+{
+  "kind": "Analytic input-shaping illustration; no fit to JiT or SiT",
+  "mode_frequency": 6.283185307179586,
+  "mode_period": 1.0,
+  "signed_shaper": {
+    "times": [
+      0.0,
+      0.16666666666666666,
+      0.3333333333333333
+    ],
+    "weights": [
+      1.0,
+      -1.0,
+      1.0
+    ],
+    "dc_gain": 1.0,
+    "modal_residual": 1.5700924586837752e-16,
+    "duration": 0.3333333333333333
+  },
+  "positive_shaper": {
+    "times": [
+      0.0,
+      0.5
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "dc_gain": 1.0,
+    "modal_residual": 6.123233995736766e-17,
+    "duration": 0.5
+  },
+  "sensitivity": [
+    {
+      "relative_frequency_error": -0.1,
+      "signed_residual": 0.17557050458494633,
+      "positive_residual": 0.15643446504023092
+    },
+    {
+      "relative_frequency_error": -0.05,
+      "signed_residual": 0.08927807003005434,
+      "positive_residual": 0.078459095727845
+    },
+    {
+      "relative_frequency_error": 0.0,
+      "signed_residual": 1.5700924586837752e-16,
+      "positive_residual": 6.123233995736766e-17
+    },
+    {
+      "relative_frequency_error": 0.05,
+      "signed_residual": 0.09201900052090627,
+      "positive_residual": 0.07845909572784487
+    },
+    {
+      "relative_frequency_error": 0.1,
+      "signed_residual": 0.18652671384839953,
+      "positive_residual": 0.15643446504023104
+    }
+  ],
+  "caveat": "A control-input filter with unit DC gain and one modal zero. It does not demonstrate that a learned guidance curve suppresses this mode."
+}

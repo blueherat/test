@@ -1,0 +1,62 @@
+{
+  "kind": "exact Gaussian population covariance witness; not image FID",
+  "solver": "scipy.linalg.expm, continuous linear flow evaluated exactly up to roundoff",
+  "target_covariance": [
+    [
+      3.2500000000000004,
+      1.2990381056766578
+    ],
+    [
+      1.2990381056766578,
+      1.7499999999999996
+    ]
+  ],
+  "strong_generator": [
+    [
+      0.6931471805599453,
+      0.0
+    ],
+    [
+      0.0,
+      0.0
+    ]
+  ],
+  "weak_isotropic_rate": 0.34657359027997264,
+  "weak_covariance_formula": "exp(2*b*t) * I, independent of omega for all t",
+  "baseline_search_a_bounds": [
+    -0.99,
+    5
+  ],
+  "baseline_a": -0.42373982291118883,
+  "baseline_covariance": [
+    [
+      2.9819584945330635,
+      0.0
+    ],
+    [
+      0.0,
+      1.341400293576638
+    ]
+  ],
+  "baseline_gaussian_W2_squared": 0.3704116485379334,
+  "learned_a": 0.21749745060590234,
+  "learned_omega": -5.040356346170237,
+  "learned_covariance": [
+    [
+      3.249999999999999,
+      1.2990381056766582
+    ],
+    [
+      1.2990381056766582,
+      1.7500000000000007
+    ]
+  ],
+  "learned_gaussian_W2_squared_roundoff": 1.7763568394002505e-15,
+  "weak_covariance_max_error_101_times": 2.1573118156339422e-13,
+  "analytic_obstruction": "With omega=0, any integrable scalar a(t) leaves guided covariance diagonal.",
+  "limitations": [
+    "Uses covariance least squares, not GAN training.",
+    "No learned neural head, finite-step Heun, image data, or image quality evaluation.",
+    "A general nonlinear marginal-preserving weak field remains an open implementation problem."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "kind": "Analytic stable-oscillator CPU example; illustration, not fit to learned schedules",
+  "horizon": 1.0,
+  "damping_gamma": 1.5,
+  "damped_frequency": 9.42477796076938,
+  "natural_frequency": 9.543397697350992,
+  "plant_eigenvalues": [
+    {
+      "real": -1.5,
+      "imag": 9.424777960769381
+    },
+    {
+      "real": -1.5,
+      "imag": -9.424777960769381
+    }
+  ],
+  "plant_matrix": [
+    [
+      0.0,
+      1.0
+    ],
+    [
+      -91.07643960980423,
+      -3.0
+    ]
+  ],
+  "input_direction": [
+    0.0,
+    1.0
+  ],
+  "target": [
+    0.02,
+    0.0
+  ],
+  "endpoint": [
+    0.019999999999757243,
+    8.564386179410466e-13
+  ],
+  "endpoint_error": 8.901787270093264e-13,
+  "controllability_gramian": [
+    [
+      0.0017388560929388944,
+      -2.168404344971009e-19
+    ],
+    [
+      -2.168404344971009e-19,
+      0.1583688219386893
+    ]
+  ],
+  "gramian_eigenvalues": [
+    0.0017388560929388944,
+    0.1583688219386893
+  ],
+  "dual_vector": [
+    11.501814371652447,
+    1.574841812499977e-17
+  ],
+  "energy": 0.23003628743304896,
+  "energy_from_gramian": 0.23003628743304894,
+  "input_formula": "exp(-gamma*(T-t))*[C*sin(wd*(T-t))+D*cos(wd*(T-t))]",
+  "input_second_order_ode": "a''-2*gamma*a'+omega0^2*a=0",
+  "analytic_input_error": 2.220446049250313e-16,
+  "input_ode_residual": 2.842170943040401e-14,
+  "internal_zero_crossings": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "lobe_peaks": [
+    {
+      "time": 0.183125,
+      "value": 0.3540812245210164
+    },
+    {
+      "time": 0.516875,
+      "value": -0.583783012328058
+    },
+    {
+      "time": 0.85,
+      "value": 0.9624959160596936
+    }
+  ],
+  "input_at_endpoints": [
+    9.65288004477268e-17,
+    1.574841812499977e-17
+  ],
+  "heun_dual_recurrence": {
+    "step": 0.016666666666666666,
+    "trace_inverse": 2.0256589146018094,
+    "determinant_inverse": 1.051770749190479,
+    "maximum_residual": 1.0408340855860843e-17
+  },
+  "nonoscillatory_counterexample": {
+    "eigenvalues": [
+      -1.0,
+      -2.0,
+      -3.0
+    ],
+    "target": [
+      0.008175482638042936,
+      0.008110826352677375,
+      0.007991507523632452
+    ],
+    "input_at_0_half_1": [
+      0.015795265835904723,
+      -0.014018420013775568,
+      0.11671210535902277
+    ],
+    "internal_zero_crossings": [
+      0.25,
+      0.75
+    ],
+    "caveat": "Three real stable modes already permit positive-negative-positive; the shape does not identify a complex pair."
+  },
+  "interpretation": "Late-amplified input is a terminal-dual boundary-value signal. In remaining time T-t its envelope decays; this is not a proof of exploding backpropagation."
+}

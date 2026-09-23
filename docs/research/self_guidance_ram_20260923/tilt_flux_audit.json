@@ -1,0 +1,71 @@
+{
+  "setting": {
+    "old_endpoint_covariance": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "target_endpoint_covariance": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        2.0
+      ]
+    ],
+    "omega": 0.8,
+    "reward": "R(x)=x_2^2/4; normalized exponential weight exp(R)/sqrt(2)",
+    "old_field": "canonical old velocity + omega*J*x",
+    "correct_field": "canonical tilted velocity + omega*J*x/h_t(x)",
+    "h": "tilted_interpolant_density / old_interpolant_density"
+  },
+  "local_checks": {
+    "max_normal_equation_residual": 1.7763568394002505e-15,
+    "max_probability_current_error": 2.7755575615628914e-17,
+    "max_corrected_stein_residual_finite_difference": 4.7276405013008116e-11,
+    "rms_naive_stein_residual": 0.5796320897865603
+  },
+  "endpoint_checks": {
+    "sobol_sample_count": 32768,
+    "corrected_endpoint_second_moment": [
+      [
+        1.0000439499152731,
+        0.00020870181751115536
+      ],
+      [
+        0.00020870181751115536,
+        1.9997565622617797
+      ]
+    ],
+    "corrected_second_moment_max_abs_error": 0.0002434377382203312,
+    "corrected_endpoint_mean": [
+      -1.2962923901242407e-05,
+      2.7667203847063488e-06
+    ],
+    "naive_endpoint_covariance_exact_ode": [
+      [
+        1.1794652892973183,
+        -0.360070403224213
+      ],
+      [
+        -0.360070403224213,
+        1.8056069259518894
+      ]
+    ],
+    "naive_covariance_max_abs_error": 0.360070403224213,
+    "rk4_256_vs_512_steps_max_endpoint_difference_on_1024_seeds": 2.1349105122636658e-10
+  },
+  "normalization_checks": {
+    "constant_reward_offset_max_weight_difference": 8.881784197001252e-16,
+    "constant_reward_max_abs_weight_minus_one": 0.0,
+    "constant_reward_restricted_head_semigradient": 0.0
+  },
+  "scope": "CPU Gaussian identity and ODE audit only; no current-model marginal consistency or image-training performance claim."
+}

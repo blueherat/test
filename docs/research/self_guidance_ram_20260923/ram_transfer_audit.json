@@ -1,0 +1,142 @@
+{
+  "kind": "CPU analytic transfer audits; no image experiment",
+  "gaussian_RAM_fixed_point": {
+    "reference_variance": 1.0,
+    "reward": "-x^2/2",
+    "true_KL_optimum_variance": 0.5,
+    "noising_time": 0.5,
+    "state": 1.0,
+    "exact_velocity_displacement": 0.6666666666666666,
+    "RAM_reward_covariance": 0.4444444444444443,
+    "RAM_fixed_point_residual": 0.22222222222222232,
+    "exact_tilt_path_integral": 0.6666666666666666
+  },
+  "gauge_and_restricted_family": {
+    "all_marginal_covariance_error": 2.220446049250313e-16,
+    "rotation_coefficient": 0.4,
+    "reward_shift_examples": [
+      {
+        "constant_reward": 0.0,
+        "half_RAM_semigradient": 0.5333333333333333,
+        "endpoint_reward_gradient": 0.0,
+        "endpoint_KL_gradient": 0.0
+      },
+      {
+        "constant_reward": 1.0,
+        "half_RAM_semigradient": 1.0666666666666667,
+        "endpoint_reward_gradient": 0.0,
+        "endpoint_KL_gradient": 0.0
+      },
+      {
+        "constant_reward": -1.0,
+        "half_RAM_semigradient": 0.0,
+        "endpoint_reward_gradient": 0.0,
+        "endpoint_KL_gradient": 0.0
+      },
+      {
+        "constant_reward": -2.0,
+        "half_RAM_semigradient": -0.5333333333333333,
+        "endpoint_reward_gradient": 0.0,
+        "endpoint_KL_gradient": 0.0
+      }
+    ],
+    "restricted_family": {
+      "velocity": "(b(t)+theta*(theta-1))*x + 0.7*theta*J*x",
+      "initial_theta": 1.0,
+      "constant_reward": 0.0,
+      "half_RAM_gradient": 0.6533333333333332,
+      "learning_rate": 0.1,
+      "updated_theta": 0.9346666666666666,
+      "initial_endpoint_KL": 0.0,
+      "updated_endpoint_KL": 0.007163281145769154,
+      "interpretation": "Canonical reference regression can leave an endpoint-optimal member of a restricted family."
+    }
+  },
+  "feature_and_refresh": {
+    "feature_target": {
+      "base": [
+        [
+          0.45,
+          0.05
+        ],
+        [
+          0.1,
+          0.4
+        ]
+      ],
+      "data": [
+        [
+          0.1,
+          0.2
+        ],
+        [
+          0.6,
+          0.1
+        ]
+      ],
+      "optimal": [
+        [
+          0.2700000000000001,
+          0.030000000000000006
+        ],
+        [
+          0.13999999999999999,
+          0.5599999999999999
+        ]
+      ],
+      "target_feature_marginal": [
+        0.30000000000000004,
+        0.7
+      ],
+      "matched_feature_marginal": [
+        0.3000000000000001,
+        0.7
+      ],
+      "full_data_KL_to_optimal": 0.9809944994661428,
+      "conditional_KL_identity": 0.9809944994661427
+    },
+    "fixed_base_current_discriminator_refresh": {
+      "base": [
+        0.8,
+        0.2
+      ],
+      "data": [
+        0.2,
+        0.8
+      ],
+      "exact_best_response_sequence": [
+        [
+          0.8,
+          0.2
+        ],
+        [
+          0.19999999999999998,
+          0.7999999999999999
+        ],
+        [
+          0.7999999999999999,
+          0.19999999999999998
+        ],
+        [
+          0.19999999999999998,
+          0.7999999999999999
+        ],
+        [
+          0.7999999999999999,
+          0.19999999999999998
+        ]
+      ],
+      "fixed_point": [
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "RLG_velocity_scaling": {
+    "reference_variance": 1.0,
+    "unit_reward_tilt_variance": 0.5,
+    "guidance_weight": 2.0,
+    "mixed_velocity_endpoint_variance": 0.24999999999999994,
+    "stronger_reward_true_tilt_variance": 0.3333333333333333
+  }
+}

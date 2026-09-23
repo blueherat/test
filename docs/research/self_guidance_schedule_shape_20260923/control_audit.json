@@ -1,0 +1,183 @@
+{
+  "kind": "Analytic continuous control and CPU Heun audit; not image training",
+  "rotating_drift": {
+    "drift": "S(x)=2*pi*J*x",
+    "control_direction": "B=e1",
+    "weak": "W=S-e1",
+    "initial": "N(0,I)",
+    "strong_endpoint": "N(0,I)",
+    "weak_endpoint": "N(0,I)",
+    "target": "N(e1,I)",
+    "energy_weight": 0.25,
+    "optimal_control": "a(t)=cos(2*pi*t)/(lambda+1/2)",
+    "amplitude": 1.3333333333333333,
+    "values_at_0_half_1": [
+      1.3333333333333333,
+      -1.3333333333333333,
+      1.3333333333333333
+    ],
+    "endpoint_mean": [
+      0.6666666666666666,
+      -7.344420846675352e-17
+    ],
+    "endpoint_kl": 0.055555555555555566,
+    "control_energy": 0.888888888888889,
+    "total_objective": 0.16666666666666669,
+    "constant_control_endpoint_shift": [
+      4.163336342344337e-17,
+      -1.7729929548730037e-17
+    ],
+    "controllability_gramian": [
+      [
+        0.5,
+        3.8568018536208264e-17
+      ],
+      [
+        3.8568018536208264e-17,
+        0.49999999999999994
+      ]
+    ],
+    "stationarity_error": 1.6653345369377348e-15,
+    "caveat": "Actual GAN schedule training has no a^2 penalty; this is a constructive existence example."
+  },
+  "heun_only_effect": {
+    "ode": "x'=a(t)x",
+    "physical_control": [
+      1.5,
+      -3.0,
+      1.5
+    ],
+    "physical_intervals": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "continuous_multiplier": 1.0,
+    "three_step_multiplier_polynomial": "1+z^3+9*z^4/4+3*z^5/2+z^6/2",
+    "refinements": [
+      {
+        "steps": 3,
+        "multiplier": 1.3203125,
+        "error": 0.3203125
+      },
+      {
+        "steps": 6,
+        "multiplier": 1.0526780039072037,
+        "error": 0.052678003907203674
+      },
+      {
+        "steps": 12,
+        "multiplier": 1.010239585694665,
+        "error": 0.010239585694665099
+      },
+      {
+        "steps": 24,
+        "multiplier": 1.002241661095287,
+        "error": 0.0022416610952868954
+      },
+      {
+        "steps": 48,
+        "multiplier": 1.000523464632937,
+        "error": 0.0005234646329370651
+      },
+      {
+        "steps": 96,
+        "multiplier": 1.0001264145232145,
+        "error": 0.00012641452321449087
+      },
+      {
+        "steps": 192,
+        "multiplier": 1.0000310572959041,
+        "error": 3.105729590413553e-05
+      },
+      {
+        "steps": 384,
+        "multiplier": 1.0000076966539946,
+        "error": 7.696653994582192e-06
+      }
+    ]
+  },
+  "three_pulse_curvature": [
+    {
+      "spacing": 0.1,
+      "response": [
+        0.3819660112501052,
+        0.0
+      ],
+      "second_derivative_prediction": [
+        0.3947841760435744,
+        -4.834711775457886e-17
+      ],
+      "relative_error": 0.03246879072492103
+    },
+    {
+      "spacing": 0.05,
+      "response": [
+        0.09788696740969294,
+        0.0
+      ],
+      "second_derivative_prediction": [
+        0.0986960440108936,
+        -1.2086779438644716e-17
+      ],
+      "relative_error": 0.0081976598890971
+    },
+    {
+      "spacing": 0.025,
+      "response": [
+        0.02462331880972457,
+        0.0
+      ],
+      "second_derivative_prediction": [
+        0.0246740110027234,
+        -3.021694859661179e-18
+      ],
+      "relative_error": 0.0020544771984269215
+    },
+    {
+      "spacing": 0.0125,
+      "response": [
+        0.006165332533743961,
+        0.0
+      ],
+      "second_derivative_prediction": [
+        0.00616850275068085,
+        -7.554237149152947e-19
+      ],
+      "relative_error": 0.0005139362119177031
+    }
+  ],
+  "statistic_orthogonalization": {
+    "gain_kernel": "f(t)=1+epsilon*cos(2*pi*t)",
+    "preserved_kernel": "g(t)=1",
+    "objective": "min integral(a^2)/2; integral(f*a)=1; integral(g*a)=0",
+    "solution": "a(t)=2*cos(2*pi*t)/epsilon",
+    "caveat": "Local response interpretation needs a valid small-perturbation regime.",
+    "cases": [
+      {
+        "epsilon": 0.5,
+        "control_amplitude": 4.0,
+        "preserved_statistic_change": 1.6653345369377348e-16,
+        "target_statistic_change": 1.0,
+        "minimum_energy": 4.0,
+        "energy_inflation": 9.0
+      },
+      {
+        "epsilon": 0.2,
+        "control_amplitude": 10.0,
+        "preserved_statistic_change": -2.220446049250313e-16,
+        "target_statistic_change": 0.9999999999999998,
+        "minimum_energy": 24.999999999999996,
+        "energy_inflation": 50.99999999999999
+      },
+      {
+        "epsilon": 0.1,
+        "control_amplitude": 20.0,
+        "preserved_statistic_change": -4.440892098500626e-16,
+        "target_statistic_change": 1.0,
+        "minimum_energy": 99.99999999999999,
+        "energy_inflation": 200.99999999999994
+      }
+    ]
+  }
+}

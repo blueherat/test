@@ -1,0 +1,200 @@
+{
+  "kind": "CPU continuous Gaussian and exact binomial theoretical audits; not image FID",
+  "pure_gauge": {
+    "initial_covariance": [
+      [
+        4.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.25
+      ]
+    ],
+    "KL_value": 1.125,
+    "KL_max_minus_min": 7.105427357601002e-15
+  },
+  "first_order_blind_case": {
+    "k": 0.8,
+    "baseline_KL": 1.5774644711948858,
+    "derivative_at_zero": 0.0,
+    "second_derivative_at_zero": -1.009343280955477,
+    "exact_finite_control": 3.2418520017251495,
+    "finite_control_KL_roundoff": 4.930380657631324e-32,
+    "flow_error_to_minus_identity": 3.9882080292822786e-16
+  },
+  "nonlinear_gauge": {
+    "field": "(x*(y^2-1), y*(1-x^2))",
+    "weighted_divergence": "identically zero under N(0,I)",
+    "midpoint_KL_first_variation": -1.198711977649968,
+    "all_interior_responses_negative": true
+  },
+  "state_gate": {
+    "field": "-beta*x*y*J*x; beta*time is the map parameter",
+    "covariance_derivative": [
+      [
+        1.9999999991970883,
+        -4.19716240456959e-13
+      ],
+      [
+        -4.19716240456959e-13,
+        -1.9999999991915371
+      ]
+    ],
+    "expected_covariance_derivative": [
+      [
+        2.0,
+        0.0
+      ],
+      [
+        0.0,
+        -2.0
+      ]
+    ],
+    "exact_map_covariance_at_beta_time_point2": [
+      [
+        1.354084535462249,
+        -7.679120078778331e-18
+      ],
+      [
+        -7.679120078778331e-18,
+        0.645915464537751
+      ]
+    ],
+    "invariant": "Every particle radius is constant, so radial density cannot be corrected."
+  },
+  "future_response": {
+    "baseline_terminal_KL": 1.183098353396164,
+    "endpoint_response": [
+      -2.220446049250313e-16,
+      -4.440892098500626e-16
+    ],
+    "max_absolute_interior_response": 1.3661243056221568,
+    "finite_difference_checks": [
+      {
+        "time": 0.15,
+        "predicted": 0.007454979287438777,
+        "finite_difference": 0.007454979289445163,
+        "absolute_error": 2.006385509123465e-12
+      },
+      {
+        "time": 0.35,
+        "predicted": 0.018143807719478683,
+        "finite_difference": 0.01814380771847368,
+        "absolute_error": 1.0050016374663073e-12
+      },
+      {
+        "time": 0.65,
+        "predicted": 0.018143807719478676,
+        "finite_difference": 0.01814380771847368,
+        "absolute_error": 1.0049946985724034e-12
+      },
+      {
+        "time": 0.85,
+        "predicted": 0.0074549792874387686,
+        "finite_difference": 0.007454979289445163,
+        "absolute_error": 2.006394182740845e-12
+      }
+    ]
+  },
+  "multi_direction_torus": {
+    "reference": "Uniform probability on the three-dimensional torus",
+    "target_ratio": "1 + 0.5*sin(z)",
+    "directions": [
+      "(1,0,0)",
+      "(0,cos(x),sin(x))"
+    ],
+    "bracket": "(0,-sin(x),cos(x)); spans all three coordinates with the directions",
+    "number_of_characteristics": 32,
+    "pointwise_divergence_finite_difference_error": 3.466316123024171e-11,
+    "characteristic_log_density_error": 6.745104474958907e-12,
+    "claim": "Exact smooth density path from analytic continuity equation; numerical characteristic check"
+  },
+  "minibatch_anchor": [
+    {
+      "probe_batch": 1,
+      "minimum_penalty": 1.206948960812582,
+      "optimal_gap_scale": 0.5773502691896257,
+      "large_batch_leading_term": 0.64
+    },
+    {
+      "probe_batch": 2,
+      "minimum_penalty": 0.6687101848802693,
+      "optimal_gap_scale": 0.5081327481546146,
+      "large_batch_leading_term": 0.32
+    },
+    {
+      "probe_batch": 4,
+      "minimum_penalty": 0.2654818817025869,
+      "optimal_gap_scale": 0.4718952805098032,
+      "large_batch_leading_term": 0.16
+    },
+    {
+      "probe_batch": 8,
+      "minimum_penalty": 0.10158515882067631,
+      "optimal_gap_scale": 0.4576042958687667,
+      "large_batch_leading_term": 0.08
+    },
+    {
+      "probe_batch": 16,
+      "minimum_penalty": 0.04459196782764002,
+      "optimal_gap_scale": 0.45200768462501184,
+      "large_batch_leading_term": 0.04
+    },
+    {
+      "probe_batch": 32,
+      "minimum_penalty": 0.021067690131328802,
+      "optimal_gap_scale": 0.44952598234061214,
+      "large_batch_leading_term": 0.02
+    },
+    {
+      "probe_batch": 64,
+      "minimum_penalty": 0.010258116813325828,
+      "optimal_gap_scale": 0.44835023864951407,
+      "large_batch_leading_term": 0.01
+    },
+    {
+      "probe_batch": 128,
+      "minimum_penalty": 0.00506349449419236,
+      "optimal_gap_scale": 0.4477772087747112,
+      "large_batch_leading_term": 0.005
+    },
+    {
+      "probe_batch": 256,
+      "minimum_penalty": 0.002515748096439581,
+      "optimal_gap_scale": 0.44749424623083084,
+      "large_batch_leading_term": 0.0025
+    }
+  ],
+  "scale_first_budget_counterexample": [
+    {
+      "epsilon": 1.0,
+      "projected_budget_descent": 1.0,
+      "joint_budget_descent": 1.4142135623730951,
+      "efficiency_ratio": 0.7071067811865475
+    },
+    {
+      "epsilon": 0.1,
+      "projected_budget_descent": 0.1,
+      "joint_budget_descent": 1.004987562112089,
+      "efficiency_ratio": 0.09950371902099893
+    },
+    {
+      "epsilon": 0.01,
+      "projected_budget_descent": 0.01,
+      "joint_budget_descent": 1.0000499987500624,
+      "efficiency_ratio": 0.009999500037496877
+    },
+    {
+      "epsilon": 0.001,
+      "projected_budget_descent": 0.001,
+      "joint_budget_descent": 1.000000499999875,
+      "efficiency_ratio": 0.000999999500000375
+    }
+  ],
+  "assumptions": [
+    "Gaussian examples hold all non-rotation controls fixed.",
+    "Anchor calculation ignores epsilon and assumes the global scale is absorbable.",
+    "No claim that Gaussian reference, critic, or perfect score assumptions hold for SiT/JiT."
+  ]
+}

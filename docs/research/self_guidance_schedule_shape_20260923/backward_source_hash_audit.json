@@ -1,0 +1,320 @@
+[
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/jit_block1_gan_schedule_20260922/training_30k_gpu0_gpu2_g32_m8/request.json",
+    "created_utc": "2026-09-22T10:04:11.606479+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": true
+      },
+      {
+        "file": "jit_schedule.py",
+        "recorded_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "current_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "match": true
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training_accumulation.py",
+        "recorded_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "current_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "train_jit_schedule.py",
+        "recorded_sha256": "f4fa140e12d750c31d5c2df0b617dbd4dbb7ebad83afa02a08f24f49a5c67152",
+        "current_sha256": "f4fa140e12d750c31d5c2df0b617dbd4dbb7ebad83afa02a08f24f49a5c67152",
+        "match": true
+      },
+      {
+        "file": "train_schedule.py",
+        "recorded_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "current_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "match": true
+      }
+    ]
+  },
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/jit_block1_gan_schedule_20260922/audit_fresh_leaf/request.json",
+    "created_utc": "2026-09-22T08:57:01.004749+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": true
+      },
+      {
+        "file": "jit_schedule.py",
+        "recorded_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "current_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "match": true
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "train_jit_schedule.py",
+        "recorded_sha256": "3047be0112fdd7bcd09d3f56d4ef5d37e17d241e1edea116fb9a51cdc6d2ac02",
+        "current_sha256": "f4fa140e12d750c31d5c2df0b617dbd4dbb7ebad83afa02a08f24f49a5c67152",
+        "match": false
+      },
+      {
+        "file": "train_schedule.py",
+        "recorded_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "current_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "match": true
+      }
+    ]
+  },
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/sit_native_signed_schedule_20260919/training_30k_monitored/request.json",
+    "created_utc": "2026-09-19T15:29:14.506523+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "0aee7cf3a466839ac10f8d955a9af4fe68d295cf08030962a1bb9106b72da3a6",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": false
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "train_schedule.py",
+        "recorded_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "current_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "match": true
+      }
+    ],
+    "old_sampler_snapshot": {
+      "path": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/sit_native_signed_schedule_20260919/training_30k_monitored/source_snapshot/classifier_guidance/sampler.py",
+      "sha256": "0aee7cf3a466839ac10f8d955a9af4fe68d295cf08030962a1bb9106b72da3a6",
+      "matches_request": true,
+      "diff_file": "old_native_sampler_diff.txt"
+    }
+  },
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/sit_joint_gan_20260922/training_30k/request.json",
+    "created_utc": "2026-09-22T13:45:47.454715+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": true
+      },
+      {
+        "file": "jit_schedule.py",
+        "recorded_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "current_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "match": true
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training_accumulation.py",
+        "recorded_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "current_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "sit_joint.py",
+        "recorded_sha256": "9a43f4277226a7e13f2e27ab54e848a21239e6c96f47b717a80e4ce2f77580a5",
+        "current_sha256": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+        "match": false
+      },
+      {
+        "file": "train_jit_schedule.py",
+        "recorded_sha256": "f4fa140e12d750c31d5c2df0b617dbd4dbb7ebad83afa02a08f24f49a5c67152",
+        "current_sha256": "f4fa140e12d750c31d5c2df0b617dbd4dbb7ebad83afa02a08f24f49a5c67152",
+        "match": true
+      },
+      {
+        "file": "train_schedule.py",
+        "recorded_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "current_sha256": "5c31899803d8266369949f2f03eee96b135c256baa33f894076bbcd2dc44dd6c",
+        "match": true
+      },
+      {
+        "file": "train_sit_joint.py",
+        "recorded_sha256": "c431a4d572cc4d58f11d975ecef37d38c6a7c49ac02508cddd2fa1691cbc2b73",
+        "current_sha256": "8ee5608c4fcfc5ef92e742a0fbb4ed8cb1f06c05b758ebd44864506f74962025",
+        "match": false
+      }
+    ]
+  },
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/sit_joint_gan_20260922/single_after_deadline_20260923/request.json",
+    "created_utc": "2026-09-23T00:57:08.892886+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": true
+      },
+      {
+        "file": "jit_schedule.py",
+        "recorded_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "current_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "match": true
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training_accumulation.py",
+        "recorded_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "current_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "sit_joint.py",
+        "recorded_sha256": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+        "current_sha256": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+        "match": true
+      },
+      {
+        "file": "train_sit_joint.py",
+        "recorded_sha256": "8ee5608c4fcfc5ef92e742a0fbb4ed8cb1f06c05b758ebd44864506f74962025",
+        "current_sha256": "8ee5608c4fcfc5ef92e742a0fbb4ed8cb1f06c05b758ebd44864506f74962025",
+        "match": true
+      }
+    ]
+  },
+  {
+    "request": "/home/zhoushunyu/data/eqvae/projects/classifier_guidance/sit_joint_gan_20260922/dual_until_deadline_20260923/request.json",
+    "created_utc": "2026-09-22T17:11:25.222073+00:00",
+    "checks": [
+      {
+        "file": "sampler.py",
+        "recorded_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "current_sha256": "8c692c83b33697338bda55efdfad3b017e9cdc910d5e5e0009d8a6eaf677db19",
+        "match": true
+      },
+      {
+        "file": "jit_schedule.py",
+        "recorded_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "current_sha256": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+        "match": true
+      },
+      {
+        "file": "features.py",
+        "recorded_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "current_sha256": "fa641e9f1e4dc5ffd72b529540858850d7b173b3456338492fccc7f88ed8b69e",
+        "match": true
+      },
+      {
+        "file": "training_accumulation.py",
+        "recorded_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "current_sha256": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+        "match": true
+      },
+      {
+        "file": "training.py",
+        "recorded_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "current_sha256": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+        "match": true
+      },
+      {
+        "file": "schedules.py",
+        "recorded_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "current_sha256": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+        "match": true
+      },
+      {
+        "file": "sit_joint.py",
+        "recorded_sha256": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+        "current_sha256": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+        "match": true
+      },
+      {
+        "file": "train_sit_joint.py",
+        "recorded_sha256": "8ee5608c4fcfc5ef92e742a0fbb4ed8cb1f06c05b758ebd44864506f74962025",
+        "current_sha256": "8ee5608c4fcfc5ef92e742a0fbb4ed8cb1f06c05b758ebd44864506f74962025",
+        "match": true
+      }
+    ]
+  }
+]

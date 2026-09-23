@@ -1,0 +1,111 @@
+{
+  "kind": "CPU mathematical audits, not image training or measured acceleration",
+  "heun_local_gradient": {
+    "steps": 5,
+    "field_queries": 10,
+    "batch": 3,
+    "exact_loss": 1.4376857781326582,
+    "local_vs_full_max_error": 0.0,
+    "direct_terminal_cotangent_relative_error": 0.14740749678983345,
+    "scale_gradients": [
+      0.052116762681505516,
+      0.05366064625903026,
+      0.05513954902408721,
+      0.05491762993111629,
+      0.05231002665200121
+    ],
+    "unbiased_random_exact_correction": [
+      {
+        "exact_backward_probability": 1.0,
+        "expectation_max_error": 0.0,
+        "added_gradient_variance": 0.0,
+        "predicted_added_variance": 0.0
+      },
+      {
+        "exact_backward_probability": 0.5,
+        "expectation_max_error": 0.0,
+        "added_gradient_variance": 0.008528206491782825,
+        "predicted_added_variance": 0.008528206491782825
+      },
+      {
+        "exact_backward_probability": 0.1,
+        "expectation_max_error": 0.0,
+        "added_gradient_variance": 0.0767538584260454,
+        "predicted_added_variance": 0.07675385842604542
+      },
+      {
+        "exact_backward_probability": 0.02,
+        "expectation_max_error": 6.938893903907228e-18,
+        "added_gradient_variance": 0.4178821180973584,
+        "predicted_added_variance": 0.4178821180973584
+      }
+    ],
+    "point": "Exact query cotangents absorb strong input Jacobians; terminal gradient alone does not."
+  },
+  "critic_value_counterexample": {
+    "epsilon": 0.01,
+    "maximum_value_error_bound": 0.01,
+    "true_value_at_zero": 0.0,
+    "fitted_value_at_zero": 0.0,
+    "true_action_gradient": 1.0,
+    "fitted_action_gradient": -99.0,
+    "point": "Perfect value fit at the deterministic action can give the opposite actor update."
+  },
+  "gaussian_policy_variance": [
+    {
+      "action_dimension": 2,
+      "score_mean_squared_gradient_error": 2.955943667101109,
+      "theoretical_error": 3,
+      "critic_80_percent_gradient_error": 0.11823774668404437,
+      "theoretical_critic_error": 0.12
+    },
+    {
+      "action_dimension": 16,
+      "score_mean_squared_gradient_error": 17.035704938945862,
+      "theoretical_error": 17,
+      "critic_80_percent_gradient_error": 0.6814281975578345,
+      "theoretical_critic_error": 0.68
+    },
+    {
+      "action_dimension": 64,
+      "score_mean_squared_gradient_error": 64.86946969886692,
+      "theoretical_error": 65,
+      "critic_80_percent_gradient_error": 2.594778787954677,
+      "theoretical_critic_error": 2.6
+    },
+    {
+      "action_dimension": 256,
+      "score_mean_squared_gradient_error": 259.3802027840883,
+      "theoretical_error": 257,
+      "critic_80_percent_gradient_error": 10.375208111363532,
+      "theoretical_critic_error": 10.28
+    }
+  ],
+  "exploration_objective_shift": [
+    {
+      "exploration_sigma": 0.0,
+      "positive_optimal_mean": 1.0,
+      "deterministic_reward_at_mean": -0.0
+    },
+    {
+      "exploration_sigma": 0.1,
+      "positive_optimal_mean": 0.9848857801796105,
+      "deterministic_reward_at_mean": -0.0009000000000000016
+    },
+    {
+      "exploration_sigma": 0.3,
+      "positive_optimal_mean": 0.8544003745317531,
+      "deterministic_reward_at_mean": -0.0729
+    },
+    {
+      "exploration_sigma": 0.5,
+      "positive_optimal_mean": 0.5,
+      "deterministic_reward_at_mean": -0.5625
+    },
+    {
+      "exploration_sigma": 0.6,
+      "positive_optimal_mean": 0.0,
+      "deterministic_reward_at_mean": -1.0
+    }
+  ]
+}
