@@ -1,5 +1,7 @@
 # 我们的方法图：分类器反馈学习自引导
 
+最新方案见 [v3 三版对比](revisions_v3/README.md)与[三页可编辑 PPT](revisions_v3/concept_variants_v3.pptx)：改为统一 Liberation Sans，参考 DMD2、ADD 和 APT 的方法图，保留雪花与火焰。三版均为 SiT 联合训练的不同排版。以下记录的是保留用于追溯的 v2。
+
 延续 AdvFD Figure 3 的双栏布局、蓝／金训练状态、浅橙损失框和底部分布示意；训练流程与公式已按当前仓库实现重写。v2 将全部文本与公式统一为原图使用的 **Comic Sans MS**，并将 Strong、Weak 和分类器改为带可编辑节点与连线的小网络；系数模块增加阶梯曲线，Inception 增加特征层图标。
 
 ## 文件
