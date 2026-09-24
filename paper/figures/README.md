@@ -7,6 +7,7 @@
 |---|---|---|
 | `classifier_guidance_method/` | 本项目的方法图，当前为统一原图字体、带 Strong / Weak 小网络的 v2 | [可编辑 PPT](classifier_guidance_method/classifier_guidance_method_v2.pptx)、[使用说明](classifier_guidance_method/README.md) |
 | `advfd_editable/` | AdvFD Figure 3 原图、早期可编辑重绘及其来源记录 | [参考说明](advfd_editable/README.md) |
+| `archive/` | 字体与网络图标修改前的 v1 文件包，仅作历史留存 | [归档说明](archive/README.md) |
 
 ## 当前图稿
 
@@ -33,6 +34,6 @@ python paper/figures/classifier_guidance_method/build_figure.py
 python paper/figures/advfd_editable/build_figure.py
 ```
 
-Git 跟踪绘图源码、最新 v2 图稿、对象场景、审查记录及必要参考资源。自动生成的重复文件、分发 ZIP、字体的本机路径配置和 Python 缓存由本目录的 `.gitignore` 排除。
+Git 跟踪绘图源码、最新 v2 图稿、对象场景、审查记录、必要参考资源及 v1 历史归档。生成脚本仅输出一套 `_v2` 图稿。重复副本、可重新打包的分发 ZIP、字体的本机路径配置和 Python 缓存不进入版本管理。
 
 `review_checks.json` 保留交付时的检查及源文件哈希；重新绘图会更新对象检查及源文件哈希。完整的交付检查经过独立办公软件渲染和人工目视核对，详见自审记录。

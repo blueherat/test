@@ -10,8 +10,6 @@ import hashlib
 import io
 import json
 import random
-import shutil
-import zipfile
 
 import drawing as d
 from PIL import Image
@@ -306,15 +304,12 @@ def main():
         title='Joint weak-head and schedule learning' if joint else 'Schedule-only learning'
         meta=notes+('SiT joint variant: S and W are velocity predictions, VAE decoder is fixed; optimize theta and alpha with lambda=0.1 gap-energy anchor on independent real-posterior interpolants. W0 is the initial frozen weak head.' if joint else 'JiT schedule variant: S and W are clean predictions; convert the guided prediction to velocity before the fixed Heun/Euler rollout. Only alpha is optimized; W is fixed and the gap anchor is absent. RGB map is fixed rescaling/clamping.')
         xml=d.svg(scene,title)
-        (ROOT/f'{stem}.svg').write_text(xml)
-        d.cairosvg.svg2png(bytestring=xml.encode(),write_to=str(ROOT/f'{stem}.png'),output_width=2160,output_height=round(2160*d.H/d.W))
-        d.cairosvg.svg2pdf(bytestring=xml.encode(),write_to=str(ROOT/f'{stem}.pdf'))
+        (ROOT/f'{stem}_v2.svg').write_text(xml)
+        d.cairosvg.svg2png(bytestring=xml.encode(),write_to=str(ROOT/f'{stem}_v2.png'),output_width=2160,output_height=round(2160*d.H/d.W))
+        d.cairosvg.svg2pdf(bytestring=xml.encode(),write_to=str(ROOT/f'{stem}_v2.pdf'))
         (ROOT/f'{stem}.scene.json').write_text(json.dumps(scene,ensure_ascii=False,indent=2))
-        for suffix in ['svg','pdf','png']:
-            shutil.copyfile(ROOT/f'{stem}.{suffix}',ROOT/f'{stem}_v2.{suffix}')
         slides.append((scene,title,meta))
-    d.export_deck(slides,ROOT/'classifier_guidance_method.pptx')
-    shutil.copyfile(ROOT/'classifier_guidance_method.pptx',ROOT/'classifier_guidance_method_v2.pptx')
+    d.export_deck(slides,ROOT/'classifier_guidance_method_v2.pptx')
     sources=['classifier_guidance/README.md','classifier_guidance/sit_joint.py','classifier_guidance/jit_schedule.py','classifier_guidance/schedules.py','classifier_guidance/training.py','classifier_guidance/training_accumulation.py','experiments/adversarial_weak_training_20260915/binary_critic.py']
     manifest={p:(hashlib.sha256((REPO/p).read_bytes()).hexdigest() if (REPO/p).is_file() else None) for p in sources}
     (ROOT/'review_checks.json').write_text(json.dumps(dict(scene_checks=audits,source_sha256=manifest),indent=2))
