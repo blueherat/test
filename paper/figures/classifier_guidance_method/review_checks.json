@@ -1,0 +1,110 @@
+{
+  "scene_checks": [
+    {
+      "variant": "joint",
+      "objects": 794,
+      "text_overflow": [],
+      "font_family": "Comic Sans MS",
+      "network_icons": "Strong: 4 schematic layers; Weak: 3; classifier: 3 (not literal architecture counts)",
+      "trainable_states": "passed",
+      "fixed_real_reference": "passed",
+      "fixed_d_step_clouds": "passed",
+      "gradient_gate": "passed"
+    },
+    {
+      "variant": "schedule_only",
+      "objects": 788,
+      "text_overflow": [],
+      "font_family": "Comic Sans MS",
+      "network_icons": "Strong: 4 schematic layers; Weak: 3; classifier: 3 (not literal architecture counts)",
+      "trainable_states": "passed",
+      "fixed_real_reference": "passed",
+      "fixed_d_step_clouds": "passed",
+      "gradient_gate": "passed"
+    }
+  ],
+  "source_sha256": {
+    "classifier_guidance/README.md": "1173db38a10eb5db259a609752a7de0ff3c0a606f4523426d11639c7d9c2605e",
+    "classifier_guidance/sit_joint.py": "ca008d48a7d3ed4fe1227cc25d416078684055fa3a8f0905a7dd30354b7dd79b",
+    "classifier_guidance/jit_schedule.py": "b933de001c526b847ba7f3df66b26c5ae4c08dfa96cd2a76a8ab513725a5b1ca",
+    "classifier_guidance/schedules.py": "0a6b6c45a6723ac0aa68742a70574fc2bb0d0e2de372053caa038c0959018bd9",
+    "classifier_guidance/training.py": "0d00e1e60b1b175d62d95903672b8e213b9a7a1f4cf5d363e9283486616052e6",
+    "classifier_guidance/training_accumulation.py": "6b98c7782c9e5273d21c62e17ff4417893663933cef2a073aabf3992845ab4e9",
+    "experiments/adversarial_weak_training_20260915/binary_critic.py": "6920c41a363a6ef1d7504b964ce296f3ca562f8e1e7b8f44febfaf10c3027700"
+  },
+  "font_character_coverage": [
+    {
+      "figure": "method_joint",
+      "font_file": "Comic.TTF",
+      "missing_characters": []
+    },
+    {
+      "figure": "method_joint",
+      "font_file": "Comicbd.TTF",
+      "missing_characters": []
+    },
+    {
+      "figure": "method_schedule",
+      "font_file": "Comic.TTF",
+      "missing_characters": []
+    },
+    {
+      "figure": "method_schedule",
+      "font_file": "Comicbd.TTF",
+      "missing_characters": []
+    }
+  ],
+  "pptx_structure_checks": [
+    {
+      "slide": 1,
+      "text_font_families": [
+        "Comic Sans MS"
+      ],
+      "picture_count": 2,
+      "unique_shape_ids": true,
+      "theme_shadows_disabled": true
+    },
+    {
+      "slide": 2,
+      "text_font_families": [
+        "Comic Sans MS"
+      ],
+      "picture_count": 2,
+      "unique_shape_ids": true,
+      "theme_shadows_disabled": true
+    }
+  ],
+  "embedded_fonts": {
+    "family": "Comic Sans MS",
+    "styles": [
+      "regular",
+      "bold"
+    ],
+    "all_characters": true,
+    "original_ttf_payload_unchanged": true,
+    "fsType": 0,
+    "EOT_version": "0x00020002"
+  },
+  "pdf_checks": {
+    "page_count_per_variant": 1,
+    "fonts": "ComicSansMS regular and bold only",
+    "readable_text": true
+  },
+  "artifact_sha256": {
+    "method_schedule_v2.png": "92f0909b8e5299bd729ef0156cfd64d171c78e9c0ff287e6858d0762790568fe",
+    "method_schedule_v2.pdf": "d04a2fffed3516c5986b2a886ae57a911e3a18c8ea7edc2b8da575ff4372d427",
+    "method_joint_v2.pdf": "f72dd39a005a2addc772223626d3a8fc2bb099be620aa35415c10ee8539e17a1",
+    "classifier_guidance_method_v2.pptx": "29c3bc36fe21c7b4097d5b5c5457835e066aaaaf64738b758dcf63a0d48b7c34",
+    "method_joint_v2.png": "b1d1d2c072670535d06ae7f24c5df67a0e2e13ba08da3beaffe944355885ce58",
+    "method_schedule_v2.svg": "83789b3cef498772efdaf024a07e4acf97ef838850d940dacec65d8c2d30a0fe",
+    "method_joint_v2.svg": "b90f907c064cd0cbbcd26f6fdb89742a97f32b2f78b31ec0a241fea6ecf6d430"
+  },
+  "native_presentation_review": {
+    "renderer": "LibreOffice 26.2",
+    "slides": 2,
+    "font_family": "Comic Sans MS",
+    "regular_and_bold_verified_in_exported_pdf": true,
+    "visual_review": "passed; no clipping, correct symbols, editable network layout, flat shapes without theme shadow",
+    "note": "Checked with the supplied fonts available; third-party editors without embedded-font support may need the supplied TTFs installed."
+  }
+}
